@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1磁盘镜像 on x7peeps</title>
+    <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html</link>
+    <description>Recent content in 1磁盘镜像 on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Clonezilla</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html</guid>
+      <description>&lt;p&gt;Clonezilla：https://clonezilla.org/ 多平台的分区和磁盘克隆程序。&lt;/p&gt;
+&lt;p&gt;Clonezilla是一个分区和磁盘成像/克隆程序，类似于True Image®或Norton Ghost®。帮助您进行系统部署、裸金属备份和恢复。Clonezilla有三种类型:Clonezilla live、Clonezilla lite server和Clonezilla SE(服务器版)。Clonezilla live适用于单机备份和恢复。虽然Clonezilla lite server或SE是用于大规模部署的，但它可以同时克隆许多(40多台!)计算机。Clonezilla只保存和恢复硬盘中使用过的块。这提高了克隆效率。在42节点集群中的一些高端硬件中，理论可达8gb/min速率恢复速率。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Datanumen_disk_image</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html</guid>
+      <description>Datanumen disk image：
+https://www.datanumen.com/disk-image/免费管理磁盘驱动器镜像创建制作和恢复的软件
+简介 DataNumen Disk Image是一个强大的工具来克隆和恢复磁盘或驱动器。它可以一个字节一个字节地创建和恢复磁盘映像或驱动器映像。实用的数据备份和恢复，磁盘/驱动器复制和克隆，和取证。
+特性 支持各种磁盘和驱动器。
+支持Windows 95/98/ME/NT/2000/XP/Visa/7/8/8.1/10和Windows Server 2003/2008/2012/2016/2019。
+支持恢复图像数据回驱动器。
+支持从损坏的媒体克隆数据。
+支持用指定的数据替换损坏的扇区。
+支持批量克隆多个磁盘和驱动器。
+理想用作计算机取证工具和电子发现(或e-discovery, eDiscovery)工具。
+使用 使用DataNumen Disk Image为驱动器和磁盘创建映像
+视频教程：https://youtu.be/idTwljaqOWQ
+打开DataNumen Disk Image 注意:在使用DataNumen磁盘映像创建驱动器或磁盘映像之前，请关闭任何其他应用程序。
+选择需要创建镜像的驱动器或磁盘 如果您插入了USB驱动器，但在驱动器或磁盘列表中看不到它。您可以单击刷新按钮，然后重试。
+接下来，设置输出镜像文件名 您可以直接输入图像文件名，也可以单击“浏览”按钮浏览并选择图像文件。
+开始镜像 单击“开始克隆”按钮，DataNumen Disk Image将开始克隆指定驱动器或磁盘中的数据，并将其保存到输出镜像文件中。进度条：
+镜像结束 在克隆过程之后，如果镜像文件创建成功，您将看到这样的消息框:
+现在你可以将磁盘映像用于不同的目的，包括:
+使用它作为原始驱动器或磁盘的备份。 将映像恢复到原始驱动器或磁盘，或另一个驱动器或磁盘。 从图像中恢复数据。 对图像进行法医数据分析。 </description>
+    </item>
+    <item>
+      <title>dd/dc3dd(linux)</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html</guid>
+      <description>dd镜像取证
+在一些无法使用工具的特殊情况下可以考虑dd做镜像，注意不要将镜像保存到被取证硬盘中，覆盖磁盘造成证据现场破坏。
+使用dd做磁盘镜像 dd一般镜像方式 1、fdisk -l 判断目标磁盘编号：
+#if=指定需要制作映像设备，-of=指定保存的位置。
+2、dd if=/dev/sda
+of=/mnt/udisk/Forensic/dd/sda
+dd速度非常慢，且在备份过程中没有任何进度提示，直接放弃换用增强版dd&amp;mdash;&amp;mdash;dc3dd。
+dd镜像+压缩 由于dd格式的镜像被取证盘大小就是dd镜像大小，因此一般镜像时还可以带上压缩命令如下
+dd if=/dev/sda3 | gzip &amp;gt; /bak/172_28_179_126/dev_sda3.gz //直接压缩
+dd镜像+压缩+分片 dd if=/dev/mapper/vg_local_root-lv_home | gzip | split -b 1G -d -a 3 - /bak/172_28_179_126/dev_mapper_vg_local_root-lv_home.dd.gz //分片压缩
+使用dc3dd做磁盘镜像 dc3dd和dd参数使用是一样的，它们一样是完整备份，对备份盘容量需求比较大，这里只备份sda3（D盘），可以看到备份了约6GB大小。
+dc3dd if=/dev/sda
+of=/mnt/udisk/Forensic/dd/sda
+最终D盘分区镜像大小5.81GB。
+参考文章 https://www.secpulse.com/archives/138600.html</description>
+    </item>
+    <item>
+      <title>EnCase_forensic_imager.</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html</guid>
+      <description>EnCase Forensic Imager(win)
+EnCase V8是美国Guidance Software推出的最新计算机取证软件，全新的操作界面，采用全新的取证分析的工作流，让新版更加简单易用，提供了更加强大灵活的报告功能（可模板定制），此外EnCase V8将原有EnCase v7所有模块(VFS/PDE/EDS/FastBloc SE/CD-DVD)及Neutrino手机取证功能全部集成，成为业界首先将计算机取证、手机取证综合一体的电子数据取证分析软件。
+Guidance Software Inc.是全球知名的计算机取证厂商，成立于1997年，在纳斯达克上市(NASDAQ: GUID)，总部设立在美国。其EnCase计算机取证系列产品在美国、欧洲等地的执法部门、司法机关及世界五百强（Fortune 500)广泛使用，在美国联邦法院、地方法院收到认可，已成为业界标准。目前已销售超过40000套EnCase产品，每年培训的取证专业人员超过6000人
+当时间很短，您需要获取整个卷或选定的个人文件夹或文件，EnCase®法医Imager是您的选择工具。基于可靠的行业标准EnCase®取证采集技术，EnCase取证成像仪:
+特性 允许获取本地驱动器 可以免费下载和使用吗 不需要安装 一个独立的产品不需要装箱取证许可证吗 允许浏览和查看潜在的证据文件，包括文件夹结构和文件元数据 使用强AES 256位加密保护Lx01和Ex01文件 可以通过USB部署，并用于执行获取一个实时设备 支持源数据格式 EnCase Imager支持处理常见的各种数据类型：
+镜像文件（包括E01、L01、Ex01、Lx01、dd、vmdk、vhd等格式） 本地连接的各种磁盘、存储卡 内存数据 远程数据（需要配合LinEn使用） 其中支持镜像文件，主要用来转换格式，以减小原镜像体积，以及添加证据编号、备注信息等各种元数据。
+支持镜像文件格式 EnCase Imager可以生成四种格式的镜像，分别是现行的
+EnCase证据文件（.Ex01） 现行的EnCase逻辑证据文件（.Lx01） 传统的EnCase证据文件（.E01） 传统的EnCase逻辑证据文件（L01） 如果需要处理的对象是整个存储设备或整个分区，应该保存成E01或Ex01格式；如果仅仅对源数据中的部分文件制作镜像，应该选择L01或Lx01格式。
+** **
+Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支持数据加密，设置密码后若不知道密码，无法读取镜像中的数据。E01及L01文件虽然也支持添加密码，但是密码仅用来限制镜像文件的打开，数据部分并未真正加密，很多取证工具可以直接忽略E01及L01文件的密码。
+如果工作中要使用其他取证工具进行分析，为了保证兼容性，建议选择E01及L01格式，否则可以使用Ex01及Lx01格式。
+使用EnCase Imager镜像 这里找到了一篇非常详尽的文章直接作为参考来自胡壮的个人博客：https://www.hustrong.com/2018/%E4%BD%BF%E7%94%A8EnCase-Imager%E5%88%B6%E4%BD%9C%E9%95%9C%E5%83%8F.html
+使用EnCase Imager制作证据文件 接下来以一个实际案例来来介绍EnCase Imager的主要功能——制作磁盘镜像。实验选用了一个朗科32G优盘，序列号为AA00000000007275。
+添加设备 在主界面点击“Add Local Device”，弹出添加本地设备的窗口，串口左边有6个可勾选项，点击某个选项，右边会出现对应的说明。如下图所示。
+添加本地设备选项
+六个勾选项的含义如下：
+Detect Tableau hardware 检测Tableau硬件。如果没有连接Tableau设备，建议不要勾选。 Only show Write-blocked 只显示只读设备。勾选后后续的设备列表中仅显示只读设备。 Detect leagacy FastBloc 检测传统的FastBloc设备。如果没有连接FastBloc设备，建议不要勾选。 Enable DCO Removal 解除DCO限制。勾选后会忽略一些硬盘的DCO设置，可处理隐藏空间。 Enable Physical Memory 物理内存获取。勾选后后续的设备列表中会出现物理内存，如果需要制作内存镜像则必须勾选。 Enable Process Memory 进程内存获取。勾选后后续的设备列表中会出现各进程的列表，如果需要制作各进程内存镜像则必须勾选。 我们直接点击“下一步”，并且勾选序号为29、磁盘序号为14的优盘。注意不要勾选成了序号为30的那一项，否则只会加载优盘中的整个分区内容，卷引导记录等信息将不被包括。如下图所示。</description>
+    </item>
+    <item>
+      <title>GetdataForensicImager</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html</guid>
+      <description>官网 http://www.forensicimager.com/
+基于windows程序，文件格式取证转换工具
+Forensic Explorer (FEX) 是用户保存、分析和展示电子证据的软件。该软件的主要用户是执法机构、政府、军队和企业调查机构。
+主要特点 特点 获取物理，逻辑，文件夹和文件。 重新获取现有的取证图像文件。 支持使用GetData Forensics Servlet从远程设备进行获取。 使用MD5，SHA1或SHA256采集哈希值获取.E01或DD格式。 使用完整的MD5，SHA1或SHA256文件哈希获取L01格式的文件夹和文件。 创建后自动验证采集哈希。 对整个设备成像或设置开始和结束扇区位置。 将图像文件分割成没有段大小限制的自定义段。 设置设备扇区大小以获取512、2048或4096扇区大小的选项。 强制将Windows兼容文件名与Magnet Forensics产品一起使用的选项。 压缩格式 支持E01和L01格式的EnCase None，Fast，Good，Best压缩设置。包括E01和L01格式写入采集信息。
+日志 记录详细的日志文件，包括设备详细信息以及源和验证哈希信息。
+FEX imager官方使用手册（已翻译） 📎FEX Imager User Guide.en.pdf
+Published: 14-Jul-20at 15:37:58
+运行FEX imager 写块 计算机取证的一个公认原则是，在可能的情况下，在调查中获取数据不得被研究者更改。
+如果物理介质，如硬盘驱动器，USB驱动器，相机卡等是一个潜在的证据来源，它是当存储媒体连接到取证工作站时，建议使用取证写块设备(写块工具)。写块工具通常是一个物理硬件设备，它位于目标媒体设备和调查人员工作站。它确保调查员不可能在无意中改变被检查设备的内容。它允许对目标设备的只读访问而不损害数据的完整性。市面上有各种各样的法医写阻塞装置。鼓励调查人员了解他们所选择的设备、及其功能、局限性。
+源窗口 FEX Imager是通过运行FEX Imager启动的。在程序安装文件夹中，或从已安装的桌面图标。
+当FEX Imageris运行时，就会看到Sourcewindow:
+来源指的是要获取的数据。来源可以是:
+• 物理驱动器(即物理硬盘)。
+• 一个逻辑驱动器(即一个分区，如C:\或D:)。
+• 位于分区上的文件夹或文件。
+• 现有的法医图像(即E01或DD图像文件)。
+• 使用Forensic Explorer servlet访问的远程驱动器。
+要选择源代码，请单击“选择”按钮，并从下拉菜单中选择所需的选项:
+物理和逻辑盘 在大多数情况下，等待符合任何压倒一切的案件特定的法律要求，一个调查员将对一个实物设备进行取证镜像。对物理设备进行镜像可以访问整个媒体的内容，例如分区之间的空间。Carrier,2005年,说:“经验法则是我们认为在最低层数据采集会有证据。为大多数情况下，调查人员获得磁盘的每个扇区”。(48页)
+注意:如果物理驱动器没有显示在这个窗口，这通常是因为FEX Imager没有使用管理员身份启动，它没有足够的权限访问物理驱动器。重新启动FEX Imager，右键单击桌面图标，并选择以管理员身份运行从下拉菜单。
+设备选择窗口包含以下信息:
+标签:列出物理驱动器及其Windows设备号。编号从0开始。逻辑驱动器显示驱动器标签(如果没有标签，则使用&amp;quot;{no label}&amp;quot;)。图像文件显示图像的路径。 Size: Size列包含物理或逻辑设备的大小，或者映像文件的大小。(注意，报告的驱动器大小通常小于驱动器标签上打印的大小。这是因为制造商在操作时以十进制字节数报告大小系统以1024块为每个KB报告大小)。 FS:磁盘上的文件系统，如FAT、NTFS、HFS、APFS。 类型:描述驱动器连接到计算机的方式。图像文件将显示图像类型(如EnCase®或RAW)。 添加远程设备 FEX Imager拥有使用UDP协议检查远程设备跨网络的能力</description>
+    </item>
+    <item>
+      <title>Guymager</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html</guid>
+      <description>官网：https://guymager.sourceforge.io/
+下载：https://sourceforge.net/projects/guymager/
+版本更新订阅：https://sourceforge.net/p/guymager/activity/feed
+简介 Guymager[ˈgɪmɪdʒər]是一款免费的媒体采集取证成像仪。它的主要特点是:
+•简单的用户界面在不同的语言
+•在Linux下运行
+•非常快，由于多线程，流水线设计和多线程数据压缩
+•充分利用多处理器机器
+•生成平面(dd)， EWF (E01)和AFF映像，支持磁盘克隆
+•免费，完全开源
+最新版本是0.8.12。
+界面 解释:
+• 连接的存储设备列表在上方。新设备可以在任何时候连接-按下重新扫描按钮显示他们。
+• 浅红色标识的设备为本地硬盘。它们不能被获取，从而防止获取错误的磁盘。本地硬盘可以通过输入配置文件中的序列号来识别。
+• 下方显示了蓝色光标当前所选择的收购的更详细信息。[ 上面的截图显示了默认的获取对话框。存在另一个用于克隆磁盘的对话框。两者都可以很容易地适应您的需求。您可以添加或删除字段。您可以静态(文本)和动态(当前日期，磁盘大小，序列号，…)设置它们的默认值。看一下 /etc/guymager/guymager.cfg**.**
+安装 Debian和Ubuntu Guymager包含在几个发行版的标准存储库中，例如Debian(紧凑版或更高版本)和Ubuntu(10.04或更高版本)。在Ubuntu中，需要保持更新。
+安装可以通过一个图形工具来完成，比如Ubuntu软件中心或者Synaptic:
+sudo apt-get update
+sudo apt-get install guymager
+使用pinguin APT服务器 Daniel&amp;rsquo;s pinguin服务器总是包含Guymager的最新版本。它是安装Guymager并保持其最新的推荐存储库。在您的Ubuntu、Debian和基于Debian的Linux系统中使用这个存储库,遵循以下步骤:
+通过以下命令添加pininguin服务器及其公钥: sudo wget -nH -rP /etc/apt/sources.list.d/ http://deb.pinguin.lu/pinguin.lu.list
+wget -q `[`http://deb.pinguin.lu/debsign_public.key`](http://deb.pinguin.lu/debsign_public.key)` -O- | sudo apt-key add -目前，支持i386和amd64系统，powerpc包可根据请求提供。
+执行如下命令: sudo apt-get update sudo apt-get install guymager-beta 以下方式启动程序 guymager尽管这个包被命名为guymager-beta，但它经过了密集的测试，是绝对稳定的软件。只是它还没有找到分销渠道。
+RPM packages RPM包可以在pkgs.org上获得。非常感谢拉里罗杰斯的包装!
+手动下载和安装Debian软件包 如果你不喜欢永久地添加pinguin库，你可以手动下载并安装这些包:</description>
+    </item>
+    <item>
+      <title>镜像类型及各产品特性对比</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html</guid>
+      <description>镜像格式 镜像各格式的区别 **DD镜像：**也称成原始格式(RAW Image)。DD镜像 的优点是兼容性强，目前所有磁盘镜像和分析工具都支持DD格式。此外，由于没有压缩，镜像速度较快。DD镜像最主要的问题就是非压缩格式，镜像文件与原始证据磁盘容量完全一致。即便原始证据磁盘仅有很少的数据，也一样需要同样的磁盘容量。DD镜像是对嫌疑硬盘进行位对位的复制方法，因此生成的镜像文件中没有保存额外信息的空间。因此，例如硬盘序列号、调查员姓名、镜像地点等信息必须保存在镜像文件之外的单独文件.TXT文件中。由于这些信息没有被保存在镜像文件内部，就有可能出现丢失或与其他硬盘信息混淆的情况。也就是说DD 镜像文件不包 含文件头和校验值。相关数据信息可以配合以txt文本形式文件进行描述。”的文档。 **E01镜像：**传统的EnCase证据文件（.E01）是法证分析工具EnCase的一个证据文件格式，较好的解决了DD镜像的一些不足。EnCase以一系列特有的压缩片段格式保存证据文件。每个片段都可以在需要时被单独地调用并解压缩，因此可以实现随机地访问镜像中的数据。Encase证据文件中包含有三个组成部分：文件头、校验值和数据块。这三部分组成了对于一个原始证据的描述，并可用于将证据文件重新恢复至硬盘。E01格式最大的问题就是兼容性问题。EnCase格式是非公开的、具有知识产权的商业软件镜像格式。 **Ex01镜像：**EnCase V7引进的新格式，EnCase证据文件（.Ex01）是E01的数据加密格式，设置密码后，若忘记密码则无法读取其中数据。 **L01镜像：**传统的EnCase逻辑证据文件（L01）L01是仅仅对元数据中的一部分文件制作镜像的一种格式。E01及L01文件虽然也支持添加密码，但是密码仅用来限制镜像文件的打开，数据部分并未真正加密，很多取证工具可以直接忽略E01及L01文件的密码。如果需要处理的对象是整个存储设备或整个分区，应该保存成E01或Ex01格式；如果仅仅对源数据中的部分文件制作镜像，应该选择L01或Lx01格式。 **Lx01镜像：**EnCase V7引进的新格式，现行的EnCase逻辑证据文件（.Lx01）Lx01是L01的数据加密格式，设置密码后，若忘记密码则无法读取其中数据。如果工作中要使用其他取证工具进行分析，为了保证兼容性，建议选择E01及L01格式，否则可以使用Ex01及Lx01格式。 **AFF镜像：**针对E01和DD镜像文件的不足，AFFLIB公司于2006年推出了开源的证据文件格式AFF格式（Advanced Forensics Format）。这种格式是公开且可扩展的。和EnCase证据文件格式相似，AFF也以压缩片段的方式保存磁盘镜像，镜像文件经过压缩容量明显减小。和EnCase不同的是，AFF既可以将元数据保存在镜像文件内部，也可以同时允许元数据被单独保存在一个文件夹中。一旦发生磁盘镜像文件破损的情况，AFF的内部连续性算法也能够保证尽可能多的将破损的镜像恢复修复。AFF分段镜像可以被开源工具zlib进行压缩，也可以保持未压缩状态。对AFF压缩格式可以节省空间，但是创建时间较长，而且分析处理的速度较慢。具体采用压缩还是不采用压缩，可以根据实际情况来决定。但是未压缩的AFF文件可以很容易地再次压缩。 **img镜像：**img格式是图像文件的一种格式，它具有很高的压缩效率，IMG格式支持任意大小的图像。img 图像文件格式，图像的数据是以类似二维数组格式存放的。在其第一行的头两个位置存放的是图像的宽度，其后面的两位是存放着图像的高度，接着的一个位置里存放着图像的灰度级，而其剩下的所有位置存放的都是图像的灰度。IMG格式常用于Digital Research 应用程序中。img格式属于镜像的一种，可以通过制作数据光盘或者使用虚拟光驱(如 WinMount)安装IMG数据文件。 由于.ISO只能压缩使用ISO9660和UDF这两种文件系统的存储媒介，意即.ISO只能拿来压缩CD或DVD，因此才发展出了.IMG，它是以.ISO格式为基础另外新增可压缩使用其它文件系统的存储媒介的能力，.IMG可向后兼容于.ISO，如果是拿来压缩CD或DVD，则使用.IMG和.ISO这两种格式所压缩出来的内容是一样的。img格式的打开方式可以是光盘刻录，也可以用软件解压。IMG可以做为以下用途：数字存储、传输、以及整片软盘内容的复制，可挂载到虚拟软盘上。 ** **
+各产品特性对比表： 产品名 支持的系统 支持数据类型 支持镜像的格式 EnCase Forensic Imager win 镜像文件（包括E01、L01、Ex01、Lx01、dd、vmdk、vhd等格式）本地连接的各种磁盘、存储卡内存数据远程数据（需要配合LinEn使用） Ex01/Lx01/E01/L01 dd/dc3dd linux 磁盘文件数据 RAW Getdata forensic imager win 获取物理，逻辑，文件夹和文件。 E01/L01 Clonezilla win/linux 磁盘文件数据 RAW 安恒windows应急取证精灵 win 支持在线或离线方式镜像可选择镜像的格式、分卷大小、储存位置、是否压缩、哈希计算方式 dd/E01/AFF Datanumen disk image win 支持各种磁盘和驱动器 img Guymager linux 支持各种磁盘和驱动器 dd/E01/AFF 各产品特性详情： EnCase Forensic Imager(win) 特性 允许获取本地驱动器 可以免费下载和使用吗 不需要安装 一个独立的产品不需要装箱取证许可证吗 允许浏览和查看潜在的证据文件，包括文件夹结构和文件元数据 使用强AES 256位加密保护Lx01和Ex01文件 可以通过USB部署，并用于执行获取一个实时设备 EnCase Imager支持处理常见的各种数据类型：</description>
+    </item>
+  </channel>
+</rss>

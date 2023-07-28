@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>渗透工具 on x7peeps</title>
+    <link>http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html</link>
+    <description>Recent content in 渗透工具 on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 13 Aug 2021 12:00:00 +0000</lastBuildDate><atom:link href="http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>漏洞验证工具nuclei官方模版编写中文译文归档</title>
+      <link>http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%A8%A1%E7%89%88%E7%BC%96%E5%86%99%E4%B8%AD%E6%96%87%E5%BD%92%E6%A1%A3/index.html</link>
+      <pubDate>Fri, 13 Aug 2021 12:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%A8%A1%E7%89%88%E7%BC%96%E5%86%99%E4%B8%AD%E6%96%87%E5%BD%92%E6%A1%A3/index.html</guid>
+      <description>参考：https://nuclei.projectdiscovery.io/templating-guide/
+模版详情 ID 每个模板都有一个唯一的 ID，在输出写入期间用于指定输出行的模板名称。 模板文件以YAML扩展名结尾。模板文件可以由您选择的任何文本编辑器创建。
+id: git-configID 不能包含空格。这样做是为了允许更容易的输出解析。
+INFO 信息 关于模板的下一个重要信息是信息块。信息块提供名称、作者、描述、严重性和标签。它还包含指示模板严重性的严重性字段，信息块也支持动态字段，因此可以定义 N 个key: value块以提供有关模板的更多有用信息。reference是另一个流行的标签，用于为模板定义外部参考链接。
+另一个始终添加到info块中的有用标签是tags。这可以让你一些自定义标签设置为一个模板，视象的目的cve，rce等等。这使核与输入标签识别模板，只运行它们。
+信息块示例 -
+info: name: Git Config File Detection Template author: Ice3man severity: medium description: Searches for the pattern /.git/config on passed URLs. tags: git,config实际请求和相应的匹配器放置在信息块下方，它们执行向目标服务器发出请求并查找模板请求是否成功的任务。
+每个模板文件可以包含多个要进行的请求。模板被迭代，并且一个一个地向目标站点发出所需的请求。
+基本请求 Nuclei 为与 HTTP 协议相关的各种功能提供广泛的支持。支持基于原始和模型的 HTTP 请求，以及非 RFC 客户端请求支持的选项。还可以指定有效负载，并且可以根据有效负载值以及本页面稍后显示的更多功能来转换原始请求。
+request HTTP 请求以一个request块开始，该块指定模板请求的开始。
+# Start the requests for the template right hererequests:method 根据需要，请求方法可以是GET、POST、PUT、DELETE等。
+# Method is the method for the requestmethod: GETredirects 可以为每个模板指定重定向条件。默认情况下，不遵循重定向。但是，如果需要，可以redirects: true在请求详细信息中启用它们。默认情况下最多跟随 10 个重定向，这对于大多数用例来说应该足够了。可以对重定向数量进行更细粒度的控制，然后使用max-redirects字段。</description>
+    </item>
+    <item>
+      <title>漏洞验证工具nuclei官方文档中文译文归档</title>
+      <link>http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E8%AF%91%E6%96%87%E5%BD%92%E6%A1%A3/index.html</link>
+      <pubDate>Sun, 08 Aug 2021 12:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E8%AF%91%E6%96%87%E5%BD%92%E6%A1%A3/index.html</guid>
+      <description>特性 支持：HTTP | DNS | TCP | FILE support 所有模版都是可以配置的 可大量扫描 基于外带发现 便于编写自定义模版
+安装 go 安装 GO111MODULE=on go get -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei
+mac安装 brew install nuclei
+docker安装 docker pull projectdiscovery/nuclei:latest
+github安装 git clone https://github.com/projectdiscovery/nuclei.git; cd nuclei/v2/cmd/nuclei; go build; mv nuclei /usr/local/bin/; nuclei -version;
+源码安装 https://github.com/projectdiscovery/nuclei/releases
+基本命令 Nuclei is a fast tool for configurable targeted scanning based on templates offering massive extensibility and ease of use. Usage: /Users/xt/Documents/hack/scan/nuclei/nuclei [flags] Flags: -H, -header value Custom Header.</description>
+    </item>
+    <item>
+      <title>UnsafeHttpMethod类型漏洞检测脚本</title>
+      <link>http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html</link>
+      <pubDate>Wed, 08 Jan 2020 23:31:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;对于大量UnsafeHttpMethod类型漏洞一直苦于耗费时间，而几乎无产出，对于安全检测人员来说简直是浪费了不必要的时间，所以根据具体的几种常见的漏洞通过脚本的形式进行批量检测成为了最值得研究的。本文设计的Method_test.py模块用于检测OPTIONS,PUT,DELETE,TRACE方法脚本，支持单测、批测，批测中断，生成记录文档。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>本地批量ping域名脚本</title>
+      <link>http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html</link>
+      <pubDate>Fri, 03 Jan 2020 21:51:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html</guid>
+      <description>&lt;h1 id=&#34;本地批量ping域名脚本&#34;&gt;本地批量ping域名脚本&lt;/h1&gt;
+&lt;p&gt;背景是同学在执行一批渗透时需要批量验证一批域名本地ping情况，这里通过powershell脚本简单制作了一个思路供同学们参考。
+
+&lt;a href=&#34;#image-12d97ab57d4b1fdc0819c98a0fdda7af&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;img src=&#34;http://blogimage.xtpeeps.cn/20191020001017.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
+&lt;/a&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-12d97ab57d4b1fdc0819c98a0fdda7af&#34;&gt;
+&lt;img src=&#34;http://blogimage.xtpeeps.cn/20191020001017.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
+&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

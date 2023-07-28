@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.115.4">
+    <meta name="generator" content="Relearn 5.17.1">
+    <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
+    <meta name="author" content="x7peeps">
+    <title>WinHEX(win) - x7peeps</title>
+    <link href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.xml" rel="alternate" type="application/rss+xml" title="WinHEX(win) - x7peeps">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="/css/fontawesome-all.min.css?1690573851" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690573851" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690573851" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690573851" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690573851" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690573851" rel="stylesheet">
+    <link href="/css/fonts.css?1690573851" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690573851" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690573851" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690573851" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690573851" rel="stylesheet">
+    <link href="/css/print.css?1690573851" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690573851" rel="stylesheet">
+    <script src="/js/url.js?1690573851"></script>
+    <script src="/js/variant.js?1690573851"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="/index.search.js";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='http:\/\/x7peeps.com/';
+      window.variants && variants.init( [ 'auto' ] );
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div class="navigation">
+            <a class="nav nav-next topbar-link" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html" title="数据恢复工具性能对比 (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+          </div>
+          <div class="navigation">
+            <a class="nav nav-prev topbar-link" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/ufs-explorer-professional-recoverywinmaclinux/index.html" title="UFS explorer professional recovery(win/mac/linux) (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" class="topbar-link" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/index.html"><span itemprop="name">x7peeps</span></a><meta itemprop="position" content="1"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html"><span itemprop="name">应急响应</span></a><meta itemprop="position" content="2"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html"><span itemprop="name">0x02电子取证</span></a><meta itemprop="position" content="3"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html"><span itemprop="name">3文件恢复</span></a><meta itemprop="position" content="4"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">WinHEX(win)</span><meta itemprop="position" content="5"></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="toc-wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关于数据恢复部分">关于数据恢复部分</a></li>
+        <li><a href="#手工数据恢复案例">手工数据恢复案例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="winhexwin">WinHEX(win)</h1>
+
+<p><a href="https://www.jianshu.com/p/f14a41e8cfbe" target="_blank">https://www.jianshu.com/p/f14a41e8cfbe</a></p>
+<p>官网 <a href="http://www.x-ways.com/index-c.html" target="_blank">http://www.x-ways.com/index-c.html</a></p>
+<p>winhex <a href="http://www.x-ways.com/winhex/index-m.html" target="_blank">http://www.x-ways.com/winhex/index-m.html</a></p>
+<p>WinHex：计算机取证和数据恢复软件，</p>
+<p>十六进制编辑器和磁盘编辑器</p>
+<p>Windows XP / 2003 / Vista / 2008/7/8 / 8.1 / 2012/10 / 2016，32位/ 64位*</p>
+<h1 id="特性">特性</h1>
+<p>WinHex的核心是通用的十六进制编辑器，在<a href="http://www.x-ways.com/winhex/forensics.html" target="_blank">计算机取证</a>，<a href="http://www.x-ways.com/winhex/allfeatures.html#DataRecovery" target="_blank">数据恢复</a>，低级数据处理和IT安全领域特别有用。日常和紧急使用的高级工具：检查和编辑所有类型的文件，从文件系统损坏的硬盘驱动器或<a href="http://www.winhex.com/winhex/forum/messages/174/56.html" target="_blank">数码相机</a>卡中恢复已删除的文件或丢失的数据。功能<em>取决于许可证类型</em>（<strong><a href="http://www.x-ways.com/winhex/comparison.html" target="_blank">许可证类型比较</a></strong>），其中：</p>
+<ul>
+<li>硬盘，软盘，CD-ROM和DVD，ZIP，智能媒体，紧凑型闪存等的<a href="http://www.x-ways.com/pics/Disk_Editor.gif" target="_blank">磁盘编辑器</a>&hellip;</li>
+<li>对于FAT12 / 16/32，exFAT的，NTFS和Ext2 / 3/4，本机支持<a href="http://www.ctera.com/next3" target="_blank">Next3</a> ® ，CDFS，UDF</li>
+<li>RAID系统和动态磁盘的内置解释</li>
+<li>各种数据恢复技术</li>
+<li><a href="http://www.x-ways.com/pics/RAM_Editor.gif" target="_blank">RAM编辑器</a>，提供对物理RAM和其他进程的虚拟内存的访问</li>
+<li><a href="http://www.x-ways.com/winhex/interpreter.html" target="_blank">数据解释器</a>，了解20种数据类型</li>
+<li>使用<a href="http://www.x-ways.com/winhex/templates.html" target="_blank">模板</a>编辑数据结构 （例如，修复分区表/引导扇区）</li>
+<li>串联和分割文件，统一和分割奇数和偶数字节/字</li>
+<li><a href="http://www.x-ways.com/winhex/analysis.html" target="_blank">分析</a>和比较文件</li>
+<li>特别灵活的搜索和替换功能</li>
+<li><a href="http://www.x-ways.com/winhex/forensics.html#Cloning/Imaging" target="_blank">磁盘克隆</a> （在DOS下使用<a href="http://www.x-ways.com/replica.html" target="_blank">X-Ways副本</a>）</li>
+<li>驱动器映像和备份（可选压缩或拆分为650 MB存档）</li>
+<li><a href="http://www.x-ways.com/winhex/api/" target="_blank">编程接口</a>（API）和<a href="http://www.x-ways.com/winhex/scripting.html" target="_blank">脚本</a></li>
+<li>256位AES加密，校验和，CRC32，哈希（MD5，SHA-1等）</li>
+<li>安全擦除（擦除）机密文件，<a href="http://www.winhex.com/cgi-bin/discus/show.cgi?6/12.html" target="_blank">清理</a>硬盘 以保护您的隐私</li>
+<li>导入所有剪贴板格式，包括 ASCII十六进制值</li>
+<li>在二进制，十六进制ASCII，Intel十六进制和Motorola S之间进行转换</li>
+<li>字符集：ANSI ASCII，IBM ASCII，EBCDIC，（Unicode）</li>
+<li>即时窗口切换。印刷。随机数生成器。</li>
+<li>支持任何大小的文件。非常快。易于使用。广泛的程序帮助。</li>
+<li><strong><a href="http://www.x-ways.com/winhex/allfeatures.html" target="_blank">更多的</a></strong></li>
+</ul>
+<p>**
+**</p>
+<h1 id="下载">下载</h1>
+<p><a href="http://www.x-ways.net/winhex.zip" target="_blank">http://www.x-ways.net/winhex.zip</a></p>
+<h1 id="用户手册">用户手册</h1>
+<p><a href="http://www.x-ways.com/winhex/manual.pdf" target="_blank">http://www.x-ways.com/winhex/manual.pdf</a></p>
+<h3 id="关于数据恢复部分">关于数据恢复部分</h3>
+<h4 id="使用目录浏览器进行文件恢复">使用目录浏览器进行文件恢复</h4>
+<p>最明显的是，目录浏览器中列出的已删除文件和目录可以通过目录浏览器的上下文菜单轻松、有选择地恢复。导航到一个目录（或递归地浏览根目录），选择要恢复的文件，然后使用上下文菜单中的recover/Copy命令。参见“目录浏览器”一章。理想情况下，首先优化卷快照，以便在目录浏览器中找到并列出更多以前存在的文件。</p>
+<h4 id="按类型文件头签名搜索的文件恢复">按类型/文件头签名搜索的文件恢复</h4>
+<p>磁盘工具菜单中的数据恢复功能，以及查找以前存在的文件的策略（作为优化卷快照命令的一部分）。这种恢复方法也被称为“文件雕刻”。它搜索可由特征文件头签名（特定的字节值序列）识别的文件。由于这种方法，文件雕刻不依赖于功能文件系统结构的存在。</p>
+<p>按类型恢复文件：根据文件头签名找到的文件将被雕刻并存储在您自己的驱动器上指定的输出文件夹中。（可选）将每种类型的恢复文件放入各自的子文件夹（…\JPEG，…\HTML等）。文件的假定内容实际上是复制的。</p>
+<p>文件头签名搜索：根据文件头签名找到的文件不会存储在任何位置，而只是列在卷快照的专用虚拟目录中。只存储对文件的引用（人工生成的名称、假定大小、起始偏移量…）。当需要查看/复制文件时，可以动态地从原始磁盘/图像中读取文件内容。或者，您可以将文件从单独的文件头签名搜索操作输出到单独的子目录中，以便在需要时更容易区分它们。</p>
+<p>请注意，文件雕刻通常假定连续的文件簇，因此如果文件最初以碎片方式存储，则会生成损坏的文件。存在以下例外情况：如果在具有除Ext2/Ext3以外的受支持文件系统的卷中进行文件头签名搜索时，在可用空间中的群集边界处发现文件的开头，则默认情况下，假定数据可能在文件系统标记为正在使用的群集之后流动。这将正确地重建在其他文件之后创建并存储在其他文件周围的文件，然后删除这些文件，只要发布的集群没有被重复使用并随后被覆盖。要防止文件以这种方式完全在可用空间中雕刻（即假定为连续簇），可以取消选择“围绕已用簇在可用簇中雕刻文件”选项。</p>
+<p>选项“Ext2/Ext3块逻辑”使这种恢复方法也偏离了没有碎片的标准假设，因为它将遵循典型的Ext块模式，例如，文件头的第13块被认为是引用以下数据块的间接块。当应用于WinHex知道有Ext2和Ext3以外的文件系统的分区时，或者当发现头没有块对齐时，此选项不起作用。</p>
+<p>日志文件“文件恢复方式”类型.log“有关所选参数和恢复结果的信息将写入输出文件夹以进行验证。</p>
+<p>只需单击相应的按钮，即可在此对话框窗口中展开或折叠整个文件类型树。这很有用，因为展开时只需键入文件类型描述的前几个字符，即可自动跳转到树中的第一个匹配项。</p>
+<p>由于不使用可能存在的（一致或损坏的）文件系统，因此此恢复方法基本上不知道原始文件大小，原始文件名也不知道。这就是为什么生成的文件通常按照以下模式进行命名：Prefix######.ext.“Prefix”是您提供的可选前缀。#####“是每个证据对象的递增数字。”ext”是根据文件类型定义对应于文件头签名的文件扩展名。输出文件名前缀可以选择包含占位符“%d”，该占位符将被驱动器名替换。如果您一次将文件恢复按类型应用于多个驱动器，并且希望能够轻松区分不同驱动器中的文件，则此功能非常有用。</p>
+<p>如果有专家许可证或更高版本，“智能命名”选项将导致Exif JPEG文件以创建它们的数码相机型号及其内部时间戳（如果可用）命名。许多Windows注册表配置单元文件都有其原始名称，还有一些JPEG文件的元数据Photoshop中嵌入了一个名称。没有已知名称且没有Exif元数据的JPEG文件是由已知库创建的，它们会在括号中的人工名称中接收一些附加信息（请参见生成器签名）。拇指.db文件始终命名为拇指.db, 索引.dat总是索引.dat. 上述前缀不能与原始文件名一起使用。</p>
+<p>各种算法在内部工作，试图确定许多不同类型文件的原始大小（其中包括JPEG、GIF、PNG、BMP、TIFF、尼康NEF、佳能CR2 raw、PSD、CDR、AVI、WAV、MOV、MPEG、MP3、MP4、3GP、M4V、M4A、ASF、WMV、WMA、ZIP、GZIP、RAR、7Z、TAR、MS Word、MS Excel、MS PowerPoint、RTF、PDF、HTML、XML、XSD、DTD、PST、，DBX，AOL PFC，Windows注册表，索引.dat，预取，SPL，EVTX，EML）通过检查它们的数据结构。这适用于文件类型定义数据库中页脚列中有“~”的条目。为了使大小和类型检测对这些文件类型起作用，不应更改这些条目。或者，页脚签名也可以帮助查找文件的结尾。对于既不存在内部算法也不存在页脚签名定义的文件，或可用内部算法不知道其原始大小的文件，以及实际找不到页脚签名的文件，将恢复为文件类型定义数据库中指定的默认大小（以字节为单位）。在指定这样的大小时要大方，因为恢复的文件“太大”仍然可以由其关联的应用程序打开，而过早截断的文件通常无法打开，因为它们是不完整的。通过搜索页脚来检测某些类型文件的原始大小的尝试受到大小检测限制，该限制也可以在数据库中指定，位于默认大小和正斜杠之后。这样的限制对于避免在整个卷内搜索给定文件的页脚是必要的，如果卷很大，这将非常耗时。此外，如果右页脚不在页眉附近，则越来越不可能找到右页脚，即使找到的页脚相距很远，这样的文件也可能是碎片或部分被覆盖等。标准默认大小（如果未指定）为1 MB。标准最大大小（如果未指定）是默认文件大小的64倍。</p>
+<p>文件头通常位于集群边界，因为这是文件系统主要放置文件开头的地方。但是，搜索与扇区对齐的文件头更彻底（而不是更慢），因为这样还可以从以前存在的分区中找到具有不同群集布局的文件，因此在扇区边界处搜索是默认行为。如果在没有定义集群布局的物理介质或原始文件上执行，WinHex必须在扇区边界进行搜索。还有另一种可能性，彻底的字节级搜索。当您试图查找在任何扇区边界上没有可靠对齐的文件（例如，备份文件或磁带映像中的文件或嵌入其他文件中的文件）或试图查找条目/记录/微格式/内存工件等（即不完整的普通文件）时，这是必需的。这是以可能增加误报次数为代价的，但是，错误识别的文件签名随机出现在媒体上，并不表示文件的开头。文件类型定义数据库中的单个标志可以帮助确定在每个文件类型的基础上搜索哪些文件的群集、扇区或字节边界。</p>
+<p>卷快照已知的文件的起始扇区始终从文件雕刻中排除是可选的。当然，X-Ways取证通常仍然试图防止重复，但是如果文件头签名定义或内部文件大小检测足够强，表明已知删除的文件被新文件覆盖，那么新文件将被雕刻，尽管它与已知文件共享相同的起始扇区。另一个例外是，在文件头签名搜索中不会忽略完全未初始化文件（有效数据长度=0）的第一个扇区。</p>
+<p>如果您有意中止文件头签名搜索，或者如果文件头签名搜索导致X-Ways Forensics崩溃，则下次在同一证据对象中启动文件头签名搜索时，您将找到一个选项，可以在中断的位置或上次保存卷快照时的位置恢复该搜索发生崩溃（取决于案例的自动保存间隔）。</p>
+<p>如果需要，可以将恢复范围限制为当前选定的块和/或已分配或未分配的空间（逻辑驱动器或卷上提供的选项）。例如，要恢复已删除的文件，请选择仅从未分配的空间恢复。由于文件系统错误而无法访问的文件可能仍存储在被视为正在使用的集群中。</p>
+<p>NTFS压缩对文件数据的影响可以选择在文件头签名搜索（仅限法医许可证）中进行补偿，在许多情况下是成功的。如果找到NTFS压缩文件的签名，则该文件将被标记为已压缩，并且在需要时将尝试“动态”解压缩该文件，该算法甚至可以解压缩由多个压缩单元组成的文件。</p>
+<h4 id="文件类型定义">文件类型定义</h4>
+<p>“文件类型签名*.txt”是以制表符分隔的文本文件，用作优化卷快照和按类型恢复文件命令的文件类型定义数据库。</p>
+<p>WinHex附带了各种预设的文件类型签名。您可以在“文件类型签名”中完全自定义文件类型定义并添加自己的定义搜索.txt“或任何其他格式相同的文件名为“文件类型签名*.txt”，它也将被加载，并且可能有这样的好处：如果它们与默认文件的名称不同，那么在安装下一个更新时它们不会被覆盖。只有当文件名包含单词“search”时，文件类型才可用于文件头签名搜索。否则，它们仅用于已是卷快照一部分的文件的文件类型验证（仅限取证许可证）。总共支持多达4096个条目（1024个用于搜索）。</p>
+<p>单击“自定义”按钮编辑“文件类型签名”文件时搜索.txt，默认情况下，WinHex在MS Excel中打开文件。这很方便，因为该文件包含由制表符分隔的列。如果使用文本编辑器编辑文件，请确保保留这些选项卡，因为WinHex依赖它们的存在来正确解释文件类型定义。MS Excel会自动保留它们。编辑文件类型定义后，需要退出对话框窗口并再次调用“按类型恢复文件”或“优化卷快照”菜单命令，以查看文件类型列表中的更改。</p>
+<h5 id="第1列文件类型">第1列：文件类型</h5>
+<p>一种可读的文件类型名称，例如“JPEG”。超过前19个字符的所有内容都将被忽略。</p>
+<h5 id="第2列扩展">第2列：扩展</h5>
+<p>通常用于此文件类型的一个或多个文件类型扩展名。例如“jpg；jpeg；jpe”。首先指定最常用的扩展名，因为默认情况下，该扩展名将用于命名恢复的文件。如果第一个扩展名是用大写字符指定的，则文件类型验证将使用该扩展名填充文件的类型列，即使该文件有一个可选的合理的文件扩展名。支持超过255个字符。</p>
+<h5 id="第3列标题">第3列：标题</h5>
+<p>唯一的头签名，通过它可以识别此文件类型的文件。它是用GREP语法指定的（请参阅搜索选项以获取解释），因此可以匹配可变字节值（例如，[\xE1\xE2]表示“字节值可以是0xE1或0xE2”）或未定义区域（.）。表示的签名的最大长度为48字节。要首先找出特征文件头签名，请在WinHex中打开几个特定类型的现有文件，并在文件开头附近的相同偏移量处查找公共字节值。</p>
+<h5 id="第4列偏移">第4列：偏移</h5>
+<p>文件中签名出现的相对偏移量。通常只是0。签名必须包含在前512字节中。</p>
+<h5 id="第5列页脚">第5列：页脚</h5>
+<p>可选。用GREP语法指定的一种可靠地表示文件结尾的签名（字节序列）。表示可变大小数据的GREP表达式可能无法按预期工作。页脚签名可能有助于实现具有正确文件大小的恢复。恢复算法不会从页眉开始搜索超过指定为最大文件大小的字节数的页脚。</p>
+<p>甚至比页脚更好的是，XWays Forensics内部实现的算法的潜在可用性，该算法非常了解文件格式，如果文件没有碎片、不完整或损坏，通常可以找出正确的文件大小。这种算法在页脚列中用波浪号（~）和算法ID号表示。</p>
+<h5 id="第6列默认大小">第6列：默认大小</h5>
+<p>可选。1或2个值。如果有两个值，则第二个值是特定于文件类型的大小检测限制，并用正斜杠与默认大小分隔。</p>
+<h5 id="第7列旗帜">第7列：旗帜</h5>
+<p>可选。可以进一步定制特定文件类型的文件雕刻，是另一个如何复杂和强大的文件雕刻在X-Ways取证指标。</p>
+<p>答：这意味着一个定义严重依赖于相关的算法（用~字符定义的算法），没有它就太通用了。</p>
+<p>b（小写）：在给定选项时，在字节级搜索签名。特别适用于通常不在任何扇区或集群边界对齐的条目/记录/微格式/内存工件（即不完整的普通文件）。</p>
+<p>B（大写）：出于性能原因，阻止对特定签名进行字节级搜索。</p>
+<p>c（小写）：如果考虑（取决于用户界面设置），则忽略在集群边界处未对齐的头签名。对于某些文件类型可能很有用，以避免许多误报。</p>
+<p>C（大写）：表示不应用于搜索NTFS压缩文件的文件类型签名（如果NTFS压缩补偿处于活动状态），因为它们太弱，会产生太多误报，或者实际上不会存储为压缩文件。</p>
+<p>d（小写，表示“direct”）：签名将按字面解释，而不是按GREP表达式，逐字符解释，字节值根据Windows系统中的活动代码页。例如，如果您对GREP表示法不是很熟悉，或者不需要GREP，只想根据Windows系统中活动的代码页对所有字符进行逐字解释，而不必考虑字符在GREP中是否被视为特殊字符，那么这将非常有用。例如，&lt;？xml version=“1”是某些xml文件的有效签名，但它仅与direct标志一起使用，因为问号在GREP中有特殊的含义，如果整个表达式被解释为GREP，则会在内部为签名生成不同的字节值序列；如果GREP解释处于活动状态，则不会生成任何匹配项。</p>
+<p>e:代表“嵌入式”。如果某个文件类型在页脚列中具有波浪号（~）算法，并用此标志进行了标记，则在卷快照优化期间，在“在上面未处理的所有文件中搜索文件头签名”部分中，将预先选择该文件类型以搜索某些其他文件中的嵌入数据。“e”标志仅帮助初始化此选项的记号。最终，用户可以在用户界面中更改该操作的选定文件类型。此外，将搜索嵌入到不存在内部提取算法的类型文件中的标有“e”标志的类型。</p>
+<p>E:从不在其他文件中作为嵌入文件进行雕刻。</p>
+<p>f（小写）：表示指定的页脚签名用于查找不再属于文件的一部分且应排除的数据。普通的页脚包含在雕刻文件中。对于没有良好定义的页脚的文件格式非常有用，在这种格式中，可以通过出现不再属于该文件的数据来检测文件的结尾。这可以是与头相同的签名（如果该类型的文件通常以组的形式出现，则是背对背的），也可以是\x00（对于不包含零值字节的文本文件等文件格式，其中\x00在RAM slack中的可能性很高）。此类页脚签名应标记为独占，因为与其匹配的数据不是文件本身的一部分。</p>
+<p>F（大写）：如果在定义中指定了页脚签名，则如果找不到相应的页脚，则使X-Ways取证放弃对文件头签名搜索的命中。有助于减少或完全避免误报。</p>
+<p>代表“贪婪”。贪婪地分配所有的部门。文件类型签名搜索仅在假定的文件结束后继续搜索其他文件头。如果有一个内部实现的算法可以确保雕刻的文件包含所有有效的数据，这样就不必在先前雕刻的文件的边界内搜索其他文件，那么这个算法将非常有用。只有在扇区边界处找到文件头签名时，该标志才有效。如果空闲空间中的文件是围绕分配的集群划分的，则在搜索进一步的文件头签名时，只跳过文件的第一个片段。</p>
+<p>g（小写）：同一标志的较弱版本。只有当文件类型存在内部文件大小检测算法，并且具有相同起始扇区号的文件已经存在，并且具有与检测到的相同的文件大小时，“g”标志才会导致X-Ways取证跳过受影响的扇区。这有助于防止zip文件重叠，从而避免可能包含许多重复文件。</p>
+<p>h：表示指定的头签名用于查找不属于文件本身的数据。这意味着头签名将从雕刻文件中排除。雕刻文件将在头签名后开始。此外，此标志防止在为此类文件分配的群集周围的可用空间中进行文件雕刻。</p>
+<p>H:该定义仅用于签名突出显示功能，不用于常规的文件头签名搜索或文件类型验证。这样的定义只需要三条信息：关键字或GREP表达式、相对偏移量（通常为0）和标志“H”。行开头的描述是可选的，但建议使用，因为颜色取决于描述，对于不同的描述，您可能会看到不同的颜色。您甚至可以创建一个专用的文本文件，例如名为“文件类型签名搜索”突出显示.txt，它定义了各种您始终感兴趣的关键字或GREP表达式，并希望在每次运行适当的搜索之前立即突出显示这些关键字或表达式。如果您分析或逆向工程文件格式，例如记录没有固定长度（因此WinHex中的记录表示选项不适用），但可以通过签名来识别，也很有用。</p>
+<p>L:标识仅链接到其他定义的链接。例如，有一个OpenOffice文件条目很有用，但有些用户没有该条目，如果缺少该条目，可能会导致错误的想法，即无法雕刻OpenOffice文件。如果选择了OpenOffice的条目进行雕刻，则会在内部自动选择zip存档进行雕刻，这是有意义的，因为从技术上讲，OpenOffice文件是zip文件，可以这样雕刻。缺点是其他不是OpenOffice文件的zip文件也会被雕刻。</p>
+<p>但是，由于内部文件类型检测（例如基于自动分配的文件扩展名），这些文件将是可区分的。</p>
+<p>S：标记足以用于文件头签名搜索（可能与雕刻算法结合使用）的签名，但由于偶尔的错误识别而不能用于文件类型验证。这个旗子应该很少需要。</p>
+<p>t:防止X-Ways取证人员在确认后立即呈现雕刻文件的类型。例如，对于XML等文件格式族非常有用，可以在以后的文件类型验证过程中确定确切的子类型。</p>
+<p>u（小写）：表示“未使用”。允许雕刻文件只在集群是免费的，根据文件系统。</p>
+<p>U（大写）：仅允许在集群中雕刻文件，这些集群根据文件系统是免费的，并且卷快照中包含的以前存在的文件也不使用这些集群。</p>
+<p>W（大写）：标识头签名，这些头签名太弱，无法新检测文件的类型，仅用于确认文件扩展名建议的类型。</p>
+<p>x:标识实际文件扩展名不是该文件类型的标准扩展名这一相对正常的文件类型，这样在文件类型验证后，这些类型的文件不会突出显示为“检测到不匹配”，而只是显示为“新标识”，以免引起人们对这些文件的过分关注。</p>
+<p>y：标识已知在内部使用加密的文件类型，允许在Attr中标记这些类型的雕刻文件。立即用“e！”列。</p>
+<h4 id="手动数据恢复">手动数据恢复</h4>
+<p>可以恢复丢失或逻辑删除的文件（或更一般的：数据），这些文件在文件系统中仅标记为已删除，但尚未被物理擦除（或覆盖）。</p>
+<p>使用磁盘编辑器打开已删除文件所在的逻辑驱动器。基本上，您可以通过选择分配给文件的磁盘扇区作为当前块并使用菜单命令“编辑|复制块|保存到新文件”来重新创建这样的文件。但要找到文件仍然存储的扇区可能很困难。通常有两种方法来实现这一点：</p>
+<p>\1.  如果您知道要查找的文件的某个片段（例如JPEG文件头中的特征签名或MS Word文档中的“亲爱的史密斯先生”），请使用其中一个搜索命令（例如“查找文本”或“查找十六进制值”）在磁盘上搜索它。这是一个非常简单和可靠的方法。</p>
+<p>\2.  如果您只知道文件名，则需要了解磁盘上的文件系统（FAT16、FAT32、NTFS…），以便找到以前的目录条目或定义文件的其他数据结构的痕迹，从而确定分配给文件的第一个群集的数目。</p>
+<p>您可能会遇到这样的问题：要恢复的文件是碎片化的，即没有存储在后续连续的集群中。在FAT文件系统中，可以在驱动器开头的文件分配表中查找文件的下一个群集，但删除文件时会删除此信息。</p>
+<h3 id="手工数据恢复案例">手工数据恢复案例</h3>
+<p>这里我们参考https://www.jianshu.com/p/88a9ea4055c7</p>
+<h4 id="fat32">FAT32</h4>
+<h5 id="fat32逻辑磁盘基本信息描述">FAT32逻辑磁盘基本信息描述</h5>
+<p>用winhex打开一个FAT32分区格式的逻辑盘F盘，查看该逻辑盘的根目录区。</p>
+<p>
+<a href="#image-0c8041f536309d9cfe39688ba7671dd4" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365574504-468ad296-ed88-41b5-ab53-141738a90616-20210424192610973.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-0c8041f536309d9cfe39688ba7671dd4">
+<img src="WinHEX%28win%29/1617365574504-468ad296-ed88-41b5-ab53-141738a90616-20210424192610973.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>逻辑盘BPB</p>
+<p>其中0200（蓝框）表示一个扇区512个字节，08（红框）表示每簇8个扇区，即每簇4kb。（查阅资料可得，FAT32分区当分区大小在260MB-8GB时，簇大小为4KB，符合事实）这里由F盘大小5GB及在FAT表中每簇占4个字节的记录可计算得每个FAT（FAT2为FAT1的备份）大小为5MB，与实际相同。</p>
+<p>在F盘根目录下创建一个大概60kb的文本文档。</p>
+<p>
+<a href="#image-e5dd06c8c117cfe4f7dcbdcd738f301d" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365605070-f9e12cbc-7583-4b8f-b993-0224c1aceab3-20210424192609073.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-e5dd06c8c117cfe4f7dcbdcd738f301d">
+<img src="WinHEX%28win%29/1617365605070-f9e12cbc-7583-4b8f-b993-0224c1aceab3-20210424192609073.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>创建文件</p>
+<p>在winhex找到该文件位置，查看目录项的信息。</p>
+<p>
+<a href="#image-259732ca22e51b773c5f2ca30d3c75ff" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365613573-e56b2e4d-898e-4b4a-87ba-ea858635c9d6-20210424192612758.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-259732ca22e51b773c5f2ca30d3c75ff">
+<img src="WinHEX%28win%29/1617365613573-e56b2e4d-898e-4b4a-87ba-ea858635c9d6-20210424192612758.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>文件目录项</p>
+<p>由红框内目录项信息可分别知道首簇号高四位和第四位进而求得首簇号为10号，以及文件大小。经计算可得文件大小为58.9kb近似为文件大小。又因为每簇4kb，故共需15簇。</p>
+<p>
+<a href="#image-fc9b911f68a6256e630907d56936aa60" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365619676-ed7370ea-0417-484e-bd9a-150c7883025f-20210424192608882.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-fc9b911f68a6256e630907d56936aa60">
+<img src="WinHEX%28win%29/1617365619676-ed7370ea-0417-484e-bd9a-150c7883025f-20210424192608882.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>fat1（正常）</p>
+<p>从第10号开始，形成一个簇链，直到FFFFFF0F结束。</p>
+<h5 id="fat32数据恢复过程">FAT32数据恢复过程</h5>
+<p>将刚才的test.txt文件永久删除。</p>
+<p>
+<a href="#image-b8fd6df319b50a60981300243092d2da" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365622731-eb9977bc-ee12-4243-a1f9-5f48ca6a765a-20210424192609422.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-b8fd6df319b50a60981300243092d2da">
+<img src="WinHEX%28win%29/1617365622731-eb9977bc-ee12-4243-a1f9-5f48ca6a765a-20210424192609422.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>删除文件</p>
+<p>找到文件目录项，修改对应第一位信息，并由目录项簇号信息及文件大小计算出首簇号为10，簇数为15。</p>
+<p>
+<a href="#image-d986b23cfc32b1afbae77fbdc5fc2aa0" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365639055-6bfcadce-12eb-40d7-8eb5-0e0f6d57deb5-20210424192611710.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-d986b23cfc32b1afbae77fbdc5fc2aa0">
+<img src="WinHEX%28win%29/1617365639055-6bfcadce-12eb-40d7-8eb5-0e0f6d57deb5-20210424192611710.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a>
+<a href="#image-dadb6b891aed29d2076f28b7f3474288" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365639667-f479b777-436b-4407-8322-761d25108b5f-20210424192610213.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-dadb6b891aed29d2076f28b7f3474288">
+<img src="WinHEX%28win%29/1617365639667-f479b777-436b-4407-8322-761d25108b5f-20210424192610213.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a>
+<a href="#image-9e334cda49c1afe9b41072d2319871bf" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365639822-16bb90c9-d325-4c03-b255-3ed08bacfcd1-20210424192611537.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-9e334cda49c1afe9b41072d2319871bf">
+<img src="WinHEX%28win%29/1617365639822-16bb90c9-d325-4c03-b255-3ed08bacfcd1-20210424192611537.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a>
+<a href="#image-e137815d0879dbc04808a85367b97890" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365639956-eba75652-3f0e-4bad-a230-39ca45a9bc4a-20210424192613374.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-e137815d0879dbc04808a85367b97890">
+<img src="WinHEX%28win%29/1617365639956-eba75652-3f0e-4bad-a230-39ca45a9bc4a-20210424192613374.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>
+<a href="#image-d96be8d6af68837237d2659a290ecbbc" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365641328-0602c20a-efa4-46f6-812b-dd0b7727c303-20210424192610792.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-d96be8d6af68837237d2659a290ecbbc">
+<img src="WinHEX%28win%29/1617365641328-0602c20a-efa4-46f6-812b-dd0b7727c303-20210424192610792.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>修改第一位</p>
+<p>分别将FAT1和FAT2的信息进行修改，从10号开始填补簇链到15个簇被填满，其中最后一个以FFFFFF0F结尾。</p>
+<p>
+<a href="#image-fc43b6119d15d95d42658091fe5f77ce" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365648903-f827c808-032c-4db3-acce-d68e74ae11eb-20210424192611380.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-fc43b6119d15d95d42658091fe5f77ce">
+<img src="WinHEX%28win%29/1617365648903-f827c808-032c-4db3-acce-d68e74ae11eb-20210424192611380.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>fat1（恢复）</p>
+<p>保存后发现文件已恢复，内容完整。</p>
+<p>
+<a href="#image-d66892ec7303a5f7cfb68d4c048ec22c" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365657274-201e51f7-de06-4723-aa35-8e2a06c26f85-20210424192611814.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-d66892ec7303a5f7cfb68d4c048ec22c">
+<img src="WinHEX%28win%29/1617365657274-201e51f7-de06-4723-aa35-8e2a06c26f85-20210424192611814.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>恢复成功</p>
+<p>至此，FAT32文件恢复已完成。</p>
+<h4 id="ntfs">NTFS</h4>
+<h5 id="ntfs数据恢复过程">NTFS数据恢复过程</h5>
+<p>同样，先在NTFS格式的E盘创建一个文本文档，再使用shift+delete进行删除。</p>
+<p>
+<a href="#image-8c4801311398346300e1c843b5197e6d" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365666720-04b7b4f5-aa35-4cf3-956a-761e671008ca-20210424192611801.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-8c4801311398346300e1c843b5197e6d">
+<img src="WinHEX%28win%29/1617365666720-04b7b4f5-aa35-4cf3-956a-761e671008ca-20210424192611801.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>创建文件.png</p>
+<p>打开$MFT元文件。</p>
+<p>
+<a href="#image-c8e90378c6047d0870c3f161ebb5f562" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365670799-e5f7f77d-a033-479e-b36f-e3d14b891374-20210424192613977.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-c8e90378c6047d0870c3f161ebb5f562">
+<img src="WinHEX%28win%29/1617365670799-e5f7f77d-a033-479e-b36f-e3d14b891374-20210424192613977.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>查找文件名test的位置（MFT文件名是unicode形式），找到对应的MFT。</p>
+<p>
+<a href="#image-e10c3e946907ac45a1faf3a6bd443357" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365676342-f2cf8e52-1f2d-4510-b711-fadb64e7296a-20210424192612894.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-e10c3e946907ac45a1faf3a6bd443357">
+<img src="WinHEX%28win%29/1617365676342-f2cf8e52-1f2d-4510-b711-fadb64e7296a-20210424192612894.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>查找.png</p>
+<p>
+<a href="#image-097ff4a90b012688293da2c45341a985" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365681290-a6bf53a8-6028-4926-9806-9c23177b905c-20210424192613048.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-097ff4a90b012688293da2c45341a985">
+<img src="WinHEX%28win%29/1617365681290-a6bf53a8-6028-4926-9806-9c23177b905c-20210424192613048.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>文件MFT.png</p>
+<p>16H为00H说明该文件被删除，系统根据这个标志来决定建立新文件时是否覆盖这个MFT而创建自己的MFT。</p>
+<p>再向下找到80H处，往后八个字节为01，则找到相对80H处30H的EE0D00即0DEE为文件大小，经计算为3.48kb基本符合。再向后偏移10H，31表示往后一个字节01H为簇数1，再后三个字节638002即28063H为首簇号，换算成十进制为163939。</p>
+<p>
+<a href="#image-449b7cd6a97b936323b6abecc2dab44d" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365687725-31189727-ebd7-4816-9e3d-72a7e230d623-20210424192612284.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-449b7cd6a97b936323b6abecc2dab44d">
+<img src="WinHEX%28win%29/1617365687725-31189727-ebd7-4816-9e3d-72a7e230d623-20210424192612284.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>文件属性.png</p>
+<p>选中$MFT元文件，根据刚才得到的簇号转到文件数据存储扇区。</p>
+<p>
+<a href="#image-4f2b431ba95a5824766f224014dd3ac7" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365693211-6377284e-7eca-4c02-95e3-50f2936b2e69-20210424192613018.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-4f2b431ba95a5824766f224014dd3ac7">
+<img src="WinHEX%28win%29/1617365693211-6377284e-7eca-4c02-95e3-50f2936b2e69-20210424192613018.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>转到扇区1.png</p>
+<p>
+<a href="#image-51946136c20f9e697cadd55048f150f1" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365697411-35b6b18a-183a-4572-bf0f-e51b7e1494ef-20210424192614549.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-51946136c20f9e697cadd55048f150f1">
+<img src="WinHEX%28win%29/1617365697411-35b6b18a-183a-4572-bf0f-e51b7e1494ef-20210424192614549.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>转到扇区2.png</p>
+<p>将起始位置设为起始点，根据文件大小0DEE算出数据结尾处转到当前位置偏移，再设为终止点，即可选中所有数据。</p>
+<p>
+<a href="#image-362ee78fbb59e1a84e893c31db079c66" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365703854-b8d2122a-0387-454c-a6a2-cad3b73f2d7b-20210424192613644.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-362ee78fbb59e1a84e893c31db079c66">
+<img src="WinHEX%28win%29/1617365703854-b8d2122a-0387-454c-a6a2-cad3b73f2d7b-20210424192613644.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>选中数据区域.png</p>
+<p>
+<a href="#image-6fcc01ca3e29a644b4b7192673184d75" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365709145-deb6be3c-0d4c-4bfd-8fbd-9b14e37705fa-20210424192613107.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-6fcc01ca3e29a644b4b7192673184d75">
+<img src="WinHEX%28win%29/1617365709145-deb6be3c-0d4c-4bfd-8fbd-9b14e37705fa-20210424192613107.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>转到终止点.png</p>
+<p>选中数据选择复制导入到新文件，我们选择恢复到E盘（其实最好不应选择恢复到原文件盘，但因无其他数据，经试验此次无影响），即可完成文件恢复。</p>
+<p>
+<a href="#image-8cf7db7eefe046a8c940de4b00d75826" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365714604-f096360e-1758-4c60-9ec1-22363058d4a5-20210424192613949.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-8cf7db7eefe046a8c940de4b00d75826">
+<img src="WinHEX%28win%29/1617365714604-f096360e-1758-4c60-9ec1-22363058d4a5-20210424192613949.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>生成文件.png</p>
+<p>使用记事本打开发现数据已恢复无误。</p>
+<p>
+<a href="#image-02de25ded1452adc617b494a3e76de0c" class="lightbox-link">
+<img src="WinHEX%28win%29/1617365720167-6d038493-b061-4e05-9c9f-9fedd289992d-20210424192613348.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-02de25ded1452adc617b494a3e76de0c">
+<img src="WinHEX%28win%29/1617365720167-6d038493-b061-4e05-9c9f-9fedd289992d-20210424192613348.png" alt="image.png" class="lightbox-image" loading="lazy">
+</a></p>
+<p>恢复成功.png</p>
+<p>至此，NTFS文件删除后恢复已完成。</p>
+<p>参考资料：</p>
+<p>(NTFS部分）</p>
+<p><a href="http://www.webkaka.com/info/archives/system/2015/05/282147/" target="_blank">http://www.webkaka.com/info/archives/system/2015/05/282147/</a></p>
+<p><a href="http://www.webkaka.com/info/archives/system/2015/05/282148/" target="_blank">http://www.webkaka.com/info/archives/system/2015/05/282148/</a></p>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+          <style>
+            #logo svg,
+            #logo svg * {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+              fill: #282828 !important;
+              fill: var(--MENU-SECTIONS-BG-color) !important;
+              opacity: .945;
+            }
+            a#logo {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+              font-family: 'Work Sans', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
+              font-size: 1.875rem;
+              font-weight: 300;
+              margin-top: -.8125rem;
+              max-width: 60%;
+              text-transform: uppercase;
+              width: 14.125rem;
+              white-space: nowrap;
+            }
+            a#logo:hover {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+            }
+            #logo svg {
+              margin-bottom: -1.25rem;
+              margin-inline-start: -1.47rem;
+              width: 40.5%;
+            }
+            @media only all and (max-width: 60rem) {
+              a#logo {
+                font-size: 1.5625rem;
+                margin-top: -.1875rem;
+              }
+              #logo svg {
+                margin-bottom: -.75rem;
+                margin-inline-start: -1.47rem;
+              }
+            }
+            @media all and (-ms-high-contrast:none) {
+              /* IE11s understanding of positioning is weird at best */
+              a#logo {
+                margin-top: -3.625rem;
+              }
+              #logo svg {
+                margin-bottom: -3.875rem;
+                margin-left: -1.47rem;
+              }
+            }
+            @media only all and (-ms-high-contrast:none) and (max-width: 60rem) {
+              #logo svg {
+                margin-left: -1.47rem;
+              }
+            }
+          </style>
+          <a id="logo" href="/index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.044 64.044">
+              <path d="M46.103 136.34c-.642-.394-1.222-2.242-1.98-2.358-.76-.117-1.353.506-1.618 1.519-.266 1.012-.446 4.188.173 5.538.213.435.482.787 1.03.845.547.057.967-.504 1.45-1.027.482-.523.437-.9 1.142-.612.705.289 1.051.4 1.586 1.229.535.828 1.085 4.043.868 5.598-.241 1.458-.531 2.8-.59 4.088.26.075.517.148.772.217 2.68.724 5.373 1.037 7.873.02.001-.028.01-.105.008-.11-.048-.165-.18-.41-.36-.698-.18-.29-.414-.645-.586-1.114a3.212 3.212 0 0 1-.125-1.735c.056-.21.153-.342.249-.475 1.237-1.193 2.932-1.373 4.244-1.384.557-.004 1.389.016 2.198.255.809.239 1.706.724 2.068 1.843.187.578.114 1.17-.043 1.623-.153.438-.369.783-.545 1.091-.178.31-.329.6-.401.821-.007.02-.003.071-.005.094 2.256 1.008 4.716.91 7.189.398.55-.114 1.11-.247 1.673-.377.344-1.085.678-2.145.852-3.208.124-.752.158-2.311-.078-3.538-.118-.613-.306-1.15-.52-1.489-.221-.349-.413-.501-.747-.538-.243-.027-.51.013-.796.098-.67.223-1.33.606-1.966.76l-.008.002-.109.032c-.556.152-1.233.158-1.797-.36-.556-.51-.89-1.367-1.117-2.596-.283-1.528-.075-3.279.89-4.518l.071-.09h.07c.65-.71 1.485-.802 2.16-.599.706.213 1.333.629 1.772.84.736.354 1.185.319 1.475.171.291-.148.5-.439.668-.955.332-1.017.301-2.819.022-4.106-.148-.684-.13-1.292-.13-1.883-1.558-.463-3.067-.982-4.574-1.208-1.128-.169-2.263-.173-3.298.164-.13.046-.256.095-.38.15-.373.164-.633.342-.805.52-.077.098-.081.105-.087.21-.004.068.031.289.13.571.1.282.256.634.467 1.03.279.524.448 1.063.431 1.618a2.12 2.12 0 0 1-.499 1.309 1.757 1.757 0 0 1-.62.51h-.002c-.515.291-1.107.404-1.723.464-.86.083-1.787.026-2.598-.097-.806-.123-1.47-.28-1.948-.555-.444-.256-.79-.547-1.037-.925a2.273 2.273 0 0 1-.356-1.301c.029-.837.403-1.437.625-1.897.111-.23.191-.433.236-.583.045-.15.044-.25.046-.24-.005-.029-.127-.355-1.015-.741-1.138-.495-2.322-.673-3.533-.668h-.015a9.711 9.711 0 0 0-.521.016h-.002c-1.163.057-2.35.308-3.541.569.383 1.531.79 2.753.818 4.502-.096 1.297.158 2.114-1.03 2.935-.85.588-1.508.729-2.15.335" style="fill:#282828;fill-opacity:1;stroke:none;stroke-width:1.03763;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-40.698 -95.175)"/>
+              <path d="M61.472 101.34v.002c-.3-.003-.603.01-.894.04-.544.055-1.39.165-1.778.306-1.238.364.13 2.344.41 2.913.28.569.285 2.03.14 2.134-.144.103-.375.261-.934.345-.56.084.03-.037-1.589.086-1.62.122-5.506.29-8.265.248-.022.26-.036.521-.097.808-.309 1.442-.63 3.163-.494 4.074.071.473.168.65.414.8.23.14.737.235 1.62-.004.834-.227 1.3-.442 1.887-.456.595-.016 1.555.472 1.965.717.411.245-.03-.008.002 0s.128.05.176.102c.049.053-.276-.523.104.199.379.721.72 3.256.002 4.68-.46.913-1.01 1.49-1.64 1.711-.63.22-1.229.067-1.734-.135-.881-.353-1.584-.7-2.205-.647-1.199 1.94-1.186 4.17-.6 6.602.097.397.212.814.327 1.23 2.68-.556 5.542-1.016 8.337.132 1.064.437 1.73 1.015 1.902 1.857.169.831-.193 1.508-.438 1.986-.122.238-.23.46-.307.642-.07.164-.096.28-.104.324.069.429.309.723.686.945.385.227.89.355 1.35.423.723.104 1.567.152 2.287.086.693-.064 1.032-.338 1.241-.544a2.447 2.447 0 0 0 .303-.437.175.175 0 0 0 .013-.035c-.004-.066-.037-.246-.195-.527-.46-.816-.87-1.595-.817-2.51.028-.476.218-.938.529-1.288.304-.343.698-.586 1.186-.79 1.442-.606 2.96-.609 4.372-.409 1.525.216 2.963.679 4.378 1.083.226-2.09.784-3.9.592-5.77-.058-.565-.287-1.333-.598-1.827-.32-.508-.59-.717-1.036-.642-.648.11-1.472.935-2.707 1.078-.791.092-1.494-.267-1.95-.86-.45-.583-.678-1.335-.78-2.101-.202-1.525.031-3.229.89-4.27.615-.747 1.45-.887 2.15-.74.687.145 1.307.492 1.857.745v-.002c.546.252 1.033.388 1.281.344a.547.547 0 0 0 .353-.188c.113-.124.242-.35.384-.75.604-1.712.206-3.68-.303-5.654-.667.145-1.336.293-2.018.413-1.341.236-2.73.392-4.136.273-.656-.055-1.695-.085-2.58-.476-.442-.195-.903-.514-1.157-1.093-.259-.591-.205-1.313.08-2.014.223-.64 1.082-2.178.692-2.585-.391-.407-1.651-.56-2.554-.571z" style="fill:#282828;fill-opacity:1;stroke:none;stroke-width:.992837;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-40.698 -95.175)"/>
+              <path d="M83.128 98.116c-.484 1.875-1.057 3.757-2.486 5.033-.638.57-1.13.666-1.483.548-.401-.134-.715-.506-1.058-.973-.338-.461-.655-.97-1.076-1.332-.192-.165-.404-.315-.683-.38-.279-.066-.599-.02-.9.102-.489.196-.89.58-1.28 1.047a6.1 6.1 0 0 0-.985 1.632c-.234.591-.356 1.174-.277 1.713.072.487.392.977.905 1.185.463.187.926.156 1.36.154.433 0 .843.01 1.242.147.55.189.79.736.822 1.368.034.66-.145 1.412-.393 1.988l-.008.021c-.74 1.705-1.946 2.893-3.004 4.349l-.664.915.979.099c.924.092 1.788.26 2.468.675.46.281 1.806 1.205 2.794 2.222.497.513.888 1.031 1.047 1.502.078.231.095.422.05.6a.93.93 0 0 1-.345.474c-.301.223-.606.395-.864.532l-.354.186c-.107.058-.189.087-.345.228a.637.637 0 0 1 .062-.045l-.064.041-.209.236-.103.343s.003.126.007.152c.003.017.003.007.004.015v.002c.016.195.061.307.133.476a4.1 4.1 0 0 0 .32.596 5.7 5.7 0 0 0 2.8 2.258c.284.108.908.321 1.548.36.33.02.59.015.912-.13h.002c.08-.037.228-.095.382-.281.153-.186.19-.355.212-.445l.019-.075.003-.078c.023-.585-.037-1.296.072-1.899.153-.657.435-.956 1.009-.909 2.771.239 4.74 1.955 6.693 3.83l.742.714.279-1.155c.55-2.29 1.093-4.464 2.928-5.977.692-.57 1.184-.642 1.527-.509.39.151.676.536.996.995.319.458.605.926 1.07 1.212.194.119.464.232.784.209.32-.024.638-.163.988-.384 1.022-.645 1.778-1.756 2.086-2.942.136-.522.102-.991-.046-1.301-.158-.334-.433-.553-.754-.707-.653-.314-1.468-.373-2.094-.486-.825-.15-1.22-.475-1.345-.878-.13-.417 0-.953.335-1.61.6-1.173 1.887-2.602 3.13-3.911l.498-.526-.449-.432c-1.545-1.49-3.163-3.01-5.252-3.715h-.002c-.473-.16-1.097-.413-1.73-.424h-.003c-.311-.004-.596.04-.883.24v.002c-.22.155-.483.537-.583.937l-.008.036-.006.038c-.116.773-.06 1.467-.217 1.995-.063.212-.198.418-.359.507-.202.111-.492.153-.976.072-.582-.097-1.978-.69-3.021-1.503-.523-.407-.934-.85-1.117-1.3a1.153 1.153 0 0 1-.083-.63c.03-.184.1-.477.308-.593.21-.116.941-.32 1.377-.642h.002c.192-.141.403-.367.518-.64.114-.275.127-.526.123-.774-.006-.142-.036-.192-.08-.3a8.417 8.417 0 0 0-3-3.027c-1.226-.725-2.585-1.135-3.927-1.539-.434-.12-.844-.111-1.02.466zm.912.947c1.186.364 2.357.718 3.345 1.303 1.035.612 1.864 1.488 2.507 2.528-.514.263-1.095.5-1.44.79-.345.29-.729.914-.815 1.434-.084.509 0 .968.155 1.347.301.74.85 1.276 1.44 1.735 1.18.92 2.554 1.545 3.47 1.698.604.1 1.186.088 1.739-.216.594-.327.935-.911 1.088-1.427.264-.884.193-1.664.262-2.17h.1c.3.006.926.206 1.417.371 1.646.554 3.044 1.773 4.431 3.089-1.102 1.174-2.222 2.423-2.888 3.73-.42.823-.73 1.789-.453 2.687.283.913 1.1 1.415 2.138 1.603.691.126 1.472.226 1.84.403.19.091.258.182.278.223.03.064.058.075-.023.387-.21.804-.761 1.598-1.413 2.01-.247.155-.365.183-.407.187-.042.003-.061.002-.172-.066-.144-.088-.455-.473-.772-.929-.317-.454-.714-1.07-1.452-1.356-.783-.304-1.776-.022-2.713.75-1.942 1.6-2.626 3.764-3.146 5.8-1.802-1.676-3.772-3.138-6.589-3.517h-.002c-.346-.095-1.013-.031-1.293.143-.735.501-1.005 1.132-1.168 2.007-.125.69-.082 1.216-.074 1.659-.055.006-.046.01-.104.006-.42-.026-1.035-.215-1.244-.295-.947-.361-1.774-1.006-2.314-1.857-.054-.085-.072-.132-.109-.2l.027-.016c.284-.15.656-.36 1.045-.648.44-.327.789-.798.93-1.35a2.4 2.4 0 0 0-.068-1.379c-.254-.751-.753-1.353-1.295-1.911-1.09-1.124-2.452-2.049-2.99-2.378-.609-.372-1.303-.44-1.981-.56.875-1.094 1.878-2.251 2.596-3.921.294-.823.543-1.907.513-2.658-.049-.97-.489-2.013-1.52-2.367-.579-.2-1.131-.204-1.58-.203-.45.002-.786-.006-.97-.08h-.002c-.264-.107-.236-.108-.268-.33-.025-.17.021-.553.183-.962a4.67 4.67 0 0 1 .725-1.192c.29-.348.617-.59.705-.626.142-.057.176-.05.22-.04.045.011.127.052.263.17.235.201.56.671.92 1.161.354.484.791 1.08 1.543 1.33.8.267 1.784-.052 2.671-.846 1.594-1.424 2.235-3.317 2.714-5.051zm11.705 7.023c-.02.014.042-.002.042 0l-.008.035c.05-.2-.028-.04-.034-.035zM79.472 122.45a.198.198 0 0 1 .005.023v.014c-.002-.01-.003-.03-.005-.037zm-.29.732-.006.01-.044.027c.016-.01.033-.024.05-.036z" style="color:#000;fill:#282828;stroke-width:1.02352;-inkscape-stroke:none" transform="translate(-40.698 -95.175)"/>
+              <path d="M76.694 128.845c-.85-.012-1.668.253-2.434.67-.01.592-.015 1.17.109 1.772.323 1.573.422 3.553-.07 5.147-.247.804-.684 1.535-1.347 1.891-.663.356-1.467.296-2.362-.159-.522-.266-1.059-.62-1.487-.757-.223-.072-.392-.096-.522-.069-.13.027-.232.094-.362.27-.53.719-.681 1.823-.497 2.876.177 1.012.418 1.438.543 1.56.143.137.26.154.604.055.548-.158 1.523-.857 2.573-.972l.02-.002.5.058c.686.081 1.247.562 1.622 1.19.372.62.591 1.37.73 2.136.279 1.532.25 3.16.083 4.232-.14.91-.394 1.72-.632 2.53 1.719-.385 3.485-.692 5.307-.36 1.174.214 2.749.574 3.762 1.977l.088.122.046.159c.162.551.16 1.114.024 1.578-.13.45-.348.772-.533 1.023-.181.246-.336.444-.437.606-.102.16-.141.275-.145.336-.01.17 0 .197.07.315.057.1.186.242.39.366.408.246 1.106.414 1.843.45a7.842 7.842 0 0 0 2.174-.21 4.28 4.28 0 0 0 .822-.296c.218-.106.385-.242.377-.233l.029-.031c.025-.035.05-.072.05-.068 0-.004 0-.017-.003-.05a2.733 2.733 0 0 0-.21-.579c-.26-.548-.839-1.333-.822-2.46.01-.657.27-1.21.598-1.576.32-.357.696-.575 1.074-.736.759-.323 1.57-.418 2.054-.458 1.653-.136 3.252.296 4.755.765.457.142.905.29 1.352.434.325-2.258.902-4.247.598-6.217-.071-.46-.25-1.169-.486-1.684-.238-.518-.495-.762-.675-.779-.351-.032-.716.14-1.174.418-.457.277-1.005.665-1.695.742-.745.082-1.406-.291-1.84-.908-.428-.608-.653-1.394-.754-2.196-.203-1.596.016-3.377.794-4.493.568-.813 1.358-.984 2.024-.835.65.146 1.243.51 1.769.779.524.267.99.413 1.237.365a.527.527 0 0 0 .346-.2c.11-.132.235-.373.37-.798.612-1.918.27-3.894-.246-6.054-2.815-.851-5.49-1.534-8.089-.267a.727.727 0 0 0-.223.148c-.024.028-.018.021-.026.056.001-.003-.01.178.07.44.162.522.611 1.29.911 1.978l.004.009.029.063.024.084V133c.162.635.016 1.297-.274 1.727-.272.404-.618.636-.952.81-.675.353-1.399.484-1.724.533a5.888 5.888 0 0 1-3.973-.795c-.512-.311-.876-.594-1.133-1.02-.282-.466-.318-1.084-.172-1.557.252-.814.715-1.266.971-1.89a.663.663 0 0 0 .047-.14c.001-.013 0-.006-.007-.037a.761.761 0 0 0-.184-.268c-.264-.267-.865-.595-1.54-.826-1.356-.462-3.07-.659-3.583-.686-.062-.002-.121-.006-.178-.006z" style="fill:#282828;fill-opacity:1;stroke:none;stroke-width:.991342;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-40.698 -95.175)"/>
+            </svg>
+            Relearn
+          </a>
+        </div>
+        <form action="/search.html" method="get"><div class="searchbox default-animation">
+          <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <label class="a11y-only" for="search-by">Search</label>
+          <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div></form>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1690573851" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690573851" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690573851" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690573851" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690573851" defer></script>
+        <script src="/js/search.js?1690573851" defer></script>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics enlarge morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-70bdf8d87af46a79686d31378c1d7d85" aria-controls="subsections-70bdf8d87af46a79686d31378c1d7d85"><label for="section-70bdf8d87af46a79686d31378c1d7d85"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/index.html">工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-70bdf8d87af46a79686d31378c1d7d85" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-2dbf020e462e790a32571d0d109b782a" aria-controls="subsections-2dbf020e462e790a32571d0d109b782a"><label for="section-2dbf020e462e790a32571d0d109b782a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 威胁情报工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html">威胁情报工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-2dbf020e462e790a32571d0d109b782a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html">一个rss订阅到钉钉的脚本rss2dingtalk<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/twittertimelineclientscript/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/twittertimelineclientscript/index.html">一个本地命令行查询/批量查询twitter推文的脚本<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-6e38dc5f895def98aff7644f3c6ab0dd" aria-controls="subsections-6e38dc5f895def98aff7644f3c6ab0dd"><label for="section-6e38dc5f895def98aff7644f3c6ab0dd"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 日志分析工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html">日志分析工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-6e38dc5f895def98aff7644f3c6ab0dd" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html">Coremail日志分析脚本<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-f1d5f5bcc33bea044cacc933bb1d335a" aria-controls="subsections-f1d5f5bcc33bea044cacc933bb1d335a"><label for="section-f1d5f5bcc33bea044cacc933bb1d335a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html">渗透工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-f1d5f5bcc33bea044cacc933bb1d335a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html">UnsafeHttpMethod类型漏洞检测脚本<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html">本地批量ping域名脚本<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E8%AF%91%E6%96%87%E5%BD%92%E6%A1%A3/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E8%AF%91%E6%96%87%E5%BD%92%E6%A1%A3/index.html">漏洞验证工具nuclei官方文档中文译文归档<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%A8%A1%E7%89%88%E7%BC%96%E5%86%99%E4%B8%AD%E6%96%87%E5%BD%92%E6%A1%A3/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%A8%A1%E7%89%88%E7%BC%96%E5%86%99%E4%B8%AD%E6%96%87%E5%BD%92%E6%A1%A3/index.html">漏洞验证工具nuclei官方模版编写中文译文归档<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html" class="parent "><input type="checkbox" id="section-f35715843c55715e4e1a8b9dbf6b45ee" aria-controls="subsections-f35715843c55715e4e1a8b9dbf6b45ee" checked><label for="section-f35715843c55715e4e1a8b9dbf6b45ee"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 应急响应</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html">应急响应<i class="fas fa-check read-icon"></i></a><ul id="subsections-f35715843c55715e4e1a8b9dbf6b45ee" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html" class=""><input type="checkbox" id="section-7fff60dfdaa5ccf8d63424e07c41a0a2" aria-controls="subsections-7fff60dfdaa5ccf8d63424e07c41a0a2"><label for="section-7fff60dfdaa5ccf8d63424e07c41a0a2"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x00电子取证标准</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html">0x00电子取证标准<i class="fas fa-check read-icon"></i></a><ul id="subsections-7fff60dfdaa5ccf8d63424e07c41a0a2" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/2.0%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/2.0%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html">2.0电子取证标准<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><input type="checkbox" id="section-8f02c2961ea54145c9239661e2bd6b86" aria-controls="subsections-8f02c2961ea54145c9239661e2bd6b86"><label for="section-8f02c2961ea54145c9239661e2bd6b86"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x01现场勘查</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">0x01现场勘查<i class="fas fa-check read-icon"></i></a><ul id="subsections-8f02c2961ea54145c9239661e2bd6b86" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">现场看擦<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html" class="parent "><input type="checkbox" id="section-206bf0cd228714da00e540f18edc5db5" aria-controls="subsections-206bf0cd228714da00e540f18edc5db5" checked><label for="section-206bf0cd228714da00e540f18edc5db5"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x02电子取证</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html">0x02电子取证<i class="fas fa-check read-icon"></i></a><ul id="subsections-206bf0cd228714da00e540f18edc5db5" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html" class=""><input type="checkbox" id="section-89535f58c579af51d3b6f3412f0b0639" aria-controls="subsections-89535f58c579af51d3b6f3412f0b0639"><label for="section-89535f58c579af51d3b6f3412f0b0639"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 1磁盘镜像</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html">1磁盘镜像<i class="fas fa-check read-icon"></i></a><ul id="subsections-89535f58c579af51d3b6f3412f0b0639" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html">Clonezilla<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html">Datanumen_disk_image<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html">dd/dc3dd(linux)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html">EnCase_forensic_imager.<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html">GetdataForensicImager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html">Guymager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html">镜像类型及各产品特性对比<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html" class=""><input type="checkbox" id="section-69278680b5dd14dcc983e7a4af33c9fb" aria-controls="subsections-69278680b5dd14dcc983e7a4af33c9fb"><label for="section-69278680b5dd14dcc983e7a4af33c9fb"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 2磁盘挂载</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html">2磁盘挂载<i class="fas fa-check read-icon"></i></a><ul id="subsections-69278680b5dd14dcc983e7a4af33c9fb" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html">Arsenal_Image_Mounter<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html">GetData Mount Image Pro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html">mount_command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html">OSFMount<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html">磁盘挂载工具特点对比表<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html" class="parent "><input type="checkbox" id="section-cc9bb9305c742d8ac2d982c0f1774f34" aria-controls="subsections-cc9bb9305c742d8ac2d982c0f1774f34" checked><label for="section-cc9bb9305c742d8ac2d982c0f1774f34"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 3文件恢复</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html">3文件恢复<i class="fas fa-check read-icon"></i></a><ul id="subsections-cc9bb9305c742d8ac2d982c0f1774f34" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/diskgeniuswin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/diskgeniuswin/index.html">DiskGenius(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/r-studio-networkwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/r-studio-networkwin/index.html">R-studio network(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/ufs-explorer-professional-recoverywinmaclinux/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/ufs-explorer-professional-recoverywinmaclinux/index.html">UFS explorer professional recovery(win/mac/linux)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.html" class="active"><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.html">WinHEX(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html">数据恢复工具性能对比<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html" class=""><input type="checkbox" id="section-f72a1ee8fa05d9b7ba0bef33408333a8" aria-controls="subsections-f72a1ee8fa05d9b7ba0bef33408333a8"><label for="section-f72a1ee8fa05d9b7ba0bef33408333a8"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 4系统信息收集</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">4系统信息收集<i class="fas fa-check read-icon"></i></a><ul id="subsections-f72a1ee8fa05d9b7ba0bef33408333a8" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">hosts文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html">linux下后门查杀<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html">linux下病毒查杀<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">linux软件包管理器文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html">启动项检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html">命令行历史记录<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">回收站文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html">国标中电子取证相关要求及综述<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html">安全策略检测<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html">异常端口查询<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html">映像劫持检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5/index.html">服务信息检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3%E6%A3%80%E6%9F%A5/index.html">浏览器相关检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%A3%80%E6%9F%A5/index.html">环境变量检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E6%A3%80%E6%9F%A5/index.html">系统共享检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5/index.html">系统日志查询<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%AE%A1%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%AE%A1%E6%9F%A5/index.html">系统用户审查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.html">系统进程检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html">计划任务检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">重点文件目录检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html">钩子检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html">防火墙规则检查<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-bba07b074ab74ed3d6f2efbb911ba96a" aria-controls="subsections-bba07b074ab74ed3d6f2efbb911ba96a"><label for="section-bba07b074ab74ed3d6f2efbb911ba96a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x03取证分析</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html">0x03取证分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-bba07b074ab74ed3d6f2efbb911ba96a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html">【译】取证调查：虚拟内存pagefile.sys<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-1c2e9721036bcac0690861bf4737d812" aria-controls="subsections-1c2e9721036bcac0690861bf4737d812"><label for="section-1c2e9721036bcac0690861bf4737d812"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x06取证辅助工具</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html">0x06取证辅助工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-1c2e9721036bcac0690861bf4737d812" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1emergencyrocketpackage/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1emergencyrocketpackage/index.html">EmergencyRocketPackage<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b"><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-88c267f9c3b4a34d411e5a90254df00f" aria-controls="subsections-88c267f9c3b4a34d411e5a90254df00f"><label for="section-88c267f9c3b4a34d411e5a90254df00f"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 安卓样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">安卓样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-88c267f9c3b4a34d411e5a90254df00f" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/mobsf_mac_avd_android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/mobsf_mac_avd_android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html">Mobsf_MAC_AVD_Android动静态环境搭建排坑实战<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html" class=""><input type="checkbox" id="section-ffb6fc95178918741432017d1bacd773" aria-controls="subsections-ffb6fc95178918741432017d1bacd773"><label for="section-ffb6fc95178918741432017d1bacd773"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析基础</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">样本分析基础<i class="fas fa-check read-icon"></i></a><ul id="subsections-ffb6fc95178918741432017d1bacd773" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-10-使用内存取证狩猎恶意软件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html">恶意样本分析-10-恶意软件的混淆技术<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-12-使用内存取证检测高级恶意软件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html">恶意样本分析-7-调试恶意软件二进制文件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html">恶意样本分析-8-恶意软件的功能和持久化<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html">恶意样本分析-9-代码注入和钩子<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html">恶意样本分析1-配置实验环境<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html">恶意样本分析2-基础静态分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html">恶意样本分析3-基础动态分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html">恶意样本分析4-基础DLL分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html">恶意样本分析4-基础DLL分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html">恶意样本分析6-IDA使用<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html" class=""><input type="checkbox" id="section-4f3e0dd41bb55c4672bf0e0faa840610" aria-controls="subsections-4f3e0dd41bb55c4672bf0e0faa840610"><label for="section-4f3e0dd41bb55c4672bf0e0faa840610"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析拓展</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html">样本分析拓展<i class="fas fa-check read-icon"></i></a><ul id="subsections-4f3e0dd41bb55c4672bf0e0faa840610" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADrc4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADrc4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html">介绍恶意软件中RC4加密的识别与解码<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8microsoft%E7%9A%84fixit%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8microsoft%E7%9A%84fixit%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html">使用和滥用Microsoft的Fix It修补程序<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html">真正的垫片黑幕<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html" class=""><input type="checkbox" id="section-f6788bc9550144d7d72dabbc9a05483a" aria-controls="subsections-f6788bc9550144d7d72dabbc9a05483a"><label for="section-f6788bc9550144d7d72dabbc9a05483a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析记录</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html">样本分析记录<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6788bc9550144d7d72dabbc9a05483a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html">样本分析-Trojan/Buzus“霸族”木马通过邮件传播<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html">样本分析-邮件恶意样本中发现新MYMOOD蠕虫传播地址<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html">样本分析-邮件恶意样本发现AZORult间谍软件传播<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html" class=""><input type="checkbox" id="section-0714789af687990c9fc38b6319972875" aria-controls="subsections-0714789af687990c9fc38b6319972875"><label for="section-0714789af687990c9fc38b6319972875"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 情报跟踪</span></label><a class="padding" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html">情报跟踪<i class="fas fa-check read-icon"></i></a><ul id="subsections-0714789af687990c9fc38b6319972875" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-chinese_hackers_target_satellitegeospatial_imagingdefense_companies/index.html" class=""><a class="padding" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-chinese_hackers_target_satellitegeospatial_imagingdefense_companies/index.html">黑客背后的&#34;Thrip&#34;网络间谍组织<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html" class=""><input type="checkbox" id="section-be882d7838b29bb55035a73606bd5fad" aria-controls="subsections-be882d7838b29bb55035a73606bd5fad"><label for="section-be882d7838b29bb55035a73606bd5fad"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 操作系统</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">操作系统<i class="fas fa-check read-icon"></i></a><ul id="subsections-be882d7838b29bb55035a73606bd5fad" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/index.html" class=""><input type="checkbox" id="section-0a43e999527d8431e07a6c83274453d0" aria-controls="subsections-0a43e999527d8431e07a6c83274453d0"><label for="section-0a43e999527d8431e07a6c83274453d0"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu windows</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/index.html">windows<i class="fas fa-check read-icon"></i></a><ul id="subsections-0a43e999527d8431e07a6c83274453d0" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/index.html" class=""><input type="checkbox" id="section-4b5256e8689ed2826632ee3c944d042e" aria-controls="subsections-4b5256e8689ed2826632ee3c944d042e"><label for="section-4b5256e8689ed2826632ee3c944d042e"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Powershell</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/index.html">Powershell<i class="fas fa-check read-icon"></i></a><ul id="subsections-4b5256e8689ed2826632ee3c944d042e" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html" class=""><input type="checkbox" id="section-1dcf0d8ab382f88a0dec20aa11c7a8c6" aria-controls="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6"><label for="section-1dcf0d8ab382f88a0dec20aa11c7a8c6"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 组策略</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html">组策略<i class="fas fa-check read-icon"></i></a><ul id="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html">SID安全标识符<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html" class=""><input type="checkbox" id="section-6d101735907668b9565f2b24f0ce6829" aria-controls="subsections-6d101735907668b9565f2b24f0ce6829"><label for="section-6d101735907668b9565f2b24f0ce6829"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透测试</span></label><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fas fa-check read-icon"></i></a><ul id="subsections-6d101735907668b9565f2b24f0ce6829" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html" class=""><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><input type="checkbox" id="section-5c9f137f17add9d910670d26ee4e7fe7" aria-controls="subsections-5c9f137f17add9d910670d26ee4e7fe7"><label for="section-5c9f137f17add9d910670d26ee4e7fe7"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 漏洞复现</span></label><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">漏洞复现<i class="fas fa-check read-icon"></i></a><ul id="subsections-5c9f137f17add9d910670d26ee4e7fe7" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-vulhub%E5%AE%9E%E9%AA%8C_weblogic_ssrf%E6%BC%8F%E6%B4%9E/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-vulhub%E5%AE%9E%E9%AA%8C_weblogic_ssrf%E6%BC%8F%E6%B4%9E/index.html">CVE-2014-4210_Weblogic SSRF漏洞<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2017-11882_office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2017-11882_office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-0796_smbghost_remote_code_execution/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-0796_smbghost_remote_code_execution/index.html">CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-14645_weblogic_t3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96rce%E5%A4%8D%E6%B5%8B/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-14645_weblogic_t3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96rce%E5%A4%8D%E6%B5%8B/index.html">CVE-2020-14645_weblogic_T3反序列化RCE复测<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%A4%BE%E7%A7%91/index.html" class=""><input type="checkbox" id="section-0c9d6aef0bca5a94a96f257f1cf48fc7" aria-controls="subsections-0c9d6aef0bca5a94a96f257f1cf48fc7"><label for="section-0c9d6aef0bca5a94a96f257f1cf48fc7"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 社科</span></label><a class="padding" href="/%E7%A4%BE%E7%A7%91/index.html">社科<i class="fas fa-check read-icon"></i></a><ul id="subsections-0c9d6aef0bca5a94a96f257f1cf48fc7" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%A4%BE%E7%A7%91/%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E5%8F%AA%E6%9C%89%E4%B8%80%E4%BB%B6%E5%8A%A0%E9%87%8C%E5%87%AF%E5%8B%92%E5%87%AF%E5%8B%92%E5%B8%95%E5%B8%95%E6%A3%AE/index.html" class=""><a class="padding" href="/%E7%A4%BE%E7%A7%91/%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E5%8F%AA%E6%9C%89%E4%B8%80%E4%BB%B6%E5%8A%A0%E9%87%8C%E5%87%AF%E5%8B%92%E5%87%AF%E5%8B%92%E5%B8%95%E5%B8%95%E6%A3%AE/index.html">《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森.<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%A4%BE%E7%A7%91/%E6%B1%A0%E8%B0%B7%E8%A3%95%E4%BA%8C%E8%80%83%E8%AF%95%E8%84%91%E7%A7%91%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html" class=""><a class="padding" href="/%E7%A4%BE%E7%A7%91/%E6%B1%A0%E8%B0%B7%E8%A3%95%E4%BA%8C%E8%80%83%E8%AF%95%E8%84%91%E7%A7%91%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">《考试脑科学》池谷裕二<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%A7%91%E6%99%AE/index.html" class=""><input type="checkbox" id="section-e21a6523d8e7d52806b1ba653eca621d" aria-controls="subsections-e21a6523d8e7d52806b1ba653eca621d"><label for="section-e21a6523d8e7d52806b1ba653eca621d"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 科普</span></label><a class="padding" href="/%E7%A7%91%E6%99%AE/index.html">科普<i class="fas fa-check read-icon"></i></a><ul id="subsections-e21a6523d8e7d52806b1ba653eca621d" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html" class=""><a class="padding" href="/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html">手机丢失后一定要做的几件必做事！<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html" class=""><input type="checkbox" id="section-055705051387ceccbed8d9222bbca770" aria-controls="subsections-055705051387ceccbed8d9222bbca770"><label for="section-055705051387ceccbed8d9222bbca770"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 红蓝对抗</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html">红蓝对抗<i class="fas fa-check read-icon"></i></a><ul id="subsections-055705051387ceccbed8d9222bbca770" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html" class=""><input type="checkbox" id="section-02c229b842fa25d657521450528e1e8c" aria-controls="subsections-02c229b842fa25d657521450528e1e8c"><label for="section-02c229b842fa25d657521450528e1e8c"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 系统入侵对抗研究</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html">系统入侵对抗研究<i class="fas fa-check read-icon"></i></a><ul id="subsections-02c229b842fa25d657521450528e1e8c" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-cobalt_strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-cobalt_strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html">CS X86 payload分析混淆加密<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html">Mysql提权小结<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html">windows计划任务隐藏-检查方式<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-8a7eb9f623652b0d0b74da1cc3bf1894" aria-controls="subsections-8a7eb9f623652b0d0b74da1cc3bf1894"><label for="section-8a7eb9f623652b0d0b74da1cc3bf1894"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 页面篡改分析</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html">页面篡改分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-8a7eb9f623652b0d0b74da1cc3bf1894" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-eval%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-eval%E5%8A%A0%E5%AF%86/index.html">页面篡改分析-EVAL加密<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-http流量劫持页面篡分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-js%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-js%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-JS的eval()加密方式跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.html">页面篡改分析-基于sojson.v4混淆的页面篡思路分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/index.html">页面篡改分析-基于sojson.v4混淆的页面篡思路分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-服务器端重定向跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-短链接多级跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html">页面篡改分析-首次会话跳转菠菜页面篡改分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84bocai%E9%A1%B5%E9%9D%A2/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84bocai%E9%A1%B5%E9%9D%A2/index.html">页面篡改分析一处BoCai页面<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E7%BC%96%E7%A8%8B/index.html" class=""><input type="checkbox" id="section-49cd3dd12728d4fd4ae01f7800801d13" aria-controls="subsections-49cd3dd12728d4fd4ae01f7800801d13"><label for="section-49cd3dd12728d4fd4ae01f7800801d13"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 编程</span></label><a class="padding" href="/%E7%BC%96%E7%A8%8B/index.html">编程<i class="fas fa-check read-icon"></i></a><ul id="subsections-49cd3dd12728d4fd4ae01f7800801d13" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BC%96%E7%A8%8B/python/index.html" class=""><input type="checkbox" id="section-5af71f25f527f724bbea024bdc239142" aria-controls="subsections-5af71f25f527f724bbea024bdc239142"><label for="section-5af71f25f527f724bbea024bdc239142"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu python</span></label><a class="padding" href="/%E7%BC%96%E7%A8%8B/python/index.html">python<i class="fas fa-check read-icon"></i></a><ul id="subsections-5af71f25f527f724bbea024bdc239142" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html" class=""><a class="padding" href="/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html">scapy<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+        </ul>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <div class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <label class="a11y-only" for="select-language">Language</label>
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </div>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <div class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <label class="a11y-only" for="select-variant">Theme</label>
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <option id="auto" value="auto" selected>Auto</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </div>
+              <script>window.variants && variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><button class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i><span>&nbsp;</span>Clear History</button></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+<div id="footer" class="footerFooter showFooter">
+	<style>
+	#footer {
+		font-size: .8125rem;
+		height: 6.25rem;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 2rem 1rem;
+		text-align: center;
+		min-width: 14.375rem;
+		max-width: 18.75rem;
+	}
+	#footer p {
+		margin: 0;
+	}
+	</style>
+	<span></span>
+	<span></span>
+	<span></span>
+	<p align="center">Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+	<script async="" src="../../js/buttons.js?1687453518"></script>
+</div>
+
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1690573851" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690573851" defer></script>
+    <script>
+      function useMathJax( config ){
+        if( !Object.assign ){
+          
+          return;
+        }
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], 
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690573851" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script>window.noZensmooth = true;</script>
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
+    <script>
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690573851  };
+    </script>
+    <script src="/js/theme.js?1690573851" defer></script>
+  </body>
+</html>

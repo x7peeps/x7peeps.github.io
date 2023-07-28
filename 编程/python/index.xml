@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on x7peeps</title>
+    <link>http://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.html</link>
+    <description>Recent content in python on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Sep 2020 12:03:49 +0000</lastBuildDate><atom:link href="http://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>scapy</title>
+      <link>http://x7peeps.com/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</link>
+      <pubDate>Fri, 11 Sep 2020 12:03:49 +0000</pubDate>
+      <guid>http://x7peeps.com/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</guid>
+      <description>如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip
+scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。
+安装scrapy步骤 通过pip安装 pip3 install scrapy 运行scrapy /home/user/.local/bin/scrapy
+添加pip安装路径到环境变量（linux下没有pip环境的） $ echo PATH=$PATH:/home/user/.local/bin &amp;gt;&amp;gt; ~/.bashrc #Linux 运行scrapy scrapy
+** 这里由于使用mac下面是是mac安装scrapy的方法**
+下载安装 安装xcode命令行工具 安装scrapy pip3 install scrapy 初始化scrapy 如果想要在桌面上创建一个工程 cd /user/xt/desktop scrapy startproject yourproject ** 未找到scrapy命令情况**
+首先找到scrapy的位置（我这里mac的安装位置找到在这里，可执行） /System/Volumes/Data/Users/xt/Library/Python/3.8/bin/scrapy $ /System/Volumes/Data/Users/xt/Library/Python/3.8/bin/scrapy Scrapy 2.3.0 - no active project Usage: scrapy &amp;lt;command&amp;gt; [options] [args] Available commands: bench Run quick benchmark test commands fetch Fetch a URL using the Scrapy downloader genspider Generate new spider using pre-defined templates runspider Run a self-contained spider (without creating a project) settings Get settings values shell Interactive scraping console startproject Create new project version Print Scrapy version view Open URL in browser, as seen by Scrapy [ more ] More commands available when run from project directory Use &amp;#34;scrapy &amp;lt;command&amp;gt; -h&amp;#34; to see more info about a command 如果没有找到可以直接在系统搜索：find / -name &amp;ldquo;scrapy&amp;rdquo; 2&amp;gt;/tmp/null</description>
+    </item>
+  </channel>
+</rss>

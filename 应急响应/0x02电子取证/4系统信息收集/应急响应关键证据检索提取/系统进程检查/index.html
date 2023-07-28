@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.115.4">
+    <meta name="generator" content="Relearn 5.17.1">
+    <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
+    <meta name="author" content="x7peeps">
+    <title>系统进程检查 - x7peeps</title>
+    <link href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.xml" rel="alternate" type="application/rss+xml" title="系统进程检查 - x7peeps">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="/css/fontawesome-all.min.css?1690573851" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690573851" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690573851" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690573851" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690573851" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690573851" rel="stylesheet">
+    <link href="/css/fonts.css?1690573851" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690573851" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690573851" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690573851" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690573851" rel="stylesheet">
+    <link href="/css/print.css?1690573851" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690573851" rel="stylesheet">
+    <script src="/js/url.js?1690573851"></script>
+    <script src="/js/variant.js?1690573851"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="/index.search.js";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='http:\/\/x7peeps.com/';
+      window.variants && variants.init( [ 'auto' ] );
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div class="navigation">
+            <a class="nav nav-next topbar-link" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html" title="计划任务检查 (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+          </div>
+          <div class="navigation">
+            <a class="nav nav-prev topbar-link" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%AE%A1%E6%9F%A5/index.html" title="系统用户审查 (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" class="topbar-link" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/index.html"><span itemprop="name">x7peeps</span></a><meta itemprop="position" content="1"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html"><span itemprop="name">应急响应</span></a><meta itemprop="position" content="2"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html"><span itemprop="name">0x02电子取证</span></a><meta itemprop="position" content="3"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html"><span itemprop="name">4系统信息收集</span></a><meta itemprop="position" content="4"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">系统进程检查</span><meta itemprop="position" content="5"></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="toc-wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#linux下系统进程查询">linux下系统进程查询</a>
+      <ul>
+        <li><a href="#ps">ps</a></li>
+        <li><a href="#proc">/proc</a></li>
+        <li><a href="#pstree比较好用">pstree（比较好用）</a></li>
+        <li><a href="#kill-结束进程">kill (结束进程）</a></li>
+      </ul>
+    </li>
+    <li><a href="#windows下系统进程查询">windows下系统进程查询</a>
+      <ul>
+        <li><a href="#tasklist">tasklist</a></li>
+        <li><a href="#taskkill-结束进程"><strong>taskkill （结束进程）</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="default">
+            <header class="headline">
+            </header>
+<h1 id="系统进程检查">系统进程检查</h1>
+
+<h2 id="linux下系统进程查询">linux下系统进程查询</h2>
+<h3 id="ps">ps</h3>
+<p><a href="https://www.runoob.com/linux/linux-comm-ps.html" target="_blank">https://www.runoob.com/linux/linux-comm-ps.html</a></p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>Usage:
+ ps [options]
+
+参数：
+
+ps 的参数非常多, 在此仅列出几个常用的参数并大略介绍含义
+-A 列出所有的进程
+-w 显示加宽可以显示较多的资讯
+-au 显示较详细的资讯
+-aux 显示所有包含其他使用者的行程
+au(x) 输出格式 :
+
+USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND
+USER: 行程拥有者
+PID: pid
+%CPU: 占用的 CPU 使用率
+%MEM: 占用的记忆体使用率
+VSZ: 占用的虚拟记忆体大小
+RSS: 占用的记忆体大小
+TTY: 终端的次要装置号码 (minor device number of tty)
+STAT: 该行程的状态:
+
+D: 无法中断的休眠状态 (通常 IO 的进程)
+R: 正在执行中
+S: 静止状态
+T: 暂停执行
+Z: 不存在但暂时无法消除
+W: 没有足够的记忆体分页可分配
+&lt;: 高优先序的行程
+N: 低优先序的行程
+L: 有记忆体分页分配并锁在记忆体内 (实时系统或捱A I/O)
+START: 行程开始时间
+TIME: 执行的时间
+COMMAND:所执行的指令</code></pre></div><p>使用ps命令，分析进程</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>ps aux | grep pid</code></pre></div><h4 id="常用查询语句">常用查询语句</h4>
+<div class="wrap-code highlight"><pre tabindex="0"><code>ps -ef //显示所有命令，连带命令行
+根据netstat定位出的pid.使用ps命令分析进程
+ps aux | grep pid
+查看下pid所对应的进程文件路径，
+netstat -antlp
+运行ls -l /proc/$PID/exe或file /proc/$PID/exe（$PID 为对应的pid 号）
+ps -u root //显示root进程用户信息
+ps -A </code></pre></div><div class="wrap-code highlight"><pre tabindex="0"><code>parallels@parallels-Parallels-Virtual-Platform:~$ ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 14:03 ?        00:00:02 /sbin/init splash
+root           2       0  0 14:03 ?        00:00:00 [kthreadd]
+root           3       2  0 14:03 ?        00:00:00 [rcu_gp]
+root           4       2  0 14:03 ?        00:00:00 [rcu_par_gp]
+root           6       2  0 14:03 ?        00:00:00 [kworker/0:0H-kblockd]
+root           9       2  0 14:03 ?        00:00:00 [mm_percpu_wq]
+root          10       2  0 14:03 ?        00:00:00 [ksoftirqd/0]
+root          11       2  0 14:03 ?        00:00:08 [rcu_sched]
+root          12       2  0 14:03 ?        00:00:00 [migration/0]
+root          13       2  0 14:03 ?        00:00:00 [idle_inject/0]
+root          14       2  0 14:03 ?        00:00:00 [cpuhp/0]
+root          15       2  0 14:03 ?        00:00:00 [cpuhp/1]
+root          16       2  0 14:03 ?        00:00:00 [idle_inject/1]
+root          17       2  0 14:03 ?        00:00:00 [migration/1]
+root          18       2  0 14:03 ?        00:00:00 [ksoftirqd/1]
+root          20       2  0 14:03 ?        00:00:00 [kworker/1:0H-kblockd]
+root          21       2  0 14:03 ?        00:00:00 [kdevtmpfs]
+root          22       2  0 14:03 ?        00:00:00 [netns]
+root          23       2  0 14:03 ?        00:00:00 [rcu_tasks_kthre]
+root          24       2  0 14:03 ?        00:00:00 [kauditd]
+root          28       2  0 14:03 ?        00:00:00 [khungtaskd]
+root          29       2  0 14:03 ?        00:00:00 [oom_reaper]
+root          30       2  0 14:03 ?        00:00:00 [writeback]
+root          31       2  0 14:03 ?        00:00:00 [kcompactd0]
+root          32       2  0 14:03 ?        00:00:00 [ksmd]
+root          33       2  0 14:03 ?        00:00:00 [khugepaged]
+root         125       2  0 14:03 ?        00:00:00 [kintegrityd]
+root         126       2  0 14:03 ?        00:00:00 [kblockd]
+root         127       2  0 14:03 ?        00:00:00 [blkcg_punt_bio]
+root         128       2  0 14:03 ?        00:00:00 [tpm_dev_wq]
+root         129       2  0 14:03 ?        00:00:00 [ata_sff]
+root         130       2  0 14:03 ?        00:00:00 [md]
+root         131       2  0 14:03 ?        00:00:00 [edac-poller]
+root         132       2  0 14:03 ?        00:00:00 [devfreq_wq]
+root         133       2  0 14:03 ?        00:00:00 [watchdogd]
+root         136       2  0 14:03 ?        00:00:00 [kswapd0]
+root         269       2  0 14:03 ?        00:00:00 [kworker/0:1H-kblockd]
+root         272       2  0 14:03 ?        00:00:00 [kworker/1:1H-kblockd]
+root         292       2  0 14:03 ?        00:00:00 [jbd2/sda5-8]
+root         293       2  0 14:03 ?        00:00:00 [ext4-rsv-conver]
+root         332       1  0 14:03 ?        00:00:01 /lib/systemd/systemd-journald
+root         352       1  0 14:03 ?        00:00:01 /lib/systemd/systemd-udevd
+root         363       2  0 14:03 ?        00:00:00 [loop0]
+root         367       2  0 14:03 ?        00:00:00 [loop1]
+root         369       2  0 14:03 ?        00:00:00 [loop2]
+root         383       2  0 14:03 ?        00:00:00 [loop3]
+root         385       2  0 14:03 ?        00:00:00 [loop4]
+root         392       2  0 14:03 ?        00:00:00 [loop5]
+root         393       2  0 14:03 ?        00:00:00 [loop6]
+root         397       2  0 14:03 ?        00:00:00 [loop7]
+root         399       2  0 14:03 ?        00:00:00 [loop8]
+root         400       2  0 14:03 ?        00:00:00 [loop9]
+root         431       2  0 14:03 ?        00:00:00 [cryptd]
+systemd+     596       1  0 14:03 ?        00:00:00 /lib/systemd/systemd-resolved
+systemd+     597       1  0 14:03 ?        00:00:00 /lib/systemd/systemd-timesyncd
+root         628       1  0 14:03 ?        00:00:00 /usr/lib/accountsservice/accounts-daemon
+root         629       1  0 14:03 ?        00:00:00 /usr/sbin/acpid
+avahi        634       1  0 14:03 ?        00:00:14 avahi-daemon: running [parallels-Parallels-Virt
+root         636       1  0 14:03 ?        00:00:00 /usr/sbin/cron -f
+root         638       1  0 14:03 ?        00:00:16 /usr/sbin/cupsd -l
+message+     639       1  0 14:03 ?        00:00:46 /usr/bin/dbus-daemon --system --address=systemd
+root         652       1  0 14:03 ?        00:00:00 /usr/sbin/irqbalance --foreground
+root         654       1  0 14:03 ?        00:00:00 /usr/bin/python3 /usr/bin/networkd-dispatcher -
+root         658       1  0 14:03 ?        00:00:05 /usr/lib/policykit-1/polkitd --no-debug
+syslog       665       1  0 14:03 ?        00:00:00 /usr/sbin/rsyslogd -n -iNONE
+root         670       1  0 14:03 ?        00:00:03 /usr/lib/snapd/snapd
+root         676       1  0 14:03 ?        00:00:00 /usr/libexec/switcheroo-control
+root         681       1  0 14:03 ?        00:00:00 /lib/systemd/systemd-logind
+root         682       1  0 14:03 ?        00:00:01 /usr/sbin/thermald --no-daemon --dbus-enable
+root         686       1  0 14:03 ?        00:00:00 /usr/lib/udisks2/udisksd
+root         687       1  0 14:03 ?        00:00:00 /sbin/wpa_supplicant -u -s -O /run/wpa_supplica
+avahi        701     634  0 14:03 ?        00:00:00 avahi-daemon: chroot helper
+colord       759       1  0 14:03 ?        00:00:00 /usr/libexec/colord
+root         771       1  0 14:03 ?        00:00:01 /usr/sbin/cups-browsed
+root         786       1  0 14:03 ?        00:00:00 /usr/sbin/ModemManager --filter-policy=strict
+root         793       1  0 14:03 ?        00:00:04 /usr/bin/prltoolsd -p /var/run/prltoolsd.pid
+root         826       1  0 14:03 ?        00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades
+whoopsie     893       1  0 14:03 ?        00:00:00 /usr/bin/whoopsie -f
+kernoops     894       1  0 14:03 ?        00:00:00 /usr/sbin/kerneloops --test
+root         897     793  0 14:03 ?        00:00:06 prlshprint
+root         899     793  0 14:03 ?        00:00:00 prltimesync
+root         900     793  0 14:03 ?        00:00:00 prlusmd
+kernoops     903       1  0 14:03 ?        00:00:00 /usr/sbin/kerneloops
+root         908       1  0 14:03 ?        00:00:00 /usr/sbin/gdm3
+rtkit       1208       1  0 14:03 ?        00:00:00 /usr/libexec/rtkit-daemon
+lp          1335     638  0 14:04 ?        00:00:00 /usr/lib/cups/notifier/dbus dbus://
+root        1456       1  0 14:04 ?        00:00:01 /usr/lib/upower/upowerd
+root        1897     908  0 14:04 ?        00:00:00 gdm-session-worker [pam/gdm-password]
+paralle+    1971       1  0 14:04 ?        00:00:00 /lib/systemd/systemd --user
+paralle+    1972    1971  0 14:04 ?        00:00:00 (sd-pam)
+paralle+    1978    1971  0 14:04 ?        00:00:00 /usr/bin/pulseaudio --daemonize=no --log-target
+paralle+    1980    1971  0 14:04 ?        00:00:00 /usr/libexec/tracker-miner-fs
+paralle+    1982    1971  0 14:04 ?        00:00:10 /usr/bin/dbus-daemon --session --address=system
+paralle+    1989       1  0 14:04 ?        00:00:00 /usr/bin/gnome-keyring-daemon --daemonize --log
+paralle+    2003    1971  0 14:04 ?        00:00:00 /usr/libexec/gvfsd
+paralle+    2008    1971  0 14:04 ?        00:00:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f 
+paralle+    2009    1971  0 14:04 ?        00:00:00 /usr/libexec/gvfs-udisks2-volume-monitor
+paralle+    2037    1971  0 14:04 ?        00:00:00 /usr/libexec/gvfs-goa-volume-monitor
+paralle+   27969    3078  0 16:35 pts/0    00:00:00 ps -ef</code></pre></div><h3 id="proc">/proc</h3>
+<p>参考：https://www.cnblogs.com/liushui-sky/p/9354536.html</p>
+<p>Linux系统上的/proc目录是一种文件系统，即proc文件系统。</p>
+<p>其它常见的文件系统不同的是，/proc是一种伪文件系统（也即虚拟文件系统），存储的是当前内核运行状态的一系列特殊文件，用户可以通过这些文件查看有关系统硬件及当前正在运行进程的信息，甚至可以通过更改其中某些文件来改变内核的运行状态。</p>
+<p>为了查看及使用上的方便，这些文件通常会按照相关性进行分类存储于不同的目录甚至子目录中，如/proc/scsi目录中存储的就是当前系统上所有SCSI设备的相关信息，/proc/N中存储的则是系统当前正在运行的进程的相关信息，其中N为正在运行的进程（可以想象得到，在某进程结束后其相关目录则会消失）。</p>
+<p>大多数虚拟文件可以使用文件查看命令如cat、more或者less进行查看，有些文件信息表述的内容可以一目了然，但也有文件的信息却不怎么具有可读性。不过，这些可读性较差的文件在使用一些命令如apm、free、lspci或top查看时却可以有着不错的表现。</p>
+<h4 id="查看当前系统进程">查看当前系统进程</h4>
+<p>/proc目录中包含许多以数字命名的子目录，这些数字表示系统当前正在运行进程的进程号，里面包含对应进程相关的多个信息文件。</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>ll /proc</code></pre></div><p>上面列出的是/proc目录中一些进程相关的目录，每个目录中是当程本身相关信息的文件。</p>
+<h4 id="pidcmdline-重点">/PID/cmdline （重点）</h4>
+<p><strong>cmdline — 启动当前进程的完整命令，但僵尸进程目录中的此文件不包含任何信息</strong></p>
+<p>在启动时传递至内核的相关参数信息，这些信息通常由lilo或grub等启动管理工具进行传递；</p>
+<p>此处这里无法显示通过&amp;&amp;链接的执行的命令行串，无法用来查询由于&amp;&amp;命令行内容</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@parallels-Parallels-Virtual-Platform:~$ cat /proc/47878/cmdline 
+ping baidu.com</code></pre></div><h4 id="pidcwd">/PID/cwd</h4>
+<p><strong>cwd — 指向当前进程运行目录的一个符号链接</strong></p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@parallels-Parallels-Virtual-Platform:~$ sudo ls -l /proc/43828 | grep cwd
+lrwxrwxrwx 1 root      root      0 May 31 14:10 cwd -&gt; /home/parallels</code></pre></div><h4 id="pidenviron重点">/PID/environ（重点）</h4>
+<p>environ — 当前进程的环境变量列表，彼此间用空字符（NULL）隔开；变量用大写字母表示，其值用小写字母表示</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@parallels-Parallels-Virtual-Platform:~$ sudo cat /proc/47878/environ 
+[sudo] password for parallels: 
+SHELL=/bin/bashSESSION_MANAGER=local/parallels-Parallels-Virtual-Platform:@/tmp/.ICE-unix/2258,unix/parallels-Parallels-Virtual-Platform:/tmp/.ICE-unix/2258QT_ACCESSIBILITY=1COLORTERM=truecolorXDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdgXDG_MENU_PREFIX=gnome-GNOME_DESKTOP_SESSION_ID=this-is-deprecatedGTK_IM_MODULE=ibusQT4_IM_MODULE=ibusGNOME_SHELL_SESSION_MODE=ubuntuSSH_AUTH_SOCK=/run/user/1000/keyring/sshXMODIFIERS=@im=ibusDESKTOP_SESSION=ubuntuSSH_AGENT_PID=2178GTK_MODULES=gail:atk-bridgePWD=/home/parallelsLOGNAME=parallelsXDG_SESSION_DESKTOP=ubuntuXDG_SESSION_TYPE=x11GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1XAUTHORITY=/run/user/1000/gdm/XauthorityGJS_DEBUG_TOPICS=JS ERROR;JS LOGWINDOWPATH=2HOME=/home/parallelsUSERNAME=parallelsIM_CONFIG_PHASE=1LANG=en_US.UTF-8LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:XDG_CURRENT_DESKTOP=ubuntu:GNOMEVTE_VERSION=6003GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/efc7691e_62d3_4da5_9b04_42e49e7c22f4INVOCATION_ID=f08b7a60bc574e1fbfd6211389c8f72bMANAGERPID=1971CLUTTER_IM_MODULE=ibusGJS_DEBUG_OUTPUT=stderrLESSCLOSE=/usr/bin/lesspipe %s %sXDG_SESSION_CLASS=userTERM=xterm-256colorLESSOPEN=| /usr/bin/lesspipe %sUSER=parallelsGNOME_TERMINAL_SERVICE=:1.88DISPLAY=:0SHLVL=1QT_IM_MODULE=ibusXDG_RUNTIME_DIR=/run/user/1000JOURNAL_STREAM=9:39754XDG_DATA_DIRS=/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktopPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/binGDMSESSION=ubuntuDBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus_=/usr/bin/ping</code></pre></div><h4 id="pidexe重点">/PID/exe（重点）</h4>
+<p>exe — 指向启动当前进程的可执行文件（完整路径）的符号链接，通过/proc/N/exe可以启动当前进程的一个拷贝</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ sudo ls -l /proc/47878/ |grep exe
+lrwxrwxrwx 1 root      root      0 May 31 14:36 exe -&gt; /usr/bin/ping</code></pre></div><h4 id="pidfd重点">/PID/fd（重点）</h4>
+<p>fd — 这是个目录，包含当前进程打开的每一个文件的文件描述符（file descriptor），这些文件描述符是指向实际文件的一个符号链接</p>
+<p>程序1是运行vim .bash_history，模拟程序调用文件执行情况</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ vi .bash_history 
+
+
+poweroff
+poweroff
+netstat -antlp
+apt install net-tools
+sudo apt install net-tools
+netstat -antlp
+netstat -l
+cat /etc/
+hostnamectl set-hostname ubuntu
+uname
+uname -a
+ps
+ps -a
+cat /proc/43828/cmdline
+ps a
+cat /proc/47878/cmdline
+cat /proc/47878/environ
+sudo cat /proc/47878/environ
+uname -a
+netstat -i
+netstat -apu
+netstat -nu
+netstat -antlp</code></pre></div><p>通过fd/4可以看到，程序调用的文件的内容，但是里面的内容和原本被调用的文件中的内容存在一些差别，这里展示的行的顺序与源文件正好相反。这里只需要获取第一行～之后的文件目录地址即为程序所调用的文件。</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ sudo cat /proc/53421/fd/4
+3210#&#34;! UtpTad��*arallelsubuntu~parallels/.bash_history
+�                T��������jd[XR94��������xkhbXQIB:-&#39;#�
+ �
+  �
+   �
+    �
+     �
+      �
+       v
+        ^
+         F
+          -
+           )
+            &amp;
+
+�
+ �
+  �
+   �
+    �
+     z
+      c
+       L
+        *
+         )
+          sudo ls -l /proc/43828 | grep cwdsudo ls -l /proc/43828sudo ls -a /proc/43828sudo ll /proc/43828sudo ls /proc/43828sudo ls /proc/43828 |grep cwdll /proc/43828 |grep cwdsudo ll /proc/43828 |grep cwdsudo  /proc/43828/cwdsudo cat /proc/43828/cwdlspwdsudo pwd /proc/43828/cwdsudo ls /proc/43828/cwdsudo ll /proc/43828/cwdsudo pwd /proc/43828/cwdlssudo ls /proc/43828/cwdsudo /proc/43828/cwdsudo cat /proc/43828/cwdcat /proc/43828/cwdcat /proc/43874/cat /proc/43874/cwdcat /proc/43874 cat /proc/43874/cmdline cat /proc/3078/cmdline ll /proc/3078/cmdline ll /proc/3078ps all /proc/43874ll /procll /proc/43874ps apsapsmore /proc/2674/cmdlinell /proc/4ll /proc/3ll /proc/2ll /proc/1ll /procps -efps parallelsps rootps 2ps 1ps1ps(1)ps -aux USERps -auxps -aups -auxps auxps --helpps -hpsping 8.8.8.8ping baidu.comnetstat -lnetstat -snetstat -gnetstat -antlpnetstat -nunetstat -apunetstat -iuname -asudo cat /proc/47878/environ cat /proc/47878/environ cat /proc/47878/cmdline ps acat /proc/43828/cmdline ps -apsuname -aunamehostnamectl set-hostname ubuntucat /etc/netstat -lnetstat -antlpsudo apt install net-toolsapt install net-toolsnetstat -antlppoweroffpoweroff</code></pre></div><h4 id="pidlimits">/PID/limits</h4>
+<p>limits — 当前进程所使用的每一个受限资源的软限制、硬限制和管理单元；此文件仅可由实际启动当前进程的UID用户读取；（2.6.24以后的内核版本支持此功能）</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ sudo cat /proc/47878/limits
+Limit                     Soft Limit           Hard Limit           Units     
+Max cpu time              unlimited            unlimited            seconds   
+Max file size             unlimited            unlimited            bytes     
+Max data size             unlimited            unlimited            bytes     
+Max stack size            8388608              unlimited            bytes     
+Max core file size        0                    unlimited            bytes     
+Max resident set          unlimited            unlimited            bytes     
+Max processes             15497                15497                processes 
+Max open files            1024                 1048576              files     
+Max locked memory         67108864             67108864             bytes     
+Max address space         unlimited            unlimited            bytes     
+Max file locks            unlimited            unlimited            locks     
+Max pending signals       15497                15497                signals   
+Max msgqueue size         819200               819200               bytes     
+Max nice priority         0                    0                    
+Max realtime priority     0                    0                    
+Max realtime timeout      unlimited            unlimited            us </code></pre></div><h4 id="pidmaps">/PID/maps</h4>
+<p>maps — 当前进程关联到的每个可执行文件和库文件在内存中的映射区域及其访问权限所组成的列表；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ sudo cat /proc/47878/maps
+559da3c7a000-559da3c7d000 r--p 00000000 08:05 2622362                    /usr/bin/ping
+559da3c7d000-559da3c87000 r-xp 00003000 08:05 2622362                    /usr/bin/ping
+559da3c87000-559da3c8b000 r--p 0000d000 08:05 2622362                    /usr/bin/ping
+559da3c8b000-559da3c8c000 r--p 00010000 08:05 2622362                    /usr/bin/ping
+559da3c8c000-559da3c8d000 rw-p 00011000 08:05 2622362                    /usr/bin/ping
+559da3c8d000-559da3cb0000 rw-p 00000000 00:00 0 
+559da49bd000-559da49de000 rw-p 00000000 00:00 0                          [heap]
+7f453ba5f000-7f453ba61000 r--p 00000000 08:05 2628055                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7f453ba61000-7f453ba65000 r-xp 00002000 08:05 2628055                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7f453ba65000-7f453ba66000 r--p 00006000 08:05 2628055                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7f453ba66000-7f453ba67000 r--p 00006000 08:05 2628055                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7f453ba67000-7f453ba68000 rw-p 00007000 08:05 2628055                    /usr/lib/x86_64-linux-gnu/libnss_dns-2.31.so
+7f453ba68000-7f453ba69000 r--p 00000000 08:05 2628063                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7f453ba69000-7f453ba6b000 r-xp 00001000 08:05 2628063                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7f453ba6b000-7f453ba6c000 r--p 00003000 08:05 2628063                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7f453ba6c000-7f453ba6d000 r--p 00003000 08:05 2628063                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7f453ba6d000-7f453ba6e000 rw-p 00004000 08:05 2628063                    /usr/lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+7f453ba6e000-7f453ba71000 r--p 00000000 08:05 2628057                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f453ba71000-7f453ba78000 r-xp 00003000 08:05 2628057                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f453ba78000-7f453ba7a000 r--p 0000a000 08:05 2628057                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f453ba7a000-7f453ba7b000 r--p 0000b000 08:05 2628057                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f453ba7b000-7f453ba7c000 rw-p 0000c000 08:05 2628057                    /usr/lib/x86_64-linux-gnu/libnss_files-2.31.so
+7f453ba7c000-7f453ba82000 rw-p 00000000 00:00 0 
+7f453ba82000-7f453c860000 r--p 00000000 08:05 2626626                    /usr/lib/locale/locale-archive
+7f453c860000-7f453c862000 rw-p 00000000 00:00 0 
+7f453c862000-7f453c866000 r--p 00000000 08:05 2627669                    /usr/lib/x86_64-linux-gnu/libgpg-error.so.0.28.0
+7f453c866000-7f453c879000 r-xp 00004000 08:05 2627669                    /usr/lib/x86_64-linux-gnu/libgpg-error.so.0.28.0
+7f453c879000-7f453c883000 r--p 00017000 08:05 2627669                    /usr/lib/x86_64-linux-gnu/libgpg-error.so.0.28.0
+7f453c883000-7f453c884000 r--p 00020000 08:05 2627669                    /usr/lib/x86_64-linux-gnu/libgpg-error.so.0.28.0
+7f453c884000-7f453c885000 rw-p 00021000 08:05 2627669                    /usr/lib/x86_64-linux-gnu/libgpg-error.so.0.28.0
+7f453c885000-7f453c8aa000 r--p 00000000 08:05 2627295                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f453c8aa000-7f453ca22000 r-xp 00025000 08:05 2627295                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f453ca22000-7f453ca6c000 r--p 0019d000 08:05 2627295                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f453ca6c000-7f453ca6d000 ---p 001e7000 08:05 2627295                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f453ca6d000-7f453ca70000 r--p 001e7000 08:05 2627295                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f453ca70000-7f453ca73000 rw-p 001ea000 08:05 2627295                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f453ca73000-7f453ca77000 rw-p 00000000 00:00 0 
+7f453ca77000-7f453ca7b000 r--p 00000000 08:05 2628239                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f453ca7b000-7f453ca8b000 r-xp 00004000 08:05 2628239                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f453ca8b000-7f453ca8e000 r--p 00014000 08:05 2628239                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f453ca8e000-7f453ca8f000 ---p 00017000 08:05 2628239                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f453ca8f000-7f453ca90000 r--p 00017000 08:05 2628239                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f453ca90000-7f453ca91000 rw-p 00018000 08:05 2628239                    /usr/lib/x86_64-linux-gnu/libresolv-2.31.so
+7f453ca91000-7f453ca93000 rw-p 00000000 00:00 0 
+7f453ca93000-7f453ca9f000 r--p 00000000 08:05 2627593                    /usr/lib/x86_64-linux-gnu/libgcrypt.so.20.2.5
+7f453ca9f000-7f453cb6d000 r-xp 0000c000 08:05 2627593                    /usr/lib/x86_64-linux-gnu/libgcrypt.so.20.2.5
+7f453cb6d000-7f453cbaa000 r--p 000da000 08:05 2627593                    /usr/lib/x86_64-linux-gnu/libgcrypt.so.20.2.5
+7f453cbaa000-7f453cbac000 r--p 00116000 08:05 2627593                    /usr/lib/x86_64-linux-gnu/libgcrypt.so.20.2.5
+7f453cbac000-7f453cbb1000 rw-p 00118000 08:05 2627593                    /usr/lib/x86_64-linux-gnu/libgcrypt.so.20.2.5
+7f453cbb1000-7f453cbb3000 r--p 00000000 08:05 2627316                    /usr/lib/x86_64-linux-gnu/libcap.so.2.32
+7f453cbb3000-7f453cbb6000 r-xp 00002000 08:05 2627316                    /usr/lib/x86_64-linux-gnu/libcap.so.2.32
+7f453cbb6000-7f453cbb7000 r--p 00005000 08:05 2627316                    /usr/lib/x86_64-linux-gnu/libcap.so.2.32
+7f453cbb7000-7f453cbb8000 ---p 00006000 08:05 2627316                    /usr/lib/x86_64-linux-gnu/libcap.so.2.32
+7f453cbb8000-7f453cbb9000 r--p 00006000 08:05 2627316                    /usr/lib/x86_64-linux-gnu/libcap.so.2.32
+7f453cbb9000-7f453cbba000 rw-p 00007000 08:05 2627316                    /usr/lib/x86_64-linux-gnu/libcap.so.2.32
+7f453cbba000-7f453cbbc000 rw-p 00000000 00:00 0 
+7f453cbcd000-7f453cbce000 r--p 00000000 08:05 2627082                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f453cbce000-7f453cbf1000 r-xp 00001000 08:05 2627082                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f453cbf1000-7f453cbf9000 r--p 00024000 08:05 2627082                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f453cbfa000-7f453cbfb000 r--p 0002c000 08:05 2627082                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f453cbfb000-7f453cbfc000 rw-p 0002d000 08:05 2627082                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f453cbfc000-7f453cbfd000 rw-p 00000000 00:00 0 
+7ffecd650000-7ffecd671000 rw-p 00000000 00:00 0                          [stack]
+7ffecd7eb000-7ffecd7ee000 r--p 00000000 00:00 0                          [vvar]
+7ffecd7ee000-7ffecd7ef000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]</code></pre></div><h4 id="pidmem">/PID/mem</h4>
+<p>mem — 当前进程所占用的内存空间，由open、read和lseek等系统调用使用，不能被用户读取</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ sudo cat /proc/47878/mem
+cat: /proc/47878/mem: Input/output error</code></pre></div><h4 id="pidroot">/PID/root</h4>
+<p>root — 指向当前进程运行根目录的符号链接；在Unix和Linux系统上，通常采用chroot命令使每个进程运行于独立的根目录</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ sudo ls -l /proc/47878/ |grep &#34;root -&#34;
+lrwxrwxrwx 1 root      root      0 May 31 14:36 root -&gt; /
+
+
+这里使用grep &#34;root -&#34;，是因为proc每一文件的归属用户也都是root，如下所示，不利于搜索
+-r--r--r-- 1 root      root      0 May 31 14:36 arch_status
+-rw-r--r-- 1 root      root      0 May 31 14:36 autogroup
+-r-------- 1 root      root      0 May 31 14:36 auxv
+-r--r--r-- 1 root      root      0 May 31 14:36 cgroup
+--w------- 1 root      root      0 May 31 14:36 clear_refs
+-r--r--r-- 1 root      root      0 May 31 14:25 cmdline
+-rw-r--r-- 1 root      root      0 May 31 14:36 comm</code></pre></div><h4 id="pidstat">/PID/stat</h4>
+<p>stat — 当前进程的状态信息，包含一系统格式化后的数据列，可读性差，通常由ps命令使用</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ sudo cat /proc/47878/stat
+47878 (ping) S 39281 47878 39281 34817 47878 4194304 160 0 0 0 42 208 0 0 20 0 1 0 1566795 18907136 710 18446744073709551615 94135545995264 94135546047281 140732344492352 0 0 0 0 0 8198 1 0 0 17 1 0 0 0 0 0 94135546067584 94135546069952 94135559901184 140732344501200 140732344501215 140732344501215 140732344504298 0</code></pre></div><h4 id="pidstatm">/PID/statm</h4>
+<p>statm — 当前进程占用内存的状态信息，通常以“页面”（page）表示</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ sudo cat /proc/47878/statm
+4616 710 662 13 0 134 0</code></pre></div><h4 id="pidstatus">/PID/status</h4>
+<p>status — 与stat所提供信息类似，但可读性较好，如下所示，每行表示一个属性信息；其详细介绍请参见 proc的man手册页</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~$ sudo cat /proc/47878/status
+Name:   ping
+Umask:  0002
+State:  S (sleeping)
+Tgid:   47878
+Ngid:   0
+Pid:    47878
+PPid:   39281
+TracerPid:  0
+Uid:    1000    1000    1000    1000
+Gid:    1000    1000    1000    1000
+FDSize: 256
+Groups: 4 24 27 30 46 120 131 132 1000 
+NStgid: 47878
+NSpid:  47878
+NSpgid: 47878
+NSsid:  39281
+VmPeak:    18532 kB
+VmSize:    18464 kB
+VmLck:         0 kB
+VmPin:         0 kB
+VmHWM:      2872 kB
+VmRSS:      2840 kB
+RssAnon:         192 kB
+RssFile:        2648 kB
+RssShmem:          0 kB
+VmData:      404 kB
+VmStk:       132 kB
+VmExe:        52 kB
+VmLib:      2664 kB
+VmPTE:        60 kB
+VmSwap:        0 kB
+HugetlbPages:          0 kB
+CoreDumping:    0
+THP_enabled:    1
+Threads:    1
+SigQ:   0/15497
+SigPnd: 0000000000000000
+ShdPnd: 0000000000000000
+SigBlk: 0000000000000000
+SigIgn: 0000000000000000
+SigCgt: 0000000000002006
+CapInh: 0000000000000000
+CapPrm: 0000000000002000
+CapEff: 0000000000000000
+CapBnd: 0000003fffffffff
+CapAmb: 0000000000000000
+NoNewPrivs: 0
+Seccomp:    0
+Speculation_Store_Bypass:   vulnerable
+Cpus_allowed:   ffffffff
+Cpus_allowed_list:  0-31
+Mems_allowed:   00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001
+Mems_allowed_list:  0
+voluntary_ctxt_switches:    9093
+nonvoluntary_ctxt_switches: 7</code></pre></div><h4 id="pidtask重点">/PID/task（重点）</h4>
+<p>task — 目录文件，包含由当前进程所运行的每一个线程的相关信息，每个线程的相关信息文件均保存在一个由线程号（tid）命名的目录中，这类似于其内容类似于每个进程目录中的内容；（内核2.6版本以后支持此功能）</p>
+<p>这里可以找一个python多线程程序测试，如下</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>#!/usr/bin/python3
+
+import _thread
+import time
+
+# 为线程定义一个函数
+def print_time( threadName, delay):
+   count = 0
+   while count &lt; 50:
+      time.sleep(delay)
+      count += 1
+      print (&#34;%s: %s&#34; % ( threadName, time.ctime(time.time()) ))
+
+# 创建两个线程
+try:
+   _thread.start_new_thread( print_time, (&#34;Thread-1&#34;, 2, ) )
+   _thread.start_new_thread( print_time, (&#34;Thread-2&#34;, 4, ) )
+except:
+   print (&#34;Error: 无法启动线程&#34;)
+
+while 1:
+   pass</code></pre></div><p>通过task可以看到</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ ls -l /proc/150666/task/
+total 0
+dr-xr-xr-x 7 parallels parallels 0 May 31 17:53 150666
+dr-xr-xr-x 7 parallels parallels 0 May 31 17:53 150667
+dr-xr-xr-x 7 parallels parallels 0 May 31 17:53 150668</code></pre></div><h4 id="apm">/apm</h4>
+<p>apm — 高级电源管理（APM）版本信息及电池相关状态信息，通常由apm命令使用</p>
+<p>buddyinfo — 用于诊断内存碎片问题的相关信息文件；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/buddyinfo
+Node 0, zone      DMA      1      0      1      0      2      1      1      1      0      1      3 
+Node 0, zone    DMA32    501    488    856    432     93     27      6      3      2      7    409 
+Node 0, zone   Normal     62     28     23     36    160     41     10      4      4      0      0 </code></pre></div><h4 id="cpuinfo">/cpuinfo</h4>
+<p>cpuinfo — 处理器的相关信息的文件；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/cpuinfo
+processor   : 0
+vendor_id   : GenuineIntel
+cpu family  : 6
+model       : 126
+model name  : Intel(R) Core(TM) i7-1068NG7 CPU @ 2.30GHz
+stepping    : 5
+cpu MHz     : 2304.000
+cache size  : 8192 KB
+physical id : 0
+siblings    : 2
+core id     : 0
+cpu cores   : 2
+apicid      : 0
+initial apicid  : 0
+fpu     : yes
+fpu_exception   : yes
+cpuid level : 22
+wp      : yes
+flags       : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid avx512f avx512dq rdseed adx smap clflushopt avx512cd avx512bw avx512vl xsaveopt xsavec dtherm arat pln pts
+bugs        : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips    : 4608.00
+clflush size    : 64
+cache_alignment : 64
+address sizes   : 36 bits physical, 48 bits virtual
+power management:
+
+processor   : 1
+vendor_id   : GenuineIntel
+cpu family  : 6
+model       : 126
+model name  : Intel(R) Core(TM) i7-1068NG7 CPU @ 2.30GHz
+stepping    : 5
+cpu MHz     : 2304.000
+cache size  : 8192 KB
+physical id : 0
+siblings    : 2
+core id     : 1
+cpu cores   : 2
+apicid      : 1
+initial apicid  : 1
+fpu     : yes
+fpu_exception   : yes
+cpuid level : 22
+wp      : yes
+flags       : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx rdtscp lm constant_tsc nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid avx512f avx512dq rdseed adx smap clflushopt avx512cd avx512bw avx512vl xsaveopt xsavec dtherm arat pln pts
+bugs        : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit
+bogomips    : 4608.00
+clflush size    : 64
+cache_alignment : 64
+address sizes   : 36 bits physical, 48 bits virtual
+power management:</code></pre></div><h4 id="crypto">/crypto</h4>
+<p>crypto — 系统上已安装的内核使用的密码算法及每个算法的详细信息列表；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/crypto 
+name         : crct10dif
+driver       : crct10dif-pclmul
+module       : crct10dif_pclmul
+priority     : 200
+refcnt       : 2
+selftest     : passed
+internal     : no
+type         : shash
+blocksize    : 1
+digestsize   : 2
+
+name         : ghash
+driver       : ghash-clmulni
+module       : ghash_clmulni_intel
+priority     : 400
+refcnt       : 1
+selftest     : passed
+internal     : no
+type         : ahash
+async        : yes
+blocksize    : 16
+digestsize   : 16
+
+......</code></pre></div><h4 id="devices">/devices</h4>
+<p>devices — 系统已经加载的所有块设备和字符设备的信息，包含主设备号和设备组（与主设备号对应的设备类型）名；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/devices 
+Character devices:
+  1 mem
+  4 /dev/vc/0
+  4 tty
+  4 ttyS
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+  5 ttyprintk
+  6 lp
+  7 vcs
+ 10 misc
+ 13 input
+ 21 sg
+ 29 fb
+ 81 video4linux
+ 89 i2c
+ 99 ppdev
+108 ppp
+116 alsa
+128 ptm
+136 pts
+180 usb
+189 usb_device
+204 ttyMAX
+226 drm
+238 media
+239 aux
+240 cec
+241 BaseRemoteCtl
+242 hidraw
+243 vfio
+244 bsg
+245 watchdog
+246 ptp
+247 pps
+248 rtc
+249 dma_heap
+250 dax
+251 dimmctl
+252 ndctl
+253 tpm
+254 gpiochip
+
+Block devices:
+  7 loop
+  8 sd
+  9 md
+ 11 sr
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+253 device-mapper
+254 mdp
+259 blkext</code></pre></div><h4 id="diskstats">/diskstats</h4>
+<p>diskstats — 每块磁盘设备的磁盘I/O统计信息列表；（内核2.5.69以后的版本支持此功能）</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/diskstats
+   7       0 loop0 43 0 690 13 0 0 0 0 0 56 13 0 0 0 0 0 0
+   7       1 loop1 382 0 10194 124 0 0 0 0 0 720 124 0 0 0 0 0 0
+   7       2 loop2 955 0 14846 150 0 0 0 0 0 968 150 0 0 0 0 0 0
+   7       3 loop3 43 0 696 16 0 0 0 0 0 32 16 0 0 0 0 0 0
+   7       4 loop4 55 0 2142 26 0 0 0 0 0 76 26 0 0 0 0 0 0
+   7       5 loop5 461 0 28720 115 0 0 0 0 0 1492 115 0 0 0 0 0 0
+   7       6 loop6 43 0 696 9 0 0 0 0 0 44 9 0 0 0 0 0 0
+   7       7 loop7 1433 0 27754 238 0 0 0 0 0 1928 238 0 0 0 0 0 0
+   8       0 sda 20271 9379 1610136 13409 20326 33553 2200738 29558 0 29804 43439 0 0 0 0 2943 471
+   8       1 sda1 164 1013 13014 32 3 0 10 0 0 84 32 0 0 0 0 0 0
+   8       2 sda2 2 0 4 0 0 0 0 0 0 8 0 0 0 0 0 0 0
+   8       5 sda5 20002 8366 1592930 13355 19597 33553 2200728 29500 0 29720 42856 0 0 0 0 0 0
+  11       0 sr0 11 0 5 1 0 0 0 0 0 24 1 0 0 0 0 0 0
+   7       8 loop8 2468 0 14116 193 0 0 0 0 0 1184 193 0 0 0 0 0 0
+   7       9 loop9 43 0 694 6 0 0 0 0 0 20 6 0 0 0 0 0 0
+   7      10 loop10 34 0 92 12 0 0 0 0 0 48 12 0 0 0 0 0 0</code></pre></div><h4 id="dma">/dma</h4>
+<p>dma — 每个正在使用且注册的ISA DMA通道的信息列表；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/dma
+ 4: cascade</code></pre></div><h4 id="execdomains">/execdomains</h4>
+<p>execdomains — 内核当前支持的执行域（每种操作系统独特“个性”）信息列表；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/execdomains
+0-0 Linux               [kernel]</code></pre></div><h4 id="fb">/fb</h4>
+<p>fb — 帧缓冲设备列表文件，包含帧缓冲设备的设备号和相关驱动信息；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/fb
+0 prldrmfb</code></pre></div><h4 id="filesystems">/filesystems</h4>
+<p>filesystems — 当前被内核支持的文件系统类型列表文件，被标示为nodev的文件系统表示不需要块设备的支持；通常mount一个设备时，如果没有指定文件系统类型将通过此文件来决定其所需文件系统的类型；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/filesystems
+nodev   sysfs
+nodev   tmpfs
+nodev   bdev
+nodev   proc
+nodev   cgroup
+nodev   cgroup2
+nodev   cpuset
+nodev   devtmpfs
+nodev   configfs
+nodev   debugfs
+nodev   tracefs
+nodev   securityfs
+nodev   sockfs
+nodev   bpf
+nodev   pipefs
+nodev   ramfs
+nodev   hugetlbfs
+nodev   devpts
+    ext3
+    ext2
+    ext4
+    squashfs
+    vfat
+nodev   ecryptfs
+    fuseblk
+nodev   fuse
+nodev   fusectl
+nodev   mqueue
+nodev   pstore
+nodev   autofs
+nodev   prl_fs</code></pre></div><h4 id="interrupts">/interrupts</h4>
+<p>interrupts — X86或X86_64体系架构系统上每个IRQ相关的中断号列表；多路处理器平台上每个CPU对于每个I/O设备均有自己的中断号；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/interrupts
+           CPU0       CPU1       
+  0:          5          0   IO-APIC   2-edge      timer
+  1:          0       2115   IO-APIC   1-edge      i8042
+  8:          1          0   IO-APIC   8-edge      rtc0
+  9:          0      54300   IO-APIC   9-fasteoi   acpi
+ 12:        144          0   IO-APIC  12-edge      i8042
+ 14:          0          0   IO-APIC  14-edge      ata_piix
+ 15:          0          0   IO-APIC  15-edge      ata_piix
+ 18:       4012       2072   IO-APIC  18-fasteoi   uhci_hcd:usb2
+ 19:        221          0   IO-APIC  19-fasteoi   ehci_hcd:usb1
+ 22:          0          0   IO-APIC  22-fasteoi   virtio1
+ 25:          0      22667   PCI-MSI 49152-edge      prl_tg
+ 26:         16         12   PCI-MSI 81920-edge      virtio0-config
+ 27:       2970       3763   PCI-MSI 81921-edge      virtio0-input.0
+ 28:       5404       4730   PCI-MSI 81922-edge      virtio0-output.0
+ 29:          4         39   PCI-MSI 487424-edge      xhci_hcd
+ 30:      35057      20716   PCI-MSI 512000-edge      ahci[0000:00:1f.2]
+ 31:       7106      12055   PCI-MSI 524288-edge      prl_drm
+ 32:      10323          0   PCI-MSI 516096-edge      snd_hda_intel:card0
+NMI:          0          0   Non-maskable interrupts
+LOC:    3819832    2976992   Local timer interrupts
+SPU:          0          0   Spurious interrupts
+PMI:          0          0   Performance monitoring interrupts
+IWI:          0          4   IRQ work interrupts
+RTR:          0          0   APIC ICR read retries
+RES:     401643     455360   Rescheduling interrupts
+CAL:     168695     247341   Function call interrupts
+TLB:       5109       4875   TLB shootdowns
+TRM:          0          0   Thermal event interrupts
+THR:          0          0   Threshold APIC interrupts
+DFR:          0          0   Deferred Error APIC interrupts
+MCE:          0          0   Machine check exceptions
+MCP:         92         92   Machine check polls
+ERR:          0
+MIS:          0
+PIN:          0          0   Posted-interrupt notification event
+NPI:          0          0   Nested posted-interrupt event
+PIW:          0          0   Posted-interrupt wakeup event</code></pre></div><h4 id="iomem">/iomem</h4>
+<p>iomem — 每个物理设备上的记忆体（RAM或者ROM）在系统内存中的映射信息；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/iomem
+00000000-00000000 : Reserved
+00000000-00000000 : System RAM
+00000000-00000000 : Reserved
+00000000-00000000 : PCI Bus 0000:00
+00000000-00000000 : PCI Bus 0000:00
+  00000000-00000000 : Video ROM
+00000000-00000000 : Adapter ROM
+00000000-00000000 : Reserved
+  00000000-00000000 : System ROM
+00000000-00000000 : System RAM
+  00000000-00000000 : Kernel code
+  00000000-00000000 : Kernel rodata
+  00000000-00000000 : Kernel data
+  00000000-00000000 : Kernel bss
+00000000-00000000 : Reserved
+00000000-00000000 : ACPI Tables
+00000000-00000000 : ACPI Non-volatile Storage
+00000000-00000000 : PCI Bus 0000:00
+  00000000-00000000 : PCI Bus 0000:01
+    00000000-00000000 : 0000:01:00.0
+  00000000-00000000 : PCI Bus 0000:02
+  00000000-00000000 : PCI Bus 0000:03
+  00000000-00000000 : PCI Bus 0000:01
+    00000000-00000000 : 0000:01:00.0
+    00000000-00000000 : 0000:01:00.0
+  00000000-00000000 : 0000:00:05.0
+  00000000-00000000 : PCI Bus 0000:02
+  00000000-00000000 : 0000:00:1d.6
+    00000000-00000000 : xhci-hcd
+  00000000-00000000 : 0000:00:1d.7
+    00000000-00000000 : ehci_hcd
+  00000000-00000000 : PCI Bus 0000:03
+  00000000-00000000 : 0000:00:1f.2
+    00000000-00000000 : ahci
+  00000000-00000000 : 0000:00:1f.3
+  00000000-00000000 : 0000:00:1f.4
+    00000000-00000000 : ICH HD audio
+  00000000-00000000 : PCI MMCONFIG 0000 [bus 00-0f]
+    00000000-00000000 : pnp 00:04
+00000000-00000000 : Reserved
+  00000000-00000000 : IOAPIC 0
+00000000-00000000 : Reserved
+  00000000-00000000 : HPET 1
+    00000000-00000000 : PNP0103:00
+00000000-00000000 : Reserved
+00000000-00000000 : Local APIC
+  00000000-00000000 : Reserved
+00000000-00000000 : INT0800:00
+  00000000-00000000 : Reserved
+00000000-00000000 : System RAM</code></pre></div><h4 id="ioports">/ioports</h4>
+<p>ioports — 当前正在使用且已经注册过的与物理设备进行通讯的输入-输出端口范围信息列表；如下面所示，第一列表示注册的I/O端口范围，其后表示相关的设备；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/ioports
+0000-0000 : PCI Bus 0000:00
+  0000-0000 : dma1
+  0000-0000 : pic1
+  0000-0000 : timer0
+  0000-0000 : timer1
+  0000-0000 : keyboard
+  0000-0000 : PNP0800:00
+  0000-0000 : PNP0C09:00
+    0000-0000 : EC data
+  0000-0000 : keyboard
+  0000-0000 : PNP0C09:00
+    0000-0000 : EC cmd
+  0000-0000 : rtc0
+  0000-0000 : dma page reg
+  0000-0000 : pic2
+  0000-0000 : dma2
+  0000-0000 : PNP0C04:00
+    0000-0000 : fpu
+  0000-0000 : 0000:00:1f.1
+    0000-0000 : ata_piix
+  0000-0000 : 0000:00:1f.1
+    0000-0000 : ata_piix
+  0000-0000 : 0000:00:1f.1
+    0000-0000 : ata_piix
+  0000-0000 : vesafb
+  0000-0000 : 0000:00:1f.1
+    0000-0000 : ata_piix
+  0000-0000 : pnp 00:04
+  0000-0000 : QEMU0001:00
+0000-0000 : PCI conf1
+0000-0000 : PCI Bus 0000:00
+  0000-0000 : 0000:00:1f.0
+    0000-0000 : ACPI PM1a_EVT_BLK
+    0000-0000 : ACPI PM1a_CNT_BLK
+    0000-0000 : ACPI PM_TMR
+    0000-0000 : ACPI PM2_CNT_BLK
+    0000-0000 : ACPI GPE0_BLK
+  0000-0000 : gpio_ich.1.auto
+    0000-0000 : gpio_ich
+    0000-0000 : gpio_ich
+  0000-0000 : PCI Bus 0000:01
+    0000-0000 : 0000:01:00.0
+      0000-0000 : prl_drm
+  0000-0000 : 0000:00:03.0
+    0000-0000 : prl_tg
+  0000-0000 : 0000:00:05.0
+    0000-0000 : virtio-pci-legacy
+  0000-0000 : PCI Bus 0000:02
+  0000-0000 : 0000:00:0e.0
+    0000-0000 : virtio-pci-legacy
+  0000-0000 : 0000:00:1d.0
+    0000-0000 : uhci_hcd
+  0000-0000 : PCI Bus 0000:03
+  0000-0000 : 0000:00:1f.1
+    0000-0000 : ata_piix
+  0000-0000 : 0000:00:1f.2
+    0000-0000 : ahci
+  0000-0000 : 0000:00:1f.2
+    0000-0000 : ahci
+  0000-0000 : 0000:00:1f.2
+    0000-0000 : ahci
+  0000-0000 : 0000:00:1f.2
+    0000-0000 : ahci
+  0000-0000 : 0000:00:1f.2
+    0000-0000 : ahci
+  0000-0000 : 0000:00:1f.3
+    0000-0000 : i801_smbus</code></pre></div><h4 id="kallsyms">/kallsyms</h4>
+<p>kallsyms — 模块管理工具用来动态链接或绑定可装载模块的符号定义，由内核输出；（内核2.5.71以后的版本支持此功能）；通常这个文件中的信息量相当大；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>......
+0000000000000000 t prl_vid_probe.cold   [prl_vid]
+0000000000000000 r __FUNCTION__.42603   [prl_vid]
+0000000000000000 d version  [prl_vid]
+0000000000000000 d prl_vid_pci_driver   [prl_vid]
+0000000000000000 t prl_vid_cleanup_module   [prl_vid]
+0000000000000000 d prl_vid_pci_tbl  [prl_vid]
+0000000000000000 r __param_usedrm   [prl_vid]
+0000000000000000 r __param_str_usedrm   [prl_vid]
+0000000000000000 t prl_drm_activate_svga_ioctl  [prl_vid]
+0000000000000000 t prl_drm_get_memsize_ioctl    [prl_vid]
+0000000000000000 t prl_drm_irq_handler  [prl_vid]
+0000000000000000 t prl_kms_connector_atomic_get_property    [prl_vid]
+0000000000000000 t prl_kms_connector_atomic_set_property    [prl_vid]
+0000000000000000 t prl_kms_connector_set_property   [prl_vid]
+0000000000000000 t prl_kms_connector_detect [prl_vid]
+0000000000000000 t prl_kms_connector_dpms   [prl_vid]
+0000000000000000 t prl_kms_crtc_helper_atomic_begin [prl_vid]
+0000000000000000 t prl_kms_crtc_helper_atomic_check [prl_vid]
+0000000000000000 t prl_kms_crtc_helper_commit   [prl_vid]
+0000000000000000 t prl_kms_crtc_helper_prepare  [prl_vid]
+0000000000000000 t prl_kms_crtc_helper_disable  [prl_vid]
+0000000000000000 t prl_kms_crtc_helper_mode_set_nofb    [prl_vid]
+0000000000000000 t prl_kms_crtc_gamma_set   [prl_vid]
+......</code></pre></div><h4 id="kcore">/kcore</h4>
+<p>kcore — 系统使用的物理内存，以ELF核心文件（core file）格式存储，其文件大小为已使用的物理内存（RAM）加上4KB；这个文件用来检查内核数据结构的当前状态，因此，通常由GBD通常调试工具使用，但不能使用文件查看命令打开此文件；</p>
+<h4 id="kmsg">/kmsg</h4>
+<p>kmsg — 此文件用来保存由内核输出的信息，通常由/sbin/klogd或/bin/dmsg等程序使用，不要试图使用查看命令打开此文件；</p>
+<h4 id="loadavg">/loadavg</h4>
+<p>loadavg — 保存关于CPU和磁盘I/O的负载平均值，其前三列分别表示每1秒钟、每5秒钟及每15秒的负载平均值，类似于uptime命令输出的相关信息；第四列是由斜线隔开的两个数值，前者表示当前正由内核调度的实体（进程和线程）的数目，后者表示系统当前存活的内核调度实体的数目；第五列表示此文件被查看前最近一个由内核创建的进程的PID；</p>
+<h4 id="locks">/locks</h4>
+<p>locks — 保存当前由内核锁定的文件的相关信息，包含内核内部的调试数据；每个锁定占据一行，且具有一个惟一的编号；如下输出信息中每行的第二列表示当前锁定使用的锁定类别，POSIX表示目前较新类型的文件锁，由lockf系统调用产生，FLOCK是传统的UNIX文件锁，由flock系统调用产生；第三列也通常由两种类型，ADVISORY表示不允许其他用户锁定此文件，但允许读取，MANDATORY表示此文件锁定期间不允许其他用户任何形式的访问；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/locks
+1: POSIX  ADVISORY  READ 19994 08:05:1052576 128 128
+2: POSIX  ADVISORY  READ 19994 08:05:1052045 1073741826 1073742335
+3: FLOCK  ADVISORY  WRITE 849 00:1c:7 0 EOF
+4: POSIX  ADVISORY  WRITE 744 00:19:786 0 EOF
+5: FLOCK  ADVISORY  WRITE 560 00:19:706 0 EOF
+6: FLOCK  ADVISORY  WRITE 44692 00:37:46 0 EOF</code></pre></div><h4 id="mdstat">/mdstat</h4>
+<p>mdstat — 保存RAID相关的多块磁盘的当前状态信息，在没有使用RAID机器上，其显示为如下状态：</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/mdstat
+Personalities : 
+unused devices: &lt;none&gt;</code></pre></div><h4 id="meminfo">/meminfo</h4>
+<p>meminfo — 系统中关于当前内存的利用状况等的信息，常由free命令使用；可以使用文件查看命令直接读取此文件，其内容显示为两列，前者为统计属性，后者为对应的值；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/meminfo
+MemTotal:        4023368 kB
+MemFree:         1633600 kB
+MemAvailable:    2665656 kB
+Buffers:           68720 kB
+Cached:          1121116 kB
+SwapCached:            0 kB
+Active:          1611916 kB
+Inactive:         480120 kB
+Active(anon):     903376 kB
+Inactive(anon):     2396 kB
+Active(file):     708540 kB
+Inactive(file):   477724 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:       2097148 kB
+SwapFree:        2097148 kB
+Dirty:               152 kB
+Writeback:             0 kB
+AnonPages:        902196 kB
+Mapped:           246020 kB
+Shmem:              3576 kB
+KReclaimable:     103668 kB
+Slab:             209292 kB
+SReclaimable:     103668 kB
+SUnreclaim:       105624 kB
+KernelStack:       10108 kB
+PageTables:        16764 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     4108832 kB
+Committed_AS:    5164156 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       29024 kB
+VmallocChunk:          0 kB
+Percpu:            30592 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      255920 kB
+DirectMap2M:     3938304 kB</code></pre></div><h4 id="mounts重点">/mounts（重点）</h4>
+<p>mounts — 在内核2.4.29版本以前，此文件的内容为系统当前挂载的所有文件系统，在2.4.19以后的内核中引进了每个进程使用独立挂载名称空间的方式，此文件则随之变成了指向/proc/self/mounts（每个进程自身挂载名称空间中的所有挂载点列表）文件的符号链接；/proc/self是一个独特的目录，后文中会对此目录进行介绍；</p>
+<p>[root@rhel5 ~]# ll /proc |grep mounts</p>
+<p>如下所示，其中第一列表示挂载的设备，第二列表示在当前目录树中的挂载点，第三点表示当前文件系统的类型，第四列表示挂载属性（ro或者rw），第五列和第六列用来匹配/etc/mtab文件中的转储（dump）属性；</p>
+<p>[root@rhel5 ~]# more /proc/mounts</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/mounts
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+udev /dev devtmpfs rw,nosuid,noexec,relatime,size=1981872k,nr_inodes=495468,mode=755 0 0
+devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0
+tmpfs /run tmpfs rw,nosuid,nodev,noexec,relatime,size=402340k,mode=755 0 0
+/dev/sda5 / ext4 rw,relatime,errors=remount-ro 0 0
+securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0
+tmpfs /dev/shm tmpfs rw,nosuid,nodev 0 0
+tmpfs /run/lock tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+tmpfs /sys/fs/cgroup tmpfs ro,nosuid,nodev,noexec,mode=755 0 0
+cgroup2 /sys/fs/cgroup/unified cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate 0 0
+cgroup /sys/fs/cgroup/systemd cgroup rw,nosuid,nodev,noexec,relatime,xattr,name=systemd 0 0
+pstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0
+none /sys/fs/bpf bpf rw,nosuid,nodev,noexec,relatime,mode=700 0 0
+cgroup /sys/fs/cgroup/net_cls,net_prio cgroup rw,nosuid,nodev,noexec,relatime,net_cls,net_prio 0 0
+cgroup /sys/fs/cgroup/freezer cgroup rw,nosuid,nodev,noexec,relatime,freezer 0 0
+cgroup /sys/fs/cgroup/cpuset cgroup rw,nosuid,nodev,noexec,relatime,cpuset 0 0
+cgroup /sys/fs/cgroup/blkio cgroup rw,nosuid,nodev,noexec,relatime,blkio 0 0
+cgroup /sys/fs/cgroup/cpu,cpuacct cgroup rw,nosuid,nodev,noexec,relatime,cpu,cpuacct 0 0
+cgroup /sys/fs/cgroup/hugetlb cgroup rw,nosuid,nodev,noexec,relatime,hugetlb 0 0
+cgroup /sys/fs/cgroup/perf_event cgroup rw,nosuid,nodev,noexec,relatime,perf_event 0 0
+cgroup /sys/fs/cgroup/rdma cgroup rw,nosuid,nodev,noexec,relatime,rdma 0 0
+cgroup /sys/fs/cgroup/memory cgroup rw,nosuid,nodev,noexec,relatime,memory 0 0
+cgroup /sys/fs/cgroup/devices cgroup rw,nosuid,nodev,noexec,relatime,devices 0 0
+cgroup /sys/fs/cgroup/pids cgroup rw,nosuid,nodev,noexec,relatime,pids 0 0
+systemd-1 /proc/sys/fs/binfmt_misc autofs rw,relatime,fd=28,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=18064 0 0
+hugetlbfs /dev/hugepages hugetlbfs rw,relatime,pagesize=2M 0 0
+mqueue /dev/mqueue mqueue rw,nosuid,nodev,noexec,relatime 0 0
+debugfs /sys/kernel/debug debugfs rw,nosuid,nodev,noexec,relatime 0 0
+tracefs /sys/kernel/tracing tracefs rw,nosuid,nodev,noexec,relatime 0 0
+fusectl /sys/fs/fuse/connections fusectl rw,nosuid,nodev,noexec,relatime 0 0
+configfs /sys/kernel/config configfs rw,nosuid,nodev,noexec,relatime 0 0
+/dev/loop0 /snap/core18/1885 squashfs ro,nodev,relatime 0 0
+/dev/loop1 /snap/core18/2066 squashfs ro,nodev,relatime 0 0
+/dev/loop2 /snap/gnome-3-34-1804/66 squashfs ro,nodev,relatime 0 0
+/dev/loop3 /snap/gtk-common-themes/1506 squashfs ro,nodev,relatime 0 0
+/dev/loop4 /snap/gnome-3-34-1804/36 squashfs ro,nodev,relatime 0 0
+/dev/loop5 /snap/snapd/11841 squashfs ro,nodev,relatime 0 0
+/dev/loop6 /snap/snap-store/467 squashfs ro,nodev,relatime 0 0
+/dev/loop7 /snap/snap-store/518 squashfs ro,nodev,relatime 0 0
+/dev/loop8 /snap/gtk-common-themes/1515 squashfs ro,nodev,relatime 0 0
+/dev/sda1 /boot/efi vfat rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro 0 0
+Home /media/psf/Home prl_fs rw,sync,nosuid,nodev,noatime,ttl=250,share 0 0
+HRSword_Installer /media/psf/HRSword_Installer prl_fs rw,sync,nosuid,nodev,noatime,ttl=250,share 0 0
+iCloud /media/psf/iCloud prl_fs rw,sync,nosuid,nodev,noatime,ttl=250,share 0 0
+tmpfs /run/user/1000 tmpfs rw,nosuid,nodev,relatime,size=402336k,mode=700,uid=1000,gid=1000 0 0
+tmpfs /run/snapd/ns tmpfs rw,nosuid,nodev,noexec,relatime,size=402340k,mode=755 0 0
+nsfs /run/snapd/ns/snap-store.mnt nsfs rw 0 0
+tmpfs /run/user/125 tmpfs rw,nosuid,nodev,relatime,size=402336k,mode=700,uid=125,gid=130 0 0
+gvfsd-fuse /run/user/125/gvfs fuse.gvfsd-fuse rw,nosuid,nodev,relatime,user_id=125,group_id=130 0 0
+gvfsd-fuse /run/user/1000/gvfs fuse.gvfsd-fuse rw,nosuid,nodev,relatime,user_id=1000,group_id=1000 0 0
+/dev/fuse /run/user/1000/doc fuse rw,nosuid,nodev,relatime,user_id=1000,group_id=1000 0 0
+/dev/loop10 /snap/snapd/12057 squashfs ro,nodev,relatime 0 0</code></pre></div><h4 id="modules">/modules</h4>
+<p>modules — 当前装入内核的所有模块名称列表，可以由lsmod命令使用，也可以直接查看；如下所示，其中第一列表示模块名，第二列表示此模块占用内存空间大小，第三列表示此模块有多少实例被装入，第四列表示此模块依赖于其它哪些模块，第五列表示此模块的装载状态（Live：已经装入；Loading：正在装入；Unloading：正在卸载），第六列表示此模块在内核内存（kernel memory）中的偏移量；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ lsmod 
+Module                  Size  Used by
+usblp                  24576  0
+prl_fs_freeze          16384  0
+prl_fs                 28672  3
+prl_eth                16384  0
+nls_iso8859_1          16384  1
+snd_hda_codec_generic    81920  1
+ledtrig_audio          16384  1 snd_hda_codec_generic
+snd_hda_intel          53248  9
+snd_intel_dspcfg       24576  1 snd_hda_intel
+snd_hda_codec         139264  2 snd_hda_codec_generic,snd_hda_intel
+snd_hda_core           94208  3 snd_hda_codec_generic,snd_hda_intel,snd_hda_codec
+snd_hwdep              20480  1 snd_hda_codec
+snd_pcm               114688  4 snd_hda_intel,snd_hda_codec,snd_hda_core
+snd_seq_midi           20480  0
+snd_seq_midi_event     16384  1 snd_seq_midi
+snd_rawmidi            36864  1 snd_seq_midi
+snd_seq                69632  2 snd_seq_midi,snd_seq_midi_event
+intel_rapl_msr         20480  0
+intel_rapl_common      28672  1 intel_rapl_msr
+x86_pkg_temp_thermal    20480  0
+coretemp               20480  0
+crct10dif_pclmul       16384  1
+ghash_clmulni_intel    16384  0
+snd_seq_device         16384  3 snd_seq,snd_seq_midi,snd_rawmidi
+snd_timer              40960  3 snd_seq,snd_pcm
+aesni_intel           372736  0
+crypto_simd            16384  1 aesni_intel
+cryptd                 24576  2 crypto_simd,ghash_clmulni_intel
+glue_helper            16384  1 aesni_intel
+rapl                   20480  0
+snd                    94208  25 snd_hda_codec_generic,snd_seq,snd_seq_device,snd_hwdep,snd_hda_intel,snd_hda_codec,snd_timer,snd_pcm,snd_rawmidi
+uvcvideo               98304  0
+videobuf2_vmalloc      20480  1 uvcvideo
+input_leds             16384  0
+videobuf2_memops       20480  1 videobuf2_vmalloc
+videobuf2_v4l2         24576  1 uvcvideo
+soundcore              16384  1 snd
+serio_raw              20480  0
+videobuf2_common       57344  2 videobuf2_v4l2,uvcvideo
+videodev              241664  3 videobuf2_v4l2,uvcvideo,videobuf2_common
+joydev                 24576  0
+sbs                    20480  0
+mc                     57344  4 videodev,videobuf2_v4l2,uvcvideo,videobuf2_common
+sbshc                  16384  1 sbs
+mac_hid                16384  0
+pvpanic                16384  0
+sch_fq_codel           20480  2
+parport_pc             45056  0
+ppdev                  24576  0
+lp                     20480  0
+parport                65536  3 parport_pc,lp,ppdev
+ip_tables              32768  0
+x_tables               49152  1 ip_tables
+autofs4                45056  2
+prl_vid                53248  7
+drm_kms_helper        217088  1 prl_vid
+gpio_ich               16384  0
+syscopyarea            16384  1 drm_kms_helper
+sysfillrect            16384  1 drm_kms_helper
+sysimgblt              16384  1 drm_kms_helper
+fb_sys_fops            16384  1 drm_kms_helper
+cec                    53248  1 drm_kms_helper
+rc_core                57344  1 cec
+crc32_pclmul           16384  0
+drm                   552960  9 drm_kms_helper,prl_vid
+i2c_i801               32768  0
+i2c_smbus              20480  1 i2c_i801
+psmouse               155648  0
+ahci                   40960  2
+libahci                36864  1 ahci
+pata_acpi              16384  0
+xhci_pci               20480  0
+xhci_pci_renesas       20480  1 xhci_pci
+lpc_ich                24576  0
+virtio_net             57344  0
+net_failover           20480  1 virtio_net
+failover               16384  1 net_failover
+prl_tg                 28672  17 prl_vid,prl_fs
+hid_generic            16384  0
+usbhid                 57344  0
+hid                   135168  2 usbhid,hid_generic
+
+parallels@ubuntu:~/Documents$ cat /proc/
+Display all 312 possibilities? (y or n)
+parallels@ubuntu:~/Documents$ cat /proc/modules
+usblp 24576 0 - Live 0x0000000000000000
+prl_fs_freeze 16384 0 - Live 0x0000000000000000 (POE)
+prl_fs 28672 3 - Live 0x0000000000000000 (POE)
+prl_eth 16384 0 - Live 0x0000000000000000 (POE)
+nls_iso8859_1 16384 1 - Live 0x0000000000000000
+snd_hda_codec_generic 81920 1 - Live 0x0000000000000000
+ledtrig_audio 16384 1 snd_hda_codec_generic, Live 0x0000000000000000
+snd_hda_intel 53248 6 - Live 0x0000000000000000
+snd_intel_dspcfg 24576 1 snd_hda_intel, Live 0x0000000000000000
+snd_hda_codec 139264 2 snd_hda_codec_generic,snd_hda_intel, Live 0x0000000000000000
+snd_hda_core 94208 3 snd_hda_codec_generic,snd_hda_intel,snd_hda_codec, Live 0x0000000000000000
+snd_hwdep 20480 1 snd_hda_codec, Live 0x0000000000000000
+snd_pcm 114688 3 snd_hda_intel,snd_hda_codec,snd_hda_core, Live 0x0000000000000000
+snd_seq_midi 20480 0 - Live 0x0000000000000000
+snd_seq_midi_event 16384 1 snd_seq_midi, Live 0x0000000000000000
+snd_rawmidi 36864 1 snd_seq_midi, Live 0x0000000000000000
+snd_seq 69632 2 snd_seq_midi,snd_seq_midi_event, Live 0x0000000000000000
+intel_rapl_msr 20480 0 - Live 0x0000000000000000
+intel_rapl_common 28672 1 intel_rapl_msr, Live 0x0000000000000000
+x86_pkg_temp_thermal 20480 0 - Live 0x0000000000000000
+coretemp 20480 0 - Live 0x0000000000000000
+crct10dif_pclmul 16384 1 - Live 0x0000000000000000
+ghash_clmulni_intel 16384 0 - Live 0x0000000000000000
+snd_seq_device 16384 3 snd_seq_midi,snd_rawmidi,snd_seq, Live 0x0000000000000000
+snd_timer 40960 2 snd_pcm,snd_seq, Live 0x0000000000000000
+aesni_intel 372736 0 - Live 0x0000000000000000
+crypto_simd 16384 1 aesni_intel, Live 0x0000000000000000
+cryptd 24576 2 ghash_clmulni_intel,crypto_simd, Live 0x0000000000000000
+glue_helper 16384 1 aesni_intel, Live 0x0000000000000000
+rapl 20480 0 - Live 0x0000000000000000
+snd 94208 21 snd_hda_codec_generic,snd_hda_intel,snd_hda_codec,snd_hwdep,snd_pcm,snd_rawmidi,snd_seq,snd_seq_device,snd_timer, Live 0x0000000000000000
+uvcvideo 98304 0 - Live 0x0000000000000000
+videobuf2_vmalloc 20480 1 uvcvideo, Live 0x0000000000000000
+input_leds 16384 0 - Live 0x0000000000000000
+videobuf2_memops 20480 1 videobuf2_vmalloc, Live 0x0000000000000000
+videobuf2_v4l2 24576 1 uvcvideo, Live 0x0000000000000000
+soundcore 16384 1 snd, Live 0x0000000000000000
+serio_raw 20480 0 - Live 0x0000000000000000
+videobuf2_common 57344 2 uvcvideo,videobuf2_v4l2, Live 0x0000000000000000
+videodev 241664 3 uvcvideo,videobuf2_v4l2,videobuf2_common, Live 0x0000000000000000
+joydev 24576 0 - Live 0x0000000000000000
+sbs 20480 0 - Live 0x0000000000000000
+mc 57344 4 uvcvideo,videobuf2_v4l2,videobuf2_common,videodev, Live 0x0000000000000000
+sbshc 16384 1 sbs, Live 0x0000000000000000
+mac_hid 16384 0 - Live 0x0000000000000000
+pvpanic 16384 0 - Live 0x0000000000000000
+sch_fq_codel 20480 2 - Live 0x0000000000000000
+parport_pc 45056 0 - Live 0x0000000000000000
+ppdev 24576 0 - Live 0x0000000000000000
+lp 20480 0 - Live 0x0000000000000000
+parport 65536 3 parport_pc,ppdev,lp, Live 0x0000000000000000
+ip_tables 32768 0 - Live 0x0000000000000000
+x_tables 49152 1 ip_tables, Live 0x0000000000000000
+autofs4 45056 2 - Live 0x0000000000000000
+prl_vid 53248 7 - Live 0x0000000000000000 (POE)
+drm_kms_helper 217088 1 prl_vid, Live 0x0000000000000000
+gpio_ich 16384 0 - Live 0x0000000000000000
+syscopyarea 16384 1 drm_kms_helper, Live 0x0000000000000000
+sysfillrect 16384 1 drm_kms_helper, Live 0x0000000000000000
+sysimgblt 16384 1 drm_kms_helper, Live 0x0000000000000000
+fb_sys_fops 16384 1 drm_kms_helper, Live 0x0000000000000000
+cec 53248 1 drm_kms_helper, Live 0x0000000000000000
+rc_core 57344 1 cec, Live 0x0000000000000000
+crc32_pclmul 16384 0 - Live 0x0000000000000000
+drm 552960 9 prl_vid,drm_kms_helper, Live 0x0000000000000000
+i2c_i801 32768 0 - Live 0x0000000000000000
+i2c_smbus 20480 1 i2c_i801, Live 0x0000000000000000
+psmouse 155648 0 - Live 0x0000000000000000
+ahci 40960 2 - Live 0x0000000000000000
+libahci 36864 1 ahci, Live 0x0000000000000000
+pata_acpi 16384 0 - Live 0x0000000000000000
+xhci_pci 20480 0 - Live 0x0000000000000000
+xhci_pci_renesas 20480 1 xhci_pci, Live 0x0000000000000000
+lpc_ich 24576 0 - Live 0x0000000000000000
+virtio_net 57344 0 - Live 0x0000000000000000
+net_failover 20480 1 virtio_net, Live 0x0000000000000000
+failover 16384 1 net_failover, Live 0x0000000000000000
+prl_tg 28672 17 prl_fs,prl_vid, Live 0x0000000000000000 (POE)
+hid_generic 16384 0 - Live 0x0000000000000000
+usbhid 57344 0 - Live 0x0000000000000000
+hid 135168 2 hid_generic,usbhid, Live 0x0000000000000000</code></pre></div><h4 id="partitions">/partitions</h4>
+<p>partition — 块设备每个分区的主设备号（major）和次设备号（minor）等信息，同时包括每个分区所包含的块（block）数目（如下面输出中第三列所示）；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/partitions
+major minor  #blocks  name
+
+   7        0      56648 loop0
+   7        1      56752 loop1
+   7        2     224248 loop2
+   7        3      63580 loop3
+   7        4     261700 loop4
+   7        5      32856 loop5
+   7        6      50980 loop6
+   7        7      52268 loop7
+   8        0   67108864 sda
+   8        1     524288 sda1
+   8        2          1 sda2
+   8        5   66581504 sda5
+  11        0    1048575 sr0
+   7        8      66660 loop8
+   7       10      32872 loop10</code></pre></div><h4 id="pci">/pci</h4>
+<p>pci — 内核初始化时发现的所有PCI设备及其配置信息列表，其配置信息多为某PCI设备相关IRQ信息，可读性不高，可以用“/sbin/lspci –vb”命令获得较易理解的相关信息；在2.6内核以后，此文件已为/proc/bus/pci目录及其下的文件代替；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo ls /proc/bus/pci
+00  01  devices</code></pre></div><h4 id="slabinfo">/slabinfo</h4>
+<p>slabinfo — 在内核中频繁使用的对象（如inode、dentry等）都有自己的cache，即slab pool，而/proc/slabinfo文件列出了这些对象相关slap的信息；详情可以参见内核文档中slapinfo的手册页；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/slabinfo
+slabinfo - version: 2.1
+# name            &lt;active_objs&gt; &lt;num_objs&gt; &lt;objsize&gt; &lt;objperslab&gt; &lt;pagesperslab&gt; : tunables &lt;limit&gt; &lt;batchcount&gt; &lt;sharedfactor&gt; : slabdata &lt;active_slabs&gt; &lt;num_slabs&gt; &lt;sharedavail&gt;
+ext4_groupinfo_4k    532    532    144   28    1 : tunables    0    0    0 : slabdata     19     19      0
+fsverity_info          0      0    256   32    2 : tunables    0    0    0 : slabdata      0      0      0
+MPTCPv6                0      0   1856   17    8 : tunables    0    0    0 : slabdata      0      0      0
+ip6-frags              0      0    184   44    2 : tunables    0    0    0 : slabdata      0      0      0
+PINGv6                 0      0   1216   26    8 : tunables    0    0    0 : slabdata      0      0      0
+RAWv6                338    338   1216   26    8 : tunables    0    0    0 : slabdata     13     13      0
+......</code></pre></div><h4 id="stat">/stat</h4>
+<p>stat — 实时追踪自系统上次启动以来的多种统计信息；如下所示，其中，</p>
+<p>“cpu”行后的八个值分别表示以1/100（jiffies）秒为单位的统计值（包括系统运行于用户模式、低优先级用户模式，运系统模式、空闲模式、I/O等待模式的时间等）；</p>
+<p>“intr”行给出中断的信息，第一个为自系统启动以来，发生的所有的中断的次数；然后每个数对应一个特定的中断自系统启动以来所发生的次数；</p>
+<p>“ctxt”给出了自系统启动以来CPU发生的上下文交换的次数。</p>
+<p>“btime”给出了从系统启动到现在为止的时间，单位为秒；</p>
+<p>“processes (total_forks) 自系统启动以来所创建的任务的个数目；</p>
+<p>“procs_running”：当前运行队列的任务的数目；</p>
+<p>“procs_blocked”：当前被阻塞的任务的数目；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ sudo cat /proc/stat
+cpu  2567490 1440 51293 4222742 573 0 570 0 0 0
+cpu0 1517356 706 23050 1852688 351 0 237 0 0 0
+cpu1 1050133 734 28242 2370053 221 0 332 0 0 0
+intr 10703208 5 3393 0 0 0 0 0 0 1 72225 0 0 144 0 0 0 0 0 14598 221 0 0 0 0 0 28244 28 7018 10447 43 61479 32574 13193 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ctxt 18957381
+btime 1622582403
+processes 127489
+procs_running 3
+procs_blocked 0
+softirq 11692393 15 7686922 29 18488 60735 0 3220 2072535 0 1850449</code></pre></div><h4 id="swaps">/swaps</h4>
+<p>swaps — 当前系统上的交换分区及其空间利用信息，如果有多个交换分区的话，则会每个交换分区的信息分别存储于/proc/swap目录中的单独文件中，而其优先级数字越低，被使用到的可能性越大；下面是作者系统中只有一个交换分区时的输出信息；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/swaps
+Filename                Type        Size        Used        Priority
+/swapfile                               file        2097148     0       -2</code></pre></div><h4 id="uptime">/uptime</h4>
+<p>uptime — 系统上次启动以来的运行时间，如下所示，其第一个数字表示系统运行时间，第二个数字表示系统空闲时间，单位是秒；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/uptime
+42519.81 50173.72</code></pre></div><h4 id="version重点">/version（重点）</h4>
+<p>version — 当前系统运行的内核版本号，在作者的RHEL5.3上还会显示系统安装的gcc版本，如下所示；</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/version
+Linux version 5.8.0-53-generic (buildd@lcy01-amd64-012) (gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0, GNU ld (GNU Binutils for Ubuntu) 2.34) #60~20.04.1-Ubuntu SMP Thu May 6 09:52:46 UTC 2021</code></pre></div><h4 id="vmstat">/vmstat</h4>
+<p>vmstat — 当前系统虚拟内存的多种统计数据，信息量可能会比较大，这因系统而有所不同，可读性较好；下面为作者机器上输出信息的一个片段；（2.6以后的内核支持此文件）</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/vmstat
+nr_free_pages 405201
+nr_zone_inactive_anon 615
+nr_zone_active_anon 228524
+nr_zone_inactive_file 119513
+nr_zone_active_file 177357
+nr_zone_unevictable 0
+nr_zone_write_pending 10
+nr_mlock 0
+nr_page_table_pages 4200
+nr_kernel_stack 10048
+nr_bounce 0
+nr_zspages 0
+nr_free_cma 0
+numa_hit 21836396
+numa_miss 0
+numa_foreign 0
+......</code></pre></div><h4 id="zoneinfo">/zoneinfo</h4>
+<p>zoneinfo — 内存区域（zone）的详细信息列表，信息量较大，下面列出的是一个输出片段：</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ cat /proc/zoneinfo
+Node 0, zone      DMA
+  per-node stats
+      nr_inactive_anon 615
+      nr_active_anon 228553
+      nr_inactive_file 119513
+      nr_active_file 177369
+      nr_unevictable 0
+      nr_slab_reclaimable 25998
+      nr_slab_unreclaimable 26446
+      nr_isolated_anon 0
+      nr_isolated_file 0
+      workingset_nodes 0
+      workingset_refault 0
+      workingset_activate 0
+      workingset_restore 0
+      workingset_nodereclaim 0
+      nr_anon_pages 228265
+      nr_mapped    61375
+      nr_file_pages 297792
+      nr_dirty     11
+      nr_writeback 0
+      nr_writeback_temp 0
+      nr_shmem     911
+      nr_shmem_hugepages 0
+      nr_shmem_pmdmapped 0
+      nr_file_hugepages 0
+      nr_file_pmdmapped 0
+      nr_anon_transparent_hugepages 0
+      nr_vmscan_write 0
+      nr_vmscan_immediate_reclaim 0
+      nr_dirtied   420987
+      nr_written   277592
+      nr_kernel_misc_reclaimable 0
+      nr_foll_pin_acquired 0
+      nr_foll_pin_released 0
+  pages free     3845
+        min      67
+        low      83
+        high     99
+        spanned  4095
+        present  3998
+        managed  3977
+        protection: (0, 2652, 3855, 3855, 3855)
+......</code></pre></div><h4 id="sys">/sys</h4>
+<p>sys — 目录详解</p>
+<p>与/proc下其它文件的“只读”属性不同的是，管理员可对/proc/sys子目录中的许多文件内容进行修改以更改内核的运行特性，事先可以使用“ls -l”命令查看某文件是否“可写入”。写入操作通常使用类似于“echo DATA &gt; /path/to/your/filename”的格式进行。需要注意的是，即使文件可写，其一般也不可以使用编辑器进行编辑。</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ ll /proc/sys
+total 0
+dr-xr-xr-x   1 root root 0 Jun  1 23:29 ./
+dr-xr-xr-x 309 root root 0 Jun  1 23:29 ../
+dr-xr-xr-x   1 root root 0 Jun  2 17:17 abi/
+dr-xr-xr-x   1 root root 0 Jun  2 17:17 debug/
+dr-xr-xr-x   1 root root 0 Jun  1 23:29 dev/
+dr-xr-xr-x   1 root root 0 Jun  1 23:29 fs/
+dr-xr-xr-x   1 root root 0 Jun  1 23:29 kernel/
+dr-xr-xr-x   1 root root 0 Jun  1 23:29 net/
+dr-xr-xr-x   1 root root 0 Jun  2 17:17 user/
+dr-xr-xr-x   1 root root 0 Jun  1 23:29 vm/</code></pre></div><p>/proc/sys/debug 子目录</p>
+<p>此目录通常是一空目录；</p>
+<p>/proc/sys/dev 子目录</p>
+<p>为系统上特殊设备提供参数信息文件的目录，其不同设备的信息文件分别存储于不同的子目录中，如大多数系统上都会具有的/proc/sys/dev/cdrom和/proc/sys/dev/raid（如果内核编译时开启了支持raid的功能） 目录，其内存储的通常是系统上cdrom和raid的相关参数信息文件。</p>
+<h3 id="pstree比较好用">pstree（比较好用）</h3>
+<p>相较于/proc查询，pstree的展示更加方便，比ps展示的更加清晰有层次</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>pstree [-a] [-c] [-h|-Hpid] [-l] [-n] [-p] [-u] [-G|-U] [pid|user]
+
+-a 显示该行程的完整指令及参数, 如果是被记忆体置换出去的行程则会加上括号
+-c 如果有重覆的行程名, 则分开列出（预设值是会在前面加上 *）
+-A 各进程树之间的连接以ASCII码字符来连接
+-U 各进程树之间的连接以utf8字符来连接，某些终端可能会有错误
+-p 同时列出每个进程的PID
+-u 同时列出每个进程的所属账号名称(被小括号括起来)
+
+特别表明在运行的进程
+# pstree -apnh //显示进程间的关系
+同时显示用户名称
+
+# pstree -u //显示用户名称</code></pre></div><p>这里也同样使用多线程程序测试，可以看到pstree展示多线程情况如下</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ pstree -anph 150666
+python3,150666 pymutil.py
+  |-{python3},150667
+  `-{python3},150668</code></pre></div><h3 id="kill-结束进程">kill (结束进程）</h3>
+<p>kill -9 PID  强制关闭某进程</p>
+<p>kill PID       关闭某进程</p>
+<h2 id="windows下系统进程查询">windows下系统进程查询</h2>
+<h3 id="tasklist">tasklist</h3>
+<div class="wrap-code highlight"><pre tabindex="0"><code>  C:\Users\xt&gt;tasklist /?
+
+TASKLIST [/S system [/U username [/P [password]]]]
+         [/M [module] | /SVC | /V] [/FI filter] [/FO format] [/NH]
+
+描述:
+    该工具显示在本地或远程机器上当前运行的进程列表。
+
+
+参数列表:
+   /S     system           指定连接到的远程系统。（需要远端开启RPC服务，否则无法连接）
+   /U     [domain\]user    指定应该在哪个用户上下文执行这个命令。
+   /P     [password]       为提供的用户上下文指定密码。如果省略，则
+                           提示输入。
+   /M     [module]         列出当前使用所给 exe/dll 名称的所有任务。
+                           如果没有指定模块名称，显示所有加载的模块。
+   /SVC                    显示每个进程中主持的服务。
+   /APPS 显示 Microsoft Store 应用及其关联的进程。
+   /V                      显示详细任务信息。
+   /FI    filter           显示一系列符合筛选器
+                           指定条件的任务。
+   /FO    format           指定输出格式。
+                           有效值: &#34;TABLE&#34;、&#34;LIST&#34;、&#34;CSV&#34;。
+   /NH                     指定列标题不应该
+                           在输出中显示。
+                           只对 &#34;TABLE&#34; 和 &#34;CSV&#34; 格式有效。
+   /?                      显示此帮助消息。
+
+筛选器:
+    筛选器名称     有效运算符           有效值
+    -----------     ---------------           --------------------------
+    STATUS          eq, ne                    RUNNING | SUSPENDED
+                                              NOT RESPONDING | UNKNOWN
+    IMAGENAME       eq, ne                    映像名称
+    PID             eq, ne, gt, lt, ge, le    PID 值
+    SESSION         eq, ne, gt, lt, ge, le    会话编号
+    SESSIONNAME     eq, ne                    会话名称
+    CPUTIME         eq, ne, gt, lt, ge, le    CPU 时间，格式为
+                                              hh:mm:ss。
+                                              hh - 小时，
+                                              mm - 分钟，ss - 秒
+    MEMUSAGE        eq, ne, gt, lt, ge, le    内存使用(以 KB 为单位)
+    USERNAME        eq, ne                    用户名，格式为
+                                              [域\]用户
+    SERVICES        eq, ne                    服务名称
+    WINDOWTITLE     eq, ne                    窗口标题
+    模块         eq, ne                    DLL 名称
+
+注意: 当查询远程计算机时，不支持 &#34;WINDOWTITLE&#34; 和 &#34;STATUS&#34;
+      筛选器。
+
+Examples:
+    TASKLIST
+    TASKLIST /M dll文件名（不加则导出所有程序及其使用的dll，量很大） 列出所有使用或调用指定dll文件的程序
+    TASKLIST /V /FO CSV                                      用csv格式输出所有程序详情
+    TASKLIST /SVC /FO LIST                                   用list格式输出所有程序的服务
+    TASKLIST /APPS /FI &#34;STATUS eq RUNNING&#34;                   显示所有微软商店相关并且状态为正在运行中的程序
+    TASKLIST /M wbem*                                                                            显示所有调用wbem开头的dll模块的程序
+    TASKLIST /S IP /FO LIST
+    TASKLIST /S IP /U 域\用户名 /FO CSV /NH
+    TASKLIST /S IP /U username /P password /FO TABLE /NH
+    TASKLIST /FI &#34;USERNAME ne NT AUTHORITY\SYSTEM&#34; /FI &#34;STATUS eq running&#34;  系统中正在运行的非“SYSTEM“的所有进程
+    TASKLIST /M user32.dll                                   显示所有使用user32.dll的程序</code></pre></div><div class="wrap-code highlight"><pre tabindex="0"><code>C:\Users\xt&gt;tasklist
+
+映像名称                       PID 会话名              会话#       内存使用
+========================= ======== ================ =========== ============
+System Idle Process              0 Services                   0          8 K
+System                           4 Services                   0         32 K
+Registry                        92 Services                   0     60,240 K
+smss.exe                       336 Services                   0        532 K
+csrss.exe                      464 Services                   0      3,664 K
+wininit.exe                    568 Services                   0      3,756 K
+services.exe                   700 Services                   0      8,220 K
+lsass.exe                      720 Services                   0     13,968 K
+svchost.exe                    836 Services                   0     24,472 K
+fontdrvhost.exe                868 Services                   0        860 K
+WUDFHost.exe                   936 Services                   0      1,884 K
+
+
+
+
+C:\Users\xt&gt;TASKLIST /M user32.dll
+
+映像名称                       PID 模块
+========================= ======== ============================================
+lsass.exe                      720 user32.dll
+svchost.exe                    836 USER32.dll
+WUDFHost.exe                   936 USER32.dll
+svchost.exe                    432 USER32.dll
+svchost.exe                   1044 user32.dll
+svchost.exe                   1104 user32.dll
+svchost.exe                   1112 user32.dll
+svchost.exe                   1236 user32.dll
+svchost.exe                   1268 user32.dll
+
+C:\Users\xt&gt;TASKLIST /V /FO CSV
+&#34;映像名称&#34;,&#34;PID&#34;,&#34;会话名      &#34;,&#34;会话#   &#34;,&#34;内存使用 &#34;,&#34;状态  &#34;,&#34;用户名   &#34;,&#34;CPU 时间&#34;,&#34;窗口标题    &#34;
+&#34;System Idle Process&#34;,&#34;0&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;8 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;2:29:41&#34;,&#34;暂缺&#34;
+&#34;System&#34;,&#34;4&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;32 K&#34;,&#34;Unknown&#34;,&#34;暂缺&#34;,&#34;0:20:12&#34;,&#34;暂缺&#34;
+&#34;Registry&#34;,&#34;92&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;58,972 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:03&#34;,&#34;暂缺&#34;
+&#34;smss.exe&#34;,&#34;336&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;520 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:01&#34;,&#34;暂缺&#34;
+&#34;csrss.exe&#34;,&#34;464&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;3,680 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:03&#34;,&#34;暂缺&#34;
+&#34;wininit.exe&#34;,&#34;568&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;3,724 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+......
+&#34;svchost.exe&#34;,&#34;2208&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;31,984 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:01&#34;,&#34;暂缺&#34;
+&#34;svchost.exe&#34;,&#34;9488&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;8,204 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\LOCAL SERVICE&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;svchost.exe&#34;,&#34;6972&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;11,368 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\LOCAL SERVICE&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;csrss.exe&#34;,&#34;1604&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;5,944 K&#34;,&#34;Running&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:01&#34;,&#34;暂缺&#34;
+&#34;winlogon.exe&#34;,&#34;6448&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;13,628 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;dwm.exe&#34;,&#34;8792&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;139,520 K&#34;,&#34;Running&#34;,&#34;Window Manager\DWM-2&#34;,&#34;0:00:03&#34;,&#34;DWM Notification Window&#34;
+&#34;fontdrvhost.exe&#34;,&#34;9804&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;14,600 K&#34;,&#34;Unknown&#34;,&#34;Font Driver Host\UMFD-2&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;prl_tools.exe&#34;,&#34;9888&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;11,684 K&#34;,&#34;Running&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;coherence.exe&#34;,&#34;2420&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;10,012 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;coherence.exe&#34;,&#34;6608&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;6,064 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;svchost.exe&#34;,&#34;8428&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;5,876 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\LOCAL SERVICE&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;ChsIME.exe&#34;,&#34;3924&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;16,548 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;SangforUDProtect.exe&#34;,&#34;5764&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;9,992 K&#34;,&#34;Running&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:00&#34;,&#34;SangforUDProtectExe&#34;
+&#34;ctfmon.exe&#34;,&#34;8296&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;31,008 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:02&#34;,&#34;暂缺&#34;
+&#34;sihost.exe&#34;,&#34;9076&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;28,724 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:01&#34;,&#34;暂缺&#34;
+&#34;svchost.exe&#34;,&#34;7628&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;19,612 K&#34;,&#34;Unknown&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;svchost.exe&#34;,&#34;8956&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;41,044 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;Windows Push Notifications Platform&#34;
+&#34;ChsIME.exe&#34;,&#34;3952&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;8,300 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;taskhostw.exe&#34;,&#34;1572&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;10,444 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;Task Host Window&#34;
+&#34;explorer.exe&#34;,&#34;8916&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;159,660 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:01:01&#34;,&#34;暂缺&#34;
+&#34;svchost.exe&#34;,&#34;1080&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;22,848 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;dllhost.exe&#34;,&#34;9608&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;16,576 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;OleMainThreadWndName&#34;
+&#34;StartMenuExperienceHost.exe&#34;,&#34;3524&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;77,320 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:01&#34;,&#34;启动&#34;
+&#34;RuntimeBroker.exe&#34;,&#34;6840&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;26,352 K&#34;,&#34;Unknown&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:01&#34;,&#34;暂缺&#34;
+&#34;dllhost.exe&#34;,&#34;2996&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;7,596 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:01&#34;,&#34;OleMainThreadWndName&#34;
+&#34;SearchApp.exe&#34;,&#34;2476&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;164,680 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:06&#34;,&#34;搜索&#34;
+&#34;RuntimeBroker.exe&#34;,&#34;7692&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;35,440 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:02&#34;,&#34;暂缺&#34;
+&#34;wpscloudsvr.exe&#34;,&#34;928&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;8,724 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:03&#34;,&#34;暂缺&#34;
+&#34;prl_cc.exe&#34;,&#34;7980&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;39,768 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:08&#34;,&#34;暂缺&#34;
+&#34;TextInputHost.exe&#34;,&#34;5760&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;46,064 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;Microsoft Text Input Application&#34;
+&#34;RuntimeBroker.exe&#34;,&#34;7776&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;19,536 K&#34;,&#34;Unknown&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:01&#34;,&#34;暂缺&#34;
+&#34;YourPhone.exe&#34;,&#34;5524&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;49,812 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;SecurityHealthSystray.exe&#34;,&#34;10668&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;9,600 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;HipsTray.exe&#34;,&#34;10768&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;26,300 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:01&#34;,&#34;暂缺&#34;
+&#34;vm3dservice.exe&#34;,&#34;10884&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;6,860 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;VM3DService Hidden window&#34;
+&#34;FileOpenBroker64.exe&#34;,&#34;10932&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;8,716 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;FileOpenBroker64.exe&#34;
+&#34;AdobeARM.exe&#34;,&#34;11036&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;23,352 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;Adobe Reader Updater&#34;
+&#34;WmiPrvSE.exe&#34;,&#34;11184&#34;,&#34;Services&#34;,&#34;0&#34;,&#34;9,044 K&#34;,&#34;Unknown&#34;,&#34;NT AUTHORITY\SYSTEM&#34;,&#34;0:00:00&#34;,&#34;暂缺&#34;
+&#34;cmd.exe&#34;,&#34;10912&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;4,688 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:00&#34;,&#34;管理员: C:\WINDOWS\system32\cmd.exe - TASKLIST  /V /FO CSV&#34;
+&#34;conhost.exe&#34;,&#34;2664&#34;,&#34;Console&#34;,&#34;2&#34;,&#34;17,868 K&#34;,&#34;Running&#34;,&#34;DESKTOP-D9ITQNU\xt&#34;,&#34;0:00:05&#34;,&#34;暂缺&#34;
+
+
+
+C:\Users\xt&gt;TASKLIST /SVC /FO LIST
+
+映像名称:     System Idle Process
+PID:          0
+服务    :     暂缺
+
+映像名称:     System
+PID:          4
+服务    :     暂缺
+
+映像名称:     Registry
+PID:          92
+服务    :     暂缺
+......
+映像名称:     lsass.exe
+PID:          720
+服务    :     KeyIso
+              SamSs
+              VaultSvc
+
+映像名称:     svchost.exe
+PID:          836
+服务    :     BrokerInfrastructure
+              DcomLaunch
+              PlugPlay
+              Power
+              SystemEventsBroker
+
+映像名称:     fontdrvhost.exe
+PID:          868
+服务    :     暂缺
+
+映像名称:     WUDFHost.exe
+PID:          936
+服务    :     暂缺
+......
+
+
+
+C:\Users\xt&gt;TASKLIST /M wbem*
+
+映像名称                       PID 模块
+========================= ======== ============================================
+svchost.exe                   3040 wbemcomn.dll, wbemcore.dll, wbemsvc.dll,
+                                   wbemess.dll
+WmiPrvSE.exe                  5356 wbemcomn.dll, wbemsvc.dll
+WmiPrvSE.exe                 11184 wbemcomn.dll, wbemsvc.dll
+svchost.exe                   6408 wbemprox.dll, wbemcomn.dll, wbemsvc.dll
+tasklist.exe                  1896 wbemprox.dll, wbemcomn.dll, wbemsvc.dll</code></pre></div><h3 id="taskkill-结束进程"><strong>taskkill （结束进程）</strong></h3>
+<p>查杀进程</p>
+<p>taskkill /pid 1132（PID）</p>
+<p>taskkill /IM notepad.exe（进程名）</p>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+          <style>
+            #logo svg,
+            #logo svg * {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+              fill: #282828 !important;
+              fill: var(--MENU-SECTIONS-BG-color) !important;
+              opacity: .945;
+            }
+            a#logo {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+              font-family: 'Work Sans', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
+              font-size: 1.875rem;
+              font-weight: 300;
+              margin-top: -.8125rem;
+              max-width: 60%;
+              text-transform: uppercase;
+              width: 14.125rem;
+              white-space: nowrap;
+            }
+            a#logo:hover {
+              color: #282828;
+              color: var(--MENU-SECTIONS-BG-color);
+            }
+            #logo svg {
+              margin-bottom: -1.25rem;
+              margin-inline-start: -1.47rem;
+              width: 40.5%;
+            }
+            @media only all and (max-width: 60rem) {
+              a#logo {
+                font-size: 1.5625rem;
+                margin-top: -.1875rem;
+              }
+              #logo svg {
+                margin-bottom: -.75rem;
+                margin-inline-start: -1.47rem;
+              }
+            }
+            @media all and (-ms-high-contrast:none) {
+              /* IE11s understanding of positioning is weird at best */
+              a#logo {
+                margin-top: -3.625rem;
+              }
+              #logo svg {
+                margin-bottom: -3.875rem;
+                margin-left: -1.47rem;
+              }
+            }
+            @media only all and (-ms-high-contrast:none) and (max-width: 60rem) {
+              #logo svg {
+                margin-left: -1.47rem;
+              }
+            }
+          </style>
+          <a id="logo" href="/index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.044 64.044">
+              <path d="M46.103 136.34c-.642-.394-1.222-2.242-1.98-2.358-.76-.117-1.353.506-1.618 1.519-.266 1.012-.446 4.188.173 5.538.213.435.482.787 1.03.845.547.057.967-.504 1.45-1.027.482-.523.437-.9 1.142-.612.705.289 1.051.4 1.586 1.229.535.828 1.085 4.043.868 5.598-.241 1.458-.531 2.8-.59 4.088.26.075.517.148.772.217 2.68.724 5.373 1.037 7.873.02.001-.028.01-.105.008-.11-.048-.165-.18-.41-.36-.698-.18-.29-.414-.645-.586-1.114a3.212 3.212 0 0 1-.125-1.735c.056-.21.153-.342.249-.475 1.237-1.193 2.932-1.373 4.244-1.384.557-.004 1.389.016 2.198.255.809.239 1.706.724 2.068 1.843.187.578.114 1.17-.043 1.623-.153.438-.369.783-.545 1.091-.178.31-.329.6-.401.821-.007.02-.003.071-.005.094 2.256 1.008 4.716.91 7.189.398.55-.114 1.11-.247 1.673-.377.344-1.085.678-2.145.852-3.208.124-.752.158-2.311-.078-3.538-.118-.613-.306-1.15-.52-1.489-.221-.349-.413-.501-.747-.538-.243-.027-.51.013-.796.098-.67.223-1.33.606-1.966.76l-.008.002-.109.032c-.556.152-1.233.158-1.797-.36-.556-.51-.89-1.367-1.117-2.596-.283-1.528-.075-3.279.89-4.518l.071-.09h.07c.65-.71 1.485-.802 2.16-.599.706.213 1.333.629 1.772.84.736.354 1.185.319 1.475.171.291-.148.5-.439.668-.955.332-1.017.301-2.819.022-4.106-.148-.684-.13-1.292-.13-1.883-1.558-.463-3.067-.982-4.574-1.208-1.128-.169-2.263-.173-3.298.164-.13.046-.256.095-.38.15-.373.164-.633.342-.805.52-.077.098-.081.105-.087.21-.004.068.031.289.13.571.1.282.256.634.467 1.03.279.524.448 1.063.431 1.618a2.12 2.12 0 0 1-.499 1.309 1.757 1.757 0 0 1-.62.51h-.002c-.515.291-1.107.404-1.723.464-.86.083-1.787.026-2.598-.097-.806-.123-1.47-.28-1.948-.555-.444-.256-.79-.547-1.037-.925a2.273 2.273 0 0 1-.356-1.301c.029-.837.403-1.437.625-1.897.111-.23.191-.433.236-.583.045-.15.044-.25.046-.24-.005-.029-.127-.355-1.015-.741-1.138-.495-2.322-.673-3.533-.668h-.015a9.711 9.711 0 0 0-.521.016h-.002c-1.163.057-2.35.308-3.541.569.383 1.531.79 2.753.818 4.502-.096 1.297.158 2.114-1.03 2.935-.85.588-1.508.729-2.15.335" style="fill:#282828;fill-opacity:1;stroke:none;stroke-width:1.03763;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-40.698 -95.175)"/>
+              <path d="M61.472 101.34v.002c-.3-.003-.603.01-.894.04-.544.055-1.39.165-1.778.306-1.238.364.13 2.344.41 2.913.28.569.285 2.03.14 2.134-.144.103-.375.261-.934.345-.56.084.03-.037-1.589.086-1.62.122-5.506.29-8.265.248-.022.26-.036.521-.097.808-.309 1.442-.63 3.163-.494 4.074.071.473.168.65.414.8.23.14.737.235 1.62-.004.834-.227 1.3-.442 1.887-.456.595-.016 1.555.472 1.965.717.411.245-.03-.008.002 0s.128.05.176.102c.049.053-.276-.523.104.199.379.721.72 3.256.002 4.68-.46.913-1.01 1.49-1.64 1.711-.63.22-1.229.067-1.734-.135-.881-.353-1.584-.7-2.205-.647-1.199 1.94-1.186 4.17-.6 6.602.097.397.212.814.327 1.23 2.68-.556 5.542-1.016 8.337.132 1.064.437 1.73 1.015 1.902 1.857.169.831-.193 1.508-.438 1.986-.122.238-.23.46-.307.642-.07.164-.096.28-.104.324.069.429.309.723.686.945.385.227.89.355 1.35.423.723.104 1.567.152 2.287.086.693-.064 1.032-.338 1.241-.544a2.447 2.447 0 0 0 .303-.437.175.175 0 0 0 .013-.035c-.004-.066-.037-.246-.195-.527-.46-.816-.87-1.595-.817-2.51.028-.476.218-.938.529-1.288.304-.343.698-.586 1.186-.79 1.442-.606 2.96-.609 4.372-.409 1.525.216 2.963.679 4.378 1.083.226-2.09.784-3.9.592-5.77-.058-.565-.287-1.333-.598-1.827-.32-.508-.59-.717-1.036-.642-.648.11-1.472.935-2.707 1.078-.791.092-1.494-.267-1.95-.86-.45-.583-.678-1.335-.78-2.101-.202-1.525.031-3.229.89-4.27.615-.747 1.45-.887 2.15-.74.687.145 1.307.492 1.857.745v-.002c.546.252 1.033.388 1.281.344a.547.547 0 0 0 .353-.188c.113-.124.242-.35.384-.75.604-1.712.206-3.68-.303-5.654-.667.145-1.336.293-2.018.413-1.341.236-2.73.392-4.136.273-.656-.055-1.695-.085-2.58-.476-.442-.195-.903-.514-1.157-1.093-.259-.591-.205-1.313.08-2.014.223-.64 1.082-2.178.692-2.585-.391-.407-1.651-.56-2.554-.571z" style="fill:#282828;fill-opacity:1;stroke:none;stroke-width:.992837;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-40.698 -95.175)"/>
+              <path d="M83.128 98.116c-.484 1.875-1.057 3.757-2.486 5.033-.638.57-1.13.666-1.483.548-.401-.134-.715-.506-1.058-.973-.338-.461-.655-.97-1.076-1.332-.192-.165-.404-.315-.683-.38-.279-.066-.599-.02-.9.102-.489.196-.89.58-1.28 1.047a6.1 6.1 0 0 0-.985 1.632c-.234.591-.356 1.174-.277 1.713.072.487.392.977.905 1.185.463.187.926.156 1.36.154.433 0 .843.01 1.242.147.55.189.79.736.822 1.368.034.66-.145 1.412-.393 1.988l-.008.021c-.74 1.705-1.946 2.893-3.004 4.349l-.664.915.979.099c.924.092 1.788.26 2.468.675.46.281 1.806 1.205 2.794 2.222.497.513.888 1.031 1.047 1.502.078.231.095.422.05.6a.93.93 0 0 1-.345.474c-.301.223-.606.395-.864.532l-.354.186c-.107.058-.189.087-.345.228a.637.637 0 0 1 .062-.045l-.064.041-.209.236-.103.343s.003.126.007.152c.003.017.003.007.004.015v.002c.016.195.061.307.133.476a4.1 4.1 0 0 0 .32.596 5.7 5.7 0 0 0 2.8 2.258c.284.108.908.321 1.548.36.33.02.59.015.912-.13h.002c.08-.037.228-.095.382-.281.153-.186.19-.355.212-.445l.019-.075.003-.078c.023-.585-.037-1.296.072-1.899.153-.657.435-.956 1.009-.909 2.771.239 4.74 1.955 6.693 3.83l.742.714.279-1.155c.55-2.29 1.093-4.464 2.928-5.977.692-.57 1.184-.642 1.527-.509.39.151.676.536.996.995.319.458.605.926 1.07 1.212.194.119.464.232.784.209.32-.024.638-.163.988-.384 1.022-.645 1.778-1.756 2.086-2.942.136-.522.102-.991-.046-1.301-.158-.334-.433-.553-.754-.707-.653-.314-1.468-.373-2.094-.486-.825-.15-1.22-.475-1.345-.878-.13-.417 0-.953.335-1.61.6-1.173 1.887-2.602 3.13-3.911l.498-.526-.449-.432c-1.545-1.49-3.163-3.01-5.252-3.715h-.002c-.473-.16-1.097-.413-1.73-.424h-.003c-.311-.004-.596.04-.883.24v.002c-.22.155-.483.537-.583.937l-.008.036-.006.038c-.116.773-.06 1.467-.217 1.995-.063.212-.198.418-.359.507-.202.111-.492.153-.976.072-.582-.097-1.978-.69-3.021-1.503-.523-.407-.934-.85-1.117-1.3a1.153 1.153 0 0 1-.083-.63c.03-.184.1-.477.308-.593.21-.116.941-.32 1.377-.642h.002c.192-.141.403-.367.518-.64.114-.275.127-.526.123-.774-.006-.142-.036-.192-.08-.3a8.417 8.417 0 0 0-3-3.027c-1.226-.725-2.585-1.135-3.927-1.539-.434-.12-.844-.111-1.02.466zm.912.947c1.186.364 2.357.718 3.345 1.303 1.035.612 1.864 1.488 2.507 2.528-.514.263-1.095.5-1.44.79-.345.29-.729.914-.815 1.434-.084.509 0 .968.155 1.347.301.74.85 1.276 1.44 1.735 1.18.92 2.554 1.545 3.47 1.698.604.1 1.186.088 1.739-.216.594-.327.935-.911 1.088-1.427.264-.884.193-1.664.262-2.17h.1c.3.006.926.206 1.417.371 1.646.554 3.044 1.773 4.431 3.089-1.102 1.174-2.222 2.423-2.888 3.73-.42.823-.73 1.789-.453 2.687.283.913 1.1 1.415 2.138 1.603.691.126 1.472.226 1.84.403.19.091.258.182.278.223.03.064.058.075-.023.387-.21.804-.761 1.598-1.413 2.01-.247.155-.365.183-.407.187-.042.003-.061.002-.172-.066-.144-.088-.455-.473-.772-.929-.317-.454-.714-1.07-1.452-1.356-.783-.304-1.776-.022-2.713.75-1.942 1.6-2.626 3.764-3.146 5.8-1.802-1.676-3.772-3.138-6.589-3.517h-.002c-.346-.095-1.013-.031-1.293.143-.735.501-1.005 1.132-1.168 2.007-.125.69-.082 1.216-.074 1.659-.055.006-.046.01-.104.006-.42-.026-1.035-.215-1.244-.295-.947-.361-1.774-1.006-2.314-1.857-.054-.085-.072-.132-.109-.2l.027-.016c.284-.15.656-.36 1.045-.648.44-.327.789-.798.93-1.35a2.4 2.4 0 0 0-.068-1.379c-.254-.751-.753-1.353-1.295-1.911-1.09-1.124-2.452-2.049-2.99-2.378-.609-.372-1.303-.44-1.981-.56.875-1.094 1.878-2.251 2.596-3.921.294-.823.543-1.907.513-2.658-.049-.97-.489-2.013-1.52-2.367-.579-.2-1.131-.204-1.58-.203-.45.002-.786-.006-.97-.08h-.002c-.264-.107-.236-.108-.268-.33-.025-.17.021-.553.183-.962a4.67 4.67 0 0 1 .725-1.192c.29-.348.617-.59.705-.626.142-.057.176-.05.22-.04.045.011.127.052.263.17.235.201.56.671.92 1.161.354.484.791 1.08 1.543 1.33.8.267 1.784-.052 2.671-.846 1.594-1.424 2.235-3.317 2.714-5.051zm11.705 7.023c-.02.014.042-.002.042 0l-.008.035c.05-.2-.028-.04-.034-.035zM79.472 122.45a.198.198 0 0 1 .005.023v.014c-.002-.01-.003-.03-.005-.037zm-.29.732-.006.01-.044.027c.016-.01.033-.024.05-.036z" style="color:#000;fill:#282828;stroke-width:1.02352;-inkscape-stroke:none" transform="translate(-40.698 -95.175)"/>
+              <path d="M76.694 128.845c-.85-.012-1.668.253-2.434.67-.01.592-.015 1.17.109 1.772.323 1.573.422 3.553-.07 5.147-.247.804-.684 1.535-1.347 1.891-.663.356-1.467.296-2.362-.159-.522-.266-1.059-.62-1.487-.757-.223-.072-.392-.096-.522-.069-.13.027-.232.094-.362.27-.53.719-.681 1.823-.497 2.876.177 1.012.418 1.438.543 1.56.143.137.26.154.604.055.548-.158 1.523-.857 2.573-.972l.02-.002.5.058c.686.081 1.247.562 1.622 1.19.372.62.591 1.37.73 2.136.279 1.532.25 3.16.083 4.232-.14.91-.394 1.72-.632 2.53 1.719-.385 3.485-.692 5.307-.36 1.174.214 2.749.574 3.762 1.977l.088.122.046.159c.162.551.16 1.114.024 1.578-.13.45-.348.772-.533 1.023-.181.246-.336.444-.437.606-.102.16-.141.275-.145.336-.01.17 0 .197.07.315.057.1.186.242.39.366.408.246 1.106.414 1.843.45a7.842 7.842 0 0 0 2.174-.21 4.28 4.28 0 0 0 .822-.296c.218-.106.385-.242.377-.233l.029-.031c.025-.035.05-.072.05-.068 0-.004 0-.017-.003-.05a2.733 2.733 0 0 0-.21-.579c-.26-.548-.839-1.333-.822-2.46.01-.657.27-1.21.598-1.576.32-.357.696-.575 1.074-.736.759-.323 1.57-.418 2.054-.458 1.653-.136 3.252.296 4.755.765.457.142.905.29 1.352.434.325-2.258.902-4.247.598-6.217-.071-.46-.25-1.169-.486-1.684-.238-.518-.495-.762-.675-.779-.351-.032-.716.14-1.174.418-.457.277-1.005.665-1.695.742-.745.082-1.406-.291-1.84-.908-.428-.608-.653-1.394-.754-2.196-.203-1.596.016-3.377.794-4.493.568-.813 1.358-.984 2.024-.835.65.146 1.243.51 1.769.779.524.267.99.413 1.237.365a.527.527 0 0 0 .346-.2c.11-.132.235-.373.37-.798.612-1.918.27-3.894-.246-6.054-2.815-.851-5.49-1.534-8.089-.267a.727.727 0 0 0-.223.148c-.024.028-.018.021-.026.056.001-.003-.01.178.07.44.162.522.611 1.29.911 1.978l.004.009.029.063.024.084V133c.162.635.016 1.297-.274 1.727-.272.404-.618.636-.952.81-.675.353-1.399.484-1.724.533a5.888 5.888 0 0 1-3.973-.795c-.512-.311-.876-.594-1.133-1.02-.282-.466-.318-1.084-.172-1.557.252-.814.715-1.266.971-1.89a.663.663 0 0 0 .047-.14c.001-.013 0-.006-.007-.037a.761.761 0 0 0-.184-.268c-.264-.267-.865-.595-1.54-.826-1.356-.462-3.07-.659-3.583-.686-.062-.002-.121-.006-.178-.006z" style="fill:#282828;fill-opacity:1;stroke:none;stroke-width:.991342;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-40.698 -95.175)"/>
+            </svg>
+            Relearn
+          </a>
+        </div>
+        <form action="/search.html" method="get"><div class="searchbox default-animation">
+          <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <label class="a11y-only" for="search-by">Search</label>
+          <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+          <span data-search-clear=""><i class="fas fa-times"></i></span>
+        </div></form>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1690573851" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690573851" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690573851" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690573851" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690573851" defer></script>
+        <script src="/js/search.js?1690573851" defer></script>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics enlarge morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-70bdf8d87af46a79686d31378c1d7d85" aria-controls="subsections-70bdf8d87af46a79686d31378c1d7d85"><label for="section-70bdf8d87af46a79686d31378c1d7d85"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/index.html">工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-70bdf8d87af46a79686d31378c1d7d85" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-2dbf020e462e790a32571d0d109b782a" aria-controls="subsections-2dbf020e462e790a32571d0d109b782a"><label for="section-2dbf020e462e790a32571d0d109b782a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 威胁情报工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html">威胁情报工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-2dbf020e462e790a32571d0d109b782a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html">一个rss订阅到钉钉的脚本rss2dingtalk<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/twittertimelineclientscript/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/twittertimelineclientscript/index.html">一个本地命令行查询/批量查询twitter推文的脚本<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-6e38dc5f895def98aff7644f3c6ab0dd" aria-controls="subsections-6e38dc5f895def98aff7644f3c6ab0dd"><label for="section-6e38dc5f895def98aff7644f3c6ab0dd"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 日志分析工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html">日志分析工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-6e38dc5f895def98aff7644f3c6ab0dd" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html">Coremail日志分析脚本<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-f1d5f5bcc33bea044cacc933bb1d335a" aria-controls="subsections-f1d5f5bcc33bea044cacc933bb1d335a"><label for="section-f1d5f5bcc33bea044cacc933bb1d335a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html">渗透工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-f1d5f5bcc33bea044cacc933bb1d335a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html">UnsafeHttpMethod类型漏洞检测脚本<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html">本地批量ping域名脚本<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E8%AF%91%E6%96%87%E5%BD%92%E6%A1%A3/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E8%AF%91%E6%96%87%E5%BD%92%E6%A1%A3/index.html">漏洞验证工具nuclei官方文档中文译文归档<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%A8%A1%E7%89%88%E7%BC%96%E5%86%99%E4%B8%AD%E6%96%87%E5%BD%92%E6%A1%A3/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%A8%A1%E7%89%88%E7%BC%96%E5%86%99%E4%B8%AD%E6%96%87%E5%BD%92%E6%A1%A3/index.html">漏洞验证工具nuclei官方模版编写中文译文归档<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html" class="parent "><input type="checkbox" id="section-f35715843c55715e4e1a8b9dbf6b45ee" aria-controls="subsections-f35715843c55715e4e1a8b9dbf6b45ee" checked><label for="section-f35715843c55715e4e1a8b9dbf6b45ee"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 应急响应</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html">应急响应<i class="fas fa-check read-icon"></i></a><ul id="subsections-f35715843c55715e4e1a8b9dbf6b45ee" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html" class=""><input type="checkbox" id="section-7fff60dfdaa5ccf8d63424e07c41a0a2" aria-controls="subsections-7fff60dfdaa5ccf8d63424e07c41a0a2"><label for="section-7fff60dfdaa5ccf8d63424e07c41a0a2"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x00电子取证标准</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html">0x00电子取证标准<i class="fas fa-check read-icon"></i></a><ul id="subsections-7fff60dfdaa5ccf8d63424e07c41a0a2" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/2.0%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/2.0%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html">2.0电子取证标准<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><input type="checkbox" id="section-8f02c2961ea54145c9239661e2bd6b86" aria-controls="subsections-8f02c2961ea54145c9239661e2bd6b86"><label for="section-8f02c2961ea54145c9239661e2bd6b86"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x01现场勘查</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">0x01现场勘查<i class="fas fa-check read-icon"></i></a><ul id="subsections-8f02c2961ea54145c9239661e2bd6b86" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">现场看擦<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html" class="parent "><input type="checkbox" id="section-206bf0cd228714da00e540f18edc5db5" aria-controls="subsections-206bf0cd228714da00e540f18edc5db5" checked><label for="section-206bf0cd228714da00e540f18edc5db5"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x02电子取证</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html">0x02电子取证<i class="fas fa-check read-icon"></i></a><ul id="subsections-206bf0cd228714da00e540f18edc5db5" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html" class=""><input type="checkbox" id="section-89535f58c579af51d3b6f3412f0b0639" aria-controls="subsections-89535f58c579af51d3b6f3412f0b0639"><label for="section-89535f58c579af51d3b6f3412f0b0639"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 1磁盘镜像</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html">1磁盘镜像<i class="fas fa-check read-icon"></i></a><ul id="subsections-89535f58c579af51d3b6f3412f0b0639" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html">Clonezilla<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html">Datanumen_disk_image<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html">dd/dc3dd(linux)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html">EnCase_forensic_imager.<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html">GetdataForensicImager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html">Guymager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html">镜像类型及各产品特性对比<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html" class=""><input type="checkbox" id="section-69278680b5dd14dcc983e7a4af33c9fb" aria-controls="subsections-69278680b5dd14dcc983e7a4af33c9fb"><label for="section-69278680b5dd14dcc983e7a4af33c9fb"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 2磁盘挂载</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html">2磁盘挂载<i class="fas fa-check read-icon"></i></a><ul id="subsections-69278680b5dd14dcc983e7a4af33c9fb" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html">Arsenal_Image_Mounter<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html">GetData Mount Image Pro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html">mount_command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html">OSFMount<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html">磁盘挂载工具特点对比表<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html" class=""><input type="checkbox" id="section-cc9bb9305c742d8ac2d982c0f1774f34" aria-controls="subsections-cc9bb9305c742d8ac2d982c0f1774f34"><label for="section-cc9bb9305c742d8ac2d982c0f1774f34"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 3文件恢复</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html">3文件恢复<i class="fas fa-check read-icon"></i></a><ul id="subsections-cc9bb9305c742d8ac2d982c0f1774f34" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/diskgeniuswin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/diskgeniuswin/index.html">DiskGenius(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/r-studio-networkwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/r-studio-networkwin/index.html">R-studio network(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/ufs-explorer-professional-recoverywinmaclinux/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/ufs-explorer-professional-recoverywinmaclinux/index.html">UFS explorer professional recovery(win/mac/linux)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.html">WinHEX(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html">数据恢复工具性能对比<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html" class="parent "><input type="checkbox" id="section-f72a1ee8fa05d9b7ba0bef33408333a8" aria-controls="subsections-f72a1ee8fa05d9b7ba0bef33408333a8" checked><label for="section-f72a1ee8fa05d9b7ba0bef33408333a8"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 4系统信息收集</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">4系统信息收集<i class="fas fa-check read-icon"></i></a><ul id="subsections-f72a1ee8fa05d9b7ba0bef33408333a8" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">hosts文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html">linux下后门查杀<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html">linux下病毒查杀<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">linux软件包管理器文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html">启动项检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html">命令行历史记录<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">回收站文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html">国标中电子取证相关要求及综述<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html">安全策略检测<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html">异常端口查询<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html">映像劫持检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5/index.html">服务信息检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3%E6%A3%80%E6%9F%A5/index.html">浏览器相关检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%A3%80%E6%9F%A5/index.html">环境变量检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E6%A3%80%E6%9F%A5/index.html">系统共享检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5/index.html">系统日志查询<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%AE%A1%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%AE%A1%E6%9F%A5/index.html">系统用户审查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.html" class="active"><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.html">系统进程检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html">计划任务检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">重点文件目录检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html">钩子检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html">防火墙规则检查<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-bba07b074ab74ed3d6f2efbb911ba96a" aria-controls="subsections-bba07b074ab74ed3d6f2efbb911ba96a"><label for="section-bba07b074ab74ed3d6f2efbb911ba96a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x03取证分析</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html">0x03取证分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-bba07b074ab74ed3d6f2efbb911ba96a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html">【译】取证调查：虚拟内存pagefile.sys<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-1c2e9721036bcac0690861bf4737d812" aria-controls="subsections-1c2e9721036bcac0690861bf4737d812"><label for="section-1c2e9721036bcac0690861bf4737d812"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x06取证辅助工具</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html">0x06取证辅助工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-1c2e9721036bcac0690861bf4737d812" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1emergencyrocketpackage/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1emergencyrocketpackage/index.html">EmergencyRocketPackage<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b"><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-88c267f9c3b4a34d411e5a90254df00f" aria-controls="subsections-88c267f9c3b4a34d411e5a90254df00f"><label for="section-88c267f9c3b4a34d411e5a90254df00f"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 安卓样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">安卓样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-88c267f9c3b4a34d411e5a90254df00f" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/mobsf_mac_avd_android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/mobsf_mac_avd_android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html">Mobsf_MAC_AVD_Android动静态环境搭建排坑实战<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html" class=""><input type="checkbox" id="section-ffb6fc95178918741432017d1bacd773" aria-controls="subsections-ffb6fc95178918741432017d1bacd773"><label for="section-ffb6fc95178918741432017d1bacd773"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析基础</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">样本分析基础<i class="fas fa-check read-icon"></i></a><ul id="subsections-ffb6fc95178918741432017d1bacd773" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-10-使用内存取证狩猎恶意软件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html">恶意样本分析-10-恶意软件的混淆技术<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-12-使用内存取证检测高级恶意软件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html">恶意样本分析-7-调试恶意软件二进制文件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html">恶意样本分析-8-恶意软件的功能和持久化<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html">恶意样本分析-9-代码注入和钩子<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html">恶意样本分析1-配置实验环境<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html">恶意样本分析2-基础静态分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html">恶意样本分析3-基础动态分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html">恶意样本分析4-基础DLL分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html">恶意样本分析4-基础DLL分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html">恶意样本分析6-IDA使用<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html" class=""><input type="checkbox" id="section-4f3e0dd41bb55c4672bf0e0faa840610" aria-controls="subsections-4f3e0dd41bb55c4672bf0e0faa840610"><label for="section-4f3e0dd41bb55c4672bf0e0faa840610"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析拓展</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html">样本分析拓展<i class="fas fa-check read-icon"></i></a><ul id="subsections-4f3e0dd41bb55c4672bf0e0faa840610" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADrc4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADrc4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html">介绍恶意软件中RC4加密的识别与解码<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8microsoft%E7%9A%84fixit%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8microsoft%E7%9A%84fixit%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html">使用和滥用Microsoft的Fix It修补程序<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html">真正的垫片黑幕<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html" class=""><input type="checkbox" id="section-f6788bc9550144d7d72dabbc9a05483a" aria-controls="subsections-f6788bc9550144d7d72dabbc9a05483a"><label for="section-f6788bc9550144d7d72dabbc9a05483a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析记录</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html">样本分析记录<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6788bc9550144d7d72dabbc9a05483a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html">样本分析-Trojan/Buzus“霸族”木马通过邮件传播<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html">样本分析-邮件恶意样本中发现新MYMOOD蠕虫传播地址<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html">样本分析-邮件恶意样本发现AZORult间谍软件传播<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html" class=""><input type="checkbox" id="section-0714789af687990c9fc38b6319972875" aria-controls="subsections-0714789af687990c9fc38b6319972875"><label for="section-0714789af687990c9fc38b6319972875"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 情报跟踪</span></label><a class="padding" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html">情报跟踪<i class="fas fa-check read-icon"></i></a><ul id="subsections-0714789af687990c9fc38b6319972875" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-chinese_hackers_target_satellitegeospatial_imagingdefense_companies/index.html" class=""><a class="padding" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-chinese_hackers_target_satellitegeospatial_imagingdefense_companies/index.html">黑客背后的&#34;Thrip&#34;网络间谍组织<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html" class=""><input type="checkbox" id="section-be882d7838b29bb55035a73606bd5fad" aria-controls="subsections-be882d7838b29bb55035a73606bd5fad"><label for="section-be882d7838b29bb55035a73606bd5fad"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 操作系统</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">操作系统<i class="fas fa-check read-icon"></i></a><ul id="subsections-be882d7838b29bb55035a73606bd5fad" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/index.html" class=""><input type="checkbox" id="section-0a43e999527d8431e07a6c83274453d0" aria-controls="subsections-0a43e999527d8431e07a6c83274453d0"><label for="section-0a43e999527d8431e07a6c83274453d0"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu windows</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/index.html">windows<i class="fas fa-check read-icon"></i></a><ul id="subsections-0a43e999527d8431e07a6c83274453d0" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/index.html" class=""><input type="checkbox" id="section-4b5256e8689ed2826632ee3c944d042e" aria-controls="subsections-4b5256e8689ed2826632ee3c944d042e"><label for="section-4b5256e8689ed2826632ee3c944d042e"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Powershell</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/index.html">Powershell<i class="fas fa-check read-icon"></i></a><ul id="subsections-4b5256e8689ed2826632ee3c944d042e" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html" class=""><input type="checkbox" id="section-1dcf0d8ab382f88a0dec20aa11c7a8c6" aria-controls="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6"><label for="section-1dcf0d8ab382f88a0dec20aa11c7a8c6"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 组策略</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html">组策略<i class="fas fa-check read-icon"></i></a><ul id="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html">SID安全标识符<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html" class=""><input type="checkbox" id="section-6d101735907668b9565f2b24f0ce6829" aria-controls="subsections-6d101735907668b9565f2b24f0ce6829"><label for="section-6d101735907668b9565f2b24f0ce6829"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透测试</span></label><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fas fa-check read-icon"></i></a><ul id="subsections-6d101735907668b9565f2b24f0ce6829" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html" class=""><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><input type="checkbox" id="section-5c9f137f17add9d910670d26ee4e7fe7" aria-controls="subsections-5c9f137f17add9d910670d26ee4e7fe7"><label for="section-5c9f137f17add9d910670d26ee4e7fe7"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 漏洞复现</span></label><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">漏洞复现<i class="fas fa-check read-icon"></i></a><ul id="subsections-5c9f137f17add9d910670d26ee4e7fe7" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-vulhub%E5%AE%9E%E9%AA%8C_weblogic_ssrf%E6%BC%8F%E6%B4%9E/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-vulhub%E5%AE%9E%E9%AA%8C_weblogic_ssrf%E6%BC%8F%E6%B4%9E/index.html">CVE-2014-4210_Weblogic SSRF漏洞<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2017-11882_office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2017-11882_office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-0796_smbghost_remote_code_execution/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-0796_smbghost_remote_code_execution/index.html">CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-14645_weblogic_t3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96rce%E5%A4%8D%E6%B5%8B/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-14645_weblogic_t3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96rce%E5%A4%8D%E6%B5%8B/index.html">CVE-2020-14645_weblogic_T3反序列化RCE复测<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%A4%BE%E7%A7%91/index.html" class=""><input type="checkbox" id="section-0c9d6aef0bca5a94a96f257f1cf48fc7" aria-controls="subsections-0c9d6aef0bca5a94a96f257f1cf48fc7"><label for="section-0c9d6aef0bca5a94a96f257f1cf48fc7"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 社科</span></label><a class="padding" href="/%E7%A4%BE%E7%A7%91/index.html">社科<i class="fas fa-check read-icon"></i></a><ul id="subsections-0c9d6aef0bca5a94a96f257f1cf48fc7" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%A4%BE%E7%A7%91/%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E5%8F%AA%E6%9C%89%E4%B8%80%E4%BB%B6%E5%8A%A0%E9%87%8C%E5%87%AF%E5%8B%92%E5%87%AF%E5%8B%92%E5%B8%95%E5%B8%95%E6%A3%AE/index.html" class=""><a class="padding" href="/%E7%A4%BE%E7%A7%91/%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E5%8F%AA%E6%9C%89%E4%B8%80%E4%BB%B6%E5%8A%A0%E9%87%8C%E5%87%AF%E5%8B%92%E5%87%AF%E5%8B%92%E5%B8%95%E5%B8%95%E6%A3%AE/index.html">《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森.<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%A4%BE%E7%A7%91/%E6%B1%A0%E8%B0%B7%E8%A3%95%E4%BA%8C%E8%80%83%E8%AF%95%E8%84%91%E7%A7%91%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html" class=""><a class="padding" href="/%E7%A4%BE%E7%A7%91/%E6%B1%A0%E8%B0%B7%E8%A3%95%E4%BA%8C%E8%80%83%E8%AF%95%E8%84%91%E7%A7%91%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">《考试脑科学》池谷裕二<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%A7%91%E6%99%AE/index.html" class=""><input type="checkbox" id="section-e21a6523d8e7d52806b1ba653eca621d" aria-controls="subsections-e21a6523d8e7d52806b1ba653eca621d"><label for="section-e21a6523d8e7d52806b1ba653eca621d"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 科普</span></label><a class="padding" href="/%E7%A7%91%E6%99%AE/index.html">科普<i class="fas fa-check read-icon"></i></a><ul id="subsections-e21a6523d8e7d52806b1ba653eca621d" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html" class=""><a class="padding" href="/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html">手机丢失后一定要做的几件必做事！<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html" class=""><input type="checkbox" id="section-055705051387ceccbed8d9222bbca770" aria-controls="subsections-055705051387ceccbed8d9222bbca770"><label for="section-055705051387ceccbed8d9222bbca770"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 红蓝对抗</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html">红蓝对抗<i class="fas fa-check read-icon"></i></a><ul id="subsections-055705051387ceccbed8d9222bbca770" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html" class=""><input type="checkbox" id="section-02c229b842fa25d657521450528e1e8c" aria-controls="subsections-02c229b842fa25d657521450528e1e8c"><label for="section-02c229b842fa25d657521450528e1e8c"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 系统入侵对抗研究</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html">系统入侵对抗研究<i class="fas fa-check read-icon"></i></a><ul id="subsections-02c229b842fa25d657521450528e1e8c" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-cobalt_strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-cobalt_strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html">CS X86 payload分析混淆加密<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html">Mysql提权小结<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html">windows计划任务隐藏-检查方式<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-8a7eb9f623652b0d0b74da1cc3bf1894" aria-controls="subsections-8a7eb9f623652b0d0b74da1cc3bf1894"><label for="section-8a7eb9f623652b0d0b74da1cc3bf1894"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 页面篡改分析</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html">页面篡改分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-8a7eb9f623652b0d0b74da1cc3bf1894" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-eval%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-eval%E5%8A%A0%E5%AF%86/index.html">页面篡改分析-EVAL加密<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-http流量劫持页面篡分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-js%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-js%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-JS的eval()加密方式跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.html">页面篡改分析-基于sojson.v4混淆的页面篡思路分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/index.html">页面篡改分析-基于sojson.v4混淆的页面篡思路分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-服务器端重定向跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-短链接多级跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html">页面篡改分析-首次会话跳转菠菜页面篡改分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84bocai%E9%A1%B5%E9%9D%A2/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84bocai%E9%A1%B5%E9%9D%A2/index.html">页面篡改分析一处BoCai页面<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E7%BC%96%E7%A8%8B/index.html" class=""><input type="checkbox" id="section-49cd3dd12728d4fd4ae01f7800801d13" aria-controls="subsections-49cd3dd12728d4fd4ae01f7800801d13"><label for="section-49cd3dd12728d4fd4ae01f7800801d13"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 编程</span></label><a class="padding" href="/%E7%BC%96%E7%A8%8B/index.html">编程<i class="fas fa-check read-icon"></i></a><ul id="subsections-49cd3dd12728d4fd4ae01f7800801d13" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BC%96%E7%A8%8B/python/index.html" class=""><input type="checkbox" id="section-5af71f25f527f724bbea024bdc239142" aria-controls="subsections-5af71f25f527f724bbea024bdc239142"><label for="section-5af71f25f527f724bbea024bdc239142"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu python</span></label><a class="padding" href="/%E7%BC%96%E7%A8%8B/python/index.html">python<i class="fas fa-check read-icon"></i></a><ul id="subsections-5af71f25f527f724bbea024bdc239142" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html" class=""><a class="padding" href="/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html">scapy<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+        </ul>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <div class="padding select-container">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <label class="a11y-only" for="select-language">Language</label>
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </div>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <div class="padding select-container">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="select-style">
+                  <label class="a11y-only" for="select-variant">Theme</label>
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <option id="auto" value="auto" selected>Auto</option>
+                  </select>
+                </div>
+                <div class="select-clear"></div>
+              </div>
+              <script>window.variants && variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks"><button class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i><span>&nbsp;</span>Clear History</button></li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+<div id="footer" class="footerFooter showFooter">
+	<style>
+	#footer {
+		font-size: .8125rem;
+		height: 6.25rem;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 2rem 1rem;
+		text-align: center;
+		min-width: 14.375rem;
+		max-width: 18.75rem;
+	}
+	#footer p {
+		margin: 0;
+	}
+	</style>
+	<span></span>
+	<span></span>
+	<span></span>
+	<p align="center">Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+	<script async="" src="../../js/buttons.js?1687453518"></script>
+</div>
+
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1690573851" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690573851" defer></script>
+    <script>
+      function useMathJax( config ){
+        if( !Object.assign ){
+          
+          return;
+        }
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], 
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690573851" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690573851" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script>window.noZensmooth = true;</script>
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
+    <script>
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690573851  };
+    </script>
+    <script src="/js/theme.js?1690573851" defer></script>
+  </body>
+</html>

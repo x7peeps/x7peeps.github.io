@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3文件恢复 on x7peeps</title>
+    <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html</link>
+    <description>Recent content in 3文件恢复 on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 Oct 2021 23:00:00 +0000</lastBuildDate><atom:link href="http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R-studio network(win)</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/r-studio-networkwin/index.html</link>
+      <pubDate>Wed, 13 Oct 2021 23:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/r-studio-networkwin/index.html</guid>
+      <description>近期在应急数据恢复场景，客户使用Hyper-V运行业务系统，由于没有设置快照，在误操作下恢复了虚拟机，导致数据丢失，因此客户需求需要将数据恢复。用过很多方式最后这个好用，这里作为记录归档。
+R-studio network官网https://www.r-studio.com/
+破解版：https://www.52pojie.cn/forum.php?mod=viewthread&amp;amp;tid=1431679&amp;amp;highlight=R-studio%2Bnetwork
+软件使用 使用R-STUDIO查找删除的文件 这里使用的是parallels虚拟机环境，对win10虚拟机进行的文件恢复扫描。
+可以看到扫描结束，整个60G扫描用了2分钟。
+查看发现的文件，基本上和DS、360数据恢复类似的操作，根据需要选择恢复即可，恢复机会代表一定的准确性，可以尝试恢复想恢复的文件。
+最后这里尝试使用破解版的远程恢复功能，这里有个前情，下面的软件介绍里也可以看到，正版软件原则是带有agent放在被恢复主机中的，agent部署需要序列号，但是我们下载的破解版没有agent，但是看到有等待从远程计算机链接的功能。那么我们有没有可能host和远程主机都打开RSTUDIO，host选择指定IP连接，远程主机选择监听，实现host到远程主机的连接？
+测试发现未成功，所以这个远程恢复功能还有待发掘。
+软件介绍 1.采用Windows资源管理器操作界面；通过网络恢复远程数据（远程计算机可运行Win95/98/ME/NT/2000/XP、Linux、UNIX系统） 2.支持FAT12/16/32、NTFS、NTFS5和Ext2FS文件系统；能够重建损毁的RAID阵列；为磁盘、分区、目录生成镜像文件 3.恢复删除分区上的文件、加密文件（NTFS5）、数据流（NTFS、NTFS5） 4.恢复FDISK或其它磁盘工具删除过得数据、病毒破坏的数据、MBR破坏后的数据 5.识别特定文件名；把数据保存到任何磁盘；浏览、编辑文件或磁盘内容等等！
+通过网络进行数据恢复是 R-Studio 最强大、最有用的功能之一。通常，数据恢复需要物理移除硬件或本地安装已注册的数据恢复软件包。使用 R-Studio 网络数据恢复，您可以放弃这两个要求。使用安装了 R-Studio 的本地计算机和安装了 R-Studio Agent 的远程计算机，您可以通过网络连接在目标计算机上执行完整的数据恢复。
+这两个程序通过任何网络连接进行交互——无论是全球公司网络、小型局域网，还是直接连接两台计算机的以太网电缆。连接后，可以恢复来自远程计算机的数据，就像磁盘直接连接到本地计算机一样。您可以在远程计算机上执行文件恢复、磁盘映像，甚至数据编辑。大文件数据集的处理可以完全在远程计算机上完成，无需通过网络传输。例如，可以将恢复的文件和磁盘映像保存到远程计算机的磁盘上，而无需将它们传输到本地计算机。
+R-Studio 网络软件包专为在企业环境中频繁使用网络数据恢复功能集而设计。但是在演示版中可以使用某种程度的网络数据恢复功能，并且也可以使用单个 R-Studio 许可证。升级到 R-Studio Network 许可证的价值取决于您的特定需求。
+通过网络进行数据恢复在以下情况下最有效：
+当计算机位于远程或难以访问的地方，并且访问其文件的唯一方法是通过网络连接到它时。
+当本地计算机具有不常见的硬件或软件配置，并且很难或不可能在本地安装 R-Studio 或使用 R-Studio Emergency 时。
+当很难或不可能从计算机中取出磁盘并将其直接连接到安装了 R-Studio 的计算机时。
+在所有情况下，目标计算机的硬件都应该是可操作的，并且操作系统应该可以正常运行且可启动。如果计算机无法启动，但硬件未损坏，则可以使用 R-Studio Agent Emergency。R-Studio Agent Emergency 允许您访问无法启动计算机的硬盘，前提是没有潜在的物理硬件问题。有关在无法启动的计算机上执行网络数据恢复的更多信息，请参阅我们的文章“通过网络进行紧急数据恢复”。; （对于本地紧急恢复，请阅读我们的文章“使用 R-Studio Emergency 进行紧急文件恢复”）。
+充分利用您的 R-Studio 许可 R-Studio 和 R-Studio Agent 提供多种不同的许可包：R-Studio、R-Studio Network 和 R-Studio Technician。这些软件包旨在为您提供适当数量的 R-Studio 许可证，同时保持经济实惠。对于任何 R-Studio 软件包，如果您决定稍后升级，您可以将初始许可费用用于 R-Studio 网络或 R-Studio 技术人员许可。</description>
+    </item>
+    <item>
+      <title>DiskGenius(win)</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/diskgeniuswin/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/diskgeniuswin/index.html</guid>
+      <description>官网 https://www.diskgenius.cn/
+DiskGenius有免费版、标准版与专业版三个版本状态（功能对比）。三个版本共用同一个发行包，不必分别下载。
+下载后，即可立即使用免费版DiskGenius；注册后，可自动升级为标准版或专业版。
+下载 https://www.diskgenius.cn/download.php
+软件教程 https://www.diskgenius.cn/help/
+帮助手册离线版[https://www.diskgenius.cn/help/DiskGenius%20%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.pdf](https://www.diskgenius.cn/help/DiskGenius 用户使用手册.pdf)
+使用方法 使用DiskGenius恢复数据 当计算机内的文件被有意无意的删除、或遭到病毒破坏、分区被格式化后，若想恢复这些已丢 失的文件，均可使用本功能。实际上，操作系统在删除文件时，只是将被删除文件打上了“删除标 记”，并将文件数据占用的磁盘空间标记为“空闲”。文件数据并没有被清除，还静静地“躺”在 磁盘上。只要删除文件后没有建立新的文件，操作系统没有写入新的数据，这些被删除的文件数据 就不会被破坏，就有机会通过一定的技术手段将它们“抢救”出来。
+格式化操作执行时并不会考虑磁盘上原来的数据内容，也不会先删除旧文件。不同的文件系统 类型，格式化的具体操作内容也不同。对于 FAT32、FAT16、FAT12 等文件系统，格式化时会清除 文件分配表(简称 FAT，固定位于分区的开始部分，含有文件数据的定位信息)及根目录。文件数据 一般不会被清除。对于 NTFS 文件系统，格式化时新写入的数据没有固定位置要求，但正常情况下 每次格式化时的写入位置不会变化。因此旧文件数据大多不会被覆盖，仍存在大量残余信息供我们 找到丢失的文件。
+本功能就是通过分析残留在磁盘上的文件的部分信息来重新找到文件数据及文件夹的层次结 构，从而达到恢复文件数据的目的。
+对于整个分区已经丢失的情况，请首先参阅“搜索已丢失分区(重建分区表)”功能，先搜索到 丢失的分区。然后可以在保存分区表后、或在不保存分区表的情况下再利用“文件恢复”功能恢复 分区内的文件。
+分区被破坏的表现有：在“我的电脑”中打开分区时系统提示“未格式化”“需要格式化”， 分区属性显示为“RAW”，打开分区后看不到任何文件。遇到这些情况时，都可以通过“误格式化 后的文件恢复”功能来恢复文件。
+本功能支持 NTFS、exFAT、FAT32、FAT16、FAT12、EXT4、EXT3、EXT2 等文件系统类型 的磁盘分区、支持使用这些文件系统格式的硬盘、移动硬盘、RAID 卷、U 盘、存储卡(如数码相机 中的 SD 卡、XD 卡等等)、虚拟磁盘。
+为保护正在恢复的分区不被再次破坏，本软件在搜索分区内的文件时，会采用只读模式，不会 向分区写入任何数据。
+要开始恢复文件，首先选择丢失文件所在的分区，然后点击工具栏“恢复文件”按钮，或点击 主菜单“工具”中的“已删除或格式化后的文件恢复”菜单项，以打开文件恢复对话框。如下图：
+由于格式化后的文件恢复与文件正常删除后的恢复过程不同，我们将这两种情况分别处理。下 面是具体的操作方法：
+一、恢复已删除的文件： 如果确定文件是删除的，在恢复文件对话框中选择“恢复已删除的文件”。 如果在文件被删除之后，文件所在的分区有写入操作，则最好同时勾选“额外扫描已知文件类 型”选项，并点击“选择文件类型”按钮设置要恢复的文件类型。勾选这个选项后，软件会扫描分 区中的所有空闲空间，如果发现了要搜索类型的文件，软件会将这些类型的文件在“所有类型”文 件夹中列出。这样，如果在删除之前的正常目录中找不到删除过的文件，就可以根据文件扩展名在 “所有类型”里面找一下。
+很多情况下，即使刚刚删除的文件，通过普通的删除恢复功能也无法找回。这是因为已删除文 件的重要信息被操作系统或用户的误操作破坏了。这种导致二次破坏的操作往往是在不经意间发生 的。比如在误删除了一些照片文件后，马上打开“资源管理器”在各个目录中找寻刚刚删除的文件 并使用了Windows的缩略图预览功能。恰恰是这样的操作就足矣破坏已删除文件的大量重要信息。 因为缩略图预览功能会在文件夹下面生成缩略图缓存文件。类似的不经意操作有很多。在这种情况 下，必须通过“扫描文件类型”的方式来恢复文件。虽然通过这种方式找到的文件，文件名是用序 号来命名的，但仍然可以通过预览功能、或者复制出来后打开确认。特别是对于恢复照片及 Office 文档时非常有效。
+由于扫描文件类型时速度较慢(需要扫描所有空闲扇区)，建议先不使用这个选项，用普通的方 式搜索一次。如果找不到要恢复的文件，再用这种方式重新扫描。</description>
+    </item>
+    <item>
+      <title>UFS explorer professional recovery(win/mac/linux)</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/ufs-explorer-professional-recoverywinmaclinux/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/ufs-explorer-professional-recoverywinmaclinux/index.html</guid>
+      <description>官网 https://www.ufsexplorer.com/ufs-explorer-professional-recovery.php
+国内常见的支持E01镜像文件访问的软件主要有GetData Mount Image Pro、AccessData FTK Imager和OSFMount等。我们使用GetData Mount Image Pro将镜像文件映射为本地磁盘驱动，然后再将镜像文件中的操作系统加载到虚拟机上运行。
+推荐使用ufs explorer professional recovery.( https://www.ufsexplorer.com/ufs-explorer-professional-recovery.php) 实测好用。
+自述 UFS Explorer Professional Recovery是一款专家级软件工具，旨在解决高度复杂的数据恢复挑战。
+除了线性电子媒体，如硬盘、u盘和存储卡，该程序处理基于RAID的各种布局的存储，包括标准的、嵌套的、自定义的和特定的配置- Drobo BeyondRAID、Synology Hybrid RAID、Btrfs-RAID和ZFS RAID-z。集成的解密算法可以打开用BitLocker、LUKS、FileVault 2和APFS加密的卷，而不必在操作系统中解锁它们。软件还支持许多文件系统用于Windows, Linux, macOS BSD,提供直接访问其内容,以及各种存储技术,包括Windows动态磁盘,存储空间和重复数据删除,苹果软件RAID,核心存储和时间机器,Linux mdadm和自动精简配置LVM。此外，该应用程序允许使用各种虚拟化系统，如VMware、Hyper-V、VirtualBox、QEMU、XEN和许多格式的磁盘映像。
+此外，UFS Explorer专业恢复功能扩展了有效处理存储设备的可能性，特别是那些显示出某些硬件问题的设备。该软件提供了一个先进的程序，可以打开带有使用参数的存储，并有机会用处理后的数据保存稀疏图像文件。与DeepSpar磁盘成像仪连接的驱动器可以通过局域网进行操作，并由软件控制，而不需要任何第三方解决方案。在嵌入式成像功能的帮助下，还可以创建磁盘的完整或部分映像，该功能具有用于磁盘读取和删除损坏块的各种设置。具有缺陷区域的映射可以在成像过程中生成，或通过将已使用/空闲文件系统空间转换为掩模，并在恢复过程中使用。文件和存储的原始内容可以在软件中通过广泛的辅助工具直接分析和编辑。
+特性 增强的存储读取机制
+创建磁盘映像的高级可能性
+支持多种存储技术
+内置磁盘解密技术
+支持不同RAID类型的自动重构
+带有嵌入式脚本处理程序的可调RAID生成器
+综合工具包的工作与缺陷存储
+有效分析和编辑二进制数据的多种手段
+支持的系统环境 软件可以安装在Windows, Apple macOS and Linux
+操作系统： Microsoft Windows ®: Windows ® XP with Service Pack 3 and later
+Apple macOS: version 10.9 and above
+Linux: Debian Linux 6.</description>
+    </item>
+    <item>
+      <title>WinHEX(win)</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.html</guid>
+      <description>https://www.jianshu.com/p/f14a41e8cfbe
+官网 http://www.x-ways.com/index-c.html
+winhex http://www.x-ways.com/winhex/index-m.html
+WinHex：计算机取证和数据恢复软件，
+十六进制编辑器和磁盘编辑器
+Windows XP / 2003 / Vista / 2008/7/8 / 8.1 / 2012/10 / 2016，32位/ 64位*
+特性 WinHex的核心是通用的十六进制编辑器，在计算机取证，数据恢复，低级数据处理和IT安全领域特别有用。日常和紧急使用的高级工具：检查和编辑所有类型的文件，从文件系统损坏的硬盘驱动器或数码相机卡中恢复已删除的文件或丢失的数据。功能取决于许可证类型（许可证类型比较），其中：
+硬盘，软盘，CD-ROM和DVD，ZIP，智能媒体，紧凑型闪存等的磁盘编辑器&amp;hellip; 对于FAT12 / 16/32，exFAT的，NTFS和Ext2 / 3/4，本机支持Next3 ® ，CDFS，UDF RAID系统和动态磁盘的内置解释 各种数据恢复技术 RAM编辑器，提供对物理RAM和其他进程的虚拟内存的访问 数据解释器，了解20种数据类型 使用模板编辑数据结构 （例如，修复分区表/引导扇区） 串联和分割文件，统一和分割奇数和偶数字节/字 分析和比较文件 特别灵活的搜索和替换功能 磁盘克隆 （在DOS下使用X-Ways副本） 驱动器映像和备份（可选压缩或拆分为650 MB存档） 编程接口（API）和脚本 256位AES加密，校验和，CRC32，哈希（MD5，SHA-1等） 安全擦除（擦除）机密文件，清理硬盘 以保护您的隐私 导入所有剪贴板格式，包括 ASCII十六进制值 在二进制，十六进制ASCII，Intel十六进制和Motorola S之间进行转换 字符集：ANSI ASCII，IBM ASCII，EBCDIC，（Unicode） 即时窗口切换。印刷。随机数生成器。 支持任何大小的文件。非常快。易于使用。广泛的程序帮助。 更多的 ** **
+下载 http://www.x-ways.net/winhex.zip
+用户手册 http://www.x-ways.com/winhex/manual.pdf
+关于数据恢复部分 使用目录浏览器进行文件恢复 最明显的是，目录浏览器中列出的已删除文件和目录可以通过目录浏览器的上下文菜单轻松、有选择地恢复。导航到一个目录（或递归地浏览根目录），选择要恢复的文件，然后使用上下文菜单中的recover/Copy命令。参见“目录浏览器”一章。理想情况下，首先优化卷快照，以便在目录浏览器中找到并列出更多以前存在的文件。
+按类型/文件头签名搜索的文件恢复 磁盘工具菜单中的数据恢复功能，以及查找以前存在的文件的策略（作为优化卷快照命令的一部分）。这种恢复方法也被称为“文件雕刻”。它搜索可由特征文件头签名（特定的字节值序列）识别的文件。由于这种方法，文件雕刻不依赖于功能文件系统结构的存在。</description>
+    </item>
+    <item>
+      <title>数据恢复工具性能对比</title>
+      <link>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html</guid>
+      <description> 工具名 支持的系统 收费情况 支持挂恢复数据的格式 UFS explorer professional recovery win/mac/linux 收费 数据访问和恢复Windows: NTFS, FAT, FAT32, exFAT, ReFS/ReFS3;macOS: HFS+, APFS;Linux: Ext2, Ext3, Ext4, XFS, Extended format XFS, JFS, ReiserFS, UFS, UFS2, Adaptec UFS, big-endian UFS, Btrfs, F2FS;BSD/Solaris: ZFS volumes;VMware: VMFS, VMFS6.仅支持数据访问macOS: HFS;Novell: NWFS, NSS, NSS64;IBM/Microsoft: HPFS. DiskGenius win 收费 数据访问和恢复Windows: exFAT/GPT/NTFS（智能加载）Linux: EXT2/3/4（还支持分区恢复）虚拟磁盘 WinHEX win 收费 数据访问和恢复Windows: FAT12/16/32/NTFS/exFATLinux: Ext2/3/4, 本机支持Next3 ® , CDFS, UDF </description>
+    </item>
+  </channel>
+</rss>

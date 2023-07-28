@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>样本分析拓展 on x7peeps</title>
+    <link>http://x7peeps.com/tags/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html</link>
+    <description>Recent content in 样本分析拓展 on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Nov 2022 16:21:00 +0000</lastBuildDate><atom:link href="http://x7peeps.com/tags/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>介绍恶意软件中RC4加密的识别与解码</title>
+      <link>http://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADrc4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html</link>
+      <pubDate>Tue, 08 Nov 2022 16:21:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADrc4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html</guid>
+      <description>介绍恶意软件中RC4加密的识别与解码 Jonathan Munshaw
+背景 在第九章9.2.4中RC4的利用简单不容易用加密签名的方式来检测，因此常常被攻击者用于加密。这里根据作者的推荐对Talos的这篇文章进行跟进。
+正文翻译 当我们分析VRT: RC4中的恶意软件时，我们几乎每天都会遇到一些问题。我们最近遇到了CVE-2014-1776，和我们分析的许多恶意软件样本和漏洞一样，RC4被用来混淆或加密它真正在做的事情。实现RC4的方法有很多，它是一个非常简单的小算法。这使得它在野外和各种标准应用程序中非常常见。开源C实现可以在一些网站上找到，比如apple.com和OpenSSL.org。
+RC4是什么? RC4是由RSA安全公司的Ron Rivest在1987年设计的。RC4是一种快速、简单的流密码，使用伪随机数生成算法生成密钥流。此密钥流可用于与明文进行异或操作以生成密文。然后可以使用相同的密钥流对密文进行异或操作，以生成原始明文。 虽然RC4在恶意软件中仍然很常见，但在一些需要考虑速度和隐私的领域，RC4已经被合法地实现了。在过去，WEP和TLS都使用RC4来保护通过线路发送的数据。然而，去年秋天，微软建议客户通过启用TLS1.2和AES-GCM来禁用RC4。
+要了解更多信息，包括RC4的详细历史，请查看维基百科的文章。
+为什么它被用在恶意软件中? 我们越来越多地发现，RC4用于对发送到远程服务器的数据进行编码，这些数据将使用预共享密钥在另一端进行解密。这使得检测变得有点棘手(但不是不可能)，也使确定通过线路发送的确切内容变得更加困难。当我们认为我们遇到某种加密时，我们通常会做的是确定它的来源，被发送的数据是否是静态的(为了匹配目的)，以及数据到底是什么。 它是如何工作的? *注意:对于这些例子，我将使用Coremex Search Engine Hijacker（Coremex搜索引擎劫持者）的一个变体(MD5: 70E2090D5DEE18F3E45D38BF254EFF87)，在它恢复了暂停的子进程之后。 RC4的实现分为两个主要阶段:
+密钥调度算法使用对称密钥来创建256字节(0x100h)的数组。 然后在伪随机数生成算法中使用该数组生成可以使用相同密钥解码的密码流。 许多书籍和网络文章将用以下伪代码表示密钥调度算法(KSA):
+for i from 0 to 255 S[i]:= i endfor j :=0 for i from 0 to 255 j :=(j + S[i]+ key[i mod keylength])mod256 swap values of S[i]and S[j] endfor为了更好地理解算法是如何工作的，可以将其分成多个部分。
+第一部分 创建并初始化替换框
+for i from 0 to 255 S[i]:= i endfor本节创建一个数组(或“SBox”/Substitution Box)，其中每个值等于它在数组中从0-255 (0x00-0xFF)的位置，这也称为其标识排列: 在恶意软件样本中寻找这种类型的加密时，这种初始表创建是一个关键指标。对于这个示例，使用x86汇编代码中的以下循环初始化RC4 KSA:</description>
+    </item>
+    <item>
+      <title>真正的垫片黑幕</title>
+      <link>http://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html</link>
+      <pubDate>Mon, 07 Nov 2022 16:21:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html</guid>
+      <description>背景 在《Malware Analysis》的翻译过程中，8.4.3使用Shim进行内存修补这一节中，作者提到了有关shim或windows打补丁的过程性研究的两篇文章，Jon Erickson的《Using and Abusing Microsoft’s Fix It Patches》和William Ballenthin、Jonathan Tomczak的《The Real Shim Shady》两篇文章。本文就是针对《The Real Shim Shady》的翻译及研究记录。
+正文翻译 Bio, plan . William Ballenthin,逆向工程师
+FireEye实验室高级逆向工程小组 恶意软件分析，正向和反向工程 . Jonathan Tomczak,顾问
+Mandiant专业服务 事件响应、取证、工具开发 . 今天的主题：劫持事件的案例研究和调查技术 应用程序兼容性基础设施。
+把火扑灭 . 在处理恶意软件分类队列时，遇到了有趣的情况： - 被网络钓鱼电子邮件锁定的客户端 - 大型部署火眼箱没有开火 - 恶意软件在某种程度上保持了持久性
+. 发生了什么？如何确定检测和调查方法？
+通过Shims注入DLL . 恶意软件：自解压RAR 释放KORPLUG启动器(elogger.dll) 正在加载外壳代码后门（elogger.dat） . elogger.dat做所有的事情：手动加载PE有效负载、注入、privesc、安装服务、HTTP协议 . 另外，安装ACI shim填充程序：
+将两个（32/64位）硬编码的嵌入式SDB文件写入磁盘 调用sdbinst.exe 什么是ACI shims填充程序是什么，为什么他们在系统中？
+. 使用Microsoft Windows更新管理和解决应用程序兼容性问题 . 通过免费提供的应用程序兼容性工具包(ACT)进行配置 . 可执行加载程序内置的API挂钩(&amp;amp;more)
+“垫片”通常实现为代码或配置（禁用功能） 由指示源和目标的数据库（SDB文件）描述的垫片 向OS注册的SDB，由加载程序查询 应用程序兼容性的基础设施，2 .</description>
+    </item>
+    <item>
+      <title>使用和滥用Microsoft的Fix It修补程序</title>
+      <link>http://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8microsoft%E7%9A%84fixit%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html</link>
+      <pubDate>Sun, 06 Nov 2022 01:21:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8microsoft%E7%9A%84fixit%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html</guid>
+      <description>背景介绍 在《Malware Analysis》的翻译过程中，8.4.3使用Shim进行内存修补这一节中，作者提到了有关shim或windows打补丁的过程性研究的两篇文章，Jon Erickson的《Using and Abusing Microsoft’s Fix It Patches》和William Ballenthin、Jonathan Tomczak的《The Real Shim Shady》两篇文章。本文就是针对《Using and Abusing Microsoft’s Fix It Patches》的翻译及研究记录。
+正文翻译 摘要 Microsoft经常使用Fix it修补程序，这是应用程序兼容性修补程序的一个子集，作为阻止新发现的针对其产品的主动利用方法的一种方式。用于防止攻击的常见修复修补程序类型是以前未记录的内存修复修补程序。本研究首先重点分析了这些内存补丁。通过从中提取信息，研究人员能够更好地理解微软打算修补的漏洞。然后，研究的重点是对补丁进行逆向工程，并使用这些信息来提供创建补丁的能力，这些补丁可用于维护系统的持久性。
+导言 微软的应用程序兼容性组合最初只是为了允许过时的软件在较新的操作系统上运行而设计的。在XP版本中，微软提供了一个包含200个应用程序兼容性修复的数据库。高级用户能够使用兼容性管理工具来选择特定的程序或可执行文件，然后应用这200个可用修复程序中的任何一个。这将导致自定义数据库为该程序修复它。多年来，应用程序兼容性修补程序的效用已经发展到能够通过使用内存修补程序修补程序来修补安全漏洞，该修补程序不包括在兼容性管理工具的可用修补程序列表中。(Microsoft Corporation,2001)
+虽然微软允许使用现有的修复程序，但他们明确禁止创建新的修复程序，并表示，“这种限制是有意的，旨在降低允许非微软方在加载过程中注入潜在有害代码对系统安全造成的风险。”这项研究表明，通过使用未记录的内存修复它，完全可以做到这一点。
+在讨论了之前的工作之后，我们将提供关于应用程序兼容性修复如何工作的背景信息。然后，我们将展示Windows Loader进程如何使用它们。在了解它们是什么以及如何使用它们之后，我们将分解并分析Microsoft如何使用内存修复它来修补Internet Explorer中的漏洞。然后，我们将介绍一个工具来分析这些修复its，并允许创建支持持久性的补丁。
+前期工作 前期工作 如前所述，Fix It文件的内存补丁功能没有文档记录。亚历克斯·约内斯库是第一批对修复补丁进行研究的人之一。在约内斯库关于修复补丁的博客上，他说：“补丁是通过一种方法完成的，这种方法将在以后更详细地研究。”（约内斯库， 应用程序兼容性数据库的秘密（SDB）-第3部分，2007）虽然他可能理解这种格式，但他从未发布过关于补丁或查看补丁的工具的博客帖子。缺乏来自微软和研究的公开信息产生了执行分析和恢复这种补丁结构的愿望。
+Mark Barggett介绍了“Windows是默认拥有的！”在2013年德比大会上。（Baggett，2013）他的演讲描述了用户空间rootkit的工作方式，并展示了rootkit作者创建的大多数东西是如何内置到Windows操作系统中的，并且可以通过使用应用程序兼容性工具包来访问。他展示了如何使用这个工具创建不同的shim数据库文件来维护系统的持久性。Application Compatibility Toolkit没有为用户提供创建内存补丁修补程序的能力，也没有提供分析它们的能力，而这正是本研究的重点。Baggett还指出，您可以通过查看控制面板的Add Remove programs部分来识别通过Microsoft提供的sdbinst程序安装的shim数据库。本研究使用了另一种安装方法，但无法通过添加、删除程序对话框识别该方法。
+应用程序兼容性背景 应用程序兼容性修复解决了应用程序之间的兼容性问题及其与Windows的交互方式。修复it解决方案中心是一个专门修复Its的微软网站，允许用户选择他们的问题领域，如Windows、Internet Explorer、Office等。然后选择问题类型，可以是从性能到安全相关的任何问题。然后，该网站提供了一个可能的解决方案列表。这些解决方案以填充数据库（SDB）的形式发布。
+安装填充程序数据库后，它们将在注册表中的以下两个位置注册：
+HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Custom HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB 例如，微软发布了一个修复补丁，以防止主动利用CVE-2012-1889。（Microsoft，2012）安装此修补程序会创建两个密钥。它首先用目标可执行文件的名称在Custom下创建一个键，在本例中是iexplore.exe。在这个键下，它创建一个名为{91d42a30-5434-48bc-9620-c00936f38898}。然后，修复修补程序会在InstalledSDB中创建一个名为{91d42a30-5434-48bc-9620-c00936f38898}的密钥。此键包含以下值：
+DatabaseDescription=MSXML5:CVE-2012-1889DatabaseInstallTimeStamp=0x1ceab108adaac2cDatabasePath=C:\Windows\AppPatch\Custom\{91d42a30-5434-48bc-9620-c00936f38898}.sdbDatabaseType=0x10000通过查看DatabasePath值可以看到，SDB文件被复制到C:\Windows\AppPatch\Custom目录中。该目录用于存储32位应用程序的SDB文件。 如果为64位应用程序安装补丁，那么SDB文件将位于C:\Windows\AppPatch\Custom\Custom64目录中。并不要求SDB文件位于这些目录中，这只是微软使用的一种惯例。SDB文件可以位于任何可访问的目录位置，并且可以使用任何文件名。甚至有可能有不同文件扩展名的SDB文件。对目录位置的唯一警告是针对64位应用程序。如果是64位应用程序，SDB文件的目录路径中必须有Custom64。DatabaseType值0x10000表示数据库包含要填充的条目。(微软，2012)
+有两种已知的工具可以对SDB文件执行分析。首先是CDD兼容性数据库转储程序，它不对公众开放（约内斯库，应用程序兼容性数据库的秘密（SDB）-第1部分，2007）。第二个是将数据库填充到XML，sdb2xml.exe，这是一个由微软员工创建的工具（Stewart，2007）。sdb2xml在开始这项研究时提供了有用的信息。微软还提供了应用程序兼容性工具包，允许开发人员创建sdb文件，但是，该工具不能解析或理解包含补丁条目的sdb文件。微软还提供了一个读写SDB文件的API。（Microsoft，2013）此API不完整，并且不提供对内存修补程序修复它的洞察，但是，此API用于创建新的和读取现有的SDB文件。
+装载机 Windows加载程序用于将进程加载到内存中并开始执行。作为此过程的一部分，加载程序查看特定的应用程序兼容性注册表位置，以查看该进程是否需要任何修补程序。然后，加载程序在修补程序内部查找更具体的指令，例如将修补程序用于哪个版本的应用程序。这被称为匹配步骤。本研究中作为示例使用的特定补丁包含各种Internet Explorer（IE）版本号和语言标识符。根据操作系统语言和IE版本，将应用补丁的特定部分。 以下代码路径用于将修补程序应用于进程内存空间中加载的映像。加载程序代码从apphelp.dll获取SE_DllLoaded函数的地址，然后尝试应用修补程序。
+ntdll.dllLdrpInitializeProcess()-&amp;gt;LdrpLoadShimEngine()-&amp;gt;LdrpLoadDll()-&amp;gt;SE_DllLoaded()apphelp.dllSE_DllLoaded()-&amp;gt;PatchNewModules()-&amp;gt;SeiAttemptPatches()-&amp;gt;SeiApplyPatch()SeiApplyPatch函数将在后面的修补程序格式部分中讨论。
+补丁分析 本研究中使用了CVE-2013-3393的修复程序，并将在本文的其余部分用作示例。 对于此修复程序，Microsoft提供了mshtml.</description>
+    </item>
+  </channel>
+</rss>

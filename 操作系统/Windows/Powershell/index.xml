@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Powershell on x7peeps</title>
+    <link>http://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/index.html</link>
+    <description>Recent content in Powershell on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[MS-GPSB]Window核心协议-安全扩展协议</title>
+      <link>http://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html</guid>
+      <description>原文由于没有中文版，因此这里手工整理翻译了一下全文方便大佬们后续参考。
+原文：[MS-GPSB] 组策略安全扩展协议
+组策略：安全
+1. 介绍 本文档指定组策略：核心协议的组策略：安全协议扩展，如[MS-GPOL]中所指定。
+1.1 词汇表 Active directory 通用目录服务的Windows实现，它使用LDAP作为其主要访问协议。Active Directory存储有关网络中各种对象的信息，如用户帐户、计算机帐户、组以及Kerberos[MS-KILE]使用的所有相关凭据信息。Active Directory可以作为Active Directory域服务（AD DS）或Active Directory轻量级目录服务（AD LDS）部署，这两种服务在[MS-ADOD]:Active Directory协议概述中都有描述。
+Active Directory object 在[MS-ADTS]第3.1.1节中定义的Active Directory中使用的一组目录对象。Active Directory对象可以通过DSName标识。另请参见目录对象。
+attribute 某些对象或实体的特征，通常编码为名称/值对。
+class 与键关联的用户定义的二进制数据。
+client 客户端，也称为客户端计算机，是接收并应用[MS-GPOL]中指定的组策略对象(GPO)设置的计算机。
+CSE GUID client-side extension 客户端扩展GUID（CSE GUID）：一种GUID，它使组策略客户端上的特定客户端扩展能够与存储在组策略服务器上的组策略对象(GPO)的逻辑和物理组件中的策略数据相关联。
+DACL 自主访问控制列表(DACL)：由对象所有者控制的访问控制列表(ACL)，它指定特定用户或组可以对该对象进行的访问。
+Domain 域：共享公共名称空间和管理基础结构的一组用户和计算机。该组中至少有一个计算机成员必须充当域控制器(DC)并承载标识域所有成员的成员列表，还必须可选地承载Active Directory服务。域控制器提供成员身份验证，为其成员创建信任单元。每个域都有一个在其成员之间共享的标识符。有关更多信息，请参见[MS-AUTHSOD]节1.1.1.5和[MS-ADTS]。
+DC 域控制器(DC)：在实现Active Directory的服务器上运行的服务，或承载此服务的服务器。该服务托管对象的数据存储，并与其他DC进行互操作，以确保对对象的本地更改在所有DC之间正确复制。当Active Directory作为Active Directory域服务（AD DS）运行时，DC包含其林中的配置命名上下文（配置NC)、架构命名上下文（架构NC）和一个域NC的完整NC副本。如果AD DS DC是全局编录服务器（GC服务器），则它包含其林中剩余域NC的部分NC副本。有关更多信息，请参见[MS-AUTHSOD]节1.1.1.5.2和[MS-ADTS]。当Active Directory作为Active Directory轻型目录服务（AD LDS）运行时，多个AD LDS DC可以在一台服务器上运行。当Active Directory作为AD DS运行时，一台服务器上只能运行一个AD DS DC。但是，多个AD LDS DC可以与一个AD DS DC共存在一台服务器上。AD LDS DC在其林中包含配置NC和架构NC的完整NC副本。域控制器是身份验证协议域支持[MS-APDS]的服务器端。
+GUID 全局唯一标识符(GUID)：在Microsoft协议技术文档(TDs)中与通用唯一标识符(UUID)互换使用的术语。交换这些术语的用法并不意味着或要求特定的算法或机制来生成值。具体来说，使用这个术语并不意味着或要求必须使用[RFC4122]或[C706]中描述的算法来生成GUID。另请参见通用唯一标识符(UUID)。
+Group Policy 组策略：允许实现者为Active Directory服务环境中的用户和计算机指定托管配置的机制。</description>
+    </item>
+  </channel>
+</rss>

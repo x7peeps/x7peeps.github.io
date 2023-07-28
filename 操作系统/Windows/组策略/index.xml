@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>组策略 on x7peeps</title>
+    <link>http://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html</link>
+    <description>Recent content in 组策略 on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SID安全标识符</title>
+      <link>http://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html</guid>
+      <description>众所周知的安全标识符(SID) 标识通用组和通用用户。例如，有一些众所周知的 SID 来标识以下组和用户：
+每个人或世界，这是一个包含所有用户的组。
+CREATOR_OWNER，用作可继承 ACE 中的占位符。继承 ACE 时，系统将 CREATOR_OWNER SID 替换为对象创建者的 SID。
+本地计算机上内置域的管理员组。·
+有通用的众所周知的 SID，它们在使用此安全模型的所有安全系统上都有意义，包括Windows 以外的操作系统。此外，还有一些众所周知的 SID 仅在 Windows 系统上才有意义。
+Windows API 为众所周知的标识符权限和相对标识符(RID) 值定义了一组常量。您可以使用这些常量来创建众所周知的 SID。以下示例结合了 SECURITY_WORLD_SID_AUTHORITY 和 SECURITY_WORLD_RID 常量来显示代表所有用户（每个人或世界）的特殊组的通用知名 SID：
+S-1-1-0
+此示例使用 SID 的字符串表示法，其中 S 将字符串标识为 SID，第一个 1 是 SID 的修订级别，其余两位数字是 SECURITY_WORLD_SID_AUTHORITY 和 SECURITY_WORLD_RID 常量。
+您可以使用AllocateAndInitializeSid函数通过将标识符权限值与最多八个子权限值组合来构建 SID。例如，要确定登录用户是否是特定知名组的成员，请调用AllocateAndInitializeSid为知名组构建 SID，并使用EqualSid函数将该 SID 与用户所在组中的组 SID 进行比较。访问令牌。有关示例，请参阅在 C++ 中的访问令牌中搜索 SID。您必须调用FreeSid函数来释放由AllocateAndInitializeSid 分配的 SID 。
+本节的其余部分包含可用于构建知名 SID 的已知 SID 表以及标识符权限和子权限常量表。
+以下是一些通用的知名 SID。
+通用知名 SID 字符串值 识别 Null SID S-1-0-0 一个没有成员的组。这通常在 SID 值未知时使用。 World S-1-1-0 包含所有用户的组。 Local S-1-2-0 登录到本地（物理）连接到系统的终端的用户。 Creator Owner ID S-1-3-0 要由创建新对象的用户的安全标识符替换的安全标识符。此 SID 用于可继承的 ACE。 Creator Group ID S-1-3-1 要由创建新对象的用户的主要组 SID 替换的安全标识符。在可继承的 ACE 中使用此 SID。 下表列出了预定义的标识符权限常量。前四个值与通用的众所周知的 SID 一起使用；最后一个值用于 Windows 众所周知的 SID。</description>
+    </item>
+  </channel>
+</rss>
