@@ -2,121 +2,121 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on x7peeps</title>
-    <link>x7peeps.github.io/tags/index.html</link>
+    <link>/tags/index.html</link>
     <description>Recent content in Tags on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Feb 2023 12:03:49 +0000</lastBuildDate><atom:link href="x7peeps.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Feb 2023 12:03:49 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>应急响应;调查取证;虚拟内存</title>
-      <link>x7peeps.github.io/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E8%B0%83%E6%9F%A5%E5%8F%96%E8%AF%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/index.html</link>
+      <link>/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E8%B0%83%E6%9F%A5%E5%8F%96%E8%AF%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/index.html</link>
       <pubDate>Wed, 01 Feb 2023 12:03:49 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E8%B0%83%E6%9F%A5%E5%8F%96%E8%AF%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/index.html</guid>
+      <guid>/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E8%B0%83%E6%9F%A5%E5%8F%96%E8%AF%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>恶意样本分析,学习</title>
-      <link>x7peeps.github.io/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.html</link>
+      <link>/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.html</link>
       <pubDate>Thu, 10 Nov 2022 22:25:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.html</guid>
+      <guid>/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>样本分析拓展</title>
-      <link>x7peeps.github.io/tags/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html</link>
+      <link>/tags/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html</link>
       <pubDate>Tue, 08 Nov 2022 16:21:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html</guid>
+      <guid>/tags/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>python,twitterapi</title>
-      <link>x7peeps.github.io/tags/pythontwitterapi/index.html</link>
+      <link>/tags/pythontwitterapi/index.html</link>
       <pubDate>Tue, 28 Jun 2022 12:03:49 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/pythontwitterapi/index.html</guid>
+      <guid>/tags/pythontwitterapi/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>红蓝对抗,页面篡改</title>
-      <link>x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9/index.html</link>
+      <link>/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9/index.html</link>
       <pubDate>Fri, 24 Jun 2022 20:08:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9/index.html</guid>
+      <guid>/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>python,爬虫</title>
-      <link>x7peeps.github.io/tags/python%E7%88%AC%E8%99%AB/index.html</link>
+      <link>/tags/python%E7%88%AC%E8%99%AB/index.html</link>
       <pubDate>Thu, 24 Mar 2022 12:03:49 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/python%E7%88%AC%E8%99%AB/index.html</guid>
+      <guid>/tags/python%E7%88%AC%E8%99%AB/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>应急响应</title>
-      <link>x7peeps.github.io/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</link>
+      <link>/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</link>
       <pubDate>Thu, 24 Mar 2022 12:03:49 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</guid>
+      <guid>/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>学习,爬虫</title>
-      <link>x7peeps.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%88%AC%E8%99%AB/index.html</link>
+      <link>/tags/%E5%AD%A6%E4%B9%A0%E7%88%AC%E8%99%AB/index.html</link>
       <pubDate>Fri, 11 Sep 2020 12:03:49 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%88%AC%E8%99%AB/index.html</guid>
+      <guid>/tags/%E5%AD%A6%E4%B9%A0%E7%88%AC%E8%99%AB/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>科普</title>
-      <link>x7peeps.github.io/tags/%E7%A7%91%E6%99%AE/index.html</link>
+      <link>/tags/%E7%A7%91%E6%99%AE/index.html</link>
       <pubDate>Thu, 10 Sep 2020 11:49:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E7%A7%91%E6%99%AE/index.html</guid>
+      <guid>/tags/%E7%A7%91%E6%99%AE/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>红蓝对抗,漏洞复现</title>
-      <link>x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</link>
+      <link>/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</link>
       <pubDate>Fri, 17 Apr 2020 20:18:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</guid>
+      <guid>/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>威胁情报,Thrip</title>
-      <link>x7peeps.github.io/tags/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5thrip/index.html</link>
+      <link>/tags/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5thrip/index.html</link>
       <pubDate>Sat, 04 Apr 2020 21:18:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5thrip/index.html</guid>
+      <guid>/tags/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5thrip/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>红蓝对抗,CobaltStrike</title>
-      <link>x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97cobaltstrike/index.html</link>
+      <link>/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97cobaltstrike/index.html</link>
       <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97cobaltstrike/index.html</guid>
+      <guid>/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97cobaltstrike/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>工具开发,脚本</title>
-      <link>x7peeps.github.io/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC/index.html</link>
+      <link>/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC/index.html</link>
       <pubDate>Wed, 08 Jan 2020 23:31:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC/index.html</guid>
+      <guid>/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>工具开发,脚本,日志分析</title>
-      <link>x7peeps.github.io/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/index.html</link>
+      <link>/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/index.html</link>
       <pubDate>Wed, 08 Jan 2020 23:31:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/index.html</guid>
+      <guid>/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>恶意样本分析,实例</title>
-      <link>x7peeps.github.io/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B/index.html</link>
+      <link>/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B/index.html</link>
       <pubDate>Thu, 12 Dec 2019 20:31:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B/index.html</guid>
+      <guid>/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B/index.html</guid>
       <description></description>
     </item>
     <item>
       <title>红蓝对抗</title>
-      <link>x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</link>
+      <link>/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</link>
       <pubDate>Mon, 08 Oct 2018 21:21:00 +0000</pubDate>
-      <guid>x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</guid>
+      <guid>/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</guid>
       <description></description>
     </item>
   </channel>
