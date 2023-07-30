@@ -10,18 +10,18 @@
     <title>样本分析-Trojan/Buzus“霸族”木马通过邮件传播 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.xml" rel="alternate" type="application/rss+xml" title="样本分析-Trojan/Buzus“霸族”木马通过邮件传播 - x7peeps">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690743437" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690743437" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690743437" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690743437" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690743437" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690743437" rel="stylesheet">
-    <link href="/css/fonts.css?1690743437" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690743437" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690743437" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690743437" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690743437" rel="stylesheet">
-    <link href="/css/print.css?1690743437" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690743437" rel="stylesheet">
-    <script src="/js/url.js?1690743437"></script>
-    <script src="/js/variant.js?1690743437"></script>
+    <link href="/css/fontawesome-all.min.css?1690743633" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690743633" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690743633" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690743633" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690743633" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690743633" rel="stylesheet">
+    <link href="/css/fonts.css?1690743633" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690743633" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690743633" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690743633" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690743633" rel="stylesheet">
+    <link href="/css/print.css?1690743633" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690743633" rel="stylesheet">
+    <script src="/js/url.js?1690743633"></script>
+    <script src="/js/variant.js?1690743633"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -97,10 +97,10 @@
 <h2 id="trojanbuzus霸族木马通过邮件传播">Trojan/Buzus“霸族”木马通过邮件传播</h2>
 <h3 id="背景">背景</h3>
 <p>
-<a href="#image-fa5da98f62d59ccc147104e2f84884b8" class="lightbox-link">
+<a href="#image-518e3a989fad3a8b3ae53c200ca4a846" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911144841.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fa5da98f62d59ccc147104e2f84884b8">
+<a href="javascript:history.back();" class="lightbox" id="image-518e3a989fad3a8b3ae53c200ca4a846">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911144841.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 探针恶意邮件样本中发现此木马，邮件内容如下：</p>
@@ -124,50 +124,50 @@ SHA1：	b6c0f0588c8efffc48f308dfddecbf6170204dd9
 <h3 id="动态分析">动态分析</h3>
 <p>前台无任何异常，进程看到子程序调用，rundll32.exe调用并处在运行，可看到触发报错告警。
 
-<a href="#image-e788fc1000acc63207e6f4a5547cb4f3" class="lightbox-link">
+<a href="#image-2dff20aa21a4f44635fffdaa794f3070" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145335.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e788fc1000acc63207e6f4a5547cb4f3">
+<a href="javascript:history.back();" class="lightbox" id="image-2dff20aa21a4f44635fffdaa794f3070">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145335.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 可以观察到rundll32.exe调用plareb.dll运行命令：
 
-<a href="#image-26fc691e7ed495d70c5af02aae95ad03" class="lightbox-link">
+<a href="#image-638a123d80b55881b5b1f7af7f4e2ce4" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145344.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-26fc691e7ed495d70c5af02aae95ad03">
+<a href="javascript:history.back();" class="lightbox" id="image-638a123d80b55881b5b1f7af7f4e2ce4">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145344.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 通过行为分析复盘可以看到：
 document.exe再执行时开始创建调起进程：&quot;%Temp%\NvMcTray.exe&quot;
 
-<a href="#image-92cb268def641cfab73c91b5c25f26cc" class="lightbox-link">
+<a href="#image-d0d22e1b616bd5a35389cd827d9bb4d7" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911154310.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-92cb268def641cfab73c91b5c25f26cc">
+<a href="javascript:history.back();" class="lightbox" id="image-d0d22e1b616bd5a35389cd827d9bb4d7">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911154310.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-747ff1fa104c9a446f1116e9448b0ad5" class="lightbox-link">
+<a href="#image-9a9c5af869120bef28fd91bfa1fda15d" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190911153108.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-747ff1fa104c9a446f1116e9448b0ad5">
+<a href="javascript:history.back();" class="lightbox" id="image-9a9c5af869120bef28fd91bfa1fda15d">
 <img src="http://blogimage.xtpeeps.cn/20190911153108.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 查找删除防护软件注册表操作：
 
-<a href="#image-07fdb82e4c8d631b394685cdc8aa97b3" class="lightbox-link">
+<a href="#image-e2e8b843b6b69289c9c32b8aca2d7274" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911152748.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-07fdb82e4c8d631b394685cdc8aa97b3">
+<a href="javascript:history.back();" class="lightbox" id="image-e2e8b843b6b69289c9c32b8aca2d7274">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911152748.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>样本行为审计可以总结下完整的样本document.exe行为：document.exe运行创建%Temp%\NvMcTray.exe和%Temp%\NvTaskbarInit.exe（这个是受保护隐藏的备份），之后通过NvMcTray.exe进行正常流程调用rundll32.exe运行，删除英伟达注册表并新增额外启动项指向隐藏备份的释放文件NvTaskbarInit.exe，开启代理，删除防护软件启动项等操作。之后NvTaskbarInit.exe还会调用下载dll进行后续下载操作。
 
-<a href="#image-b7e73a11902c4faec2c606be8b24eeb2" class="lightbox-link">
+<a href="#image-32614cb4bac7b863e5100b7da7e7a0b3" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911164453.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b7e73a11902c4faec2c606be8b24eeb2">
+<a href="javascript:history.back();" class="lightbox" id="image-32614cb4bac7b863e5100b7da7e7a0b3">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911164453.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>[CreateProcess] document.exe:2372 &gt; &#34;%UserProfile%\Desktop\document.exe&#34;	[Child PID: 2856]
@@ -306,38 +306,38 @@ crl.microsoft/pki/crl/products/CSPCA.crl（校验.net证书）
 081007e30903.lantzel.com/get2.php?c=CNEUQIGW&amp;d=26606B67393435363E2F676268307D3F222022222425243177757E4469747A224213131B1212151E0E5C434F116F1C6A76057701040172050A0D0309797F7F0C7304707A01707E767F7E0C7F7F6B2C263E2737216964606F7E31333F616E6A3A535155505243070305545A4D031E180A024C442C455329031B12474B4C4D4E47B6B0B6BABDA3F6F5E7EAB7F9F9E3EAE3FCA2A0BDF1EDF3B1F4FDABC4F9A0AFB9C3CDCCD7FBC09B978EDE9C9F919C88C98D8094C1898490D4D6DDD6869AD4DADEB4A4FFF2F6FDF0F6FEFCF8FFFDEB8B8082</code></pre></div><h3 id="静态分析">静态分析</h3>
 <p>情况基本一致不在赘述：
 
-<a href="#image-f6d57e76573aa9287e4b03a7ac6053cd" class="lightbox-link">
+<a href="#image-2605901f6e4e09fb4617f709513db81e" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145246.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f6d57e76573aa9287e4b03a7ac6053cd">
+<a href="javascript:history.back();" class="lightbox" id="image-2605901f6e4e09fb4617f709513db81e">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145246.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-d7511bfad592018646949191d18bc3b0" class="lightbox-link">
+<a href="#image-75912d6e605bdf4e9f14604122c19000" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174026.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d7511bfad592018646949191d18bc3b0">
+<a href="javascript:history.back();" class="lightbox" id="image-75912d6e605bdf4e9f14604122c19000">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174026.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-ea19b80e932476c8994652cec439f58c" class="lightbox-link">
+<a href="#image-c39f7162954543d5bb13c77d29dc3716" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174349.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ea19b80e932476c8994652cec439f58c">
+<a href="javascript:history.back();" class="lightbox" id="image-c39f7162954543d5bb13c77d29dc3716">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174349.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-fe719009f0b56aa7430106aede66f088" class="lightbox-link">
+<a href="#image-aca05dabe3bc8545dc4a72a77e3424dc" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174339.png-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fe719009f0b56aa7430106aede66f088">
+<a href="javascript:history.back();" class="lightbox" id="image-aca05dabe3bc8545dc4a72a77e3424dc">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174339.png-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-972ff5920a260f4416ecd1bb2fe7d1a2" class="lightbox-link">
+<a href="#image-201ad614e0f76958203003131cbcfd14" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174404.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-972ff5920a260f4416ecd1bb2fe7d1a2">
+<a href="javascript:history.back();" class="lightbox" id="image-201ad614e0f76958203003131cbcfd14">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E2%80%9C%E9%9C%B8%E6%97%8F%E2%80%9D%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174404.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="iocs">IOCs:</h3>
@@ -459,12 +459,12 @@ f0a3eec2709682107edae2372e8984e15bd3b2b7e3de9878ba76cd69cc556ce0</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690743438" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690743438" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690743438" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690743438" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690743438" defer></script>
-        <script src="/js/search.js?1690743438" defer></script>
+        <script src="/js/auto-complete.js?1690743633" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690743633" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690743633" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690743633" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690743633" defer></script>
+        <script src="/js/search.js?1690743633" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -657,8 +657,8 @@ f0a3eec2709682107edae2372e8984e15bd3b2b7e3de9878ba76cd69cc556ce0</p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690743438" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690743438" defer></script>
+    <script src="/js/clipboard.min.js?1690743633" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690743633" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -688,15 +688,15 @@ f0a3eec2709682107edae2372e8984e15bd3b2b7e3de9878ba76cd69cc556ce0</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690743438" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690743438" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690743438" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690743438" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690743438" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690743438" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690743438" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690743438" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690743438" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690743633" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690743633" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690743633" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690743633" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690743633" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690743633" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690743633" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690743633" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690743633" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -705,8 +705,8 @@ f0a3eec2709682107edae2372e8984e15bd3b2b7e3de9878ba76cd69cc556ce0</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690743438  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690743633  };
     </script>
-    <script src="/js/theme.js?1690743438" defer></script>
+    <script src="/js/theme.js?1690743633" defer></script>
   </body>
 </html>
