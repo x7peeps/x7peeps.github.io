@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tests on x7peeps</title>
+    <link>https://x7peeps.com/test/index.html</link>
+    <description>Recent content in Tests on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 31 Jul 2023 02:34:26 +0800</lastBuildDate><atom:link href="https://x7peeps.com/test/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Latest Cool.stuff</title>
+      <link>https://x7peeps.com/test/the-latest-cool.stuff/index.html</link>
+      <pubDate>Mon, 31 Jul 2023 02:34:26 +0800</pubDate>
+      <guid>https://x7peeps.com/test/the-latest-cool.stuff/index.html</guid>
+      <description>Insert Lead paragraph here.
+New cool posts </description>
+    </item>
+  </channel>
+</rss>

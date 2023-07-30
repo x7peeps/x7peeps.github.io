@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2磁盘挂载 on x7peeps</title>
-    <link>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html</link>
+    <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html</link>
     <description>Recent content in 2磁盘挂载 on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Arsenal_Image_Mounter</title>
-      <link>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html</guid>
       <description>分子实验室 https://molecule-labs.com/
 官网：https://arsenalrecon.com/
 工具源码：https://github.com/ArsenalRecon/Arsenal-Image-Mounter
@@ -34,9 +34,9 @@ https://docs.microsoft.com/zh-cn/virtualization/hyper-v-on-windows/quick-start/e
     </item>
     <item>
       <title>GetData Mount Image Pro</title>
-      <link>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html</guid>
       <description>分子实验室 https://molecule-labs.com/
 **官网：**https://getdataforensics.com/product/mount-image-pro/
 介绍： GetData Mount Image Pro镜像文件虚拟工具是一款非常优秀的讲镜像文件虚拟成硬盘的工具软件。简单易操作，程序可以帮助你将.e01、.s01、.raw、.dd、.iso等镜像文件模拟成一个硬盘的分区，比如“F盘”，从而方便你进行读取和访问
@@ -54,9 +54,9 @@ NTFS, FAT, FAT16, FAT32, HFS, APFS, EXT2/3/4; 可以与HFS和Linux EXT2/3/4的�
     </item>
     <item>
       <title>mount_command</title>
-      <link>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html</guid>
       <description>linux基本命令挂载镜像下一般使用mount命令挂载硬盘或镜像。目前没有找到相关取证类型的格式挂载方式。如E01，L01，AFF格式可能目前还需要windows进行挂载处理。
 支持的镜像格式： raw/img/iso 准备阶段 常用的语句 df -Th 查看当前系统的分区情况
 fdisk -l 查看当前系统分区信息详情
@@ -68,9 +68,9 @@ linux分区挂载点介绍 /boot　启动分区，一般设置100M-200M，boot�
     </item>
     <item>
       <title>OSFMount</title>
-      <link>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html</guid>
       <description>概况： OSFMount允许将Windows中的本地磁盘镜像文件(整个磁盘或磁盘分区的逐位拷贝)作为物理磁盘或逻辑驱动器号挂载。然后，您可以使用PassMark OSForensics™来分析磁盘映像文件，方法是使用PassMark OSForensics™指定物理磁盘名称(例如，\.\PhysicalDrive1)或逻辑驱动器号(例如:Z:)。
 默认情况下，映像文件被挂载为只读，因此原始映像文件不会被更改。
 OSFMount支持在“写缓存”模式下以读写方式挂载磁盘镜像文件。它将所有的写操作存储到一个“写缓存”(或“增量”)文件中，该文件保存了原始磁盘映像文件的完整性。
@@ -91,9 +91,9 @@ RAM: 1GB(挂载大磁盘映像时，RAM越多越好)
     </item>
     <item>
       <title>磁盘挂载工具特点对比表</title>
-      <link>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html</guid>
       <description> 工具名 支持的系统 收费情况 支持挂载镜像的格式 Arsenal Image Mounter win 收费，有破解工具 .dd(RAW).AFF4.E01/.Ex01 .VHD/VDI/XVA/VMDK/OVA.AVHD/AVHDX GetData Mount Image Pro win 收费 .AD1.DMG.E01/Ex01/L01/Lx01.aff.ISO .VHD/.VHDX.NUIX/MFS01ProDiscoverSMARTDD(RAW)VMWareXways OSFMount win 免费 .img/.dd.iso/.bin.00n.NRG.AFF.AFM.AFD.VMDK.E01.S01.VHD Mount command linux linux自带 .raw/img/iso </description>
     </item>
   </channel>

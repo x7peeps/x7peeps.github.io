@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>恶意样本分析,学习 on x7peeps</title>
-    <link>/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.html</link>
+    <link>https://x7peeps.com/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.html</link>
     <description>Recent content in 恶意样本分析,学习 on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Nov 2022 22:25:00 +0000</lastBuildDate><atom:link href="/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Nov 2022 22:25:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>恶意样本分析-12-使用内存取证检测高级恶意软件</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</link>
       <pubDate>Thu, 10 Nov 2022 22:25:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</guid>
       <description>11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它们有助于从内存映像中提取有价值的信息。在本章中，我们将继续我们的内存取证之旅，我们将看到更多的插件，这些插件将帮助你从被高级恶意软件感染的内存映像中提取取证痕迹，这些恶意软件使用了隐身和隐藏技术。在下一节中，我们将重点介绍使用内存取证来检测代码注入技术。下一节将讨论在第8章“代码注入和挂钩”中已经涉及到的一些概念，所以强烈建议在阅读下一节之前阅读这一章。
 1. 检测代码注入 回想一下第8章的代码注入和挂钩，代码注入是一种将恶意代码(如EXE、DLL或shellcode)注入合法进程内存并在合法进程的上下文中执行恶意代码的技术。为了向远程进程注入代码，恶意程序通常会分配一个具有读、写和执行权限的内存(PAGE_EXECUTE_READWRITE)，然后将代码注入到远程进程分配的内存中。要检测注入远程进程的代码，可以根据内存保护和内存内容查找可疑的内存范围。一个引人注目的问题是，什么是可疑的内存范围以及如何获得有关进程内存范围的信息?如果你回想一下前一章(在使用ldrmodules检测隐藏DLL部分)，Windows在内核空间中维护一个名为虚拟地址描述符(VADs)的二叉树结构，每个VAD节点描述进程内存中一个几乎连续的内存区域。如果进程内存区域包含一个内存映射文件(如可执行文件、DLL等)，那么其中一个VAD节点存储有关其基址、文件路径和内存保护的信息。下面的描述不是VAD的准确表示，但它应该有助于您理解这个概念。在下面的截图中，内核空间中的一个VAD节点描述了关于进程可执行文件(explorer.exe)加载位置、它的完整路径和内存保护的信息。类似地，其他VAD节点将描述进程内存范围，包括那些包含映射的可执行映像(如DLL)的进程。这意味着VAD可以用来确定每个相邻进程内存范围的内存保护，它还可以给出包含内存映射镜像文件(如可执行文件或DLL)的内存区域的信息: 1.1 通过采用信息 要从内存映像中获取VAD信息，可以使用vadinfo Volatility插件。下面以vadinfo为例，使用进程ID (pid 2180)显示explorer.exe进程的内存区域。在下面的输出中，内核内存中地址为0x8724d718的第一个VAD节点描述了进程内存中的内存范围0x00db0000-0x0102ffff及其内存保护PAGE_EXECUTE_WRITECOPY。由于第一个节点描述的是一个包含内存映射的可执行映像(explorer.exe)的内存范围，因此它还提供了磁盘上的完整路径。第二个节点0x8723fb50描述了0x004b0000-0x004effff的内存范围，它不包含任何内存映射文件。类似地，地址0x8723fb78的第三个节点显示进程内存范围的信息0x77690,000-0x777cbfff，其中包含ntdll.dll及其内存保护:
 $ python vol.py -f win7.vmem --profile=Win7SP1x86 vadinfo -p 2180 Volatility Foundation Volatility Framework 2.6 VAD node @ 0x8724d718 Start 0x00db0000 End 0x0102ffff Tag Vadm Flags: CommitCharge: 4, Protection: 7, VadType: 2 Protection: PAGE_EXECUTE_WRITECOPY Vad Type: VadImageMap ControlArea @87240008 Segment 82135000 NumberOfSectionReferences: 1 NumberOfPfnReferences: 215 NumberOfMappedViews: 1 NumberOfUserReferences: 2 Control Flags: Accessed: 1, File: 1, Image: 1 FileObject @8723f8c0, Name: \Device\HarddiskVolume1\Windows\explorer.</description>
     </item>
     <item>
       <title>恶意样本分析-8-恶意软件的功能和持久化</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html</link>
       <pubDate>Thu, 17 Mar 2022 13:15:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html</guid>
       <description>7. 恶意软件的功能和持久化 恶意软件可以进行各种操作，它可以包括各种功能。了解一个恶意软件所做的事情和它所表现出来的行为，对于理解恶意二进制文件的性质和目的至关重要。在过去的几章中，你学到了进行恶意软件分析所需的技能和工具。在本章和接下来的几章中，我们将主要侧重于了解不同的恶意软件行为、它们的特点和能力。
 1. 恶意软件的功能 现在，你应该对恶意软件如何利用API函数与系统互动有了了解。在本节中，您将了解恶意软件如何利用各种API函数来实现某些功能。关于在哪里可以找到关于特定API的帮助以及如何阅读API文档的信息，请参阅第5章 &amp;ldquo;使用IDA进行反汇编 &amp;ldquo;中的第3节 &amp;ldquo;反汇编Windows API&amp;rdquo;。
 1.1 下载器 在恶意软件分析中，你会遇到的最简单的恶意软件类型是下载器。下载器是一个从互联网下载另一个恶意软件组件并在系统上执行的程序。它通过调用UrlDownloadToFile()API，将文件下载到磁盘上。一旦下载，它就会使用ShellExecute()、WinExec()或CreateProcess()API调用来执行下载的组件。通常情况下，你会发现下载器被用作攻击壳代码的一部分。
@@ -45,9 +45,9 @@ SHORT GetAsyncKeyState(int vKey)。GetAsynKeyState()接受一个整数参数vKey
     </item>
     <item>
       <title>恶意样本分析-7-调试恶意软件二进制文件</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html</link>
       <pubDate>Thu, 17 Mar 2022 10:15:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html</guid>
       <description>6. 调试恶意软件二进制文件 调试时一个通过受控方式执行恶意代码的技术。Debugger是一个程序，使你可以在更细颗粒度的级别上检查恶意代码。debugger提供了对恶意软件运行时行为的完全控制，并允许控制执行单个或多个指令，也可以选择功能执行程序的（而不是执行整个程序），同时研究恶意软件的每个行动。
 在本章中，你将主要学习IDA Pro（商业反汇编/调试器）和x64dbg（开源x32/x64调试器）提供的调试特性。你将在本章了解这些调试器提供的特性，以及如何使用他们检查程序的运行时行为。根据可用资源的不同，可以自由选择这两个调试器中的一个活两个来调试恶意二进制文件。当调试恶意软件时，需要采取适当措施，因为您将在系统上运行恶意代码。在本章最后，还有如何使用.net反编译器/调试器dnSpy（https://github.com/0xd4d/dnSpy)来调试.net应用程序。
 其他受欢迎的反汇编器/调试器包括radare2 (http://rada.re/r/index.html),调试工具的WinDbg部分为Windows (https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/), Ollydbg (http://www.ollydbg.de/version2.html),免疫调试器(https://www.immunityinc.com/products/debugger/),Hopper (https://www.hopperapp.com/)和Binary Ninja (https://binary.ninja/)。
@@ -63,9 +63,9 @@ SHORT GetAsyncKeyState(int vKey)。GetAsynKeyState()接受一个整数参数vKey
     </item>
     <item>
       <title>恶意样本分析6-IDA使用</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html</link>
       <pubDate>Tue, 08 Sep 2020 13:15:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html</guid>
       <description>使用IDA反汇编 代码分析常用语了解恶意样本内部源码不可见时使用。
 1. 代码分析工具 代码分析工具可以根据他们的功能、描述、数量进行分类。 反汇编程序是一个可以将机器语言转汇编代码；并且可以静态代码分析。静态代码分析可以在不执行二进制程序的时候让你了解到程序的行为。
 一个调试器是个应用程序同时也是可以反汇编代码；除此之外也可以执行控制汇编二进制执行。使用调试工具，你不仅可以执行单条指令，或选择函数，或执行整个程序。调试工具可以动态分析，还可以在程序执行的过程中检查可疑的二进制。
@@ -81,23 +81,23 @@ IDA相关深入了解图书推荐《The IDA Pro Book》by Chris Eagle
     </item>
     <item>
       <title>恶意样本分析4-基础DLL分析</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html</link>
       <pubDate>Wed, 25 Sep 2019 19:24:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html</guid>
       <description>&lt;p&gt;
-&lt;a href=&#34;#image-cbc52077effd398e83bc5085146f688d&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;a href=&#34;#image-7db79128363fa6550b0554cc0ad69ef2&#34; class=&#34;lightbox-link&#34;&gt;
 &lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-cbc52077effd398e83bc5085146f688d&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-7db79128363fa6550b0554cc0ad69ef2&#34;&gt;
 &lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
 当恶意代码打包进dll，需要对其进行一定量的定性分析，除了平台的手段，这里还有一些基础的dll分析手段。&lt;/p&gt;</description>
     </item>
     <item>
       <title>恶意样本分析4-基础DLL分析</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html</link>
       <pubDate>Wed, 25 Sep 2019 19:24:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html</guid>
       <description>&lt;h2 id=&#34;汇编及反汇编入门&#34;&gt;汇编及反汇编入门&lt;/h2&gt;
 &lt;p&gt;基于基础动态分析有其局限，为了获取更深的洞察，需要代码分析（逆向分析）
 例如，大多数样本使用c2服务加密通信。使用动态分析我们能够确定加密通信，但是无法获得其通信内容，因此我们需要了解如何进行代码分析。&lt;/p&gt;
@@ -110,46 +110,46 @@ IDA相关深入了解图书推荐《The IDA Pro Book》by Chris Eagle
 数组，字符和结构
 64x架构框架
 
-&lt;a href=&#34;#image-6b99ecc78e883b8c8e2d478d02ad8f0a&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;a href=&#34;#image-bea2aa8bcfb813012eac1848fcae6852&#34; class=&#34;lightbox-link&#34;&gt;
 &lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-6b99ecc78e883b8c8e2d478d02ad8f0a&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-bea2aa8bcfb813012eac1848fcae6852&#34;&gt;
 &lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>恶意样本分析3-基础动态分析</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html</link>
       <pubDate>Fri, 20 Sep 2019 18:15:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html</guid>
       <description>&lt;p&gt;动态分析过程中，当恶意程序执行的时候，需要监控其行为。目标过程的目标是获取恶意程序行为的实时数据，以及其对操作系统的影响。&lt;/p&gt;</description>
     </item>
     <item>
       <title>恶意样本分析2-基础静态分析</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html</link>
       <pubDate>Sun, 15 Sep 2019 10:29:03 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html</guid>
       <description>&lt;p&gt;基础的静态分析可以考虑直接使用各公司平台产品分析产出，这里根据国外的习惯使用一些基本工具脚本进行相关分析的基础工作梳理。&lt;/p&gt;</description>
     </item>
     <item>
       <title>恶意样本分析1-配置实验环境</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html</link>
       <pubDate>Tue, 03 Sep 2019 20:29:03 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html</guid>
       <description>&lt;p&gt;
-&lt;a href=&#34;#image-05f2b2bc31ba59ad9d139caf584ecae3&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;a href=&#34;#image-9edefdd2c76f6ae81c7a06cf48ce5040&#34; class=&#34;lightbox-link&#34;&gt;
 &lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-05f2b2bc31ba59ad9d139caf584ecae3&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-9edefdd2c76f6ae81c7a06cf48ce5040&#34;&gt;
 &lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
 对于日常探针分析工作，样本分析作为不可缺少的一个环节，经常能够在其中发现比较重要的细节，对此部分的学习和总结尤其重要，这一系列即为最近收集总结的一部分。&lt;/p&gt;</description>
     </item>
     <item>
       <title>恶意样本分析-10-使用内存取证狩猎恶意软件</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</guid>
       <description>恶意样本分析-11-使用内存取证狩猎恶意软件 10.使用内存取证狩猎恶意软件 在到目前为止所涵盖的章节中，我们看了概念、工具和技术用于分析恶意软件使用静态，动态和代码分析。在本章中，你将理解另一种技术，称为内存取证(或内存分析)。
 内存取证(或内存分析)是一种调查性技术，涉及到从计算机的物理内存(RAM)中找到并提取司法证据。一个计算机的内存存储有关系统运行状态的有价值的信息。获取存储并进行分析将为司法提供必要的信息调查，例如系统上正在运行哪些应用程序，哪些对象(文件、注册表等)这些应用程序正在访问、活动网络连接、加载模块、加载的内核驱动程序和其他信息。由于这个原因，内存取证是用于事件响应和恶意软件分析。
 在事件响应期间，在大多数情况下，您将无法访问恶意软件样本但您可能只拥有一个可疑系统的内存映像。例如，你可以从安全产品收到关于系统可能存在恶意行为的警报，在这种情况下，您可以获取可疑系统的内存映像，以执行内存司法鉴定确认感染和找到恶意工件。
@@ -163,9 +163,9 @@ Comae Memory Toolkit （DumpIt） by Comae Technologies （免费下载注册）
     </item>
     <item>
       <title>恶意样本分析-10-恶意软件的混淆技术</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html</guid>
       <description>9. 恶意软件的混淆技术 混淆一词指的是掩盖有意义信息的过程。恶意软件作者经常使用各种混淆技术来隐藏信息，并修改恶意内容，使安全分析人员难以发现和分析。敌方通常使用编码/加密技术来掩盖安全产品的信息。除了使用编码/加密，攻击者还使用打包器等程序来混淆恶意二进制内容，这使得分析和逆向工程更加困难。在本章中，我们将研究如何识别这些混淆技术，以及如何解码/解密和解压恶意二进制文件。我们将首先看一下编码/加密技术，随后我们将看一下解包技术。
 攻击者通常出于以下原因使用编码和加密。
 掩盖命令和控制通信 隐藏基于签名的解决方案，如入侵防御系统 隐藏恶意软件所使用的配置文件的内容 加密从受害者系统中传出的信息 混淆恶意二进制文件中的字符串，以躲避静态分析 在我们深入研究恶意软件如何使用加密算法之前，让我们试着了解一下本章将使用的基本知识和一些术语。明文是指未加密的信息；这可能是命令和控制（C2）流量或恶意软件想要加密的文件内容。加密文本指的是加密信息；这可能是恶意软件从C2服务器收到的加密的可执行文件或加密命令。
@@ -184,9 +184,9 @@ Comae Memory Toolkit （DumpIt） by Comae Technologies （免费下载注册）
     </item>
     <item>
       <title>恶意样本分析-9-代码注入和钩子</title>
-      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html</guid>
       <description>8. 代码注入和钩子 在上一章中，我们研究了恶意软件用来留在受害者系统中的不同持久性机制。在本章中，你将学习恶意程序如何将代码注入另一个进程（称为目标进程或远程进程）以执行恶意行动。将恶意代码注入目标进程的内存并在目标进程的上下文中执行恶意代码的技术被称为代码注入（或进程注入）。
 攻击者通常选择一个合法进程（如explorer.exe或svchost.exe）作为目标进程。一旦恶意代码被注入目标进程，它就可以在目标进程的上下文中执行恶意行为，如记录击键、窃取密码和渗出数据。在将代码注入目标进程的内存后，负责注入代码的恶意软件组件可以继续在系统上持续存在，从而在每次系统重启时将代码注入目标进程，或者它可以从文件系统中删除自己，只将恶意代码保留在内存中。/
 在我们深入研究恶意软件的代码注入技术之前，必须了解虚拟内存的概念。

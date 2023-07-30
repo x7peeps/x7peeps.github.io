@@ -10,18 +10,18 @@
     <title>使用和滥用Microsoft的Fix It修补程序 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8microsoft%E7%9A%84fixit%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.xml" rel="alternate" type="application/rss+xml" title="使用和滥用Microsoft的Fix It修补程序 - x7peeps">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690600404" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690600404" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690600404" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690600404" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690600404" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690600404" rel="stylesheet">
-    <link href="/css/fonts.css?1690600404" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690600404" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690600404" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690600404" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690600404" rel="stylesheet">
-    <link href="/css/print.css?1690600404" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690600404" rel="stylesheet">
-    <script src="/js/url.js?1690600404"></script>
-    <script src="/js/variant.js?1690600404"></script>
+    <link href="/css/fontawesome-all.min.css?1690743076" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690743076" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690743076" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690743076" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690743076" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690743076" rel="stylesheet">
+    <link href="/css/fonts.css?1690743076" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690743076" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690743076" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690743076" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690743076" rel="stylesheet">
+    <link href="/css/print.css?1690743076" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690743076" rel="stylesheet">
+    <script src="/js/url.js?1690743076"></script>
+    <script src="/js/variant.js?1690743076"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -36,7 +36,7 @@
       window.T_No_results_found = 'No results found for \u0022{0}\u0022';
       window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
       // some further base stuff
-      var baseUriFull='/';
+      var baseUriFull='https:\/\/x7peeps.com/';
       window.variants && variants.init( [ 'auto' ] );
     </script>
   </head>
@@ -161,10 +161,10 @@ SE_DllLoaded()-&gt;PatchNewModules()-&gt;SeiAttemptPatches()-&gt;SeiApplyPatch()
 <h3 id="补丁格式">补丁格式</h3>
 <p>可以使用sdb2xml工具将sdb文件转储为可读的xml格式。但是，对于描述内存修补的修补程序条目，该工具将显示base64编码的字符串或输出包含字节的二进制文件。请参见图1查看与mshtml.dll版本10.0.9200.16686的CVE-2013-3393相关的字节。
 
-<a href="#image-89605abaf72f0748fbc951f7f6fc09fb" class="lightbox-link">
+<a href="#image-596bbe83b2d794eb9dcb48e46caa3bf8" class="lightbox-link">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676452516103.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-89605abaf72f0748fbc951f7f6fc09fb">
+<a href="javascript:history.back();" class="lightbox" id="image-596bbe83b2d794eb9dcb48e46caa3bf8">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676452516103.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 （图形1-补丁字节样本）（图形2-C结构描述补片字节）
@@ -215,48 +215,48 @@ while(1)
           sdb-explorer.exe -h </code></pre></div><p>使用’-t’命令行参数，它将打印完整的sdb树。这可以根据sdb文件的大小产生大量输出。最好将此命令的输出重定向到一个文件，以便可以在文本编辑器中查看。图3显示了检查CVE-2013-
 3893的修复补丁的部分输出。
 
-<a href="#image-cd42a3110e9286b8842b4d177d0ab63a" class="lightbox-link">
+<a href="#image-82ed463444b4cf62ff382d045f45af06" class="lightbox-link">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676685765054.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-cd42a3110e9286b8842b4d177d0ab63a">
+<a href="javascript:history.back();" class="lightbox" id="image-82ed463444b4cf62ff382d045f45af06">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676685765054.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 图3-t选项的输出。</p>
 <p>“-d”命令打印sdb文件中的所有匹配项。该命令将生成所有目标模块的列表、它们的版本号以及相关的校验和。</p>
 <p>
-<a href="#image-14050cc65234e4ff73ccf66f1c4afc5d" class="lightbox-link">
+<a href="#image-056d2c22457546a143d713c658425d45" class="lightbox-link">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676686070186.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-14050cc65234e4ff73ccf66f1c4afc5d">
+<a href="javascript:history.back();" class="lightbox" id="image-056d2c22457546a143d713c658425d45">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676686070186.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 图4&ndash;D选项的输出</p>
 <p>图4显示了CVE-2013-3893的相同修复结果。正如您在下面看到的，我们只显示了这个命令的结果的子集。这个子集包括10个目标，它们都是针对IE版本6.0.3790.5208的。然而，它们有不同的校验和，这是为了覆盖同一版本的不同语言版本。</p>
 <p>要打印出特定补丁的详细信息，您可以使用’-s’或’-p’选项。</p>
 <p>
-<a href="#image-61bc41de2dab75848e010b63bb9dc4bf" class="lightbox-link">
+<a href="#image-e16dbdfb8c8af5b841474cff63e1fb5a" class="lightbox-link">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676686622658.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-61bc41de2dab75848e010b63bb9dc4bf">
+<a href="javascript:history.back();" class="lightbox" id="image-e16dbdfb8c8af5b841474cff63e1fb5a">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676686622658.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>图5-s选项的输出
 上面的图5使用了’-s’选项，显示了从IE 6匹配中打印列表中第一个校验和的补丁细节时的输出。输出显示存储在补丁中的二进制blob和解码内容。解码内容的含义与本文补丁分析部分讨论的含义相同。</p>
 <p>
-<a href="#image-b846b7ae17e388f23c49fd4794194aee" class="lightbox-link">
+<a href="#image-fde373f0af6b0725d58acee72e74271e" class="lightbox-link">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676686995467.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b846b7ae17e388f23c49fd4794194aee">
+<a href="javascript:history.back();" class="lightbox" id="image-fde373f0af6b0725d58acee72e74271e">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676686995467.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 图6-补丁和校验和标记</p>
 <p>还可以使用-p选项，使用户能够指定patch、patchbits、patchref、patch_tag_id或校验和，如图6所示。</p>
 <p>这两个选项中的任何一个都可以与’-i’选项一起使用，以生成一个IDA python脚本，该脚本可以在IDA中运行，以修补当前正在分析的文件。图7显示了针对CVE2014-0322的Fix It补丁运行时的情况。</p>
 <p>
-<a href="#image-26a15f55d55cb2f9bad3298c5e600903" class="lightbox-link">
+<a href="#image-58db9885c8f5b2b1f6960159a7fb5020" class="lightbox-link">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676687327489.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-26a15f55d55cb2f9bad3298c5e600903">
+<a href="javascript:history.back();" class="lightbox" id="image-58db9885c8f5b2b1f6960159a7fb5020">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676687327489.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 图7-IDAPython脚本</p>
@@ -268,20 +268,20 @@ while(1)
 <p>Mark Baggett展示了许多可以使用应用程序兼容性工具包来维护持久性的方法。需要注意的一点是，您必须拥有系统的管理员权限，因为所需的注册表项在HKEY_LOCAL_MACHINE中。 本研究展示了如何使用内存补丁功能来提供持久性。通常，内存补丁允许将任意代码注入进程。
 使用内存修复修补程序使得攻击者能够让加载程序执行内存修补程序。此修补程序可用于防止Microsoft预期使用的漏洞，也可用于维护持久性。为了保持系统的持久性，我们将重点放在explorer.exe进程上。每次登录到Windows系统时，都会自动启动此过程。利用这些知识，我们可以创建一个针对explorer.exe进程的内存修补程序，将攻击者的代码注入explorer.exe进程的内存空间。</p>
 <p>
-<a href="#image-7c417af8e0eca7c3ec2bcf738f72cf67" class="lightbox-link">
+<a href="#image-1c5046e2ab8f36ec36688c1ba07e9866" class="lightbox-link">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676688487533.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7c417af8e0eca7c3ec2bcf738f72cf67">
+<a href="javascript:history.back();" class="lightbox" id="image-1c5046e2ab8f36ec36688c1ba07e9866">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676688487533.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 图8-修补前的explorer.exe main
 图8显示了explorer.exe进程的主要功能。Explorer.exe编译时启用了热修补程序。这可以通过使用“mov edi，edi”指令来识别，该指令前面有5个NOP指令。对于我们来说，这显然是一个修补主函数的地方，以便将附加功能注入到explorer.exe进程中。没有为进程启用热修补的要求，这只是为了方便。
 在这种情况下，explorer.exe的模块基址是0x400000，NOP指令从地址0x418408开始。这意味着该区域的RVA为0x18408。我们可以创建一个替换命令 这将转到RVA 0x18408，并用以下字节替换内容：e8 f3 f5 0d 00 eb f9。 图9显示了应用补丁后main函数的新行为。
 
-<a href="#image-7cd3786b5abd814294ebae5242ffbce0" class="lightbox-link">
+<a href="#image-f7d36d4fe81a95a196d34bf5f1ece5c4" class="lightbox-link">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676688823278.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7cd3786b5abd814294ebae5242ffbce0">
+<a href="javascript:history.back();" class="lightbox" id="image-f7d36d4fe81a95a196d34bf5f1ece5c4">
 <img src="%e4%bd%bf%e7%94%a8%e5%92%8c%e6%bb%a5%e7%94%a8Microsoft%e7%9a%84FixIt%e4%bf%ae%e8%a1%a5%e7%a8%8b%e5%ba%8f/16676688823278.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 图9-explorer.exe主补丁后
@@ -395,15 +395,17 @@ sdb-explore.exe-r output.sdb-a explorer.exe</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690600404" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690600404" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690600404" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690600404" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690600404" defer></script>
-        <script src="/js/search.js?1690600404" defer></script>
+        <script src="/js/auto-complete.js?1690743076" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690743076" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690743076" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690743076" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690743076" defer></script>
+        <script src="/js/search.js?1690743076" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
+          <li data-nav-id="/test/index.html" class=""><input type="checkbox" id="section-d1b5292bea5f377ac4d470bbc59e3a9d" aria-controls="subsections-d1b5292bea5f377ac4d470bbc59e3a9d"><label for="section-d1b5292bea5f377ac4d470bbc59e3a9d"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Tests</span></label><a class="padding" href="/test/index.html">Tests<i class="fas fa-check read-icon"></i></a><ul id="subsections-d1b5292bea5f377ac4d470bbc59e3a9d" class="morespace collapsible-menu">
+          <li data-nav-id="/test/the-latest-cool.stuff/index.html" class=""><a class="padding" href="/test/the-latest-cool.stuff/index.html">The Latest Cool.stuff<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-70bdf8d87af46a79686d31378c1d7d85" aria-controls="subsections-70bdf8d87af46a79686d31378c1d7d85"><label for="section-70bdf8d87af46a79686d31378c1d7d85"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/index.html">工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-70bdf8d87af46a79686d31378c1d7d85" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-2dbf020e462e790a32571d0d109b782a" aria-controls="subsections-2dbf020e462e790a32571d0d109b782a"><label for="section-2dbf020e462e790a32571d0d109b782a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 威胁情报工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html">威胁情报工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-2dbf020e462e790a32571d0d109b782a" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html">一个rss订阅到钉钉的脚本rss2dingtalk<i class="fas fa-check read-icon"></i></a></li>
@@ -591,8 +593,8 @@ sdb-explore.exe-r output.sdb-a explorer.exe</p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690600404" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690600404" defer></script>
+    <script src="/js/clipboard.min.js?1690743076" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690743076" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -622,15 +624,15 @@ sdb-explore.exe-r output.sdb-a explorer.exe</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690600404" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690743076" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -639,8 +641,8 @@ sdb-explore.exe-r output.sdb-a explorer.exe</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690600404  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690743076  };
     </script>
-    <script src="/js/theme.js?1690600404" defer></script>
+    <script src="/js/theme.js?1690743076" defer></script>
   </body>
 </html>

@@ -10,18 +10,18 @@
     <title>一个rss订阅到钉钉的脚本rss2dingtalk - x7peeps</title>
     <link href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.xml" rel="alternate" type="application/rss+xml" title="一个rss订阅到钉钉的脚本rss2dingtalk - x7peeps">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690600404" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690600404" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690600404" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690600404" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690600404" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690600404" rel="stylesheet">
-    <link href="/css/fonts.css?1690600404" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690600404" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690600404" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690600404" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690600404" rel="stylesheet">
-    <link href="/css/print.css?1690600404" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690600404" rel="stylesheet">
-    <script src="/js/url.js?1690600404"></script>
-    <script src="/js/variant.js?1690600404"></script>
+    <link href="/css/fontawesome-all.min.css?1690743076" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690743076" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690743076" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690743076" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690743076" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690743076" rel="stylesheet">
+    <link href="/css/fonts.css?1690743076" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690743076" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690743076" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690743076" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690743076" rel="stylesheet">
+    <link href="/css/print.css?1690743076" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690743076" rel="stylesheet">
+    <script src="/js/url.js?1690743076"></script>
+    <script src="/js/variant.js?1690743076"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -36,7 +36,7 @@
       window.T_No_results_found = 'No results found for \u0022{0}\u0022';
       window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
       // some further base stuff
-      var baseUriFull='/';
+      var baseUriFull='https:\/\/x7peeps.com/';
       window.variants && variants.init( [ 'auto' ] );
     </script>
   </head>
@@ -107,20 +107,20 @@
 <li>
 <p>打开rss.py, 将钉钉机器人的自定义webhook以及seccode填写到rss.py中；
 
-<a href="#image-7493d8b234e36bd8275e33986ebc3265" class="lightbox-link">
+<a href="#image-f8fad70cdf0486e8cdc8031f9af7f8cf" class="lightbox-link">
 <img src="rss2dingtalk/16481038399312.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7493d8b234e36bd8275e33986ebc3265">
+<a href="javascript:history.back();" class="lightbox" id="image-f8fad70cdf0486e8cdc8031f9af7f8cf">
 <img src="rss2dingtalk/16481038399312.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </li>
 <li>
 <p>维护rss.db，将需要订阅的rss资源填写到rss表项中即可；
 
-<a href="#image-8aa5ed4e9721947bd9bcc5c305f4a266" class="lightbox-link">
+<a href="#image-220dccb0a04a4ed622c038b27443c9e0" class="lightbox-link">
 <img src="rss2dingtalk/16481038477182.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8aa5ed4e9721947bd9bcc5c305f4a266">
+<a href="javascript:history.back();" class="lightbox" id="image-220dccb0a04a4ed622c038b27443c9e0">
 <img src="rss2dingtalk/16481038477182.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </li>
@@ -213,15 +213,17 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690600404" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690600404" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690600404" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690600404" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690600404" defer></script>
-        <script src="/js/search.js?1690600404" defer></script>
+        <script src="/js/auto-complete.js?1690743076" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690743076" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690743076" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690743076" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690743076" defer></script>
+        <script src="/js/search.js?1690743076" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
+          <li data-nav-id="/test/index.html" class=""><input type="checkbox" id="section-d1b5292bea5f377ac4d470bbc59e3a9d" aria-controls="subsections-d1b5292bea5f377ac4d470bbc59e3a9d"><label for="section-d1b5292bea5f377ac4d470bbc59e3a9d"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Tests</span></label><a class="padding" href="/test/index.html">Tests<i class="fas fa-check read-icon"></i></a><ul id="subsections-d1b5292bea5f377ac4d470bbc59e3a9d" class="morespace collapsible-menu">
+          <li data-nav-id="/test/the-latest-cool.stuff/index.html" class=""><a class="padding" href="/test/the-latest-cool.stuff/index.html">The Latest Cool.stuff<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/index.html" class="parent "><input type="checkbox" id="section-70bdf8d87af46a79686d31378c1d7d85" aria-controls="subsections-70bdf8d87af46a79686d31378c1d7d85" checked><label for="section-70bdf8d87af46a79686d31378c1d7d85"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/index.html">工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-70bdf8d87af46a79686d31378c1d7d85" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html" class="parent "><input type="checkbox" id="section-2dbf020e462e790a32571d0d109b782a" aria-controls="subsections-2dbf020e462e790a32571d0d109b782a" checked><label for="section-2dbf020e462e790a32571d0d109b782a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 威胁情报工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html">威胁情报工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-2dbf020e462e790a32571d0d109b782a" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html" class="active"><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html">一个rss订阅到钉钉的脚本rss2dingtalk<i class="fas fa-check read-icon"></i></a></li>
@@ -409,8 +411,8 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690600404" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690600404" defer></script>
+    <script src="/js/clipboard.min.js?1690743076" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690743076" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -440,15 +442,15 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690600404" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690600404" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690743076" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690743076" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -457,8 +459,8 @@
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690600404  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690743076  };
     </script>
-    <script src="/js/theme.js?1690600404" defer></script>
+    <script src="/js/theme.js?1690743076" defer></script>
   </body>
 </html>
