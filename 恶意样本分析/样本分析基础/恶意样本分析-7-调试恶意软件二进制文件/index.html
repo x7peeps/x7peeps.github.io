@@ -10,18 +10,18 @@
     <title>恶意样本分析-7-调试恶意软件二进制文件 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析-7-调试恶意软件二进制文件 - x7peeps">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690743633" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690743633" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690743633" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690743633" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690743633" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690743633" rel="stylesheet">
-    <link href="/css/fonts.css?1690743633" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690743633" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690743633" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690743633" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690743633" rel="stylesheet">
-    <link href="/css/print.css?1690743633" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690743633" rel="stylesheet">
-    <script src="/js/url.js?1690743633"></script>
-    <script src="/js/variant.js?1690743633"></script>
+    <link href="/css/fontawesome-all.min.css?1690743646" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690743646" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690743646" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690743646" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690743646" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690743646" rel="stylesheet">
+    <link href="/css/fonts.css?1690743646" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690743646" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690743646" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690743646" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690743646" rel="stylesheet">
+    <link href="/css/print.css?1690743646" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690743646" rel="stylesheet">
+    <script src="/js/url.js?1690743646"></script>
+    <script src="/js/variant.js?1690743646"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -138,10 +138,10 @@
 <h4 id="21-在x64dbg中启动一个新进程">2.1 在x64dbg中启动一个新进程</h4>
 <p>在x64dbg中，要加载一个可执行文件，选择文件|打开，并浏览到你想调试的文件；这将启动该进程，调试器将在系统断点、TLS回调或程序入口点函数处暂停，这取决于配置设置。你可以通过选择选项|首选项|事件来访问设置对话框。默认的设置对话框显示如下，可执行文件被加载时的默认设置。调试器首先在系统函数中中断（因为系统断点<em>选项被选中）。接下来，在你运行调试器后，它将在TLS回调函数处暂停，如果存在的话（因为TLS回调</em>选项被选中）。这有时是有用的，因为一些反调试器的技巧包含TLS条目，允许恶意软件在主程序运行前执行代码。如果你进一步执行该程序，执行会在程序的入口处暂停。</p>
 <p>
-<a href="#image-ef24e1c40c086571ab59fea4706b9cd0" class="lightbox-link">
+<a href="#image-45810af6e2af595cbbdfaa181bf306ce" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220114020703095.png" alt="image-20220114020703095" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ef24e1c40c086571ab59fea4706b9cd0">
+<a href="javascript:history.back();" class="lightbox" id="image-45810af6e2af595cbbdfaa181bf306ce">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220114020703095.png" alt="image-20220114020703095" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -149,19 +149,19 @@
 </blockquote>
 <p>如果你想让执行直接在程序的入口处暂停，那么请取消勾选系统断点<em>和TLS回调</em>选项（这种配置对大多数恶意软件程序来说应该是很好的，除非恶意软件使用反调试技巧）。要保存配置设置，只需点击保存按钮。有了这个配置，当可执行文件被加载时，进程就会开始，并在程序的进入点暂停执行，如图所示。</p>
 <p>
-<a href="#image-216e3de751312e5e697d51404203a8a3" class="lightbox-link">
+<a href="#image-342fa1dd3382f8c4d3c8dba0eb70ee18" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220114021116411.png" alt="image-20220114021116411" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-216e3de751312e5e697d51404203a8a3">
+<a href="javascript:history.back();" class="lightbox" id="image-342fa1dd3382f8c4d3c8dba0eb70ee18">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220114021116411.png" alt="image-20220114021116411" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="22-附属于一个现有的进程">2.2 附属于一个现有的进程</h4>
 <p>要在x64dbg中附加到一个现有的进程，选择文件|附加（或Alt + A）；这将出现一个显示运行进程的对话框，如下所示。选择你想调试的进程，然后点击附加按钮。当调试器被附加时，进程被暂停，给你时间设置断点和检查进程的资源。当您关闭调试器时，附加的进程将终止。如果您不希望所连接的进程终止，您可以通过选择文件|分离（Ctrl + Alt + F2）来分离一个进程；这可以确保在您关闭调试器时，所连接的进程不会被终止。</p>
 <p>
-<a href="#image-5a52f1dba7cfe1f4d270cfa3dc1489e2" class="lightbox-link">
+<a href="#image-85c0f81dadd9de202fdb47ac9334c84e" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220114021715693.png" alt="image-20220114021715693" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5a52f1dba7cfe1f4d270cfa3dc1489e2">
+<a href="javascript:history.back();" class="lightbox" id="image-85c0f81dadd9de202fdb47ac9334c84e">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220114021715693.png" alt="image-20220114021715693" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -170,18 +170,18 @@
 <h4 id="23-x64dbg调试器接口">2.3 x64dbg调试器接口</h4>
 <p>当你在x64dbg中加载一个程序时，你会看到一个调试器显示屏，如下图所示。调试器显示包含多个标签；每个标签显示不同的窗口。每个窗口都包含关于被调试二进制文件的不同信息。</p>
 <p>
-<a href="#image-0b04c96ee6a6b8197af4c7b80defccf6" class="lightbox-link">
+<a href="#image-3a699139b92601b48448a2dfe0ce5920" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305175735169-6474259.png" alt="image-20220305175735169" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0b04c96ee6a6b8197af4c7b80defccf6">
+<a href="javascript:history.back();" class="lightbox" id="image-3a699139b92601b48448a2dfe0ce5920">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305175735169-6474259.png" alt="image-20220305175735169" class="lightbox-image" loading="lazy">
 </a></p>
 <p>反汇编窗口（CPU窗口）。它显示了被调试程序的所有指令的反汇编情况。这个窗口以线性方式显示反汇编，并与指令指针寄存器（eip或rip）的当前值同步。这个窗口的左边部分显示一个箭头，表示程序的非线性流程（如分支或循环）。你可以通过按G热键来显示控制流图。控制图显示如下；条件性跳转使用绿色和红色箭头。绿色箭头表示如果条件为真将进行跳跃，红色箭头表示不进行跳跃。蓝色箭头用于无条件跳转，向上（向后）的蓝色箭头表示一个循环。</p>
 <p>
-<a href="#image-dfa1ebcbc4419ee3d48a46c0af5bd180" class="lightbox-link">
+<a href="#image-4b9fc2109d13bc7ee24faee9f543a4c0" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305193256666.png" alt="image-20220305193256666" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-dfa1ebcbc4419ee3d48a46c0af5bd180">
+<a href="javascript:history.back();" class="lightbox" id="image-4b9fc2109d13bc7ee24faee9f543a4c0">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305193256666.png" alt="image-20220305193256666" class="lightbox-image" loading="lazy">
 </a></p>
 <p>寄存器窗口。 这个窗口显示CPU寄存器的当前状态。通过双击寄存器并输入一个新的数值，可以修改寄存器中的数值（你也可以右击并修改寄存器的数值为零或增加/减少寄存器的数值）。你可以通过双击标志位的值来切换标志位的开或关。你不能改变指令指针（eip或rip）的值。当你调试程序时，寄存器的值会发生变化；调试器会用红色突出显示寄存器的值，以表示自上一条指令以来的变化。</p>
@@ -189,35 +189,35 @@
 <p>转储窗口。 它显示内存的标准十六进制转储。你可以使用转储窗口来检查被调试进程中任何有效内存地址的内容。例如，如果一个堆栈位置、寄存器或指令包含一个有效的内存位置，要检查该内存位置，右击该地址并选择在转储中关注选项。</p>
 <p>内存地图窗口。 你可以点击Memory Map标签来显示Memory Map窗口的内容。这提供了进程内存的布局，并为你提供了进程中分配的内存段的细节。它是查看可执行文件及其部分在内存中的加载位置的一个好方法。这个窗口还包含关于进程中的DLLs及其在内存中的部分的信息。你可以双击任何条目来重新定位显示到相应的内存位置。</p>
 <p>
-<a href="#image-1cb87358e3a86c2b675bc9c6d5d94806" class="lightbox-link">
+<a href="#image-f4f525264bb0755bd12385b05196c4b2" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305193029754.png" alt="image-20220305193029754" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1cb87358e3a86c2b675bc9c6d5d94806">
+<a href="javascript:history.back();" class="lightbox" id="image-f4f525264bb0755bd12385b05196c4b2">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305193029754.png" alt="image-20220305193029754" class="lightbox-image" loading="lazy">
 </a></p>
 <p>符号窗口。 你可以点击符号标签来显示符号窗口的内容。左边窗格显示加载的模块（可执行文件及其DLLs）的列表；点击一个模块条目将在右边窗格中显示其导入和导出函数，如下所示。这个窗口对于确定导入和导出函数在内存中的位置非常有用。</p>
 <p>
-<a href="#image-4f6a4c41368c4a44ada9f08a91131dbd" class="lightbox-link">
+<a href="#image-44c3a20ceabaceed4963cd6aab0b7e9d" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305193010372.png" alt="image-20220305193010372" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4f6a4c41368c4a44ada9f08a91131dbd">
+<a href="javascript:history.back();" class="lightbox" id="image-44c3a20ceabaceed4963cd6aab0b7e9d">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305193010372.png" alt="image-20220305193010372" class="lightbox-image" loading="lazy">
 </a></p>
 <p>引用窗口References Window。 这个窗口显示对API调用的参考。点击引用标签，默认情况下不会显示API的引用。要填充这个窗口，在反汇编（CPU）窗口的任何地方（加载了可执行文件）点击右键，然后选择搜索|当前模块|中间调用；这将在参考窗口中填充程序中所有API调用的参考。下面的截图显示了对多个API函数的引用；第一个条目告诉你，在地址0x00401C4D处，指令调用了CreateFileA API（由Kernel32.dll导出）。双击该条目将带你到相应的地址（在这种情况下，0x00401C4D）。你也可以在这个地址设置一个断点；一旦断点被击中，你可以检查传递给CreateFileA函数的参数。</p>
 <p>手柄窗口Handles Window。 你可以点击 &ldquo;手柄 &ldquo;选项卡，弹出手柄窗口；要显示内容，在手柄窗口内点击右键，选择 &ldquo;刷新&rdquo;（或F5）。这将显示所有打开的句柄的详细信息。在上一章中，当我们讨论Windows API时，你了解到进程可以打开一个对象（如文件、注册表等）的句柄，这些句柄可以传递给函数，如WriteFile，以执行后续操作。当你在检查API时，这些句柄很有用，比如WriteFile，它将告诉你与句柄相关的对象。例如，在调试一个恶意软件样本时，确定WriteFile API调用接受的句柄值为0x50。 检查句柄窗口显示，句柄值0x50与文件ka4a8213.log有关，如图所示。</p>
 <p>
-<a href="#image-d7058dcb298e2a766052aba0cde1b1d1" class="lightbox-link">
+<a href="#image-2e93cea9116b69b579ae6c20f201f1e7" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305192100811.png" alt="image-20220305192100811" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d7058dcb298e2a766052aba0cde1b1d1">
+<a href="javascript:history.back();" class="lightbox" id="image-2e93cea9116b69b579ae6c20f201f1e7">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305192100811.png" alt="image-20220305192100811" class="lightbox-image" loading="lazy">
 </a></p>
 <p>线程窗口Threads Window。这显示了当前进程中的线程列表。你可以在这个窗口上点击右键，暂停一个/多个线程或恢复一个暂停的线程。</p>
 <p>
-<a href="#image-08244afc2cb57f8abfd75a0c8423d1ea" class="lightbox-link">
+<a href="#image-28e7b803ac280a375f0701f67f03335b" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305193357066.png" alt="image-20220305193357066" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-08244afc2cb57f8abfd75a0c8423d1ea">
+<a href="javascript:history.back();" class="lightbox" id="image-28e7b803ac280a375f0701f67f03335b">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220305193357066.png" alt="image-20220305193357066" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="24-使用x64dbg控制进程执行">2.4 使用x64dbg控制进程执行</h4>
@@ -259,10 +259,10 @@
 <p>除了硬件内存断点外，你也可以用同样的方式设置内存断点。要做到这一点，在转储窗格中，右击所需的地址，选择断点|内存，访问（用于内存访问）或断点|内存，写入（用于内存写入）。</p>
 <p>要查看所有的活动断点，只需点击断点标签；这将在断点窗口中列出所有的软件、硬件和内存断点。您也可以在断点窗口内的任何指令上点击右键，删除一个或所有的断点。</p>
 <p>
-<a href="#image-8ea24aacdff61e28e73c76266076e528" class="lightbox-link">
+<a href="#image-f8265a57fe9b4a10c3894044f33a0023" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220306104257783.png" alt="image-20220306104257783" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8ea24aacdff61e28e73c76266076e528">
+<a href="javascript:history.back();" class="lightbox" id="image-f8265a57fe9b4a10c3894044f33a0023">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220306104257783.png" alt="image-20220306104257783" class="lightbox-image" loading="lazy">
 </a></p>
 <p>关于x64dbg中可用选项的更多信息，请参考x64dbg在线文档：http://x64dbg.readthedocs.io/en/latest/index.html。
@@ -270,26 +270,26 @@
 <h4 id="26-调试32位恶意软件">2.6 调试32位恶意软件</h4>
 <p>有了对调试功能的了解，让我们来看看调试如何帮助我们了解恶意软件的行为。考虑一个恶意软件样本的代码摘录，其中恶意软件调用CreateFileA函数来创建一个文件。为了确定它所创建的文件的名称，你可以在调用CreateFileA函数时设置一个断点，并执行程序直到它到达断点。当它到达断点时（也就是在调用CreateFileA之前），该函数的所有参数将被推到堆栈中；然后我们可以检查堆栈中的第一个参数，以确定文件的名称。在下面的截图中，当执行在断点处暂停时，x64dbg会在指令旁边和堆栈上的参数旁边添加一个注释（如果是字符串），以表明正在传递给函数的参数。从截图中可以看出，该恶意软件在%Appdata%\Microsoft目录下创建了一个可执行文件winlogdate.exe。你也可以通过右击堆栈窗口中的第一个参数，并选择follow DWORD in dump选项来获得这些信息，该选项在十六进制窗口中显示内容。</p>
 <p>
-<a href="#image-d36d1cd8cf4e347b33cdcaec87e594bf" class="lightbox-link">
+<a href="#image-8df8fcb5b835a82d91fcb8c9d623f585" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220306184837797.png" alt="image-20220306184837797" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d36d1cd8cf4e347b33cdcaec87e594bf">
+<a href="javascript:history.back();" class="lightbox" id="image-8df8fcb5b835a82d91fcb8c9d623f585">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220306184837797.png" alt="image-20220306184837797" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在创建可执行文件后，恶意软件将CreateFile返回的句柄值（0x54）作为第一个参数传递给WriteFile，并写入可执行内容（作为第二个参数传递），如这里所示。</p>
 <p>
-<a href="#image-fe308077042f4ce06efacd1e71d239d3" class="lightbox-link">
+<a href="#image-014b9e2c75805cc164b9fab643ef5ae9" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220306223949571.png" alt="image-20220306223949571" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fe308077042f4ce06efacd1e71d239d3">
+<a href="javascript:history.back();" class="lightbox" id="image-014b9e2c75805cc164b9fab643ef5ae9">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220306223949571.png" alt="image-20220306223949571" class="lightbox-image" loading="lazy">
 </a></p>
 <p>让我们假设你不知道哪个对象与句柄 0x54 相关联，可能是因为你直接在 WriteFile 上设置了一个断点，而最初没有在 CreateFile 上设置一个断点。要确定与句柄值相关联的对象，你可以在句柄窗口中查找它。在本例中，作为WriteFile的第一个参数传递的句柄值0x54，与winlogdate.exe相关，如图所示。</p>
 <p>
-<a href="#image-4071a5192caab4fde29334fb407b2b88" class="lightbox-link">
+<a href="#image-fa0b6ffc0bbf86b39b438ac660503cd1" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220306224008340.png" alt="image-20220306224008340" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4071a5192caab4fde29334fb407b2b88">
+<a href="javascript:history.back();" class="lightbox" id="image-fa0b6ffc0bbf86b39b438ac660503cd1">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220306224008340.png" alt="image-20220306224008340" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="27-调试64位恶意软件">2.7 调试64位恶意软件</h4>
@@ -301,35 +301,35 @@
   return 0;
 } </code></pre></div><p>在前面的程序中，printf函数需要8个参数；这个程序在x64dbg中被编译和打开，并在printf函数处设置了一个断点。下面的截图显示了该程序，它在调用printf函数之前暂停了。在寄存器窗口，你可以看到前四个参数被放在rcx、rdx、r8和r9寄存器中。当程序调用一个函数时，该函数在堆栈上保留了0x20（32字节）的空间（可容纳四项，每项8字节大小）；这是为了确保被调用的函数有必要的空间，如果它需要保存寄存器参数（rcx、rdx、r8和r9）。这就是接下来的四个参数（第5、6、7、8个参数）被放在堆栈中的原因，从第五项（rsp+0x20）开始。我们向你展示这个例子是为了让你了解如何在堆栈中寻找参数。</p>
 <p>
-<a href="#image-65fc76a3fe2f8ec767e182525b0dae52" class="lightbox-link">
+<a href="#image-554aaa4699795bd49ac8e6894b25c27e" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307093421813.png" alt="image-20220307093421813" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-65fc76a3fe2f8ec767e182525b0dae52">
+<a href="javascript:history.back();" class="lightbox" id="image-554aaa4699795bd49ac8e6894b25c27e">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307093421813.png" alt="image-20220307093421813" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-83faee533e42f7f5e6f43becf21c9045" class="lightbox-link">
+<a href="#image-a9758cdd6491f11822386504f9e63139" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307100228703.png" alt="image-20220307100228703" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-83faee533e42f7f5e6f43becf21c9045">
+<a href="javascript:history.back();" class="lightbox" id="image-a9758cdd6491f11822386504f9e63139">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307100228703.png" alt="image-20220307100228703" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在32位函数的情况下，堆栈随着参数的推入而增长，当项目被弹出时则缩小。在64位函数中，堆栈空间是在函数开始时分配的，直到函数结束时才会改变。分配的堆栈空间用于存储局部变量和函数参数。在前面的截图中，注意第一条指令sub rsp,48是如何在堆栈上分配0x48（72）字节的空间的，之后在函数中间没有分配堆栈空间；另外，没有使用push和pop指令，而是使用mov指令将第5、6、7和8个参数放在堆栈上（在前面的截图中强调）。由于缺少push和pop指令，因此很难确定函数所接受的参数数量，也很难说内存地址是作为局部变量还是作为函数的参数。另一个挑战是，如果数值在函数调用前被移入寄存器rcx和rdx，就很难说它们是传递给函数的参数，还是因为其他原因被移入寄存器。</p>
 <p>尽管对64位二进制文件进行逆向工程存在挑战，但你分析API调用应该不会有太大困难，因为API文档告诉你函数参数的数量、参数的数据类型，以及它们返回的数据类型。一旦你知道在哪里可以找到函数参数和返回值，你就可以在API调用处设置断点，检查其参数以了解恶意软件的功能。</p>
 <p>让我们看看一个64位恶意软件样本的例子，它调用RegSetValueEx来设置注册表中的一些值。在下面的截图中，断点是在调用RegSetValueEx之前触发的。您将需要查看寄存器和堆栈窗口中的值（如前所述），以检查传递给函数的参数；这将帮助您确定恶意软件设置的注册表值。在x64dbg中，快速获得函数参数摘要的最简单方法是查看默认窗口（在寄存器窗口下方），在下面的截图中突出显示。你可以在默认窗口中设置一个值来显示参数的数量。在下面的截图中，该值被设置为6，因为从API文档（https://msdn.microsoft.com/en-us/library/windows/desktop/ms724923(v=vs.85).aspx）中，你可以知道RegSetValueEx API需要6个参数。</p>
 <p>
-<a href="#image-85d29b5a81947ce323baa2f0b3a4c64b" class="lightbox-link">
+<a href="#image-09a2151f42e864099d5204f0e851f637" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307101718678.png" alt="image-20220307101718678" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-85d29b5a81947ce323baa2f0b3a4c64b">
+<a href="javascript:history.back();" class="lightbox" id="image-09a2151f42e864099d5204f0e851f637">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307101718678.png" alt="image-20220307101718678" class="lightbox-image" loading="lazy">
 </a></p>
 <p>第一个参数值，0x2c，是打开注册表键的句柄。恶意软件可以通过调用RegCreateKey或RegOpenKey API来打开注册表键的句柄。从句柄窗口，你可以知道句柄值0x2c与下面截图中显示的注册表键有关。从句柄信息，以及通过检查第一、第二和第五个参数，你可以知道恶意软件修改了注册表键，HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon\shell，并添加了一个条目，&ldquo;explorer.exe,logoninit.exe&rdquo;。 在一个干净的系统中，这个注册表键指向explorer.exe（默认的Windows shell）。当系统启动时，Userinit.exe进程使用这个值来启动Windows外壳（explorer.exe）。通过添加logoninit.exe和explorer.exe，恶意软件确保logoninit.exe也被Userinit.exe启动；这是恶意软件使用的另一种类型的持久化机制。</p>
 <p>
-<a href="#image-f29e95f3618928e263556c452e4ab0e6" class="lightbox-link">
+<a href="#image-c23bfde8abad39fb5bcb1a42c90ebb76" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307133912405.png" alt="image-20220307133912405" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f29e95f3618928e263556c452e4ab0e6">
+<a href="javascript:history.back();" class="lightbox" id="image-c23bfde8abad39fb5bcb1a42c90ebb76">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307133912405.png" alt="image-20220307133912405" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在这一点上，你应该对如何调试一个恶意可执行文件以了解其功能有了一定的了解。在下一节中，你将学习如何调试一个恶意的DLL以确定其行为。</p>
@@ -337,35 +337,35 @@
 <p>在第3章 &ldquo;动态分析 &ldquo;中，你学到了执行DLL的技术来进行动态分析。在本节中，你将使用你在第3章动态分析中学到的一些概念，使用x64dbg调试DLL。如果你还不熟悉DLL的动态分析，强烈建议你在进一步阅读第3章动态分析中的第6节，动态链接库（DLL）分析。</p>
 <p>要调试DLL，启动x64dbg（最好有管理员权限）并加载DLL（通过文件|打开）。当你加载DLL时，x64dbg将一个可执行文件（名为DLLLoader32_xxxx.exe，其中xxxx是随机的十六进制字符）放入你的DLL所在的同一目录；这个可执行文件作为一个通用的主机进程，它将被用来执行你的DLL（与rundll32.exe的方式相同）。在你加载DLL后，调试器可能会在系统断点、TLS回调或DLL入口点函数处暂停，这取决于配置设置（在前面的x64dbg中启动新进程部分提到）。如果不勾选系统断点<em>和TLS回调</em>选项，在加载DLL时，执行将暂停在DLL的入口点，如下面的截图所示。现在，你可以像其他程序一样对DLL进行调试。</p>
 <p>
-<a href="#image-e38637b508d392ba4163aa525494953c" class="lightbox-link">
+<a href="#image-0f11a2bbbc5d17445295da0590797134" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307134337584.png" alt="image-20220307134337584" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e38637b508d392ba4163aa525494953c">
+<a href="javascript:history.back();" class="lightbox" id="image-0f11a2bbbc5d17445295da0590797134">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307134337584.png" alt="image-20220307134337584" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="281-在x64dbg中使用rundll32exe来调试dll">2.8.1 在x64dbg中使用rundll32.exe来调试DLL</h5>
 <p>另一个有效的方法是使用 rundll32.exe 来调试 DLL（假设你想调试一个名为 rasaut.dll 的恶意软件 DLL）。要做到这一点，首先从system32目录下加载rundll32.exe（通过文件|打开）到调试器，这将使调试器在系统断点或rundll32.exe的入口点暂停（取决于前面提到的设置）。然后，选择Debug | Change Command Line，指定rundll32.exe的命令行参数（指定DLL的完整路径和导出函数），如下所示，然后点击OK。</p>
 <p>
-<a href="#image-29debfbf03d3832a804192d0445e1513" class="lightbox-link">
+<a href="#image-2e22283f83d0502973d2afd0ed372a8e" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307134630811.png" alt="image-20220307134630811" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-29debfbf03d3832a804192d0445e1513">
+<a href="javascript:history.back();" class="lightbox" id="image-2e22283f83d0502973d2afd0ed372a8e">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307134630811.png" alt="image-20220307134630811" class="lightbox-image" loading="lazy">
 </a></p>
 <p>接下来，选择 &ldquo;断点 &ldquo;选项卡，在 &ldquo;断点 &ldquo;窗口内点击右键，选择 &ldquo;添加DLL断点 &ldquo;选项，这时会弹出一个对话窗口，提示你输入模块名称。输入DLL名称（在本例中是rasaut.dll），如下所示。这将告诉调试器在DLL（rasaut.dll）被加载时进行断点。配置完这些设置后，关闭调试器。</p>
 <p>
-<a href="#image-44094b3705976176e83f672ddf102b7b" class="lightbox-link">
+<a href="#image-9d03527249fe561a8434aa10de37eec3" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307134714421.png" alt="image-20220307134714421" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-44094b3705976176e83f672ddf102b7b">
+<a href="javascript:history.back();" class="lightbox" id="image-9d03527249fe561a8434aa10de37eec3">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307134714421.png" alt="image-20220307134714421" class="lightbox-image" loading="lazy">
 </a></p>
 <p>接下来，重新打开调试器，再次加载rundll32.exe；当你再次加载它时，之前的命令行设置仍将保持不变。现在，选择调试|运行（F9），直到你在DLL的入口处中断（你可能需要多次点击运行（F9），直到你到达DLL的入口点）。你可以通过查看断点地址旁边的注释来跟踪每次运行（F9）时执行暂停的位置。你也可以在eip寄存器旁边找到同样的注释。在下面的截图中，你可以看到执行在rasaut.dll的入口处暂停了。在这一点上，你可以像其他程序一样对DLL进行调试。你也可以在DLL导出的任何函数上设置断点。你可以通过使用符号窗口找到导出的函数；在你找到所需的导出函数后函数，双击它（这将带你到反汇编窗口中的导出函数的代码）。然后，在所需的地址设置一个断点。</p>
 <p>
-<a href="#image-b90d1f3061d95cbebf017b2201695f77" class="lightbox-link">
+<a href="#image-3da662e357ba9917159c7a219e9c4ff3" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307134919783.png" alt="image-20220307134919783" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b90d1f3061d95cbebf017b2201695f77">
+<a href="javascript:history.back();" class="lightbox" id="image-3da662e357ba9917159c7a219e9c4ff3">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307134919783.png" alt="image-20220307134919783" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="282-调试一个特定进程中的dll">2.8.2 调试一个特定进程中的DLL</h5>
@@ -373,10 +373,10 @@
 <h4 id="29-跟踪x64dbg的执行情况">2.9 跟踪x64dbg的执行情况</h4>
 <p>跟踪允许你在进程执行时记录事件。x64dbg支持跟踪进入和跟踪超过条件的跟踪选项。你可以通过Trace | Trace into（Ctrl+Alt+F7）和Trace | Trace over（Ctrl+Alt+F8）访问这些选项。在Trace into中，调试器在内部通过设置步进断点来跟踪程序，直到满足条件或达到最大步数。在追踪结束时，调试器通过设置跨步断点来追踪程序，直到条件得到满足或达到最大步数。下面的截图显示了 &ldquo;追踪到 &ldquo;对话框（在 &ldquo;追踪到 &ldquo;对话框中也提供了同样的选项）。要跟踪日志，至少需要指定日志文本和日志文件的完整路径（通过日志文件按钮），跟踪事件将被重定向。</p>
 <p>
-<a href="#image-3dda52d50abf5f05783c2dd3ce1944eb" class="lightbox-link">
+<a href="#image-2beb60fe8cbea5367279b3f098ca0413" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307135422200.png" alt="image-20220307135422200" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3dda52d50abf5f05783c2dd3ce1944eb">
+<a href="javascript:history.back();" class="lightbox" id="image-2beb60fe8cbea5367279b3f098ca0413">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307135422200.png" alt="image-20220307135422200" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面包括一些字段的简要描述。</p>
@@ -389,19 +389,19 @@
 </ul>
 <p>x64dbg没有特定的指令跟踪和函数跟踪功能，但可以使用trace into和trace over选项来执行指令跟踪和函数跟踪。你可以通过添加断点来控制追踪。在下面的截图中，eip指向第1条指令，并在第5条指令处设置了一个断点。当追踪开始时，调试器从第一条指令开始追踪，并在断点处暂停。如果没有断点，则继续跟踪，直到程序结束，或达到最大跟踪次数。如果你想追踪函数内部的指令，你可以选择追踪到，或者追踪到函数的上方，追踪其余的指令。</p>
 <p>
-<a href="#image-61cd3e2f4717500624ba07c90c41c527" class="lightbox-link">
+<a href="#image-36cb76f5063aac6d2ce7ce6be6e4cb83" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307135911771.png" alt="image-20220307135911771" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-61cd3e2f4717500624ba07c90c41c527">
+<a href="javascript:history.back();" class="lightbox" id="image-36cb76f5063aac6d2ce7ce6be6e4cb83">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307135911771.png" alt="image-20220307135911771" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="291-指令追踪">2.9.1 指令追踪</h5>
 <p>要对前一个程序进行指令追踪（例如，追踪到），可以在追踪到对话框中使用以下设置。如前所述，为了在日志文件中捕获跟踪事件，你需要指定日志文件的完整路径和日志文本。</p>
 <p>
-<a href="#image-7ea39a22ecb4bff59f55832e15bb0e6f" class="lightbox-link">
+<a href="#image-a235ccf27b033025b8035f7ced8d65fb" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307135745405.png" alt="image-20220307135745405" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7ea39a22ecb4bff59f55832e15bb0e6f">
+<a href="javascript:history.back();" class="lightbox" id="image-a235ccf27b033025b8035f7ced8d65fb">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307135745405.png" alt="image-20220307135745405" class="lightbox-image" loading="lazy">
 </a></p>
 <p>前面截图中的Log Text值（0x{p:cip} {i:cip}）是字符串格式的，它指定调试器记录所有被跟踪指令的地址和反汇编情况。下面是该程序的跟踪记录。由于选择了跟踪到选项，函数内部的指令（0xdf1000）也被捕获（在下面的代码中突出显示）。指令追踪对于快速了解程序的执行流程非常有用。</p>
@@ -415,18 +415,18 @@
 0x00DF101A      pop ebp</code></pre></div><h5 id="292-函数跟踪">2.9.2 函数跟踪</h5>
 <p>为了演示函数跟踪，请考虑下面截图中的程序。在这个程序中，eip指向第一条指令，断点设置在第五条指令（在这一点上停止追踪），第三条指令在0x311020处调用一个函数。我们可以使用函数追踪来确定该函数（0x311020）调用了哪些其他函数。</p>
 <p>
-<a href="#image-f01e6653b779078135942bcfc2a7997a" class="lightbox-link">
+<a href="#image-a956c79c697f3211b7bee9502ce86609" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140522818.png" alt="image-20220307140522818" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f01e6653b779078135942bcfc2a7997a">
+<a href="javascript:history.back();" class="lightbox" id="image-a956c79c697f3211b7bee9502ce86609">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140522818.png" alt="image-20220307140522818" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了进行函数追踪（本例中选择了Trace into），采用了以下设置。这类似于指令跟踪，除了在日志条件字段中，指定一个表达式，告诉调试器只记录函数调用。</p>
 <p>
-<a href="#image-8ff988ab8053d195fcda0a489999cc44" class="lightbox-link">
+<a href="#image-2180c0521dff6c6b01c2ba893a2ceb31" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140627072.png" alt="image-20220307140627072" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8ff988ab8053d195fcda0a489999cc44">
+<a href="javascript:history.back();" class="lightbox" id="image-2180c0521dff6c6b01c2ba893a2ceb31">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140627072.png" alt="image-20220307140627072" class="lightbox-image" loading="lazy">
 </a></p>
 <p>以下是日志文件中捕获的事件，是函数跟踪的结果。从下面的事件中，你可以知道函数0x311020在0x311000和0x311010调用了另外两个函数。</p>
@@ -436,26 +436,26 @@
 <h4 id="210-在x64dbg中打补丁">2.10 在x64dbg中打补丁</h4>
 <p>在进行恶意软件分析时，您可能想修改二进制文件以改变其功能或颠倒其逻辑以满足您的需要。x64dbg允许您修改内存中的数据或程序的指令。要修改内存中的数据，请导航到内存地址并选择你要修改的字节序列，然后右击并选择二进制|编辑（Ctrl + E），这将会出现一个对话框（如下所示），你可以用它来修改数据为ASCII、UNICODE或十六进制字节序列。</p>
 <p>
-<a href="#image-3e38510dc7593fa71315558d6bc7331c" class="lightbox-link">
+<a href="#image-6ad8a878551575a118f54de38f1d2048" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140449099.png" alt="image-20220307140449099" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3e38510dc7593fa71315558d6bc7331c">
+<a href="javascript:history.back();" class="lightbox" id="image-6ad8a878551575a118f54de38f1d2048">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140449099.png" alt="image-20220307140449099" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的截图显示了TDSS rootkit DLL的代码摘录（这也是上一章中使用IDA修补二进制文件一节中涉及的二进制文件）。如果你还记得，这个DLL使用字符串比较来执行检查，以确保它是在spoolsv.exe进程下运行。如果字符串比较失败（也就是说，如果DLL不是在spoolsv.exe下运行），那么代码就会跳到函数的末尾，并从函数中返回，而不会表现出恶意行为。假设你想让这个二进制文件在任何进程下运行（不仅仅是spoolsv.exe）。你可以用一条nop指令来修改条件跳转指令（JNE tdss.10001Cf9），以取消进程限制。要做到这一点，在条件性跳转指令上点击右键，选择组装，会出现如下所示的对话框，利用它可以输入指令。注意，在截图中，填充NOP的选项是被选中的，以确保指令的排列是正确的。</p>
 <p>
-<a href="#image-2c83a26fe5f25ed5af8f5a59827299b1" class="lightbox-link">
+<a href="#image-fc8c77c649baff084d0d987f035a833a" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140805891.png" alt="image-20220307140805891" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2c83a26fe5f25ed5af8f5a59827299b1">
+<a href="javascript:history.back();" class="lightbox" id="image-fc8c77c649baff084d0d987f035a833a">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140805891.png" alt="image-20220307140805891" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在你修改了内存或指令中的数据后，你可以通过选择文件|补丁文件将补丁应用到文件中，这时会出现一个补丁对话框，显示对二进制文件的所有修改。一旦你对所做的修改感到满意，点击补丁文件并保存该文件。</p>
 <p>
-<a href="#image-5eb4b7fdc25c07d35e2a8812904b3f3d" class="lightbox-link">
+<a href="#image-fc1f2a1c57fd26d7644fe6795dd663e2" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140830510.png" alt="image-20220307140830510" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5eb4b7fdc25c07d35e2a8812904b3f3d">
+<a href="javascript:history.back();" class="lightbox" id="image-fc1f2a1c57fd26d7644fe6795dd663e2">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307140830510.png" alt="image-20220307140830510" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="3-使用ida调试二进制文件">3. 使用IDA调试二进制文件</h3>
@@ -463,37 +463,37 @@
 <h4 id="31-在ida中启动一个新进程">3.1 在IDA中启动一个新进程</h4>
 <p>有不同的方法来启动一个新的进程；一种方法是直接启动调试器，而不需要最初加载程序。要做到这一点，启动IDA（不加载可执行文件），然后选择调试器|运行|本地Windows调试器；这将出现一个对话框，你可以选择要调试的文件。如果该可执行文件需要任何参数，你可以在参数栏中指定它们。这种方法将启动一个新的进程，调试器将在程序的进入点暂停执行。</p>
 <p>
-<a href="#image-7fc9198950b55298421091b3051f1442" class="lightbox-link">
+<a href="#image-a56f58ac3fd8a4f0d1ee8cc5f8498f50" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307141019962.png" alt="image-20220307141019962" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7fc9198950b55298421091b3051f1442">
+<a href="javascript:history.back();" class="lightbox" id="image-a56f58ac3fd8a4f0d1ee8cc5f8498f50">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307141019962.png" alt="image-20220307141019962" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-4f7a2ae61f08c6c82a40156143311a22" class="lightbox-link">
+<a href="#image-c9274f6fa3bbb3c67aeb22fba7233985" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307141236897.png" alt="image-20220307141236897" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4f7a2ae61f08c6c82a40156143311a22">
+<a href="javascript:history.back();" class="lightbox" id="image-c9274f6fa3bbb3c67aeb22fba7233985">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307141236897.png" alt="image-20220307141236897" class="lightbox-image" loading="lazy">
 </a></p>
 <p>启动进程的第二种方法是首先在IDA中加载可执行文件（执行初始分析并显示反汇编的输出）。首先，通过调试器|选择调试器（或F9）选择正确的调试器；然后，你可以将光标放在第一条指令（或你希望执行暂停的指令）上，选择调试器|运行到光标（或F4）。这将启动一个新的进程，并将执行到当前光标位置（在这种情况下，断点会自动设置在当前光标位置）。</p>
 <h4 id="32-使用ida附加到一个现有的程序上">3.2 使用IDA附加到一个现有的程序上</h4>
 <p>你附加到一个进程的方式取决于该程序是否已经加载。当一个程序还没有加载时，选择调试器|附加|本地Windows调试器。这将列出所有运行中的进程。只需选择要附加的进程。附加后，进程将立即暂停，让你有机会检查进程的资源并设置断点，然后再恢复进程的执行。在这种方法中，IDA将不能对二进制文件进行最初的自动分析，因为IDA的加载器将没有机会加载可执行图像。</p>
 <p>
-<a href="#image-4050acc265f8391c32baa607a61a44e7" class="lightbox-link">
+<a href="#image-51e16b4f662d0ee573c95f607b2a21b5" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307151857703.png" alt="image-20220307151857703" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4050acc265f8391c32baa607a61a44e7">
+<a href="javascript:history.back();" class="lightbox" id="image-51e16b4f662d0ee573c95f607b2a21b5">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307151857703.png" alt="image-20220307151857703" class="lightbox-image" loading="lazy">
 </a></p>
 <p>另一种附加到进程的方法是在附加到一个进程之前将与该进程相关的可执行文件加载到IDA。要做到这一点，使用IDA加载相关的可执行文件；这允许IDA执行其初始分析。然后，选择调试器|选择调试器，勾选本地Win32调试器（或本地Windows调试器）选项，并点击确定。然后，再次选择调试器|附加到进程，并选择要附加调试器的进程。</p>
 <h4 id="33-ida的调试器界面">3.3 IDA的调试器界面</h4>
 <p>在IDA调试器中启动程序后，进程将暂停，下面的调试器显示将呈现给你。</p>
 <p>
-<a href="#image-f1cf38371b1e85c6745f13edf4d606c2" class="lightbox-link">
+<a href="#image-da3003cdf9ef148102cbc2b5c9d22cc4" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307152020379.png" alt="image-20220307152020379" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f1cf38371b1e85c6745f13edf4d606c2">
+<a href="javascript:history.back();" class="lightbox" id="image-da3003cdf9ef148102cbc2b5c9d22cc4">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307152020379.png" alt="image-20220307152020379" class="lightbox-image" loading="lazy">
 </a></p>
 <p>当进程处于调试器控制之下时，反汇编工具栏被调试器工具栏取代。这个工具条由与调试功能有关的按钮组成（如进程控制和断点）。</p>
@@ -507,10 +507,10 @@
 <li>段落窗口。段落窗口可以通过查看|打开子视图|段落（或Shift + F7）来实现。当你在调试一个程序时，片段窗口提供了关于进程中分配的内存片段的信息。这个窗口显示了可执行文件及其部分在内存中的加载位置的信息。它还包含所有加载的DLLs的细节，以及它们的段信息。双击任何一个条目，都会带你到反汇编窗口或十六进制窗口中的相应内存位置。你可以控制内存地址的内容在哪里显示（在反汇编或十六进制窗口）；要做到这一点，只需将光标放在反汇编或十六进制窗口的任何地方，然后双击该条目。根据光标的位置，内存地址的内容将显示在适当的窗口中。</li>
 </ul>
 <p>
-<a href="#image-108098cf145937df3aac680091ad923c" class="lightbox-link">
+<a href="#image-18d050de015d6ec7a816247344d8e56d" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307153214197.png" alt="image-20220307153214197" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-108098cf145937df3aac680091ad923c">
+<a href="javascript:history.back();" class="lightbox" id="image-18d050de015d6ec7a816247344d8e56d">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307153214197.png" alt="image-20220307153214197" class="lightbox-image" loading="lazy">
 </a></p>
 <ul>
@@ -554,18 +554,18 @@
 <p>要在IDA中设置一个软件断点，你可以导航到你想要的位置 程序暂停的位置，然后按F2键（或右击并选择添加断点）。在 你设置了断点后，设置断点的地址会以红色突出显示。 颜色。你可以在包含断点的行上按F2键来删除断点。</p>
 <p>在下面的截图中，断点被设置在地址0x00401013（调用 sub_401000）。要在断点地址暂停执行，首先，选择调试器 (如本地Win32调试器)，如前所述，然后通过以下方式运行程序 选择调试器|启动程序（或F9热键）。这将执行所有的 这将在到达断点前执行所有指令，并在断点地址处暂停。</p>
 <p>
-<a href="#image-7867eff82aa4419e39c6a4f514b16dc7" class="lightbox-link">
+<a href="#image-809493f00a22aaffbd819a08efd77657" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307164114035.png" alt="image-20220307164114035" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7867eff82aa4419e39c6a4f514b16dc7">
+<a href="javascript:history.back();" class="lightbox" id="image-809493f00a22aaffbd819a08efd77657">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307164114035.png" alt="image-20220307164114035" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在IDA中，你可以通过编辑已经设置的断点来设置硬件和条件断点。要设置一个硬件断点，请右击现有的断点，选择编辑断点。在弹出的对话框中，选中硬件复选框，如下图所示。IDA允许你设置四个以上的硬件断点，但只有其中的四个能起作用，其他的硬件断点将被忽略。</p>
 <p>
-<a href="#image-ba57ada3f5a11c35754bb423bea6e2f4" class="lightbox-link">
+<a href="#image-c6b3fa8c23fbde5b54d9500aa770a48c" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307164216226.png" alt="image-20220307164216226" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ba57ada3f5a11c35754bb423bea6e2f4">
+<a href="javascript:history.back();" class="lightbox" id="image-c6b3fa8c23fbde5b54d9500aa770a48c">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307164216226.png" alt="image-20220307164216226" class="lightbox-image" loading="lazy">
 </a></p>
 <p>你可以使用硬件断点来指定是执行时断点（默认）、写时断点还是读/写时断点。写时断点和读/写时断点选项允许你在任何指令访问指定的内存位置时创建内存断点。如果你想知道你的程序何时从一个内存位置访问一个数据（读/写），这个断点就很有用。执行时断点选项允许你在指定内存位置被执行时设置断点。除了指定模式外，你还必须指定一个大小。一个硬件断点的大小与它的地址相结合，形成一个可以触发断点的字节范围。</p>
@@ -584,89 +584,89 @@
 .text:00401061 ➊ call ds:CreateFileW
 .text:00401067 mov esi, eax ➋</code></pre></div><p>在下面的截图中，在调用CreateFileW时，执行被暂停了（由于设置了断点并运行了该程序）。该函数的第一个参数是UNICODE字符串（文件名）的地址（0x003F538）。你可以使用IDA的Hex-View窗口来检查任何有效内存位置的内容。通过右击地址0x003F538并选择Follow in hex dump选项，倾倒第一个参数的内容，在Hex-View窗口中显示文件名，如下所示。在这种情况下，恶意软件正在C:\Users\test\AppData\Local\Temp目录下创建一个文件，SHAMple.dat。</p>
 <p>
-<a href="#image-21799760f6f62341390675f4c1b2635f" class="lightbox-link">
+<a href="#image-977dd1b811549580e524aa5bfde52dba" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307164506421.png" alt="image-20220307164506421" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-21799760f6f62341390675f4c1b2635f">
+<a href="javascript:history.back();" class="lightbox" id="image-977dd1b811549580e524aa5bfde52dba">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307164506421.png" alt="image-20220307164506421" class="lightbox-image" loading="lazy">
 </a></p>
 <p>恶意软件在创建文件后，将文件句柄作为第一个参数传递给WriteFile函数。这表明，恶意软件向SHAmple.dat文件写入了一些内容。为了确定它向文件写入了什么内容，你可以检查WriteFile函数的第二个参数。在这种情况下，它正在将字符串FunFunFun写入文件，如下面的截图中所示。如果恶意软件正在向文件写入可执行内容，你也将能够使用这种方法看到它。</p>
 <p>
-<a href="#image-4d97c2eb8105f7b2700261c15857316b" class="lightbox-link">
+<a href="#image-17c8165e6f5ad19082f1972eb7cbef98" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307164538011.png" alt="image-20220307164538011" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4d97c2eb8105f7b2700261c15857316b">
+<a href="javascript:history.back();" class="lightbox" id="image-17c8165e6f5ad19082f1972eb7cbef98">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307164538011.png" alt="image-20220307164538011" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="37-使用ida调试一个恶意的dll">3.7 使用IDA调试一个恶意的DLL</h4>
 <p>在第3章，动态分析中，你学到了执行DLL的技术来进行动态分析。在本节中，你将使用你在第3章动态分析中所学到的一些概念来使用IDA调试一个DLL。如果你不熟悉DLL的动态分析，强烈建议你在进一步阅读第3章动态分析中的第6节，动态链接库（DLL）分析。</p>
 <p>要使用IDA调试器调试DLL，你首先需要指定用于加载DLL的可执行文件（如rundll32.exe）。要调试一个DLL，首先，将DLL加载到IDA，它可能会显示DLLMain函数的反汇编。在DLLMain函数的第一条指令处设置一个断点（F2），如下面的屏幕截图所示。这确保了当你运行DLL时，执行将在DLLMain函数的第一条指令处暂停。你也可以通过从IDA的Exports窗口导航到DLL导出的任何函数上设置断点。</p>
 <p>
-<a href="#image-6619cea1ac621fb6ef0743e36bf8a299" class="lightbox-link">
+<a href="#image-3e1d48b93a7bda40c90453d4362447ab" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307170609128.png" alt="image-20220307170609128" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6619cea1ac621fb6ef0743e36bf8a299">
+<a href="javascript:history.back();" class="lightbox" id="image-3e1d48b93a7bda40c90453d4362447ab">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307170609128.png" alt="image-20220307170609128" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在您在所需的地址（您希望执行暂停的地方）设置断点后，通过调试器|选择调试器|本地Win32调试器（或调试器|选择调试器|本地Windows调试器）选择调试器并点击确定。接下来，选择调试器 | 进程选项，会出现下面截图中的对话框。在应用程序领域，输入用于加载DLL的可执行文件的完整路径（rundll32.exe）。在输入文件字段中，输入你希望调试的DLL的完整路径，在参数字段中，输入要传递给rundll32.exe的命令行参数，然后点击确定。现在，你可以运行该程序以达到断点，之后你可以像调试其他程序一样调试它。你传递给rundll32.exe的参数应该有正确的语法，以便成功地调试DLL（参考第三章动态分析中rundll32.exe的工作部分）。需要注意的一点是，rundll32.exe也可以用来执行64位DLL，方式相同。</p>
 <p>
-<a href="#image-92aab8f57372eba0e9e9b6e16ea263c2" class="lightbox-link">
+<a href="#image-4c658169935520f0c31984b7b1ff7672" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307170641913.png" alt="image-20220307170641913" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-92aab8f57372eba0e9e9b6e16ea263c2">
+<a href="javascript:history.back();" class="lightbox" id="image-4c658169935520f0c31984b7b1ff7672">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307170641913.png" alt="image-20220307170641913" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="371-调试一个特定进程中的dll">3.7.1 调试一个特定进程中的DLL</h5>
 <p>在第三章，动态分析中，你了解到一些DLL如何进行进程检查，以确定它们是否在一个特定的进程下运行，如explorer.exe或iexplore.exe。在这种情况下，你可能想在一个特定的主机进程内调试一个DLL，而不是rundll32.exe。要在DLL的入口点暂停执行，你可以启动一个新的主机进程实例，或者使用调试器附加到所需的主机进程，然后选择调试器|调试器选项，勾选库加载/卸载时暂停的选项。这个选项将告诉调试器，每当加载或卸载一个新模块时就暂停。完成这些设置后，你可以恢复暂停的主机进程，并通过按F9热键让它运行。现在你可以用像RemoteDLL这样的工具将DLL注入到被调试的主机进程中。当DLL被主机进程加载时，调试器将暂停，让你有机会在加载模块的地址上设置断点。你可以通过查看Segments窗口来了解DLL加载到内存的位置，如图所示。</p>
 <p>
-<a href="#image-bcd9caffce745fd194aa417e26cb6477" class="lightbox-link">
+<a href="#image-c181ec8e16a9c3f8031f35605dca6552" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307170839584.png" alt="image-20220307170839584" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-bcd9caffce745fd194aa417e26cb6477">
+<a href="javascript:history.back();" class="lightbox" id="image-c181ec8e16a9c3f8031f35605dca6552">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307170839584.png" alt="image-20220307170839584" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在前面的截图中，你可以看到注入的DLL（rasaut.dll）已经在地址0x10000000（基础地址）处加载到内存中。你可以通过将基址（0x10000000）与PE头中AddressOfEntryPoint字段的值相加，在进入点的地址处设置一个断点。你可以通过将DLL加载到pestudio或CFFexplorer等工具中来确定入口点的地址值。例如，如果AddressOfEntryPoint的值是0x1BFB，那么可以通过将基础地址（0x10000000）与0x1BFB的值相加来确定DLL的入口点，结果是0x10001BFB。现在你可以导航到地址0x10001BFB（或者通过按G键跳转到该地址）并在该地址设置一个断点，然后恢复暂停的进程。</p>
 <h4 id="38-使用ida追踪执行情况">3.8 使用IDA追踪执行情况</h4>
 <p>追踪允许你在一个进程执行时记录（日志）特定的事件。它可以 提供关于二进制文件的详细执行信息。IDA支持三种类型的 追踪：指令追踪、函数追踪和基本块追踪。要在IDA中启用追踪功能。 你需要设置一个断点，然后右击断点地址，选择编辑 断点，这时会出现一个断点设置对话框。在该对话框中，勾选 启用跟踪选项，并选择适当的跟踪类型。然后，选择调试器 通过调试器|选择调试器菜单（如前所述），并运行（F9）该 程序。下面的截图中的位置字段指定了正在编辑的断点。 被编辑的断点，它将被用作执行跟踪的起始地址。追踪将持续到 追踪将继续进行，直到它到达一个断点，或到达程序的终点。为了表明 哪些指令被追踪，IDA用彩色编码突出显示这些指令。在 追踪后，你可以通过选择调试器|追踪|追踪窗口来查看追踪的结果。 窗口。你可以通过Debugger | Tracing | Tracing options来控制跟踪选项。</p>
 <p>
-<a href="#image-84649db65b18a62d5ff50a977dfb4683" class="lightbox-link">
+<a href="#image-740d945d4b26fa85501896c784d8ce0f" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171007508.png" alt="image-20220307171007508" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-84649db65b18a62d5ff50a977dfb4683">
+<a href="javascript:history.back();" class="lightbox" id="image-740d945d4b26fa85501896c784d8ce0f">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171007508.png" alt="image-20220307171007508" class="lightbox-image" loading="lazy">
 </a></p>
 <p>指令跟踪记录每条指令的执行，并显示修改的寄存器值。指令跟踪的速度较慢，因为调试器在内部对程序进行单步操作，以监测和记录所有的寄存器值。指令跟踪对于确定程序的执行流程是非常有用的，可以了解每条指令的执行过程中哪些寄存器被修改。你可以通过添加断点来控制跟踪。</p>
 <p>考虑一下下面截图中的程序。让我们假设你想追踪 前四条指令（在第三条指令中还包括一个函数调用）。要做到这一点 首先，在第一条指令设置一个断点，在第五条指令设置另一个断点。 第五条指令，如下面的截图所示。然后，编辑第一个断点（位于 地址0x00401010）并启用指令跟踪。现在，当你开始调试时，调试器会追踪前四条指令。 调试器会跟踪前四条指令（包括函数内部的指令） 并在第五条指令时暂停。如果您没有指定第二个断点，它将跟踪 所有的指令。</p>
 <p>
-<a href="#image-3e08b3f5fe51b0d611e922977e6b1b0d" class="lightbox-link">
+<a href="#image-091b9c2b3e08223bd970c68ce1e5f447" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171132792.png" alt="image-20220307171132792" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3e08b3f5fe51b0d611e922977e6b1b0d">
+<a href="javascript:history.back();" class="lightbox" id="image-091b9c2b3e08223bd970c68ce1e5f447">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171132792.png" alt="image-20220307171132792" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的截图显示了跟踪窗口中的指令跟踪事件，当时调试器在第五条指令处暂停。注意执行过程是如何从main流向sub_E41000，然后又回到main的。如果你想跟踪其余的指令，你可以通过恢复暂停的进程来实现。</p>
 <p>
-<a href="#image-28e96400dfa20ab676f68ae9a65b77b6" class="lightbox-link">
+<a href="#image-4975c1067539eb4c7106ef021f0ed244" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171243890.png" alt="image-20220307171243890" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-28e96400dfa20ab676f68ae9a65b77b6">
+<a href="javascript:history.back();" class="lightbox" id="image-4975c1067539eb4c7106ef021f0ed244">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171243890.png" alt="image-20220307171243890" class="lightbox-image" loading="lazy">
 </a></p>
 <p>函数跟踪。这记录了所有的函数调用和返回，对于函数追踪事件不记录寄存器的值。函数跟踪对于确定哪些函数和子函数被程序调用很有用。你可以通过将跟踪类型设置为函数，并按照指令跟踪的相同程序来执行函数跟踪。</p>
 <p>在下面的例子中，恶意软件样本调用了两个函数。假设我们想快速了解第一个函数调用了哪些其他函数。为此，我们可以在第一条指令处设置第一个断点，并启用函数跟踪（通过编辑断点），然后我们可以在第二条指令处设置另一个断点。第二个断点将作为停止点（追踪将被执行，直到达到第二个断点）。下面的屏幕截图显示了这两个断点。</p>
 <p>
-<a href="#image-73a6d0e7a3d19f84804db7c96022a34f" class="lightbox-link">
+<a href="#image-61267cb5a1b64f58c08873fc10126a77" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171332910.png" alt="image-20220307171332910" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-73a6d0e7a3d19f84804db7c96022a34f">
+<a href="javascript:history.back();" class="lightbox" id="image-61267cb5a1b64f58c08873fc10126a77">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171332910.png" alt="image-20220307171332910" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在下面的例子中，恶意软件样本调用了两个函数。 假设我们想快速了解第一个函数调用了哪些其他函数。</p>
 <p>
-<a href="#image-943ee9b1a104a34d7850532b4c406e66" class="lightbox-link">
+<a href="#image-810e17ed67f6c3092514a7fc089dfa50" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171436564.png" alt="image-20220307171436564" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-943ee9b1a104a34d7850532b4c406e66">
+<a href="javascript:history.back();" class="lightbox" id="image-810e17ed67f6c3092514a7fc089dfa50">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220307171436564.png" alt="image-20220307171436564" class="lightbox-image" loading="lazy">
 </a></p>
 <p>有时，你的跟踪可能需要很长的时间，而且似乎永远不会结束；如果函数没有返回给它的调用者，而是在一个循环中运行，等待一个事件的发生，就会发生这种情况。在这种情况下，你仍然能够在跟踪窗口中看到跟踪记录。</p>
@@ -770,26 +770,26 @@ while True:
 ----------------[Removed]------------------------</code></pre></div><h3 id="4-调试一个net应用程序">4. 调试一个.NET应用程序</h3>
 <p>在进行恶意软件分析时，你将不得不处理分析各种各样的代码。你可能会遇到使用微软Visual C/C++、Delphi和.NET框架创建的恶意软件。在本节中，我们将简要介绍一个名为dnSpy（https:// github.com/0xd4d/dnSpy）的工具，它使分析.NET二进制文件更加容易。当涉及到反编译和调试.NET应用程序时，它是相当有效的。要加载一个.NET应用程序，你可以将应用程序拖放到dnSpy中，或者启动dnSpy并选择文件|打开，给它二进制文件的路径。一旦加载了.NET应用程序，dnSpy就会对该程序进行反编译，你可以在左侧的窗口（名为Assembly explorer）中访问该程序的方法和类。下面的截图显示了反编译后的.NET恶意二进制文件（名为SQLite.exe）的主要功能。</p>
 <p>
-<a href="#image-7364c123d7fda0eb21c5af749950ca0b" class="lightbox-link">
+<a href="#image-bfe256ab77da766d210976e799c6ee32" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220308131848665.png" alt="image-20220308131848665" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7364c123d7fda0eb21c5af749950ca0b">
+<a href="javascript:history.back();" class="lightbox" id="image-bfe256ab77da766d210976e799c6ee32">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220308131848665.png" alt="image-20220308131848665" class="lightbox-image" loading="lazy">
 </a></p>
 <p>一旦二进制文件被反编译，你可以阅读代码（静态代码分析），以确定恶意软件的功能，或调试代码并执行动态代码分析。要调试恶意软件，你可以点击工具栏上的 &ldquo;开始 &ldquo;按钮，或选择 &ldquo;调试&rdquo;|&ldquo;调试汇编&rdquo;（F5）；这将弹出如图所示的对话框。</p>
 <p>
-<a href="#image-9c63b4c1545ed18bad47cb3fd228d695" class="lightbox-link">
+<a href="#image-36ba22f8a9ec6665a79e1cff322b20cf" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220308131923714.png" alt="image-20220308131923714" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9c63b4c1545ed18bad47cb3fd228d695">
+<a href="javascript:history.back();" class="lightbox" id="image-36ba22f8a9ec6665a79e1cff322b20cf">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220308131923714.png" alt="image-20220308131923714" class="lightbox-image" loading="lazy">
 </a></p>
 <p>使用Break at下拉选项，您可以指定调试器启动时的中断位置。一旦您对这些选项满意，您可以点击确定，这将在调试器的控制下启动进程，并在入口处暂停调试器。现在，您可以通过Debug菜单访问各种调试器选项（如Step Over, Step into, Continue等），如下图所示。你也可以通过双击某一行来设置断点，或者选择Debug | Toggle Breakpoint（F9）。当你调试时，你可以利用本地窗口来检查一些本地变量或内存位置。</p>
 <p>
-<a href="#image-0eee18d9f069db0befdc2f8e8f09b534" class="lightbox-link">
+<a href="#image-84675f985f198fc5cec6cb80288eb772" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220308131952555-6716794.png" alt="image-20220308131952555" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0eee18d9f069db0befdc2f8e8f09b534">
+<a href="javascript:history.back();" class="lightbox" id="image-84675f985f198fc5cec6cb80288eb772">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-7-%e8%b0%83%e8%af%95%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6/image-20220308131952555-6716794.png" alt="image-20220308131952555" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了了解.NET二进制分析，以及对前面提到的二进制文件（名为SQLite.exe）的详细分析，你可以阅读作者的博文：https://cysinfo.com/cyber-attack-targetingcbi-and-possibly-indian-army-officials/。</p>
@@ -882,12 +882,12 @@ while True:
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690743633" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690743633" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690743633" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690743633" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690743633" defer></script>
-        <script src="/js/search.js?1690743633" defer></script>
+        <script src="/js/auto-complete.js?1690743646" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690743646" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690743646" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690743646" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690743646" defer></script>
+        <script src="/js/search.js?1690743646" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -1080,8 +1080,8 @@ while True:
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690743633" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690743633" defer></script>
+    <script src="/js/clipboard.min.js?1690743646" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690743646" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -1111,15 +1111,15 @@ while True:
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690743633" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690743633" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690743633" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690743633" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690743633" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690743633" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690743633" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690743633" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690743633" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690743646" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690743646" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690743646" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690743646" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690743646" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690743646" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690743646" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690743646" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690743646" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -1128,8 +1128,8 @@ while True:
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690743633  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690743646  };
     </script>
-    <script src="/js/theme.js?1690743633" defer></script>
+    <script src="/js/theme.js?1690743646" defer></script>
   </body>
 </html>
