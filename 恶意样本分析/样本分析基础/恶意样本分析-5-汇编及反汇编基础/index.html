@@ -8,20 +8,20 @@
     <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
     <meta name="author" content="x7peeps">
     <title>恶意样本分析4-基础DLL分析 - x7peeps</title>
-    <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析4-基础DLL分析 - x7peeps">
+    <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析4-基础DLL分析 - x7peeps"><link rel="icon" href="/images/favicon.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690743873" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690743873" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690743873" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690743873" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690743873" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690743873" rel="stylesheet">
-    <link href="/css/fonts.css?1690743873" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690743873" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690743873" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690743873" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690743873" rel="stylesheet">
-    <link href="/css/print.css?1690743873" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690743873" rel="stylesheet">
-    <script src="/js/url.js?1690743873"></script>
-    <script src="/js/variant.js?1690743873"></script>
+    <link href="/css/fontawesome-all.min.css?1690781669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690781669" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690781669" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690781669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690781669" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690781669" rel="stylesheet">
+    <link href="/css/fonts.css?1690781669" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690781669" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690781669" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690781669" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690781669" rel="stylesheet">
+    <link href="/css/print.css?1690781669" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690781669" rel="stylesheet">
+    <script src="/js/url.js?1690781669"></script>
+    <script src="/js/variant.js?1690781669"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -111,10 +111,10 @@
 数组，字符和结构
 64x架构框架
 
-<a href="#image-2b4398e81825708cc88a1b3dea27a315" class="lightbox-link">
+<a href="#image-c127fb7b581ac4312b4d84173b9a307b" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2b4398e81825708cc88a1b3dea27a315">
+<a href="javascript:history.back();" class="lightbox" id="image-c127fb7b581ac4312b4d84173b9a307b">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -137,10 +137,10 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 <h5 id="111-数据如何驻留内存">1.1.1 数据如何驻留内存</h5>
 <p>在内存中，数据存储被存储在低优先级的格式中；一个低位存储在低地址，字节序列被递归存储在内存高地址中。
 
-<a href="#image-5d4d2fe7aef1c90e99699985dd4451d8" class="lightbox-link">
+<a href="#image-6791090eb19d87774fabf0c98ed6ea15" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191008225456.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5d4d2fe7aef1c90e99699985dd4451d8">
+<a href="javascript:history.back();" class="lightbox" id="image-6791090eb19d87774fabf0c98ed6ea15">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191008225456.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="12-cpu">1.2 CPU</h4>
@@ -156,10 +156,10 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 <li>编译器编译成机器码或object文件</li>
 <li>连接器linker将目标代码与DLL文件生成系统可执行的程序
 
-<a href="#image-01bac80243702e08d7bf926f77b43df0" class="lightbox-link">
+<a href="#image-2f9dc3122acbccd8dd35fc13f81d2c59" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722-20210929091328214.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-01bac80243702e08d7bf926f77b43df0">
+<a href="javascript:history.back();" class="lightbox" id="image-2f9dc3122acbccd8dd35fc13f81d2c59">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722-20210929091328214.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></li>
 </ol>
@@ -167,18 +167,18 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 <p>通过PE<a href="http://www.andreybazhan.com/pe-internals.html" target="_blank"> internals tools - PeInternals</a>打开编译过的可执行程序，显示出通过编译器生成的五部分（.text,.rdata,.data,.rsrc,.reloc）。如静态分析里提到的内容相同。这里主要关注.text和.data两部分。
 例如程序中存在一串字符。这些字符存储在.data部分在文件偏移0x1E00位置。这个字符不属于代码部分，但是属于程序需要的数据。相同的方式.rdata部分是只读数据和有时包含的（import/export）数据。.rsrc部分包含被执行程序使用的资源。
 
-<a href="#image-4ebd0301cb0f2a9d9a169057d2ba5c9a" class="lightbox-link">
+<a href="#image-82611a8e665ef412aa56c15433840b56" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160904.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4ebd0301cb0f2a9d9a169057d2ba5c9a">
+<a href="javascript:history.back();" class="lightbox" id="image-82611a8e665ef412aa56c15433840b56">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160904.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 .text部分字节序列（具体来说是35字节）是从0x400开始的机器码。机器码中包含了CPU将要执行的指令。编译器编译之后会在存储时分为data和code两部分。
 
-<a href="#image-5d4258bb9f733cb0194e9d4c3b55d0b4" class="lightbox-link">
+<a href="#image-662680a0ca0d4aba9012f73538f723ae" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160926.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5d4258bb9f733cb0194e9d4c3b55d0b4">
+<a href="javascript:history.back();" class="lightbox" id="image-662680a0ca0d4aba9012f73538f723ae">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160926.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 为了简单起见在磁盘中的程序结构可以记为：可执行程序的组成部分就是code(.text)和data（data,.rdata等等)。</p>
@@ -187,50 +187,50 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 过程：
 双击应用程序之后，一个进程被操作系统分配到内存，并且可执行的被操作系统加载程序加载到分配的内存。下面的简化内存布局会帮助我们可视化概念；在磁盘中的结构和内存中的结构很相似。</p>
 <p>
-<a href="#image-4f3ae147acf7488438cf82fe1378189d" class="lightbox-link">
+<a href="#image-b49ea0e44aea2dd8f8e0e88c6e83cfbc" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160959.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4f3ae147acf7488438cf82fe1378189d">
+<a href="javascript:history.back();" class="lightbox" id="image-b49ea0e44aea2dd8f8e0e88c6e83cfbc">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160959.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>由图中可见，堆(heap)被用来在程序执行的时候动态分配内存，它的内容可以是变化的。堆被用来存储本地的变量，函数参数和返回的地址。内存还与链接库DLL有关。</p>
 <p>使用x64dbg调试器https://x64dbg.com/#start 加载可执行程序到内存0x13FC71000，并且所有的可执行部分都加载到内存中。这个地址是虚拟地址。虚拟地址最终将会被翻译成物理地址。</p>
 <p>
-<a href="#image-b5876679c9945330fdfb4053854b3b83" class="lightbox-link">
+<a href="#image-d3e6d3f96380900a44127ea373fc5f34" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161020.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b5876679c9945330fdfb4053854b3b83">
+<a href="javascript:history.back();" class="lightbox" id="image-d3e6d3f96380900a44127ea373fc5f34">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161020.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>检查.data部分开始记录的字符：一般会有&quot;This is a simple program.&quot;，而我测试的这个hackprocess没有：
 
-<a href="#image-747c1f9ac9f9593f4058da8105ce447f" class="lightbox-link">
+<a href="#image-0f2875c94be1bd506df21060269614d5" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161128.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-747c1f9ac9f9593f4058da8105ce447f">
+<a href="javascript:history.back();" class="lightbox" id="image-0f2875c94be1bd506df21060269614d5">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161128.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-3eefe9b22bd1621d7585231b9a97285e" class="lightbox-link">
+<a href="#image-c9379974cd2838012ca777cd7f5084fe" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20200428161147.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3eefe9b22bd1621d7585231b9a97285e">
+<a href="javascript:history.back();" class="lightbox" id="image-c9379974cd2838012ca777cd7f5084fe">
 <img src="http://blogimage.xtpeeps.cn/20200428161147.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>监测.text部分的内存地址，显示部分字节的机器码：
 
-<a href="#image-e3a2a64ddb2207a72af43301bae27bb7" class="lightbox-link">
+<a href="#image-f70f4a716ae12929b5c49b355eaa18d2" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161206.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e3a2a64ddb2207a72af43301bae27bb7">
+<a href="javascript:history.back();" class="lightbox" id="image-f70f4a716ae12929b5c49b355eaa18d2">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161206.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>一旦可执行部分包含的code和data被加载到内存，cpu从内存中获取机器码，解释并执行它。当执行机器指令时会从内存获取数据data。
 
-<a href="#image-fbce3788245930a6a9d6941eb178f1c6" class="lightbox-link">
+<a href="#image-c0115755449acf5971b1a928e5bd1984" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114111632.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fbce3788245930a6a9d6941eb178f1c6">
+<a href="javascript:history.back();" class="lightbox" id="image-c0115755449acf5971b1a928e5bd1984">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114111632.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 当执行指令时，程序可与输入输出设备交互。例如：在程序执行的时候，字符串被打印在电脑屏幕上。同样也可以接收字符。</p>
@@ -248,10 +248,10 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 <h4 id="21-通用寄存器">2.1 通用寄存器</h4>
 <p>x86CPU有8个通用寄存器：eax,ebx,ecx,edx,esp,ebp,esi,edi。这些寄存器是32位（4字节）。程序可以获取寄存器32位，16位，8位值。每个寄存器的低16位（2字节）可以用ax,bx,cx,dx,sp,bp,si,di访问。eax.ebx,ecx,edx的低8位还可以通过al,bl,cl,dl引用。对应的高8位可以通过ah,bh,ch,dh访问。举例如下图所示：
 
-<a href="#image-178c457d7c3309141cbf11cf27754de1" class="lightbox-link">
+<a href="#image-367abb14c22ecfeb76e71280bed42820" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114140519.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-178c457d7c3309141cbf11cf27754de1">
+<a href="javascript:history.back();" class="lightbox" id="image-367abb14c22ecfeb76e71280bed42820">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114140519.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="22-指令指针eip">2.2 指令指针（EIP）</h4>
@@ -275,10 +275,10 @@ mov eax,ebx ; moves value in ebx into eax, eax = ebx or eax = 10</code></pre></d
 <li>4字节序列被按照低位优先格式存放</li>
 <li>整数100被存储在相同的内存地址下。
 
-<a href="#image-1d596311e24ba2ea792db5d58255870e" class="lightbox-link">
+<a href="#image-f1f2f42ec6a7207c2c2dce40ad5a7119" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114143658.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1d596311e24ba2ea792db5d58255870e">
+<a href="javascript:history.back();" class="lightbox" id="image-f1f2f42ec6a7207c2c2dce40ad5a7119">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114143658.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></li>
 </ol>
@@ -286,10 +286,10 @@ mov eax,ebx ; moves value in ebx into eax, eax = ebx or eax = 10</code></pre></d
 方括号指定的时要保存的值在内存中的地址。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code class="language-assembly" data-lang="assembly">mov eax,[0x403000] ; eax will now contain 00 00 00 64 (i.e 100)</code></pre></div><p>这里无需指定4字节，基于目标寄存器的大小，CPU会自动确认需要移动多少字节。
 
-<a href="#image-fa042b71be23603fe6dbb4b5fe08c5d8" class="lightbox-link">
+<a href="#image-52c77c22b2255fa7aaccb2db77ae8c59" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114152928.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fa042b71be23603fe6dbb4b5fe08c5d8">
+<a href="javascript:history.back();" class="lightbox" id="image-52c77c22b2255fa7aaccb2db77ae8c59">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114152928.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>逆向过程中的其他类型还有如，方括号包含寄存器、常数+寄存器、寄存器+寄存器的形式。</p>
@@ -311,10 +311,10 @@ mov [ebx],eax   ; moves 4 byte value in eax to the memory address specified by e
 <div class="wrap-code highlight"><pre tabindex="0"><code class="language-assembly" data-lang="assembly">mov dword ptr [402000],13498h ; moves dword value 0x13496 into the address 0x402000
 mov dword ptr [ebx],100   ; moves dword value 100 into the address specified by ebx,也就是00 00 00 64
 mov word ptr [ebx], 100    ; moves a word 100 into the address specified by ebx，也就是00 64</code></pre></div><p>
-<a href="#image-490f11615d364449a5a385e2e939812a" class="lightbox-link">
+<a href="#image-1bd14ade196684ba5f6bb38596a3f55a" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191115153232.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-490f11615d364449a5a385e2e939812a">
+<a href="javascript:history.back();" class="lightbox" id="image-1bd14ade196684ba5f6bb38596a3f55a">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191115153232.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="35-反汇编挑战">3.5 反汇编挑战</h4>
@@ -418,10 +418,10 @@ d=a-b=17;</p>
 </span></span><span style="display:flex;"><span>diff <span style="color:#f92672">=</span> num1 <span style="color:#f92672">-</span> num2;</span></span></code></pre></div><h3 id="5-按位操作">5. 按位操作</h3>
 <p>按位从最右侧开始编号，最右边（最低有效位）是0位的位置，从右向左按位提高。最左边位为最高有效位。如下所示：
 
-<a href="#image-2e41b4b773a9cdcd81f903d3287d2493" class="lightbox-link">
+<a href="#image-479758fb021bd49ec4c5792a1a8bb22c" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191125122430.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2e41b4b773a9cdcd81f903d3287d2493">
+<a href="javascript:history.back();" class="lightbox" id="image-479758fb021bd49ec4c5792a1a8bb22c">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191125122430.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 位操作不是指令；只有一个操作数（作为源和目的）和颠倒所有位。如果eax包含FF FF 00 00 (11111111 11111111 00000000 00000000),则下面的指令将会反转所以为。并存储在eax寄存器中。</p>
@@ -529,10 +529,10 @@ mov dword ptr[x],5
 
 end_if:
 mov doword ptr[x],2</code></pre></div><p>
-<a href="#image-73cead53c92acd481b1e7810a28c6c85" class="lightbox-link">
+<a href="#image-440fbde8e70005aa59a796ee3ac11228" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161240.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-73cead53c92acd481b1e7810a28c6c85">
+<a href="javascript:history.back();" class="lightbox" id="image-440fbde8e70005aa59a796ee3ac11228">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161240.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="64-if-else语句">6.4 if-else语句</h4>
@@ -683,17 +683,17 @@ pop ebp
 ret</code></pre></div><p><code>push ebp</code>和<code>mov ebp,esp</code>经常出现在函数的开始，可以被称作函数的序或者函数的开始。是函数用来初始化函数使用的。
 <code>mov esp,ebp</code>和<code>pop ebp</code>执行函数的序逆向操作。成为函数尾声，在函数执行之后恢复环境。
 
-<a href="#image-dfe2b72edbff64d4b081d68d87a89252" class="lightbox-link">
+<a href="#image-f87acd82c36d48cca5779b1d24fa46cf" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200413221848.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-dfe2b72edbff64d4b081d68d87a89252">
+<a href="javascript:history.back();" class="lightbox" id="image-f87acd82c36d48cca5779b1d24fa46cf">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200413221848.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-518d1d7d4a0a5baf563fbe90ba2d53b2" class="lightbox-link">
+<a href="#image-747442209d5caa331b0b99db299f26a1" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200413221003.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-518d1d7d4a0a5baf563fbe90ba2d53b2">
+<a href="javascript:history.back();" class="lightbox" id="image-747442209d5caa331b0b99db299f26a1">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200413221003.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>ebp在这里被设置为固定位置，函数的参数可以通过ebp+正向偏移量进行标定。局部变量可以通过ebp-偏移量进行标定。举例上面test(2,3)，函数参数2，被存储在ebp+8（a）位置，第二个参数被存储在ebp+0xc（b），局部变量分别放在ebp-4（x），ebp-8（y）。</p>
@@ -702,18 +702,18 @@ ret</code></pre></div><p><code>push ebp</code>和<code>mov ebp,esp</code>经常�
 </blockquote>
 <p>pop ebp之后将恢复ebp保存在栈中的值，这个操作之后，esp将会+4。再执行了还原函数环境操作之后：
 
-<a href="#image-4ec4c0469a3b17f9480edcf26ea5de1f" class="lightbox-link">
+<a href="#image-a9c235edb7126da3167f4d4273e854f1" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200414230420.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4ec4c0469a3b17f9480edcf26ea5de1f">
+<a href="javascript:history.back();" class="lightbox" id="image-a9c235edb7126da3167f4d4273e854f1">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200414230420.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>当ret执行之后，返回地址在栈顶，被弹栈到eip寄存器中。控制器返回到主函数执行地址中（在主函数中<code>add esp,8</code>）。在弹栈到返回地址中之后，esp+4。在这点，控制器被控制返回主函数执行。主函数main中的<code>add esp,8</code>用于清理栈，esp返回到最开始的位置（0xFE50）。<code>add esp,8</code>这样的函数称为<code>cdecl</code>传统调用。
 
-<a href="#image-d6731278827bf37bf8c153aa27ab736e" class="lightbox-link">
+<a href="#image-3e25becdd4cc103dfa0d192ea56f4e00" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200414232315.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d6731278827bf37bf8c153aa27ab736e">
+<a href="javascript:history.back();" class="lightbox" id="image-3e25becdd4cc103dfa0d192ea56f4e00">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200414232315.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>大部分C语言编译器都遵循cdecl调用惯例。在cdecl惯例中，调用者将变量以从右到左的规则压栈到栈中，调用者caller自身在调用函数之后清除自身。也有其他调用规则，例如stdcall和fastcall。在stdcall规则中，变量通过caller调用者和callee被调用者从右到左的规则压入栈，调用函数callee负责清理栈。Microsoft windows使用stdcall规则处理被dll文件输出的API函数。在fastcall调用规则中，开始一些参数通过直接存放在寄存器被传递给函数，剩下的所有参数通过以从右到左的方式压入栈中，并且与stdcall类似被调用者callee负责清理栈。（后面会特别的看到64位程序使用fastcall调用规则）</p>
@@ -721,10 +721,10 @@ ret</code></pre></div><p><code>push ebp</code>和<code>mov ebp,esp</code>经常�
 <p>数组是由相同类型数据组成的一个列表。数组元素在内存中连续存储，便于访问数组中的元素。下面的定义一个含有3个元素的整数型数组，每个元素在内存中占用4字节（因为一个常数是4字节长度）：</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>int nums[3]={1,3,4}</code></pre></div><p>数组的名是一个指向数组第一个元素的指针常量（数组名指向数组的基址<code>base address</code>）。访问数组需配置相对基址相对地址（原文叫：<code>index</code>）类似nums[1]：</p>
 <p>
-<a href="#image-592a5a32e3b7cac5219cf76bec690571" class="lightbox-link">
+<a href="#image-a04d77fb4195d87a33eeedf5d865c491" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200421153240.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-592a5a32e3b7cac5219cf76bec690571">
+<a href="javascript:history.back();" class="lightbox" id="image-a04d77fb4195d87a33eeedf5d865c491">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200421153240.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在汇编中，数组中的任何一个元素的地址计算需要三个东西：</p>
@@ -817,10 +817,10 @@ xor eax, eax
 <p>字符是字符数组，当定义一个字符串的时候，一个空终止符（字符串终止符）被加在每个字符串的结尾。每个元素占用内存一个字节（换句话说，每个ASCII码1字节长）。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>char *str=&#34;aaaaaaaaaaaaaaaaaa&#34;</code></pre></div><p>字符串名字str是一个纸箱字符串第一个元素的指针（指向字符阵列基址指针）。下图为字符串在内存中的图表：
 
-<a href="#image-0df117dd7f16b4bb3948f76c2ec684b0" class="lightbox-link">
+<a href="#image-91b269068a0a54726a432e89624b305f" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161310.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0df117dd7f16b4bb3948f76c2ec684b0">
+<a href="javascript:history.back();" class="lightbox" id="image-91b269068a0a54726a432e89624b305f">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161310.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code class="language-assembly" data-lang="assembly">str[0]=[str+0]=[0x4000+0]=[0x4000]=L
@@ -842,10 +842,10 @@ lea &mdash;-取内存单元自的有效地址指令，只用于传送地址。</
 </blockquote>
 <p>假设地址标签src内容为&quot;good&quot;，以空字符(0x0)结尾。在执行第一个命令后，esi将会包含&quot;good&quot;的第一个字符的地址（esi指向&quot;g“所在的地址），第二个指令执行之后，将会设置EDI的内容为dst。第三个语句执行将会复制1字节从esi指向的地址数据到edi指向的地址数据。执行借宿esi和edi都将加1。</p>
 <p>
-<a href="#image-3869c4574afae313df287a41e2fdd14a" class="lightbox-link">
+<a href="#image-25f1bff935755352ed9fbd0d385fa37f" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200427141151.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3869c4574afae313df287a41e2fdd14a">
+<a href="javascript:history.back();" class="lightbox" id="image-25f1bff935755352ed9fbd0d385fa37f">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200427141151.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="933-重复指令rep">9.3.3 重复指令（rep）</h5>
@@ -971,71 +971,8 @@ call cs:printf</code></pre></div><blockquote>
     <aside id="sidebar" class="default-animation showVisitedLinks">
       <div id="header-wrapper" class="default-animation">
         <div id="header" class="default-animation">
-          <style>
-            #logo svg,
-            #logo svg * {
-              color: #282828;
-              color: var(--MENU-SECTIONS-BG-color);
-              fill: #282828 !important;
-              fill: var(--MENU-SECTIONS-BG-color) !important;
-              opacity: .945;
-            }
-            a#logo {
-              color: #282828;
-              color: var(--MENU-SECTIONS-BG-color);
-              font-family: 'Work Sans', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
-              font-size: 1.875rem;
-              font-weight: 300;
-              margin-top: -.8125rem;
-              max-width: 60%;
-              text-transform: uppercase;
-              width: 14.125rem;
-              white-space: nowrap;
-            }
-            a#logo:hover {
-              color: #282828;
-              color: var(--MENU-SECTIONS-BG-color);
-            }
-            #logo svg {
-              margin-bottom: -1.25rem;
-              margin-inline-start: -1.47rem;
-              width: 40.5%;
-            }
-            @media only all and (max-width: 60rem) {
-              a#logo {
-                font-size: 1.5625rem;
-                margin-top: -.1875rem;
-              }
-              #logo svg {
-                margin-bottom: -.75rem;
-                margin-inline-start: -1.47rem;
-              }
-            }
-            @media all and (-ms-high-contrast:none) {
-              /* IE11s understanding of positioning is weird at best */
-              a#logo {
-                margin-top: -3.625rem;
-              }
-              #logo svg {
-                margin-bottom: -3.875rem;
-                margin-left: -1.47rem;
-              }
-            }
-            @media only all and (-ms-high-contrast:none) and (max-width: 60rem) {
-              #logo svg {
-                margin-left: -1.47rem;
-              }
-            }
-          </style>
-          <a id="logo" href="/index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.044 64.044">
-              <path d="M46.103 136.34c-.642-.394-1.222-2.242-1.98-2.358-.76-.117-1.353.506-1.618 1.519-.266 1.012-.446 4.188.173 5.538.213.435.482.787 1.03.845.547.057.967-.504 1.45-1.027.482-.523.437-.9 1.142-.612.705.289 1.051.4 1.586 1.229.535.828 1.085 4.043.868 5.598-.241 1.458-.531 2.8-.59 4.088.26.075.517.148.772.217 2.68.724 5.373 1.037 7.873.02.001-.028.01-.105.008-.11-.048-.165-.18-.41-.36-.698-.18-.29-.414-.645-.586-1.114a3.212 3.212 0 0 1-.125-1.735c.056-.21.153-.342.249-.475 1.237-1.193 2.932-1.373 4.244-1.384.557-.004 1.389.016 2.198.255.809.239 1.706.724 2.068 1.843.187.578.114 1.17-.043 1.623-.153.438-.369.783-.545 1.091-.178.31-.329.6-.401.821-.007.02-.003.071-.005.094 2.256 1.008 4.716.91 7.189.398.55-.114 1.11-.247 1.673-.377.344-1.085.678-2.145.852-3.208.124-.752.158-2.311-.078-3.538-.118-.613-.306-1.15-.52-1.489-.221-.349-.413-.501-.747-.538-.243-.027-.51.013-.796.098-.67.223-1.33.606-1.966.76l-.008.002-.109.032c-.556.152-1.233.158-1.797-.36-.556-.51-.89-1.367-1.117-2.596-.283-1.528-.075-3.279.89-4.518l.071-.09h.07c.65-.71 1.485-.802 2.16-.599.706.213 1.333.629 1.772.84.736.354 1.185.319 1.475.171.291-.148.5-.439.668-.955.332-1.017.301-2.819.022-4.106-.148-.684-.13-1.292-.13-1.883-1.558-.463-3.067-.982-4.574-1.208-1.128-.169-2.263-.173-3.298.164-.13.046-.256.095-.38.15-.373.164-.633.342-.805.52-.077.098-.081.105-.087.21-.004.068.031.289.13.571.1.282.256.634.467 1.03.279.524.448 1.063.431 1.618a2.12 2.12 0 0 1-.499 1.309 1.757 1.757 0 0 1-.62.51h-.002c-.515.291-1.107.404-1.723.464-.86.083-1.787.026-2.598-.097-.806-.123-1.47-.28-1.948-.555-.444-.256-.79-.547-1.037-.925a2.273 2.273 0 0 1-.356-1.301c.029-.837.403-1.437.625-1.897.111-.23.191-.433.236-.583.045-.15.044-.25.046-.24-.005-.029-.127-.355-1.015-.741-1.138-.495-2.322-.673-3.533-.668h-.015a9.711 9.711 0 0 0-.521.016h-.002c-1.163.057-2.35.308-3.541.569.383 1.531.79 2.753.818 4.502-.096 1.297.158 2.114-1.03 2.935-.85.588-1.508.729-2.15.335" style="fill:#282828;fill-opacity:1;stroke:none;stroke-width:1.03763;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-40.698 -95.175)"/>
-              <path d="M61.472 101.34v.002c-.3-.003-.603.01-.894.04-.544.055-1.39.165-1.778.306-1.238.364.13 2.344.41 2.913.28.569.285 2.03.14 2.134-.144.103-.375.261-.934.345-.56.084.03-.037-1.589.086-1.62.122-5.506.29-8.265.248-.022.26-.036.521-.097.808-.309 1.442-.63 3.163-.494 4.074.071.473.168.65.414.8.23.14.737.235 1.62-.004.834-.227 1.3-.442 1.887-.456.595-.016 1.555.472 1.965.717.411.245-.03-.008.002 0s.128.05.176.102c.049.053-.276-.523.104.199.379.721.72 3.256.002 4.68-.46.913-1.01 1.49-1.64 1.711-.63.22-1.229.067-1.734-.135-.881-.353-1.584-.7-2.205-.647-1.199 1.94-1.186 4.17-.6 6.602.097.397.212.814.327 1.23 2.68-.556 5.542-1.016 8.337.132 1.064.437 1.73 1.015 1.902 1.857.169.831-.193 1.508-.438 1.986-.122.238-.23.46-.307.642-.07.164-.096.28-.104.324.069.429.309.723.686.945.385.227.89.355 1.35.423.723.104 1.567.152 2.287.086.693-.064 1.032-.338 1.241-.544a2.447 2.447 0 0 0 .303-.437.175.175 0 0 0 .013-.035c-.004-.066-.037-.246-.195-.527-.46-.816-.87-1.595-.817-2.51.028-.476.218-.938.529-1.288.304-.343.698-.586 1.186-.79 1.442-.606 2.96-.609 4.372-.409 1.525.216 2.963.679 4.378 1.083.226-2.09.784-3.9.592-5.77-.058-.565-.287-1.333-.598-1.827-.32-.508-.59-.717-1.036-.642-.648.11-1.472.935-2.707 1.078-.791.092-1.494-.267-1.95-.86-.45-.583-.678-1.335-.78-2.101-.202-1.525.031-3.229.89-4.27.615-.747 1.45-.887 2.15-.74.687.145 1.307.492 1.857.745v-.002c.546.252 1.033.388 1.281.344a.547.547 0 0 0 .353-.188c.113-.124.242-.35.384-.75.604-1.712.206-3.68-.303-5.654-.667.145-1.336.293-2.018.413-1.341.236-2.73.392-4.136.273-.656-.055-1.695-.085-2.58-.476-.442-.195-.903-.514-1.157-1.093-.259-.591-.205-1.313.08-2.014.223-.64 1.082-2.178.692-2.585-.391-.407-1.651-.56-2.554-.571z" style="fill:#282828;fill-opacity:1;stroke:none;stroke-width:.992837;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-40.698 -95.175)"/>
-              <path d="M83.128 98.116c-.484 1.875-1.057 3.757-2.486 5.033-.638.57-1.13.666-1.483.548-.401-.134-.715-.506-1.058-.973-.338-.461-.655-.97-1.076-1.332-.192-.165-.404-.315-.683-.38-.279-.066-.599-.02-.9.102-.489.196-.89.58-1.28 1.047a6.1 6.1 0 0 0-.985 1.632c-.234.591-.356 1.174-.277 1.713.072.487.392.977.905 1.185.463.187.926.156 1.36.154.433 0 .843.01 1.242.147.55.189.79.736.822 1.368.034.66-.145 1.412-.393 1.988l-.008.021c-.74 1.705-1.946 2.893-3.004 4.349l-.664.915.979.099c.924.092 1.788.26 2.468.675.46.281 1.806 1.205 2.794 2.222.497.513.888 1.031 1.047 1.502.078.231.095.422.05.6a.93.93 0 0 1-.345.474c-.301.223-.606.395-.864.532l-.354.186c-.107.058-.189.087-.345.228a.637.637 0 0 1 .062-.045l-.064.041-.209.236-.103.343s.003.126.007.152c.003.017.003.007.004.015v.002c.016.195.061.307.133.476a4.1 4.1 0 0 0 .32.596 5.7 5.7 0 0 0 2.8 2.258c.284.108.908.321 1.548.36.33.02.59.015.912-.13h.002c.08-.037.228-.095.382-.281.153-.186.19-.355.212-.445l.019-.075.003-.078c.023-.585-.037-1.296.072-1.899.153-.657.435-.956 1.009-.909 2.771.239 4.74 1.955 6.693 3.83l.742.714.279-1.155c.55-2.29 1.093-4.464 2.928-5.977.692-.57 1.184-.642 1.527-.509.39.151.676.536.996.995.319.458.605.926 1.07 1.212.194.119.464.232.784.209.32-.024.638-.163.988-.384 1.022-.645 1.778-1.756 2.086-2.942.136-.522.102-.991-.046-1.301-.158-.334-.433-.553-.754-.707-.653-.314-1.468-.373-2.094-.486-.825-.15-1.22-.475-1.345-.878-.13-.417 0-.953.335-1.61.6-1.173 1.887-2.602 3.13-3.911l.498-.526-.449-.432c-1.545-1.49-3.163-3.01-5.252-3.715h-.002c-.473-.16-1.097-.413-1.73-.424h-.003c-.311-.004-.596.04-.883.24v.002c-.22.155-.483.537-.583.937l-.008.036-.006.038c-.116.773-.06 1.467-.217 1.995-.063.212-.198.418-.359.507-.202.111-.492.153-.976.072-.582-.097-1.978-.69-3.021-1.503-.523-.407-.934-.85-1.117-1.3a1.153 1.153 0 0 1-.083-.63c.03-.184.1-.477.308-.593.21-.116.941-.32 1.377-.642h.002c.192-.141.403-.367.518-.64.114-.275.127-.526.123-.774-.006-.142-.036-.192-.08-.3a8.417 8.417 0 0 0-3-3.027c-1.226-.725-2.585-1.135-3.927-1.539-.434-.12-.844-.111-1.02.466zm.912.947c1.186.364 2.357.718 3.345 1.303 1.035.612 1.864 1.488 2.507 2.528-.514.263-1.095.5-1.44.79-.345.29-.729.914-.815 1.434-.084.509 0 .968.155 1.347.301.74.85 1.276 1.44 1.735 1.18.92 2.554 1.545 3.47 1.698.604.1 1.186.088 1.739-.216.594-.327.935-.911 1.088-1.427.264-.884.193-1.664.262-2.17h.1c.3.006.926.206 1.417.371 1.646.554 3.044 1.773 4.431 3.089-1.102 1.174-2.222 2.423-2.888 3.73-.42.823-.73 1.789-.453 2.687.283.913 1.1 1.415 2.138 1.603.691.126 1.472.226 1.84.403.19.091.258.182.278.223.03.064.058.075-.023.387-.21.804-.761 1.598-1.413 2.01-.247.155-.365.183-.407.187-.042.003-.061.002-.172-.066-.144-.088-.455-.473-.772-.929-.317-.454-.714-1.07-1.452-1.356-.783-.304-1.776-.022-2.713.75-1.942 1.6-2.626 3.764-3.146 5.8-1.802-1.676-3.772-3.138-6.589-3.517h-.002c-.346-.095-1.013-.031-1.293.143-.735.501-1.005 1.132-1.168 2.007-.125.69-.082 1.216-.074 1.659-.055.006-.046.01-.104.006-.42-.026-1.035-.215-1.244-.295-.947-.361-1.774-1.006-2.314-1.857-.054-.085-.072-.132-.109-.2l.027-.016c.284-.15.656-.36 1.045-.648.44-.327.789-.798.93-1.35a2.4 2.4 0 0 0-.068-1.379c-.254-.751-.753-1.353-1.295-1.911-1.09-1.124-2.452-2.049-2.99-2.378-.609-.372-1.303-.44-1.981-.56.875-1.094 1.878-2.251 2.596-3.921.294-.823.543-1.907.513-2.658-.049-.97-.489-2.013-1.52-2.367-.579-.2-1.131-.204-1.58-.203-.45.002-.786-.006-.97-.08h-.002c-.264-.107-.236-.108-.268-.33-.025-.17.021-.553.183-.962a4.67 4.67 0 0 1 .725-1.192c.29-.348.617-.59.705-.626.142-.057.176-.05.22-.04.045.011.127.052.263.17.235.201.56.671.92 1.161.354.484.791 1.08 1.543 1.33.8.267 1.784-.052 2.671-.846 1.594-1.424 2.235-3.317 2.714-5.051zm11.705 7.023c-.02.014.042-.002.042 0l-.008.035c.05-.2-.028-.04-.034-.035zM79.472 122.45a.198.198 0 0 1 .005.023v.014c-.002-.01-.003-.03-.005-.037zm-.29.732-.006.01-.044.027c.016-.01.033-.024.05-.036z" style="color:#000;fill:#282828;stroke-width:1.02352;-inkscape-stroke:none" transform="translate(-40.698 -95.175)"/>
-              <path d="M76.694 128.845c-.85-.012-1.668.253-2.434.67-.01.592-.015 1.17.109 1.772.323 1.573.422 3.553-.07 5.147-.247.804-.684 1.535-1.347 1.891-.663.356-1.467.296-2.362-.159-.522-.266-1.059-.62-1.487-.757-.223-.072-.392-.096-.522-.069-.13.027-.232.094-.362.27-.53.719-.681 1.823-.497 2.876.177 1.012.418 1.438.543 1.56.143.137.26.154.604.055.548-.158 1.523-.857 2.573-.972l.02-.002.5.058c.686.081 1.247.562 1.622 1.19.372.62.591 1.37.73 2.136.279 1.532.25 3.16.083 4.232-.14.91-.394 1.72-.632 2.53 1.719-.385 3.485-.692 5.307-.36 1.174.214 2.749.574 3.762 1.977l.088.122.046.159c.162.551.16 1.114.024 1.578-.13.45-.348.772-.533 1.023-.181.246-.336.444-.437.606-.102.16-.141.275-.145.336-.01.17 0 .197.07.315.057.1.186.242.39.366.408.246 1.106.414 1.843.45a7.842 7.842 0 0 0 2.174-.21 4.28 4.28 0 0 0 .822-.296c.218-.106.385-.242.377-.233l.029-.031c.025-.035.05-.072.05-.068 0-.004 0-.017-.003-.05a2.733 2.733 0 0 0-.21-.579c-.26-.548-.839-1.333-.822-2.46.01-.657.27-1.21.598-1.576.32-.357.696-.575 1.074-.736.759-.323 1.57-.418 2.054-.458 1.653-.136 3.252.296 4.755.765.457.142.905.29 1.352.434.325-2.258.902-4.247.598-6.217-.071-.46-.25-1.169-.486-1.684-.238-.518-.495-.762-.675-.779-.351-.032-.716.14-1.174.418-.457.277-1.005.665-1.695.742-.745.082-1.406-.291-1.84-.908-.428-.608-.653-1.394-.754-2.196-.203-1.596.016-3.377.794-4.493.568-.813 1.358-.984 2.024-.835.65.146 1.243.51 1.769.779.524.267.99.413 1.237.365a.527.527 0 0 0 .346-.2c.11-.132.235-.373.37-.798.612-1.918.27-3.894-.246-6.054-2.815-.851-5.49-1.534-8.089-.267a.727.727 0 0 0-.223.148c-.024.028-.018.021-.026.056.001-.003-.01.178.07.44.162.522.611 1.29.911 1.978l.004.009.029.063.024.084V133c.162.635.016 1.297-.274 1.727-.272.404-.618.636-.952.81-.675.353-1.399.484-1.724.533a5.888 5.888 0 0 1-3.973-.795c-.512-.311-.876-.594-1.133-1.02-.282-.466-.318-1.084-.172-1.557.252-.814.715-1.266.971-1.89a.663.663 0 0 0 .047-.14c.001-.013 0-.006-.007-.037a.761.761 0 0 0-.184-.268c-.264-.267-.865-.595-1.54-.826-1.356-.462-3.07-.659-3.583-.686-.062-.002-.121-.006-.178-.006z" style="fill:#282828;fill-opacity:1;stroke:none;stroke-width:.991342;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="translate(-40.698 -95.175)"/>
-            </svg>
-            Relearn
-          </a>
+<link rel="icon" href="/images/favicon.png" type="image/png">
+<img src="/images/favicon.png">
         </div>
         <form action="/search.html" method="get"><div class="searchbox default-animation">
           <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
@@ -1046,17 +983,16 @@ call cs:printf</code></pre></div><blockquote>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690743874" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690743874" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690743874" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690743874" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690743874" defer></script>
-        <script src="/js/search.js?1690743874" defer></script>
+        <script src="/js/auto-complete.js?1690781670" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690781670" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690781670" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690781670" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690781670" defer></script>
+        <script src="/js/search.js?1690781670" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
-          <li data-nav-id="/test/index.html" class=""><input type="checkbox" id="section-d1b5292bea5f377ac4d470bbc59e3a9d" aria-controls="subsections-d1b5292bea5f377ac4d470bbc59e3a9d"><label for="section-d1b5292bea5f377ac4d470bbc59e3a9d"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Tests</span></label><a class="padding" href="/test/index.html">Tests<i class="fas fa-check read-icon"></i></a><ul id="subsections-d1b5292bea5f377ac4d470bbc59e3a9d" class="morespace collapsible-menu">
-          <li data-nav-id="/test/the-latest-cool.stuff/index.html" class=""><a class="padding" href="/test/the-latest-cool.stuff/index.html">The Latest Cool.stuff<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%85%B3%E4%BA%8E/index.html" class=""><a class="padding" href="/%E5%85%B3%E4%BA%8E/index.html">关于<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-70bdf8d87af46a79686d31378c1d7d85" aria-controls="subsections-70bdf8d87af46a79686d31378c1d7d85"><label for="section-70bdf8d87af46a79686d31378c1d7d85"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/index.html">工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-70bdf8d87af46a79686d31378c1d7d85" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-2dbf020e462e790a32571d0d109b782a" aria-controls="subsections-2dbf020e462e790a32571d0d109b782a"><label for="section-2dbf020e462e790a32571d0d109b782a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 威胁情报工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html">威胁情报工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-2dbf020e462e790a32571d0d109b782a" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html">一个rss订阅到钉钉的脚本rss2dingtalk<i class="fas fa-check read-icon"></i></a></li>
@@ -1244,8 +1180,8 @@ call cs:printf</code></pre></div><blockquote>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690743874" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690743874" defer></script>
+    <script src="/js/clipboard.min.js?1690781670" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690781670" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -1275,15 +1211,15 @@ call cs:printf</code></pre></div><blockquote>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690743874" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690743874" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690743874" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690743874" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690743874" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690743874" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690743874" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690743874" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690743874" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690781670" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690781670" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690781670" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690781670" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690781670" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690781670" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690781670" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690781670" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690781670" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -1292,8 +1228,8 @@ call cs:printf</code></pre></div><blockquote>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690743874  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690781670  };
     </script>
-    <script src="/js/theme.js?1690743874" defer></script>
+    <script src="/js/theme.js?1690781670" defer></script>
   </body>
 </html>
