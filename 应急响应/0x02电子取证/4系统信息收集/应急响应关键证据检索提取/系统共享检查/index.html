@@ -10,18 +10,18 @@
     <title>系统共享检查 - x7peeps</title>
     <link href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E6%A3%80%E6%9F%A5/index.xml" rel="alternate" type="application/rss+xml" title="系统共享检查 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690782562" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690782562" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690782562" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690782562" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690782562" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690782562" rel="stylesheet">
-    <link href="/css/fonts.css?1690782562" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690782562" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690782562" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690782562" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690782562" rel="stylesheet">
-    <link href="/css/print.css?1690782562" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690782562" rel="stylesheet">
-    <script src="/js/url.js?1690782562"></script>
-    <script src="/js/variant.js?1690782562"></script>
+    <link href="/css/fontawesome-all.min.css?1690783053" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690783053" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690783053" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690783053" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690783053" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690783053" rel="stylesheet">
+    <link href="/css/fonts.css?1690783053" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690783053" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690783053" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690783053" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690783053" rel="stylesheet">
+    <link href="/css/print.css?1690783053" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690783053" rel="stylesheet">
+    <script src="/js/url.js?1690783053"></script>
+    <script src="/js/variant.js?1690783053"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -120,26 +120,26 @@
 <h2 id="net-share-查询">net share 查询</h2>
 <p>查看系统中所有共享</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>net share</code></pre></div><p>
-<a href="#image-0daf6438d61bfff6d8bd4e9a89bab134" class="lightbox-link">
+<a href="#image-bec94d1c89a0da7828326a827b886b81" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629366061373-e8f8b978-fd2c-44f8-8bd3-2191a37a9615.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0daf6438d61bfff6d8bd4e9a89bab134">
+<a href="javascript:history.back();" class="lightbox" id="image-bec94d1c89a0da7828326a827b886b81">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629366061373-e8f8b978-fd2c-44f8-8bd3-2191a37a9615.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通过命令看到所有盘符都是默认共享 IPC$空连接尤为不安全,所以我们要关闭默认共享</p>
 <p>删除共享命令</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>net share 共享名 /del</code></pre></div><p>
-<a href="#image-7ff9efeb3bd6b2f24aa19fec3b3985a7" class="lightbox-link">
+<a href="#image-a704eb13a86713433345e213f8fd4e74" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629366166448-e721b597-5665-40a6-9909-a0bb56fd7a17.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7ff9efeb3bd6b2f24aa19fec3b3985a7">
+<a href="javascript:history.back();" class="lightbox" id="image-a704eb13a86713433345e213f8fd4e74">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629366166448-e721b597-5665-40a6-9909-a0bb56fd7a17.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-273749439046b9a2815af0e0191282dc" class="lightbox-link">
+<a href="#image-74ded4f90e0166edbbfa4696bbc74983" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629366154438-3778777b-09db-4b7b-aca4-0492a8ee2ac0.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-273749439046b9a2815af0e0191282dc">
+<a href="javascript:history.back();" class="lightbox" id="image-74ded4f90e0166edbbfa4696bbc74983">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629366154438-3778777b-09db-4b7b-aca4-0492a8ee2ac0.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="wmic-share查询">wmic share查询</h2>
@@ -149,18 +149,18 @@ ADMIN$  C:\WINDOWS  OK
 C$      C:\         OK
 IPC$                OK
 Users   C:\Users    OK</code></pre></div><p>
-<a href="#image-9739dc8fecf2d4afb536261d713d6f74" class="lightbox-link">
+<a href="#image-4bbceef49ab853a912077ef396982072" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629792573042-627cac79-a3e0-4c86-83f9-c63276228ca2.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9739dc8fecf2d4afb536261d713d6f74">
+<a href="javascript:history.back();" class="lightbox" id="image-4bbceef49ab853a912077ef396982072">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629792573042-627cac79-a3e0-4c86-83f9-c63276228ca2.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="get-wmiobject查询powershell">get-wmiobject查询（powershell）</h2>
 <div class="wrap-code highlight"><pre tabindex="0"><code>get-wmiobject -class Win32_share</code></pre></div><p>
-<a href="#image-a1c315759b1c2cebcd225d3074d4e31b" class="lightbox-link">
+<a href="#image-9224c30f4bf9ac31dec52118ea8291ee" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629794183717-5bd7c5c3-ca51-4c8c-8197-dc80632faa91.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a1c315759b1c2cebcd225d3074d4e31b">
+<a href="javascript:history.back();" class="lightbox" id="image-9224c30f4bf9ac31dec52118ea8291ee">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629794183717-5bd7c5c3-ca51-4c8c-8197-dc80632faa91.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="注册表查询">注册表查询</h2>
@@ -255,34 +255,34 @@ sudo chmod 777 /mnt/linuxshare</code></pre></div><p>修改nfs配置文件/etc/ex
 <div class="wrap-code highlight"><pre tabindex="0"><code>sudo apt-get install nfs-common</code></pre></div><p>windows</p>
 <p>在功能处</p>
 <p>
-<a href="#image-0599fbd40c377ee69068190b9b13881d" class="lightbox-link">
+<a href="#image-166d8c6caca595ac4d875876ed6684bd" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629883883752-64dbeee3-8c14-43a2-9d80-af126e4bf5a6.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0599fbd40c377ee69068190b9b13881d">
+<a href="javascript:history.back();" class="lightbox" id="image-166d8c6caca595ac4d875876ed6684bd">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629883883752-64dbeee3-8c14-43a2-9d80-af126e4bf5a6.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="连接共享">连接共享</h4>
 <div class="wrap-code highlight"><pre tabindex="0"><code>mount \\10.211.55.14\mnt\linuxshare k:\</code></pre></div><p>
-<a href="#image-832e32a0036a0c6640439c6387ee0c04" class="lightbox-link">
+<a href="#image-de0d2266d267d97792f9084114e8e50d" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629884333106-52b37215-d9d2-4b83-99ad-12c2ecbd1dc1.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-832e32a0036a0c6640439c6387ee0c04">
+<a href="javascript:history.back();" class="lightbox" id="image-de0d2266d267d97792f9084114e8e50d">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629884333106-52b37215-d9d2-4b83-99ad-12c2ecbd1dc1.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-17c0db0446ca4d6da6db91d9e68ff98c" class="lightbox-link">
+<a href="#image-cd1f6c77437fdc59e1bf69cdb72c3a7a" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629884385532-e30ec65e-efd9-4917-9361-9ebe781e6c85.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-17c0db0446ca4d6da6db91d9e68ff98c">
+<a href="javascript:history.back();" class="lightbox" id="image-cd1f6c77437fdc59e1bf69cdb72c3a7a">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629884385532-e30ec65e-efd9-4917-9361-9ebe781e6c85.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="showmount查看共享只能查nfs">showmount查看共享（只能查nfs）</h3>
 <p>只能查询到nfs共享</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>showmount -e </code></pre></div><p>
-<a href="#image-aef302caad9d818d4261836f40f16ba2" class="lightbox-link">
+<a href="#image-3d288c1b96b607d54e9422f5425b5956" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629883160869-6f0330a1-66d1-4dc2-833c-1b72b0c254a4.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-aef302caad9d818d4261836f40f16ba2">
+<a href="javascript:history.back();" class="lightbox" id="image-3d288c1b96b607d54e9422f5425b5956">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629883160869-6f0330a1-66d1-4dc2-833c-1b72b0c254a4.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="tftp服务">TFTP服务</h2>
@@ -327,10 +327,10 @@ sudo /etc/init.d/xinetd restart</code></pre></div><h3 id="客户端配置">客�
 <div class="wrap-code highlight"><pre tabindex="0"><code>sudo apt-get install tftp-hpa</code></pre></div><p>windows</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code># 命令行安装
 pkgmgr /iu:&#34;TFTP&#34;</code></pre></div><p>
-<a href="#image-f100d2523aed3039034ae9f63976ccf1" class="lightbox-link">
+<a href="#image-44c7e4377c8a01474a522b993f2126cd" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629949849926-23b185fc-b0a9-4ed3-be9d-02140f468909.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f100d2523aed3039034ae9f63976ccf1">
+<a href="javascript:history.back();" class="lightbox" id="image-44c7e4377c8a01474a522b993f2126cd">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629949849926-23b185fc-b0a9-4ed3-be9d-02140f468909.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="连接tftp">连接tftp</h4>
@@ -338,20 +338,20 @@ pkgmgr /iu:&#34;TFTP&#34;</code></pre></div><p>
 <p>windows下连接下载文件</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>tftp 10.211.55.14 get testftp.txt</code></pre></div><p><a href="https://developer.aliyun.com/article/459761" target="_blank">
 </a>
-<a href="#image-8ee1f74014c14b6c2f186efbcc50cc28" class="lightbox-link">
+<a href="#image-4b19c704ff2bbd46e065e5a921118488" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629953187715-8194096c-6106-44b8-84b8-8e9975ae1b52.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8ee1f74014c14b6c2f186efbcc50cc28">
+<a href="javascript:history.back();" class="lightbox" id="image-4b19c704ff2bbd46e065e5a921118488">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629953187715-8194096c-6106-44b8-84b8-8e9975ae1b52.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p><a href="https://developer.aliyun.com/article/459761" target="_blank">
 </a>linux下连接下载文件</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>tftp 127.0.0.1
 tftp&gt; get testftp.txt	</code></pre></div><p>
-<a href="#image-92b71b020c2cbee4b88596aaeb4fe41f" class="lightbox-link">
+<a href="#image-f8b6b989499d4578af1ee34972440b60" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629953389532-5f46c47c-df50-42c7-9f05-aa6840a50824.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-92b71b020c2cbee4b88596aaeb4fe41f">
+<a href="javascript:history.back();" class="lightbox" id="image-f8b6b989499d4578af1ee34972440b60">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629953389532-5f46c47c-df50-42c7-9f05-aa6840a50824.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>参考：</p>
@@ -393,18 +393,18 @@ security=share
 <h4 id="连接共享-1">连接共享</h4>
 <p>为了测试在home下创建sambashare目录匹配配置中的path内容，用于作为sambashare的目录，并创建sambasharetest.txt文件作为测试文件</p>
 <p>
-<a href="#image-9b54fbdcc03a7b45f747157c7bfb5a20" class="lightbox-link">
+<a href="#image-bed65ddb27985396200a77faf306b654" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629957114490-621a3804-cb6c-447d-9411-1ba17c74d865.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9b54fbdcc03a7b45f747157c7bfb5a20">
+<a href="javascript:history.back();" class="lightbox" id="image-bed65ddb27985396200a77faf306b654">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629957114490-621a3804-cb6c-447d-9411-1ba17c74d865.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>windows下文件资源管理器中\10.211.55.14\sambashare即可</p>
 <p>
-<a href="#image-38c379e5169deeee5897b8df68827cf4" class="lightbox-link">
+<a href="#image-c1319788496833bc0a27d3ee091a0026" class="lightbox-link">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629958756343-a0d3c7b8-4177-47d9-8cfe-545a951c28ea.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-38c379e5169deeee5897b8df68827cf4">
+<a href="javascript:history.back();" class="lightbox" id="image-c1319788496833bc0a27d3ee091a0026">
 <img src="%e7%b3%bb%e7%bb%9f%e5%85%b1%e4%ba%ab%e6%a3%80%e6%9f%a5/1629958756343-a0d3c7b8-4177-47d9-8cfe-545a951c28ea.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>参考：</p>
@@ -434,7 +434,7 @@ security=share
       <div id="header-wrapper" class="default-animation">
         <div id="header" class="default-animation">
 <link rel="icon" href="/images/head.png" type="image/png">
-<img src="/images/favicon.png">
+<a href="/"><img src="/images/favicon.png"></a>
         </div>
         <form action="/search.html" method="get"><div class="searchbox default-animation">
           <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
@@ -445,12 +445,12 @@ security=share
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690782562" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690782562" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690782562" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690782562" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690782562" defer></script>
-        <script src="/js/search.js?1690782562" defer></script>
+        <script src="/js/auto-complete.js?1690783054" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690783054" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690783054" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690783054" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690783054" defer></script>
+        <script src="/js/search.js?1690783054" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -642,8 +642,8 @@ security=share
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690782562" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690782562" defer></script>
+    <script src="/js/clipboard.min.js?1690783054" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690783054" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -673,15 +673,15 @@ security=share
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690782562" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690782562" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690782562" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690782562" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690782562" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690782562" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690782562" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690782562" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690782562" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690783054" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690783054" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690783054" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690783054" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690783054" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690783054" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690783054" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690783054" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690783054" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -690,8 +690,8 @@ security=share
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690782562  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690783054  };
     </script>
-    <script src="/js/theme.js?1690782562" defer></script>
+    <script src="/js/theme.js?1690783054" defer></script>
   </body>
 </html>
