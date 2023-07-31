@@ -10,18 +10,18 @@
     <title>页面篡改分析-EVAL加密 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-EVAL加密 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690786346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690786346" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690786346" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690786346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690786346" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690786346" rel="stylesheet">
-    <link href="/css/fonts.css?1690786346" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690786346" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690786346" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690786346" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690786346" rel="stylesheet">
-    <link href="/css/print.css?1690786346" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690786346" rel="stylesheet">
-    <script src="/js/url.js?1690786346"></script>
-    <script src="/js/variant.js?1690786346"></script>
+    <link href="/css/fontawesome-all.min.css?1690786613" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690786613" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690786613" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690786613" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690786613" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690786613" rel="stylesheet">
+    <link href="/css/fonts.css?1690786613" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690786613" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690786613" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690786613" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690786613" rel="stylesheet">
+    <link href="/css/print.css?1690786613" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690786613" rel="stylesheet">
+    <script src="/js/url.js?1690786613"></script>
+    <script src="/js/variant.js?1690786613"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -77,10 +77,10 @@
 
 <h4 id="一处被篡改网站">一处被篡改网站</h4>
 <p>本次样本概况页面篡改菠菜内容，同时加入eval加密js脚本，经过一次跳转及2次收集用户统计信息之后跳转到菠菜网站。
-<a href="#image-18520973dd4b2b8fe00a41bbc24709f2" class="lightbox-link">
+<a href="#image-ec1e78695ae408758aec789cb8c1a5eb" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/f0b5c7acdb729f08154539fd3c2a813b.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-18520973dd4b2b8fe00a41bbc24709f2">
+<a href="javascript:history.back();" class="lightbox" id="image-ec1e78695ae408758aec789cb8c1a5eb">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/f0b5c7acdb729f08154539fd3c2a813b.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>本次样本如下：</p>
@@ -102,10 +102,10 @@
 </span></span><span style="display:flex;"><span>......</span></span></code></pre></div><h4 id="页面篡改分析">页面篡改分析</h4>
 <p>发现其中的篡改信息，以及两处js脚本插入。其中菠菜信息UTF-8的反转译可得：</p>
 <p>
-<a href="#image-ae7d0d30f80041ade59d71ba32e4e21c" class="lightbox-link">
+<a href="#image-fe6a43f4b13871eb3812bdc9ae8aa2f1" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/3430a101ad8de4a46301b3f4d81132af.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ae7d0d30f80041ade59d71ba32e4e21c">
+<a href="javascript:history.back();" class="lightbox" id="image-fe6a43f4b13871eb3812bdc9ae8aa2f1">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/3430a101ad8de4a46301b3f4d81132af.png" alt="" class="lightbox-image" loading="lazy">
 </a>
 两个脚本一个是百度统计https://hm.baidu.com/hm.js?9a4c62a1985e8fbd8d0ce7c1a54070d1， 另一个是eval加密如下：</p>
@@ -144,10 +144,10 @@
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">yesdata</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&amp;refe=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">escape</span>(document.<span style="color:#a6e22e">referrer</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;location=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">escape</span>(document.<span style="color:#a6e22e">location</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;color=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">screen</span>.<span style="color:#a6e22e">colorDepth</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;x&amp;resolution=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">screen</span>.<span style="color:#a6e22e">width</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;x&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">screen</span>.<span style="color:#a6e22e">height</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;returning=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">cc_k</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;language=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">systemLanguage</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;ua=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">escape</span>(<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">userAgent</span>);
 </span></span><span style="display:flex;"><span>document.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#39;&lt;a href=&#34;http://countt.51yes.com/index.aspx?id=503589630&#34; target=_blank&gt;&lt;img width=20 height=20 border=0 hspace=0 vspace=0 src=&#34;http://count50.51yes.com/count1.gif&#34; alt=&#34;51YES网站统计系统&#34;&gt;&lt;/a&gt;&#39;</span>);document.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#39;&lt;iframe MARGINWIDTH=0 MARGINHEIGHT=0 HSPACE=0 VSPACE=0 FRAMEBORDER=0 SCROLLING=no src=http://count50.51yes.com/sa.htm?id=503589630&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">yesdata</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39; height=0 width=0&gt;&lt;/iframe&gt;&#39;</span>);</span></span></code></pre></div><p>对页面访问者信息进行收集，同上一篇文中提到的一样。统计并页面进行跳转直接引流到博彩页面
 
-<a href="#image-769227dfb56f652a51ab253db47791d2" class="lightbox-link">
+<a href="#image-3a2887a63d7cb94c7e01b06e2a571c98" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/f0b5c7acdb729f08154539fd3c2a813b-0894983.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-769227dfb56f652a51ab253db47791d2">
+<a href="javascript:history.back();" class="lightbox" id="image-3a2887a63d7cb94c7e01b06e2a571c98">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/f0b5c7acdb729f08154539fd3c2a813b-0894983.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="iocs">IOCs</h4>
@@ -178,12 +178,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690786347" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690786347" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690786347" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690786347" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690786347" defer></script>
-        <script src="/js/search.js?1690786347" defer></script>
+        <script src="/js/auto-complete.js?1690786614" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690786614" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690786614" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690786614" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690786614" defer></script>
+        <script src="/js/search.js?1690786614" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -375,8 +375,8 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690786347" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690786347" defer></script>
+    <script src="/js/clipboard.min.js?1690786614" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690786614" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -406,15 +406,15 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690786347" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690786347" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690786347" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690786347" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690786347" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690786347" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690786347" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690786347" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690786347" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690786614" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690786614" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690786614" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690786614" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690786614" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690786614" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690786614" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690786614" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690786614" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -423,8 +423,8 @@
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690786347  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690786614  };
     </script>
-    <script src="/js/theme.js?1690786347" defer></script>
+    <script src="/js/theme.js?1690786614" defer></script>
   </body>
 </html>
