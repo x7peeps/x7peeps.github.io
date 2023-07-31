@@ -10,18 +10,18 @@
     <title>页面篡改分析-JS的eval()加密方式跳转 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-js%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-JS的eval()加密方式跳转 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690784203" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690784203" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690784203" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690784203" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690784203" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690784203" rel="stylesheet">
-    <link href="/css/fonts.css?1690784203" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690784203" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690784203" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690784203" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690784203" rel="stylesheet">
-    <link href="/css/print.css?1690784203" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690784203" rel="stylesheet">
-    <script src="/js/url.js?1690784203"></script>
-    <script src="/js/variant.js?1690784203"></script>
+    <link href="/css/fontawesome-all.min.css?1690784601" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690784601" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690784601" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690784601" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690784601" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690784601" rel="stylesheet">
+    <link href="/css/fonts.css?1690784601" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690784601" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690784601" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690784601" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690784601" rel="stylesheet">
+    <link href="/css/print.css?1690784601" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690784601" rel="stylesheet">
+    <script src="/js/url.js?1690784601"></script>
+    <script src="/js/variant.js?1690784601"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -91,10 +91,10 @@
 <h3 id="referer触发后端直接返回跳转">Referer触发后端直接返回跳转</h3>
 <p>一般菠菜采用引用JS或者写入源码的JS静态加载固定加载的方式触发加载博彩页面，而近期发现了更为隐蔽的加载方式，仅通过referer检测判断来源，符合则直接返回跳转，不符合来源则不触发博彩页面。
 
-<a href="#image-fbeda6401a9f8c847a856f564f4f0b77" class="lightbox-link">
+<a href="#image-a1930eb3883e331c8a130d6cefb43945" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-JS%E7%9A%84eval%28%29%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/b37c1415f565751e36f5ad01813dd603.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fbeda6401a9f8c847a856f564f4f0b77">
+<a href="javascript:history.back();" class="lightbox" id="image-a1930eb3883e331c8a130d6cefb43945">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-JS%E7%9A%84eval%28%29%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/b37c1415f565751e36f5ad01813dd603.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>引用外部脚本：http://aobo.jswpk.com/aobo.js  这里为了方便分析调整了下代码布局。</p>
@@ -216,12 +216,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690784204" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690784204" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690784204" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690784204" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690784204" defer></script>
-        <script src="/js/search.js?1690784204" defer></script>
+        <script src="/js/auto-complete.js?1690784602" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690784602" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690784602" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690784602" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690784602" defer></script>
+        <script src="/js/search.js?1690784602" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -413,8 +413,8 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690784204" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690784204" defer></script>
+    <script src="/js/clipboard.min.js?1690784602" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690784602" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -444,15 +444,15 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690784204" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690784204" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690784204" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690784204" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690784204" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690784204" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690784204" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690784204" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690784204" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690784602" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690784602" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690784602" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690784602" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690784602" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690784602" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690784602" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690784602" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690784602" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -461,8 +461,8 @@
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690784204  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690784602  };
     </script>
-    <script src="/js/theme.js?1690784204" defer></script>
+    <script src="/js/theme.js?1690784602" defer></script>
   </body>
 </html>
