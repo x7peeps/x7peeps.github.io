@@ -24,7 +24,7 @@ var relearn_search_index = [
     "content": "",
     "description": "",
     "tags": null,
-    "title": "x7peeps",
+    "title": "Welcome",
     "uri": "/index.html"
   },
   {
