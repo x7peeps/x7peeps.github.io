@@ -529,7 +529,7 @@ var relearn_search_index = [
     "description": "",
     "tags": "工具开发,脚本,日志分析",
     "title": "Coremail日志分析脚本",
-    "uri": "/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-Coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html"
+    "uri": "/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html"
   },
   {
     "content": " 对于大量UnsafeHttpMethod类型漏洞一直苦于耗费时间，而几乎无产出，对于安全检测人员来说简直是浪费了不必要的时间，所以根据具体的几种常见的漏洞通过脚本的形式进行批量检测成为了最值得研究的。本文设计的Method_test.py模块用于检测OPTIONS,PUT,DELETE,TRACE方法脚本，支持单测、批测，批测中断，生成记录文档。\n需求 对于大量UnsafeHttpMethod类型漏洞一直苦于耗费时间，而几乎无产出，对于安全检测人员来说简直是浪费了不必要的时间，所以根据具体的几种常见的漏洞通过脚本的形式进行批量检测成为了最值得研究的。\n漏洞名称：启用了不安全的HTTP方法 危险等级：中 **漏洞描述：**Web服务器配置为允许使用危险的HTTP方法，如PUT、MOVE、COPY、DELETE、PROPFIND、SEARCH、MKCOL、LOCK、UNLOCK、PROPPATCH，该配置可能允许未授权的用户对Web服务器进行敏感操作。\nmethod_test 检测OPTIONS,PUT,DELETE,TRACE\n功能： 支持单个url检测、批测， 批测可以中断， 生成记录文档 用法: method_test.py [option] [parameter] -h this help -u \u003curl\u003e -r \u003cFilePath\u003eeg. ”method_test.py -u http://baidu.com\"\neg. “method_test.py -r d:\\url.txt” (url.txt内容需统一带http/https://)\n【Git下载地址】method_test.py\n",
