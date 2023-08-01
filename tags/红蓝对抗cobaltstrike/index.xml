@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>红蓝对抗,CobaltStrike on x7peeps</title>
-    <link>https://x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97CobaltStrike/index.html</link>
+    <link>https://x7peeps.com/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97CobaltStrike/index.html</link>
     <description>Recent content in 红蓝对抗,CobaltStrike on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Feb 2020 23:31:00 +0000</lastBuildDate><atom:link href="https://x7peeps.github.io/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97CobaltStrike/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Feb 2020 23:31:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97CobaltStrike/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CS X86 payload分析混淆加密</title>
-      <link>https://x7peeps.github.io/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</link>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</link>
       <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
-      <guid>https://x7peeps.github.io/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</guid>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</guid>
       <description>&lt;h1 id=&#34;cobalt-strike--bypassing-windows-defender-with-obfuscation&#34;&gt;Cobalt Strike – Bypassing Windows Defender with Obfuscation&lt;/h1&gt;
 &lt;p&gt;
-&lt;a href=&#34;#image-fe5c68d330edb7dd939e5d5f12d396d8&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;a href=&#34;#image-46e4dcf3d3e5ced436056b3710ff7af2&#34; class=&#34;lightbox-link&#34;&gt;
 &lt;img src=&#34;%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-fe5c68d330edb7dd939e5d5f12d396d8&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-46e4dcf3d3e5ced436056b3710ff7af2&#34;&gt;
 &lt;img src=&#34;%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
 Cobalt Strike 使用混淆绕WindowsDefender

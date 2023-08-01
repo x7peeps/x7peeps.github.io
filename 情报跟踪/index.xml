@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>情报跟踪 on x7peeps</title>
-    <link>https://x7peeps.github.io/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html</link>
+    <link>https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html</link>
     <description>Recent content in 情报跟踪 on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Apr 2020 21:18:00 +0000</lastBuildDate><atom:link href="https://x7peeps.github.io/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Apr 2020 21:18:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>黑客背后的&#34;Thrip&#34;网络间谍组织</title>
-      <link>https://x7peeps.github.io/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-Chinese_Hackers_Target_SatelliteGeospatial_ImagingDefense_Companies/index.html</link>
+      <link>https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-Chinese_Hackers_Target_SatelliteGeospatial_ImagingDefense_Companies/index.html</link>
       <pubDate>Sat, 04 Apr 2020 21:18:00 +0000</pubDate>
-      <guid>https://x7peeps.github.io/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-Chinese_Hackers_Target_SatelliteGeospatial_ImagingDefense_Companies/index.html</guid>
+      <guid>https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-Chinese_Hackers_Target_SatelliteGeospatial_ImagingDefense_Companies/index.html</guid>
       <description>&lt;p&gt;By Catalin Cimpanu&lt;/p&gt;
 &lt;p&gt;文章出处：https://www.bleepingcomputer.com/news/security/chinese-hackers-target-satellite-geospatial-imaging-defense-companies/&lt;/p&gt;
 &lt;p&gt;一个据信在中国以外活动的网络间谍组织攻击了开发卫星通信、地理空间成像和来自美国和东南亚的国防承包商的公司。美国网络安全公司赛门铁克(Symantec)昨日在一份报告中表示，黑客对被入侵公司的运营方面表现出了特别的兴趣。黑客们试图接触并密切关注用于控制通信卫星的计算机系统，或使用世界地图卫星收集的地理空间数据的计算机系统。赛门铁克表示:“这向我们表明，(该集团)的动机不只是从事间谍活动，还可能包括破坏。”有人担心，黑客可能甚至试图破坏卫星或毒物地理空间数据。&lt;/p&gt;</description>
