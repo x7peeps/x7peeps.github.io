@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>科普 on x7peeps</title>
-    <link>https://x7peeps.com/tags/%E7%A7%91%E6%99%AE/index.html</link>
+    <link>https://x7peeps.github.io/tags/%E7%A7%91%E6%99%AE/index.html</link>
     <description>Recent content in 科普 on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Sep 2020 11:49:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/%E7%A7%91%E6%99%AE/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Sep 2020 11:49:00 +0000</lastBuildDate><atom:link href="https://x7peeps.github.io/tags/%E7%A7%91%E6%99%AE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>手机丢失后一定要做的几件必做事！</title>
-      <link>https://x7peeps.com/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html</link>
+      <link>https://x7peeps.github.io/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html</link>
       <pubDate>Thu, 10 Sep 2020 11:49:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html</guid>
+      <guid>https://x7peeps.github.io/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html</guid>
       <description>前文还是老骆驼今天发的超长文，完整的记录了整个手机丢失到积极避免损失的过程，通过整个过程基本上可以梳理一遍整个手机黑产过程了，这里渐渐干货捞捞作为安全行业需要关注的几点梳理一下。
 分子实验室——www.molecule-labs.com
 一个是对于社工的基础漏洞的挖掘是否在社工相关或者逻辑漏洞上缺乏更高的视角发觉漏洞，文中提到的一些问题点在黑产的角度都是比较成体系的利用链，那么目前大家在做的渗透是否存在不足或存在漏洞不被重视，值得思考；一个是在以往攻防的过程中不会考虑更多利用的可能性（至少红队目前还没有看到偷手机地步，不过倒也是个不错的思路）本文也从红队的角度反向梳理了下值得学习的点；最后从日常所有人都应该注意的需要防范的点出发我们可以有哪些通过老骆驼这次经验可以借鉴的防范点呢，作为手册或者关注点，这里进行了相关梳理，供大家参考。

@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>scapy on x7peeps</title>
-    <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</link>
+    <link>https://x7peeps.github.io/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</link>
     <description>Recent content in scapy on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Sep 2020 12:03:49 +0000</lastBuildDate><atom:link href="https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Sep 2020 12:03:49 +0000</lastBuildDate><atom:link href="https://x7peeps.github.io/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

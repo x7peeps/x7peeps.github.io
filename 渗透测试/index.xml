@@ -2,15 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>渗透测试 on x7peeps</title>
-    <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</link>
+    <link>https://x7peeps.github.io/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</link>
     <description>Recent content in 渗透测试 on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://x7peeps.github.io/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>web应用渗透测试方法论</title>
-      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html</link>
+      <link>https://x7peeps.github.io/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html</guid>
+      <guid>https://x7peeps.github.io/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html</guid>
       <description>WEB应用程序渗透测试方法论 指导思想：方法论中一系列任务根据他们之间的逻辑依赖关系组织和排序。实际上，渗透测试过程往往需要发挥自己的想象，思考可采取的攻击方向，并根据所发现的有关目标应用程序的信息指导攻击方向。
 某一个阶段收集到的信息有助于返回到 前一个阶段，以设计更具有针对性的攻击。
 在应用程序的某个区域发现的一个关键漏洞可简化对另一个区域的攻击。
