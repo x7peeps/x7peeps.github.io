@@ -10,18 +10,18 @@
     <title>钩子检查 - x7peeps</title>
     <link href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.xml" rel="alternate" type="application/rss+xml" title="钩子检查 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690876098" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690876098" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690876098" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690876098" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690876098" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690876098" rel="stylesheet">
-    <link href="/css/fonts.css?1690876098" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690876098" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690876098" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690876098" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690876098" rel="stylesheet">
-    <link href="/css/print.css?1690876098" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690876098" rel="stylesheet">
-    <script src="/js/url.js?1690876098"></script>
-    <script src="/js/variant.js?1690876098"></script>
+    <link href="/css/fontawesome-all.min.css?1690876486" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690876486" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690876486" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690876486" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690876486" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690876486" rel="stylesheet">
+    <link href="/css/fonts.css?1690876486" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690876486" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690876486" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690876486" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690876486" rel="stylesheet">
+    <link href="/css/print.css?1690876486" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690876486" rel="stylesheet">
+    <script src="/js/url.js?1690876486"></script>
+    <script src="/js/variant.js?1690876486"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -111,19 +111,19 @@
 <p>HOOK和注入技术经常被恶意代码使用,利用HOOK和注入技术,恶意代码提高了执行隐蔽性,增加了恶意代码分析难度，在某些情况下还能实现提权提升和内存常驻。</p>
 <p>钩子(Hook)，是Windows消息处理机制的一个平台,应用程序可以在上面设置子程以监视指定窗口的某种消息，而且所监听的窗口可以是其他进程所创建的。当消息到达后,在目标窗口处理函数之前处理它，钩子机制允许应用程序截获处理Window消息或特定事件。</p>
 <p>
-<a href="#image-a18f0ff1116f591b99a6e96023fde6bb" class="lightbox-link">
+<a href="#image-9a566abc4c9e28456c95fb37a42dc530" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630370936018-1ef1db28-59e4-417b-b4f3-0a1c97416056.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a18f0ff1116f591b99a6e96023fde6bb">
+<a href="javascript:history.back();" class="lightbox" id="image-9a566abc4c9e28456c95fb37a42dc530">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630370936018-1ef1db28-59e4-417b-b4f3-0a1c97416056.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="hook的分类">hook的分类</h3>
 <p>Hook分为应用层（Ring3）Hook和内核层（Ring0）Hook，应用层Hook适用于x86和x64，而内核层Hook一般仅在x86平台适用，因为从Windows Vista的64版本开始引入的Patch Guard技术极大地限制了Windows x64内核挂钩的使用。</p>
 <p>
-<a href="#image-8bb316e421de5fcc02c3c45c57863b9a" class="lightbox-link">
+<a href="#image-f02f70e42a2c47f128b85a0d7484801b" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630370993942-d4d7b03b-4c97-41b7-bcbb-281db7f09462.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8bb316e421de5fcc02c3c45c57863b9a">
+<a href="javascript:history.back();" class="lightbox" id="image-f02f70e42a2c47f128b85a0d7484801b">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630370993942-d4d7b03b-4c97-41b7-bcbb-281db7f09462.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="消息hook">消息hook</h3>
@@ -141,10 +141,10 @@
 </ol>
 <p>所以，我们只需在[OS message queue]和[application message queue]之间安装钩子即可窃取键盘消息，并实现恶意操作。</p>
 <p>
-<a href="#image-1482684f81160c7691fbb03d3755cbd6" class="lightbox-link">
+<a href="#image-00bb6fe8a1a918db5011b56cda633857" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630372761522-30d8bbb3-f28f-4189-a034-aad92a234ebd.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1482684f81160c7691fbb03d3755cbd6">
+<a href="javascript:history.back();" class="lightbox" id="image-00bb6fe8a1a918db5011b56cda633857">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630372761522-30d8bbb3-f28f-4189-a034-aad92a234ebd.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>那么我们该如何安装这个消息钩子呢？很简单，Windows提供了一个官方函数SetWindowsHookEx()用于设置消息Hook，编程时只要调用该API就能简单地实现Hook。</p>
@@ -157,10 +157,10 @@
 <p>)</p>
 <p>该API在简单高效的同时也有一个弊端，就是它只能监视较少的消息，如：击键消息、鼠标移动消息、窗口消息。想要对系统更全面的进行Hook就要使用以下介绍的两种Hook方法。</p>
 <p>
-<a href="#image-bb48299e61c11355615bc5f286c5f455" class="lightbox-link">
+<a href="#image-34b1a5355facca4825301558d3524baf" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630373389940-2cb3978f-abb6-48ac-938c-cf15b8f400c2.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-bb48299e61c11355615bc5f286c5f455">
+<a href="javascript:history.back();" class="lightbox" id="image-34b1a5355facca4825301558d3524baf">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630373389940-2cb3978f-abb6-48ac-938c-cf15b8f400c2.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="调试hook">调试hook</h3>
@@ -168,27 +168,27 @@
 <p>该Hook方法的原理跟调试器的工作机制相似，核心思想都是让进程发生异常，然后自己捕获到该异常，对处于被调试状态下的级才能进行恶意操作。
 下图是常规进程的异常事件处理，当进程未被其他进程调试时，其默认异常事件处理者是OS，一旦进程发生异常，OS将捕获到该异常，并进行相应的事件处理。</p>
 <p>
-<a href="#image-41596df1d5b5e36e1d88bed960739ec5" class="lightbox-link">
+<a href="#image-46ef12c4405d17972729279be73f22b2" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630373216238-e8e058c1-a840-4160-beb8-ab7c466e3b60.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-41596df1d5b5e36e1d88bed960739ec5">
+<a href="javascript:history.back();" class="lightbox" id="image-46ef12c4405d17972729279be73f22b2">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630373216238-e8e058c1-a840-4160-beb8-ab7c466e3b60.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>若进程被另一个进程调试了（如OllyDbg），异常事件的处理工作将移交给调试者，比如进程发生了除0错误，OllyDbg将接收到这个异常事件并对进行相应处理。
 PS：调试器无处理或不关心的调试事件最终由OS处理。</p>
 <p>
-<a href="#image-1e70d409f0558caa94f2b000acc5e6b9" class="lightbox-link">
+<a href="#image-79c781217297b4ed318bdb937717cf45" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630373277311-aed1c131-cac7-4831-bf5e-daa099b231c6.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1e70d409f0558caa94f2b000acc5e6b9">
+<a href="javascript:history.back();" class="lightbox" id="image-79c781217297b4ed318bdb937717cf45">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630373277311-aed1c131-cac7-4831-bf5e-daa099b231c6.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>所以，调试Hook的核心思路就是将API的第一个字节修改为0xCC（INT 3），当API被调用时，由于触发了异常，控制权就被转交给调试器。</p>
 <p>
-<a href="#image-0f66124642d22d7cc1e9a2775af5001f" class="lightbox-link">
+<a href="#image-770924359d529821cb97a99c8b8c4f50" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630373376338-ae8dc475-461a-4519-93e3-d2ac55b8334e.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0f66124642d22d7cc1e9a2775af5001f">
+<a href="javascript:history.back();" class="lightbox" id="image-770924359d529821cb97a99c8b8c4f50">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630373376338-ae8dc475-461a-4519-93e3-d2ac55b8334e.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="注入hook">注入hook</h3>
@@ -204,24 +204,24 @@ PS：调试器无处理或不关心的调试事件最终由OS处理。</p>
 <p>如下，左图红框内是IAT修改前的状态，指明SetWindowTextW()的地址为0x77D0960E，所以calc.exe执行call SetWindowTextW（dword ptr[01001110]）实质上就是执行call 0x77D0960E。</p>
 <p>右图是被Hook后的状态，IAT中的SetWinowTextW()的地址已被修改为0x10001000，calc.exe执行call SetWindowTextW（dword ptr[01001110]）实质变成了执行call 0x10001000（也就是恶意代码的起始地址），这时候就可以做我们想做的操作了。</p>
 <p>
-<a href="#image-95ac5633fa7372afb0fda5533f34cbba" class="lightbox-link">
+<a href="#image-cd1906599c8963e72574be1cee746877" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630389423589-0592c628-5e5a-435a-8200-a49bd8cace57.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-95ac5633fa7372afb0fda5533f34cbba">
+<a href="javascript:history.back();" class="lightbox" id="image-cd1906599c8963e72574be1cee746877">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630389423589-0592c628-5e5a-435a-8200-a49bd8cace57.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-6ea24991e576c2d32346b81f19fbad9d" class="lightbox-link">
+<a href="#image-7d049c280af30627c83a75202ebe0d4c" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630389415072-72cfd5f9-03f4-4ea3-a148-c3200dc48b75.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6ea24991e576c2d32346b81f19fbad9d">
+<a href="javascript:history.back();" class="lightbox" id="image-7d049c280af30627c83a75202ebe0d4c">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630389415072-72cfd5f9-03f4-4ea3-a148-c3200dc48b75.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-a1c526b4fe91092bc459f169f02d3dc3" class="lightbox-link">
+<a href="#image-0affde00538efc81b707c7838cee91e8" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630387359349-b702bcd9-ff80-42a7-a658-0191af6f2914.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a1c526b4fe91092bc459f169f02d3dc3">
+<a href="javascript:history.back();" class="lightbox" id="image-0affde00538efc81b707c7838cee91e8">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630387359349-b702bcd9-ff80-42a7-a658-0191af6f2914.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="inline-hookring3-windows-api型">inline hook**（ring3 windows api型）**</h4>
@@ -231,24 +231,24 @@ PS：调试器无处理或不关心的调试事件最终由OS处理。</p>
 <p>[</p>
 <p>](<a href="https://blog.csdn.net/m0_37552052/article/details/81453591" target="_blank">https://blog.csdn.net/m0_37552052/article/details/81453591</a>)</p>
 <p>
-<a href="#image-4be1855705ede1dd00d1b694ece6c19c" class="lightbox-link">
+<a href="#image-4f3a3b972eeab0c9501f2e498f9e364e" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630388382684-f2f09760-bf4b-4473-ad75-4a4d5ba3e7fa.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4be1855705ede1dd00d1b694ece6c19c">
+<a href="javascript:history.back();" class="lightbox" id="image-4f3a3b972eeab0c9501f2e498f9e364e">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630388382684-f2f09760-bf4b-4473-ad75-4a4d5ba3e7fa.png" alt="img" class="lightbox-image" loading="lazy">
 </a>
-<a href="#image-ae82a981f04b19b1e35f03b50f64a6b9" class="lightbox-link">
+<a href="#image-84ee22967a516f4c17ddc1449e5aba22" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630388374024-7a7a810a-dd3f-456a-915a-fbc9ccfeff4d.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ae82a981f04b19b1e35f03b50f64a6b9">
+<a href="javascript:history.back();" class="lightbox" id="image-84ee22967a516f4c17ddc1449e5aba22">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630388374024-7a7a810a-dd3f-456a-915a-fbc9ccfeff4d.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>首先获取原API的地址，并保存在pfnOrg中，然后修改内存段属性为RWX，备份原有代码（以便后续代码恢复），实时计算JMP的相对偏移，最后修改API前5字节的代码，恢复内存属性。</p>
 <p>
-<a href="#image-9399fe387be2c7beb87283c8c668b274" class="lightbox-link">
+<a href="#image-78780a2e54d0289c090ba8b42b703aed" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630390213625-6cef08f7-7419-4a82-8543-7b50d0953e16.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9399fe387be2c7beb87283c8c668b274">
+<a href="javascript:history.back();" class="lightbox" id="image-78780a2e54d0289c090ba8b42b703aed">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630390213625-6cef08f7-7419-4a82-8543-7b50d0953e16.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="hotfix-hookring3-windows-api型"><strong>HotFix Hook（ring3 windows api型）</strong></h4>
@@ -260,17 +260,17 @@ PS：调试器无处理或不关心的调试事件最终由OS处理。</p>
 \2. API代码上方有5个NOP指令。</p>
 <p>MOV EDI,EDI用于将EDI的值再次复制给EDI，这没有什么实际意义。也就是说，API起始代码的MOV指令（2个字节）与其上方的5个NOP指令（5个字节）合起来共7个字节的指令没有任何意义。所以我们就可以通过修改这7个字节来实现Hook操作。这种方法因为可以在进程处于运行状态时临时更改进程内存中的库文件，所以微软也常用这种方法来打“热补丁”。</p>
 <p>
-<a href="#image-32324255852464e6ceee4a0c43f0cf1e" class="lightbox-link">
+<a href="#image-d0181b312f32f837ebf2b28cb1719057" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630390957955-1f2796dd-b0d0-4496-a77f-cdb1930705ff.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-32324255852464e6ceee4a0c43f0cf1e">
+<a href="javascript:history.back();" class="lightbox" id="image-d0181b312f32f837ebf2b28cb1719057">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630390957955-1f2796dd-b0d0-4496-a77f-cdb1930705ff.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-32020c199d4eb577452aa052a7f8d545" class="lightbox-link">
+<a href="#image-bf7044bb38442844e857f4bd3817a4ab" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630390964538-9337fd4f-5cbe-42fd-bf3e-c204e97296af.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-32020c199d4eb577452aa052a7f8d545">
+<a href="javascript:history.back();" class="lightbox" id="image-bf7044bb38442844e857f4bd3817a4ab">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630390964538-9337fd4f-5cbe-42fd-bf3e-c204e97296af.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>如下，将前7个字节改成：
@@ -278,18 +278,18 @@ JMP 10001000（恶意代码地址）
 JMP SHORT 0x7C802366</p>
 <p>这样，当API被调用时，首先执行了JMP SHORT 0x7C802366，便跳到了JMP 10001000处执行，最后跳到了恶意代码的起始处0x10001000。</p>
 <p>
-<a href="#image-86f0215d02452e1ea12cef5b27e1d55a" class="lightbox-link">
+<a href="#image-e0041e0a970dc1f688b3e7e7049b5d01" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391175904-9aaac93c-00f3-4b22-8fa0-e7fc0f9d235b.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-86f0215d02452e1ea12cef5b27e1d55a">
+<a href="javascript:history.back();" class="lightbox" id="image-e0041e0a970dc1f688b3e7e7049b5d01">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391175904-9aaac93c-00f3-4b22-8fa0-e7fc0f9d235b.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在5字节代码修改技术中“脱钩”是为了“调用原函数”，而使用“热补丁”技术钩取API时，在API代码遭到修改的状态下也能正常调用原API（从[API起始地址+2]地址开始，仍然能正常调用原API，且执行的动作也完全一样）。</p>
 <p>
-<a href="#image-1c261c5db70023000bb60a4b67e82abb" class="lightbox-link">
+<a href="#image-4cdc1c7663744148d2b53f7a50ccb288" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391506338-56882061-0a4d-4a94-a5c3-2a625b15484d.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1c261c5db70023000bb60a4b67e82abb">
+<a href="javascript:history.back();" class="lightbox" id="image-4cdc1c7663744148d2b53f7a50ccb288">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391506338-56882061-0a4d-4a94-a5c3-2a625b15484d.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>由于HotFix Hook需要修改7个字节的代码，所以并不是所有API都适用这种方法，若不适用，请使用5字节代码修改技术。</p>
@@ -298,43 +298,43 @@ JMP SHORT 0x7C802366</p>
 <h5 id="ssdt">ssdt</h5>
 <p>内核通过SSDT（System Service Descriptor Table）系统服务描述符表调用各种内核函数，SSDT就是一个函数表，只要得到一个索引值，就能根据这个索引值在该表中得到想要的函数地址。</p>
 <p>
-<a href="#image-cf53aa123ad851ed487a38092f5b32b3" class="lightbox-link">
+<a href="#image-14ea12c2b6df2342a8efdf36a0b2d8e9" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391643827-c76c4f6b-ea01-4106-9514-f5696a748d45.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-cf53aa123ad851ed487a38092f5b32b3">
+<a href="javascript:history.back();" class="lightbox" id="image-14ea12c2b6df2342a8efdf36a0b2d8e9">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391643827-c76c4f6b-ea01-4106-9514-f5696a748d45.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下图0x80563520处就是ntoskrnl对应的服务描述符表结构SSDT。那么第一个32位的0x804e58a0则是SSDT Base，即SSDT的首地址。</p>
 <p>
-<a href="#image-eeb25cd2659df98f3ba7e875b2270388" class="lightbox-link">
+<a href="#image-8727afb33d59a263ef616bf2994485bf" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391803874-71421813-3305-4a49-a310-ef131202991a.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-eeb25cd2659df98f3ba7e875b2270388">
+<a href="javascript:history.back();" class="lightbox" id="image-8727afb33d59a263ef616bf2994485bf">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391803874-71421813-3305-4a49-a310-ef131202991a.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通过对这些地址反汇编，就能得到相应的函数，下图中0x80591bfb是SSDT表中的第一个函数NtAcceptConnectPort的地址。</p>
 <p>
-<a href="#image-6af30eb9d6579b334092fd061c01fdc1" class="lightbox-link">
+<a href="#image-74df18abd3203f7038253ba799946c59" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391944227-8521e9e7-b83f-4ed1-b4cf-f11a86b9df5f.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6af30eb9d6579b334092fd061c01fdc1">
+<a href="javascript:history.back();" class="lightbox" id="image-74df18abd3203f7038253ba799946c59">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391944227-8521e9e7-b83f-4ed1-b4cf-f11a86b9df5f.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>我们接下来试着寻找NtQuerySystemInformation的地址，首先反汇编ZwQuerySystemInformation，得知它要寻找SSDT中索引号为0xAD的地址。</p>
 <p>
-<a href="#image-0c0969a901e9a64868a7adcdbbd6250e" class="lightbox-link">
+<a href="#image-351c79579acccf7822ef3d7329639ad5" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391977999-6ee9b13e-cbc8-4413-b91f-d35927244493.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0c0969a901e9a64868a7adcdbbd6250e">
+<a href="javascript:history.back();" class="lightbox" id="image-351c79579acccf7822ef3d7329639ad5">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630391977999-6ee9b13e-cbc8-4413-b91f-d35927244493.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>从上面我们可以知道，NtQuerySystemInformation的索引号为0xAD，那么我们就可以算出NtQuerySystemInformation的地址：
 0x80591bfb + 0xAD = 0x8056ff1</p>
 <p>
-<a href="#image-af535839723fb8271a64b8e3ce4ce858" class="lightbox-link">
+<a href="#image-314cae7e8927001a9c55cf18238fdf12" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630392009096-718df055-7c62-42cd-a22d-3005c98147ae.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-af535839723fb8271a64b8e3ce4ce858">
+<a href="javascript:history.back();" class="lightbox" id="image-314cae7e8927001a9c55cf18238fdf12">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630392009096-718df055-7c62-42cd-a22d-3005c98147ae.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>ssdt hook代码实现</p>
@@ -348,10 +348,10 @@ JMP SHORT 0x7C802366</p>
 <p><a href="https://blog.csdn.net/m0_37552052/article/details/81453591" target="_blank">
 </a></p>
 <p>
-<a href="#image-549727f28db6b353983128e0a4618f07" class="lightbox-link">
+<a href="#image-b8dfe9cf6b28e5fd202096b27a9db3f7" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630392486304-0fd72ce1-cdb2-47af-90bd-a325c7e7f18d.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-549727f28db6b353983128e0a4618f07">
+<a href="javascript:history.back();" class="lightbox" id="image-b8dfe9cf6b28e5fd202096b27a9db3f7">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1630392486304-0fd72ce1-cdb2-47af-90bd-a325c7e7f18d.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>参考：</p>
@@ -384,10 +384,10 @@ JMP SHORT 0x7C802366</p>
 </li>
 </ul>
 <p>
-<a href="#image-1263c5939808c775c18261f70178979e" class="lightbox-link">
+<a href="#image-20d0f7498078817015c9d330b4db929e" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631776930445-25836f4c-eebf-4958-b1f2-e8d26c8fc571.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1263c5939808c775c18261f70178979e">
+<a href="javascript:history.back();" class="lightbox" id="image-20d0f7498078817015c9d330b4db929e">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631776930445-25836f4c-eebf-4958-b1f2-e8d26c8fc571.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="hook前">Hook前</h4>
@@ -403,10 +403,10 @@ JMP SHORT 0x7C802366</p>
 </li>
 </ul>
 <p>
-<a href="#image-6e02bd9a4ffa20da7d5a75bfbd3e530d" class="lightbox-link">
+<a href="#image-6e62b8807dca12274b1e3460b51bfe5e" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631777179862-78657643-56e1-4682-851f-84ad8a00ba9e.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6e02bd9a4ffa20da7d5a75bfbd3e530d">
+<a href="javascript:history.back();" class="lightbox" id="image-6e62b8807dca12274b1e3460b51bfe5e">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631777179862-78657643-56e1-4682-851f-84ad8a00ba9e.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="hook之后">Hook之后</h4>
@@ -432,34 +432,34 @@ JMP SHORT 0x7C802366</p>
 </ul>
 <p>二进制文件在内存中的基址位置为0x000007FF6BFD50000</p>
 <p>
-<a href="#image-74edc69a72fcd3f60b6ecc5528b47359" class="lightbox-link">
+<a href="#image-d7553ea072cc5d9213452e06865a1947" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631890292495-3c38db2f-2153-4dbb-a86a-2a6bdbf4db2f.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-74edc69a72fcd3f60b6ecc5528b47359">
+<a href="javascript:history.back();" class="lightbox" id="image-d7553ea072cc5d9213452e06865a1947">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631890292495-3c38db2f-2153-4dbb-a86a-2a6bdbf4db2f.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在IAT操作之前，指向：MessageBoxA地址 0x00007ff6bfd663f2 （IAT地址）</p>
 <p>
-<a href="#image-c14ae4db06dd4e06d079ebebbfb04913" class="lightbox-link">
+<a href="#image-8c96e207fe86cb119396228005f63ad3" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631890456783-1f594eb4-d181-40ad-9208-09b63d311b64.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c14ae4db06dd4e06d079ebebbfb04913">
+<a href="javascript:history.back();" class="lightbox" id="image-8c96e207fe86cb119396228005f63ad3">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631890456783-1f594eb4-d181-40ad-9208-09b63d311b64.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>我们通过查询IAT内存地址即可知道实际MessageBoxA地址0x000007FF6BFD771D8。</p>
 <p>
-<a href="#image-c5269d01825f9b848fe88c438fea97e4" class="lightbox-link">
+<a href="#image-88aad8985f4a0cbd2cca9f106734ccee" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631890735313-6af57ca9-faf3-4c44-938d-8cce9f857d7b.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c5269d01825f9b848fe88c438fea97e4">
+<a href="javascript:history.back();" class="lightbox" id="image-88aad8985f4a0cbd2cca9f106734ccee">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631890735313-6af57ca9-faf3-4c44-938d-8cce9f857d7b.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>除此之外，我们还可以通过通过CPP查询到的偏移地址也可以推出MessageBoxA的实际地址=基址+偏移地址=0x000007FF6BFD50000+0x000000000000271D8=0x000007FF6BFD771D8</p>
 <p>
-<a href="#image-b1d7ebcf1a2b3c6f8c5bcf18d7bbe2bf" class="lightbox-link">
+<a href="#image-d7b19bfb76916d2bfe0296857d6cff9f" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631890405538-549f9a51-7203-424c-bfa0-367d35cb4fd6.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b1d7ebcf1a2b3c6f8c5bcf18d7bbe2bf">
+<a href="javascript:history.back();" class="lightbox" id="image-d7b19bfb76916d2bfe0296857d6cff9f">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631890405538-549f9a51-7203-424c-bfa0-367d35cb4fd6.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>#include &lt;iostream&gt;
@@ -535,49 +535,49 @@ int main()
 	return 0;
 }</code></pre></div><p>1.hook执行之前</p>
 <p>
-<a href="#image-fe02602e0642958d2bed3b62f3caa08d" class="lightbox-link">
+<a href="#image-4b6de5058e37510546289bf965c7d8be" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631892184182-a4ff6e73-268e-4033-8127-5aaaa380b927.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fe02602e0642958d2bed3b62f3caa08d">
+<a href="javascript:history.back();" class="lightbox" id="image-4b6de5058e37510546289bf965c7d8be">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631892184182-a4ff6e73-268e-4033-8127-5aaaa380b927.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>此时Trunk指针指向MessageBoxA的实际地址</p>
 <p>
-<a href="#image-940b61c7ad9e4c40faaad8b945de4aac" class="lightbox-link">
+<a href="#image-6dfc1a32563abae8e620b7e21e6716cf" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631892332599-e6cd0748-96aa-4627-ab0e-41a9a83aec7a.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-940b61c7ad9e4c40faaad8b945de4aac">
+<a href="javascript:history.back();" class="lightbox" id="image-6dfc1a32563abae8e620b7e21e6716cf">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631892332599-e6cd0748-96aa-4627-ab0e-41a9a83aec7a.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-61096f6d2f7decc91942b7e1d6a7a4b1" class="lightbox-link">
+<a href="#image-52eedc97b88a6794b0a2119c215b6b95" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631892989433-4afebe91-2863-4875-8679-03f510b42808.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-61096f6d2f7decc91942b7e1d6a7a4b1">
+<a href="javascript:history.back();" class="lightbox" id="image-52eedc97b88a6794b0a2119c215b6b95">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631892989433-4afebe91-2863-4875-8679-03f510b42808.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>2.执行后指针指向hookedMessageBox，这里由于指针在满足hookedMessageBox之后仍然会继续轮询一段IAT，因此会发现程序执行完这个指针最后并不是正好处于HookedMessageBox位置，这里可以参考下图，抓取到的满足逻辑的时刻。</p>
 <p>
-<a href="#image-f10f1aa85a9850f7439d269f96d91607" class="lightbox-link">
+<a href="#image-f1517af281ae2ce0e670c1d0db5726a9" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631894663731-00c7343a-9604-4740-895c-bc52fc183263.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f10f1aa85a9850f7439d269f96d91607">
+<a href="javascript:history.back();" class="lightbox" id="image-f1517af281ae2ce0e670c1d0db5726a9">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631894663731-00c7343a-9604-4740-895c-bc52fc183263.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>3.之后执行hookedMessageBox。</p>
 <p>
-<a href="#image-d4ad6cf5541892da18423002ddc41261" class="lightbox-link">
+<a href="#image-ea4805a099035f589061fb8292ad5170" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631893132603-a3d15c42-bc85-4367-aaef-d914d4fe04ca.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d4ad6cf5541892da18423002ddc41261">
+<a href="javascript:history.back();" class="lightbox" id="image-ea4805a099035f589061fb8292ad5170">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631893132603-a3d15c42-bc85-4367-aaef-d914d4fe04ca.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>4.最后hook结束</p>
 <p>
-<a href="#image-45de8838ac6261f4144f9dafe910beaa" class="lightbox-link">
+<a href="#image-2798054af1dfa399ec97da4f07da47bd" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631894901712-5bd13dc3-feab-4a61-94ad-61d51a218557.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-45de8838ac6261f4144f9dafe910beaa">
+<a href="javascript:history.back();" class="lightbox" id="image-2798054af1dfa399ec97da4f07da47bd">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1631894901712-5bd13dc3-feab-4a61-94ad-61d51a218557.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>参考：</p>
@@ -589,57 +589,57 @@ int main()
 <h2 id="检测hook">检测hook</h2>
 <h3 id="iathook检测">IAThook检测</h3>
 <p>
-<a href="#image-f757e01fbc8c3216c6086319603d1b2a" class="lightbox-link">
+<a href="#image-0a35fc238e4801c0c95ac6b18acb4036" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632277085276-f8d57d7f-a975-4151-bc2b-3ff65c57da3b.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f757e01fbc8c3216c6086319603d1b2a">
+<a href="javascript:history.back();" class="lightbox" id="image-0a35fc238e4801c0c95ac6b18acb4036">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632277085276-f8d57d7f-a975-4151-bc2b-3ff65c57da3b.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-07958473a1bf594210f1f94e782a98ce" class="lightbox-link">
+<a href="#image-d787c3a2c7ecb78c6fe5b5b24f56c29e" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632277165409-3633655f-b3a4-4517-965a-430c6b05a09e.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-07958473a1bf594210f1f94e782a98ce">
+<a href="javascript:history.back();" class="lightbox" id="image-d787c3a2c7ecb78c6fe5b5b24f56c29e">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632277165409-3633655f-b3a4-4517-965a-430c6b05a09e.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通过查看详情，可以看到钩子源MessageBoxA，目标已经挂在了HookedMessageBox上。</p>
 <p>
-<a href="#image-4774b2c64acf5924cb6d2c031893cc4a" class="lightbox-link">
+<a href="#image-acbdf55b07d191869747b0d5a5ca758a" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632277331969-07c2b1a0-a160-4b99-af7e-f5299053e444.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4774b2c64acf5924cb6d2c031893cc4a">
+<a href="javascript:history.back();" class="lightbox" id="image-acbdf55b07d191869747b0d5a5ca758a">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632277331969-07c2b1a0-a160-4b99-af7e-f5299053e444.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>找到程序内存IAT双击进入程序内存位置。</p>
 <p>
-<a href="#image-8175f7eea5e87536b085085d4911700b" class="lightbox-link">
+<a href="#image-16a827d34f7d2e480b6f407e4289042b" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632278128151-c68fb2d6-1bba-4345-a407-d29c4fa7d8fb.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8175f7eea5e87536b085085d4911700b">
+<a href="javascript:history.back();" class="lightbox" id="image-16a827d34f7d2e480b6f407e4289042b">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632278128151-c68fb2d6-1bba-4345-a407-d29c4fa7d8fb.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通过反汇编分析hook程序功能。</p>
 <p>
-<a href="#image-5a9f06cccb2e92009237f7a4fd33c54e" class="lightbox-link">
+<a href="#image-a03b9c3c60b0f21988c76f42bb693adc" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632278102282-6b1e7ab4-3520-421b-bbef-e699cb107df5.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5a9f06cccb2e92009237f7a4fd33c54e">
+<a href="javascript:history.back();" class="lightbox" id="image-a03b9c3c60b0f21988c76f42bb693adc">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632278102282-6b1e7ab4-3520-421b-bbef-e699cb107df5.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>这里因为无法直接复制汇编，手工反汇编，因此需要借助dbg进行进一步分析，这里测试环境下我们选择重新VS运行不调试执行Ctrl+F5，然后附加dbg中，目标地址这次有所变化。</p>
 <p>
-<a href="#image-fce22e00bfd78eeda8d6e00353959949" class="lightbox-link">
+<a href="#image-67d108152f1dd1d610b864da5a80f287" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632280420809-8f35ca63-4644-4b89-9a7a-9f1a1300242b.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fce22e00bfd78eeda8d6e00353959949">
+<a href="javascript:history.back();" class="lightbox" id="image-67d108152f1dd1d610b864da5a80f287">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632280420809-8f35ca63-4644-4b89-9a7a-9f1a1300242b.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通过定位到内存中目标地址的内存情况。</p>
 <p>
-<a href="#image-b39293771876fb75bc72615edd31dd3d" class="lightbox-link">
+<a href="#image-352ea3e5c729a0c07c4aa4dbbed46eb9" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632280464863-9262229f-57db-46c7-8529-8064783dd218.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b39293771876fb75bc72615edd31dd3d">
+<a href="javascript:history.back();" class="lightbox" id="image-352ea3e5c729a0c07c4aa4dbbed46eb9">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632280464863-9262229f-57db-46c7-8529-8064783dd218.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>mov qword ptr ss:[rsp+8],rbx
@@ -676,10 +676,10 @@ push r14
 push r15
 sub rsp,50</code></pre></div><p>这里另外一种方式通过，火绒剑的dump功能将钩子程序dump专项分析。</p>
 <p>
-<a href="#image-eebe36a2c9605ac969f5e3d360d38032" class="lightbox-link">
+<a href="#image-5784b458c6515f78e9cfae7fa2bc29d5" class="lightbox-link">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632283687742-49c8889c-2149-44af-80ee-d01e76b5bd42.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-eebe36a2c9605ac969f5e3d360d38032">
+<a href="javascript:history.back();" class="lightbox" id="image-5784b458c6515f78e9cfae7fa2bc29d5">
 <img src="%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/1632283687742-49c8889c-2149-44af-80ee-d01e76b5bd42.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h1 id="linux下应用层和内核钩子检查">linux下应用层和内核钩子检查</h1>
@@ -706,12 +706,12 @@ sub rsp,50</code></pre></div><p>这里另外一种方式通过，火绒剑的dum
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690876098" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690876098" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690876098" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690876098" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690876098" defer></script>
-        <script src="/js/search.js?1690876098" defer></script>
+        <script src="/js/auto-complete.js?1690876486" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690876486" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690876486" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690876486" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690876486" defer></script>
+        <script src="/js/search.js?1690876486" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -891,8 +891,8 @@ sub rsp,50</code></pre></div><p>这里另外一种方式通过，火绒剑的dum
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690876098" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690876098" defer></script>
+    <script src="/js/clipboard.min.js?1690876486" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690876486" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -922,15 +922,15 @@ sub rsp,50</code></pre></div><p>这里另外一种方式通过，火绒剑的dum
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690876098" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690876098" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690876098" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690876098" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690876098" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690876098" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690876098" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690876098" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690876098" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690876486" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690876486" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690876486" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690876486" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690876486" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690876486" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690876486" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690876486" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690876486" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -939,8 +939,8 @@ sub rsp,50</code></pre></div><p>这里另外一种方式通过，火绒剑的dum
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690876098  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690876486  };
     </script>
-    <script src="/js/theme.js?1690876098" defer></script>
+    <script src="/js/theme.js?1690876486" defer></script>
   </body>
 </html>
