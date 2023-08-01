@@ -8,17 +8,17 @@
     <language>en-us</language><atom:link href="https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Clonezilla</title>
-      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Clonezilla/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Clonezilla/index.html</guid>
       <description>&lt;p&gt;Clonezilla：https://clonezilla.org/ 多平台的分区和磁盘克隆程序。&lt;/p&gt;
 &lt;p&gt;Clonezilla是一个分区和磁盘成像/克隆程序，类似于True Image®或Norton Ghost®。帮助您进行系统部署、裸金属备份和恢复。Clonezilla有三种类型:Clonezilla live、Clonezilla lite server和Clonezilla SE(服务器版)。Clonezilla live适用于单机备份和恢复。虽然Clonezilla lite server或SE是用于大规模部署的，但它可以同时克隆许多(40多台!)计算机。Clonezilla只保存和恢复硬盘中使用过的块。这提高了克隆效率。在42节点集群中的一些高端硬件中，理论可达8gb/min速率恢复速率。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Datanumen_disk_image</title>
-      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Datanumen_disk_image/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Datanumen_disk_image/index.html</guid>
       <description>Datanumen disk image：
 https://www.datanumen.com/disk-image/免费管理磁盘驱动器镜像创建制作和恢复的软件
 简介 DataNumen Disk Image是一个强大的工具来克隆和恢复磁盘或驱动器。它可以一个字节一个字节地创建和恢复磁盘映像或驱动器映像。实用的数据备份和恢复，磁盘/驱动器复制和克隆，和取证。
@@ -62,9 +62,9 @@ of=/mnt/udisk/Forensic/dd/sda
     </item>
     <item>
       <title>EnCase_forensic_imager.</title>
-      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/EnCase_forensic_imager/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/EnCase_forensic_imager/index.html</guid>
       <description>EnCase Forensic Imager(win)
 EnCase V8是美国Guidance Software推出的最新计算机取证软件，全新的操作界面，采用全新的取证分析的工作流，让新版更加简单易用，提供了更加强大灵活的报告功能（可模板定制），此外EnCase V8将原有EnCase v7所有模块(VFS/PDE/EDS/FastBloc SE/CD-DVD)及Neutrino手机取证功能全部集成，成为业界首先将计算机取证、手机取证综合一体的电子数据取证分析软件。
 Guidance Software Inc.是全球知名的计算机取证厂商，成立于1997年，在纳斯达克上市(NASDAQ: GUID)，总部设立在美国。其EnCase计算机取证系列产品在美国、欧洲等地的执法部门、司法机关及世界五百强（Fortune 500)广泛使用，在美国联邦法院、地方法院收到认可，已成为业界标准。目前已销售超过40000套EnCase产品，每年培训的取证专业人员超过6000人
@@ -85,9 +85,9 @@ Detect Tableau hardware 检测Tableau硬件。如果没有连接Tableau设备，
     </item>
     <item>
       <title>GetdataForensicImager</title>
-      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/GetdataForensicImager/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/GetdataForensicImager/index.html</guid>
       <description>官网 http://www.forensicimager.com/
 基于windows程序，文件格式取证转换工具
 Forensic Explorer (FEX) 是用户保存、分析和展示电子证据的软件。该软件的主要用户是执法机构、政府、军队和企业调查机构。
@@ -113,9 +113,9 @@ Published: 14-Jul-20at 15:37:58
     </item>
     <item>
       <title>Guymager</title>
-      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html</link>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Guymager/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html</guid>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Guymager/index.html</guid>
       <description>官网：https://guymager.sourceforge.io/
 下载：https://sourceforge.net/projects/guymager/
 版本更新订阅：https://sourceforge.net/p/guymager/activity/feed

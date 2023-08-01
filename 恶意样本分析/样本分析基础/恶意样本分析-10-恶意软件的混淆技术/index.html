@@ -10,18 +10,18 @@
     <title>恶意样本分析-10-恶意软件的混淆技术 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析-10-恶意软件的混淆技术 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690867338" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867338" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690867338" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690867338" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867338" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690867338" rel="stylesheet">
-    <link href="/css/fonts.css?1690867338" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867338" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690867338" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690867338" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690867338" rel="stylesheet">
-    <link href="/css/print.css?1690867338" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690867338" rel="stylesheet">
-    <script src="/js/url.js?1690867338"></script>
-    <script src="/js/variant.js?1690867338"></script>
+    <link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690867475" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867475" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690867475" rel="stylesheet">
+    <link href="/css/fonts.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867475" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690867475" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690867475" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690867475" rel="stylesheet">
+    <link href="/css/print.css?1690867475" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690867475" rel="stylesheet">
+    <script src="/js/url.js?1690867475"></script>
+    <script src="/js/variant.js?1690867475"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -104,18 +104,18 @@
 <p>在我们深入研究恶意软件如何使用加密算法之前，让我们试着了解一下本章将使用的基本知识和一些术语。明文是指未加密的信息；这可能是命令和控制（C2）流量或恶意软件想要加密的文件内容。加密文本指的是加密信息；这可能是恶意软件从C2服务器收到的加密的可执行文件或加密命令。</p>
 <p>恶意软件对明文进行加密，将明文与密钥一起作为输入传递给加密函数，从而产生一个密码文本。由此产生的密码文本通常被恶意软件用来写入文件或通过网络发送。</p>
 <p>
-<a href="#image-487d35c1fee5db56fe56ba627f5ea870" class="lightbox-link">
+<a href="#image-90a879835f66c9dd304f34d080f96ab0" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316141323421.png" alt="image-20220316141323421" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-487d35c1fee5db56fe56ba627f5ea870">
+<a href="javascript:history.back();" class="lightbox" id="image-90a879835f66c9dd304f34d080f96ab0">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316141323421.png" alt="image-20220316141323421" class="lightbox-image" loading="lazy">
 </a></p>
 <p>以同样的方式，恶意软件可以从C2服务器或文件中接收加密的内容，然后通过将加密的内容和密钥传递给解密功能来解密，如下所示。</p>
 <p>
-<a href="#image-29d786a10a51c42acfebcccb0b05fc32" class="lightbox-link">
+<a href="#image-17e1a34bd735b7bc4716c1fd3ca7e344" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316141340331.png" alt="image-20220316141340331" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-29d786a10a51c42acfebcccb0b05fc32">
+<a href="javascript:history.back();" class="lightbox" id="image-17e1a34bd735b7bc4716c1fd3ca7e344">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316141340331.png" alt="image-20220316141340331" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在分析恶意软件时，你可能想了解某个特定内容是如何被加密或解密的。要做到这一点，你将主要关注识别加密或解密功能以及用于加密或解密内容的密钥。例如，如果你想确定网络内容是如何被加密的，那么你可能会在网络输出操作（如HttpSendRequest()）之前找到加密函数。以同样的方式，如果你想知道C2的加密内容是如何被解密的，那么你很可能在使用诸如InternetReadFile()这样的API从C2检索到内容后找到解密函数。</p>
@@ -127,10 +127,10 @@
 <h5 id="111-凯撒密码的工作原理">1.1.1 凯撒密码的工作原理</h5>
 <p>理解凯撒密码的最好方法是写下从A到Z的字母，并给这些字母分配一个索引，从0到25，如下所示换句话说，&lsquo;A&rsquo;对应于索引0，&lsquo;B&rsquo;对应于索引1，以此类推。一组从A到Z的所有字母被称为字符集。</p>
 <p>
-<a href="#image-5ec42c18b844f35f2d28fd84b1a496c1" class="lightbox-link">
+<a href="#image-b8ef62b8855e8b61ef31d1fb601d3a7a" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316142433440.png" alt="image-20220316142433440" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5ec42c18b844f35f2d28fd84b1a496c1">
+<a href="javascript:history.back();" class="lightbox" id="image-b8ef62b8855e8b61ef31d1fb601d3a7a">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316142433440.png" alt="image-20220316142433440" class="lightbox-image" loading="lazy">
 </a></p>
 <p>现在，让我们假设你想把字母转移三个位置，那么3就成了你的密钥。为了加密字母&rsquo;A&rsquo;，将字母A的索引，即0，加到钥匙3上；这样的结果是0+3=3。现在用结果3作为索引，找到相应的字母，也就是&rsquo;D&rsquo;，这样&rsquo;A&rsquo;就被加密成&rsquo;D&rsquo;了。为了加密&rsquo;B&rsquo;，你将把&rsquo;B&rsquo;的索引（1）加到钥匙3上，结果是4，索引4与&rsquo;E&rsquo;有关，所以&rsquo;B&rsquo;加密为&rsquo;E&rsquo;，以此类推。</p>
@@ -141,10 +141,10 @@ where i = index of plaintext character 明文字符串索引</code></pre></div><
 <div class="wrap-code highlight"><pre tabindex="0"><code>(j - key) % (length of the character set)
 where j = index of ciphertext character</code></pre></div><p>下图显示了字符集、加密和以3为密钥的文本 &ldquo;ZEUS &ldquo;的解密（移动三个位置）。加密后，文本 &ldquo;ZEUS &ldquo;被翻译成 &ldquo;CHXV&rdquo;，然后解密又将其翻译成 &ldquo;ZEUS&rdquo;。</p>
 <p>
-<a href="#image-459eecce8bce4c7737b441c637b0feae" class="lightbox-link">
+<a href="#image-fef08559b99094a3a95829b59da9d201" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316142619512.png" alt="image-20220316142619512" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-459eecce8bce4c7737b441c637b0feae">
+<a href="javascript:history.back();" class="lightbox" id="image-fef08559b99094a3a95829b59da9d201">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316142619512.png" alt="image-20220316142619512" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="112-用python解密凯撒密码">1.1.2 用Python解密凯撒密码</h5>
@@ -165,10 +165,10 @@ ZEUS</code></pre></div><blockquote>
 <p>标准的Base64编码由以下64个字符集组成。你要编码的二进制数据的每3个字节（24位）被翻译成该字符集的四个字符。每个翻译的字符大小为6比特。除了以下字符外，=字符用于填充。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/</code></pre></div><p>为了了解数据如何被翻译成Base64编码，首先，建立Base64索引表，将索引0到63分配给字符集中的字母，如图所示。按照下表，索引0对应于字母A，索引62对应于+，以此类推。</p>
 <p>
-<a href="#image-f06152e03991397f2a41a27c3a5c6dab" class="lightbox-link">
+<a href="#image-18f87b6ce5f39574b95567e6957aa946" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316145424740.png" alt="image-20220316145424740" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f06152e03991397f2a41a27c3a5c6dab">
+<a href="javascript:history.back();" class="lightbox" id="image-18f87b6ce5f39574b95567e6957aa946">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316145424740.png" alt="image-20220316145424740" class="lightbox-image" loading="lazy">
 </a></p>
 <p>现在，让我们假设我们想对文本 &ldquo;One &ldquo;进行Base64编码。要做到这一点，我们需要将字母转换为其相应的比特值，如图所示。</p>
@@ -197,10 +197,10 @@ T25l</code></pre></div><p>要在python中解码base64数据，请使用以下代
 One</code></pre></div><p>GCHQ的CyberChef是一个伟大的web应用程序，允许你在浏览器中进行各种编码/解码、加密/解密、压缩/解压和数据分析操作。你可以通过以下网址访问CyberChef：https://gchq.github.io/CyberChef/，更多的细节可以在https://github.com/gchq/ CyberChef找到。</p>
 <p>你也可以使用诸如ConverterNET（http://www.kahusecurity.com/tools/）这样的工具对base64数据进行编码/解码。ConvertNET提供各种功能，允许你将数据转换为/从许多不同的格式。要进行编码，在输入栏中输入要编码的文本，然后点击Text to Base64按钮。要解码，在输入栏中输入要编码的数据，然后点击Base64到文本按钮。下面的截图显示了使用ConverterNET对字符串Hi进行的Base64编码。</p>
 <p>
-<a href="#image-ea86cc16c0dd516f617181b398b054b9" class="lightbox-link">
+<a href="#image-240c0f6c3cc9806445bc5193b8cd7dd7" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316155355035.png" alt="image-20220316155355035" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ea86cc16c0dd516f617181b398b054b9">
+<a href="javascript:history.back();" class="lightbox" id="image-240c0f6c3cc9806445bc5193b8cd7dd7">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316155355035.png" alt="image-20220316155355035" class="lightbox-image" loading="lazy">
 </a></p>
 <p>编码后的字符串末尾的=字符是填充字符。如果你还记得，该算法将三个字节的输入转换为四个字符，由于Hi只有两个字符，它被填充成三个字符；只要使用了填充，你就会在Base64编码的字符串的末尾看到=字符。这意味着一个有效的Base64编码的字符串的长度总是4的倍数。</p>
@@ -208,18 +208,18 @@ One</code></pre></div><p>GCHQ的CyberChef是一个伟大的web应用程序，允
 <p>攻击者使用不同的Base64编码变化；其目的是阻止Base64解码工具成功解码数据。在本节中，你将了解这些技术中的一些。</p>
 <p>一些恶意软件样本将填充字符（=）从末端移除。这里显示了一个恶意软件样本（Trojan Qidmorks）进行的C2通信。下面的帖子有效载荷看起来是用base64编码的。</p>
 <p>
-<a href="#image-b76710b51fccc094b98e73b9f39e310a" class="lightbox-link">
+<a href="#image-f04c45e39028a77764dc6aded132eedd" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316155504124.png" alt="image-20220316155504124" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b76710b51fccc094b98e73b9f39e310a">
+<a href="javascript:history.back();" class="lightbox" id="image-f04c45e39028a77764dc6aded132eedd">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316155504124.png" alt="image-20220316155504124" class="lightbox-image" loading="lazy">
 </a></p>
 <p>当你试图解码POST有效载荷时，你会得到不正确的填充错误，如下所示。</p>
 <p>
-<a href="#image-1c0cf20673193e9ff4441422591921f2" class="lightbox-link">
+<a href="#image-df550b83dc3c0790a710d8c23abfbfd1" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316155529591.png" alt="image-20220316155529591" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1c0cf20673193e9ff4441422591921f2">
+<a href="javascript:history.back();" class="lightbox" id="image-df550b83dc3c0790a710d8c23abfbfd1">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316155529591.png" alt="image-20220316155529591" class="lightbox-image" loading="lazy">
 </a></p>
 <p>这个错误的原因是，编码字符串的长度（150）不是4的倍数。换句话说，Base64编码的数据中缺少两个字符，这很可能是填充字符（==）。</p>
@@ -227,10 +227,10 @@ One</code></pre></div><p>GCHQ的CyberChef是一个伟大的web应用程序，允
 &gt;&gt;&gt; len(encoded)
 150 </code></pre></div><p>将两个填充字符（==）附加到编码的字符串中，成功地解码了数据，如图所示。从解码后的数据可以看出，恶意软件向C2服务器发送了操作系统版本（6.1代表Windows 7）、用户的权限级别和父进程。</p>
 <p>
-<a href="#image-d232db50fe233980c37253fd844b1f80" class="lightbox-link">
+<a href="#image-8c06e0c23f8fd1cad72ad212497fb917" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316155618962.png" alt="image-20220316155618962" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d232db50fe233980c37253fd844b1f80">
+<a href="javascript:history.back();" class="lightbox" id="image-8c06e0c23f8fd1cad72ad212497fb917">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316155618962.png" alt="image-20220316155618962" class="lightbox-image" loading="lazy">
 </a></p>
 <p>有时，恶意软件作者使用base64编码的轻微变化。例如，攻击者可以使用一个字符集，其中字符-和_被用来代替+和/（第63和64个字符），如图所示。</p>
@@ -250,27 +250,27 @@ password1234!@?=@~</code></pre></div><p>有时，恶意软件作者会改变字�
 &gt;&gt;&gt; decoded = base64.b64decode(re_encoded) &gt;&gt;&gt; print decoded
 Hello</code></pre></div><p>你也可以使用ConverterNET工具，通过选择转换|转换自定义Base64来执行自定义Base64解码。只要在Alphabet字段中输入自定义的Base64字符集，然后在Input字段中输入要解码的数据，并按下Decode按钮，如图所示。</p>
 <p>
-<a href="#image-a08a604775cbc3c7c564bd2b27d2ef2f" class="lightbox-link">
+<a href="#image-04a78174987ec5e587d4140f643a3e93" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316160451555.png" alt="image-20220316160451555" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a08a604775cbc3c7c564bd2b27d2ef2f">
+<a href="javascript:history.back();" class="lightbox" id="image-04a78174987ec5e587d4140f643a3e93">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316160451555.png" alt="image-20220316160451555" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="124-识别base64">1.2.4 识别Base64</h5>
 <p>你可以通过寻找一个由Base64字符集（字母数字字符、+和/）组成的长字符串来识别一个使用Base64编码的二进制文件。下面的截图显示了恶意二进制文件中的Base64字符集，表明恶意软件可能使用了Base64编码。</p>
 <p>
-<a href="#image-52980044f74bd8d7215ba5cfe838dc35" class="lightbox-link">
+<a href="#image-c287e752c065b62d2d9ccaba80709a8c" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316160535934.png" alt="image-20220316160535934" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-52980044f74bd8d7215ba5cfe838dc35">
+<a href="javascript:history.back();" class="lightbox" id="image-c287e752c065b62d2d9ccaba80709a8c">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316160535934.png" alt="image-20220316160535934" class="lightbox-image" loading="lazy">
 </a></p>
 <p>你可以使用字符串交叉引用功能（在第5章中涉及）来定位使用Base64字符集的代码，如以下截图所示。即使没有必要知道代码中哪里使用了Base64字符集来解码Base64数据，但有时，定位它是有用的，例如在恶意软件作者使用Base64编码和其他加密算法的情况下。例如，如果恶意软件用某种加密算法对C2网络流量进行加密，然后使用Base64编码；在这种情况下，定位Base64字符集可能会使你进入Base64函数。然后你可以分析Base64函数或确定调用Base64函数的函数（使用Xrefs功能），这可能会导致你找到加密函数。</p>
 <p>
-<a href="#image-293cbfaed35c7e8538abc0ec7b8f14f6" class="lightbox-link">
+<a href="#image-a7b1d959313ac64cc2edcd5f92ff719f" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316160630643.png" alt="image-20220316160630643" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-293cbfaed35c7e8538abc0ec7b8f14f6">
+<a href="javascript:history.back();" class="lightbox" id="image-a7b1d959313ac64cc2edcd5f92ff719f">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316160630643.png" alt="image-20220316160630643" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -286,10 +286,10 @@ Hello</code></pre></div><p>你也可以使用ConverterNET工具，通过选择�
 $a or $b }</code></pre></div><h4 id="13-xor-编码">1.3 XOR 编码</h4>
 <p>除了Base64编码，恶意软件作者使用的另一种常见编码算法是XOR编码算法。XOR是一种位操作（像AND、OR和NOT），它是在操作数的相应位上进行的。下表描述了XOR操作的属性。在XOR操作中，当两个位都相同时，结果为0；否则，结果为1。</p>
 <p>
-<a href="#image-98f9bfec319d9b2fc268fae4bfe852c8" class="lightbox-link">
+<a href="#image-64b9810adf12e5e805670b8432babc7e" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316162037802.png" alt="image-20220316162037802" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-98f9bfec319d9b2fc268fae4bfe852c8">
+<a href="javascript:history.back();" class="lightbox" id="image-64b9810adf12e5e805670b8432babc7e">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316162037802.png" alt="image-20220316162037802" class="lightbox-image" loading="lazy">
 </a></p>
 <p>例如，当你XOR 2和4时，即2 ^ 4，结果是6，其工作方式如图所示。</p>
@@ -299,10 +299,10 @@ $a or $b }</code></pre></div><h4 id="13-xor-编码">1.3 XOR 编码</h4>
    Result After XOR : 0000 0110 (6)</code></pre></div><h5 id="131-单字节xor">1.3.1 单字节XOR</h5>
 <p>在单字节XOR中，明文的每个字节都与加密密钥进行XOR。例如，如果攻击者想用0x40的密钥对明文cat进行加密，那么文本中的每个字符（字节）都会与0x40进行XOR，从而得到密码文本#！4。 下图显示了每个单独字符的加密过程。</p>
 <p>
-<a href="#image-7de1bbca7b8c01a7d5d846005f147404" class="lightbox-link">
+<a href="#image-83d2edffcd4151b6123c688e38e98a04" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316165423779.png" alt="image-20220316165423779" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7de1bbca7b8c01a7d5d846005f147404">
+<a href="javascript:history.back();" class="lightbox" id="image-83d2edffcd4151b6123c688e38e98a04">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316165423779.png" alt="image-20220316165423779" class="lightbox-image" loading="lazy">
 </a></p>
 <p>XOR的另一个有趣的特性是，当你将密码文本与用于加密的相同密钥进行XOR时，你将得到原文文本。例如，如果你把前面例子中的密码文本#！4与0x40（密钥）进行XOR，你会得到cat。这意味着，如果你知道密钥，那么同一个函数就可以用来加密和解密数据。下面是一个简单的python脚本，用于执行XOR解密（同样的函数也可以用于执行XOR加密）。</p>
@@ -315,18 +315,18 @@ $a or $b }</code></pre></div><h4 id="13-xor-编码">1.3 XOR 编码</h4>
       out = xor(&#34;#!4&#34;, 0x40)
       print out</code></pre></div><p>有了对XOR编码算法的了解，让我们看看一个键盘记录器的例子，它将所有输入的按键编码到一个文件。当这个例子被执行时，它记录了击键，并使用CreateFileA()API打开了一个文件（所有击键都将被记录），如图所示。使用CreateFileA()API打开一个文件（其中所有的击键将被记录），如下面的截图所示。然后，它使用WriteFile()API将记录的击键写到文件中。请注意，恶意软件在调用CreateFileA()之后、WriteFile()之前调用了一个函数（重命名为enc_function）；该函数在将内容写入文件之前对其进行编码。enc_function需要两个参数；第一个参数是包含要加密的数据的缓冲区，第二个参数是缓冲区的长度。</p>
 <p>
-<a href="#image-8ee65d23f390c27aca4b87f94518b66d" class="lightbox-link">
+<a href="#image-6a6637b9861134d67a46b7fa95821421" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316165701771.png" alt="image-20220316165701771" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8ee65d23f390c27aca4b87f94518b66d">
+<a href="javascript:history.back();" class="lightbox" id="image-6a6637b9861134d67a46b7fa95821421">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316165701771.png" alt="image-20220316165701771" class="lightbox-image" loading="lazy">
 </a></p>
 <p>检查enc_function可以发现恶意软件使用单字节异或。它从数据缓冲区中读取每个字符并使用0x5A的键进行编码，如下所示。在下面的XOR循环中，edx寄存器指向数据缓冲区，esi寄存器包含缓冲区的长度，ecx寄存器作为数据缓冲区的索引，在循环结束时增加，只要索引值(ecx)小于缓冲区的长度(esi)，循环就会继续:</p>
 <p>
-<a href="#image-6e21c38e3e79f559a6c92c70f8a4f974" class="lightbox-link">
+<a href="#image-ea5f2b5e1ef1a1457452813ff5fbbcb3" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316171420469.png" alt="image-20220316171420469" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6e21c38e3e79f559a6c92c70f8a4f974">
+<a href="javascript:history.back();" class="lightbox" id="image-ea5f2b5e1ef1a1457452813ff5fbbcb3">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316171420469.png" alt="image-20220316171420469" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="132-通过蛮力找到xor密钥">1.3.2 通过蛮力找到XOR密钥</h5>
@@ -339,10 +339,10 @@ $a or $b }</code></pre></div><h4 id="13-xor-编码">1.3 XOR 编码</h4>
 print &#34;Key %s(0x%x): %s&#34; % (key, key, translated) &gt;&gt;&gt; xor_brute_force(&#34;lkwpjeia&gt;i}ieglmja&#34;, &#34;mymachine&#34;)
    Key 4(0x4): hostname:mymachine</code></pre></div><p>你也可以使用一个工具，如ConverterNET，用暴力手段确定密钥。要做到这一点，请选择工具|密钥搜索/转换。在弹出的窗口中，输入加密的内容和匹配的字符串，然后按下搜索按钮。如果找到了密钥，它将显示在结果栏中，如图所示。</p>
 <p>
-<a href="#image-656627a1ba02c47a54a0f84bb636c392" class="lightbox-link">
+<a href="#image-8b8664bd5f50a1d1e383853a16e7d035" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172157449.png" alt="image-20220316172157449" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-656627a1ba02c47a54a0f84bb636c392">
+<a href="javascript:history.back();" class="lightbox" id="image-8b8664bd5f50a1d1e383853a16e7d035">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172157449.png" alt="image-20220316172157449" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -363,10 +363,10 @@ print &#34;Key %s(0x%x): %s&#34; % (key, key, translated) &gt;&gt;&gt; xor_brute
 0x23 0x2e 0x27 0x27 0x24 0x4b 0x4b 0x4b &gt;&gt;&gt; print enc_text
 #.&#39;&#39;$KKK</code></pre></div><p>下面的截图显示了一个恶意软件样本（HeartBeat RAT）的XOR-加密通信。请注意到处都有0x2字节；这是由于恶意软件用0x2的XOR密钥加密了一个大的缓冲区（包含空字节）。关于这个恶意软件的逆向工程的更多信息，请参考作者的Cysinfo会议演讲：https://cysinfo.com/session-10-part-1-reversing-decrypting-communications-of-heartbeat-rat/。</p>
 <p>
-<a href="#image-f74e8398a8548ef6194307acbd9d542d" class="lightbox-link">
+<a href="#image-2c6233bf65e7457d9f6f661e3bf6c113" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172413521.png" alt="image-20220316172413521" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f74e8398a8548ef6194307acbd9d542d">
+<a href="javascript:history.back();" class="lightbox" id="image-2c6233bf65e7457d9f6f661e3bf6c113">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172413521.png" alt="image-20220316172413521" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了避免空字节问题，恶意软件作者在加密过程中会忽略空字节（0x00）和加密密钥，如这里提到的命令中所示。请注意，在下面的代码中，除了空字节（0x00）和加密密钥字节（0x4b）外，明文字符都是用密钥0x4b加密的；因此，在加密的输出中，空字节被保留下来，而不会泄露加密密钥。正如你所看到的，当攻击者使用这种技术时，仅仅通过查看加密的内容，是不容易确定密钥的。</p>
@@ -381,18 +381,18 @@ print &#34;Key %s(0x%x): %s&#34; % (key, key, translated) &gt;&gt;&gt; xor_brute
 &#34;#.&#39;&#39;$\x00\x00\x00&#34;</code></pre></div><h5 id="134-多字节xor编码">1.3.4 多字节XOR编码</h5>
 <p>攻击者通常使用多字节的XOR，因为它能更好地防御暴力破解技术。例如，如果恶意软件作者使用4字节的XOR密钥来加密数据，然后进行暴力破解，你将需要尝试4,294,967,295（0xFFFFFFFF）可能的密钥，而不是255（0xFF）密钥。下面的截图显示了恶意软件（Taidoor）的XOR解密循环。在这种情况下，Taidoor从其资源部分提取了加密的PE（exe）文件，并使用4字节的XOR密钥0xEAD4AA34将其解密。</p>
 <p>
-<a href="#image-f6273105351048dd2fdbe90f8439e40a" class="lightbox-link">
+<a href="#image-1e58fef791692f707dfa4e510f432974" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172527639.png" alt="image-20220316172527639" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f6273105351048dd2fdbe90f8439e40a">
+<a href="javascript:history.back();" class="lightbox" id="image-1e58fef791692f707dfa4e510f432974">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172527639.png" alt="image-20220316172527639" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的屏幕截图显示了资源黑客工具中的加密资源。通过右键点击资源，然后选择将资源保存为*.bin文件，可以将资源提取并保存到文件。</p>
 <p>
-<a href="#image-7cec6b379f57ba140788fe9815021bc7" class="lightbox-link">
+<a href="#image-35d02fa451ed2f4c89c81d87297bdadf" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172547982.png" alt="image-20220316172547982" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7cec6b379f57ba140788fe9815021bc7">
+<a href="javascript:history.back();" class="lightbox" id="image-35d02fa451ed2f4c89c81d87297bdadf">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172547982.png" alt="image-20220316172547982" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的屏幕截图显示了资源黑客工具中的加密资源。通过右键点击资源，然后选择将资源保存为*.bin文件，可以将资源提取并保存到文件。</p>
@@ -427,18 +427,18 @@ out_file.write(decrypted_content)</code></pre></div><p>解密后的内容是一�
 00000060: 7420 6265 2072 756e 2069 6e20 444f 5320 t be run in DOS</code></pre></div><h5 id="135-识别xor编码">1.3.5 识别XOR编码</h5>
 <p>为了识别XOR编码，在IDA中加载二进制文件，通过选择Search|Text来搜索XOR指令。在出现的对话框中，输入xor并选择查找所有出现的情况，如图所示。</p>
 <p>
-<a href="#image-0301da4a473728398e65a1001e41d091" class="lightbox-link">
+<a href="#image-2b5005cbb25321d945674bca1acf5fd0" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172749258.png" alt="image-20220316172749258" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0301da4a473728398e65a1001e41d091">
+<a href="javascript:history.back();" class="lightbox" id="image-2b5005cbb25321d945674bca1acf5fd0">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172749258.png" alt="image-20220316172749258" class="lightbox-image" loading="lazy">
 </a></p>
 <p>当你点击 &ldquo;确定 &ldquo;时，你会看到所有XOR的出现。在操作数为相同寄存器的情况下，XOR操作是非常常见的，例如xor eax,eax或xor ebx,ebx。这些指令被编译器用来清零寄存器的值，你可以忽略这些指令。要识别XOR编码，可以寻找（a）一个寄存器（或内存引用）与一个常量值的XOR，如这里所示，或者（b）寻找一个寄存器（或内存引用）与一个不同的寄存器（或内存引用）的XOR。你可以通过双击条目导航到代码。</p>
 <p>
-<a href="#image-24385e3c263f25c3b2c521359d0f9ddb" class="lightbox-link">
+<a href="#image-16ee9148e77fb42e2705f53dcecb45e1" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172832936.png" alt="image-20220316172832936" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-24385e3c263f25c3b2c521359d0f9ddb">
+<a href="javascript:history.back();" class="lightbox" id="image-16ee9148e77fb42e2705f53dcecb45e1">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316172832936.png" alt="image-20220316172832936" class="lightbox-image" loading="lazy">
 </a></p>
 <p>以下是一些你可以用来确定XOR密钥的工具。除了使用XOR编码外，攻击者还可能使用ROL、ROT或SHIFT操作来编码数据。这里提到的XORSearch和Balbuzard除了支持XOR之外，还支持ROL、ROT和Shift操作。CyberChef几乎支持所有类型的编码、加密和压缩算法。</p>
@@ -490,34 +490,34 @@ out_file.write(decrypted_content)</code></pre></div><p>解密后的内容是一�
 
  </code></pre></div><p>一旦你知道加密指标所在的地址，你就可以用IDA导航到该地址。例如，如果你想导航到地址00410438（DES的初始排列组合IP），在IDA中加载二进制文件并选择Jump|Jump to address（跳转|跳转到地址）（或G热键）并输入地址，如图所示。</p>
 <p>
-<a href="#image-5f25c10ac09f5d68a8e0f285dbab2e7a" class="lightbox-link">
+<a href="#image-b13ac62397ef866a9060e467ed8d0ba3" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316174752930.png" alt="image-20220316174752930" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5f25c10ac09f5d68a8e0f285dbab2e7a">
+<a href="javascript:history.back();" class="lightbox" id="image-b13ac62397ef866a9060e467ed8d0ba3">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316174752930.png" alt="image-20220316174752930" class="lightbox-image" loading="lazy">
 </a></p>
 <p>一旦你点击确定，你将到达包含指标的地址（在这种情况下，DES初始permutation IP，标记为DES_ip），如以下截图所示。</p>
 <p>
-<a href="#image-ce9b790f9c8a713e5419d4483edc0c25" class="lightbox-link">
+<a href="#image-606b2d97f0a23aa203949e1b8c1a7de0" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316174842233.png" alt="image-20220316174842233" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ce9b790f9c8a713e5419d4483edc0c25">
+<a href="javascript:history.back();" class="lightbox" id="image-606b2d97f0a23aa203949e1b8c1a7de0">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316174842233.png" alt="image-20220316174842233" class="lightbox-image" loading="lazy">
 </a></p>
 <p>现在，要知道这个加密指标在代码中的使用位置和方式，你可以使用交叉引用（Xrefs-to）功能。使用交叉引用（Xrefs to）功能显示，DES_ip在地址为0x4032E0（loc_4032E0）的函数sub_4032B0中被引用。</p>
 <p>
-<a href="#image-021a0dc0151071a1ea87152af0e19326" class="lightbox-link">
+<a href="#image-9dbc494068dc527b0944fd8bb5cb010b" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316174902776.png" alt="image-20220316174902776" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-021a0dc0151071a1ea87152af0e19326">
+<a href="javascript:history.back();" class="lightbox" id="image-9dbc494068dc527b0944fd8bb5cb010b">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316174902776.png" alt="image-20220316174902776" class="lightbox-image" loading="lazy">
 </a></p>
 <p>现在，导航到地址0x4032E0可以直接进入DES加密函数，如下面的截图所示。一旦找到了加密函数，你可以使用交叉引用来进一步检查，以了解在什么情况下加密函数被调用以及用于加密数据的密钥。</p>
 <p>
-<a href="#image-d6cae222f5fb04e4eea560aeb7ab8287" class="lightbox-link">
+<a href="#image-e4cd8b866a4507763485fc1e8b88a630" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316174918971.png" alt="image-20220316174918971" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d6cae222f5fb04e4eea560aeb7ab8287">
+<a href="javascript:history.back();" class="lightbox" id="image-e4cd8b866a4507763485fc1e8b88a630">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316174918971.png" alt="image-20220316174918971" class="lightbox-image" loading="lazy">
 </a></p>
 <p>与其使用-e选项来定位签名，然后手动浏览使用签名的代码，你可以使用-F选项，它将给你使用加密指标的第一条指令的地址。在下面的输出中，用-F选项运行signsrch直接显示了代码中使用加密指标DES初始排列IP（DES_ip）的地址0x4032E0。</p>
@@ -546,10 +546,10 @@ offset num description [bits.endian.size] --------------------------------------
 <h4 id="22-使用findcrypt2检测加密常量">2.2 使用FindCrypt2检测加密常量</h4>
 <p>Findcrypt2 (<a href="http://www.hexblog.com/ida_pro/files/findcrypt2.zip" target="_blank">http://www.hexblog.com/ida_pro/files/findcrypt2.zip</a>)【由于目前已经无法下载因此这里查阅了一下推荐换yara的匹配的一个方式https://github.com/polymorf/findcrypt-yara或者下一个小节的推荐yara检测】 是一个IDA Pro插件，可以在内存中搜索许多不同算法所使用的加密常数。要使用该插件，请下载它，并将findcrypt.plw文件复制到IDA插件文件夹中。现在，当你加载二进制文件时，该插件会自动运行，或者你可以通过选择Edit | Plugins | Find crypt v2（编辑|插件|查找密码v2）来手动调用它。 该插件的结果会显示在输出窗口。</p>
 <p>
-<a href="#image-c88592839f3a9d4bd815640631518cb7" class="lightbox-link">
+<a href="#image-4dc204b844a6684aa2964d867385cc54" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175306940.png" alt="image-20220316175306940" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c88592839f3a9d4bd815640631518cb7">
+<a href="javascript:history.back();" class="lightbox" id="image-4dc204b844a6684aa2964d867385cc54">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175306940.png" alt="image-20220316175306940" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -560,18 +560,18 @@ offset num description [bits.endian.size] --------------------------------------
 <a href="https://github.com/x64dbg/yarasigs/blob/master/crypto_signatures.yara" target="_blank">https://github.com/x64dbg/yarasigs/blob/master/crypto_signatures.yara</a>），然后用YARA规则扫描二进制文件。</p>
 <p>x64dbg集成了YARA；如果你想在调试时扫描二进制文件中的加密签名，这很有用。你可以将二进制文件加载到x64dbg中（确保执行在二进制文件的某个地方暂停），然后右键点击CPU窗口，选择YARA（或Ctrl + Y）；这将带来这里显示的Yara对话框。点击 &ldquo;文件&rdquo;，加载包含YARA规则的文件。你也可以通过点击目录按钮从一个目录中加载含有YARA规则的多个文件。</p>
 <p>
-<a href="#image-cbdcfca867529327f870704df007a4a7" class="lightbox-link">
+<a href="#image-7bfbc98351bdd67ccdb811d2c02df897" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175503644.png" alt="image-20220316175503644" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-cbdcfca867529327f870704df007a4a7">
+<a href="javascript:history.back();" class="lightbox" id="image-7bfbc98351bdd67ccdb811d2c02df897">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175503644.png" alt="image-20220316175503644" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的截图显示了用包含加密签名的YARA规则扫描恶意二进制文件后检测到的加密常量。现在你可以右击任何一个条目，选择在转储中关注，以查看转储窗口中的数据，或者，如果签名与加密程序有关，那么你可以双击任何一个条目来浏览代码。</p>
 <p>
-<a href="#image-e52182c73cf7f2c710e3acb081893159" class="lightbox-link">
+<a href="#image-5ffcefdd0552e4a4e5c5563a39db88ad" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175527491.png" alt="image-20220316175527491" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e52182c73cf7f2c710e3acb081893159">
+<a href="javascript:history.back();" class="lightbox" id="image-5ffcefdd0552e4a4e5c5563a39db88ad">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175527491.png" alt="image-20220316175527491" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -600,10 +600,10 @@ offset num description [bits.endian.size] --------------------------------------
 &#39;hostname=blank78&#39;</code></pre></div><h3 id="3-自定义编码加密">3. 自定义编码/加密</h3>
 <p>有时，攻击者会使用自定义的编码/加密方案，这使得难以识别加密（和密钥），也使得逆向工程更加困难。自定义编码方法之一是使用编码和加密的组合来混淆数据；这种恶意软件的一个例子是Etumbot（https://www.arbornetworks.com/blog/asert/illuminating-theetumbot-apt-backdoor/）。Etumbot恶意软件样本在执行时，会从C2服务器获得RC4密钥；然后使用获得的RC4密钥对系统信息（如主机名、用户名和IP地址）进行加密，加密后的内容使用自定义Base64进一步编码，并外流到C2。包含混淆内容的C2通信在下面的截图中显示。关于这个样本的逆向工程细节，请参考作者的演讲和视频演示（https://cysinfo.com/12th-meetup-reversing-decrypting-malware-communications/）。</p>
 <p>
-<a href="#image-236bd5cd172d99bc02264dc829bcc6cd" class="lightbox-link">
+<a href="#image-f2a6203915f252b3f59fca605dc8fef8" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175732845.png" alt="image-20220316175732845" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-236bd5cd172d99bc02264dc829bcc6cd">
+<a href="javascript:history.back();" class="lightbox" id="image-f2a6203915f252b3f59fca605dc8fef8">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175732845.png" alt="image-20220316175732845" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了对内容进行解密，需要先用自定义的Base64进行解码，然后用RC4进行解密；这些步骤用以下python命令进行。输出显示解密后的系统信息。</p>
@@ -618,34 +618,34 @@ offset num description [bits.endian.size] --------------------------------------
 &gt;&gt;&gt; print plain_text
 MYHOSTNAME|Administrator|192.168.1.100|No Proxy|04182|</code></pre></div><p>一些恶意软件作者没有使用标准编码/加密算法的组合，而是实施了一个全新的编码/加密方案。这种恶意软件的一个例子是APT1集团使用的恶意软件。该恶意软件将一个字符串解密为一个URL；为此，恶意软件调用一个用户定义的函数（在下面的截图中更名为Decrypt_Func），该函数实现了自定义加密算法。Decrypt_Func接受三个参数；第一个参数是包含加密内容的缓冲区，第二个参数是将存储解密内容的缓冲区，第三个参数是缓冲区的长度。在下面的截图中，在执行Decrypt_Func之前暂停了执行，它显示了第1个参数（包含加密内容的缓冲区）。</p>
 <p>
-<a href="#image-9399d39e3faf60ffdc6deaded47a9fd7" class="lightbox-link">
+<a href="#image-159447adfc4e6609b2f7274b94365f8d" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175825914.png" alt="image-20220316175825914" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9399d39e3faf60ffdc6deaded47a9fd7">
+<a href="javascript:history.back();" class="lightbox" id="image-159447adfc4e6609b2f7274b94365f8d">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175825914.png" alt="image-20220316175825914" class="lightbox-image" loading="lazy">
 </a></p>
 <p>根据你的目标，你可以分析Decrypt_Func以了解算法的工作原理，然后按照作者的介绍（https://cysinfo.com/8th-meetup-understanding-apt1-malware-techniques-using-malware-analysis-reverse-engineering/）编写一个解密器，或者你可以让恶意软件为你解密内容。要让恶意软件解密内容，只需跨过Decrypt_Func（它将完成执行解密函数），然后检查第2个参数（存储解密内容的缓冲区）。下面的截图显示了包含恶意URL的解密缓冲区（第2参数）。</p>
 <p>
-<a href="#image-40f6acea7c1456a8d44823188b50edcc" class="lightbox-link">
+<a href="#image-53f8f6ab62f5ecac20d23ce458ee6d8b" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175854935.png" alt="image-20220316175854935" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-40f6acea7c1456a8d44823188b50edcc">
+<a href="javascript:history.back();" class="lightbox" id="image-53f8f6ab62f5ecac20d23ce458ee6d8b">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175854935.png" alt="image-20220316175854935" class="lightbox-image" loading="lazy">
 </a></p>
 <p>前面提到的让恶意软件解码数据的技术，如果解密函数被调用的次数不多，是很有用的。如果解密函数在程序中被多次调用，那么使用调试器脚本（在第6章，调试恶意二进制文件中涉及）自动解码过程会比手动操作更有效率。为了证明这一点，请考虑一个64位恶意软件样本的代码片段（在下面的截图中）。请注意恶意软件如何多次调用一个函数（重命名为dec_function）；如果你看一下代码，你会注意到一个加密的字符串被传递给这个函数作为第1个参数（在rcx寄存器中），执行该函数后，eax中的返回值包含存储解密内容的缓冲区的地址。</p>
 <p>
-<a href="#image-4e770dfa8b18bbbb9afc00bdad6043fb" class="lightbox-link">
+<a href="#image-665e401cc302fa87d83bd6cb065e7a99" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175920606.png" alt="image-20220316175920606" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4e770dfa8b18bbbb9afc00bdad6043fb">
+<a href="javascript:history.back();" class="lightbox" id="image-665e401cc302fa87d83bd6cb065e7a99">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175920606.png" alt="image-20220316175920606" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的截图显示了对dec_function的交叉引用；你可以看到，这个函数在程序中被多次调用。</p>
 <p>
-<a href="#image-9dc13179401ab25edc3666c650b7346c" class="lightbox-link">
+<a href="#image-8dddd71c61689bc168dcaa380131e71a" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175951198.png" alt="image-20220316175951198" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9dc13179401ab25edc3666c650b7346c">
+<a href="javascript:history.back();" class="lightbox" id="image-8dddd71c61689bc168dcaa380131e71a">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316175951198.png" alt="image-20220316175951198" class="lightbox-image" loading="lazy">
 </a></p>
 <p>每次调用dec_function时，它都会解密一个字符串。为了解密传递给这个函数的所有字符串，我们可以写一个IDAPython脚本（比如这里显示的那个）。</p>
@@ -681,20 +681,20 @@ while True:
 </ol>
 <p>运行前面的脚本后，加密的字符串和它们相应的解密字符串会显示在输出窗口中，如图所示。从输出中可以看出，恶意软件在运行期间解密了文件名、注册表名和API函数名，以避免被怀疑。换句话说，这些是攻击者想要隐藏的字符串，以避免静态分析。</p>
 <p>
-<a href="#image-d89fe42f15a1f3506ce1d396e7a3b79d" class="lightbox-link">
+<a href="#image-9bf5b5b14d96adc15d8ec3e3250572de" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316192125096.png" alt="image-20220316192125096" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d89fe42f15a1f3506ce1d396e7a3b79d">
+<a href="javascript:history.back();" class="lightbox" id="image-9bf5b5b14d96adc15d8ec3e3250572de">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316192125096.png" alt="image-20220316192125096" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="4-恶意软件解包">4. 恶意软件解包</h3>
 <p>攻击者不遗余力地保护他们的二进制文件免受反病毒检测，并使恶意软件分析师难以进行静态分析和反向工程。恶意软件作者经常使用打包器和加密器（见第2章，静态分析，了解打包器的基本介绍以及如何检测它们）来混淆可执行内容。打包器是一个程序，它将一个正常的可执行文件，压缩其内容，并生成一个新的混淆的可执行文件。加密器与打包器一样，不是压缩二进制文件，而是对其进行加密。换句话说，打包器或加密器将可执行文件转变为难以分析的形式。当一个二进制文件被打包时，它透露的信息非常少；你不会发现字符串透露出任何有价值的信息，导入的函数数量会减少，程序指令会被掩盖。为了理解一个打包的二进制文件，你需要移除应用于程序的混淆层（解包）；要做到这一点，首先要了解打包器的工作原理。
 当一个正常的可执行文件通过打包器时，可执行文件的内容被压缩，并且它添加了一个解包存根（解压程序）。然后，打包器将可执行文件的入口点修改为存根的位置，并生成一个新的打包可执行文件。当打包后的二进制文件被执行时，解包存根会提取原始二进制文件（在运行期间），然后通过将控制权转移到原始入口点（OEP）来触发原始二进制文件的执行，如下图所描述。</p>
 <p>
-<a href="#image-8a58256acfecaebdd1bbc87ab1655493" class="lightbox-link">
+<a href="#image-46b328611e11fe9f5a995f2e168e4651" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316192244539.png" alt="image-20220316192244539" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8a58256acfecaebdd1bbc87ab1655493">
+<a href="javascript:history.back();" class="lightbox" id="image-46b328611e11fe9f5a995f2e168e4651">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220316192244539.png" alt="image-20220316192244539" class="lightbox-image" loading="lazy">
 </a></p>
 <p>要解开一个打包的二进制文件，你可以使用自动工具，也可以手动操作。自动化方法可以节省时间，但并不完全可靠（有时成功，有时不成功），而手工方法则很费时，但一旦你掌握了技能，它就是最可靠的方法。</p>
@@ -710,100 +710,100 @@ while True:
 <h5 id="411-识别oep">4.1.1 识别OEP</h5>
 <p>在本节中，你将了解识别打包二进制文件中的OEP的技术。在下面的截图中，在pestudio(<a href="https://www.winitor.com/" target="_blank">https://www.winitor.com/</a>)中检查打包的二进制文件，显示了许多表明该文件是打包的指标。包装好的二进制文件包含三个部分：UPX0、UPX1和.rsrc。从截图中，你可以看到打包二进制文件的入口在UPX1部分，所以执行从这里开始，这部分包含解压存根，将在运行时解压原始可执行文件。另一个指标是，UPX0部分的原始大小为0，但虚拟大小为0x1f000；这表明UPX0部分不占用磁盘上的任何空间，但它占用了内存空间；具体而言，它占用了0x1f000字节的大小（这是因为恶意软件在内存中解压了可执行文件，并在运行时将其储存在UPX0部分）。另外，UPX0部分具有读、写、执行权限，很可能是因为在解压原始二进制文件后，恶意代码将在UPX0中开始执行。</p>
 <p>
-<a href="#image-20bbed76881b4513a8121ce163e676c2" class="lightbox-link">
+<a href="#image-09ee31e8a4dc7d66bbb4d68d07c12d15" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103210818.png" alt="image-20220317103210818" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-20bbed76881b4513a8121ce163e676c2">
+<a href="javascript:history.back();" class="lightbox" id="image-09ee31e8a4dc7d66bbb4d68d07c12d15">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103210818.png" alt="image-20220317103210818" class="lightbox-image" loading="lazy">
 </a></p>
 <p>另一个指标是，打包的二进制文件包含混淆的字符串，当你在IDA中加载二进制文件时，IDA识别出导入地址表（IAT）在一个非标准的位置，并显示以下警告；这是由于UPX打包了所有的部分和IAT。</p>
 <p>
-<a href="#image-3de4b7eedc1fbc0e3b0480758eae80bd" class="lightbox-link">
+<a href="#image-f4f3a23e0d8ffbf6293ec697a90fa616" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103236454.png" alt="image-20220317103236454" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3de4b7eedc1fbc0e3b0480758eae80bd">
+<a href="javascript:history.back();" class="lightbox" id="image-f4f3a23e0d8ffbf6293ec697a90fa616">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103236454.png" alt="image-20220317103236454" class="lightbox-image" loading="lazy">
 </a></p>
 <p>该二进制文件仅由一个内置函数和5个导入函数组成；所有这些指标都表明，该二进制文件是打包的。</p>
 <p>
-<a href="#image-5bccb688518bc6310802b51f528c39de" class="lightbox-link">
+<a href="#image-e56c83443c4a0ebfd17c8ac7970dc4b4" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103304566.png" alt="image-20220317103304566" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5bccb688518bc6310802b51f528c39de">
+<a href="javascript:history.back();" class="lightbox" id="image-e56c83443c4a0ebfd17c8ac7970dc4b4">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103304566.png" alt="image-20220317103304566" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了找到OEP，你需要在打包的程序中找到将控制权转移到OEP的指令。根据打包程序的不同，这可能很简单，也可能很有挑战性；通常你会关注那些将控制权转移到一个不明确目的地的指令。检查打包的二进制文件中的函数流程图，可以看到跳转到一个位置，这个位置被IDA用红色标出。</p>
 <p>
-<a href="#image-f3b94584a05aa4ddfa40e9012ddad873" class="lightbox-link">
+<a href="#image-af088b4aad9d9703807c85472b0d27c2" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103346504.png" alt="image-20220317103346504" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f3b94584a05aa4ddfa40e9012ddad873">
+<a href="javascript:history.back();" class="lightbox" id="image-af088b4aad9d9703807c85472b0d27c2">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103346504.png" alt="image-20220317103346504" class="lightbox-image" loading="lazy">
 </a></p>
 <p>红色是IDA表示它不能分析，因为跳转目的地不明确。下面的屏幕截图显示了跳转指令。</p>
 <p>
-<a href="#image-d34095c0fce417c2dfc39cc21477a93d" class="lightbox-link">
+<a href="#image-a3921e3c194cbcbbb7580c4198f12e14" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103422248.png" alt="image-20220317103422248" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d34095c0fce417c2dfc39cc21477a93d">
+<a href="javascript:history.back();" class="lightbox" id="image-a3921e3c194cbcbbb7580c4198f12e14">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103422248.png" alt="image-20220317103422248" class="lightbox-image" loading="lazy">
 </a></p>
 <p>双击跳转目的地（byte_40259B）显示，跳转将被带到UPX0（从UPX1）。换句话说，执行时，恶意软件在UPX1中执行解压存根，解开原始二进制文件，复制UPX0中的解压代码，而跳转指令很可能将控制权转移到UPX0中的解压代码（从UPX1）。</p>
 <p>
-<a href="#image-c5f63a244a53d3f039a91543a7d8e65f" class="lightbox-link">
+<a href="#image-b5b3eacde9807bb6be5bbc9d7c71d887" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103449363.png" alt="image-20220317103449363" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c5f63a244a53d3f039a91543a7d8e65f">
+<a href="javascript:history.back();" class="lightbox" id="image-b5b3eacde9807bb6be5bbc9d7c71d887">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317103449363.png" alt="image-20220317103449363" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在这一点上，我们已经找到了我们认为会跳转到OEP的指令。下一步是在调试器中加载二进制文件，在执行跳转的指令处设置断点，并执行到该指令为止。为了做到这一点，二进制文件被加载到x64dbg中（你也可以使用IDA调试器并遵循同样的步骤），并设置断点，执行到跳转指令。如下面的截图所示，在该跳转指令处暂停执行。</p>
 <p>
-<a href="#image-afcac06ef4ae9465402ac47f84f0f436" class="lightbox-link">
+<a href="#image-b510816e040c703d9ecfdb6e7204fc67" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317104343990.png" alt="image-20220317104343990" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-afcac06ef4ae9465402ac47f84f0f436">
+<a href="javascript:history.back();" class="lightbox" id="image-b510816e040c703d9ecfdb6e7204fc67">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317104343990.png" alt="image-20220317104343990" class="lightbox-image" loading="lazy">
 </a></p>
 <p>现在你可以假设恶意软件已经完成了解包；现在，你可以按一次F7（步入），这将带你到地址0x0040259B的原始入口点。在这一点上，我们是在恶意软件的第一个指令（解包后）。</p>
 <p>
-<a href="#image-d5a419842e4d339e4b1b90a9ccdef90c" class="lightbox-link">
+<a href="#image-2b01433ad8dff60bba41abc7ca13f2eb" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317104528922.png" alt="image-20220317104528922" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d5a419842e4d339e4b1b90a9ccdef90c">
+<a href="javascript:history.back();" class="lightbox" id="image-2b01433ad8dff60bba41abc7ca13f2eb">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317104528922.png" alt="image-20220317104528922" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="412-用scylla卸载进程内存">4.1.2 用Scylla卸载进程内存</h5>
 <p>现在我们已经找到了OEP，下一步是将进程内存转储到磁盘。为了转储进程，我们将使用一个名为Scylla（https://github.com/NtQuery/Scylla）的工具；它是一个转储进程内存和重建导入地址表的伟大工具。x64dbg的一大特点是它集成了Scylla，可以通过点击插件|Scylla（或Ctrl+I）启动Scylla。要转储进程内存，当执行在OEP处暂停时，启动Scylla，确保OEP字段被设置为正确的地址，如下所示；如果没有，你需要手动设置，并点击转储按钮，将转储的可执行文件保存到磁盘（在这个例子中，它被保存为packed_dump.exe）。</p>
 <p>
-<a href="#image-642cf6d56319bbf7e0fd1fc5b698f9b0" class="lightbox-link">
+<a href="#image-0fbd177ef5cbe891378c2610374e8816" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317144656857.png" alt="image-20220317144656857" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-642cf6d56319bbf7e0fd1fc5b698f9b0">
+<a href="javascript:history.back();" class="lightbox" id="image-0fbd177ef5cbe891378c2610374e8816">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/image-20220317144656857.png" alt="image-20220317144656857" class="lightbox-image" loading="lazy">
 </a></p>
 <p>现在，当你把转储的可执行文件加载到IDA时，你会看到整个内置函数列表（之前在打包的程序中是看不到的），函数代码也不再被混淆，但仍然看不到导入，API调用显示的是地址而不是名字。为了克服这个问题，你需要重建打包后的二进制文件的导入表。
 
-<a href="#image-851d630b1ee5734fd23cbeebbcd2c563" class="lightbox-link">
+<a href="#image-87155c594327e8ff6529044cbdcc0078" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475014847121.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-851d630b1ee5734fd23cbeebbcd2c563">
+<a href="javascript:history.back();" class="lightbox" id="image-87155c594327e8ff6529044cbdcc0078">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475014847121.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="413-修复导入表">4.1.3 修复导入表</h5>
 <p>要修复导入表，回到Scylla，并点击IAT自动搜索按钮，它将扫描进程的内存以找到进口表；如果找到，它将用适当的值填充VA和大小字段。要获得导入的列表，请点击Get Imports按钮。使用这种方法确定的导入函数的列表显示在这里。有时，你可能会注意到结果中的无效条目（条目旁边没有勾号）；在这种情况下，右击这些条目，选择Cut Thunk来删除它们。
 
-<a href="#image-cb0f3a3ce96778e0cf8223e4573c8e84" class="lightbox-link">
+<a href="#image-c0609fdefcafef7a0686f93b4f543107" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475015248150.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-cb0f3a3ce96778e0cf8223e4573c8e84">
+<a href="javascript:history.back();" class="lightbox" id="image-c0609fdefcafef7a0686f93b4f543107">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475015248150.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在使用上一步确定导入的功能后，你需要将补丁应用到转储的可执行文件（packed_dump.exe）中。要做到这一点，点击Fix Dump按钮，这将启动文件浏览器，你可以选择你之前转储的文件。Scylla将用确定的导入函数修补二进制文件，并将创建一个新的文件，文件名在末尾含有_SCY（如packed_dumped_SCY.exe）。现在，当你在IDA中加载打过补丁的文件时，你会看到对导入函数的引用，如图所示。
 
-<a href="#image-36ba33b56ef46d09e59426a70f313ff1" class="lightbox-link">
+<a href="#image-1df15895d207a1cab5e6dc97e7894940" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475015471113.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-36ba33b56ef46d09e59426a70f313ff1">
+<a href="javascript:history.back();" class="lightbox" id="image-1df15895d207a1cab5e6dc97e7894940">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475015471113.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -832,43 +832,43 @@ Match found!
     [x] File has been unpacked to unpacked.exe. [x] Exit Code: 0.
     █ Unpacking succeeded!</code></pre></div><p>另一个选择是使用IDA Pro的通用PE解包器插件。这个插件依赖于对恶意软件的调试，以确定代码何时跳转到OEP。关于这个插件的详细信息，请参考这篇文章（https://www.hex-rays.com/products/ida/support/tutorials/unpack_pe/unpacking.pdf）。要调用这个插件，将二进制文件加载到IDA，并选择Edit | Plugins | Universal PE 解包器。运行该插件可以在调试器中启动程序，并且它试图暂停程序，只要打包器完成解包。在IDA中加载UPX打包的恶意软件（与手动解包中使用的样本相同）并启动插件后，会显示以下对话框。在下面的截图中，IDA将开始地址和结束地址设置为UPX0部分的范围；这个范围被视为OEP范围。换句话说，当执行到这一段时（从UPX1开始，它包含解压存根），IDA将暂停程序的执行，给你一个机会采取进一步的行动。
 
-<a href="#image-f25e5d130e34e47186f3af4dcd33419f" class="lightbox-link">
+<a href="#image-2b6a5dca29314907cf819338887f38c8" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475016533659.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f25e5d130e34e47186f3af4dcd33419f">
+<a href="javascript:history.back();" class="lightbox" id="image-2b6a5dca29314907cf819338887f38c8">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475016533659.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 在下面的截图中，注意IDA是如何自动确定OEP地址，然后显示以下对话框的。</p>
 <p>
-<a href="#image-b27bdf7e36ac2f14c2e875bdb5fa6ccc" class="lightbox-link">
+<a href="#image-c16d171eda2d4a311cc4981b13235aba" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475017590101.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b27bdf7e36ac2f14c2e875bdb5fa6ccc">
+<a href="javascript:history.back();" class="lightbox" id="image-c16d171eda2d4a311cc4981b13235aba">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475017590101.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>如果你点击 &ldquo;是 &ldquo;按钮，执行将被停止，进程将被退出，但在此之前，IDA将自动确定导入地址表（IAT），它将创建一个新段来重建程序的导入部分。在这一点上，你可以分析解压后的代码。下面的屏幕截图显示了新重建的导入地址表。
 
-<a href="#image-a70281c3a6514b1240d1922964810159" class="lightbox-link">
+<a href="#image-a46bf2f4e6837549a2acd9a7e3960b44" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475018885289.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a70281c3a6514b1240d1922964810159">
+<a href="javascript:history.back();" class="lightbox" id="image-a46bf2f4e6837549a2acd9a7e3960b44">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475018885289.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>如果你不点击YES按钮，而是点击No按钮，那么IDA将在OEP处暂停调试器的执行，在这一点上，你可以调试已解压的代码或手动转储可执行文件，通过输入适当的OEP（如第4.1节手动解压），使用Scylla等工具修复导入。
 在x64dbg中，你可以使用解包脚本执行自动解包，这些脚本可以从https://github.com/x64dbg/Scripts。要解包，确保二进制文件被加载并在入口点暂停。根据你所处理的打包器，你需要在脚本窗格上点击右键，然后选择加载脚本|打开（或Ctrl + O）来加载相应的解包脚本。下面的屏幕截图显示了UPX解包器脚本的内容。</p>
 <p>
-<a href="#image-469b141c8921e4bd83d0f1f113d5d427" class="lightbox-link">
+<a href="#image-a51532e13a86a570d7d7916a21f5715f" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475019074108.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-469b141c8921e4bd83d0f1f113d5d427">
+<a href="javascript:history.back();" class="lightbox" id="image-a51532e13a86a570d7d7916a21f5715f">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475019074108.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>加载完脚本后，通过右键点击脚本窗格并选择运行来运行该脚本。如果脚本成功解压，就会弹出一个消息框说脚本完成了，执行将在OEP处暂停。下面的截图显示了运行UPX解包脚本后，在OEP处自动设置的断点（在CPU窗格中）。现在，你可以开始调试解压后的代码，或者你可以使用Scylla来转储进程并修复导入的代码（如4.1节手动解压中所述）。
 
-<a href="#image-796e74189dbd02105c96cc967a403497" class="lightbox-link">
+<a href="#image-63f47824f905a087ccb696c9eaea14b9" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475024114558.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-796e74189dbd02105c96cc967a403497">
+<a href="javascript:history.back();" class="lightbox" id="image-63f47824f905a087ccb696c9eaea14b9">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-10-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e7%9a%84%e6%b7%b7%e6%b7%86%e6%8a%80%e6%9c%af/16475024114558.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -899,12 +899,12 @@ Match found!
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690867339" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690867339" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867339" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690867339" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690867339" defer></script>
-        <script src="/js/search.js?1690867339" defer></script>
+        <script src="/js/auto-complete.js?1690867476" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690867476" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867476" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690867476" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690867476" defer></script>
+        <script src="/js/search.js?1690867476" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -912,7 +912,7 @@ Match found!
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-70bdf8d87af46a79686d31378c1d7d85" aria-controls="subsections-70bdf8d87af46a79686d31378c1d7d85"><label for="section-70bdf8d87af46a79686d31378c1d7d85"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/index.html">工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-70bdf8d87af46a79686d31378c1d7d85" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-2dbf020e462e790a32571d0d109b782a" aria-controls="subsections-2dbf020e462e790a32571d0d109b782a"><label for="section-2dbf020e462e790a32571d0d109b782a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 威胁情报工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html">威胁情报工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-2dbf020e462e790a32571d0d109b782a" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html">一个rss订阅到钉钉的脚本rss2dingtalk<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/twittertimelineclientscript/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/twittertimelineclientscript/index.html">一个本地命令行查询/批量查询twitter推文的脚本<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/TwitterTimelineClientScript/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/TwitterTimelineClientScript/index.html">一个本地命令行查询/批量查询twitter推文的脚本<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-6e38dc5f895def98aff7644f3c6ab0dd" aria-controls="subsections-6e38dc5f895def98aff7644f3c6ab0dd"><label for="section-6e38dc5f895def98aff7644f3c6ab0dd"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 日志分析工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html">日志分析工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-6e38dc5f895def98aff7644f3c6ab0dd" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html">Coremail日志分析脚本<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-f1d5f5bcc33bea044cacc933bb1d335a" aria-controls="subsections-f1d5f5bcc33bea044cacc933bb1d335a"><label for="section-f1d5f5bcc33bea044cacc933bb1d335a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html">渗透工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-f1d5f5bcc33bea044cacc933bb1d335a" class="morespace collapsible-menu">
@@ -927,24 +927,24 @@ Match found!
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">现场看擦<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html" class=""><input type="checkbox" id="section-206bf0cd228714da00e540f18edc5db5" aria-controls="subsections-206bf0cd228714da00e540f18edc5db5"><label for="section-206bf0cd228714da00e540f18edc5db5"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x02电子取证</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html">0x02电子取证<i class="fas fa-check read-icon"></i></a><ul id="subsections-206bf0cd228714da00e540f18edc5db5" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html" class=""><input type="checkbox" id="section-89535f58c579af51d3b6f3412f0b0639" aria-controls="subsections-89535f58c579af51d3b6f3412f0b0639"><label for="section-89535f58c579af51d3b6f3412f0b0639"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 1磁盘镜像</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html">1磁盘镜像<i class="fas fa-check read-icon"></i></a><ul id="subsections-89535f58c579af51d3b6f3412f0b0639" class="morespace collapsible-menu">
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/clonezilla/index.html">Clonezilla<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/datanumen_disk_image/index.html">Datanumen_disk_image<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Clonezilla/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Clonezilla/index.html">Clonezilla<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Datanumen_disk_image/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Datanumen_disk_image/index.html">Datanumen_disk_image<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html">dd/dc3dd(linux)<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/encase_forensic_imager/index.html">EnCase_forensic_imager.<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/getdataforensicimager/index.html">GetdataForensicImager<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/guymager/index.html">Guymager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/EnCase_forensic_imager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/EnCase_forensic_imager/index.html">EnCase_forensic_imager.<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/GetdataForensicImager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/GetdataForensicImager/index.html">GetdataForensicImager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Guymager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Guymager/index.html">Guymager<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html">镜像类型及各产品特性对比<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html" class=""><input type="checkbox" id="section-69278680b5dd14dcc983e7a4af33c9fb" aria-controls="subsections-69278680b5dd14dcc983e7a4af33c9fb"><label for="section-69278680b5dd14dcc983e7a4af33c9fb"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 2磁盘挂载</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html">2磁盘挂载<i class="fas fa-check read-icon"></i></a><ul id="subsections-69278680b5dd14dcc983e7a4af33c9fb" class="morespace collapsible-menu">
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/arsenal_image_mounter/index.html">Arsenal_Image_Mounter<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/getdata_mount_image_pro/index.html">GetData Mount Image Pro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/Arsenal_Image_Mounter/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/Arsenal_Image_Mounter/index.html">Arsenal_Image_Mounter<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/GetData_Mount_Image_Pro/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/GetData_Mount_Image_Pro/index.html">GetData Mount Image Pro<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html">mount_command<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/osfmount/index.html">OSFMount<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/OSFMount/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/OSFMount/index.html">OSFMount<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html">磁盘挂载工具特点对比表<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html" class=""><input type="checkbox" id="section-cc9bb9305c742d8ac2d982c0f1774f34" aria-controls="subsections-cc9bb9305c742d8ac2d982c0f1774f34"><label for="section-cc9bb9305c742d8ac2d982c0f1774f34"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 3文件恢复</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html">3文件恢复<i class="fas fa-check read-icon"></i></a><ul id="subsections-cc9bb9305c742d8ac2d982c0f1774f34" class="morespace collapsible-menu">
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/diskgeniuswin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/diskgeniuswin/index.html">DiskGenius(win)<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/r-studio-networkwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/r-studio-networkwin/index.html">R-studio network(win)<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/ufs-explorer-professional-recoverywinmaclinux/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/ufs-explorer-professional-recoverywinmaclinux/index.html">UFS explorer professional recovery(win/mac/linux)<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/winhexwin/index.html">WinHEX(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/DiskGeniuswin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/DiskGeniuswin/index.html">DiskGenius(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/R-studio-networkwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/R-studio-networkwin/index.html">R-studio network(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/UFS-explorer-professional-recoverywinmaclinux/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/UFS-explorer-professional-recoverywinmaclinux/index.html">UFS explorer professional recovery(win/mac/linux)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html">WinHEX(win)<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html">数据恢复工具性能对比<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html" class=""><input type="checkbox" id="section-f72a1ee8fa05d9b7ba0bef33408333a8" aria-controls="subsections-f72a1ee8fa05d9b7ba0bef33408333a8"><label for="section-f72a1ee8fa05d9b7ba0bef33408333a8"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 4系统信息收集</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">4系统信息收集<i class="fas fa-check read-icon"></i></a><ul id="subsections-f72a1ee8fa05d9b7ba0bef33408333a8" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">hosts文件检查<i class="fas fa-check read-icon"></i></a></li>
@@ -972,10 +972,10 @@ Match found!
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-bba07b074ab74ed3d6f2efbb911ba96a" aria-controls="subsections-bba07b074ab74ed3d6f2efbb911ba96a"><label for="section-bba07b074ab74ed3d6f2efbb911ba96a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x03取证分析</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html">0x03取证分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-bba07b074ab74ed3d6f2efbb911ba96a" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html">【译】取证调查：虚拟内存pagefile.sys<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-1c2e9721036bcac0690861bf4737d812" aria-controls="subsections-1c2e9721036bcac0690861bf4737d812"><label for="section-1c2e9721036bcac0690861bf4737d812"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x06取证辅助工具</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html">0x06取证辅助工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-1c2e9721036bcac0690861bf4737d812" class="morespace collapsible-menu">
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1emergencyrocketpackage/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1emergencyrocketpackage/index.html">EmergencyRocketPackage<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1EmergencyRocketPackage/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1EmergencyRocketPackage/index.html">EmergencyRocketPackage<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class="parent "><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b" checked><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-88c267f9c3b4a34d411e5a90254df00f" aria-controls="subsections-88c267f9c3b4a34d411e5a90254df00f"><label for="section-88c267f9c3b4a34d411e5a90254df00f"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 安卓样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">安卓样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-88c267f9c3b4a34d411e5a90254df00f" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/mobsf_mac_avd_android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/mobsf_mac_avd_android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html">Mobsf_MAC_AVD_Android动静态环境搭建排坑实战<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/Mobsf_MAC_AVD_Android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/Mobsf_MAC_AVD_Android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html">Mobsf_MAC_AVD_Android动静态环境搭建排坑实战<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html" class="parent "><input type="checkbox" id="section-ffb6fc95178918741432017d1bacd773" aria-controls="subsections-ffb6fc95178918741432017d1bacd773" checked><label for="section-ffb6fc95178918741432017d1bacd773"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析基础</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">样本分析基础<i class="fas fa-check read-icon"></i></a><ul id="subsections-ffb6fc95178918741432017d1bacd773" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-10-使用内存取证狩猎恶意软件<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html" class="active"><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html">恶意样本分析-10-恶意软件的混淆技术<i class="fas fa-check read-icon"></i></a></li>
@@ -986,32 +986,32 @@ Match found!
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html">恶意样本分析1-配置实验环境<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html">恶意样本分析2-基础静态分析<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html">恶意样本分析3-基础动态分析<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80dll%E5%88%86%E6%9E%90/index.html">恶意样本分析4-基础DLL分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/index.html">恶意样本分析4-基础DLL分析<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html">恶意样本分析4-基础DLL分析<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-ida%E4%BD%BF%E7%94%A8/index.html">恶意样本分析6-IDA使用<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-IDA%E4%BD%BF%E7%94%A8/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-IDA%E4%BD%BF%E7%94%A8/index.html">恶意样本分析6-IDA使用<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html" class=""><input type="checkbox" id="section-4f3e0dd41bb55c4672bf0e0faa840610" aria-controls="subsections-4f3e0dd41bb55c4672bf0e0faa840610"><label for="section-4f3e0dd41bb55c4672bf0e0faa840610"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析拓展</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html">样本分析拓展<i class="fas fa-check read-icon"></i></a><ul id="subsections-4f3e0dd41bb55c4672bf0e0faa840610" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADrc4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADrc4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html">介绍恶意软件中RC4加密的识别与解码<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8microsoft%E7%9A%84fixit%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8microsoft%E7%9A%84fixit%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html">使用和滥用Microsoft的Fix It修补程序<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html">介绍恶意软件中RC4加密的识别与解码<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8Microsoft%E7%9A%84FixIt%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8Microsoft%E7%9A%84FixIt%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html">使用和滥用Microsoft的Fix It修补程序<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html">真正的垫片黑幕<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html" class=""><input type="checkbox" id="section-f6788bc9550144d7d72dabbc9a05483a" aria-controls="subsections-f6788bc9550144d7d72dabbc9a05483a"><label for="section-f6788bc9550144d7d72dabbc9a05483a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析记录</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html">样本分析记录<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6788bc9550144d7d72dabbc9a05483a" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html">样本分析-Trojan/Buzus“霸族”木马通过邮件传播<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html">样本分析-邮件恶意样本中发现新MYMOOD蠕虫传播地址<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html">样本分析-邮件恶意样本发现AZORult间谍软件传播<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html">样本分析-Trojan/Buzus“霸族”木马通过邮件传播<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html">样本分析-邮件恶意样本中发现新MYMOOD蠕虫传播地址<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-AZORult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-AZORult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html">样本分析-邮件恶意样本发现AZORult间谍软件传播<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
           <li data-nav-id="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html" class=""><input type="checkbox" id="section-0714789af687990c9fc38b6319972875" aria-controls="subsections-0714789af687990c9fc38b6319972875"><label for="section-0714789af687990c9fc38b6319972875"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 情报跟踪</span></label><a class="padding" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html">情报跟踪<i class="fas fa-check read-icon"></i></a><ul id="subsections-0714789af687990c9fc38b6319972875" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-chinese_hackers_target_satellitegeospatial_imagingdefense_companies/index.html" class=""><a class="padding" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-chinese_hackers_target_satellitegeospatial_imagingdefense_companies/index.html">黑客背后的&#34;Thrip&#34;网络间谍组织<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-Chinese_Hackers_Target_SatelliteGeospatial_ImagingDefense_Companies/index.html" class=""><a class="padding" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-Chinese_Hackers_Target_SatelliteGeospatial_ImagingDefense_Companies/index.html">黑客背后的&#34;Thrip&#34;网络间谍组织<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html" class=""><input type="checkbox" id="section-be882d7838b29bb55035a73606bd5fad" aria-controls="subsections-be882d7838b29bb55035a73606bd5fad"><label for="section-be882d7838b29bb55035a73606bd5fad"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 操作系统</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">操作系统<i class="fas fa-check read-icon"></i></a><ul id="subsections-be882d7838b29bb55035a73606bd5fad" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/index.html" class=""><input type="checkbox" id="section-0a43e999527d8431e07a6c83274453d0" aria-controls="subsections-0a43e999527d8431e07a6c83274453d0"><label for="section-0a43e999527d8431e07a6c83274453d0"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu windows</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/index.html">windows<i class="fas fa-check read-icon"></i></a><ul id="subsections-0a43e999527d8431e07a6c83274453d0" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/index.html" class=""><input type="checkbox" id="section-4b5256e8689ed2826632ee3c944d042e" aria-controls="subsections-4b5256e8689ed2826632ee3c944d042e"><label for="section-4b5256e8689ed2826632ee3c944d042e"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Powershell</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/index.html">Powershell<i class="fas fa-check read-icon"></i></a><ul id="subsections-4b5256e8689ed2826632ee3c944d042e" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
-          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html" class=""><input type="checkbox" id="section-1dcf0d8ab382f88a0dec20aa11c7a8c6" aria-controls="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6"><label for="section-1dcf0d8ab382f88a0dec20aa11c7a8c6"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 组策略</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html">组策略<i class="fas fa-check read-icon"></i></a><ul id="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html">SID安全标识符<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html" class=""><input type="checkbox" id="section-0a43e999527d8431e07a6c83274453d0" aria-controls="subsections-0a43e999527d8431e07a6c83274453d0"><label for="section-0a43e999527d8431e07a6c83274453d0"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu windows</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html">windows<i class="fas fa-check read-icon"></i></a><ul id="subsections-0a43e999527d8431e07a6c83274453d0" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html" class=""><input type="checkbox" id="section-4b5256e8689ed2826632ee3c944d042e" aria-controls="subsections-4b5256e8689ed2826632ee3c944d042e"><label for="section-4b5256e8689ed2826632ee3c944d042e"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Powershell</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html">Powershell<i class="fas fa-check read-icon"></i></a><ul id="subsections-4b5256e8689ed2826632ee3c944d042e" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html" class=""><input type="checkbox" id="section-1dcf0d8ab382f88a0dec20aa11c7a8c6" aria-controls="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6"><label for="section-1dcf0d8ab382f88a0dec20aa11c7a8c6"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 组策略</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html">组策略<i class="fas fa-check read-icon"></i></a><ul id="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html">SID安全标识符<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
           <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html" class=""><input type="checkbox" id="section-6d101735907668b9565f2b24f0ce6829" aria-controls="subsections-6d101735907668b9565f2b24f0ce6829"><label for="section-6d101735907668b9565f2b24f0ce6829"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透测试</span></label><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fas fa-check read-icon"></i></a><ul id="subsections-6d101735907668b9565f2b24f0ce6829" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html" class=""><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html" class=""><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><input type="checkbox" id="section-5c9f137f17add9d910670d26ee4e7fe7" aria-controls="subsections-5c9f137f17add9d910670d26ee4e7fe7"><label for="section-5c9f137f17add9d910670d26ee4e7fe7"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 漏洞复现</span></label><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">漏洞复现<i class="fas fa-check read-icon"></i></a><ul id="subsections-5c9f137f17add9d910670d26ee4e7fe7" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-vulhub%E5%AE%9E%E9%AA%8C_weblogic_ssrf%E6%BC%8F%E6%B4%9E/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-vulhub%E5%AE%9E%E9%AA%8C_weblogic_ssrf%E6%BC%8F%E6%B4%9E/index.html">CVE-2014-4210_Weblogic SSRF漏洞<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2017-11882_office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2017-11882_office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-0796_smbghost_remote_code_execution/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-0796_smbghost_remote_code_execution/index.html">CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-14645_weblogic_t3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96rce%E5%A4%8D%E6%B5%8B/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-cve-2020-14645_weblogic_t3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96rce%E5%A4%8D%E6%B5%8B/index.html">CVE-2020-14645_weblogic_T3反序列化RCE复测<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Vulhub%E5%AE%9E%E9%AA%8C_Weblogic_SSRF%E6%BC%8F%E6%B4%9E/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Vulhub%E5%AE%9E%E9%AA%8C_Weblogic_SSRF%E6%BC%8F%E6%B4%9E/index.html">CVE-2014-4210_Weblogic SSRF漏洞<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2017-11882_Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2017-11882_Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2020-0796_SMBGhost_Remote_Code_Execution/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2020-0796_SMBGhost_Remote_Code_Execution/index.html">CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html">CVE-2020-14645_weblogic_T3反序列化RCE复测<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E7%A4%BE%E7%A7%91/index.html" class=""><input type="checkbox" id="section-0c9d6aef0bca5a94a96f257f1cf48fc7" aria-controls="subsections-0c9d6aef0bca5a94a96f257f1cf48fc7"><label for="section-0c9d6aef0bca5a94a96f257f1cf48fc7"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 社科</span></label><a class="padding" href="/%E7%A4%BE%E7%A7%91/index.html">社科<i class="fas fa-check read-icon"></i></a><ul id="subsections-0c9d6aef0bca5a94a96f257f1cf48fc7" class="morespace collapsible-menu">
           <li data-nav-id="/%E7%A4%BE%E7%A7%91/%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E5%8F%AA%E6%9C%89%E4%B8%80%E4%BB%B6%E5%8A%A0%E9%87%8C%E5%87%AF%E5%8B%92%E5%87%AF%E5%8B%92%E5%B8%95%E5%B8%95%E6%A3%AE/index.html" class=""><a class="padding" href="/%E7%A4%BE%E7%A7%91/%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E5%8F%AA%E6%9C%89%E4%B8%80%E4%BB%B6%E5%8A%A0%E9%87%8C%E5%87%AF%E5%8B%92%E5%87%AF%E5%8B%92%E5%B8%95%E5%B8%95%E6%A3%AE/index.html">《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森.<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E7%A4%BE%E7%A7%91/%E6%B1%A0%E8%B0%B7%E8%A3%95%E4%BA%8C%E8%80%83%E8%AF%95%E8%84%91%E7%A7%91%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html" class=""><a class="padding" href="/%E7%A4%BE%E7%A7%91/%E6%B1%A0%E8%B0%B7%E8%A3%95%E4%BA%8C%E8%80%83%E8%AF%95%E8%84%91%E7%A7%91%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">《考试脑科学》池谷裕二<i class="fas fa-check read-icon"></i></a></li></ul></li>
@@ -1019,19 +1019,19 @@ Match found!
           <li data-nav-id="/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html" class=""><a class="padding" href="/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html">手机丢失后一定要做的几件必做事！<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html" class=""><input type="checkbox" id="section-055705051387ceccbed8d9222bbca770" aria-controls="subsections-055705051387ceccbed8d9222bbca770"><label for="section-055705051387ceccbed8d9222bbca770"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 红蓝对抗</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html">红蓝对抗<i class="fas fa-check read-icon"></i></a><ul id="subsections-055705051387ceccbed8d9222bbca770" class="morespace collapsible-menu">
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html" class=""><input type="checkbox" id="section-02c229b842fa25d657521450528e1e8c" aria-controls="subsections-02c229b842fa25d657521450528e1e8c"><label for="section-02c229b842fa25d657521450528e1e8c"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 系统入侵对抗研究</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html">系统入侵对抗研究<i class="fas fa-check read-icon"></i></a><ul id="subsections-02c229b842fa25d657521450528e1e8c" class="morespace collapsible-menu">
-          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-cobalt_strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-cobalt_strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html">CS X86 payload分析混淆加密<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html">Mysql提权小结<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html">CS X86 payload分析混淆加密<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_MYSQL%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_MYSQL%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html">Mysql提权小结<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html">windows计划任务隐藏-检查方式<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-8a7eb9f623652b0d0b74da1cc3bf1894" aria-controls="subsections-8a7eb9f623652b0d0b74da1cc3bf1894"><label for="section-8a7eb9f623652b0d0b74da1cc3bf1894"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 页面篡改分析</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html">页面篡改分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-8a7eb9f623652b0d0b74da1cc3bf1894" class="morespace collapsible-menu">
-          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-eval%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-eval%E5%8A%A0%E5%AF%86/index.html">页面篡改分析-EVAL加密<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/index.html">页面篡改分析-EVAL加密<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-http流量劫持页面篡分析<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-js%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-js%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-JS的eval()加密方式跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-JS%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-JS%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-JS的eval()加密方式跳转<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.html">页面篡改分析-基于sojson.v4混淆的页面篡思路分析<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/index.html">页面篡改分析-基于sojson.v4混淆的页面篡思路分析<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-服务器端重定向跳转<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-短链接多级跳转<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html">页面篡改分析-首次会话跳转菠菜页面篡改分析<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84bocai%E9%A1%B5%E9%9D%A2/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84bocai%E9%A1%B5%E9%9D%A2/index.html">页面篡改分析一处BoCai页面<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84BoCai%E9%A1%B5%E9%9D%A2/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84BoCai%E9%A1%B5%E9%9D%A2/index.html">页面篡改分析一处BoCai页面<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
           <li data-nav-id="/%E7%BC%96%E7%A8%8B/index.html" class=""><input type="checkbox" id="section-49cd3dd12728d4fd4ae01f7800801d13" aria-controls="subsections-49cd3dd12728d4fd4ae01f7800801d13"><label for="section-49cd3dd12728d4fd4ae01f7800801d13"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 编程</span></label><a class="padding" href="/%E7%BC%96%E7%A8%8B/index.html">编程<i class="fas fa-check read-icon"></i></a><ul id="subsections-49cd3dd12728d4fd4ae01f7800801d13" class="morespace collapsible-menu">
           <li data-nav-id="/%E7%BC%96%E7%A8%8B/python/index.html" class=""><input type="checkbox" id="section-5af71f25f527f724bbea024bdc239142" aria-controls="subsections-5af71f25f527f724bbea024bdc239142"><label for="section-5af71f25f527f724bbea024bdc239142"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu python</span></label><a class="padding" href="/%E7%BC%96%E7%A8%8B/python/index.html">python<i class="fas fa-check read-icon"></i></a><ul id="subsections-5af71f25f527f724bbea024bdc239142" class="morespace collapsible-menu">
           <li data-nav-id="/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html" class=""><a class="padding" href="/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html">scapy<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
@@ -1096,8 +1096,8 @@ Match found!
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690867339" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690867339" defer></script>
+    <script src="/js/clipboard.min.js?1690867476" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690867476" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -1127,15 +1127,15 @@ Match found!
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690867339" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690867339" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690867339" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690867339" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690867339" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690867339" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690867339" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690867339" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690867339" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690867476" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -1144,8 +1144,8 @@ Match found!
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867339  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867476  };
     </script>
-    <script src="/js/theme.js?1690867339" defer></script>
+    <script src="/js/theme.js?1690867476" defer></script>
   </body>
 </html>
