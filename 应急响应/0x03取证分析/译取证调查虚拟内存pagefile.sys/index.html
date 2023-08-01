@@ -10,18 +10,18 @@
     <title>【译】取证调查：虚拟内存pagefile.sys - x7peeps</title>
     <link href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.xml" rel="alternate" type="application/rss+xml" title="【译】取证调查：虚拟内存pagefile.sys - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690855899" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690855899" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690855899" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690855899" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690855899" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690855899" rel="stylesheet">
-    <link href="/css/fonts.css?1690855899" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690855899" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690855899" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690855899" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690855899" rel="stylesheet">
-    <link href="/css/print.css?1690855899" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690855899" rel="stylesheet">
-    <script src="/js/url.js?1690855899"></script>
-    <script src="/js/variant.js?1690855899"></script>
+    <link href="/css/fontawesome-all.min.css?1690856273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690856273" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690856273" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690856273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690856273" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690856273" rel="stylesheet">
+    <link href="/css/fonts.css?1690856273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690856273" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690856273" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690856273" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690856273" rel="stylesheet">
+    <link href="/css/print.css?1690856273" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690856273" rel="stylesheet">
+    <script src="/js/url.js?1690856273"></script>
+    <script src="/js/variant.js?1690856273"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -105,125 +105,125 @@
 <p>FTK imager是一个镜像和数据查看工具，FTK imager通常创建系统镜像（取证镜像）电子证据。你可以在这里下载FTK imager（https://www.exterro.com/ftk-imager）</p>
 <p>点击capture memory创建内存镜像。
 
-<a href="#image-365d91478d4a0014aede0c6a6df2cb56" class="lightbox-link">
+<a href="#image-33a2e1dea0aa8fdcbd05b2f9ba4cd413" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752167245301.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-365d91478d4a0014aede0c6a6df2cb56">
+<a href="javascript:history.back();" class="lightbox" id="image-33a2e1dea0aa8fdcbd05b2f9ba4cd413">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752167245301.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 下一步是选择保存的目录，勾选”include pagefile“，点击获取内存capture memory。
 
-<a href="#image-2b189aa43c45830d69705b7ecd34f55d" class="lightbox-link">
+<a href="#image-40d94269fc652f3d18547e8a4d8115f6" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752169007370.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2b189aa43c45830d69705b7ecd34f55d">
+<a href="javascript:history.back();" class="lightbox" id="image-40d94269fc652f3d18547e8a4d8115f6">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752169007370.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 内存获取进程将会在点击capture memory按钮之后开始。
 
-<a href="#image-5f0acfb89cffd746b5d581fd908d536e" class="lightbox-link">
+<a href="#image-7b19ed1a0286e2e394c1a48f7f505ae4" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752170303864.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5f0acfb89cffd746b5d581fd908d536e">
+<a href="javascript:history.back();" class="lightbox" id="image-7b19ed1a0286e2e394c1a48f7f505ae4">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752170303864.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>进程结束后，内存镜像和虚拟内存就会被写在之前选定的目录中。
 
-<a href="#image-13f8d0a1d78525a71e750fd921e425e9" class="lightbox-link">
+<a href="#image-2b5979f75481bf7a0cf60fa8f6488059" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752171250912.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-13f8d0a1d78525a71e750fd921e425e9">
+<a href="javascript:history.back();" class="lightbox" id="image-2b5979f75481bf7a0cf60fa8f6488059">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752171250912.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="使用belkasoft-evidence-centre分析">使用Belkasoft Evidence Centre分析</h2>
 <p>现在我们来Belkasoft Evidence Centre分析写入pagefile.sys。Belkasoft Evidence Centre是一个集成获取、分析和刻入数字证据的分析工具。你可以在这里下载免费版本的工具（https://belkasoft.com/get）</p>
 <p>首先，我们创建个新的case。填写case信息，选择有管理权限的文件夹，如果你想的话，你还可以添加一个case的描述。点击“create and open”执行分析。
 
-<a href="#image-a48eddaf902129f9a017cb54ddeac9d0" class="lightbox-link">
+<a href="#image-9d6373639c52da61631d7cddc0fc8fa0" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752181520570.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a48eddaf902129f9a017cb54ddeac9d0">
+<a href="javascript:history.back();" class="lightbox" id="image-9d6373639c52da61631d7cddc0fc8fa0">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752181520570.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>用于分析虚拟内存文件，选择配置RAM image内存镜像；添加使用FTK imager镜像的pagefile.sys文件。</p>
 <p>
-<a href="#image-da4ebb909e4bb3552e0b67029048c009" class="lightbox-link">
+<a href="#image-ab458d812ae38217b20831a89da1744c" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752253071420.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-da4ebb909e4bb3552e0b67029048c009">
+<a href="javascript:history.back();" class="lightbox" id="image-ab458d812ae38217b20831a89da1744c">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752253071420.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>选择想要的数据类型进行搜索。这里有大量的数据类型可以扫描。点击完成按钮即可。
 
-<a href="#image-9b5ad67b25d10946262d8ea0ffe6b73c" class="lightbox-link">
+<a href="#image-b3f5ebdf48aff7afa2655cb1bcccfb75" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752253744415.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9b5ad67b25d10946262d8ea0ffe6b73c">
+<a href="javascript:history.back();" class="lightbox" id="image-b3f5ebdf48aff7afa2655cb1bcccfb75">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752253744415.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 完成了上述步骤后会显示这样一个面板。展示了正确的关于虚拟内存的统计数据信息。总数1097个文件被识别，其中包括URLs、图片和其他文件。
 
-<a href="#image-bdd0e89112cf06e9ed235eb2ef9a709d" class="lightbox-link">
+<a href="#image-9e3106630b18f6b41fd857ade8a40a2d" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752255883045.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-bdd0e89112cf06e9ed235eb2ef9a709d">
+<a href="javascript:history.back();" class="lightbox" id="image-9e3106630b18f6b41fd857ade8a40a2d">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752255883045.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在这个case explorer标签在dashboard标签旁边可以扩展和查看每个概要文件列。数据被切分为浏览器、图片、系统文件和其他文件。
 
-<a href="#image-04c90e670f6e3b0394ffd644c85d85d4" class="lightbox-link">
+<a href="#image-c2bfb269557e853301b2ad458e570758" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752257153399.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-04c90e670f6e3b0394ffd644c85d85d4">
+<a href="javascript:history.back();" class="lightbox" id="image-c2bfb269557e853301b2ad458e570758">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752257153399.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>让我们展开分析Browser配置文件。让我们检查chrome切分部分的更多细节，其中之一被分为chrome历史记录包含了URLs。其中高亮的部分就是历史访问的URL地址列。</p>
 <p>
-<a href="#image-56dd1ceef93515aafdc838be11225c55" class="lightbox-link">
+<a href="#image-47b46ef1f3b5e7b9b3b8cdd2a017f8f1" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752259023383.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-56dd1ceef93515aafdc838be11225c55">
+<a href="javascript:history.back();" class="lightbox" id="image-47b46ef1f3b5e7b9b3b8cdd2a017f8f1">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752259023383.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>另一个浏览器配置是opera浏览器，分析opera部分的内容也是同样，其中展示了URL浏览记录。
 
-<a href="#image-7bc7c829c904a8de7dff7934a19bcfa5" class="lightbox-link">
+<a href="#image-fa0667bd59d1ba1fe3f1057f69686985" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752259695171.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7bc7c829c904a8de7dff7934a19bcfa5">
+<a href="javascript:history.back();" class="lightbox" id="image-fa0667bd59d1ba1fe3f1057f69686985">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752259695171.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 从配置文件切分的数据也包含了一些图片信息。这些图片是我访问过的网站的图片或者是其他缩略图。
 belkasoft evidence center的一个非常好的特性是，它允许你简单在图片上按右键，可以进行分析各方面，例如检查皮肤、图片中的色情信息，特定的文字或者脸。所有的这些特性都在分析的时候会起到比较有用的效果。
 
-<a href="#image-6b6aa0ac0ce46c10da13758a1e9a6cec" class="lightbox-link">
+<a href="#image-a8024043e84aef36166f3feaa44772b7" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752262629305.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6b6aa0ac0ce46c10da13758a1e9a6cec">
+<a href="javascript:history.back();" class="lightbox" id="image-a8024043e84aef36166f3feaa44772b7">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752262629305.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 一些系统文件也被从虚拟内存中切分，显示了NetBios名字，文件地址，文件大小等数据。
 
-<a href="#image-3ee5215e515b8277b6b26e0d36835534" class="lightbox-link">
+<a href="#image-a52cdae84bf61f785b5b0e88b47adc6a" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752263173498.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3ee5215e515b8277b6b26e0d36835534">
+<a href="javascript:history.back();" class="lightbox" id="image-a52cdae84bf61f785b5b0e88b47adc6a">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752263173498.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 时间轴标签展示了数据切分的整体情况可以通过时间和URL来进行简单的分析历史访问的网站。
 
-<a href="#image-2f394ed00ef248bd3fa4c203bf7894f4" class="lightbox-link">
+<a href="#image-4fae9258aa62d83aca39091343e25ab6" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752264076078.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2f394ed00ef248bd3fa4c203bf7894f4">
+<a href="javascript:history.back();" class="lightbox" id="image-4fae9258aa62d83aca39091343e25ab6">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752264076078.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>search results标签展示搜索结果概要的工具。下面的截图展示了搜索引擎返回的带有link和配置文件名的结果。
 
-<a href="#image-5ea70f7fabfb20510bd82196d919a5b0" class="lightbox-link">
+<a href="#image-2a6c7d78ac166da090c8ab869dc38162" class="lightbox-link">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752265389175.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5ea70f7fabfb20510bd82196d919a5b0">
+<a href="javascript:history.back();" class="lightbox" id="image-2a6c7d78ac166da090c8ab869dc38162">
 <img src="%e3%80%90%e8%af%91%e3%80%91%e5%8f%96%e8%af%81%e8%b0%83%e6%9f%a5%ef%bc%9a%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98pagefile.sys/16752265389175.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>相同的，你可以对休眠文件进行取证调查。使用FTK 在系统C:/hiberfile.sys目录下扩展hiberfil.sys（用于存储系统休眠模式下存储的信息）进行取证，并且使用Belkasoft Evidence Centre进行分析。</p>
@@ -251,12 +251,12 @@ belkasoft evidence center的一个非常好的特性是，它允许你简单在�
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690855899" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690855899" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690855899" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690855899" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690855899" defer></script>
-        <script src="/js/search.js?1690855899" defer></script>
+        <script src="/js/auto-complete.js?1690856273" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690856273" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690856273" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690856273" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690856273" defer></script>
+        <script src="/js/search.js?1690856273" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -354,7 +354,7 @@ belkasoft evidence center的一个非常好的特性是，它允许你简单在�
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html" class=""><input type="checkbox" id="section-be882d7838b29bb55035a73606bd5fad" aria-controls="subsections-be882d7838b29bb55035a73606bd5fad"><label for="section-be882d7838b29bb55035a73606bd5fad"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 操作系统</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">操作系统<i class="fas fa-check read-icon"></i></a><ul id="subsections-be882d7838b29bb55035a73606bd5fad" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html" class=""><input type="checkbox" id="section-0a43e999527d8431e07a6c83274453d0" aria-controls="subsections-0a43e999527d8431e07a6c83274453d0"><label for="section-0a43e999527d8431e07a6c83274453d0"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu windows</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html">windows<i class="fas fa-check read-icon"></i></a><ul id="subsections-0a43e999527d8431e07a6c83274453d0" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html" class=""><input type="checkbox" id="section-4b5256e8689ed2826632ee3c944d042e" aria-controls="subsections-4b5256e8689ed2826632ee3c944d042e"><label for="section-4b5256e8689ed2826632ee3c944d042e"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Powershell</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html">Powershell<i class="fas fa-check read-icon"></i></a><ul id="subsections-4b5256e8689ed2826632ee3c944d042e" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html" class=""><input type="checkbox" id="section-1dcf0d8ab382f88a0dec20aa11c7a8c6" aria-controls="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6"><label for="section-1dcf0d8ab382f88a0dec20aa11c7a8c6"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 组策略</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html">组策略<i class="fas fa-check read-icon"></i></a><ul id="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html">SID安全标识符<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
           <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html" class=""><input type="checkbox" id="section-6d101735907668b9565f2b24f0ce6829" aria-controls="subsections-6d101735907668b9565f2b24f0ce6829"><label for="section-6d101735907668b9565f2b24f0ce6829"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透测试</span></label><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fas fa-check read-icon"></i></a><ul id="subsections-6d101735907668b9565f2b24f0ce6829" class="morespace collapsible-menu">
@@ -448,8 +448,8 @@ belkasoft evidence center的一个非常好的特性是，它允许你简单在�
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690855899" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690855899" defer></script>
+    <script src="/js/clipboard.min.js?1690856273" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690856273" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -479,15 +479,15 @@ belkasoft evidence center的一个非常好的特性是，它允许你简单在�
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690855899" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690855899" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690855899" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690855899" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690855899" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690855899" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690855899" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690855899" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690855899" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690856273" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690856273" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690856273" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690856273" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690856273" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690856273" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690856273" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690856273" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690856273" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -496,8 +496,8 @@ belkasoft evidence center的一个非常好的特性是，它允许你简单在�
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690855899  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690856273  };
     </script>
-    <script src="/js/theme.js?1690855899" defer></script>
+    <script src="/js/theme.js?1690856273" defer></script>
   </body>
 </html>

