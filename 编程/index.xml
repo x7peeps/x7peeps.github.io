@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>编程 on x7peeps</title>
-    <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</link>
+    <link>/%E7%BC%96%E7%A8%8B/index.html</link>
     <description>Recent content in 编程 on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Sep 2020 12:03:49 +0000</lastBuildDate><atom:link href="https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Sep 2020 12:03:49 +0000</lastBuildDate><atom:link href="/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>python</title>
-      <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.html</link>
+      <link>/%E7%BC%96%E7%A8%8B/python/index.html</link>
       <pubDate>Fri, 11 Sep 2020 12:03:49 +0000</pubDate>
-      <guid>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.html</guid>
+      <guid>/%E7%BC%96%E7%A8%8B/python/index.html</guid>
       <description></description>
     </item>
   </channel>

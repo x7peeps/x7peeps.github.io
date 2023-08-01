@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>python on x7peeps</title>
-    <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.html</link>
+    <link>/%E7%BC%96%E7%A8%8B/python/index.html</link>
     <description>Recent content in python on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Sep 2020 12:03:49 +0000</lastBuildDate><atom:link href="https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Sep 2020 12:03:49 +0000</lastBuildDate><atom:link href="/%E7%BC%96%E7%A8%8B/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>scapy</title>
-      <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</link>
+      <link>/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</link>
       <pubDate>Fri, 11 Sep 2020 12:03:49 +0000</pubDate>
-      <guid>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</guid>
+      <guid>/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</guid>
       <description>如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip
 scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。
 安装scrapy步骤 通过pip安装 pip3 install scrapy 运行scrapy /home/user/.local/bin/scrapy

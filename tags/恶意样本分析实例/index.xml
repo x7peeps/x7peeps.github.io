@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>恶意样本分析,实例 on x7peeps</title>
-    <link>https://x7peeps.com/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B/index.html</link>
+    <link>/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B/index.html</link>
     <description>Recent content in 恶意样本分析,实例 on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Dec 2019 20:31:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Dec 2019 20:31:00 +0000</lastBuildDate><atom:link href="/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AE%9E%E4%BE%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>样本分析-Trojan/Buzus“霸族”木马通过邮件传播</title>
-      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html</link>
+      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html</link>
       <pubDate>Thu, 12 Dec 2019 20:31:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html</guid>
+      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-trojanbuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html</guid>
       <description>Trojan/Buzus“霸族”木马通过邮件传播 背景 探针恶意邮件样本中发现此木马，邮件内容如下：
 收件人:&amp;lt;脱敏内容&amp;gt; 日期:Mon, 9 Sep 2019 12:58:31 +0800 主题:You have got a new message on Facebook! 邮件内容:Facebookfacebook Hi,You have got a personal message on Facebook from your friend.To read it please check the attachment.Thanks, The Facebook Team 附件:Facebook message.zip(227130)关于buzus 翻阅网上的关于霸族的资料介绍如下： W32/Buzus是一种蠕虫，它通过将自身复制到可移动驱动器来传播，并试图从受损的计算机中窃取机密信息。https://www.symantec.com/security-center/writeup/2009-121019-2757-99 霸族本身存在蠕虫行为，且存在传染性可能。本次样本发现为木马类buzus，或同源Trojan.AgentWDCR.HWI行为，基于各厂商对病毒命名不同略有差别。https://www.virustotal.com/gui/file/e41e19b9ee8889b3887b8cacf264468c661bdf382706bbd9052c1f95c4eea504/detection
 基本信息 文件名称：	document.exe 文件大小：	394KB (403968bytes) 文件类型：	PE32 executable (GUI) Intel 80386, for MS Windows 开始时间：	2019-09-09 12:54:18 MD5：	c1a5ba03f0ba9832cc87180a4c4622a5[virustotal] SHA1：	b6c0f0588c8efffc48f308dfddecbf6170204dd9 壳或编译器信息：	无匹配信息
@@ -19,24 +19,24 @@
     </item>
     <item>
       <title>样本分析-邮件恶意样本发现AZORult间谍软件传播</title>
-      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html</link>
+      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html</link>
       <pubDate>Sat, 23 Nov 2019 21:29:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html</guid>
+      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-azorult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html</guid>
       <description>&lt;h2 id=&#34;邮件恶意样本发现azorult间谍软件传播&#34;&gt;邮件恶意样本发现AZORult间谍软件传播&lt;/h2&gt;
 &lt;p&gt;历史上AZORult家族为间谍软件在网上流传，上一次针对国内爆发的行动是在2018年7月18日，本次发现可能意味着其在国内行动仍然存在。针对此回连恶意域名的流量检索中未发现相关回链请求告警，意味着在流量范围内暂未发现相关成功行为。但不排除用户使用个人设备误点击触发漏洞在监控范围外。
 
-&lt;a href=&#34;#image-fde6fa201bf614e1054a81a58ae75450&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;a href=&#34;#image-eca2fae9fbb2303167d4028030c324b3&#34; class=&#34;lightbox-link&#34;&gt;
 &lt;img src=&#34;%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-AZORult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/20190903171119.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-fde6fa201bf614e1054a81a58ae75450&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-eca2fae9fbb2303167d4028030c324b3&#34;&gt;
 &lt;img src=&#34;%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-AZORult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/20190903171119.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>样本分析-邮件恶意样本中发现新MYMOOD蠕虫传播地址</title>
-      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html</link>
+      <link>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html</link>
       <pubDate>Sun, 13 Oct 2019 20:29:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html</guid>
+      <guid>/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0mymood%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html</guid>
       <description>邮件恶意样本中发现新MYMOOD蠕虫传播地址 2019.08.19 流量监测发现附件中存在恶意样本,经判定属于MYMOOD蠕虫： 样本邮件 主题:Delivery reports about your e-mail 发件人:&amp;ldquo;Returned mail&amp;rdquo; &amp;lt;MAILER-DAEMON@&amp;hellip;&amp;hellip;&amp;gt; 收件人:pany@&amp;hellip;&amp;hellip; 日期:Mon, 19 Aug 2019 05:51:20 +0800 &amp;lt;为防止泄密和保护隐私，已对邮件内容进行屏蔽&amp;gt; 附件1165539.scr
 样本信息 通过回溯该攻击者行为，可以发现其历史共进行攻击4次，涉及2个样本，8e1ca3dcdc1d470337dd735e0da71c81、7bad48ed8f8227deb13539379761d837。
 动态分析：其前台无痕迹，25端口发送大量恶意邮件。 在对样本7bad48ed8f8227deb13539379761d837（document.zip）的手动分析中发现其在执行之后会进行恶意伪造邮箱程序db6488afd97fb0f8ba0887c99c86b79e3173f9da1b4dbe39ebe3af0faea34a63（主程序document.bat）并传播恶意文件。
