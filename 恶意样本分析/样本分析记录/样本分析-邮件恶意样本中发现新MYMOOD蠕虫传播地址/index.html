@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.115.4">
-    <meta name="generator" content="Relearn 5.17.1">
+    <meta name="generator" content="Relearn 5.18.0">
     <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
     <meta name="author" content="x7peeps">
     <title>样本分析-邮件恶意样本中发现新MYMOOD蠕虫传播地址 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.xml" rel="alternate" type="application/rss+xml" title="样本分析-邮件恶意样本中发现新MYMOOD蠕虫传播地址 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690867475" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690867475" rel="stylesheet">
-    <link href="/css/fonts.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690867475" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690867475" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690867475" rel="stylesheet">
-    <link href="/css/print.css?1690867475" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690867475" rel="stylesheet">
-    <script src="/js/url.js?1690867475"></script>
-    <script src="/js/variant.js?1690867475"></script>
+    <link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690867977" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690867977" rel="stylesheet">
+    <link href="/css/fonts.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690867977" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690867977" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690867977" rel="stylesheet">
+    <link href="/css/print.css?1690867977" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690867977" rel="stylesheet">
+    <script src="/js/url.js?1690867977"></script>
+    <script src="/js/variant.js?1690867977"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -95,10 +95,10 @@
 <h2 id="邮件恶意样本中发现新mymood蠕虫传播地址">邮件恶意样本中发现新MYMOOD蠕虫传播地址</h2>
 <p>2019.08.19 流量监测发现附件中存在恶意样本,经判定属于MYMOOD蠕虫：
 
-<a href="#image-c75c9e4d9db63cf8cd5d40c7db8d6e19" class="lightbox-link">
+<a href="#image-38c9aea1b7dfbb56da3ac790b4a23459" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image008.jpg-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c75c9e4d9db63cf8cd5d40c7db8d6e19">
+<a href="javascript:history.back();" class="lightbox" id="image-38c9aea1b7dfbb56da3ac790b4a23459">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image008.jpg-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="样本邮件">样本邮件</h3>
@@ -110,105 +110,105 @@
 附件1165539.scr</p>
 <h3 id="样本信息">样本信息</h3>
 <p>
-<a href="#image-7631e0d18fdab3a537fabd0be21915a7" class="lightbox-link">
+<a href="#image-f222b78964bbf7362cb3a3d5d107b04e" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/1567047252995.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7631e0d18fdab3a537fabd0be21915a7">
+<a href="javascript:history.back();" class="lightbox" id="image-f222b78964bbf7362cb3a3d5d107b04e">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/1567047252995.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-e76e581e4459a23f62eed5e15b49217e" class="lightbox-link">
+<a href="#image-7f9a8d95728cb9d51b1d1370dfda2adc" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/1567047275649.png-A" alt="1567047275649" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e76e581e4459a23f62eed5e15b49217e">
+<a href="javascript:history.back();" class="lightbox" id="image-7f9a8d95728cb9d51b1d1370dfda2adc">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/1567047275649.png-A" alt="1567047275649" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-42c12a42a6ec3a44cf926dbd51f0c43f" class="lightbox-link">
+<a href="#image-45bb4e3f3e8b11de6d2a364be849eb2d" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/1567047252995-20210929092525724.png-A" alt="1567047252995" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-42c12a42a6ec3a44cf926dbd51f0c43f">
+<a href="javascript:history.back();" class="lightbox" id="image-45bb4e3f3e8b11de6d2a364be849eb2d">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/1567047252995-20210929092525724.png-A" alt="1567047252995" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-ece4d6329b771f2ff2c80213b79381ad" class="lightbox-link">
+<a href="#image-507364a4ae2a52a2acd02ae4c1308b80" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/1567047290833.png-A" alt="1567047290833" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ece4d6329b771f2ff2c80213b79381ad">
+<a href="javascript:history.back();" class="lightbox" id="image-507364a4ae2a52a2acd02ae4c1308b80">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/1567047290833.png-A" alt="1567047290833" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通过回溯该攻击者行为，可以发现其历史共进行攻击4次，涉及2个样本，8e1ca3dcdc1d470337dd735e0da71c81、7bad48ed8f8227deb13539379761d837。</p>
 <h3 id="动态分析其前台无痕迹25端口发送大量恶意邮件">动态分析：其前台无痕迹，25端口发送大量恶意邮件。</h3>
 <p>
-<a href="#image-1254ca1ba771079b81fefacf07e68f18" class="lightbox-link">
+<a href="#image-54d385c01c55b4dcaa28008e451e7edf" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image002.jpg-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1254ca1ba771079b81fefacf07e68f18">
+<a href="javascript:history.back();" class="lightbox" id="image-54d385c01c55b4dcaa28008e451e7edf">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image002.jpg-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在对样本7bad48ed8f8227deb13539379761d837（document.zip）的手动分析中发现其在执行之后会进行恶意伪造邮箱程序db6488afd97fb0f8ba0887c99c86b79e3173f9da1b4dbe39ebe3af0faea34a63（主程序document.bat）并传播恶意文件。</p>
 <p>
-<a href="#image-63a0af68aa047ee188bfd75d98ac3226" class="lightbox-link">
+<a href="#image-8b12d3600afcd9fe1ec010fcea01cbec" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image004.jpg-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-63a0af68aa047ee188bfd75d98ac3226">
+<a href="javascript:history.back();" class="lightbox" id="image-8b12d3600afcd9fe1ec010fcea01cbec">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image004.jpg-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通过还原发现其，向外发送形如下的邮件回传信息。</p>
 <p>
-<a href="#image-fe85ec23f1cd1f713ec5bcff2d4b369a" class="lightbox-link">
+<a href="#image-6602a6ddfbac2d2e19ee133f1a4aeb8c" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image006.jpg-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fe85ec23f1cd1f713ec5bcff2d4b369a">
+<a href="javascript:history.back();" class="lightbox" id="image-6602a6ddfbac2d2e19ee133f1a4aeb8c">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image006.jpg-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>可以看到样本执行后对外发送大量邮件传递信息，或恶意邮件传播。</p>
 <p>
-<a href="#image-06185d4ce7871e72a414bbc473a267a5" class="lightbox-link">
+<a href="#image-427c7447d68dbde8da298d824cb1a468" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image008-20210929092540534.jpg-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-06185d4ce7871e72a414bbc473a267a5">
+<a href="javascript:history.back();" class="lightbox" id="image-427c7447d68dbde8da298d824cb1a468">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image008-20210929092540534.jpg-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-92fffbd88ff03452a6e46af7b8d65807" class="lightbox-link">
+<a href="#image-c9d8013084e2040089dbffc151031f3a" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image010.jpg-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-92fffbd88ff03452a6e46af7b8d65807">
+<a href="javascript:history.back();" class="lightbox" id="image-c9d8013084e2040089dbffc151031f3a">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image010.jpg-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通过分析其邮件内容发现在对外发起的各类伪造邮件中发现大量进行对外蠕虫类攻击行为。</p>
 <p>
-<a href="#image-570b8408820fa43847c9c879181b7b04" class="lightbox-link">
+<a href="#image-f6603010d125109c31a54d7a41eabc51" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image014.jpg-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-570b8408820fa43847c9c879181b7b04">
+<a href="javascript:history.back();" class="lightbox" id="image-f6603010d125109c31a54d7a41eabc51">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image014.jpg-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>不到半小时发邮件50多条，发送附件110多条。在对发件内容分析过程中发现，样本在执行之后会将受感染主机作为发件人，并通过布置邮件服务对外发起欺骗类恶意传播邮件和垃圾邮件。</p>
 <p>针对恶意样本的批量检测：</p>
 <p>
-<a href="#image-1846c6ca5d5a6fa3fade38b21e1259c8" class="lightbox-link">
+<a href="#image-f23957764e2dc469ddf5fe705e4762d7" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image016.jpg-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1846c6ca5d5a6fa3fade38b21e1259c8">
+<a href="javascript:history.back();" class="lightbox" id="image-f23957764e2dc469ddf5fe705e4762d7">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image016.jpg-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-1a2103823f1c8e4466f181e10481efba" class="lightbox-link">
+<a href="#image-5c07baeb09096b6b63670beef283e94e" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image018.jpg-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1a2103823f1c8e4466f181e10481efba">
+<a href="javascript:history.back();" class="lightbox" id="image-5c07baeb09096b6b63670beef283e94e">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image018.jpg-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>传播样本：3cf49ce369ca677021efa21436db06a55ad39ae95c6aec20fd8ed8c95c0c8feb、</p>
 <p>fa1566a4335787ea408e33c21c7f2001ff91f3b71af57a26f4a5a64b10c856f6对样本的威胁情报分析可知其符合Mydoom恶意邮箱行为。</p>
 <p>根据MyDoom的另一个特点是试图通过TCP端口1042连接到其他IP地址验证样本存在其行为：</p>
 <p>
-<a href="#image-adfe9969009897d661e906852e94febf" class="lightbox-link">
+<a href="#image-9a5bae701666c47c8e8f80c6c7653425" class="lightbox-link">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image020.jpg-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-adfe9969009897d661e906852e94febf">
+<a href="javascript:history.back();" class="lightbox" id="image-9a5bae701666c47c8e8f80c6c7653425">
 <img src="%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/clip_image020.jpg-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>根据行业前人总结mydoom是在2004年，mydoom今天仍然活跃。这些年来尽管基于恶意软件的电子邮件中有存在mydoom的比例并不高，仍然有许多基础设施受到感染。</p>
@@ -242,20 +242,20 @@ ip：
 <a href="/"><img src="/images/favicon.png"></a>
         </div>
         <form action="/search.html" method="get"><div class="searchbox default-animation">
-          <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
           <label class="a11y-only" for="search-by">Search</label>
           <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-          <span data-search-clear=""><i class="fas fa-times"></i></span>
+          <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
         </div></form>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690867476" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690867476" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867476" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690867476" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690867476" defer></script>
-        <script src="/js/search.js?1690867476" defer></script>
+        <script src="/js/auto-complete.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690867978" defer></script>
+        <script src="/js/search.js?1690867978" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -392,63 +392,50 @@ ip：
         <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
           <ul>
             <li id="select-language-container" class="footerLangSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-language">Language</label>
                   <select id="select-language" onchange="location = baseUri + this.value;">
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
             </li>
             <li id="select-variant-container" class="footerVariantSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-variant">Theme</label>
                   <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                     <option id="auto" value="auto" selected>Auto</option>
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
               <script>window.variants && variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks showVisitedLinks"><button class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i><span>&nbsp;</span>Clear History</button></li>
+            <li class="footerVisitedLinks showVisitedLinks">
+              <div class="padding menu-control">
+                <i class="fas fa-history fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button onclick="clearHistory();">Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
           </ul>
         </div>
         <div id="footer" class="footerFooter showFooter">
-<div id="footer" class="footerFooter showFooter">
-	<style>
-	#footer {
-		font-size: .8125rem;
-		height: 6.25rem;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 2rem 1rem;
-		text-align: center;
-		min-width: 14.375rem;
-		max-width: 18.75rem;
-	}
-	#footer p {
-		margin: 0;
-	}
-	</style>
-	<span></span>
-	<span></span>
-	<span></span>
-	<p align="center">Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-	<script async="" src="../../js/buttons.js?1687453518"></script>
-</div>
-
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690867476" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690867476" defer></script>
+    <script src="/js/clipboard.min.js?1690867978" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690867978" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -478,15 +465,15 @@ ip：
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690867978" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -495,8 +482,8 @@ ip：
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867476  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867978  };
     </script>
-    <script src="/js/theme.js?1690867476" defer></script>
+    <script src="/js/theme.js?1690867978" defer></script>
   </body>
 </html>

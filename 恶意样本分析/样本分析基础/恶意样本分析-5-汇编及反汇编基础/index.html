@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.115.4">
-    <meta name="generator" content="Relearn 5.17.1">
+    <meta name="generator" content="Relearn 5.18.0">
     <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
     <meta name="author" content="x7peeps">
     <title>恶意样本分析4-基础DLL分析 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析4-基础DLL分析 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690867475" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690867475" rel="stylesheet">
-    <link href="/css/fonts.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690867475" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690867475" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690867475" rel="stylesheet">
-    <link href="/css/print.css?1690867475" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690867475" rel="stylesheet">
-    <script src="/js/url.js?1690867475"></script>
-    <script src="/js/variant.js?1690867475"></script>
+    <link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690867977" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690867977" rel="stylesheet">
+    <link href="/css/fonts.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690867977" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690867977" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690867977" rel="stylesheet">
+    <link href="/css/print.css?1690867977" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690867977" rel="stylesheet">
+    <script src="/js/url.js?1690867977"></script>
+    <script src="/js/variant.js?1690867977"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -111,10 +111,10 @@
 数组，字符和结构
 64x架构框架
 
-<a href="#image-3724bb44f186bb0ab7150ed91fcc2cd4" class="lightbox-link">
+<a href="#image-02955e2681d51a629b9af8adc6f5d764" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3724bb44f186bb0ab7150ed91fcc2cd4">
+<a href="javascript:history.back();" class="lightbox" id="image-02955e2681d51a629b9af8adc6f5d764">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -137,10 +137,10 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 <h5 id="111-数据如何驻留内存">1.1.1 数据如何驻留内存</h5>
 <p>在内存中，数据存储被存储在低优先级的格式中；一个低位存储在低地址，字节序列被递归存储在内存高地址中。
 
-<a href="#image-ca9683488f481d28068b493a85f12a43" class="lightbox-link">
+<a href="#image-98f309e58d48ea0436424e5dee76d1d4" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191008225456.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ca9683488f481d28068b493a85f12a43">
+<a href="javascript:history.back();" class="lightbox" id="image-98f309e58d48ea0436424e5dee76d1d4">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191008225456.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="12-cpu">1.2 CPU</h4>
@@ -156,10 +156,10 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 <li>编译器编译成机器码或object文件</li>
 <li>连接器linker将目标代码与DLL文件生成系统可执行的程序
 
-<a href="#image-fce7ae377a4e694124e3ecb0d7f54198" class="lightbox-link">
+<a href="#image-40fc324a41094f001f414bcbe79d06bf" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722-20210929091328214.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fce7ae377a4e694124e3ecb0d7f54198">
+<a href="javascript:history.back();" class="lightbox" id="image-40fc324a41094f001f414bcbe79d06bf">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722-20210929091328214.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></li>
 </ol>
@@ -167,18 +167,18 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 <p>通过PE<a href="http://www.andreybazhan.com/pe-internals.html" target="_blank"> internals tools - PeInternals</a>打开编译过的可执行程序，显示出通过编译器生成的五部分（.text,.rdata,.data,.rsrc,.reloc）。如静态分析里提到的内容相同。这里主要关注.text和.data两部分。
 例如程序中存在一串字符。这些字符存储在.data部分在文件偏移0x1E00位置。这个字符不属于代码部分，但是属于程序需要的数据。相同的方式.rdata部分是只读数据和有时包含的（import/export）数据。.rsrc部分包含被执行程序使用的资源。
 
-<a href="#image-52e1f856d298bb0091f65d06d31e08d5" class="lightbox-link">
+<a href="#image-c1f74f22bb2766fe50c40e6a554e334c" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160904.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-52e1f856d298bb0091f65d06d31e08d5">
+<a href="javascript:history.back();" class="lightbox" id="image-c1f74f22bb2766fe50c40e6a554e334c">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160904.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 .text部分字节序列（具体来说是35字节）是从0x400开始的机器码。机器码中包含了CPU将要执行的指令。编译器编译之后会在存储时分为data和code两部分。
 
-<a href="#image-1657de7ace0106b046b1d126f6306412" class="lightbox-link">
+<a href="#image-40ddcc6dafe4a81be129753e08ddc60e" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160926.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1657de7ace0106b046b1d126f6306412">
+<a href="javascript:history.back();" class="lightbox" id="image-40ddcc6dafe4a81be129753e08ddc60e">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160926.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 为了简单起见在磁盘中的程序结构可以记为：可执行程序的组成部分就是code(.text)和data（data,.rdata等等)。</p>
@@ -187,50 +187,50 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 过程：
 双击应用程序之后，一个进程被操作系统分配到内存，并且可执行的被操作系统加载程序加载到分配的内存。下面的简化内存布局会帮助我们可视化概念；在磁盘中的结构和内存中的结构很相似。</p>
 <p>
-<a href="#image-09dd4e1324dbddf19f928db29e4a41c0" class="lightbox-link">
+<a href="#image-7566ec80ef0a3f011d28767620535de3" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160959.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-09dd4e1324dbddf19f928db29e4a41c0">
+<a href="javascript:history.back();" class="lightbox" id="image-7566ec80ef0a3f011d28767620535de3">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160959.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>由图中可见，堆(heap)被用来在程序执行的时候动态分配内存，它的内容可以是变化的。堆被用来存储本地的变量，函数参数和返回的地址。内存还与链接库DLL有关。</p>
 <p>使用x64dbg调试器https://x64dbg.com/#start 加载可执行程序到内存0x13FC71000，并且所有的可执行部分都加载到内存中。这个地址是虚拟地址。虚拟地址最终将会被翻译成物理地址。</p>
 <p>
-<a href="#image-422691f641f0b1792670fc8860464e58" class="lightbox-link">
+<a href="#image-88020322865ed93675ced4ab34708308" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161020.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-422691f641f0b1792670fc8860464e58">
+<a href="javascript:history.back();" class="lightbox" id="image-88020322865ed93675ced4ab34708308">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161020.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>检查.data部分开始记录的字符：一般会有&quot;This is a simple program.&quot;，而我测试的这个hackprocess没有：
 
-<a href="#image-4baacba7fb759be0c4c64d2a1d1d9d13" class="lightbox-link">
+<a href="#image-4d569d70a3bc496d5cf47d14c59efaba" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161128.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4baacba7fb759be0c4c64d2a1d1d9d13">
+<a href="javascript:history.back();" class="lightbox" id="image-4d569d70a3bc496d5cf47d14c59efaba">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161128.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-d8db0859fcd58358ba3390903776ebbc" class="lightbox-link">
+<a href="#image-a6473038cb8b96aa76b171faabf6c31f" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20200428161147.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d8db0859fcd58358ba3390903776ebbc">
+<a href="javascript:history.back();" class="lightbox" id="image-a6473038cb8b96aa76b171faabf6c31f">
 <img src="http://blogimage.xtpeeps.cn/20200428161147.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>监测.text部分的内存地址，显示部分字节的机器码：
 
-<a href="#image-03ae008e18a654e00332c9c4c52627ac" class="lightbox-link">
+<a href="#image-34c1d6232b11398ee63c8e486f5740fc" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161206.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-03ae008e18a654e00332c9c4c52627ac">
+<a href="javascript:history.back();" class="lightbox" id="image-34c1d6232b11398ee63c8e486f5740fc">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161206.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>一旦可执行部分包含的code和data被加载到内存，cpu从内存中获取机器码，解释并执行它。当执行机器指令时会从内存获取数据data。
 
-<a href="#image-4dc5744ad3796fe590895d36904f319a" class="lightbox-link">
+<a href="#image-c8c8ec6d9bee47eef75e408785d143f9" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114111632.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4dc5744ad3796fe590895d36904f319a">
+<a href="javascript:history.back();" class="lightbox" id="image-c8c8ec6d9bee47eef75e408785d143f9">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114111632.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 当执行指令时，程序可与输入输出设备交互。例如：在程序执行的时候，字符串被打印在电脑屏幕上。同样也可以接收字符。</p>
@@ -248,10 +248,10 @@ dword 也可以被解释成一串数或代表内存地址。如何被解释取�
 <h4 id="21-通用寄存器">2.1 通用寄存器</h4>
 <p>x86CPU有8个通用寄存器：eax,ebx,ecx,edx,esp,ebp,esi,edi。这些寄存器是32位（4字节）。程序可以获取寄存器32位，16位，8位值。每个寄存器的低16位（2字节）可以用ax,bx,cx,dx,sp,bp,si,di访问。eax.ebx,ecx,edx的低8位还可以通过al,bl,cl,dl引用。对应的高8位可以通过ah,bh,ch,dh访问。举例如下图所示：
 
-<a href="#image-6f272b2ed33ba359660a0d476d0395de" class="lightbox-link">
+<a href="#image-cbc247a8c861ff4a01d010354de16ff2" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114140519.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6f272b2ed33ba359660a0d476d0395de">
+<a href="javascript:history.back();" class="lightbox" id="image-cbc247a8c861ff4a01d010354de16ff2">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114140519.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="22-指令指针eip">2.2 指令指针（EIP）</h4>
@@ -275,10 +275,10 @@ mov eax,ebx ; moves value in ebx into eax, eax = ebx or eax = 10</code></pre></d
 <li>4字节序列被按照低位优先格式存放</li>
 <li>整数100被存储在相同的内存地址下。
 
-<a href="#image-ee0612f3d81814d8f914adca6c8e47f0" class="lightbox-link">
+<a href="#image-b90f1a833efb60c2b0e7b62d27947c29" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114143658.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ee0612f3d81814d8f914adca6c8e47f0">
+<a href="javascript:history.back();" class="lightbox" id="image-b90f1a833efb60c2b0e7b62d27947c29">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114143658.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></li>
 </ol>
@@ -286,10 +286,10 @@ mov eax,ebx ; moves value in ebx into eax, eax = ebx or eax = 10</code></pre></d
 方括号指定的时要保存的值在内存中的地址。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code class="language-assembly" data-lang="assembly">mov eax,[0x403000] ; eax will now contain 00 00 00 64 (i.e 100)</code></pre></div><p>这里无需指定4字节，基于目标寄存器的大小，CPU会自动确认需要移动多少字节。
 
-<a href="#image-54ab9508ff116b1b62996cb9c9ac8cc1" class="lightbox-link">
+<a href="#image-b7dab07b8182abfdd6ba51ae3b40bb80" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114152928.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-54ab9508ff116b1b62996cb9c9ac8cc1">
+<a href="javascript:history.back();" class="lightbox" id="image-b7dab07b8182abfdd6ba51ae3b40bb80">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191114152928.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>逆向过程中的其他类型还有如，方括号包含寄存器、常数+寄存器、寄存器+寄存器的形式。</p>
@@ -311,10 +311,10 @@ mov [ebx],eax   ; moves 4 byte value in eax to the memory address specified by e
 <div class="wrap-code highlight"><pre tabindex="0"><code class="language-assembly" data-lang="assembly">mov dword ptr [402000],13498h ; moves dword value 0x13496 into the address 0x402000
 mov dword ptr [ebx],100   ; moves dword value 100 into the address specified by ebx,也就是00 00 00 64
 mov word ptr [ebx], 100    ; moves a word 100 into the address specified by ebx，也就是00 64</code></pre></div><p>
-<a href="#image-16f0a251ca8723966eaf106f016639a4" class="lightbox-link">
+<a href="#image-20e0e5d6d7586bfed9f8368f81c3c74e" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191115153232.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-16f0a251ca8723966eaf106f016639a4">
+<a href="javascript:history.back();" class="lightbox" id="image-20e0e5d6d7586bfed9f8368f81c3c74e">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191115153232.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="35-反汇编挑战">3.5 反汇编挑战</h4>
@@ -418,10 +418,10 @@ d=a-b=17;</p>
 </span></span><span style="display:flex;"><span>diff <span style="color:#f92672">=</span> num1 <span style="color:#f92672">-</span> num2;</span></span></code></pre></div><h3 id="5-按位操作">5. 按位操作</h3>
 <p>按位从最右侧开始编号，最右边（最低有效位）是0位的位置，从右向左按位提高。最左边位为最高有效位。如下所示：
 
-<a href="#image-e11bc2f4c3196b1de437a59bff50670f" class="lightbox-link">
+<a href="#image-0d50159a77d002f442e5d4c96cae0b33" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191125122430.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e11bc2f4c3196b1de437a59bff50670f">
+<a href="javascript:history.back();" class="lightbox" id="image-0d50159a77d002f442e5d4c96cae0b33">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20191125122430.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 位操作不是指令；只有一个操作数（作为源和目的）和颠倒所有位。如果eax包含FF FF 00 00 (11111111 11111111 00000000 00000000),则下面的指令将会反转所以为。并存储在eax寄存器中。</p>
@@ -529,10 +529,10 @@ mov dword ptr[x],5
 
 end_if:
 mov doword ptr[x],2</code></pre></div><p>
-<a href="#image-6c7333024513b3b8a2b5c92cd1ad6793" class="lightbox-link">
+<a href="#image-b5d4b986d9ae4009cab1cc7c132e065e" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161240.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6c7333024513b3b8a2b5c92cd1ad6793">
+<a href="javascript:history.back();" class="lightbox" id="image-b5d4b986d9ae4009cab1cc7c132e065e">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161240.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="64-if-else语句">6.4 if-else语句</h4>
@@ -683,17 +683,17 @@ pop ebp
 ret</code></pre></div><p><code>push ebp</code>和<code>mov ebp,esp</code>经常出现在函数的开始，可以被称作函数的序或者函数的开始。是函数用来初始化函数使用的。
 <code>mov esp,ebp</code>和<code>pop ebp</code>执行函数的序逆向操作。成为函数尾声，在函数执行之后恢复环境。
 
-<a href="#image-db48bcd42a1fad46243b23c599514b78" class="lightbox-link">
+<a href="#image-d15c3ffe70dfd490cc62d8b0eca714c2" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200413221848.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-db48bcd42a1fad46243b23c599514b78">
+<a href="javascript:history.back();" class="lightbox" id="image-d15c3ffe70dfd490cc62d8b0eca714c2">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200413221848.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-2d0b90cbf33b54f7ea7d963721f815b0" class="lightbox-link">
+<a href="#image-404b6dbf02d8afe989b44d7e4680f86b" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200413221003.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2d0b90cbf33b54f7ea7d963721f815b0">
+<a href="javascript:history.back();" class="lightbox" id="image-404b6dbf02d8afe989b44d7e4680f86b">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200413221003.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>ebp在这里被设置为固定位置，函数的参数可以通过ebp+正向偏移量进行标定。局部变量可以通过ebp-偏移量进行标定。举例上面test(2,3)，函数参数2，被存储在ebp+8（a）位置，第二个参数被存储在ebp+0xc（b），局部变量分别放在ebp-4（x），ebp-8（y）。</p>
@@ -702,18 +702,18 @@ ret</code></pre></div><p><code>push ebp</code>和<code>mov ebp,esp</code>经常�
 </blockquote>
 <p>pop ebp之后将恢复ebp保存在栈中的值，这个操作之后，esp将会+4。再执行了还原函数环境操作之后：
 
-<a href="#image-7b64005e938eb9e523674b3784c3baac" class="lightbox-link">
+<a href="#image-66b7dd29c2da02825620a0b89b8a4b8b" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200414230420.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7b64005e938eb9e523674b3784c3baac">
+<a href="javascript:history.back();" class="lightbox" id="image-66b7dd29c2da02825620a0b89b8a4b8b">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200414230420.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>当ret执行之后，返回地址在栈顶，被弹栈到eip寄存器中。控制器返回到主函数执行地址中（在主函数中<code>add esp,8</code>）。在弹栈到返回地址中之后，esp+4。在这点，控制器被控制返回主函数执行。主函数main中的<code>add esp,8</code>用于清理栈，esp返回到最开始的位置（0xFE50）。<code>add esp,8</code>这样的函数称为<code>cdecl</code>传统调用。
 
-<a href="#image-67c1f075455bf867c2ebdb472dced2f3" class="lightbox-link">
+<a href="#image-c09dd7e66d5d4b283335901e25956885" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200414232315.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-67c1f075455bf867c2ebdb472dced2f3">
+<a href="javascript:history.back();" class="lightbox" id="image-c09dd7e66d5d4b283335901e25956885">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200414232315.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>大部分C语言编译器都遵循cdecl调用惯例。在cdecl惯例中，调用者将变量以从右到左的规则压栈到栈中，调用者caller自身在调用函数之后清除自身。也有其他调用规则，例如stdcall和fastcall。在stdcall规则中，变量通过caller调用者和callee被调用者从右到左的规则压入栈，调用函数callee负责清理栈。Microsoft windows使用stdcall规则处理被dll文件输出的API函数。在fastcall调用规则中，开始一些参数通过直接存放在寄存器被传递给函数，剩下的所有参数通过以从右到左的方式压入栈中，并且与stdcall类似被调用者callee负责清理栈。（后面会特别的看到64位程序使用fastcall调用规则）</p>
@@ -721,10 +721,10 @@ ret</code></pre></div><p><code>push ebp</code>和<code>mov ebp,esp</code>经常�
 <p>数组是由相同类型数据组成的一个列表。数组元素在内存中连续存储，便于访问数组中的元素。下面的定义一个含有3个元素的整数型数组，每个元素在内存中占用4字节（因为一个常数是4字节长度）：</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>int nums[3]={1,3,4}</code></pre></div><p>数组的名是一个指向数组第一个元素的指针常量（数组名指向数组的基址<code>base address</code>）。访问数组需配置相对基址相对地址（原文叫：<code>index</code>）类似nums[1]：</p>
 <p>
-<a href="#image-7a0e317da3dea7d68d4114d5d8382613" class="lightbox-link">
+<a href="#image-0068b266206651e82b60d0ab62fe33b0" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200421153240.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7a0e317da3dea7d68d4114d5d8382613">
+<a href="javascript:history.back();" class="lightbox" id="image-0068b266206651e82b60d0ab62fe33b0">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200421153240.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在汇编中，数组中的任何一个元素的地址计算需要三个东西：</p>
@@ -817,10 +817,10 @@ xor eax, eax
 <p>字符是字符数组，当定义一个字符串的时候，一个空终止符（字符串终止符）被加在每个字符串的结尾。每个元素占用内存一个字节（换句话说，每个ASCII码1字节长）。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>char *str=&#34;aaaaaaaaaaaaaaaaaa&#34;</code></pre></div><p>字符串名字str是一个纸箱字符串第一个元素的指针（指向字符阵列基址指针）。下图为字符串在内存中的图表：
 
-<a href="#image-6a668aa10d342cc9fd4251b71f74c528" class="lightbox-link">
+<a href="#image-f082558c46f438808fbf0a575eb626ee" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161310.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6a668aa10d342cc9fd4251b71f74c528">
+<a href="javascript:history.back();" class="lightbox" id="image-f082558c46f438808fbf0a575eb626ee">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428161310.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code class="language-assembly" data-lang="assembly">str[0]=[str+0]=[0x4000+0]=[0x4000]=L
@@ -842,10 +842,10 @@ lea &mdash;-取内存单元自的有效地址指令，只用于传送地址。</
 </blockquote>
 <p>假设地址标签src内容为&quot;good&quot;，以空字符(0x0)结尾。在执行第一个命令后，esi将会包含&quot;good&quot;的第一个字符的地址（esi指向&quot;g“所在的地址），第二个指令执行之后，将会设置EDI的内容为dst。第三个语句执行将会复制1字节从esi指向的地址数据到edi指向的地址数据。执行借宿esi和edi都将加1。</p>
 <p>
-<a href="#image-13c17b6855645b5d6a4b67981157121d" class="lightbox-link">
+<a href="#image-ebcd6d0ccfaa2b47b5c3e58e8f777803" class="lightbox-link">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200427141151.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-13c17b6855645b5d6a4b67981157121d">
+<a href="javascript:history.back();" class="lightbox" id="image-ebcd6d0ccfaa2b47b5c3e58e8f777803">
 <img src="%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200427141151.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="933-重复指令rep">9.3.3 重复指令（rep）</h5>
@@ -975,20 +975,20 @@ call cs:printf</code></pre></div><blockquote>
 <a href="/"><img src="/images/favicon.png"></a>
         </div>
         <form action="/search.html" method="get"><div class="searchbox default-animation">
-          <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
           <label class="a11y-only" for="search-by">Search</label>
           <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-          <span data-search-clear=""><i class="fas fa-times"></i></span>
+          <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
         </div></form>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690867476" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690867476" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867476" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690867476" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690867476" defer></script>
-        <script src="/js/search.js?1690867476" defer></script>
+        <script src="/js/auto-complete.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690867978" defer></script>
+        <script src="/js/search.js?1690867978" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -1125,63 +1125,50 @@ call cs:printf</code></pre></div><blockquote>
         <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
           <ul>
             <li id="select-language-container" class="footerLangSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-language">Language</label>
                   <select id="select-language" onchange="location = baseUri + this.value;">
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
             </li>
             <li id="select-variant-container" class="footerVariantSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-variant">Theme</label>
                   <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                     <option id="auto" value="auto" selected>Auto</option>
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
               <script>window.variants && variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks showVisitedLinks"><button class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i><span>&nbsp;</span>Clear History</button></li>
+            <li class="footerVisitedLinks showVisitedLinks">
+              <div class="padding menu-control">
+                <i class="fas fa-history fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button onclick="clearHistory();">Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
           </ul>
         </div>
         <div id="footer" class="footerFooter showFooter">
-<div id="footer" class="footerFooter showFooter">
-	<style>
-	#footer {
-		font-size: .8125rem;
-		height: 6.25rem;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 2rem 1rem;
-		text-align: center;
-		min-width: 14.375rem;
-		max-width: 18.75rem;
-	}
-	#footer p {
-		margin: 0;
-	}
-	</style>
-	<span></span>
-	<span></span>
-	<span></span>
-	<p align="center">Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-	<script async="" src="../../js/buttons.js?1687453518"></script>
-</div>
-
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690867476" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690867476" defer></script>
+    <script src="/js/clipboard.min.js?1690867978" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690867978" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -1211,15 +1198,15 @@ call cs:printf</code></pre></div><blockquote>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690867476" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690867476" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690867978" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -1228,8 +1215,8 @@ call cs:printf</code></pre></div><blockquote>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867476  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867978  };
     </script>
-    <script src="/js/theme.js?1690867476" defer></script>
+    <script src="/js/theme.js?1690867978" defer></script>
   </body>
 </html>

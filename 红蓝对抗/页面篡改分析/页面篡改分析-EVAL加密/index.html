@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.115.4">
-    <meta name="generator" content="Relearn 5.17.1">
+    <meta name="generator" content="Relearn 5.18.0">
     <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
     <meta name="author" content="x7peeps">
     <title>页面篡改分析-EVAL加密 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-EVAL加密 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690867475" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690867475" rel="stylesheet">
-    <link href="/css/fonts.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690867475" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690867475" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690867475" rel="stylesheet">
-    <link href="/css/print.css?1690867475" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690867475" rel="stylesheet">
-    <script src="/js/url.js?1690867475"></script>
-    <script src="/js/variant.js?1690867475"></script>
+    <link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690867977" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690867977" rel="stylesheet">
+    <link href="/css/fonts.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690867977" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690867977" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690867977" rel="stylesheet">
+    <link href="/css/print.css?1690867977" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690867977" rel="stylesheet">
+    <script src="/js/url.js?1690867977"></script>
+    <script src="/js/variant.js?1690867977"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -77,10 +77,10 @@
 
 <h4 id="一处被篡改网站">一处被篡改网站</h4>
 <p>本次样本概况页面篡改菠菜内容，同时加入eval加密js脚本，经过一次跳转及2次收集用户统计信息之后跳转到菠菜网站。
-<a href="#image-d6178b023d6973bffa1015364b87b406" class="lightbox-link">
+<a href="#image-8076066ddde46ebe34fcc3cd257a2533" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/f0b5c7acdb729f08154539fd3c2a813b.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d6178b023d6973bffa1015364b87b406">
+<a href="javascript:history.back();" class="lightbox" id="image-8076066ddde46ebe34fcc3cd257a2533">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/f0b5c7acdb729f08154539fd3c2a813b.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>本次样本如下：</p>
@@ -102,10 +102,10 @@
 </span></span><span style="display:flex;"><span>......</span></span></code></pre></div><h4 id="页面篡改分析">页面篡改分析</h4>
 <p>发现其中的篡改信息，以及两处js脚本插入。其中菠菜信息UTF-8的反转译可得：</p>
 <p>
-<a href="#image-878d031ba82b9e9131b084629fb6a291" class="lightbox-link">
+<a href="#image-17ddbda9be3fcf9b469fdaabdbcf5ba7" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/3430a101ad8de4a46301b3f4d81132af.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-878d031ba82b9e9131b084629fb6a291">
+<a href="javascript:history.back();" class="lightbox" id="image-17ddbda9be3fcf9b469fdaabdbcf5ba7">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/3430a101ad8de4a46301b3f4d81132af.png" alt="" class="lightbox-image" loading="lazy">
 </a>
 两个脚本一个是百度统计https://hm.baidu.com/hm.js?9a4c62a1985e8fbd8d0ce7c1a54070d1， 另一个是eval加密如下：</p>
@@ -144,10 +144,10 @@
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">yesdata</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&amp;refe=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">escape</span>(document.<span style="color:#a6e22e">referrer</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;location=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">escape</span>(document.<span style="color:#a6e22e">location</span>)<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;color=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">screen</span>.<span style="color:#a6e22e">colorDepth</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;x&amp;resolution=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">screen</span>.<span style="color:#a6e22e">width</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;x&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">screen</span>.<span style="color:#a6e22e">height</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;returning=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">cc_k</span>()<span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;language=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">systemLanguage</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&amp;ua=&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">escape</span>(<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">userAgent</span>);
 </span></span><span style="display:flex;"><span>document.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#39;&lt;a href=&#34;http://countt.51yes.com/index.aspx?id=503589630&#34; target=_blank&gt;&lt;img width=20 height=20 border=0 hspace=0 vspace=0 src=&#34;http://count50.51yes.com/count1.gif&#34; alt=&#34;51YES网站统计系统&#34;&gt;&lt;/a&gt;&#39;</span>);document.<span style="color:#a6e22e">write</span>(<span style="color:#e6db74">&#39;&lt;iframe MARGINWIDTH=0 MARGINHEIGHT=0 HSPACE=0 VSPACE=0 FRAMEBORDER=0 SCROLLING=no src=http://count50.51yes.com/sa.htm?id=503589630&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">yesdata</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39; height=0 width=0&gt;&lt;/iframe&gt;&#39;</span>);</span></span></code></pre></div><p>对页面访问者信息进行收集，同上一篇文中提到的一样。统计并页面进行跳转直接引流到博彩页面
 
-<a href="#image-fea987dc0a1e490b1705fb97adc7aa4f" class="lightbox-link">
+<a href="#image-385ed3f5e5bd2f36351177ece71d8b02" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/f0b5c7acdb729f08154539fd3c2a813b-0894983.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fea987dc0a1e490b1705fb97adc7aa4f">
+<a href="javascript:history.back();" class="lightbox" id="image-385ed3f5e5bd2f36351177ece71d8b02">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/f0b5c7acdb729f08154539fd3c2a813b-0894983.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="iocs">IOCs</h4>
@@ -170,20 +170,20 @@
 <a href="/"><img src="/images/favicon.png"></a>
         </div>
         <form action="/search.html" method="get"><div class="searchbox default-animation">
-          <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
           <label class="a11y-only" for="search-by">Search</label>
           <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-          <span data-search-clear=""><i class="fas fa-times"></i></span>
+          <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
         </div></form>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690867477" defer></script>
-        <script src="/js/search.js?1690867477" defer></script>
+        <script src="/js/auto-complete.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690867978" defer></script>
+        <script src="/js/search.js?1690867978" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -320,63 +320,50 @@
         <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
           <ul>
             <li id="select-language-container" class="footerLangSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-language">Language</label>
                   <select id="select-language" onchange="location = baseUri + this.value;">
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
             </li>
             <li id="select-variant-container" class="footerVariantSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-variant">Theme</label>
                   <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                     <option id="auto" value="auto" selected>Auto</option>
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
               <script>window.variants && variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks showVisitedLinks"><button class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i><span>&nbsp;</span>Clear History</button></li>
+            <li class="footerVisitedLinks showVisitedLinks">
+              <div class="padding menu-control">
+                <i class="fas fa-history fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button onclick="clearHistory();">Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
           </ul>
         </div>
         <div id="footer" class="footerFooter showFooter">
-<div id="footer" class="footerFooter showFooter">
-	<style>
-	#footer {
-		font-size: .8125rem;
-		height: 6.25rem;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 2rem 1rem;
-		text-align: center;
-		min-width: 14.375rem;
-		max-width: 18.75rem;
-	}
-	#footer p {
-		margin: 0;
-	}
-	</style>
-	<span></span>
-	<span></span>
-	<span></span>
-	<p align="center">Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-	<script async="" src="../../js/buttons.js?1687453518"></script>
-</div>
-
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690867477" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690867477" defer></script>
+    <script src="/js/clipboard.min.js?1690867979" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690867979" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -406,15 +393,15 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690867477" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690867979" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -423,8 +410,8 @@
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867477  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867979  };
     </script>
-    <script src="/js/theme.js?1690867477" defer></script>
+    <script src="/js/theme.js?1690867979" defer></script>
   </body>
 </html>

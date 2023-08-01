@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.115.4">
-    <meta name="generator" content="Relearn 5.17.1">
+    <meta name="generator" content="Relearn 5.18.0">
     <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
     <meta name="author" content="x7peeps">
     <title>WinHEX(win) - x7peeps</title>
     <link href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.xml" rel="alternate" type="application/rss+xml" title="WinHEX(win) - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690867475" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690867475" rel="stylesheet">
-    <link href="/css/fonts.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690867475" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690867475" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690867475" rel="stylesheet">
-    <link href="/css/print.css?1690867475" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690867475" rel="stylesheet">
-    <script src="/js/url.js?1690867475"></script>
-    <script src="/js/variant.js?1690867475"></script>
+    <link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690867977" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690867977" rel="stylesheet">
+    <link href="/css/fonts.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690867977" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690867977" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690867977" rel="stylesheet">
+    <link href="/css/print.css?1690867977" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690867977" rel="stylesheet">
+    <script src="/js/url.js?1690867977"></script>
+    <script src="/js/variant.js?1690867977"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -197,38 +197,38 @@
 <h5 id="fat32逻辑磁盘基本信息描述">FAT32逻辑磁盘基本信息描述</h5>
 <p>用winhex打开一个FAT32分区格式的逻辑盘F盘，查看该逻辑盘的根目录区。</p>
 <p>
-<a href="#image-a4aaabc73a15b4f4aba6ec3e1cbab362" class="lightbox-link">
+<a href="#image-eb77d26d9483da840f993fb362251838" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365574504-468ad296-ed88-41b5-ab53-141738a90616-20210424192610973.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a4aaabc73a15b4f4aba6ec3e1cbab362">
+<a href="javascript:history.back();" class="lightbox" id="image-eb77d26d9483da840f993fb362251838">
 <img src="WinHEX%28win%29/1617365574504-468ad296-ed88-41b5-ab53-141738a90616-20210424192610973.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>逻辑盘BPB</p>
 <p>其中0200（蓝框）表示一个扇区512个字节，08（红框）表示每簇8个扇区，即每簇4kb。（查阅资料可得，FAT32分区当分区大小在260MB-8GB时，簇大小为4KB，符合事实）这里由F盘大小5GB及在FAT表中每簇占4个字节的记录可计算得每个FAT（FAT2为FAT1的备份）大小为5MB，与实际相同。</p>
 <p>在F盘根目录下创建一个大概60kb的文本文档。</p>
 <p>
-<a href="#image-66678b3640a05ad82a4fb07249646117" class="lightbox-link">
+<a href="#image-f269d320827c8206922b63c5663289f8" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365605070-f9e12cbc-7583-4b8f-b993-0224c1aceab3-20210424192609073.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-66678b3640a05ad82a4fb07249646117">
+<a href="javascript:history.back();" class="lightbox" id="image-f269d320827c8206922b63c5663289f8">
 <img src="WinHEX%28win%29/1617365605070-f9e12cbc-7583-4b8f-b993-0224c1aceab3-20210424192609073.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>创建文件</p>
 <p>在winhex找到该文件位置，查看目录项的信息。</p>
 <p>
-<a href="#image-7bfd469ce0f837cfc87b7cfb3d713886" class="lightbox-link">
+<a href="#image-5123eaedcc566732d5211a6ba521da1e" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365613573-e56b2e4d-898e-4b4a-87ba-ea858635c9d6-20210424192612758.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7bfd469ce0f837cfc87b7cfb3d713886">
+<a href="javascript:history.back();" class="lightbox" id="image-5123eaedcc566732d5211a6ba521da1e">
 <img src="WinHEX%28win%29/1617365613573-e56b2e4d-898e-4b4a-87ba-ea858635c9d6-20210424192612758.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>文件目录项</p>
 <p>由红框内目录项信息可分别知道首簇号高四位和第四位进而求得首簇号为10号，以及文件大小。经计算可得文件大小为58.9kb近似为文件大小。又因为每簇4kb，故共需15簇。</p>
 <p>
-<a href="#image-4f3141eaee820ceef005c102c0a3c4ad" class="lightbox-link">
+<a href="#image-22ecd3a72ce064626459e7d221fcdc41" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365619676-ed7370ea-0417-484e-bd9a-150c7883025f-20210424192608882.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4f3141eaee820ceef005c102c0a3c4ad">
+<a href="javascript:history.back();" class="lightbox" id="image-22ecd3a72ce064626459e7d221fcdc41">
 <img src="WinHEX%28win%29/1617365619676-ed7370ea-0417-484e-bd9a-150c7883025f-20210424192608882.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>fat1（正常）</p>
@@ -236,62 +236,62 @@
 <h5 id="fat32数据恢复过程">FAT32数据恢复过程</h5>
 <p>将刚才的test.txt文件永久删除。</p>
 <p>
-<a href="#image-7cf479fb38b53d800435c8da65cfc286" class="lightbox-link">
+<a href="#image-baea306891146181e4144a92973f8aec" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365622731-eb9977bc-ee12-4243-a1f9-5f48ca6a765a-20210424192609422.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7cf479fb38b53d800435c8da65cfc286">
+<a href="javascript:history.back();" class="lightbox" id="image-baea306891146181e4144a92973f8aec">
 <img src="WinHEX%28win%29/1617365622731-eb9977bc-ee12-4243-a1f9-5f48ca6a765a-20210424192609422.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>删除文件</p>
 <p>找到文件目录项，修改对应第一位信息，并由目录项簇号信息及文件大小计算出首簇号为10，簇数为15。</p>
 <p>
-<a href="#image-461704231a01b7b05dcaa84a23cab87e" class="lightbox-link">
+<a href="#image-d7faf2a0e3b105ce131103d89d748e24" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365639055-6bfcadce-12eb-40d7-8eb5-0e0f6d57deb5-20210424192611710.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-461704231a01b7b05dcaa84a23cab87e">
+<a href="javascript:history.back();" class="lightbox" id="image-d7faf2a0e3b105ce131103d89d748e24">
 <img src="WinHEX%28win%29/1617365639055-6bfcadce-12eb-40d7-8eb5-0e0f6d57deb5-20210424192611710.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a>
-<a href="#image-63519ef887a2c562c7f0f251c7278b7f" class="lightbox-link">
+<a href="#image-7b5853f5321c916186c573340f113d94" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365639667-f479b777-436b-4407-8322-761d25108b5f-20210424192610213.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-63519ef887a2c562c7f0f251c7278b7f">
+<a href="javascript:history.back();" class="lightbox" id="image-7b5853f5321c916186c573340f113d94">
 <img src="WinHEX%28win%29/1617365639667-f479b777-436b-4407-8322-761d25108b5f-20210424192610213.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a>
-<a href="#image-b63b55fee03fc5ea5dd5caf98bac21a7" class="lightbox-link">
+<a href="#image-0e6fa26a16c3b6c36395baaa66bc3bdc" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365639822-16bb90c9-d325-4c03-b255-3ed08bacfcd1-20210424192611537.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b63b55fee03fc5ea5dd5caf98bac21a7">
+<a href="javascript:history.back();" class="lightbox" id="image-0e6fa26a16c3b6c36395baaa66bc3bdc">
 <img src="WinHEX%28win%29/1617365639822-16bb90c9-d325-4c03-b255-3ed08bacfcd1-20210424192611537.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a>
-<a href="#image-d2d59ff3f0f0cbb9f71ba7e1a713065f" class="lightbox-link">
+<a href="#image-8d0fa6308b7d3a22f99e08b3b735459c" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365639956-eba75652-3f0e-4bad-a230-39ca45a9bc4a-20210424192613374.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d2d59ff3f0f0cbb9f71ba7e1a713065f">
+<a href="javascript:history.back();" class="lightbox" id="image-8d0fa6308b7d3a22f99e08b3b735459c">
 <img src="WinHEX%28win%29/1617365639956-eba75652-3f0e-4bad-a230-39ca45a9bc4a-20210424192613374.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-fee03eece3dd639b9606a1fa6d85302b" class="lightbox-link">
+<a href="#image-5c1b7d421f8d5cde2f8e79108c0b1d3e" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365641328-0602c20a-efa4-46f6-812b-dd0b7727c303-20210424192610792.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fee03eece3dd639b9606a1fa6d85302b">
+<a href="javascript:history.back();" class="lightbox" id="image-5c1b7d421f8d5cde2f8e79108c0b1d3e">
 <img src="WinHEX%28win%29/1617365641328-0602c20a-efa4-46f6-812b-dd0b7727c303-20210424192610792.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>修改第一位</p>
 <p>分别将FAT1和FAT2的信息进行修改，从10号开始填补簇链到15个簇被填满，其中最后一个以FFFFFF0F结尾。</p>
 <p>
-<a href="#image-52de0daea3f67f00398ca90b6c29bc0b" class="lightbox-link">
+<a href="#image-bc8dd1faf7422dde15d8fe9f17d8b966" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365648903-f827c808-032c-4db3-acce-d68e74ae11eb-20210424192611380.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-52de0daea3f67f00398ca90b6c29bc0b">
+<a href="javascript:history.back();" class="lightbox" id="image-bc8dd1faf7422dde15d8fe9f17d8b966">
 <img src="WinHEX%28win%29/1617365648903-f827c808-032c-4db3-acce-d68e74ae11eb-20210424192611380.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>fat1（恢复）</p>
 <p>保存后发现文件已恢复，内容完整。</p>
 <p>
-<a href="#image-b0e059ba5146245ee54bf8a66f2da893" class="lightbox-link">
+<a href="#image-83f750434cecc40a615d8b1e1ba14b0c" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365657274-201e51f7-de06-4723-aa35-8e2a06c26f85-20210424192611814.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b0e059ba5146245ee54bf8a66f2da893">
+<a href="javascript:history.back();" class="lightbox" id="image-83f750434cecc40a615d8b1e1ba14b0c">
 <img src="WinHEX%28win%29/1617365657274-201e51f7-de06-4723-aa35-8e2a06c26f85-20210424192611814.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>恢复成功</p>
@@ -300,97 +300,97 @@
 <h5 id="ntfs数据恢复过程">NTFS数据恢复过程</h5>
 <p>同样，先在NTFS格式的E盘创建一个文本文档，再使用shift+delete进行删除。</p>
 <p>
-<a href="#image-8bbef8ea5b3a263fec008fdfa73b2313" class="lightbox-link">
+<a href="#image-78552b310654a195ba606d179267461c" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365666720-04b7b4f5-aa35-4cf3-956a-761e671008ca-20210424192611801.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8bbef8ea5b3a263fec008fdfa73b2313">
+<a href="javascript:history.back();" class="lightbox" id="image-78552b310654a195ba606d179267461c">
 <img src="WinHEX%28win%29/1617365666720-04b7b4f5-aa35-4cf3-956a-761e671008ca-20210424192611801.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>创建文件.png</p>
 <p>打开$MFT元文件。</p>
 <p>
-<a href="#image-d62f884af3d7545279ba9b618688d40a" class="lightbox-link">
+<a href="#image-b91493c5769075bdf318f3c56793d50c" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365670799-e5f7f77d-a033-479e-b36f-e3d14b891374-20210424192613977.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d62f884af3d7545279ba9b618688d40a">
+<a href="javascript:history.back();" class="lightbox" id="image-b91493c5769075bdf318f3c56793d50c">
 <img src="WinHEX%28win%29/1617365670799-e5f7f77d-a033-479e-b36f-e3d14b891374-20210424192613977.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>查找文件名test的位置（MFT文件名是unicode形式），找到对应的MFT。</p>
 <p>
-<a href="#image-2a3b1d20fe0f920e24e7d2f67837f263" class="lightbox-link">
+<a href="#image-860b3a8f155b5f71c3685d3bdac9a301" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365676342-f2cf8e52-1f2d-4510-b711-fadb64e7296a-20210424192612894.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2a3b1d20fe0f920e24e7d2f67837f263">
+<a href="javascript:history.back();" class="lightbox" id="image-860b3a8f155b5f71c3685d3bdac9a301">
 <img src="WinHEX%28win%29/1617365676342-f2cf8e52-1f2d-4510-b711-fadb64e7296a-20210424192612894.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>查找.png</p>
 <p>
-<a href="#image-9824764b1b9c0f414499b80af27dfba3" class="lightbox-link">
+<a href="#image-beb58ed38ccf42964a4b24b0d0cda26c" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365681290-a6bf53a8-6028-4926-9806-9c23177b905c-20210424192613048.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9824764b1b9c0f414499b80af27dfba3">
+<a href="javascript:history.back();" class="lightbox" id="image-beb58ed38ccf42964a4b24b0d0cda26c">
 <img src="WinHEX%28win%29/1617365681290-a6bf53a8-6028-4926-9806-9c23177b905c-20210424192613048.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>文件MFT.png</p>
 <p>16H为00H说明该文件被删除，系统根据这个标志来决定建立新文件时是否覆盖这个MFT而创建自己的MFT。</p>
 <p>再向下找到80H处，往后八个字节为01，则找到相对80H处30H的EE0D00即0DEE为文件大小，经计算为3.48kb基本符合。再向后偏移10H，31表示往后一个字节01H为簇数1，再后三个字节638002即28063H为首簇号，换算成十进制为163939。</p>
 <p>
-<a href="#image-abf9f525f79882993adf585b928adc2c" class="lightbox-link">
+<a href="#image-38c90353d6e8679e49eff2344d56e53a" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365687725-31189727-ebd7-4816-9e3d-72a7e230d623-20210424192612284.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-abf9f525f79882993adf585b928adc2c">
+<a href="javascript:history.back();" class="lightbox" id="image-38c90353d6e8679e49eff2344d56e53a">
 <img src="WinHEX%28win%29/1617365687725-31189727-ebd7-4816-9e3d-72a7e230d623-20210424192612284.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>文件属性.png</p>
 <p>选中$MFT元文件，根据刚才得到的簇号转到文件数据存储扇区。</p>
 <p>
-<a href="#image-506cfa85ec9eb6ea09eee173628a17b6" class="lightbox-link">
+<a href="#image-88f2129d55ea86138f3c9b56c2642749" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365693211-6377284e-7eca-4c02-95e3-50f2936b2e69-20210424192613018.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-506cfa85ec9eb6ea09eee173628a17b6">
+<a href="javascript:history.back();" class="lightbox" id="image-88f2129d55ea86138f3c9b56c2642749">
 <img src="WinHEX%28win%29/1617365693211-6377284e-7eca-4c02-95e3-50f2936b2e69-20210424192613018.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>转到扇区1.png</p>
 <p>
-<a href="#image-63da4c6e858ab75cf0fd460e9b86664e" class="lightbox-link">
+<a href="#image-2276696e45255bbf694a3dd19abb532f" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365697411-35b6b18a-183a-4572-bf0f-e51b7e1494ef-20210424192614549.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-63da4c6e858ab75cf0fd460e9b86664e">
+<a href="javascript:history.back();" class="lightbox" id="image-2276696e45255bbf694a3dd19abb532f">
 <img src="WinHEX%28win%29/1617365697411-35b6b18a-183a-4572-bf0f-e51b7e1494ef-20210424192614549.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>转到扇区2.png</p>
 <p>将起始位置设为起始点，根据文件大小0DEE算出数据结尾处转到当前位置偏移，再设为终止点，即可选中所有数据。</p>
 <p>
-<a href="#image-13fc7a4bbb00f4caaef1259a7375e809" class="lightbox-link">
+<a href="#image-018dbfeb0ac8469c665e48811b700230" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365703854-b8d2122a-0387-454c-a6a2-cad3b73f2d7b-20210424192613644.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-13fc7a4bbb00f4caaef1259a7375e809">
+<a href="javascript:history.back();" class="lightbox" id="image-018dbfeb0ac8469c665e48811b700230">
 <img src="WinHEX%28win%29/1617365703854-b8d2122a-0387-454c-a6a2-cad3b73f2d7b-20210424192613644.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>选中数据区域.png</p>
 <p>
-<a href="#image-ef295d152daaa38fe45fab4bbc6798d4" class="lightbox-link">
+<a href="#image-1f995bd5cd853d04c027e39a3ab1c1ee" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365709145-deb6be3c-0d4c-4bfd-8fbd-9b14e37705fa-20210424192613107.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ef295d152daaa38fe45fab4bbc6798d4">
+<a href="javascript:history.back();" class="lightbox" id="image-1f995bd5cd853d04c027e39a3ab1c1ee">
 <img src="WinHEX%28win%29/1617365709145-deb6be3c-0d4c-4bfd-8fbd-9b14e37705fa-20210424192613107.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>转到终止点.png</p>
 <p>选中数据选择复制导入到新文件，我们选择恢复到E盘（其实最好不应选择恢复到原文件盘，但因无其他数据，经试验此次无影响），即可完成文件恢复。</p>
 <p>
-<a href="#image-a41a785370d94b1585c913acca81e9f8" class="lightbox-link">
+<a href="#image-4d1796675c3ed879e44f28f2370d6bd7" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365714604-f096360e-1758-4c60-9ec1-22363058d4a5-20210424192613949.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a41a785370d94b1585c913acca81e9f8">
+<a href="javascript:history.back();" class="lightbox" id="image-4d1796675c3ed879e44f28f2370d6bd7">
 <img src="WinHEX%28win%29/1617365714604-f096360e-1758-4c60-9ec1-22363058d4a5-20210424192613949.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>生成文件.png</p>
 <p>使用记事本打开发现数据已恢复无误。</p>
 <p>
-<a href="#image-4beb8f8f3beb58e7e2886cf0d48c7f74" class="lightbox-link">
+<a href="#image-e0acff7716fff5897e3f17a1464f68ff" class="lightbox-link">
 <img src="WinHEX%28win%29/1617365720167-6d038493-b061-4e05-9c9f-9fedd289992d-20210424192613348.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4beb8f8f3beb58e7e2886cf0d48c7f74">
+<a href="javascript:history.back();" class="lightbox" id="image-e0acff7716fff5897e3f17a1464f68ff">
 <img src="WinHEX%28win%29/1617365720167-6d038493-b061-4e05-9c9f-9fedd289992d-20210424192613348.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>恢复成功.png</p>
@@ -414,20 +414,20 @@
 <a href="/"><img src="/images/favicon.png"></a>
         </div>
         <form action="/search.html" method="get"><div class="searchbox default-animation">
-          <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
           <label class="a11y-only" for="search-by">Search</label>
           <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-          <span data-search-clear=""><i class="fas fa-times"></i></span>
+          <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
         </div></form>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690867475" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690867475" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867475" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690867475" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690867475" defer></script>
-        <script src="/js/search.js?1690867475" defer></script>
+        <script src="/js/auto-complete.js?1690867977" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690867977" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867977" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690867977" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690867977" defer></script>
+        <script src="/js/search.js?1690867977" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -564,63 +564,50 @@
         <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
           <ul>
             <li id="select-language-container" class="footerLangSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-language">Language</label>
                   <select id="select-language" onchange="location = baseUri + this.value;">
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
             </li>
             <li id="select-variant-container" class="footerVariantSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-variant">Theme</label>
                   <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                     <option id="auto" value="auto" selected>Auto</option>
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
               <script>window.variants && variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks showVisitedLinks"><button class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i><span>&nbsp;</span>Clear History</button></li>
+            <li class="footerVisitedLinks showVisitedLinks">
+              <div class="padding menu-control">
+                <i class="fas fa-history fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button onclick="clearHistory();">Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
           </ul>
         </div>
         <div id="footer" class="footerFooter showFooter">
-<div id="footer" class="footerFooter showFooter">
-	<style>
-	#footer {
-		font-size: .8125rem;
-		height: 6.25rem;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 2rem 1rem;
-		text-align: center;
-		min-width: 14.375rem;
-		max-width: 18.75rem;
-	}
-	#footer p {
-		margin: 0;
-	}
-	</style>
-	<span></span>
-	<span></span>
-	<span></span>
-	<p align="center">Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-	<script async="" src="../../js/buttons.js?1687453518"></script>
-</div>
-
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690867475" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690867475" defer></script>
+    <script src="/js/clipboard.min.js?1690867977" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690867977" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -650,15 +637,15 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690867475" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690867475" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690867475" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690867475" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690867475" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690867475" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690867475" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690867475" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690867475" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690867977" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690867977" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690867977" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690867977" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690867977" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690867977" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690867977" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690867977" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690867977" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -667,8 +654,8 @@
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867475  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867977  };
     </script>
-    <script src="/js/theme.js?1690867475" defer></script>
+    <script src="/js/theme.js?1690867977" defer></script>
   </body>
 </html>

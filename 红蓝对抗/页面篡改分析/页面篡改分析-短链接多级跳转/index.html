@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.115.4">
-    <meta name="generator" content="Relearn 5.17.1">
+    <meta name="generator" content="Relearn 5.18.0">
     <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
     <meta name="author" content="x7peeps">
     <title>页面篡改分析-短链接多级跳转 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-短链接多级跳转 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690867475" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690867475" rel="stylesheet">
-    <link href="/css/fonts.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690867475" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690867475" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690867475" rel="stylesheet">
-    <link href="/css/print.css?1690867475" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690867475" rel="stylesheet">
-    <script src="/js/url.js?1690867475"></script>
-    <script src="/js/variant.js?1690867475"></script>
+    <link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690867977" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690867977" rel="stylesheet">
+    <link href="/css/fonts.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690867977" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690867977" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690867977" rel="stylesheet">
+    <link href="/css/print.css?1690867977" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690867977" rel="stylesheet">
+    <script src="/js/url.js?1690867977"></script>
+    <script src="/js/variant.js?1690867977"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -77,10 +77,10 @@
 
 <p>在此样本中，我们发现该篡改通过在业务页面插入外链的短连接中转JS脚本，通过多级跳转，最终将用户重定向到BoCai网。</p>
 <p>
-<a href="#image-79ab83f9bfa24389ff3f8da20ca63672" class="lightbox-link">
+<a href="#image-1fd5f5ef273ec95a839240c06bdaa81d" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/7c13e17b29890b5e3ca1d1cb60c5c34b.png" alt="7c13e17b29890b5e3ca1d1cb60c5c34b" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-79ab83f9bfa24389ff3f8da20ca63672">
+<a href="javascript:history.back();" class="lightbox" id="image-1fd5f5ef273ec95a839240c06bdaa81d">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/7c13e17b29890b5e3ca1d1cb60c5c34b.png" alt="7c13e17b29890b5e3ca1d1cb60c5c34b" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="业务页面">业务页面</h4>
@@ -95,20 +95,20 @@
 <code>https://www.bcdas8.com/js301.js</code></p>
 <p>其中<code>https://www.bcdas8.com/dq.js </code>判断并回显访问者IP，可被用于记录。
 
-<a href="#image-29042f92c1962008799a386bb02e60e7" class="lightbox-link">
+<a href="#image-f0f4043c0a2743a2a6549aa4935ec038" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/74eafd4588cee85d78693369b023de9e.png" alt="74eafd4588cee85d78693369b023de9e" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-29042f92c1962008799a386bb02e60e7">
+<a href="javascript:history.back();" class="lightbox" id="image-f0f4043c0a2743a2a6549aa4935ec038">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/74eafd4588cee85d78693369b023de9e.png" alt="74eafd4588cee85d78693369b023de9e" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="跳转开始">跳转开始：</h4>
 <p>而另外一个外部JS为多级跳转的开始：
 <code>https://www.bcdas8.com/js301.js</code>
 
-<a href="#image-4533706eee0b76a465f54b5fa97a173b" class="lightbox-link">
+<a href="#image-3f62b02db7c60d7e16b448b4191422b6" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/444a30db7bf3e70d6fe181a96ecc6845.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4533706eee0b76a465f54b5fa97a173b">
+<a href="javascript:history.back();" class="lightbox" id="image-3f62b02db7c60d7e16b448b4191422b6">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/444a30db7bf3e70d6fe181a96ecc6845.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>(<span style="color:#66d9ef">function</span> () {
@@ -135,10 +135,10 @@
 <p>分析可知，除了正常的执行百度和360网站统计之外，插入了另外一处跳转：
 <code>https://welcomejs.com/?88</code>
 
-<a href="#image-4d389a85518dec39917e1c76aa949a0d" class="lightbox-link">
+<a href="#image-2d2baa3a5b3cd84f4c1710d9e8b20dbc" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/c26d7cb692cf43313111b53d979bd39b.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4d389a85518dec39917e1c76aa949a0d">
+<a href="javascript:history.back();" class="lightbox" id="image-2d2baa3a5b3cd84f4c1710d9e8b20dbc">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/c26d7cb692cf43313111b53d979bd39b.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">meta</span> <span style="color:#a6e22e">http</span><span style="color:#f92672">-</span><span style="color:#a6e22e">equiv</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Content-Language&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;zh-CN&#34;</span><span style="color:#f92672">&gt;</span>
@@ -146,10 +146,10 @@
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">meta</span> <span style="color:#a6e22e">http</span><span style="color:#f92672">-</span><span style="color:#a6e22e">equiv</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;refresh&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.1;url=/zh-cn&#34;</span><span style="color:#f92672">&gt;</span></span></span></code></pre></div><h4 id="再次跳转">再次跳转：</h4>
 <p><code>https://welcomejs.com/zh-cn</code>
 
-<a href="#image-5d4e561d4fa2ffd9cf0c62f7927fc3cf" class="lightbox-link">
+<a href="#image-ca1de6f90e86ab566428d4f15eddda53" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/71031b1bed89768b5a0b2feca1900302.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5d4e561d4fa2ffd9cf0c62f7927fc3cf">
+<a href="javascript:history.back();" class="lightbox" id="image-ca1de6f90e86ab566428d4f15eddda53">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/71031b1bed89768b5a0b2feca1900302.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#f92672">&lt;!</span><span style="color:#a6e22e">DOCTYPE</span> <span style="color:#a6e22e">html</span><span style="color:#f92672">&gt;</span>
@@ -198,18 +198,18 @@
 <p>最终使用户跳转到BoCai网站。
 <code>https://js29042.com/?aff=999313</code>
 
-<a href="#image-8bcf326baadac6f75c31c7cb8f3185cc" class="lightbox-link">
+<a href="#image-c940e20d6c246640870efbb415253e15" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/7c13e17b29890b5e3ca1d1cb60c5c34b-0303199.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8bcf326baadac6f75c31c7cb8f3185cc">
+<a href="javascript:history.back();" class="lightbox" id="image-c940e20d6c246640870efbb415253e15">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/7c13e17b29890b5e3ca1d1cb60c5c34b-0303199.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>测试发现aff参数为推广码，该推广码可用于定位页面篡改作者。</p>
 <p>
-<a href="#image-a8de180eb86229a10ec6ec7a5d000e14" class="lightbox-link">
+<a href="#image-4069996eccc872e92e3d0e20674cddbb" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/67c82492047b34b3b8ce58546b8eb850.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a8de180eb86229a10ec6ec7a5d000e14">
+<a href="javascript:history.back();" class="lightbox" id="image-4069996eccc872e92e3d0e20674cddbb">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/67c82492047b34b3b8ce58546b8eb850.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="iocs">IOCS</h4>
@@ -232,20 +232,20 @@ welcomejs.com</p>
 <a href="/"><img src="/images/favicon.png"></a>
         </div>
         <form action="/search.html" method="get"><div class="searchbox default-animation">
-          <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
           <label class="a11y-only" for="search-by">Search</label>
           <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-          <span data-search-clear=""><i class="fas fa-times"></i></span>
+          <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
         </div></form>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690867477" defer></script>
-        <script src="/js/search.js?1690867477" defer></script>
+        <script src="/js/auto-complete.js?1690867979" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690867979" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867979" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690867979" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690867979" defer></script>
+        <script src="/js/search.js?1690867979" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -382,63 +382,50 @@ welcomejs.com</p>
         <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
           <ul>
             <li id="select-language-container" class="footerLangSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-language">Language</label>
                   <select id="select-language" onchange="location = baseUri + this.value;">
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
             </li>
             <li id="select-variant-container" class="footerVariantSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-variant">Theme</label>
                   <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                     <option id="auto" value="auto" selected>Auto</option>
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
               <script>window.variants && variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks showVisitedLinks"><button class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i><span>&nbsp;</span>Clear History</button></li>
+            <li class="footerVisitedLinks showVisitedLinks">
+              <div class="padding menu-control">
+                <i class="fas fa-history fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button onclick="clearHistory();">Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
           </ul>
         </div>
         <div id="footer" class="footerFooter showFooter">
-<div id="footer" class="footerFooter showFooter">
-	<style>
-	#footer {
-		font-size: .8125rem;
-		height: 6.25rem;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 2rem 1rem;
-		text-align: center;
-		min-width: 14.375rem;
-		max-width: 18.75rem;
-	}
-	#footer p {
-		margin: 0;
-	}
-	</style>
-	<span></span>
-	<span></span>
-	<span></span>
-	<p align="center">Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-	<script async="" src="../../js/buttons.js?1687453518"></script>
-</div>
-
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690867477" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690867477" defer></script>
+    <script src="/js/clipboard.min.js?1690867979" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690867979" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -468,15 +455,15 @@ welcomejs.com</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690867477" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690867979" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690867979" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -485,8 +472,8 @@ welcomejs.com</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867477  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867979  };
     </script>
-    <script src="/js/theme.js?1690867477" defer></script>
+    <script src="/js/theme.js?1690867979" defer></script>
   </body>
 </html>

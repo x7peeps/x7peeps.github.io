@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.115.4">
-    <meta name="generator" content="Relearn 5.17.1">
+    <meta name="generator" content="Relearn 5.18.0">
     <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
     <meta name="author" content="x7peeps">
     <title>页面篡改分析-http流量劫持页面篡分析 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-http流量劫持页面篡分析 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690867475" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690867475" rel="stylesheet">
-    <link href="/css/fonts.css?1690867475" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867475" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690867475" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690867475" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690867475" rel="stylesheet">
-    <link href="/css/print.css?1690867475" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690867475" rel="stylesheet">
-    <script src="/js/url.js?1690867475"></script>
-    <script src="/js/variant.js?1690867475"></script>
+    <link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690867977" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690867977" rel="stylesheet">
+    <link href="/css/fonts.css?1690867977" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690867977" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690867977" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690867977" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690867977" rel="stylesheet">
+    <link href="/css/print.css?1690867977" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690867977" rel="stylesheet">
+    <script src="/js/url.js?1690867977"></script>
+    <script src="/js/variant.js?1690867977"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -81,92 +81,92 @@
 访问某页面, http://xxx/xx 偶尔会跳转到 https[://]1121[.]24368212[.]top/1106/pandash https[://]98vv[.]vip/ , 经确认访问后的特点除了以下几个返回内容之外, 同时header存在max-age=0, 触发方式不固定, 而将UA修改为移动端或切换移动端UA访问会有一定几率触发跳转.</p>
 <p>跳转情况1:</p>
 <p>
-<a href="#image-7c19032aafb68413d398e3a081ab50ed" class="lightbox-link">
+<a href="#image-ce3bf9fdedb06543d80488b054525881" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213415348.png" alt="image-20211212213415348" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7c19032aafb68413d398e3a081ab50ed">
+<a href="javascript:history.back();" class="lightbox" id="image-ce3bf9fdedb06543d80488b054525881">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213415348.png" alt="image-20211212213415348" class="lightbox-image" loading="lazy">
 </a>
 使用top.location.href=&ldquo;xxx&rdquo;, 在样式顶层进行跳转, 可以在iframe外进行跳转.</p>
 <p>跳转情况2:</p>
 <p>
-<a href="#image-43dfad18bdb0b74202dcd078821a1b3d" class="lightbox-link">
+<a href="#image-de39c161dbb97be2df8246f7a88f293e" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213541674.png" alt="image-20211212213541674" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-43dfad18bdb0b74202dcd078821a1b3d">
+<a href="javascript:history.back();" class="lightbox" id="image-de39c161dbb97be2df8246f7a88f293e">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213541674.png" alt="image-20211212213541674" class="lightbox-image" loading="lazy">
 </a>
 通过分析可以看到跳转的连接为 https[://]98vv[.]vip/
 
-<a href="#image-a29fefd687baa4616fc49333289b606d" class="lightbox-link">
+<a href="#image-94779383a25cdd7884c2e292c6ff259b" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213810207.png" alt="image-20211212213810207" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a29fefd687baa4616fc49333289b606d">
+<a href="javascript:history.back();" class="lightbox" id="image-94779383a25cdd7884c2e292c6ff259b">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213810207.png" alt="image-20211212213810207" class="lightbox-image" loading="lazy">
 </a></p>
 <p>跳转情况3:</p>
 <p>
-<a href="#image-8b9c7bd1a85c441dd88f394858f113d6" class="lightbox-link">
+<a href="#image-9c4c5f3f71db51f4f039e243dec1c924" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213643528.png" alt="image-20211212213643528" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8b9c7bd1a85c441dd88f394858f113d6">
+<a href="javascript:history.back();" class="lightbox" id="image-9c4c5f3f71db51f4f039e243dec1c924">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213643528.png" alt="image-20211212213643528" class="lightbox-image" loading="lazy">
 </a></p>
 <p>也是使用了top.location.href=&ldquo;xxx&rdquo;, 使用的不同的地址跳转.</p>
 <p>由于每次跳转触发不固定, 因此复现的时候也花了一会时间, 这里看到返回包的js我们可以知道确实是通常相关黑灰产使用的js跳转方式. 可以注意到这里使用了top.location.href的方式, 这种方式可以在iframe之外进行跳转.</p>
 <p>通常的页面篡改, 到这里我们看到的现象是访问不论是页面还是js都会发生跳转, 首要目的我们会思考是否页面中被插入的js导致返回的内容受控跳转. 这里我们针对三种情况的关键词都在系统中进行全文查找内容, 结果并没有发现相关内容.</p>
 <p>
-<a href="#image-a7eebff248263ef4e3c520c9a3e00018" class="lightbox-link">
+<a href="#image-3956643d6910629c6af54bc420d15731" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212214835345.png" alt="image-20211212214835345" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a7eebff248263ef4e3c520c9a3e00018">
+<a href="javascript:history.back();" class="lightbox" id="image-3956643d6910629c6af54bc420d15731">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212214835345.png" alt="image-20211212214835345" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-6fe3262b4015966d3aee2987d28298d9" class="lightbox-link">
+<a href="#image-357a45bd5884171a563f75eac6c0ce02" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215011796.png" alt="image-20211212215011796" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6fe3262b4015966d3aee2987d28298d9">
+<a href="javascript:history.back();" class="lightbox" id="image-357a45bd5884171a563f75eac6c0ce02">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215011796.png" alt="image-20211212215011796" class="lightbox-image" loading="lazy">
 </a></p>
 <p>接着我们查看相关的页面和js内容, 结果都没有发现可疑的脚本.</p>
 <p>
-<a href="#image-03456948998645348f8c37bacbe15a86" class="lightbox-link">
+<a href="#image-a0bb65c8df17c18ca19cc7ebe4c66bc0" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215532821.png" alt="image-20211212215532821" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-03456948998645348f8c37bacbe15a86">
+<a href="javascript:history.back();" class="lightbox" id="image-a0bb65c8df17c18ca19cc7ebe4c66bc0">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215532821.png" alt="image-20211212215532821" class="lightbox-image" loading="lazy">
 </a></p>
 <p>这里只在文件内容中发现了一些max-age=0的页面.</p>
 <p>
-<a href="#image-ba280bcd6d7fdb76417b98c376bba498" class="lightbox-link">
+<a href="#image-06f25833a250c89fde666374c211e21f" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215321773.png" alt="image-20211212215321773" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ba280bcd6d7fdb76417b98c376bba498">
+<a href="javascript:history.back();" class="lightbox" id="image-06f25833a250c89fde666374c211e21f">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215321773.png" alt="image-20211212215321773" class="lightbox-image" loading="lazy">
 </a></p>
 <p>我们查看下中间件的配置, 发现中间件配置也没有发现问题</p>
 <p>
-<a href="#image-566b388062888eaadd42ad07b64ffbac" class="lightbox-link">
+<a href="#image-951aabb69d69e34edd3e16384b6813ac" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212220402723.png" alt="image-20211212220402723" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-566b388062888eaadd42ad07b64ffbac">
+<a href="javascript:history.back();" class="lightbox" id="image-951aabb69d69e34edd3e16384b6813ac">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212220402723.png" alt="image-20211212220402723" class="lightbox-image" loading="lazy">
 </a></p>
 <p>到此为止我们发现与传统的跳转方式都不同, 与中间件控制的跳转方式也不同. 因此这里考虑到是否存在劫持. 首先dns劫持, 经过排查发现不论是多地多运营商解析域名、还是通过dnslookup都没有看到域名解析异常情况, 由于客户的域名是阿里的域名, 使用修改本地的dns为223.5.5.5以及223.6.6.6再访问还是有问题. 但ip在以上情形下都无变化, 因此判断不是dns劫持情况.</p>
 <p>
-<a href="#image-1e74236f4bb614af89324d693bec3147" class="lightbox-link">
+<a href="#image-39e49abd130bd5e18fcae2692ee6c37c" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221027065.png" alt="image-20211212221027065" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1e74236f4bb614af89324d693bec3147">
+<a href="javascript:history.back();" class="lightbox" id="image-39e49abd130bd5e18fcae2692ee6c37c">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221027065.png" alt="image-20211212221027065" class="lightbox-image" loading="lazy">
 </a></p>
 <p>最后我们排出了系统异常登录、ssh密钥登录等情况判断可能是流量劫持问题. 与阿里同事的客服的判断相同.</p>
 <p>
-<a href="#image-30a50afc1ce8aeb74bd2c29f8209de97" class="lightbox-link">
+<a href="#image-28fe195d8a50b70ffcfca51b6d041f4e" class="lightbox-link">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221103130.png" alt="image-20211212221103130" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-30a50afc1ce8aeb74bd2c29f8209de97">
+<a href="javascript:history.back();" class="lightbox" id="image-28fe195d8a50b70ffcfca51b6d041f4e">
 <img src="%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221103130.png" alt="image-20211212221103130" class="lightbox-image" loading="lazy">
 </a></p>
 <p>最后我们给出了我们的最终的排查或解决方案,</p>
@@ -204,20 +204,20 @@ https[://]98vv[.]vip/</p>
 <a href="/"><img src="/images/favicon.png"></a>
         </div>
         <form action="/search.html" method="get"><div class="searchbox default-animation">
-          <button type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
           <label class="a11y-only" for="search-by">Search</label>
           <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
-          <span data-search-clear=""><i class="fas fa-times"></i></span>
+          <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
         </div></form>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690867477" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690867477" defer></script>
-        <script src="/js/search.js?1690867477" defer></script>
+        <script src="/js/auto-complete.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690867978" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690867978" defer></script>
+        <script src="/js/search.js?1690867978" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -354,63 +354,50 @@ https[://]98vv[.]vip/</p>
         <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
           <ul>
             <li id="select-language-container" class="footerLangSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-language fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-language">Language</label>
                   <select id="select-language" onchange="location = baseUri + this.value;">
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
             </li>
             <li id="select-variant-container" class="footerVariantSwitch">
-              <div class="padding select-container">
+              <div class="padding menu-control">
                 <i class="fas fa-paint-brush fa-fw"></i>
                 <span>&nbsp;</span>
-                <div class="select-style">
+                <div class="control-style">
                   <label class="a11y-only" for="select-variant">Theme</label>
                   <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
                     <option id="auto" value="auto" selected>Auto</option>
                   </select>
                 </div>
-                <div class="select-clear"></div>
+                <div class="clear"></div>
               </div>
               <script>window.variants && variants.markSelectedVariant();</script>
             </li>
-            <li class="footerVisitedLinks showVisitedLinks"><button class="padding" onclick="clearHistory();"><i class="fas fa-history fa-fw"></i><span>&nbsp;</span>Clear History</button></li>
+            <li class="footerVisitedLinks showVisitedLinks">
+              <div class="padding menu-control">
+                <i class="fas fa-history fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button onclick="clearHistory();">Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
           </ul>
         </div>
         <div id="footer" class="footerFooter showFooter">
-<div id="footer" class="footerFooter showFooter">
-	<style>
-	#footer {
-		font-size: .8125rem;
-		height: 6.25rem;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 2rem 1rem;
-		text-align: center;
-		min-width: 14.375rem;
-		max-width: 18.75rem;
-	}
-	#footer p {
-		margin: 0;
-	}
-	</style>
-	<span></span>
-	<span></span>
-	<span></span>
-	<p align="center">Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
-	<script async="" src="../../js/buttons.js?1687453518"></script>
-</div>
-
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690867477" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690867477" defer></script>
+    <script src="/js/clipboard.min.js?1690867978" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690867978" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -440,15 +427,15 @@ https[://]98vv[.]vip/</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690867477" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690867477" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690867978" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690867978" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -457,8 +444,8 @@ https[://]98vv[.]vip/</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867477  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690867978  };
     </script>
-    <script src="/js/theme.js?1690867477" defer></script>
+    <script src="/js/theme.js?1690867978" defer></script>
   </body>
 </html>
