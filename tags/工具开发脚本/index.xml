@@ -9,9 +9,9 @@
     <lastBuildDate>Wed, 08 Jan 2020 23:31:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>UnsafeHttpMethod类型漏洞检测脚本</title>
-      <link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-HttpMethod-UnsafeHttpMethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html</link>
+      <link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html</link>
       <pubDate>Wed, 08 Jan 2020 23:31:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-HttpMethod-UnsafeHttpMethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html</guid>
+      <guid>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;对于大量UnsafeHttpMethod类型漏洞一直苦于耗费时间，而几乎无产出，对于安全检测人员来说简直是浪费了不必要的时间，所以根据具体的几种常见的漏洞通过脚本的形式进行批量检测成为了最值得研究的。本文设计的Method_test.py模块用于检测OPTIONS,PUT,DELETE,TRACE方法脚本，支持单测、批测，批测中断，生成记录文档。&lt;/p&gt;
 &lt;/blockquote&gt;</description>
@@ -24,10 +24,10 @@
       <description>&lt;h1 id=&#34;本地批量ping域名脚本&#34;&gt;本地批量ping域名脚本&lt;/h1&gt;
 &lt;p&gt;背景是同学在执行一批渗透时需要批量验证一批域名本地ping情况，这里通过powershell脚本简单制作了一个思路供同学们参考。
 
-&lt;a href=&#34;#image-b6c3c27c0e6c6195c4fe79ecf7162b3b&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;a href=&#34;#image-c9179afa5b41cbf656f1015a06ad38fb&#34; class=&#34;lightbox-link&#34;&gt;
 &lt;img src=&#34;http://blogimage.xtpeeps.cn/20191020001017.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-b6c3c27c0e6c6195c4fe79ecf7162b3b&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-c9179afa5b41cbf656f1015a06ad38fb&#34;&gt;
 &lt;img src=&#34;http://blogimage.xtpeeps.cn/20191020001017.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;</description>
     </item>
