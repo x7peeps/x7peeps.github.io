@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.115.4">
+    <meta name="generator" content="Relearn 5.18.0">
+    <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
+    <meta name="author" content="x7peeps">
+    <title>恶意样本分析-10-使用内存取证狩猎恶意软件 - x7peeps</title>
+    <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析-10-使用内存取证狩猎恶意软件 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
+    <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
+    <link href="/css/fontawesome-all.min.css?1690920740" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690920740" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690920740" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690920740" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690920740" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690920740" rel="stylesheet">
+    <link href="/css/fonts.css?1690920740" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690920740" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690920740" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690920740" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690920740" rel="stylesheet">
+    <link href="/css/print.css?1690920740" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690920740" rel="stylesheet">
+    <script src="/js/url.js?1690920740"></script>
+    <script src="/js/variant.js?1690920740"></script>
+    <script>
+      // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
+      // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
+      window.index_js_url="/index.search.js";
+      var root_url="/";
+      var baseUri=root_url.replace(/\/$/, '');
+      // translations
+      window.T_Copy_to_clipboard = 'Copy to clipboard';
+      window.T_Copied_to_clipboard = 'Copied to clipboard!';
+      window.T_Copy_link_to_clipboard = 'Copy link to clipboard';
+      window.T_Link_copied_to_clipboard = 'Copied link to clipboard!';
+      window.T_No_results_found = 'No results found for \u0022{0}\u0022';
+      window.T_N_results_found = '{1} results found for \u0022{0}\u0022';
+      // some further base stuff
+      var baseUriFull='https:\/\/x7peeps.com/';
+      window.variants && variants.init( [ 'auto' ] );
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">
+    <div id="body" class="default-animation">
+      <div id="sidebar-overlay"></div>
+      <div id="toc-overlay"></div>
+      <nav id="topbar" class="highlightable">
+        <div>
+          <div class="navigation">
+            <a class="nav nav-next topbar-link" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html" title="恶意样本分析-10-恶意软件的混淆技术 (&#129106;)"><i class="fas fa-chevron-right fa-fw"></i></a>
+          </div>
+          <div class="navigation">
+            <a class="nav nav-prev topbar-link" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html" title="样本分析基础 (&#129104;)"><i class="fas fa-chevron-left fa-fw"></i></a>
+          </div>
+          <div id="breadcrumbs">
+            <span id="sidebar-toggle-span">
+              <a href="#" id="sidebar-toggle" class="topbar-link" title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a>
+            </span>
+            <span id="toc-menu" title='Table of Contents (CTRL+ALT+t)'><i class="fas fa-list-alt fa-fw"></i></span>
+            <ol class="links" itemscope itemtype="http://schema.org/BreadcrumbList">
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/index.html"><span itemprop="name">竹林 - Bamboo grove</span></a><meta itemprop="position" content="1"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html"><span itemprop="name">恶意样本分析</span></a><meta itemprop="position" content="2"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html"><span itemprop="name">样本分析基础</span></a><meta itemprop="position" content="3"> &gt; </li>
+              <li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">恶意样本分析-10-使用内存取证狩猎恶意软件</span><meta itemprop="position" content="4"></li>
+            </ol>
+          </div>
+          <div class="default-animation progress">
+            <div class="toc-wrapper"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#10使用内存取证狩猎恶意软件">10.使用内存取证狩猎恶意软件</a>
+      <ul>
+        <li><a href="#1-内存取证步骤">1. 内存取证步骤</a></li>
+        <li><a href="#2-内存采集">2. 内存采集</a></li>
+        <li><a href="#3-volatility浏览">3. Volatility浏览</a></li>
+        <li><a href="#4-列举进程">4. 列举进程</a></li>
+        <li><a href="#5-列出进程句柄">5. 列出进程句柄</a></li>
+        <li><a href="#6-dll清单">6. DLL清单</a></li>
+        <li><a href="#7-转储可执行文件和dll">7. 转储可执行文件和DLL</a></li>
+        <li><a href="#8-列出网络连接和套接字">8. 列出网络连接和套接字</a></li>
+        <li><a href="#9-检查注册表">9. 检查注册表</a></li>
+        <li><a href="#10-nvestigating服务">10. nvestigating服务</a></li>
+        <li><a href="#11-提取命令历史">11. 提取命令历史</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="body-inner" class="highlightable default" tabindex="-1">
+        <div class="flex-block-wrapper">
+          <article class="default">
+            <header class="headline">
+<div class="tags">
+  <a class="tag-link" href="/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.html">恶意样本分析,学习</a>
+</div>
+            </header>
+<h1 id="恶意样本分析-10-使用内存取证狩猎恶意软件">恶意样本分析-10-使用内存取证狩猎恶意软件</h1>
+
+<h1 id="恶意样本分析-11-使用内存取证狩猎恶意软件">恶意样本分析-11-使用内存取证狩猎恶意软件</h1>
+<h2 id="10使用内存取证狩猎恶意软件">10.使用内存取证狩猎恶意软件</h2>
+<p>在到目前为止所涵盖的章节中，我们看了概念、工具和技术用于分析恶意软件使用静态，动态和代码分析。在本章中，你将理解另一种技术，称为内存取证(或内存分析)。</p>
+<p>内存取证(或内存分析)是一种调查性技术，涉及到从计算机的物理内存(RAM)中找到并提取司法证据。一个计算机的内存存储有关系统运行状态的有价值的信息。获取存储并进行分析将为司法提供必要的信息调查，例如系统上正在运行哪些应用程序，哪些对象(文件、注册表等)这些应用程序正在访问、活动网络连接、加载模块、加载的内核驱动程序和其他信息。由于这个原因，内存取证是用于事件响应和恶意软件分析。</p>
+<p>在事件响应期间，在大多数情况下，您将无法访问恶意软件样本但您可能只拥有一个可疑系统的内存映像。例如，你可以从安全产品收到关于系统可能存在恶意行为的警报，在这种情况下，您可以获取可疑系统的内存映像，以执行内存司法鉴定确认感染和找到恶意工件。</p>
+<p>除了将内存取证用于事件响应之外，还可以将其用作恶意软件分析(针对恶意软件样本)来获得额外的信息关于恶意软件感染后的行为。例如，当你有一个恶意软件示例中，除了执行静态、动态和代码分析之外，您还可以执行在一个孤立的环境中采样，然后获取受感染的计算机内存和检查内存图像，了解恶意软件在感染后的行为。</p>
+<p>使用内存取证的另一个原因是，某些恶意软件示例可能不会将恶意组件写入磁盘（仅在内存中）。因此，磁盘取证或文件系统分析可能会失败。在这种情况下，内存取证在查找恶意组件。</p>
+<p>一些恶意软件示例通过挂钩或修改操作系统结构。在这种情况下，内存取证可能很有用，因为它可以绕过恶意软件使用的技巧来隐藏操作系统并实时取证工具。本章向您介绍内存取证的概念并涵盖用于获取和分析内存映像的工具。</p>
+<h3 id="1-内存取证步骤">1. 内存取证步骤</h3>
+<p>是将内存取证用作事件响应的一部分，还是用于恶意软件分析，以下是内存取证中的一般步骤：</p>
+<ul>
+<li>内存获取：这涉及获取（或转储）内存目标计算机到磁盘。取决于您是否正在调查感染者系统或使用内存取证作为恶意软件分析的一部分，目标计算机可以是您怀疑被感染的系统（在您的网络上），也可以是可能是实验室环境中执行的分析计算机恶意软件示例。</li>
+<li>内存分析：将内存转储到磁盘后，此步骤涉及分析转储的内存以查找和提取电子证据。</li>
+</ul>
+<h3 id="2-内存采集">2. 内存采集</h3>
+<p>存储器采集是将易失性存储器（RAM）采集到非易失性存储器的过程存储（磁盘上的文件）。有各种工具可以让您获取物理机。以下是一些允许您获取（转储）的工具物理内存到 Windows 上。其中一些工具是商业性的，其中许多注册后可以免费下载。以下工具适用于两个 x86 （32-位） 和 x64（64 位）计算机：</p>
+<ul>
+<li>Comae Memory Toolkit （DumpIt） by Comae Technologies （免费下载注册）： <a href="https://my.comae.io/" target="_blank">https://my.comae.io/</a></li>
+<li>Belkasoft RAM Capturer（注册后免费下载）：https://belkasoft.com/ram-capturer</li>
+<li>ACCESSData的FTK镜像软件（注册后免费下载）：https://accessdata.com/product-download</li>
+<li>Memoryze by FireEye（注册后免费下载）：https://www.fireeye.com/services/freeware/memoryze.html</li>
+<li>Volexity的浪涌收集（商业）：https://www.volexity.com/productsoverview/surge/</li>
+<li>PassMark Software的OSForensics（商业）：https://www.osforensics.com/osforensics.html</li>
+<li>WinPmem（开源），Rekall Memory取证框架的一部分：http://blog.rekall-forensic.com/search?q=winpmem</li>
+</ul>
+<h4 id="21-使用转储进行内存采集">2.1 使用转储进行内存采集</h4>
+<p>DumpIt是一款出色的内存采集工具，可让您转储物理内存在视窗上。它支持采集 32 位 （x86） 和 64 位 （x64） 计算机。Dump它是称为Comae内存工具包的工具包的一部分，该工具包由各种独立工具，有助于不同文件之间的内存采集和转换格式。要下载 Comae 内存工具包的最新副本，您需要创建一个通过在 <a href="https://my.comae.io" target="_blank">https://my.comae.io</a> 上注册帐户。创建帐户后，您可以登录并下载Comae内存工具包的最新副本。</p>
+<p>下载 Comae 工具包后，解压缩存档，然后导航到 32 位或 64 位目录，具体取决于您是要转储 32 位还是 64 位的内存机器。该目录由各种文件组成，包括 DumpIt.exe。在本节中，我们将主要关注如何使用 DumpIt 转储内存。如果您有兴趣了解目录中其他工具的功能，阅读readme.txt文件。</p>
+<p>使用 DumpIt 获取内存的最简单方法是右键单击 DumptIt.exe 文件，然后选择以管理员身份运行。默认情况下，DumpIt 将内存转储到文件中，如Microsoft Crash Dump（具有.dmp扩展名），然后可以使用内存进行分析分析工具，如Volatility（下面将介绍）或使用微软调试器，如 WinDbg。</p>
+<p>您也可以从命令行运行DumpIt;这为您提供了多种选择。要显示不同的选项，请运行 cmd.exe以管理员身份导航到目录包含 DumpIt.exe，然后键入以下命令：</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>C:\Comae-Toolkit-3.0.20180307.1\x64&gt;DumpIt.exe /?
+ DumpIt 3.0.20180307.1
+ Copyright (C) 2007 - 2017, Matthieu Suiche &lt;http://www.msuiche.net&gt;
+ Copyright (C) 2012 - 2014, MoonSols Limited &lt;http://www.moonsols.com&gt;
+ Copyright (C) 2015 - 2017, Comae Technologies FZE &lt;http://www.comae.io&gt;
+Hunting Malware Using Memory Forensics Chapter 10
+[ 376 ]
+Usage: DumpIt [Options] /OUTPUT &lt;FILENAME&gt;
+Description:
+ Enables users to create a snapshot of the physical memory as a local
+file.
+Options:
+ /TYPE, /T Select type of memory dump (e.g. RAW or DMP) [default: DMP]
+ /OUTPUT, /O Output file to be created. (optional)
+ /QUIET, /Q Do not ask any questions. Proceed directly.
+ /NOLYTICS, /N Do not send any usage analytics information to Comae
+Technologies. This is used to
+ improve our services.
+ /NOJSON, /J Do not save a .json file containing metadata. Metadata are
+the basic information you will
+ need for the analysis.
+ /LIVEKD, /L Enables live kernel debugging session.
+ /COMPRESS, /R Compresses memory dump file.
+ /APP, /A Specifies filename or complete path of debugger image to
+execute.
+ /CMDLINE, /C Specifies debugger command-line options.
+ /DRIVERNAME, /D Specifies the name of the installed device driver image.</code></pre></div><p>从命令行获取 Microsoft 故障转储的内存，并保存输出到您选择的文件名，请使用 /o 或 /OUTPUT 选项，如下所示：</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>C:\Comae-Toolkit-3.0.20180307.1\x64&gt;DumpIt.exe /o memory.dmp
+ DumpIt 3.0.20180307.1
+ Copyright (C) 2007 - 2017, Matthieu Suiche &lt;http://www.msuiche.net&gt;
+ Copyright (C) 2012 - 2014, MoonSols Limited &lt;http://www.moonsols.com&gt;
+ Copyright (C) 2015 - 2017, Comae Technologies FZE &lt;http://www.comae.io&gt;
+ Destination path: \??\C:\Comae-Toolkit-3.0.20180307.1\x64\memory.dmp
+ Computer name: PC
+ --&gt; Proceed with the acquisition ? [y/n] y
+ [+] Information:
+ Dump Type: Microsoft Crash Dump
+ [+] Machine Information:
+ Windows version: 6.1.7601
+ MachineId: A98B4D56-9677-C6E4-03F5-902A1D102EED
+ TimeStamp: 131666114153429014
+ Cr3: 0x187000
+ KdDebuggerData: 0xfffff80002c460a0
+ Current date/time: [2018-03-27 (YYYY-MM-DD) 8:03:35 (UTC)]
+ + Processing... Done.
+  Acquisition finished at: [2018-03-27 (YYYY-MM-DD) 8:04:57 (UTC)]
+ Time elapsed: 1:21 minutes:seconds (81 secs)
+ Created file size: 8589410304 bytes (8191 Mb)
+ Total physical memory size: 8191 Mb
+ NtStatus (troubleshooting): 0x00000000
+ Total of written pages: 2097022
+ Total of inacessible pages: 0
+ Total of accessible pages: 2097022
+ SHA-256:
+3F5753EBBA522EF88752453ACA1A7ECB4E06AEA403CD5A4034BCF037CA83C224
+ JSON path: C:\Comae-Toolkit-3.0.20180307.1\x64\memory.json</code></pre></div><p>获取内存作为原始内存转储，而不是默认的 Microsoft 崩溃dump，您可以使用 /t 或 /TYPE 选项指定它，如下所示：</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>C:\Comae-Toolkit-3.0.20180307.1\x64&gt;DumpIt.exe /t RAW
+ DumpIt 3.0.20180307.1
+ Copyright (C) 2007 - 2017, Matthieu Suiche &lt;http://www.msuiche.net&gt;
+ Copyright (C) 2012 - 2014, MoonSols Limited &lt;http://www.moonsols.com&gt;
+ Copyright (C) 2015 - 2017, Comae Technologies FZE &lt;http://www.comae.io&gt;
+ WARNING: RAW memory snapshot files are considered obsolete and as a
+legacy format.
+ Destination path: \??\C:\Comae-Toolkit-3.0.20180307.1\x64\memory.bin
+ Computer name: PC
+ --&gt; Proceed with the acquisition? [y/n] y
+ [+] Information:
+ Dump Type: Raw Memory Dump
+ [+] Machine Information:
+ Windows version: 6.1.7601
+ MachineId: A98B4D56-9677-C6E4-03F5-902A1D102EED
+ TimeStamp: 131666117379826680
+ Cr3: 0x187000
+ KdDebuggerData: 0xfffff80002c460a0
+ Current date/time: [2018-03-27 (YYYY-MM-DD) 8:08:57 (UTC)]
+[.......REMOVED.........]</code></pre></div><p>如果希望从由大内存组成的服务器获取内存，可以使用 /R或 DumpIt 中的 /COMPRESS 选项，这将创建一个 .zdmp（Comae 压缩故障转储）文件，这减小了文件大小，也使获取速度更快。转储文件 （.zdmp） 可以然后使用Comae星尘企业平台进行分析：https://my.comae.io。为更多详细信息，请参阅以下博客文章：https://blog.comae.io/rethinkinglogging-for-critical-assets-685c65423dc0。</p>
+<blockquote>
+<p>在大多数情况下，可以通过以下方式获取虚拟机 （VM） 的内存挂起虚拟机。例如，在 执行恶意软件样本后VMware Workstation/VMware Fusion，您可以暂停虚拟机，这会会将guest的内存 （RAM） 写入扩展名为 .vmem 的文件主机的磁盘。对于那些应用程序（如VirtualBox），其中内存无法通过挂起来获取，然后您可以使用 DumpIt在客户机器内部。</p>
+</blockquote>
+<h3 id="3-volatility浏览">3. Volatility浏览</h3>
+<p>获取受感染系统的内存后，下一步是分析获取的内存内存镜像。Volatility（http://www.volatilityfoundation.org/releases）是一个开放用Python编写的高级内存取证框架，允许您进行分析并从内存图像中提取电子证据。Volatility可以在各种平台上运行（Windows，macOS和Linux），它支持从32位和64位分析内存Windows、macOS 和 Linux 操作系统的版本。</p>
+<h4 id="31-安装volatility">3.1 安装Volatility</h4>
+<p>Volatility以多种格式分发，可以从 <a href="http://www.volatilityfoundation.org/releases" target="_blank">http://www.volatilityfoundation.org/releases</a> 下载。在撰写本书时，最新版本Volatility为2.6版。取决于您要运行的操作系统波动开启，请按照相应操作系统的安装过程操作。</p>
+<h5 id="311-volatility独立可执行文件">3.1.1 Volatility独立可执行文件</h5>
+<p>开始使用 Volatility 的最快方法是使用独立的可执行文件。独立可执行文件是为Windows，macOS和Linux操作系统分发的。独立可执行文件的优点是，您不需要安装Python解释器或Polution依赖项，因为它与Python 2.7解释器和所有必需的依赖项打包在一起。</p>
+<p>在 Windows 上，下载独立可执行文件后，您可以通过从命令行使用 -h （&ndash;help） 选项执行独立可执行文件来检查 Volatility 是否已准备好使用，如下所示。帮助选项显示Volatility中可用的各种选项和插件：</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>C:\volatility_2.6_win64_standalone&gt;volatility_2.6_win64_standalone.exe -h Volatility Foundation Volatility Framework 2.6
+Usage: Volatility - A memory forensics analysis platform.
+   Options:
+     -h, --help            list all available options and their default
+values.
+                           Default values may be set in the configuration file
+                           (/etc/volatilityrc)
+     --conf-file=.volatilityrc
+                           User based configuration file
+     -d, --debug           Debug volatility
+[.....REMOVED....]</code></pre></div><p>以同样的方式，您可以下载适用于 Linux 或 macOS 的独立可执行文件，并使用 -h（或 &ndash; help）选项执行独立可执行文件来检查 Volatility 是否已准备好使用，如下所示：</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>&gt; $ ./volatility_2.6_lin64_standalone -h 
+&gt; # ./volatility_2.6_mac64_standalone -h</code></pre></div><h5 id="312-volatility源包">3.1.2 Volatility源包</h5>
+<p>Volatility也作为源包分发;您可以在Windows，macOS或Linux操作系统上运行它。Volatility依赖于各种插件来执行任务，其中一些插件依赖于第三方Python包。要运行 Volatility，您需要安装 Python 2.7 Interpreter 及其依赖项。网页：https://github.com/volatilityfoundation/volatility/wiki/Installation#recommendation-packages包含一些Volquisive插件所需的第三方Python软件包列表。可以通过阅读文档来安装这些依赖项。安装完所有依赖项后，下载 Volatility 源代码包，将其解压缩，然后运行 Volatility，如下所示：</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -h
+Volatility Foundation Volatility Framework 2.6
+Usage: Volatility - A memory forensics analysis platform.
+   Options:
+     -h, --help             list all available options– and their default
+values.
+
+Default values may be set in the configuration file
+                            (/etc/volatilityrc)
+     --conf-file=/root/.volatilityrc
+                            User based configuration file
+     -d, --debug            Debug volatility
+   [...REMOVED...]</code></pre></div><p>本书中提到的所有例子都使用了vol Python脚本源包(Python vol.py)。你可以自由选择一个独立的可执行文件，但要记住将python vol.py替换为独立的可执行文件名称。
+#### 3.2 使用Volatility
+Volatility由各种插件组成，它可以从内存映像中提取不同的信息。 python vol.py -h  选项显示支持的插件。例如，如果你想要列出内存映像中正在运行的进程，你可以使用pslist这样的插件，或者如果你想要列出网络连接，你可以使用不同的插件。不管您使用的插件是什么，您都将使用以下命令语法。使用-f，您可以指定内存映像文件的路径，而——profile告诉volatile内存映像是从哪个系统和体系结构获得的。插件可以根据你想从内存映像中提取的信息类型而变化:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f &lt;memory image file&gt; --profile=&lt;PROFILE&gt; &lt;PLUGIN&gt; [ARGS]</code></pre></div><p>下面的命令使用pslist插件列出列表中正在运行的进程
+从运行Service Pack 1的Windows 7(32位)获取的内存映像:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f mem_image.raw --profile=Win7SP1x86 pslist
+Volatility Foundation Volatility Framework 2.6
+Offset(V) Name PID PPID Thds Hnds Sess Wow64 Start
+---------- ---------- ---- ---- ---- ---- ---- ----- --------------------- 0x84f4a958 System 4 0 86 448 ---- 0 2016-08-13 05:54:20 0x864284e0 smss.exe 272 4 2 29 ---- 0 2016-08-13 05:54:20 0x86266030 csrss.exe 356 340 9 504 0 0 2016-08-13 05:54:22 0x86e0a1a0 wininit.exe 396 340 3 75 0 0 2016-08-13 05:54:22 0x86260bd0 csrss.exe 404 388 10 213 1 0 2016-08-13 05:54:22 0x86e78030 winlogon.exe 460 388 3 108 1 0 2016-08-13 05:54:22
+   [....REMOVED....]</code></pre></div><p>有时候，您可能不知道向Volatility提供什么配置文件。在这种情况下，你可以使用imageinfo插件，它将决定正确的配置文件。下面的命令显示多个由imageinfo插件建议的配置文件;你可以使用任何建议的配置文件:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f mem_image.raw imageinfo
+Volatility Foundation Volatility Framework 2.6
+INFO : volatility.debug : Determining profile based on KDBG search...
+Suggested Profile(s): Win7SP1x86_23418, Win7SP0x86, Win7SP1x86 AS Layer1 : IA32PagedMemoryPae (Kernel AS)
+AS Layer2 : FileAddressSpace
+   (Users/Test/Desktop/mem_image.raw)
+                        PAE type : PAE
+                             DTB : 0x185000L
+                            KDBG : 0x82974be8L
+            Number of Processors : 1
+       Image Type (Service Pack) : 0
+                  KPCR for CPU 0 : 0x82975c00L
+               KUSER_SHARED_DATA : 0xffdf0000L
+             Image date and time : 2016-08-13 06:00:43 UTC+0000
+       Image local date and time : 2016-08-13 11:30:43 +0530</code></pre></div><blockquote>
+<p>大多数的Volatility插件，比如pslist，依赖于从Windows操作系统结构中提取信息。这些结构在不同版本的Windows中有所不同;配置文件(——profile)告诉volatile使用哪些数据结构、符号和算法。</p>
+</blockquote>
+<p>帮助选项，-h(——help)，您之前看到的，显示了应用于所有Volatility插件的帮助。您可以使用相同的-h(——help)选项来确定插件支持的各种选项和参数。为此，只需在插件名称旁边输入-h(——help)。下面的命令显示pslist插件的帮助选项:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f mem_image.raw --profile=Win7SP1x86 pslist -h</code></pre></div><p>在这一点上，你应该了解如何在获取的内存映像上运行Volatility插件，以及如何确定插件支持的各种选项。在下面的部分中，您将了解不同的插件，以及如何使用它们从内存映像中提取电子证据。</p>
+<h3 id="4-列举进程">4. 列举进程</h3>
+<p>在研究内存映像时，您将主要关注识别系统上运行的任何可疑进程。在Volatility中有各种各样的插件可以让你枚举进程。Volatility的pslist插件从内存映像中列出进程，类似于任务管理器在活动系统中列出进程的方式。在下面的输出中，运行pslist插件对一个被恶意软件样本(Perseus)感染的内存映像显示两个可疑进程:svchost.exe (pid 3832)和suchost.exe (pid 3924)。这两个进程可疑的原因是，这些进程的名称在.exe扩展名之前有一个额外的点字符(这是不正常的)。在干净的系统上，您会发现svchost.exe进程的多个实例正在运行。通过创建一个进程，例如svchost.exe和suchost. exe，攻击者试图通过使这些进程看起来类似于合法的svchost.exe进程来混入:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f perseus.vmem --profile=Win7SP1x86 pslist
+Volatility Foundation Volatility Framework 2.6
+Offset(V) Name PID PPID Thds Hnds Sess Wow64 Start
+---------- ----------- ---- ----- ---- ---- ---- ----- ------------------- 0x84f4a8e8 System 4 0 88 475 ---- 0 2016-09-23 09:21:47 0x8637b020 smss.exe 272 4 2 29 ---- 0 2016-09-23 09:21:47 0x86c19310 csrss.exe 356 340 8 637 0 0 2016-09-23 09:21:49 0x86c13458 wininit.exe 396 340 3 75 0 0 2016-09-23 09:21:49 0x86e84a08 csrss.exe 404 388 9 191 1 0 2016-09-23 09:21:49 0x87684030 winlogon.exe 452 388 4 108 1 0 2016-09-23 09:21:49 0x86284228 services.exe 496 396 11 242 0 0 2016-09-23 09:21:49 0x876ab030 lsass.exe 504 396 9 737 0 0 2016-09-23 09:21:49 0x876d1a70 svchost.exe 620 496 12 353 0 0 2016-09-23 09:21:49 0x864d36a8 svchost.exe 708 496 6 302 0 0 2016-09-23 09:21:50 0x86b777c8 svchost.exe 760 496 24 570 0 0 2016-09-23 09:21:50 0x8772a030 svchost.exe 852 496 28 513 0 0 2016-09-23 09:21:50 0x87741030 svchost.exe 920 496 46 1054 0 0 2016-09-23 09:21:50 0x877ce3c0 spoolsv.exe 1272 496 15 338 0 0 2016-09-23 09:21:50 0x95a06a58 svchost.exe 1304 496 19 306 0 0 2016-09-23 09:21:50 0x8503f0e8 svchost..exe 3832 3712 11 303 0 0 2016-09-23 09:24:55 0x8508bb20 suchost..exe 3924 3832 11 252 0 0 2016-09-23 09:24:55 0x861d1030 svchost.exe 3120 496 12 311 0 0 2016-09-23 09:25:39
+   [......REMOVED..............]</code></pre></div><p>运行Volatility插件很容易;你可以在不知道它如何工作的情况下运行插件。了解插件的工作方式将帮助您评估结果的准确性，还将帮助您在攻击者使用隐形技术时选择正确的插件。问题是，pslist是如何工作的?要理解这一点，首先需要理解什么是进程以及Windows内核如何跟踪进程。</p>
+<h4 id="41-过程概述">4.1 过程概述</h4>
+<p>进程是一个对象。Windows操作系统是基于对象的(不要与面向对象语言中使用的术语对象混淆)。对象指的是系统资源，比如进程、文件、设备、目录、互斥体等等，它们由内核中的一个称为对象管理器的组件管理。要了解Windows上的所有对象类型，可以使用WinObj工具(<a href="https://docs.microsoft.com/en-us/sysinternals/downloads/WinObj" target="_blank">https://docs.microsoft.com/en-us/sysinternals/downloads/WinObj</a>)。要查看WinObj中的对象类型，请以管理员身份启动WinObj，并在左侧窗格中单击ObjectTypes，这将显示所有的Windows对象。</p>
+<p>对象(如进程、文件、线程等)在c中表示为结构。这意味着进程对象有一个与之相关联的结构，这个结构称为_EPROCESS结构。_EPROCESS结构体驻留在内核内存中，Windows内核使用EPROCESS结构体在内部表示一个进程。_EPROCESS结构包含与进程相关的各种信息，如进程名、进程ID、父进程ID、与进程关联的线程数、进程创建时间等。现在，回到pslist输出，并注意特定进程显示的信息类型。例如，如果您查看来自pslist输出的第二个条目，它显示了sms.exe进程的名称、其进程ID(272)、父进程ID(4)等等。您可能已经猜到了，与进程相关的信息来自它的_EPROCESS结构体。</p>
+<h5 id="411-检查_eprocess结构">4.1.1 检查_EPROCESS结构</h5>
+<p>要检查_EPROCESS结构及其包含的信息类型，可以使用内核调试器，如WinDbg。WinDbg有助于探索和理解操作系统数据结构，这通常是内存取证的一个重要方面。要安装WinDbg，你需要安装“Windows调试工具”包，它是微软SDK的一部分(不同的安装类型请参考https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/index)。一旦安装完成，您可以在安装目录中找到WinDbg.exe(在我的例子中，它位于C:\Program Files (x86)\Windows Kits\8.1\Debuggers\x64)。接下来，从Sysinternals (<a href="https://docs.microsoft.com/en-us/sysinternals/downloads/" target="_blank">https://docs.microsoft.com/en-us/sysinternals/downloads/</a> LiveKD)下载LiveKD实用程序，解压，然后将LiveKD.exe复制到WinDbg的安装目录。LiveKD使您能够在活动的系统上执行本地内核调试。要通过livekd启动WinDbg，打开命令提示符(以管理员身份)，导航到WinDbg安装目录，并使用-w开关运行livekd，如下所示。你也可以将Windbg安装目录添加到path环境变量中，这样你就可以从任何路径启动LiveKD:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>C:\Program Files (x86)\Windows Kits\8.1\Debuggers\x64&gt;livekd -w</code></pre></div><p>livekd -w命令自动启动Windbg，加载符号，并向您显示准备接受命令的kd&gt;提示符，如下面的截图所示。要探索数据结构(例如_EPROCESS)，您将在命令提示符(kd&gt;旁边)中输入适当的命令:</p>
+<p>
+<a href="#image-5f32b6ec2b94ecae12aaedc333a4b94b" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16535545681820.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-5f32b6ec2b94ecae12aaedc333a4b94b">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16535545681820.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<p>现在，回到我们对_EPROCESS结构的讨论，为了探索_EPROCESS结构，我们将使用Display Type命令(dt)。dt命令可用于研究表示变量、结构或联合的符号。在下面的输出中，使用dt命令显示nt模块(内核执行者的名称)中定义的_EPROCESS结构。EPROCESS结构由多个字段组成，存储进程的各种元数据。这是64位Windows 7系统的样子(一些字段已经被删除，以保持它小):</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; dt nt!_EPROCESS
++0x000 Pcb : _KPROCESS
++0x160 ProcessLock : _EX_PUSH_LOCK
++0x168 CreateTime : _LARGE_INTEGER
++0x170 ExitTime : _LARGE_INTEGER
++0x178 RundownProtect : _EX_RUNDOWN_REF
++0x180 UniqueProcessId : Ptr64 Void
++0x188 ActiveProcessLinks : _LIST_ENTRY
++0x198 ProcessQuotaUsage : [2] Uint8B
++0x1a8 ProcessQuotaPeak : [2] Uint8B
+[REMOVED]
++0x200 ObjectTable : Ptr64 _HANDLE_TABLE
++0x208 Token : _EX_FAST_REF
++0x210 WorkingSetPage : Uint8B
++0x218 AddressCreationLock : _EX_PUSH_LOCK [REMOVED]
++0x290 InheritedFromUniqueProcessId : Ptr64 Void +0x298 LdtInformation : Ptr64 Void
++0x2a0 Spare : Ptr64 Void
+[REMOVED]
++0x2d8 Session : Ptr64 Void
++0x2e0 ImageFileName : [15] UChar
++0x2ef PriorityClass : UChar
+[REMOVED]</code></pre></div><p>下面是我们将在讨论中使用的_EPROCESS结构中一些有趣的字段:</p>
+<ul>
+<li>CreateTime:指示进程第一次启动的时间戳</li>
+<li>ExitTime:进程退出的时间戳</li>
+<li>UniqueProcessID:整数，引用进程的进程ID (PID)</li>
+<li>ActiveProcessLinks:一个双链表，链接系统上运行的所有活动进程</li>
+<li>InheritedFromUniqueProcessId:指定父进程PID的整数</li>
+<li>ImageFileName:一个由16个ASCII字符组成的数组，用于存储可执行进程的名称</li>
+</ul>
+<p>在理解了如何检查_EPROCESS结构之后，现在让我们看一看特定进程的_EPROCESS结构。要做到这一点，让我们首先列出所有使用WinDbg的活动进程。可以使用!process extension命令打印特定进程或所有进程的元数据。在下面的命令中，第一个参数0列出了所有进程的元数据。您还可以通过指定_EPROCESS结构体的地址来显示单个进程的信息。第二个参数表示细节级别:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; !process 0 0
+**** NT ACTIVE PROCESS DUMP **** PROCESS fffffa806106cb30
+       SessionId: none Cid: 0004 Peb: 00000000 ParentCid: 0000
+       DirBase: 00187000 ObjectTable: fffff8a0000016d0 HandleCount: 539.
+       Image: System
+   PROCESS fffffa8061d35700
+       SessionId: none Cid: 00fc Peb: 7fffffdb000 ParentCid: 0004
+       DirBase: 1faf16000 ObjectTable: fffff8a0002d26b0 HandleCount: 29.
+       Image: smss.exe
+   PROCESS fffffa8062583b30
+       SessionId: 0 Cid: 014c Peb: 7fffffdf000 ParentCid: 0144
+       DirBase: 1efb70000 ObjectTable: fffff8a00af33ef0 HandleCount: 453.
+       Image: csrss.exe
+[REMOVED]</code></pre></div><blockquote>
+<p>关于WinDbg命令的详细信息，请参考Debugger.chm寻找帮助，位于WinDbg安装目录下。您也可以参考以下在线资源:http://windbg.info/doc/1-common-cmds.html和http://windbg.info/doc/2-windbg-a-z.html</p>
+</blockquote>
+<p>在前面的输出中，让我们看看第二个条目，它描述了sms.exe。PROCESS旁边的地址fffffa8061d35700是与sms.exe实例相关联的_EPROCESS结构体的地址。Cid为进程ID，取值为00fc(十进制为252);ParentCid为父进程的进程ID，取值为0004。您可以通过检查sms.exe的_EPROCESS结构的字段值来验证这一点。的地址可以加后缀
+显示类型(dt)命令末尾的_EPROCESS结构，如下面的命令所示。在下面的输出中，注意字段UniqueProcessId(进程ID)、InheritedFromUniqueProcessId(父进程ID)和ImageFileName(进程可执行名称)中的值。这些值与您之前从!process 0 0命令中确定的结果匹配:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; dt nt!_EPROCESS fffffa8061d35700
++0x000 Pcb : _KPROCESS
++0x160 ProcessLock : _EX_PUSH_LOCK
++0x168 CreateTime : _LARGE_INTEGER 0x01d32dde`223f3e88 +0x170 ExitTime : _LARGE_INTEGER 0x0
++0x178 RundownProtect : _EX_RUNDOWN_REF
++0x180 UniqueProcessId : 0x00000000`000000fc Void
++0x188 ActiveProcessLinks : _LIST_ENTRY [ 0xfffffa80`62583cb8 -
+0xfffffa80`6106ccb8 ]
++0x198 ProcessQuotaUsage : [2] 0x658
+[REMOVED]
++0x290 InheritedFromUniqueProcessId : 0x00000000`00000004 Void +0x298 LdtInformation : (null)
+[REMOVED]
++0x2d8 Session : (null)
++0x2e0 ImageFileName : [15] &#34;smss.exe&#34;
++0x2ef PriorityClass : 0x2 &#39;&#39;
+[REMOVED]</code></pre></div><p>到目前为止，我们知道操作系统将关于进程的各种元数据信息保存在_EPROCESS结构中，该结构驻留在内核内存中。这意味着如果您可以找到一个特定进程的_EPROCESS结构体的地址，您就可以获得关于该进程的所有信息。那么，问题是，如何获取关于系统上运行的所有进程的信息?为此，我们需要了解Windows操作系统是如何跟踪活动进程的。</p>
+<h5 id="412-理解activeprocesslinks">4.1.2 理解ActiveProcessLinks</h5>
+<p>Windows使用_EPROCESS结构的循环双链表来跟踪所有的活动进程。_EPROCESS结构包含一个名为ActiveProcessLinks的字段，它的类型是LIST_ENTRY。_LIST_ENTRY是另一个包含两个成员的结构，如下面的命令输出所示。Flink(前向链接)指向下一个_EPROCESS结构的_LIST_ENTRY, Blink(后向链接)指向前一个_EPROCESS结构的_LIST_ENTRY:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; dt nt!_LIST_ENTRY
++0x000 Flink : Ptr64 _LIST_ENTRY +0x008 Blink : Ptr64 _LIST_ENTRY</code></pre></div><p>Flink和Blink一起创建一个进程对象链;可以将其可视化如下:</p>
+<p>
+<a href="#image-b45a5e26ae1c7acca76dc69c415277f4" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536584607616.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-b45a5e26ae1c7acca76dc69c415277f4">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536584607616.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<p>需要注意的一点是，Flink和Blink并不指向_EPROCESS结构体的开始。Flink指向下一个_EPROCESS结构的_LIST_ENTRY结构的开始(第一个字节)，Blink指向前一个_EPROCESS结构的_LIST_ENTRY结构的第一个字节。这很重要的原因是,一旦你找到的_EPROCESS结构过程中,你可以向前走双向链表(使用Flink)或向后(Blink),然后减去偏移值到达_EPROCESS结构下的开始或之前的流程。为了帮助你理解这意味着什么，让我们看看sms.exe的_EPROCESS结构中的字段Flink和Blink的值:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; dt -b -v nt!_EPROCESS fffffa8061d35700 struct _EPROCESS, 135 elements, 0x4d0 bytes .....
+      +0x180 UniqueProcessId : 0x00000000`000000fc
+      +0x188 ActiveProcessLinks : struct _LIST_ENTRY, 2 elements, 0x10 bytes
+    [ 0xfffffa80`62583cb8 - 0xfffffa80`6106ccb8 ]
++0x000 Flink : 0xfffffa80`62583cb8 +0x008 Blink : 0xfffffa80`6106ccb8</code></pre></div><p>Flink的值是0xfffffa8062583cb8;这是下一个_EPROCESS结构的ActiveProcessLinks (Flink)的起始地址。在我们的示例中，由于ActiveProcessLinks位于_EPROCESS开始处0x188的偏移量，所以通过从Flink值减去0x188，您可以到达下一个进程的_EPROCESS结构的开始处。在下面的输出中，注意如何通过减去0x188我们降落在下一个进程的_EPROCESS结构上，这是csss.exe:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; dt nt!_EPROCESS (0xfffffa8062583cb8-0x188) +0x000 Pcb : _KPROCESS
++0x160 ProcessLock : _EX_PUSH_LOCK [REMOVED]
+      +0x180 UniqueProcessId : 0x00000000`0000014c Void
+      +0x188 ActiveProcessLinks : _LIST_ENTRY [ 0xfffffa80`625acb68 -
+   0xfffffa80`61d35888 ]
+      +0x198 ProcessQuotaUsage : [2] 0x2c18
+      [REMOVED]
+      +0x288 Win32WindowStation : (null)
+      +0x290 InheritedFromUniqueProcessId : 0x00000000`00000144 Void
+      [REMOVED]
++0x2d8 Session : 0xfffff880`042ae000 Void +0x2e0 ImageFileName : [15] &#34;csrss.exe&#34; +0x2ef PriorityClass : 0x2 &#39;&#39;</code></pre></div><p>正如您所看到的，通过遍历这个双向链表，可以列出系统上运行的所有活动进程的信息。在活动的系统中，任务管理器或进程资源管理器等工具使用API函数，这些函数最终依赖于查找和遍历存在于内核内存中的相同的_EPROCESS结构的双链接列表。pslist插件还包含了从内存映像中查找和遍历相同的_EPROCESS结构的双链表的逻辑。为此，pslist插件会找到一个名为_PsActiveProcessHead的符号，它定义在ntoskrnl.exe(或ntkrnlpa.exe)中。这个符号指向_EPROCESS结构的双链表的开始;然后pslist遍历_EPROCESS结构的双链接列表，以枚举所有正在运行的进程。</p>
+<blockquote>
+<p>关于本书中涉及到的Volatility插件的工作原理和逻辑的详细信息，请参考Michael Hale light、Andrew Case、Jamie Levy和Aaron Walters的《内存取证的艺术:在Windows、Linux和Mac内存中检测恶意软件和威胁》。</p>
+</blockquote>
+<p>如前所述，像pslist这样的插件支持多个选项和参数;这可以通过在插件名称旁边输入-h(——help)来显示。pslist选项之一是——output-file。你可以使用这个选项来重定向pslist输出到文件，如下所示:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f perseus.vmem --profile=Win7SP1x86 pslist --output- file=pslist.txt</code></pre></div><p>另一个选项是-p(——pid)。使用这个选项，如果你知道一个进程的进程ID (PID)，你可以确定它的信息:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f perseus.vmem --profile=Win7SP1x86 pslist -p 3832 Volatility Foundation Volatility Framework 2.6
+Offset(V) Name PID PPID Thds Hnds Wow64 Start
+---------- ------------ ---- ---- ---- ---- ----- ------------------- 0x8503f0e8 svchost..exe 3832 3712 11 303 0 2016-09-23 09:24:55</code></pre></div><h4 id="42-使用psscan列出进程">4.2 使用psscan列出进程</h4>
+<p>psscan是Volatility的另一个插件，它列出了系统上运行的进程。与pslist不同，psscan不会遍历_EPROCESS对象的双链接列表。相反，它扫描物理内存，寻找进程对象的签名。换句话说，与pslist插件相比，psscan使用了不同的方法来列出进程。你可能会想，当psscan插件可以做同样的事情时，psscan插件有什么用?答案在于psscan使用的技术。由于它使用的方法，它可以检测终止的进程和隐藏的进程。攻击者可以隐藏进程，以防止司法分析人员在实时司法过程中发现恶意进程。现在的问题是，攻击者如何隐藏进程?要理解这一点，您需要了解一种称为DKOM(直接内核对象操作)的攻击技术。</p>
+<h5 id="421-直接内核对象操作dkom">4.2.1 直接内核对象操作(DKOM)</h5>
+<p>DKOM是一种涉及修改内核数据结构的技术。使用DKOM，可以隐藏进程或驱动程序。为了隐藏进程，攻击者可以找到他/她想要隐藏的恶意进程的_EPROCESS结构，并修改ActiveProcessLinks字段。特别是，前一个_EPROCESS块的Flink被设置为指向下一个_EPROCESS块的Flink，而下一个_EPROCESS块的Blink被设置为指向前一个_EPROCESS块的Flink。结果，与恶意程序进程相关的_EPROCESS块从双向链接列表中被解除链接(如下所示):
+
+<a href="#image-cac4fbe7184c81bfc5d3287ccef6de2e" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536586262740.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-cac4fbe7184c81bfc5d3287ccef6de2e">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536586262740.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<p>通过解除进程的链接，攻击者可以对活动的取证工具隐藏恶意进程，这些取证工具依赖于遍历双链接列表来枚举活动进程。正如您可能已经猜到的，这种技术还隐藏了pslist插件的恶意进程(它也依赖于遍历双链接列表)。以下是感染了prolaco rootkit的系统的pslist和psscan输出，该系统执行DKOM来隐藏进程。为了简单起见，下面的输出中删除了一些条目。当你比较pslist和psscan的输出时，你会注意到psscan输出中有一个额外的进程，名为nvid.exe (pid 1700)，它在pslist中不存在:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f infected.vmem --profile=WinXPSP3x86 pslist
+Volatility Foundation Volatility Framework 2.6
+Offset(V) Name PID PPID Thds Hnds Sess Wow64 Start
+--------- ------------- ---- ---- ---- ---- ---- ----- ------------------- 0x819cc830 System 4 0 56 256 ---- 0
+0x814d8380 smss.exe 380 43 19 ---- 0 2014-06-11 14:49:36 0x818a1868 csrss.exe 632 380 11 423 0 0 2014-06-11 14:49:36 0x813dc1a8 winlogon.exe 656 380 24 524 0 0 2014-06-11 14:49:37 0x81659020 services.exe 700 656 15 267 0 0 2014-06-11 14:49:37 0x81657910 lsass.exe 712 656 24 355 0 0 2014-06-11 14:49:37 0x813d7688 svchost.exe 884 700 21 199 0 0 2014-06-11 14:49:37 0x818f5d10 svchost.exe 964 700 10 235 0 0 2014-06-11 14:49:38 0x813cf5a0 svchost.exe 1052 700 84 1467 0 0 2014-06-11 14:49:38 0x8150b020 svchost.exe 1184 700 16 211 0 0 2014-06-11 14:49:40 0x81506c68 spoolsv.exe 1388 700 15 131 0 0 2014-06-11 14:49:40 0x81387710 explorer.exe 1456 1252 16 459 0 0 2014-06-11 14:49:55
+
+$ python vol.py -f infected.vmem --profile=WinXPSP3x86 psscan
+Volatility Foundation Volatility Framework 2.6
+Offset(P) Name PID PPID PDB Time created ------------------ ------------ ---- ---- ---------- ------------------- 0x0000000001587710 explorer.exe 1456 1252 0x08440260 2014-06-11 14:49:55 0x00000000015cf5a0 svchost.exe 1052 700 0x08440120 2014-06-11 14:49:38 0x00000000015d7688 svchost.exe 884 700 0x084400e0 2014-06-11 14:49:37 0x00000000015dc1a8 winlogon.exe 656 380 0x08440060 2014-06-11 14:49:37 0x00000000016ba360 nvid.exe 1700 1660 0x08440320 2014-10-17 09:16:10 0x00000000016d8380 smss.exe 380 4 0x08440020 2014-06-11 14:49:36 0x0000000001706c68 spoolsv.exe 1388 700 0x084401a0 2014-06-11 14:49:40 0x000000000170b020 svchost.exe 1184 700 0x08440160 2014-06-11 14:49:40 0x0000000001857910 lsass.exe 712 656 0x084400a0 2014-06-11 14:49:37 0x0000000001859020 services.exe 700 656 0x08440080 2014-06-11 14:49:37 0x0000000001aa1868 csrss.exe 632 380 0x08440040 2014-06-11 14:49:36 0x0000000001af5d10 svchost.exe 964 700 0x08440100 2014-06-11 14:49:38 0x0000000001bcc830 System 4 0 0x00319000</code></pre></div><h5 id="422-了解池标签扫描">4.2.2 了解池标签扫描</h5>
+<p>如果您还记得，我以前将进程、文件、线程等系统资源称为对象(或执行对象)。执行对象称为对象管理器的内核组件管理。每个执行对象都有一个与之相关联的结构(例如进程对象的_EPROCESS)。执行对象结构前面有一个_OBJECT_HEADER结构，它包含关于对象类型和一些引用计数器的信息。然后在_OBJECT_HEADER前面加上零个或多个可选头。换句话说，你可以把对象看作是执行对象结构、对象头和可选头的组合，如下图所示:
+
+<a href="#image-58ed70154258cb33748513ac37ad4da6" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536587867466.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-58ed70154258cb33748513ac37ad4da6">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536587867466.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<p>要存储对象，需要内存，而这些内存是由Windows内存管理器从内核池中分配的。内核池是一段内存，可以划分为更小的块，用于存储对象等数据。池分为分页池(其内容可以交换到磁盘)和非分页池(其内容永久驻留在内存中)。对象(如进程和线程)保存在内核中的一个非分页池中，这意味着它们将始终驻留在物理内存中。</p>
+<p>当Windows内核接收到创建对象的请求时(可能是由于CreateProcess或CreateFile等进程的API调用)，内存会从分页池或非分页池(取决于对象类型)分配给对象。通过在对象前加上_POOL_HEADER结构来标记这个分配，因此在内存中，每个对象都有一个可预测的结构，类似于下面截图中显示的结构。_POOL_HEADER结构包括一个名为PoolTag的字段，该字段包含一个四字节标记(称为池标记)。这个池标记可以用来标识一个对象。对于进程对象，标记是Proc，对于文件对象，标记是File，依此类推。_POOL_HEADER结构还包含告诉分配大小和内存类型(分页或非分页池)的字段，它描述:</p>
+<p>
+<a href="#image-5131ef4b60f6418fd8e3dbf88a156a2a" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536588138936.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-5131ef4b60f6418fd8e3dbf88a156a2a">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536588138936.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<p>你可以认为所有驻留在内核内存的非分页池中的进程对象(最终映射到物理内存)都被标记为一个标记，Proc正是这个标记被挥发的psscan用作识别进程对象的起点。特别是，它扫描物理内存中的Proc标记，以识别与进程对象关联的池标记分配，并通过使用更健壮的签名和启发式进一步确认它。一旦psscan找到进程对象，它就从它的_EPROCESS结构中提取必要的信息。psscan重复这个过程，直到找到所有的进程对象。事实上，许多Volatility插件依赖池标签扫描来识别和提取内存图像中的信息。</p>
+<p>由于使用的方法不同，psscan插件不仅可以检测隐藏的进程，还可以检测终止的进程。当一个对象被销毁(例如当一个进程终止),包含该对象的内存分配释放回内核的内存池,但内存中的内容不是立即覆盖,这意味着进程对象仍然可以在内存,除非内存是分配给一个不同的目标。如果包含终止进程对象的内存没有被覆盖，那么psscan可以检测到终止的进程。</p>
+<blockquote>
+<p>关于池标签扫描的详细信息，请参考Andreas Schuster的论文search For Processes and Threads in Microsoft Windows Memory Dumps，或者阅读《The Art of Memory Forensics.内存鉴定的艺术》一书。</p>
+</blockquote>
+<p>在这一点上，您应该了解了Volatility插件是如何工作的;大多数插件使用类似的逻辑。总之，关键信息存在于内核维护的数据结构中。插件依赖于从这些数据结构中查找和提取信息。寻找和提取司法证据的方法各不相同;一些插件依赖于浏览双重链接列表(如pslist)，一些使用池标记扫描技术(如psscan)来提取相关信息。</p>
+<h4 id="43-确定过程的关系">4.3 确定过程的关系</h4>
+<p>在检查进程时，确定进程之间的父/子关系可能会很有用。在恶意软件调查期间，这将帮助您了解其他哪些进程与恶意进程相关。pstree插件通过使用来自pslist的输出并将其格式化为树状视图来显示父-子进程关系。在下面的例子中，针对受感染的内存映像运行pstree插件会显示进程关系;子进程向右缩进并在前面加上句点。从输出中，您可以看到OUTLOOK.EXE是由explorer.exe进程启动的。这很正常，因为每当您通过双击启动应用程序时，都是资源管理器启动该应用程序。OUTLOOK.EXE (pid 4068)启动了EXCEL.EXE (pid 1124)，反过来调用cmd.exe (pid 4056)来执行恶意程序进程doc6.exe (pid 2308)。通过查看这些事件，你可以假设用户打开了一个通过电子邮件发送的恶意Excel文档，该文档可能利用了一个漏洞或执行了一个宏代码来删除恶意软件，并通过cmd.exe执行:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f infected.raw --profile=Win7SP1x86 pstree Volatility Foundation Volatility Framework 2.6
+Name Pid PPid Thds Hnds Time ------------------------ ---- ----- ---- ---- ------------------- [REMOVED]
+0x86eb4780:explorer.exe 1608 1572 35 936 2016-05-11 12:15:10 . 0x86eef030:vmtoolsd.exe 1708 1608 5 160 2016-05-11 12:15:10 . 0x851ee2b8:OUTLOOK.EXE 4068 1608 17 1433 2018-04-15 02:14:23 .. 0x8580a3f0:EXCEL.EXE 1124 4068 11 377 2018-04-15 02:14:35 ... 0x869d1030:cmd.exe 4056 1124 5 117 2018-04-15 02:14:41 .... 0x85b02d40:doc6.exe 2308 4056 1 50 2018-04-15 02:14:59</code></pre></div><p>由于pstree插件依赖于pslist插件，所以它不能列出隐藏或终止的进程。另一种确定进程关系的方法是使用psscan插件生成父/子关系的可视化表示。的
+以下psscan命令将输出输出打印成点格式，然后可以使用图形可视化软件，如Graphviz (<a href="https://www.graphviz.org/" target="_blank">https://www.graphviz.org/</a>)或XDot(可以使用sudo apt install XDot安装在Linux系统上)打开:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f infected.vmem --profile=Win7SP1x86 psscan --output=dot - -output-file=infected.dot</code></pre></div><p>打开感染。XDot的dot文件显示了前面讨论的进程之间的关系:
+
+<a href="#image-50403cf538d3a4261c688a79de2b0b6c" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536589917612.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-50403cf538d3a4261c688a79de2b0b6c">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536589917612.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<h4 id="44-使用psxview列出进程">4.4 使用psxview列出进程</h4>
+<p>在前面，您看到了如何操纵进程列表来隐藏进程;您还了解了psscan如何使用池标记扫描来检测隐藏的进程。事实证明，_POOL_HEADER (psscan所依赖的)只用于调试目的，它不会影响操作系统的稳定性。这意味着攻击者可以安装内核驱动程序在内核空间中运行，并修改池标记或_POOL_HEADER中的任何其他字段。通过修改池标记，攻击者可以阻止依赖池标记扫描的插件正常工作。换句话说，通过修改池标记，可以对psscan隐藏进程。为了克服这个问题，psxview插件依赖于从不同的来源提取进程信息。它以7种不同的方式列举了这个过程。通过比较不同来源的输出，可以检测出恶意软件造成的差异。在下面的截图中，psxview使用7种不同的技术枚举了进程。每个进程的信息显示为一行，它使用的技术显示为包含True或False的列。特定列下的False值表示没有使用相应的方法找到进程。在接下来的输出，psxview使用除pslist方法外的所有方法检测隐藏进程nvid.exe (pid 1700):
+
+<a href="#image-467e095fbe8cdb5b253e00382035b1a6" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536590829564.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-467e095fbe8cdb5b253e00382035b1a6">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536590829564.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<p>在前面的屏幕截图中，您将注意到一些进程的值为假。例如，cmd.exe进程不存在于除psscan方法之外的任何方法中。你可能认为cmd.exe是隐藏的，但这不是真的;你看到False的原因是cmd.exe被终止了(你可以从ExitTime列告诉它)。结果，所有其他技术都无法在psscan能够找到它的地方找到它，因为池标记扫描可以检测终止的进程。换句话说，列中的False值并不一定意味着对该方法隐藏进程;它也可能意味着它是预期的(取决于该方法获取流程信息的方式和来源)。要知道它是否是预期的，可以使用下面的-r(——apply-rules)选项。在下面的截图中，请注意False值是如何被替换为Okay的。ok表示False，但这是预期的行为。在使用-R(——apply-rules)运行psxview插件后，如果你仍然看到一个False值(例如在下面的截图中pid为1700的nvid.exe)，那么这是一个强烈的迹象，表明该方法隐藏了进程:</p>
+<p>
+<a href="#image-c00b47743e1cd3943adecdd9adcfbd5e" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536590996068.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-c00b47743e1cd3943adecdd9adcfbd5e">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536590996068.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<h3 id="5-列出进程句柄">5. 列出进程句柄</h3>
+<p>在调查过程中，一旦锁定了一个恶意进程，您可能想知道进程正在访问哪些对象(例如进程、文件、注册表项等等)。这将给您一个与恶意软件相关的组件的想法和洞察他们的操作，例如，一个键盘记录器可能正在访问一个日志文件来记录捕获的击键，或者恶意软件可能有一个打开的句柄到配置文件。</p>
+<p>要访问一个对象，进程首先需要通过调用CreateFile或CreateMutex之类的API来打开该对象的句柄。一旦它打开一个对象的句柄，它就使用这个句柄来执行后续操作，如写入文件或读取文件。句柄是对对象的间接引用;把句柄看作代表一个对象的东西(句柄不是对象本身)。对象驻留在内核内存中，而进程运行在用户空间中，因此进程不能直接访问对象，因此它使用代表该对象的句柄。</p>
+<p>每个进程都有一个私有句柄表，它驻留在内核内存中。该表包含所有与进程相关的内核对象，如文件、进程和网络套接字。问题是，如何填充这个表?当内核从进程获得创建对象的请求时(通过CreateFile之类的API)，该对象就会在内核内存中创建。指向该对象的指针放置在进程句柄表中第一个可用的槽位，并将相应的索引值返回给进程。索引值是表示该对象的句柄，该句柄被进程用来执行后续操作。</p>
+<p>在活动的系统上，您可以使用process Hacker工具检查特定进程访问的内核对象。为此，以管理员身份启动Process Hacker，右键单击任何进程，然后选择Handles选项卡。下面的截图显示了csrs.exe进程的进程句柄.exe是一个合法的操作系统进程，它在每个进程和线程的创建过程中发挥作用。由于这个原因，你会看到css.exe打开了系统上运行的大部分进程(除了它自己和它的父进程)的句柄。在下面的截图中，第三列是句柄值，第四列是内核内存中对象的地址。例如，第一个进程wininit.exe位于内核内存中的地址0x8705c410(它的_EPROCESS结构的地址)，表示该对象的句柄值为0x60:</p>
+<p>
+<a href="#image-b17e21772372c535a07d9b1733706bad" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536603586688.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-b17e21772372c535a07d9b1733706bad">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536603586688.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<blockquote>
+<p>psxview插件使用的一种方法依赖于遍历csrs.exe进程的句柄表来识别进程对象。如果有多个csrs.exe实例，psxview解析所有csrs.exe实例的句柄表，列出正在运行的进程，除了csrs.exe进程及其父进程(sms.exe和系统进程)。</p>
+</blockquote>
+<p>从内存映像中，您可以获得一个进程使用handles插件访问的所有内核对象的列表。下面的截图显示了pid为356的进程的句柄。如果你运行不带-p选项的handles插件，它将显示所有进程的句柄信息:
+
+<a href="#image-8dc47e7ff10e07eb9a2f2b97ae0401e6" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536603880157.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-8dc47e7ff10e07eb9a2f2b97ae0401e6">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536603880157.jpg" alt="" class="lightbox-image" loading="lazy">
+</a>
+您还可以使用-t选项过滤特定对象类型(File、Key、Process、Mutant等等)的结果。在下面的例子中，对感染了Xtreme RAT病毒的内存映像运行了handles插件。handles插件用于列出恶意进程打开的互斥锁(pid 1772)。从下面的输出中，您可以看到Xtreme RAT创建了一个名为oZ694XMhk6yxgbTA0的互斥锁，以标记它在系统中的存在。像Xtreme RAT创建的互斥锁可以作为一个很好的基于主机的指示器，用于基于主机的监控:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f xrat.vmem --profile=Win7SP1x86 handles -p 1772 -t Mutant 
+
+Volatility Foundation Volatility Framework 2.6
+Offset(V) Pid Handle Access Type Details
+---------- ---- ------ -------- ------ ----------------------------- 0x86f0a450 1772 0x104 0x1f0001 Mutant oZ694XMhk6yxgbTA0
+0x86f3ca58 1772 0x208 0x1f0001 Mutant _!MSFTHISTORY!_
+0x863ef410 1772 0x280 0x1f0001 Mutant WininetStartupMutex 0x86d50ca8 1772 0x29c 0x1f0001 Mutant WininetConnectionMutex 0x8510b8f0 1772 0x2a0 0x1f0001 Mutant WininetProxyRegistryMutex 0x861e1720 1772 0x2a8 0x100000 Mutant RasPbFile
+   0x86eec520 1772 0x364  0x1f0001 Mutant ZonesCounterMutex
+   0x86eedb18 1772 0x374  0x1f0001 Mutant ZoneAttributeCacheCounterMutex</code></pre></div><p>在下面这个被TDL3 rootkit感染的内存映像的例子中，svchos.exe进程(pid 880)打开了恶意DLL和与rootkit相关的内核驱动程序的文件句柄:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f tdl3.vmem handles -p 880 -t File
+Volatility Foundation Volatility Framework 2.6
+Offset(V) Pid Handle Access Type Details
+---------- --- ------ -------- ---- ---------------------------- 0x89406028 880 0x50 0x100001 File \Device\KsecDD
+0x895fdd18 880 0x100 0x100000 File \Device\Dfs
+[REMOVED]
+0x8927b9b8 880 0x344 0x120089 File [REMOVED]\system32\TDSSoiqh.dll 0x89285ef8 880 0x34c 0x120089 File [REMOVED]\system32\drivers\TDSSpqxt.sys</code></pre></div><h3 id="6-dll清单">6. DLL清单</h3>
+<p>在本书中，你已经看到了使用DLL实现恶意功能的恶意软件的例子。因此，除了调查进程之外，您可能还希望检查已加载的库列表。要列出加载的模块(可执行和dll)，你可以使用Volatility的dlllist插件。dlllist插件还会显示与进程相关的完整路径。让我们以一个名为Ghost RAT的恶意软件为例。它以服务DLL的形式实现恶意功能，因此，该恶意DLL通过svchost.exe进程加载(有关服务DLL的更多信息，请参阅第7章“恶意软件功能和持久性”中的服务部分)。下面是dlllist的输出，在这里您可以看到一个由svchost.exe进程(pid 800)加载的带有非标准扩展名(.ddf)的可疑模块。第一列Base指定Base地址，也就是加载模块的内存中的地址:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f ghost.vmem --profile=Win7SP1x86 dlllist -p 880 Volatility Foundation Volatility Framework 2.6 ****************************************************************** svchost.exe pid: 880
+   Command line : C:\Windows\system32\svchost.exe -k netsvcs
+Base       Size     LoadCount Path
+---------- -------- --------- --------------------------------
+0x00f30000 0x8000   0xffff
+0x76f60000 0x13c000 0xffff
+0x75530000 0xd4000  0xffff
+0x75160000 0x4a000  0xffff
+0x75480000 0xac000  0xffff
+0x77170000 0x19000  0xffff
+0x76700000 0x15c000 0x62
+0x76c30000 0x4e000  0x19c
+0x770a0000 0xc9000  0x1cd
+[REMOVED]
+C:\Windows\system32\svchost.exe
+C:\Windows\SYSTEM32\ntdll.dll
+C:\Windows\system32\kernel32.dll
+C:\Windows\system32\KERNELBASE.dll
+C:\Windows\system32\msvcrt.dll
+C:\Windows\SYSTEM32\sechost.dll
+C:\Windows\system32\ole32.dll
+C:\Windows\system32\GDI32.dll
+C:\Windows\system32\USER32.dll
+0x74fe0000 0x4b000 0xffff
+0x6bbb0000 0xf000 0x1
+0x10000000 0x26000 0x1
+data\acdsystems\acdsee\imageik.ddf
+0x71200000 0x32000 0x3 C:\Windows\system32\WINMM.dll</code></pre></div><p>
+<a href="#image-e8986f56fbe2ed7fa343739d36c7a811" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536607165339.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-e8986f56fbe2ed7fa343739d36c7a811">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536607165339.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<p>dlllist插件从一个名为进程环境块(PEB)的结构中获取所加载模块的信息。如果你回想一下第8章，代码注入和挂钩，当谈到进程内存组件时，我提到过PEB结构驻留在进程内存中(在用户空间中)。PEB包含关于可执行进程在何处加载的元数据信息、它在磁盘上的完整路径以及关于加载的模块(可执行和dll)的信息。dlllist插件查找每个进程的PEB结构并获取上述信息。那么问题来了，如何找到PEB的结构?_EPROCESS结构有一个名为Peb的字段，该字段包含指向Peb的指针。这意味着一旦插件找到_EPROCESS结构，它就可以找到PEB。需要记住的一点是，_EPROCESS驻留在内核内存(内核空间)中，而PEB驻留在进程内存(用户空间)中。</p>
+<p>要在调试器中获得PEB的地址，可以使用!process扩展命令，它显示_EPROCESS结构的地址。它还指定PEB的地址。从下面的输出中，你可以看到explorer.exe进程的PEB在它的进程内存地址7ffd3000，它的_EPROCESS结构在0x877ced28(在它的内核内存中):</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; !process 0 0
+**** NT ACTIVE PROCESS DUMP ****
+.........
+PROCESS 877cb4a8 SessionId: 1 Cid: 05f0 Peb: 7ffdd000 ParentCid: 0360
+       DirBase: beb47300 ObjectTable: 99e54a08 HandleCount: 70.
+Image: dwm.exe
+PROCESS 877ced28 SessionId: 1 Cid: 0600 Peb: 7ffd3000 ParentCid: 05e8
+       DirBase: beb47320 ObjectTable: 99ee5890 HandleCount: 766.
+Image: explorer.exe</code></pre></div><p>另一种确定PEB地址的方法是使用display type (dt)命令。你可以通过检查EPROCESS结构中的PEB字段找到explorer.exe进程的PEB地址，如下所示:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; dt nt!_EPROCESS 877ced28 [REMOVED]
++0x168 Session : 0x8f44e000 Void
++0x16c ImageFileName : [15] &#34;explorer.exe&#34; [REMOVED]
++0x1a8 Peb : 0x7ffd3000 _PEB
++0x1ac PrefetchTrace : _EX_FAST_REF</code></pre></div><p>现在你知道如何找到PEB，那么现在，让我们试着理解PEB包含什么样的信息。要获得给定流程的可读的PEB摘要，首先需要切换到要检查其PEB的流程的上下文。这可以使用.process扩展名命令来完成。这个命令接受_EPROCESS结构的地址。下面的命令将当前进程的上下文设置为explorer.exe进程:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; .process 877ced28
+Implicit process is now 877ced28</code></pre></div><p>然后，您可以使用!peb扩展命令后跟peb地址。在下面的输出中，为了简洁起见，部分信息被截断。ImageBaseAddress字段指定在内存中加载进程可执行文件(explorer.exe)的地址。PEB还包含另一个称为Ldr结构(类型为_PEB_LDR_DATA)的结构，它维护三个双链接列表，它们是InLoadOrderModuleList, InMemoryOrderModuleList，和InInitializationOrderModuleList。这三个双链接列表中的每一个都包含关于模块(进程可执行文件和dll)的信息。通过遍历这些双链接的模块，可以获得关于模块的信息
+列表。InLoadOrderModuleList按模块的顺序组织模块
+InMemoryOrderModuleList按照它们在进程内存中的顺序组织模块，而InInitializationOrderModuleList按照它们的DllMain函数执行的顺序组织模块:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>kd&gt; !peb 0x7ffd3000 PEB at 7ffd3000
+InheritedAddressSpace: No ReadImageFileExecOptions: No BeingDebugged: No ImageBaseAddress: 000b0000
+Ldr 77dc8880
+Ldr.Initialized: Yes Ldr.InInitializationOrderModuleList: 00531f98 . 03d3b558 Ldr.InLoadOrderModuleList: 00531f08 . 03d3b548 Ldr.InMemoryOrderModuleList: 00531f10 . 03d3b550 [REMOVED]</code></pre></div><p>换句话说，所有三个PEB列表都包含关于已加载模块的信息，比如基址、大小、与模块关联的完整路径，等等。要记住的重要一点是，InInitializationOrderModuleList将不包含关于进程可执行文件的信息，因为与dll相比，可执行文件的初始化是不同的。</p>
+<p>为了帮助您更好地理解，下面的图表以Explorer.exe为例(该概念也类似于其他进程)。当Explorer.exe被执行时，它的进程可执行文件被加载到进程内存中的某个地址(比方说0xb0000)，带有PAGE_EXECUTE_WRITECOPY (WCX)保护。相关的dll也被加载到进程内存中。进程内存还包括PEB结构，它包含了explorer.exe在内存中的加载位置(基址)的元数据信息。PEB中的Ldr结构维持着三个双链表;每个元素都是一个结构(类型为_LDR_DATA_TABLE_ENTRY)，它包含关于加载模块的信息(基址、完整路径等)。dlllist插件依赖于遍历InLoadOrderModuleList来获取模块的信息:
+
+<a href="#image-bd6e455c0276dd5eb33f1575bb331a8a" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536608287647.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-bd6e455c0276dd5eb33f1575bb331a8a">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536608287647.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<p>从这三个PEB列表中获取模块信息的问题是，它们容易受到DKOM攻击。所有三个PEB列表都驻留在用户空间中，这意味着攻击者可以将恶意DLL加载到进程的地址空间中，并可以从一个或所有PEB列表中断开恶意DLL的链接，以隐藏依赖于遍历这些列表的工具。为了克服这个问题，我们可以使用另一个名为ldrmodules的插件。</p>
+<h4 id="61-使用ldrmodule检测隐藏的dll">6.1 使用ldrmodule检测隐藏的DLL</h4>
+<p>ldrmodules插件将来自三个PEB列表(在进程内存中)的模块信息与来自内核内存中称为VADs(虚拟地址描述符)的数据结构的信息进行比较。内存管理器使用vad跟踪进程内存中保留(或空闲)的虚拟地址。VAD是一种二叉树结构，它存储关于进程内存中几乎连续的内存区域的信息。对于每个进程，内存管理器维护一组VAD，每个VAD节点描述一个几乎连续的内存区域。如果进程内存区域包含一个内存映射文件(如可执行文件、DLL)，那么VAD节点存储有关其基址、文件路径和内存保护的信息。下面的示例应该有助于您理解这个概念。在下面的截图中，内核空间中的一个VAD节点描述了关于进程可执行文件(explorer.exe)加载位置、它的完整路径和内存保护的信息。类似地，其他VAD节点将描述进程的内存范围，包括那些包含映射的可执行映像，如dll:
+
+<a href="#image-4adbb5b5511eb2d53b14d28c151490e7" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536608969268.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-4adbb5b5511eb2d53b14d28c151490e7">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536608969268.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<p>为了获得模块的信息，ldrmodules插件枚举所有包含映射可执行镜像的VAD节点，并将结果与三个PEB列表进行比较，以确定是否存在差异。下面是感染了TDSS rootkit(我们在前面看到的)的内存映像进程的模块列表。你可以看到ldrmodules插件能够识别一个名为TDSSoiqh.dll的恶意DLL，它隐藏了所有三个PEB列表(InLoad, InInit和InMem)。svchost.exe的InInit值设置为False，但其是可执行的，如前所述:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 ldrmodules -p 880 Volatility Foundation Volatility Framework 2.6
+Pid Process Base InLoad InInit InMem MappedPath
+--- ----------- -------- ----- ------- ----- ---------------------------- 880 svchost.exe 0x10000000 False False False \WINDOWS\system32\TDSSoiqh.dll 880 svchost.exe 0x01000000 True False True \WINDOWS\system32\svchost.exe 880 svchost.exe 0x76d30000 True True True \WINDOWS\system32\wmi.dll
+   880 svchost.exe 0x76f60000 True  True  True  \WINDOWS\system32\wldap32.dll
+   [REMOVED]</code></pre></div><h3 id="7-转储可执行文件和dll">7. 转储可执行文件和DLL</h3>
+<p>在您识别出恶意进程或DLL之后，您可能希望转储它以便进一步调查(例如提取字符串、运行yara规则、反汇编或使用杀毒软件进行扫描)。要将进程可执行文件从内存转储到磁盘，可以使用procdump插件。要转储进程可执行文件，您需要知道它的进程ID或物理偏移量。在下面的例子中，一个内存镜像感染了Perseus恶意软件(之前在讨论pslist插件时提到)，
+procdump插件用于转储其恶意进程的可执行文件svchost.exe (pid 3832)。使用-D(——dump-dir)选项，可以指定要转储可执行文件的目录名称。转储文件以进程的pid命名，如executable.PID.exe:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f perseus.vmem --profile=Win7SP1x86 procdump -p 3832 -D dump/
+Volatility Foundation Volatility Framework 2.6
+Process(V) ImageBase Name Result
+   ---------- ---------- ------------ -----------------------
+   0x8503f0e8 0x00b90000 svchost..exe OK: executable.3832.exe
+$ cd dump
+$ file executable.3832.exe
+executable.3832.exe: PE32 executable (GUI) Intel 80386 Mono/.Net assembly, for MS Windows
+ </code></pre></div><p>要转储具有物理偏移量的进程，可以使用-o(——offset)选项，如果希望从内存转储隐藏进程，该选项很有用。在下面的例子中，一个内存映像感染了prolaco恶意软件(在前面讨论时已经讨论过了psscan插件)，隐藏进程使用其物理偏移量转储。物理偏移量由psscan插件确定。你也可以从psxview插件获取物理偏移量。当使用procdump插件时，如果你没有指定-p(——pid)或-o(——offset)选项，那么它将转储系统上运行的所有活动进程的进程可执行文件:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f infected.vmem --profile=WinXPSP3x86 psscan Volatility Foundation Volatility Framework 2.6
+Offset(P) Name PID PPID PDB Time created ------------------ ------- ---- ---- ---------- -------------------- [REMOVED]
+0x00000000016ba360 nvid.exe 1700 1660 0x08440320 2014-10-17 09:16:10
+$ python vol.py -f infected.vmem --profile=WinXPSP3x86 procdump -o 0x00000000016ba360 -D dump/
+Volatility Foundation Volatility Framework 2.6
+Process(V) ImageBase Name Result
+   ---------- ---------- -------- -----------------------
+   0x814ba360 0x00400000 nvid.exe OK: executable.1700.exe</code></pre></div><p>类似于进程可执行文件，您可以使用dlldump插件将恶意DLL转储到磁盘。要转储DLL，您需要指定加载DLL的进程的进程ID (-p选项)，以及DLL的base地址，使用-b(——base)选项。您可以从dlllist或ldrmodules输出中获得DLL的基址。在下面这个例子中，一个被Ghost RAT病毒感染的内存映像(我们在讨论dlllist插件时提到过)，通过使用dlldump插件来转储svchos.exe (pid 880)进程加载的恶意DLL:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f ghost.vmem --profile=Win7SP1x86 dlllist -p 880 Volatility Foundation Volatility Framework 2.6 ************************************************************************ svchost.exe pid: 880
+   Command line : C:\Windows\system32\svchost.exe -k netsvcs
+Base Size LoadCount Path
+---------- ------ -------- ------
+[REMOVED]
+0x10000000 0x26000 0x1 c:\users\test\application data\acd systems\acdsee\imageik.ddf
+$ python vol.py -f ghost.vmem --profile=Win7SP1x86 dlldump -p 880 -b 0x10000000 -D dump/
+Volatility Foundation Volatility Framework 2.6
+ Name       Module Base    Module Name       Result
+   ---------- ------------ ---------------- --------------------------
+   svchost.exe 0x010000000  imageik.ddf      module.880.ea13030.10000000.dll</code></pre></div><h3 id="8-列出网络连接和套接字">8. 列出网络连接和套接字</h3>
+<p>大多数恶意程序执行一些网络活动，或者下载额外的组件，从攻击者那里接收命令，窃取数据，或者在系统上创建一个远程后门。检查网络活动将帮助您确定被感染系统上的恶意软件的网络操作。在许多情况下，将在受感染系统上运行的进程与网络上检测到的活动关联起来是很有用的。要确定pre-vista系统(如Windows XP和2003)上的活动网络连接，可以使用连接插件。下面的命令显示了一个使用连接插件打印来自被BlackEnergy恶意软件感染的内存转储的活动连接的示例。从下面的输出中，可以看到进程ID为756的进程负责端口443上的C2通信。运行pslist插件后，你可以知道756的pid与svchost.exe进程相关联:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f be3.vmem --profile=WinXPSP3x86 connections Volatility Foundation Volatility Framework 2.6
+Offset(V) Local Address Remote Address Pid ---------- ------------------ -------------- ------- 0x81549748 192.168.1.100:1037 X.X.32.230:443 756
+$ python vol.py -f be3.vmem --profile=WinXPSP3x86 pslist -p 756 Volatility Foundation Volatility Framework 2.6
+Offset(V) Name PID PPID Thds Hnds Sess Wow64 Start
+---------- ----------- --- ---- ---- ---- ---- ------ -------------------- 0x8185a808 svchost.exe 756 580 22 442 0 0 2016-01-13 18:38:10</code></pre></div><p>另一个插件，你可以用来列出的网络连接在vista之前的系统是connscan。它使用池标记扫描方法来确定连接。因此，它还可以检测终止的连接。在下面的例子中，内存映像感染了TDL3 rootkit，连接插件不返回任何结果，而connscan插件显示网络连接。这并不一定意味着连接是隐藏的，它只是意味着当获取内存映像时，网络连接不是活动的(或终止的):</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 connections Volatility Foundation Volatility Framework 2.6
+Offset(V) Local Address Remote Address Pid
+---------- ------------- -------------- ----
+$ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 connscan Volatility Foundation Volatility Framework 2.6
+Offset(P)  Local Address
+---------- ------------------
+0x093812b0 192.168.1.100:1032
+Remote Address    Pid
+Proto Local Address   Foreign Address
+TCPv4 192.168.1.60:139    0.0.0.0:0
+UDPv4 192.168.1.60:137    *:*
+UDPv4 0.0.0.0:0           *:*
+State
+LISTENING
+Pid Owner
+   4 System
+---------------
+XX.XXX.92.121:80   880</code></pre></div><p>有时，您可能希望获得有关打开的套接字及其相关进程的信息。在vista之前的系统上，你可以通过socket和sockscan插件获取开放端口的信息。socket插件打印打开的socket列表，sockscan插件使用池标记扫描方法。因此，它可以检测已经关闭的端口。</p>
+<p>在Vista和以后的系统(如Windows 7)，你可以使用netscan插件来显示网络连接和套接字。netscan插件使用池标记扫描方法，类似于sockscan和connscan插件。在下面的例子中，内存映像被Darkcomet RAT病毒感染，netscan插件在81端口上显示C2通信，该通信已被恶意进程dmt.exe (pid 3768)造成:
+
+<a href="#image-ad56f7a3b9edf4a95646e1abcb69fe27" class="lightbox-link">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536612304261.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
+</a>
+<a href="javascript:history.back();" class="lightbox" id="image-ad56f7a3b9edf4a95646e1abcb69fe27">
+<img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536612304261.jpg" alt="" class="lightbox-image" loading="lazy">
+</a></p>
+<h3 id="9-检查注册表">9. 检查注册表</h3>
+<p>从取证的角度来看，注册表可以提供关于恶意软件上下文的有价值的信息。在第7章“恶意软件功能和持久性”中讨论持久性方法时，您看到了恶意程序如何在注册表中添加条目以在重新启动时存活下来。除了持久性之外，恶意软件还使用注册表来存储配置数据、加密密钥等。要打印注册表键、子键及其值，可以使用printkey插件，通过使用-K(——key)参数提供所需的注册表键路径。在下面的例子中，一个感染了Xtreme Rat病毒的内存映像中，它在Run注册表项中添加了恶意的可执行文件C:\Windows\InstallDir\system.exe。因此，恶意的可执行文件将在每次系统启动时被执行:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f xrat.vmem --profile=Win7SP1x86 printkey -K &#34;Microsoft\Windows\CurrentVersion\Run&#34;
+Volatility Foundation Volatility Framework 2.6
+Legend: (S) = Stable (V) = Volatile
+   ----------------------------
+   Registry: \SystemRoot\System32\Config\SOFTWARE
+   Key name: Run (S)
+   Last updated: 2018-04-22 06:36:43 UTC+0000
+Subkeys:
+Values:
+REG_SZ VMware User Process : (S) &#34;C:\Program Files\VMware\VMware Tools\vmtoolsd.exe&#34; -n vmusr
+REG_EXPAND_SZ HKLM : (S) C:\Windows\InstallDir\system.exe</code></pre></div><p>在下面的例子中，Darkcomet RAT在注册表中添加了一个条目，通过rundll32.exe加载它的恶意DLL (mph.DLL):</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f darkcomet.vmem --profile=Win7SP1x86 printkey -K &#34;Software\Microsoft\Windows\CurrentVersion\Run&#34;
+Volatility Foundation Volatility Framework 2.6
+Legend: (S) = Stable (V) = Volatile
+   ----------------------------
+   Registry: \??\C:\Users\Administrator\ntuser.dat
+   Key name: Run (S)
+   Last updated: 2016-09-23 10:01:53 UTC+0000
+   Subkeys:
+   Values:
+   REG_SZ Adobe cleanup : (S) rundll32.exe &#34;C:\Users\Administrator\Local Settings\Application Data\Adobe updater\mph.dll&#34;, StartProt ----------------------------</code></pre></div><p>还有一些其他的注册表键以二进制形式存储有价值的信息，这对司法调查人员可能有很大的价值。诸如userassist、shellbags和shimcache等Volatility插件解析这些包含二进制数据的注册表键，并以可读性强得多的格式显示信息。</p>
+<p>Userassist注册表项包含用户在系统上执行的程序列表，以及程序运行的时间。要打印userassist注册信息，你可以使用挥发的userassist插件，如下所示。在下面的例子中，一个可疑的命名为可执行文件(info.doc.exe)被执行从E:\驱动器(可能是USB驱动器)在2018-04-30 06:42:37:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f inf.vmem --profile=Win7SP1x86 userassist 
+Volatility Foundation Volatility Framework 2.6 ----------------------------
+Registry: \??\C:\Users\test\ntuser.dat
+[REMOVED]
+REG_BINARY E:\info.doc.exe :
+Count: 1
+Focus Count: 0
+Time Focused: 0:00:00.500000
+Last updated: 2018-04-30 06:42:37 UTC+0000 Raw Data:
+   0x00000000 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00
+   0x00000010 00 00 80 bf 00 00 80 bf 00 00 80 bf 00 00 80 bf</code></pre></div><blockquote>
+<p>shimcache和shellbags插件在调查恶意软件事件时非常有用。shimcache插件对于证明系统中存在恶意软件以及它运行的时间很有帮助。shellbags插件可以提供关于访问文件、文件夹、外部存储设备和网络资源的信息。</p>
+</blockquote>
+<h3 id="10-nvestigating服务">10. nvestigating服务</h3>
+<p>在第7章，恶意软件的功能和持久性中，我们研究了攻击者如何通过安装或修改现有的服务来在系统上持久存在。在本节中，我们将重点讨论如何从内存映像研究服务。要从内存映像中列出服务及其信息，比如显示名称、服务类型和启动类型，可以使用svcscan插件。在下面的例子中，恶意软件创建了一个WIN32_OWN_PROCESS类型的服务，显示名称和服务名称为svchost。从二进制路径可以看出，svchost.exe是恶意的，因为它运行在非标准路径C:\Windows，而不是C:\Windows\System32:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f svc.vmem --profile=Win7SP1x86 svcscan 
+
+Volatility Foundation Volatility Framework 2.6 [REMOVED]
+Offset: 0x58e660
+Order: 396
+Start: SERVICE_AUTO_START
+Process ID: 4080
+Service Name: svchost
+Display Name: svchost
+Service Type: SERVICE_WIN32_OWN_PROCESS Service State: SERVICE_RUNNING
+Binary Path: C:\Windows\svchost.exe</code></pre></div><p>对于实现为DLL(服务DLL)的服务，您可以通过向svccan插件传递-v(——verbose)选项来显示服务DLL(或内核驱动程序)的完整路径。-v选项用于打印与服务相关的详细信息。下面是一个以DLL形式运行服务的恶意软件的例子。服务状态设置为SERVICE_START_PENDING，启动类型设置为SERVICE_AUTO_START，这告诉你这个服务还没有启动，会在系统启动时自动启动:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f svc.vmem --profile=Win7SP1x86 svcscan [REMOVED]
+Offset: 0x5903a8
+Order: 396
+Start: SERVICE_AUTO_START
+Process ID: -
+Service Name: FastUserSwitchingCompatibility
+Display Name: FastUserSwitchingCompatibility
+Service Type: SERVICE_WIN32_SHARE_PROCESS
+Service State: SERVICE_START_PENDING
+Binary Path: -
+ServiceDll: C:\Windows\system32\FastUserSwitchingCompatibilityex.dll ImagePath: %SystemRoot%\System32\svchost.exe -k netsvcs</code></pre></div><p>一些恶意程序会劫持未使用或禁用的现有服务，以持久化在系统上。这种恶意软件的一个例子是BlackEnergy，它取代了名为aliide的合法内核驱动程序。Sys在磁盘上。这个内核驱动程序与一个名为aliide的服务相关联。在替换驱动程序之后，它会修改与aliide服务相关联的注册表项，并将其设置为自动启动(也就是说，当系统启动时，服务会自动启动)。很难发现此类攻击。检测此类修改的一种方法是保留一个干净内存映像中的所有服务的列表，并将其与可疑映像中的服务列表进行比较，以查找任何修改。下面是清除内存映像中aliide服务的服务配置。合法的aliide服务被设置为按需启动(需要手动启动)，服务处于停止状态:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f win7_clean.vmem --profile=Win7SP1x64 svcscan Offset: 0x871c30
+Order: 11
+Start: SERVICE_DEMAND_START
+Process ID: -
+Service Name: aliide
+Display Name: aliide
+Service Type: SERVICE_KERNEL_DRIVER Service State: SERVICE_STOPPED Binary Path: -</code></pre></div><p>以下是感染了BlackEnergy的内存映像的svcscan输出。修改完成后，aliide服务被设置为“autostart”(系统启动时会自动启动)，且仍处于“stopped”状态。这意味着重新启动系统后，服务将自动启动并加载恶意aliide。系统驱动程序。关于这个BlackEnergy释放器的详细分析，请参阅作者的博客文章https://cysinfo.com/blackout-memory-analysis-of-blackenergy-big-dropper/:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f be3_big.vmem --profile=Win7SP1x64 svcscan 
+Offset: 0x881d30
+Order: 12
+Start: SERVICE_AUTO_START
+Process ID: -
+Service Name: aliide
+Display Name: aliide
+Service Type: SERVICE_KERNEL_DRIVER Service State: SERVICE_STOPPED Binary Path: -</code></pre></div><h3 id="11-提取命令历史">11. 提取命令历史</h3>
+<p>影响系统后,攻击者可以执行各种命令在命令shell列举用户,组,和共享你的网络,或攻击者可能转移等工具Mimikatz (<a href="https://github.com/gentilkiwi/mimikatz" target="_blank">https://github.com/gentilkiwi/mimikatz</a>)组成系统和执行它转储Windows凭据。Mimikatz是一个开源工具，由Benjamin Delpy于2011年编写。它是从Windows系统收集凭证的最流行工具之一。Mimikatz以不同的方式发布，比如编译版(<a href="https://github.com/gentilkiwi/mimikatz" target="_blank">https://github.com/gentilkiwi/mimikatz</a>)，并且是PowerSploit (<a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank">https://github.com/PowerShellMafia/PowerSploit</a>)和PowerShell Empire (<a href="https://github.com/EmpireProject/Empire" target="_blank">https://github.com/EmpireProject/Empire</a>)等PowerShell模块的一部分。</p>
+<p>命令历史可以提供有关攻击者在受损系统上活动的有价值的信息。通过检查命令历史，您可以确定诸如已执行的命令、调用的程序以及攻击者访问的文件和文件夹等信息。两个Volatility插件cmdscan和consoles可以从内存映像中提取命令历史记录。这些插件从csrs.exe (Windows 7之前)或conhost.exe (Windows 7及更高版本)进程中提取命令历史。</p>
+<blockquote>
+<p>要了解这些插件的详细工作原理，请阅读《内存取证的艺术》一书或阅读理查德·史蒂文斯和Eoghan Casey的研究论文《从物理内存中提取Windows命令行细节》(<a href="http://www.dfrws.org/2010/proceedings/2010-307.pdf" target="_blank">http://www.dfrws.org/2010/proceedings/2010-307.pdf</a>)。</p>
+</blockquote>
+<p>cmdscan插件会列出cmd.exe所执行的命令。下面的示例深入了解系统上的窃取凭据活动。从cmdscan输出中，您可以看到通过命令shell (cmd.exe)调用了名称为net.exe的应用程序。从net.exe中提取的命令中，可以看出命令特权::debug和sekurlsa::logonpasswords与Mimikatz相关联。在这种情况下，Mimikatz应用程序被重命名为net.exe:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f mim.vmem --profile=Win7SP1x64 cmdscan
+[REMOVED]
+CommandProcess: conhost.exe Pid: 2772
+CommandHistory: 0x29ea40 Application: cmd.exe Flags: Allocated, Reset CommandCount: 2 LastAdded: 1 LastDisplayed: 1
+FirstCommand: 0 CommandCountMax: 50 ProcessHandle: 0x5c
+Cmd #0 @ 0x29d610: cd \
+Cmd #1 @ 0x27b920: cmd.exe /c %temp%\net.exe Cmd #15 @ 0x260158: )
+Cmd #16 @ 0x29d3b0: )
+[REMOVED]
+**************************************************
+CommandProcess: conhost.exe Pid: 2772
+CommandHistory: 0x29f080 Application: net.exe Flags: Allocated, Reset CommandCount: 2 LastAdded: 1 LastDisplayed: 1
+FirstCommand: 0 CommandCountMax: 50
+ProcessHandle: 0xd4
+Cmd #0 @ 0x27ea70: privilege::debug
+Cmd #1 @ 0x29b320: sekurlsa::logonpasswords
+Cmd #23 @ 0x260158: )
+Cmd #24 @ 0x29ec20: &#39;</code></pre></div><p>cmdscan插件会显示攻击者执行的命令。要了解命令是否成功，可以使用控制台插件。运行控制台插件后，可以看到net.exe确实是一个Mimikatz应用程序，为了转储凭证，使用Mimikatz shell执行了Mimkatz命令。从输出中，您可以知道凭据已成功转储，密码已以明文形式检索:</p>
+<div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f mim.vmem --profile=Win7SP1x64 consoles
+----
+CommandHistory: 0x29ea40 Application: cmd.exe Flags: Allocated, Reset CommandCount: 2 LastAdded: 1 LastDisplayed: 1
+FirstCommand: 0 CommandCountMax: 50 ProcessHandle: 0x5c
+Cmd #0 at 0x29d610: cd \
+Cmd #1 at 0x27b920: cmd.exe /c %temp%\net.exe ----
+   Screen 0x280ef0 X:80 Y:300
+   Dump:
+   Microsoft Windows [Version 6.1.7600]
+   Copyright (c) 2009 Microsoft Corporation. All rights reserved.
+   C:\Windows\system32&gt;cd \
+   C:\&gt;cmd.exe /c %temp%\net.exe
+[REMOVED]
+   mimikatz # privilege::debug
+   Privilege &#39;20&#39; OK
+   mimikatz # sekurlsa::logonpasswords
+   Authentication Id : 0 ; 269689 (00000000:00041d79)
+   Session : Interactive from 1
+   User Name : test
+   Domain : PC
+   Logon Server : PC
+   Logon Time : 5/4/2018 10:00:59 AM
+   SID : S-1-5-21-1752268255-3385687637-2219068913-1000
+msv :
+ [00000003] Primary
+ * Username : test
+ * Domain : PC
+ * LM : 0b5e35e143b092c3e02e0f3aaa0f5959
+ * NTLM : 2f87e7dcda37749436f914ae8e4cfe5f
+ * SHA1 : 7696c82d16a0c107a3aba1478df60e543d9742f1
+tspkg :
+ * Username : test
+ * Domain : PC
+ * Password : cleartext
+wdigest :
+ * Username : test
+ * Domain : PC
+ * Password : cleartext
+kerberos :
+ * Username : test
+ * Domain : PC
+ * Password : cleartext</code></pre></div><blockquote>
+<p>在Windows 8.1和更高版本上，您可能无法使用Mimikatz以明文形式转储密码，但是，Mimikatz为攻击者提供了各种功能。攻击者可以使用提取的NTLM散列来模拟帐户。关于Mimikatz的详细信息以及如何使用它来提取Windows凭据，请阅读https://adsecurity.org/?page_id=1821。</p>
+</blockquote>
+<h3 id="总结">总结</h3>
+<p>内存取证是一项伟大的技术，从计算机的内存寻找和提取司法证据。除了使用内存取证进行恶意软件调查之外，您还可以将其作为恶意软件分析的一部分，以获得关于恶意软件行为和特征的额外信息。本章涵盖了不同的Volatility插件，这些插件使你能够了解在组成的系统上发生的事件，并提供对恶意软件活动的洞察。在下一章中，我们将使用更多的volatile插件来确定高级恶意软件的功能，并且您将了解如何使用这些插件来提取司法证据。</p>
+
+            <footer class="footline">
+
+            </footer>
+          </article>
+        </div>
+      </main>
+    </div>
+    <aside id="sidebar" class="default-animation showVisitedLinks">
+      <div id="header-wrapper" class="default-animation">
+        <div id="header" class="default-animation">
+<link rel="icon" href="/images/head.png" type="image/png">
+<a href="/"><img src="/images/favicon.png"></a>
+        </div>
+        <form action="/search.html" method="get"><div class="searchbox default-animation">
+          <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+          <label class="a11y-only" for="search-by">Search</label>
+          <input data-search-input id="search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+          <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+        </div></form>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="/js/auto-complete.js?1690920741" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690920741" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690920741" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690920741" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690920741" defer></script>
+        <script src="/js/search.js?1690920741" defer></script>
+      </div>
+      <div id="content-wrapper" class="highlightable">
+        <ul class="topics enlarge morespace collapsible-menu">
+          <li data-nav-id="/%E5%85%B3%E4%BA%8E/index.html" class=""><a class="padding" href="/%E5%85%B3%E4%BA%8E/index.html">关于<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-70bdf8d87af46a79686d31378c1d7d85" aria-controls="subsections-70bdf8d87af46a79686d31378c1d7d85"><label for="section-70bdf8d87af46a79686d31378c1d7d85"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/index.html">工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-70bdf8d87af46a79686d31378c1d7d85" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-2dbf020e462e790a32571d0d109b782a" aria-controls="subsections-2dbf020e462e790a32571d0d109b782a"><label for="section-2dbf020e462e790a32571d0d109b782a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 威胁情报工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html">威胁情报工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-2dbf020e462e790a32571d0d109b782a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss%E8%AE%A2%E9%98%85%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html">一个rss订阅到钉钉的脚本rss2dingtalk<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/TwitterTimelineClientScript/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/twitter%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/TwitterTimelineClientScript/index.html">一个本地命令行查询/批量查询twitter推文的脚本<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-6e38dc5f895def98aff7644f3c6ab0dd" aria-controls="subsections-6e38dc5f895def98aff7644f3c6ab0dd"><label for="section-6e38dc5f895def98aff7644f3c6ab0dd"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 日志分析工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html">日志分析工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-6e38dc5f895def98aff7644f3c6ab0dd" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-coremail%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%AD%9B%E9%80%89%E7%AE%80%E6%98%93%E8%84%9A%E6%9C%AC/index.html">Coremail日志分析脚本<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-f1d5f5bcc33bea044cacc933bb1d335a" aria-controls="subsections-f1d5f5bcc33bea044cacc933bb1d335a"><label for="section-f1d5f5bcc33bea044cacc933bb1d335a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透工具</span></label><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html">渗透工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-f1d5f5bcc33bea044cacc933bb1d335a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-httpmethod-unsafehttpmethod%E6%BC%8F%E6%B4%9E%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E5%92%8C%E6%96%B9%E6%B3%95/index.html">UnsafeHttpMethod类型漏洞检测脚本<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html">本地批量ping域名脚本<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E8%AF%91%E6%96%87%E5%BD%92%E6%A1%A3/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%AD%E6%96%87%E8%AF%91%E6%96%87%E5%BD%92%E6%A1%A3/index.html">漏洞验证工具nuclei官方文档中文译文归档<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%A8%A1%E7%89%88%E7%BC%96%E5%86%99%E4%B8%AD%E6%96%87%E5%BD%92%E6%A1%A3/index.html" class=""><a class="padding" href="/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/nuclei%E5%AE%98%E6%96%B9%E6%A8%A1%E7%89%88%E7%BC%96%E5%86%99%E4%B8%AD%E6%96%87%E5%BD%92%E6%A1%A3/index.html">漏洞验证工具nuclei官方模版编写中文译文归档<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html" class=""><input type="checkbox" id="section-f35715843c55715e4e1a8b9dbf6b45ee" aria-controls="subsections-f35715843c55715e4e1a8b9dbf6b45ee"><label for="section-f35715843c55715e4e1a8b9dbf6b45ee"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 应急响应</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html">应急响应<i class="fas fa-check read-icon"></i></a><ul id="subsections-f35715843c55715e4e1a8b9dbf6b45ee" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html" class=""><input type="checkbox" id="section-7fff60dfdaa5ccf8d63424e07c41a0a2" aria-controls="subsections-7fff60dfdaa5ccf8d63424e07c41a0a2"><label for="section-7fff60dfdaa5ccf8d63424e07c41a0a2"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x00电子取证标准</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html">0x00电子取证标准<i class="fas fa-check read-icon"></i></a><ul id="subsections-7fff60dfdaa5ccf8d63424e07c41a0a2" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/2.0%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/2.0%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html">2.0电子取证标准<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><input type="checkbox" id="section-8f02c2961ea54145c9239661e2bd6b86" aria-controls="subsections-8f02c2961ea54145c9239661e2bd6b86"><label for="section-8f02c2961ea54145c9239661e2bd6b86"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x01现场勘查</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">0x01现场勘查<i class="fas fa-check read-icon"></i></a><ul id="subsections-8f02c2961ea54145c9239661e2bd6b86" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">现场看擦<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html" class=""><input type="checkbox" id="section-206bf0cd228714da00e540f18edc5db5" aria-controls="subsections-206bf0cd228714da00e540f18edc5db5"><label for="section-206bf0cd228714da00e540f18edc5db5"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x02电子取证</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html">0x02电子取证<i class="fas fa-check read-icon"></i></a><ul id="subsections-206bf0cd228714da00e540f18edc5db5" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html" class=""><input type="checkbox" id="section-89535f58c579af51d3b6f3412f0b0639" aria-controls="subsections-89535f58c579af51d3b6f3412f0b0639"><label for="section-89535f58c579af51d3b6f3412f0b0639"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 1磁盘镜像</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html">1磁盘镜像<i class="fas fa-check read-icon"></i></a><ul id="subsections-89535f58c579af51d3b6f3412f0b0639" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Clonezilla/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Clonezilla/index.html">Clonezilla<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Datanumen_disk_image/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Datanumen_disk_image/index.html">Datanumen_disk_image<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html">dd/dc3dd(linux)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/EnCase_forensic_imager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/EnCase_forensic_imager/index.html">EnCase_forensic_imager.<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/GetdataForensicImager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/GetdataForensicImager/index.html">GetdataForensicImager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Guymager/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Guymager/index.html">Guymager<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/%E9%95%9C%E5%83%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%90%84%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94/index.html">镜像类型及各产品特性对比<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html" class=""><input type="checkbox" id="section-69278680b5dd14dcc983e7a4af33c9fb" aria-controls="subsections-69278680b5dd14dcc983e7a4af33c9fb"><label for="section-69278680b5dd14dcc983e7a4af33c9fb"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 2磁盘挂载</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html">2磁盘挂载<i class="fas fa-check read-icon"></i></a><ul id="subsections-69278680b5dd14dcc983e7a4af33c9fb" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/Arsenal_Image_Mounter/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/Arsenal_Image_Mounter/index.html">Arsenal_Image_Mounter<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/GetData_Mount_Image_Pro/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/GetData_Mount_Image_Pro/index.html">GetData Mount Image Pro<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/mount_command/index.html">mount_command<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/OSFMount/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/OSFMount/index.html">OSFMount<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html">磁盘挂载工具特点对比表<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html" class=""><input type="checkbox" id="section-cc9bb9305c742d8ac2d982c0f1774f34" aria-controls="subsections-cc9bb9305c742d8ac2d982c0f1774f34"><label for="section-cc9bb9305c742d8ac2d982c0f1774f34"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 3文件恢复</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html">3文件恢复<i class="fas fa-check read-icon"></i></a><ul id="subsections-cc9bb9305c742d8ac2d982c0f1774f34" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/DiskGeniuswin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/DiskGeniuswin/index.html">DiskGenius(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/R-studio-networkwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/R-studio-networkwin/index.html">R-studio network(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/UFS-explorer-professional-recoverywinmaclinux/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/UFS-explorer-professional-recoverywinmaclinux/index.html">UFS explorer professional recovery(win/mac/linux)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html">WinHEX(win)<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html">数据恢复工具性能对比<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html" class=""><input type="checkbox" id="section-f72a1ee8fa05d9b7ba0bef33408333a8" aria-controls="subsections-f72a1ee8fa05d9b7ba0bef33408333a8"><label for="section-f72a1ee8fa05d9b7ba0bef33408333a8"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 4系统信息收集</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">4系统信息收集<i class="fas fa-check read-icon"></i></a><ul id="subsections-f72a1ee8fa05d9b7ba0bef33408333a8" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html">国标中电子取证相关要求及综述<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.html" class=""><input type="checkbox" id="section-7be924d72b6e5cb222a2efc9926f97c1" aria-controls="subsections-7be924d72b6e5cb222a2efc9926f97c1"><label for="section-7be924d72b6e5cb222a2efc9926f97c1"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 应急响应关键证据检索提取</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.html">应急响应关键证据检索提取<i class="fas fa-check read-icon"></i></a><ul id="subsections-7be924d72b6e5cb222a2efc9926f97c1" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">hosts文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html">linux下病毒查杀<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">linux软件包管理器文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html">web后门查杀<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html">启动项检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html">命令行历史记录<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">回收站文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html">安全策略检测<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html">异常端口查询<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html">映像劫持检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5/index.html">服务信息检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3%E6%A3%80%E6%9F%A5/index.html">浏览器相关检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%A3%80%E6%9F%A5/index.html">环境变量检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E6%A3%80%E6%9F%A5/index.html">系统共享检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5/index.html">系统日志查询<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%AE%A1%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%AE%A1%E6%9F%A5/index.html">系统用户审查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.html">系统进程检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html">计划任务检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">重点文件目录检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html">钩子检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html">防火墙规则检查<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-bba07b074ab74ed3d6f2efbb911ba96a" aria-controls="subsections-bba07b074ab74ed3d6f2efbb911ba96a"><label for="section-bba07b074ab74ed3d6f2efbb911ba96a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x03取证分析</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html">0x03取证分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-bba07b074ab74ed3d6f2efbb911ba96a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html">【译】取证调查：虚拟内存pagefile.sys<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-1c2e9721036bcac0690861bf4737d812" aria-controls="subsections-1c2e9721036bcac0690861bf4737d812"><label for="section-1c2e9721036bcac0690861bf4737d812"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x06取证辅助工具</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html">0x06取证辅助工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-1c2e9721036bcac0690861bf4737d812" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1EmergencyRocketPackage/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1EmergencyRocketPackage/index.html">EmergencyRocketPackage<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class="parent "><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b" checked><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-88c267f9c3b4a34d411e5a90254df00f" aria-controls="subsections-88c267f9c3b4a34d411e5a90254df00f"><label for="section-88c267f9c3b4a34d411e5a90254df00f"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 安卓样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">安卓样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-88c267f9c3b4a34d411e5a90254df00f" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/Mobsf_MAC_AVD_Android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/Mobsf_MAC_AVD_Android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html">Mobsf_MAC_AVD_Android动静态环境搭建排坑实战<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html" class="parent "><input type="checkbox" id="section-ffb6fc95178918741432017d1bacd773" aria-controls="subsections-ffb6fc95178918741432017d1bacd773" checked><label for="section-ffb6fc95178918741432017d1bacd773"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析基础</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">样本分析基础<i class="fas fa-check read-icon"></i></a><ul id="subsections-ffb6fc95178918741432017d1bacd773" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class="active"><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-10-使用内存取证狩猎恶意软件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html">恶意样本分析-10-恶意软件的混淆技术<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-12-使用内存取证检测高级恶意软件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html">恶意样本分析-7-调试恶意软件二进制文件<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html">恶意样本分析-8-恶意软件的功能和持久化<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html">恶意样本分析-9-代码注入和钩子<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html">恶意样本分析1-配置实验环境<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html">恶意样本分析2-基础静态分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html">恶意样本分析3-基础动态分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/index.html">恶意样本分析4-基础DLL分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html">恶意样本分析4-基础DLL分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-IDA%E4%BD%BF%E7%94%A8/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-IDA%E4%BD%BF%E7%94%A8/index.html">恶意样本分析6-IDA使用<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html" class=""><input type="checkbox" id="section-4f3e0dd41bb55c4672bf0e0faa840610" aria-controls="subsections-4f3e0dd41bb55c4672bf0e0faa840610"><label for="section-4f3e0dd41bb55c4672bf0e0faa840610"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析拓展</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html">样本分析拓展<i class="fas fa-check read-icon"></i></a><ul id="subsections-4f3e0dd41bb55c4672bf0e0faa840610" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html">介绍恶意软件中RC4加密的识别与解码<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8Microsoft%E7%9A%84FixIt%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BB%A5%E7%94%A8Microsoft%E7%9A%84FixIt%E4%BF%AE%E8%A1%A5%E7%A8%8B%E5%BA%8F/index.html">使用和滥用Microsoft的Fix It修补程序<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%9E%AB%E7%89%87%E9%BB%91%E5%B9%95-/index.html">真正的垫片黑幕<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html" class=""><input type="checkbox" id="section-f6788bc9550144d7d72dabbc9a05483a" aria-controls="subsections-f6788bc9550144d7d72dabbc9a05483a"><label for="section-f6788bc9550144d7d72dabbc9a05483a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析记录</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html">样本分析记录<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6788bc9550144d7d72dabbc9a05483a" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.html">样本分析-Trojan/Buzus“霸族”木马通过邮件传播<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-%E9%82%AE%E4%BB%B6%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E4%B8%AD%E5%8F%91%E7%8E%B0%E6%96%B0MYMOOD%E8%A0%95%E8%99%AB%E4%BC%A0%E6%92%AD%E5%9C%B0%E5%9D%80/index.html">样本分析-邮件恶意样本中发现新MYMOOD蠕虫传播地址<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-AZORult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-AZORult%E9%97%B4%E8%B0%8D%E8%BD%AF%E4%BB%B6%E5%80%9F%E5%8A%A9%E9%82%AE%E4%BB%B6%E5%9C%A8%E9%87%8E%E4%BC%A0%E6%92%AD/index.html">样本分析-邮件恶意样本发现AZORult间谍软件传播<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html" class=""><input type="checkbox" id="section-0714789af687990c9fc38b6319972875" aria-controls="subsections-0714789af687990c9fc38b6319972875"><label for="section-0714789af687990c9fc38b6319972875"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 情报跟踪</span></label><a class="padding" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html">情报跟踪<i class="fas fa-check read-icon"></i></a><ul id="subsections-0714789af687990c9fc38b6319972875" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-Chinese_Hackers_Target_SatelliteGeospatial_ImagingDefense_Companies/index.html" class=""><a class="padding" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/%E6%83%85%E6%8A%A5-Chinese_Hackers_Target_SatelliteGeospatial_ImagingDefense_Companies/index.html">黑客背后的&#34;Thrip&#34;网络间谍组织<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html" class=""><input type="checkbox" id="section-be882d7838b29bb55035a73606bd5fad" aria-controls="subsections-be882d7838b29bb55035a73606bd5fad"><label for="section-be882d7838b29bb55035a73606bd5fad"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 操作系统</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">操作系统<i class="fas fa-check read-icon"></i></a><ul id="subsections-be882d7838b29bb55035a73606bd5fad" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html" class=""><input type="checkbox" id="section-0a43e999527d8431e07a6c83274453d0" aria-controls="subsections-0a43e999527d8431e07a6c83274453d0"><label for="section-0a43e999527d8431e07a6c83274453d0"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu windows</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html">windows<i class="fas fa-check read-icon"></i></a><ul id="subsections-0a43e999527d8431e07a6c83274453d0" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html" class=""><input type="checkbox" id="section-4b5256e8689ed2826632ee3c944d042e" aria-controls="subsections-4b5256e8689ed2826632ee3c944d042e"><label for="section-4b5256e8689ed2826632ee3c944d042e"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu Powershell</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html">Powershell<i class="fas fa-check read-icon"></i></a><ul id="subsections-4b5256e8689ed2826632ee3c944d042e" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/index.html">[MS-GPSB]Window核心协议-安全扩展协议<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html" class=""><input type="checkbox" id="section-1dcf0d8ab382f88a0dec20aa11c7a8c6" aria-controls="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6"><label for="section-1dcf0d8ab382f88a0dec20aa11c7a8c6"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 组策略</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html">组策略<i class="fas fa-check read-icon"></i></a><ul id="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html">SID安全标识符<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
+          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html" class=""><input type="checkbox" id="section-6d101735907668b9565f2b24f0ce6829" aria-controls="subsections-6d101735907668b9565f2b24f0ce6829"><label for="section-6d101735907668b9565f2b24f0ce6829"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透测试</span></label><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fas fa-check read-icon"></i></a><ul id="subsections-6d101735907668b9565f2b24f0ce6829" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html" class=""><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><input type="checkbox" id="section-5c9f137f17add9d910670d26ee4e7fe7" aria-controls="subsections-5c9f137f17add9d910670d26ee4e7fe7"><label for="section-5c9f137f17add9d910670d26ee4e7fe7"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 漏洞复现</span></label><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">漏洞复现<i class="fas fa-check read-icon"></i></a><ul id="subsections-5c9f137f17add9d910670d26ee4e7fe7" class="morespace collapsible-menu">
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Vulhub%E5%AE%9E%E9%AA%8C_Weblogic_SSRF%E6%BC%8F%E6%B4%9E/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Vulhub%E5%AE%9E%E9%AA%8C_Weblogic_SSRF%E6%BC%8F%E6%B4%9E/index.html">CVE-2014-4210_Weblogic SSRF漏洞<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2017-11882_Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2017-11882_Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2020-0796_SMBGhost_Remote_Code_Execution/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2020-0796_SMBGhost_Remote_Code_Execution/index.html">CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html">CVE-2020-14645_weblogic_T3反序列化RCE复测<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%A4%BE%E7%A7%91/index.html" class=""><input type="checkbox" id="section-0c9d6aef0bca5a94a96f257f1cf48fc7" aria-controls="subsections-0c9d6aef0bca5a94a96f257f1cf48fc7"><label for="section-0c9d6aef0bca5a94a96f257f1cf48fc7"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 社科</span></label><a class="padding" href="/%E7%A4%BE%E7%A7%91/index.html">社科<i class="fas fa-check read-icon"></i></a><ul id="subsections-0c9d6aef0bca5a94a96f257f1cf48fc7" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%A4%BE%E7%A7%91/%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E5%8F%AA%E6%9C%89%E4%B8%80%E4%BB%B6%E5%8A%A0%E9%87%8C%E5%87%AF%E5%8B%92%E5%87%AF%E5%8B%92%E5%B8%95%E5%B8%95%E6%A3%AE/index.html" class=""><a class="padding" href="/%E7%A4%BE%E7%A7%91/%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E5%8F%AA%E6%9C%89%E4%B8%80%E4%BB%B6%E5%8A%A0%E9%87%8C%E5%87%AF%E5%8B%92%E5%87%AF%E5%8B%92%E5%B8%95%E5%B8%95%E6%A3%AE/index.html">《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森.<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%A4%BE%E7%A7%91/%E6%B1%A0%E8%B0%B7%E8%A3%95%E4%BA%8C%E8%80%83%E8%AF%95%E8%84%91%E7%A7%91%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html" class=""><a class="padding" href="/%E7%A4%BE%E7%A7%91/%E6%B1%A0%E8%B0%B7%E8%A3%95%E4%BA%8C%E8%80%83%E8%AF%95%E8%84%91%E7%A7%91%E5%AD%A6%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">《考试脑科学》池谷裕二<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%A7%91%E6%99%AE/index.html" class=""><input type="checkbox" id="section-e21a6523d8e7d52806b1ba653eca621d" aria-controls="subsections-e21a6523d8e7d52806b1ba653eca621d"><label for="section-e21a6523d8e7d52806b1ba653eca621d"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 科普</span></label><a class="padding" href="/%E7%A7%91%E6%99%AE/index.html">科普<i class="fas fa-check read-icon"></i></a><ul id="subsections-e21a6523d8e7d52806b1ba653eca621d" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html" class=""><a class="padding" href="/%E7%A7%91%E6%99%AE/%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1%E5%90%8E%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E7%9A%84%E5%87%A0%E4%BB%B6%E5%BF%85%E5%81%9A%E4%BA%8B/index.html">手机丢失后一定要做的几件必做事！<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html" class=""><input type="checkbox" id="section-055705051387ceccbed8d9222bbca770" aria-controls="subsections-055705051387ceccbed8d9222bbca770"><label for="section-055705051387ceccbed8d9222bbca770"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 红蓝对抗</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html">红蓝对抗<i class="fas fa-check read-icon"></i></a><ul id="subsections-055705051387ceccbed8d9222bbca770" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html" class=""><input type="checkbox" id="section-02c229b842fa25d657521450528e1e8c" aria-controls="subsections-02c229b842fa25d657521450528e1e8c"><label for="section-02c229b842fa25d657521450528e1e8c"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 系统入侵对抗研究</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html">系统入侵对抗研究<i class="fas fa-check read-icon"></i></a><ul id="subsections-02c229b842fa25d657521450528e1e8c" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html">CS X86 payload分析混淆加密<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_MYSQL%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_MYSQL%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html">Mysql提权小结<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html">windows计划任务隐藏-检查方式<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-8a7eb9f623652b0d0b74da1cc3bf1894" aria-controls="subsections-8a7eb9f623652b0d0b74da1cc3bf1894"><label for="section-8a7eb9f623652b0d0b74da1cc3bf1894"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 页面篡改分析</span></label><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html">页面篡改分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-8a7eb9f623652b0d0b74da1cc3bf1894" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-EVAL%E5%8A%A0%E5%AF%86/index.html">页面篡改分析-EVAL加密<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-http流量劫持页面篡分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-JS%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-JS%E7%9A%84eval%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-JS的eval()加密方式跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.html">页面篡改分析-基于sojson.v4混淆的页面篡思路分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/index.html">页面篡改分析-基于sojson.v4混淆的页面篡思路分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-服务器端重定向跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E7%9F%AD%E9%93%BE%E6%8E%A5%E5%A4%9A%E7%BA%A7%E8%B7%B3%E8%BD%AC/index.html">页面篡改分析-短链接多级跳转<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html">页面篡改分析-首次会话跳转菠菜页面篡改分析<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84BoCai%E9%A1%B5%E9%9D%A2/index.html" class=""><a class="padding" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90%E4%B8%80%E5%A4%84BoCai%E9%A1%B5%E9%9D%A2/index.html">页面篡改分析一处BoCai页面<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E7%BC%96%E7%A8%8B/index.html" class=""><input type="checkbox" id="section-49cd3dd12728d4fd4ae01f7800801d13" aria-controls="subsections-49cd3dd12728d4fd4ae01f7800801d13"><label for="section-49cd3dd12728d4fd4ae01f7800801d13"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 编程</span></label><a class="padding" href="/%E7%BC%96%E7%A8%8B/index.html">编程<i class="fas fa-check read-icon"></i></a><ul id="subsections-49cd3dd12728d4fd4ae01f7800801d13" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BC%96%E7%A8%8B/python/index.html" class=""><input type="checkbox" id="section-5af71f25f527f724bbea024bdc239142" aria-controls="subsections-5af71f25f527f724bbea024bdc239142"><label for="section-5af71f25f527f724bbea024bdc239142"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu python</span></label><a class="padding" href="/%E7%BC%96%E7%A8%8B/python/index.html">python<i class="fas fa-check read-icon"></i></a><ul id="subsections-5af71f25f527f724bbea024bdc239142" class="morespace collapsible-menu">
+          <li data-nav-id="/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html" class=""><a class="padding" href="/%E7%BC%96%E7%A8%8B/python/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html">scapy<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+        </ul>
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter"></div>
+        <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showVisitedLinks showFooter">
+        <div id="prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks showVisitedLinks">
+          <ul>
+            <li id="select-language-container" class="footerLangSwitch">
+              <div class="padding menu-control">
+                <i class="fas fa-language fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="select-language">Language</label>
+                  <select id="select-language" onchange="location = baseUri + this.value;">
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+            <li id="select-variant-container" class="footerVariantSwitch">
+              <div class="padding menu-control">
+                <i class="fas fa-paint-brush fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <label class="a11y-only" for="select-variant">Theme</label>
+                  <select id="select-variant" onchange="window.variants && variants.changeVariant( this.value );">
+                    <option id="auto" value="auto" selected>Auto</option>
+                  </select>
+                </div>
+                <div class="clear"></div>
+              </div>
+              <script>window.variants && variants.markSelectedVariant();</script>
+            </li>
+            <li class="footerVisitedLinks showVisitedLinks">
+              <div class="padding menu-control">
+                <i class="fas fa-history fa-fw"></i>
+                <span>&nbsp;</span>
+                <div class="control-style">
+                  <button onclick="clearHistory();">Clear History</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div id="footer" class="footerFooter showFooter">
+	    <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+        </div>
+      </div>
+    </aside>
+    <script src="/js/clipboard.min.js?1690920741" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690920741" defer></script>
+    <script>
+      function useMathJax( config ){
+        if( !Object.assign ){
+          
+          return;
+        }
+        window.MathJax = Object.assign( window.MathJax || {}, {
+          loader: {
+            load: ['[tex]/mhchem']
+          },
+          startup: {
+            elements: [
+              '.math'
+            ]
+          },
+          tex: {
+            inlineMath: [
+              ['$', '$'], 
+              ['\\(', '\\)']
+            ]
+          },
+          options: {
+            enableMenu: false 
+          }
+        }, config );
+      }
+      useMathJax( JSON.parse("{}") );
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="/js/d3/d3-color.min.js?1690920741" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690920741" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690920741" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690920741" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690920741" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690920741" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690920741" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690920741" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690920741" defer></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
+    <script>
+      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
+    </script>
+    <script>window.noZensmooth = true;</script>
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
+    <script>
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690920741  };
+    </script>
+    <script src="/js/theme.js?1690920741" defer></script>
+  </body>
+</html>
