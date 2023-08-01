@@ -10,18 +10,18 @@
     <title>恶意样本分析-8-恶意软件的功能和持久化 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析-8-恶意软件的功能和持久化 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1690870204" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690870204" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1690870204" rel="stylesheet">
-    <link href="/css/auto-complete.css?1690870204" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690870204" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1690870204" rel="stylesheet">
-    <link href="/css/fonts.css?1690870204" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690870204" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1690870204" rel="stylesheet">
-    <link href="/css/theme-auto.css?1690870204" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1690870204" rel="stylesheet">
-    <link href="/css/print.css?1690870204" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1690870204" rel="stylesheet">
-    <script src="/js/url.js?1690870204"></script>
-    <script src="/js/variant.js?1690870204"></script>
+    <link href="/css/fontawesome-all.min.css?1690870563" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1690870563" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1690870563" rel="stylesheet">
+    <link href="/css/auto-complete.css?1690870563" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1690870563" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1690870563" rel="stylesheet">
+    <link href="/css/fonts.css?1690870563" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1690870563" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1690870563" rel="stylesheet">
+    <link href="/css/theme-auto.css?1690870563" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1690870563" rel="stylesheet">
+    <link href="/css/print.css?1690870563" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1690870563" rel="stylesheet">
+    <script src="/js/url.js?1690870563"></script>
+    <script src="/js/variant.js?1690870563"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -98,85 +98,85 @@
 <p>在恶意软件分析中，你会遇到的最简单的恶意软件类型是下载器。下载器是一个从互联网下载另一个恶意软件组件并在系统上执行的程序。它通过调用UrlDownloadToFile()API，将文件下载到磁盘上。一旦下载，它就会使用ShellExecute()、WinExec()或CreateProcess()API调用来执行下载的组件。通常情况下，你会发现下载器被用作攻击壳代码的一部分。</p>
 <p>下面的截图显示了一个32位的恶意软件下载器使用UrlDownloadToFileA()和ShellExecuteA()来下载和执行一个恶意软件二进制。为了确定正在下载恶意软件二进制文件的URL，在调用UrlDownloadToFileA()时设置了一个断点。运行代码后，断点被触发，如以下截图所示。UrlDownloadToFileA()的第二个参数显示将下载恶意软件可执行文件（wowreg32.exe）的URL，第三个参数指定下载的可执行文件在磁盘上的位置。在这种情况下，下载器将下载的可执行文件保存在%TEMP%目录下，称为temp.exe。</p>
 <p>
-<a href="#image-ce85b736119951be0fe5eafaf6c53c48" class="lightbox-link">
+<a href="#image-8f8335f154855fa0b9a14f84d768ece9" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220308145245581.png" alt="image-20220308145245581" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ce85b736119951be0fe5eafaf6c53c48">
+<a href="javascript:history.back();" class="lightbox" id="image-8f8335f154855fa0b9a14f84d768ece9">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220308145245581.png" alt="image-20220308145245581" class="lightbox-image" loading="lazy">
 </a></p>
 <p>将恶意软件的可执行文件下载到%TEMP%目录后，下载者通过调用ShellExecuteA()API来执行它，如下面的截图所示。另外，恶意软件也可以使用WinExec()或CreateProcess()API来执行下载的文件。</p>
 <p>
-<a href="#image-27c7c902993d9d09316830f12c526d7f" class="lightbox-link">
+<a href="#image-64bcb988a5691c85bc81431d197fe542" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220308145547808.png" alt="image-20220308145547808" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-27c7c902993d9d09316830f12c526d7f">
+<a href="javascript:history.back();" class="lightbox" id="image-64bcb988a5691c85bc81431d197fe542">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220308145547808.png" alt="image-20220308145547808" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在调试恶意二进制文件时，最好是运行监控工具 (如Wireshark）和模拟工具（如InetSim），这样你就可以 观察恶意软件的行动并捕获其产生的流量。</p>
 <h4 id="12-释放器">1.2 释放器</h4>
 <p>Dropper是一个将额外的恶意软件组件嵌入自身的程序。当执行时，下载器会提取恶意软件组件并将其下载到磁盘。下拉程序 通常在资源部分嵌入额外的二进制文件。为了提取嵌入的 为了提取嵌入的可执行文件，投放器使用FindResource(), LoadResource(), LockResource()和 SizeOfResource()的API调用。在下面的截图中，Resource Hacker工具（在第2章静态分析中涉及到 第2章，静态分析）显示了一个PE文件在恶意软件样本的资源部分的存在。 恶意软件样本的资源部分存在一个PE文件。在这种情况下，资源类型是一个DLL。</p>
 <p>
-<a href="#image-dbf6a959b6f793d5ac821de3b4bfbda5" class="lightbox-link">
+<a href="#image-e360049bb188c907849ef4d396408169" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220308145720876.png" alt="image-20220308145720876" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-dbf6a959b6f793d5ac821de3b4bfbda5">
+<a href="javascript:history.back();" class="lightbox" id="image-e360049bb188c907849ef4d396408169">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220308145720876.png" alt="image-20220308145720876" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在x64dbg中加载恶意二进制文件并查看对API调用的引用（在前一章中涉及），显示对资源相关API调用的引用。这是恶意软件从资源部分提取内容的一个迹象。在这一点上，你可以在调用FindResourceA()API的地址上设置一个断点，如图所示。</p>
 <p>
-<a href="#image-9cd4a29b6dfc52e4c0afe81a5b7b81fd" class="lightbox-link">
+<a href="#image-6e716c9099f84a8df21bd7185379043b" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220308145747138.png" alt="image-20220308145747138" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9cd4a29b6dfc52e4c0afe81a5b7b81fd">
+<a href="javascript:history.back();" class="lightbox" id="image-6e716c9099f84a8df21bd7185379043b">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220308145747138.png" alt="image-20220308145747138" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在下面的截图中，运行程序后，由于上一步设置的断点，执行在FindResourceA()API处暂停。传递给FindResourceA()API的第二和第三个参数告诉你，该恶意软件正试图找到DLL/101资源，如下所示。</p>
 <p>
-<a href="#image-ab763942ba2d6bb5487ca3cc86a3b9ca" class="lightbox-link">
+<a href="#image-339d4fd975fbe6019ea19c1c5fcba1e6" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315091324085.png" alt="image-20220315091324085" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ab763942ba2d6bb5487ca3cc86a3b9ca">
+<a href="javascript:history.back();" class="lightbox" id="image-339d4fd975fbe6019ea19c1c5fcba1e6">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315091324085.png" alt="image-20220315091324085" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在执行FindResourceA()后，其返回值（存储在EAX中），即指定资源信息块的句柄，被作为第二个参数传递给LoadResource()API。LoadResource()检索与该资源相关的数据的句柄。LoadResource()的返回值包含检索到的句柄，然后作为参数传递给LockResource()API，后者获得实际资源的指针。在下面的截图中，调用LockResource()后，执行立即暂停。检查转储窗口中的返回值（存储在EAX中），显示了从资源部分检索到的PE可执行内容。</p>
 <p>
-<a href="#image-03c0c146bc8c95aba0e31f2c3ba764e3" class="lightbox-link">
+<a href="#image-ef5c06ced88db4298b336258e179d7db" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315091955415.png" alt="image-20220315091955415" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-03c0c146bc8c95aba0e31f2c3ba764e3">
+<a href="javascript:history.back();" class="lightbox" id="image-ef5c06ced88db4298b336258e179d7db">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315091955415.png" alt="image-20220315091955415" class="lightbox-image" loading="lazy">
 </a></p>
 <p>一旦它检索到资源，恶意软件使用SizeofResource()API确定资源（PE文件）的大小。接下来，恶意软件使用CreateFileA在磁盘上投放了一个DLL，如下所示。</p>
 <p>
-<a href="#image-1ea65c69deee5078559844011a19d93d" class="lightbox-link">
+<a href="#image-182a01b83df7a1937f3499b000a57e3f" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315092112145.png" alt="image-20220315092112145" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1ea65c69deee5078559844011a19d93d">
+<a href="javascript:history.back();" class="lightbox" id="image-182a01b83df7a1937f3499b000a57e3f">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315092112145.png" alt="image-20220315092112145" class="lightbox-image" loading="lazy">
 </a></p>
 <p>然后使用 WriteFile() API 将提取的 PE 内容写入 DLL。在下面的截图中，第一个参数0x5c是DLL的句柄，第二个参数0x00404060是检索到的资源（PE文件）的地址，第三个参数0x1c00是资源的大小，这是用调用SizeOfResource()确定的。</p>
 <p>
-<a href="#image-3336ceda568d03f6c688d72d25b01874" class="lightbox-link">
+<a href="#image-4364631c3df538b8d11e625695ec3941" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315092139375.png" alt="image-20220315092139375" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3336ceda568d03f6c688d72d25b01874">
+<a href="javascript:history.back();" class="lightbox" id="image-4364631c3df538b8d11e625695ec3941">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315092139375.png" alt="image-20220315092139375" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="121-逆向64位dropper释放器">1.2.1 逆向64位dropper释放器</h5>
 <p>下面是一个64位恶意软件投放器（称为黑客之门）的例子。如果你还不熟悉调试64位样本，请参考前一章的2.7节，调试64位恶意软件。该恶意软件使用相同的API函数集来寻找和提取资源；不同的是，前几个参数被放置在寄存器中，而不是推到堆栈中（因为它是一个64位二进制文件）。恶意软件首先使用FindResourceW()API找到BIN/100资源，如下所示。</p>
 <p>
-<a href="#image-0738e086802f5e9e8e79c93433ea1e1d" class="lightbox-link">
+<a href="#image-24184520eba610793a4066158a67e2f5" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315093013220.png" alt="image-20220315093013220" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0738e086802f5e9e8e79c93433ea1e1d">
+<a href="javascript:history.back();" class="lightbox" id="image-24184520eba610793a4066158a67e2f5">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315093013220.png" alt="image-20220315093013220" class="lightbox-image" loading="lazy">
 </a></p>
 <p>然后，恶意软件使用LoadResource()检索与资源相关的数据的句柄，然后它使用LockResource()获得实际资源的指针。在下面的截图中，检查LockResource()API的返回值（RAX）显示了提取的资源。在这种情况下，64位恶意软件投放者从其资源部分提取DLL，随后它将DLL投放到磁盘上。</p>
 <p>
-<a href="#image-82cf2f99467265dd846c9a61a9c05847" class="lightbox-link">
+<a href="#image-c2894f1c5023310adb1b362bf6053217" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315093035998.png" alt="image-20220315093035998" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-82cf2f99467265dd846c9a61a9c05847">
+<a href="javascript:history.back();" class="lightbox" id="image-c2894f1c5023310adb1b362bf6053217">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315093035998.png" alt="image-20220315093035998" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="13-键盘记录器">1.3 键盘记录器</h4>
@@ -191,55 +191,55 @@
 <p>下面的截图显示了一个键盘记录器的代码片段。该键盘记录器通过调用地址为0x401441的GetKeyState()API来确定Shift键的状态（如果它是向上或向下）。在地址0x401459，键盘记录器调用GetAsyncKeyState()，这是一个循环的一部分，在循环的每个迭代中，虚拟键代码（从键代码数组中读取）被作为参数传递，以确定每个键的状态。在地址0x401463处，一个测试操作（与AND操作相同）被执行。
 在地址0x401463，对GetAsyncKeyState()的返回值进行测试操作（与AND操作相同），以确定最重要的位是否被设置。如果最重要的位被设置了，这就表明按键被按下了。如果一个特定的键被按下，那么键盘记录器就会调用地址为0x40146c的GetKeyState()来检查Caps Lock键的状态（以检查它是否被打开）。使用这种技术，恶意软件可以确定在键盘上输入的是大写字母、小写字母、数字还是特殊字符。</p>
 <p>
-<a href="#image-a4e214e259be70d2594d01ba030db1d9" class="lightbox-link">
+<a href="#image-9ea6133441b6d5be8bfff7f429ca4f6b" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315093439560.png" alt="image-20220315093439560" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a4e214e259be70d2594d01ba030db1d9">
+<a href="javascript:history.back();" class="lightbox" id="image-9ea6133441b6d5be8bfff7f429ca4f6b">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315093439560.png" alt="image-20220315093439560" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的截图显示了该循环的结束。从代码中可以看出，该恶意软件在0x5c（92）键代码中进行迭代。在这种情况下，var_4作为索引进入要检查的键代码数组，它在循环结束时被递增，只要var_4的值小于0x5c（92），循环就会继续。</p>
 <p>
-<a href="#image-8e7488b17d77023df0f8fea78bc6f5d8" class="lightbox-link">
+<a href="#image-8a37e7d3350f188e346f25058b8add5e" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315102442124.png" alt="image-20220315102442124" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8e7488b17d77023df0f8fea78bc6f5d8">
+<a href="javascript:history.back();" class="lightbox" id="image-8a37e7d3350f188e346f25058b8add5e">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315102442124.png" alt="image-20220315102442124" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="132-使用setwindowshookex的键盘记录器">1.3.2 使用SetWindowsHookEx()的键盘记录器</h5>
 <p>另一种常见的键盘记录器技术是，它安装一个函数（称为钩子程序）来监测键盘事件（如按键）。在这种方法中，恶意程序注册了一个函数（钩子程序），当键盘事件被触发时，该函数将被通知，该函数可以将按键记录到一个文件或通过网络发送。恶意程序使用SetWindowsHookEx()API来指定要监控的事件类型（如键盘、鼠标等）以及当特定类型的事件发生时应该被通知的钩子程序。钩子程序可以包含在一个DLL或当前模块中。在下面的截图中，恶意软件样本通过调用SetWindowsHookEx()和WH_KEYBOARD_LL参数（恶意软件也可能使用WH_KEYBOARD）为低级别的键盘事件注册了一个钩子过程。第二个参数
 第二个参数，offset hook_proc，是挂钩过程的地址。当键盘事件发生时，这个函数将被通知。检查这个函数可以了解到键盘记录器是如何和在哪里记录击键的。第三个参数是包含钩子程序的模块（如DLL或当前模块）的句柄。第四个参数，0，指定钩子程序将与同一桌面上的所有现有线程相关。</p>
 <p>
-<a href="#image-b2771fcdaf82e47ff4b8e179935186d1" class="lightbox-link">
+<a href="#image-135e93aa2911f3b09759da868634540e" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315102555260.png" alt="image-20220315102555260" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b2771fcdaf82e47ff4b8e179935186d1">
+<a href="javascript:history.back();" class="lightbox" id="image-135e93aa2911f3b09759da868634540e">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315102555260.png" alt="image-20220315102555260" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="14-通过可移动媒体复制恶意软件">1.4 通过可移动媒体复制恶意软件</h4>
 <p>攻击者可以通过感染可移动媒体（如USB驱动器）来传播其恶意程序。攻击者可以利用自动运行功能（或利用自动运行中的漏洞），在被感染的媒体被插入时自动感染其他系统。这种技术通常涉及复制文件或修改存储在可移动媒体上的现有文件。一旦恶意软件将恶意文件复制到可移动媒体上，它可以使用各种技巧使该文件看起来像一个合法文件，以欺骗用户在USB插入不同系统时执行该文件。感染可移动媒体的技术使攻击者能够在断开连接的网络或有空气阻隔的网络上传播他们的恶意软件。</p>
 <p>在下面的例子中，恶意软件调用GetLogicalDriveStringsA()来获取计算机上有效驱动器的详细信息。调用GetLogicDriveStringsA()后，可用驱动器的列表被存储在输出缓冲区RootPathName中，该缓冲区被作为第二个参数传递给GetLogicalDriveStringsA()。下面的截图显示了调用GetLogicDriveStringsA()后的三个驱动器：C:\、D:\和E:\，其中E:\是USB驱动器。一旦它确定了驱动器的列表，它就会遍历每个驱动器以确定它是否是一个可移动的驱动器。它通过比较GetDriveTypeA()的返回值和DRIVE_REMOVABLE（常量值2）来确定。</p>
 <p>
-<a href="#image-40d60e7b9b444c9c078d635399e6fd14" class="lightbox-link">
+<a href="#image-0cfffcb1197d2651f8845b7586ba48ad" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130447778.png" alt="image-20220315130447778" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-40d60e7b9b444c9c078d635399e6fd14">
+<a href="javascript:history.back();" class="lightbox" id="image-0cfffcb1197d2651f8845b7586ba48ad">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130447778.png" alt="image-20220315130447778" class="lightbox-image" loading="lazy">
 </a></p>
 <p>如果检测到可移动媒体，恶意软件会使用CopyFileA()API将自己（可执行文件）复制到可移动媒体（USB驱动器）。为了隐藏可移动媒体上的文件，它调用SetFileAttributesA()API并传递给它一个常量值FILE_ATTRIBUTE_HIDDEN。</p>
 <p>
-<a href="#image-88dadd3f1ea4b1d52776d22869d62617" class="lightbox-link">
+<a href="#image-f9bc5ee40fbf18a1c46f439b6274bd61" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130509691.png" alt="image-20220315130509691" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-88dadd3f1ea4b1d52776d22869d62617">
+<a href="javascript:history.back();" class="lightbox" id="image-f9bc5ee40fbf18a1c46f439b6274bd61">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130509691.png" alt="image-20220315130509691" class="lightbox-image" loading="lazy">
 </a></p>
 <p>将恶意文件复制到可移动媒体后，攻击者可以等待用户双击复制的文件，或者可以利用自动运行功能。在Windows Vista之前，恶意软件除了复制可执行文件外，还将包含Autorun命令的autorun.inf文件复制到可移动媒体上。这些自动运行命令允许攻击者在媒体被插入系统时自动启动程序（无需用户干预）。从Windows Vista开始，通过Autorun执行恶意二进制文件在默认情况下是不可能的，所以攻击者必须使用不同的技术（如修改注册表项）或利用一个漏洞，这可能允许恶意二进制文件自动执行。</p>
 <p>一些恶意软件程序依靠欺骗用户来执行恶意二进制文件，而不是利用自动运行功能。安朵美达就是这样一个恶意软件的例子。为了证明安朵美达使用的伎俩，请看下面的截图，它显示了将2GB的干净USB驱动器插入感染了安朵美达的系统之前的内容。USB的根目录包括一个名为test.txt的文件和一个名为testdir的文件夹。</p>
 <p>
-<a href="#image-b8838612a9d94fe62254b71e235208ec" class="lightbox-link">
+<a href="#image-cf32e3f8a0ad9196a71f68f533f666b1" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130539679.png" alt="image-20220315130539679" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b8838612a9d94fe62254b71e235208ec">
+<a href="javascript:history.back();" class="lightbox" id="image-cf32e3f8a0ad9196a71f68f533f666b1">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130539679.png" alt="image-20220315130539679" class="lightbox-image" loading="lazy">
 </a></p>
 <p>一旦干净的USB驱动器被插入被安朵美达感染的计算机，它就会执行以下步骤来感染USB驱动器。</p>
@@ -250,28 +250,28 @@
 E:\á目录的创建。从现在开始，我将把这个由恶意软件创建的目录称为未命名的目录（文件夹）。</li>
 </ol>
 <p>
-<a href="#image-bedd263018dd27a6ab9f9f2e5ed10455" class="lightbox-link">
+<a href="#image-bc8f57390690b66063724f97ab458fd1" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130634765.png" alt="image-20220315130634765" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-bedd263018dd27a6ab9f9f2e5ed10455">
+<a href="javascript:history.back();" class="lightbox" id="image-bc8f57390690b66063724f97ab458fd1">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130634765.png" alt="image-20220315130634765" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的屏幕截图显示了未命名的文件夹。这是在上一步骤中创建的具有xA0扩展ascii代码的文件夹。</p>
 <p>
-<a href="#image-f9d0583617f1da13b20277d1299b83cc" class="lightbox-link">
+<a href="#image-6c7395a81ef6d3f9f32ea647e05ba117" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130648123.png" alt="image-20220315130648123" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f9d0583617f1da13b20277d1299b83cc">
+<a href="javascript:history.back();" class="lightbox" id="image-6c7395a81ef6d3f9f32ea647e05ba117">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130648123.png" alt="image-20220315130648123" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="4">
 <li>然后，它通过调用SetFileAttributesW()API，将这个未命名的文件夹的属性设置为隐藏，使其成为受保护的操作系统文件夹。这就隐藏了可移动媒体上的文件夹。</li>
 </ol>
 <p>
-<a href="#image-11f9f9994f08fae2260ca0a296994f28" class="lightbox-link">
+<a href="#image-ff270557de3755801a07372374ab80d0" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130706150.png" alt="image-20220315130706150" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-11f9f9994f08fae2260ca0a296994f28">
+<a href="javascript:history.back();" class="lightbox" id="image-ff270557de3755801a07372374ab80d0">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130706150.png" alt="image-20220315130706150" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="5">
@@ -279,56 +279,56 @@ E:\á目录的创建。从现在开始，我将把这个由恶意软件创建的
 惯例<!-- raw HTML omitted -->.1，并将PE可执行内容（恶意DLL）写入该文件（使用CreateFile（）和WriteFile（）API）。结果，在未命名的文件夹内创建了一个名字为<!-- raw HTML omitted -->.1的DLL，如图所示。</li>
 </ol>
 <p>
-<a href="#image-a70ae876f025cdcdbcd89103a0057e49" class="lightbox-link">
+<a href="#image-4a63b4cf39ef325a72e8b3940efc6c36" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130727283.png" alt="image-20220315130727283" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a70ae876f025cdcdbcd89103a0057e49">
+<a href="javascript:history.back();" class="lightbox" id="image-4a63b4cf39ef325a72e8b3940efc6c36">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130727283.png" alt="image-20220315130727283" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="6">
 <li>然后，该恶意软件在未命名的文件夹内创建一个desktop.ini文件，并写入图标信息，为未命名的文件夹分配一个自定义图标。desktop.ini的内容显示在这里。</li>
 </ol>
 <p>
-<a href="#image-14136b6c5a337288774b7fb29b26adfd" class="lightbox-link">
+<a href="#image-82a9d6054fb606d2210291e8164e0be2" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130800524.png" alt="image-20220315130800524" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-14136b6c5a337288774b7fb29b26adfd">
+<a href="javascript:history.back();" class="lightbox" id="image-82a9d6054fb606d2210291e8164e0be2">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130800524.png" alt="image-20220315130800524" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的截图显示了未命名的文件夹的图标，它已被改变为驱动器图标。另外，请注意，未命名的文件夹现在是隐藏的。换句话说，这个文件夹只有在文件夹选项被配置为显示隐藏的和受保护的操作系统文件时才会显示出来。</p>
 <p>
-<a href="#image-c0c0075a66a9a7993531aca8b5bed6f6" class="lightbox-link">
+<a href="#image-88f823a26164be51e5cdae047c3599c7" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130817788.png" alt="image-20220315130817788" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c0c0075a66a9a7993531aca8b5bed6f6">
+<a href="javascript:history.back();" class="lightbox" id="image-88f823a26164be51e5cdae047c3599c7">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130817788.png" alt="image-20220315130817788" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="7">
 <li>然后，恶意软件调用MoveFile()API，将所有的文件和文件夹（在这种情况下，test.txt和testdir）从根目录移动到未命名的隐藏文件夹。在复制了用户的文件和文件夹后，USB驱动器的根目录看起来就像这里所示。</li>
 </ol>
 <p>
-<a href="#image-4680b2bdd41eec616a7aae5af8f4802d" class="lightbox-link">
+<a href="#image-50908371b71f95207f901c26a284820b" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130919807.png" alt="image-20220315130919807" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4680b2bdd41eec616a7aae5af8f4802d">
+<a href="javascript:history.back();" class="lightbox" id="image-50908371b71f95207f901c26a284820b">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130919807.png" alt="image-20220315130919807" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="8">
 <li>然后，该恶意软件创建了一个指向rundll32.exe的快捷链接，而rundll32.exe的参数是<!-- raw HTML omitted -->.1文件（这就是之前丢在未命名文件夹中的DLL）。下面的截图显示了快捷方式文件的外观，以及显示通过rundll32.exe加载恶意DLL的方式的属性。换句话说，当快捷方式文件被双击时，恶意DLL会通过rundll32.exe加载，从而执行恶意代码。</li>
 </ol>
 <p>
-<a href="#image-0503dd23032981b457d680c59f8b3009" class="lightbox-link">
+<a href="#image-08edc2f3d2000f222db4104da3c7e1eb" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130943690.png" alt="image-20220315130943690" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0503dd23032981b457d680c59f8b3009">
+<a href="javascript:history.back();" class="lightbox" id="image-08edc2f3d2000f222db4104da3c7e1eb">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315130943690.png" alt="image-20220315130943690" class="lightbox-image" loading="lazy">
 </a></p>
 <p>利用上述操作，安朵美达玩了一个心理把戏。现在，让我们了解一下，当用户在一个干净的系统上插入被感染的USB驱动器时会发生什么。下面的截图显示了被感染的USB驱动器的内容，它显示给正常用户（默认的文件夹选项）。请注意，用户看不到未命名的文件夹，用户的文件/文件夹（在我们的例子中，test.txt和testdir）在根驱动器中丢失。该恶意软件正在欺骗用户，使其相信该快捷方式文件是一个驱动器。</p>
 <p>
-<a href="#image-f3f2ce2740647ea2e1e08e7799692044" class="lightbox-link">
+<a href="#image-5d032cb86790c4346bae2c7625eb93fa" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131008061.png" alt="image-20220315131008061" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f3f2ce2740647ea2e1e08e7799692044">
+<a href="javascript:history.back();" class="lightbox" id="image-5d032cb86790c4346bae2c7625eb93fa">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131008061.png" alt="image-20220315131008061" class="lightbox-image" loading="lazy">
 </a></p>
 <p>当用户发现USB根驱动器中的所有重要文件和文件夹丢失时，用户极有可能双击该快捷方式文件（认为它是一个驱动器）来寻找丢失的文件。由于双击该快捷方式，rundll32.exe将从未命名的隐藏文件夹（用户不可见）中加载恶意DLL并感染系统。</p>
@@ -342,20 +342,20 @@ InternetOpen()、InternetOpenUrl()和InternetReadFile()等API函数，从攻击�
 它通过调用GetComputerName()API获得）与一个硬编码的字符串。每当你遇到二进制文件中使用的硬编码的User-Agent字符串，它可以成为一个优秀的网络指标。</li>
 </ol>
 <p>
-<a href="#image-1b4fac0feeae3b53a44b184372563c92" class="lightbox-link">
+<a href="#image-90b3ef970932feac488179e097f674bb" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131134599.png" alt="image-20220315131134599" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1b4fac0feeae3b53a44b184372563c92">
+<a href="javascript:history.back();" class="lightbox" id="image-90b3ef970932feac488179e097f674bb">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131134599.png" alt="image-20220315131134599" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="2">
 <li>然后它调用InternetOpenUrlA()连接到一个URL。你可以通过检查第二个参数来确定它所连接的URL的名称，如下所示。</li>
 </ol>
 <p>
-<a href="#image-9609d11a78580ead76e02ad684d608e4" class="lightbox-link">
+<a href="#image-de3708c804d8717be71039c9cb33c125" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131239213.png" alt="image-20220315131239213" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9609d11a78580ead76e02ad684d608e4">
+<a href="javascript:history.back();" class="lightbox" id="image-de3708c804d8717be71039c9cb33c125">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131239213.png" alt="image-20220315131239213" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="3">
@@ -363,30 +363,30 @@ InternetOpen()、InternetOpenUrl()和InternetReadFile()等API函数，从攻击�
 调用InternetOpenUrlA()后产生的网络流量。在这个阶段，恶意软件与C2服务器进行通信以读取HTML内容。</li>
 </ol>
 <p>
-<a href="#image-596e2ee32aa135f0b85b0680bad6818d" class="lightbox-link">
+<a href="#image-b6d87abba6c34ea5ffa2a3ecc419efda" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131258571.png" alt="image-20220315131258571" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-596e2ee32aa135f0b85b0680bad6818d">
+<a href="javascript:history.back();" class="lightbox" id="image-b6d87abba6c34ea5ffa2a3ecc419efda">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131258571.png" alt="image-20220315131258571" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="4">
 <li>然后它使用InternetReadFile()API调用检索网页的内容。这个函数的第二个参数指定了接收数据的缓冲区的指针。下面的截图显示了调用InternetReadFile()后检索到的HTML内容。</li>
 </ol>
 <p>
-<a href="#image-cb4526282d062952af3735a81963b649" class="lightbox-link">
+<a href="#image-83916382d26261af9103e230fdd7a688" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131321903.png" alt="image-20220315131321903" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-cb4526282d062952af3735a81963b649">
+<a href="javascript:history.back();" class="lightbox" id="image-83916382d26261af9103e230fdd7a688">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131321903.png" alt="image-20220315131321903" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="5">
 <li>从检索的HTML内容中，后门寻找<!-- raw HTML omitted --> HTML标签内的特定内容。执行检查div标签内的内容的代码显示在以下截图中。如果所需的内容不存在，该恶意软件不做任何事情，并继续定期检查内容。</li>
 </ol>
 <p>
-<a href="#image-46631f4a6ff5dd8d82cd22a1d080010c" class="lightbox-link">
+<a href="#image-84b48c8a35729d70e2ccd0fca3f03467" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131349857.png" alt="image-20220315131349857" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-46631f4a6ff5dd8d82cd22a1d080010c">
+<a href="javascript:history.back();" class="lightbox" id="image-84b48c8a35729d70e2ccd0fca3f03467">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131349857.png" alt="image-20220315131349857" class="lightbox-image" loading="lazy">
 </a></p>
 <p>具体地说，恶意软件希望将内容以特定格式包含在div标签中，如下面的代码所示。如果在检索的HTML内容中发现以下格式，它将提取加密字符串(KxAikuzeG:F6PXR3vFqffP:H)，该字符串包含在之间:</p>
@@ -394,10 +394,10 @@ InternetOpen()、InternetOpenUrl()和InternetReadFile()等API函数，从攻击�
 <li>然后将提取的加密字符串作为参数传给解密函数，该函数使用自定义的加密算法对字符串进行解密。你将在第9章 &ldquo;恶意软件混淆技术 &ldquo;中了解更多关于恶意软件的加密技术。下面的截图显示了调用解密函数后的解密字符串。解密字符串后，后门检查解密字符串的第一个字符是否为J，如果满足这个条件，那么恶意软件就会调用sleep()API来睡眠一段特定时间。简而言之，解密字符串的第一个字符作为一个命令代码，它告诉后门执行睡眠操作。</li>
 </ol>
 <p>
-<a href="#image-56d9e8a5a889e9496a1fecebdbdc73e2" class="lightbox-link">
+<a href="#image-0b29ab0ffda6de39c7c86fded25d3b13" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131523676.png" alt="image-20220315131523676" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-56d9e8a5a889e9496a1fecebdbdc73e2">
+<a href="javascript:history.back();" class="lightbox" id="image-0b29ab0ffda6de39c7c86fded25d3b13">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131523676.png" alt="image-20220315131523676" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="7">
@@ -405,10 +405,10 @@ InternetOpen()、InternetOpenUrl()和InternetReadFile()等API函数，从攻击�
 第二个字符是o，如图所示。如果满足这个条件，那么它将提取从第三个字符开始的URL，并使用UrlDownloadToFile()从该URL下载一个可执行文件。然后它使用CreateProcess()API来执行下载的文件。在这种情况下，前两个字符Do作为命令代码，告诉后门下载并执行该文件。</li>
 </ol>
 <p>
-<a href="#image-ec43a11e0a09b375228443330a99aa2f" class="lightbox-link">
+<a href="#image-6693654fd08ebbd7b6c94fcba7baf70a" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131546718.png" alt="image-20220315131546718" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ec43a11e0a09b375228443330a99aa2f">
+<a href="javascript:history.back();" class="lightbox" id="image-6693654fd08ebbd7b6c94fcba7baf70a">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131546718.png" alt="image-20220315131546718" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -426,20 +426,20 @@ InternetOpen()、InternetConnect()、HttpOpenRequest()、HttpSendRequest()和Int
 第三个参数，IPPROTO_TCP，指定正在使用的协议（本例中为TCP）。</li>
 </ol>
 <p>
-<a href="#image-14846858c85c4b04d24fb1c933718bf2" class="lightbox-link">
+<a href="#image-83f4887b16f6a6e6d3a8a2c8d7223363" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131741477.png" alt="image-20220315131741477" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-14846858c85c4b04d24fb1c933718bf2">
+<a href="javascript:history.back();" class="lightbox" id="image-83f4887b16f6a6e6d3a8a2c8d7223363">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131741477.png" alt="image-20220315131741477" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="2">
 <li>在建立与套接字的连接之前，恶意软件使用GetHostByName()API解析了C2域名的地址。这是有道理的，因为远程地址和端口需要提供给Connect()API来建立连接。GetHostByName()的返回值（EAX）是一个指向名为hostent的结构的指针，该结构包含解析的IP地址。</li>
 </ol>
 <p>
-<a href="#image-3346edff79a75d2eab8ba159f4178bbd" class="lightbox-link">
+<a href="#image-275f1ae3f8429230945b228d9d58c5be" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131811585.png" alt="image-20220315131811585" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3346edff79a75d2eab8ba159f4178bbd">
+<a href="javascript:history.back();" class="lightbox" id="image-275f1ae3f8429230945b228d9d58c5be">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131811585.png" alt="image-20220315131811585" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="3">
@@ -447,46 +447,46 @@ InternetOpen()、InternetConnect()、HttpOpenRequest()、HttpSendRequest()和Int
 inet_ntoa() API，该API将IP地址转换成ASCII字符串，如192.168.1.100。然后调用inet_addr()，它将IP地址字符串（如192.168.1.100）转换为可以被Connect()API使用。然后调用Connect() API来建立与套接字的连接。</li>
 </ol>
 <p>
-<a href="#image-710138f35b8e6ded03edccd96a270d38" class="lightbox-link">
+<a href="#image-39a5ef8238cc497e40a0a8deb16afde0" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131832719.png" alt="image-20220315131832719" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-710138f35b8e6ded03edccd96a270d38">
+<a href="javascript:history.back();" class="lightbox" id="image-39a5ef8238cc497e40a0a8deb16afde0">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131832719.png" alt="image-20220315131832719" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="4">
 <li>然后，恶意软件收集系统信息，使用XOR加密算法对其进行加密（加密技术将在第9章介绍），并使用Send()API调用将其发送到C2。发送（）API的第二个参数显示了将被发送到C2服务器的加密内容。</li>
 </ol>
 <p>
-<a href="#image-ef3416eabe0060db70dcf4363b96ae2a" class="lightbox-link">
+<a href="#image-9881c1698683fe482125316f64225ed9" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131859069.png" alt="image-20220315131859069" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ef3416eabe0060db70dcf4363b96ae2a">
+<a href="javascript:history.back();" class="lightbox" id="image-9881c1698683fe482125316f64225ed9">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131859069.png" alt="image-20220315131859069" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的截图显示了调用Send()API后捕获的加密网络流量。</p>
 <p>
-<a href="#image-247d748e8667538725d792a4bb1cbcaf" class="lightbox-link">
+<a href="#image-0d9ac05823ee04bbaae8c66caf133911" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131917498.png" alt="image-20220315131917498" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-247d748e8667538725d792a4bb1cbcaf">
+<a href="javascript:history.back();" class="lightbox" id="image-0d9ac05823ee04bbaae8c66caf133911">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131917498.png" alt="image-20220315131917498" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="5">
 <li>然后，恶意软件调用CreateThread()来启动一个新线程。CreateThread的第三个参数指定了线程的起始地址（起始函数），因此在调用CreateThread()后，执行开始于起始地址。在这种情况下，线程的起始地址是一个负责从C2中读取内容的函数。</li>
 </ol>
 <p>
-<a href="#image-866c0251ba03605b36017eca191e4e34" class="lightbox-link">
+<a href="#image-8c5da396948afbf6a3f3f648303a9723" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131934239.png" alt="image-20220315131934239" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-866c0251ba03605b36017eca191e4e34">
+<a href="javascript:history.back();" class="lightbox" id="image-8c5da396948afbf6a3f3f648303a9723">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315131934239.png" alt="image-20220315131934239" class="lightbox-image" loading="lazy">
 </a></p>
 <p>使用Recv()API函数检索C2的内容。Recv()的第二个参数是一个缓冲区，其中存储了检索的内容。然后对检索到的内容进行解密，并根据从C2收到的命令，由恶意软件执行适当的行动。要了解这个恶意软件的所有功能以及它如何处理收到的数据，请参考作者的演讲和视频演示（https：//cysinfo.com/session-11-part-2-dissecting-the heartbeat-apt-rat-features/）。</p>
 <p>
-<a href="#image-701476c3e6a6e7d9c5aa5b912a026ac1" class="lightbox-link">
+<a href="#image-1febe27e46f2736b8ec12bb95f8825e6" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315132014597.png" alt="image-20220315132014597" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-701476c3e6a6e7d9c5aa5b912a026ac1">
+<a href="javascript:history.back();" class="lightbox" id="image-1febe27e46f2736b8ec12bb95f8825e6">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315132014597.png" alt="image-20220315132014597" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="16-基于powershell的执行">1.6 基于PowerShell的执行</h4>
@@ -540,19 +540,19 @@ Hello World</code></pre></div><h5 id="162-分析powershell命令脚本">1.6.2 �
 <p>与汇编代码相比，Powershell命令很容易理解，但在某些情况下（比如PowerShell命令被混淆了），你可能想运行PowerShell命令来了解它的工作原理。测试单个命令的最简单方法是在交互式PowerShell中执行它。如果你想执行一个包含多个命令的PowerShell脚本（.ps1），首先将执行策略设置改为Bypass或Unrestricted（如前所述），然后使用PowerShell控制台执行该脚本。记住要在一个隔离的环境中执行恶意的脚本。
 在PowerShell提示符下运行脚本（.ps1）将一次性运行所有命令。如果你想控制执行，那么你可以使用PowerShell ISE（集成脚本环境）调试PowerShell脚本。你可以通过使用程序搜索功能调出PowerShell ISE，然后将PowerShell脚本加载到PowerShell ISE中，或者复制粘贴一个命令并使用其调试功能（如Step Into、Step Over、Step Out和Breakpoints），可以通过调试菜单访问。调试前，确保将执行策略设置为Bypass。</p>
 <p>
-<a href="#image-75444e59554c349d8d25d7447d2e8585" class="lightbox-link">
+<a href="#image-6771c8803edf09d40243d7ff6a3acad8" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315132619143.png" alt="image-20220315132619143" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-75444e59554c349d8d25d7447d2e8585">
+<a href="javascript:history.back();" class="lightbox" id="image-6771c8803edf09d40243d7ff6a3acad8">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315132619143.png" alt="image-20220315132619143" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="163-攻击者是如何使用powershell的">1.6.3 攻击者是如何使用PowerShell的</h5>
 <p>在了解了基本的PowerShell和使用什么工具进行分析后，现在让我们看看攻击者是如何使用PowerShell的。由于通过PowerShell控制台或双击执行PowerShell脚本（.ps1）的限制（这将在记事本中打开，而不是执行脚本），不太可能看到对手直接向受害者发送PowerShell脚本。攻击者必须首先欺骗用户执行恶意代码；这主要是通过发送含有.lnk、.wsf、javascript或恶意宏文件等文件的电子邮件附件来实现。一旦用户被骗打开附件文件，恶意代码就可以直接调用PowerShell（powerhell.exe），或通过cmd.exe、Wscript、Cscript等间接调用。在PowerShell被调用后，可以使用各种方法绕过执行策略。例如，为了绕过执行限制策略，攻击者可以使用恶意代码调用powershell.exe，并通过Bypass执行策略标志，如下图所示。即使用户不是管理员，这种技术也会起作用，它可以覆盖默认的执行限制策略并执行脚本。</p>
 <p>
-<a href="#image-9bba6ca974d72f31fbace4e130ab6b51" class="lightbox-link">
+<a href="#image-058fc8b5331e4da6e0a4c9fecf6ca8a3" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315132655486.png" alt="image-20220315132655486" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9bba6ca974d72f31fbace4e130ab6b51">
+<a href="javascript:history.back();" class="lightbox" id="image-058fc8b5331e4da6e0a4c9fecf6ca8a3">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315132655486.png" alt="image-20220315132655486" class="lightbox-image" loading="lazy">
 </a></p>
 <p>以同样的方式，攻击者使用各种PowerShell命令行参数来绕过执行策略。下表概述了用于逃避检测和绕过本地限制的最常见的PowerShell参数。</p>
@@ -605,10 +605,10 @@ Hello World</code></pre></div><h5 id="162-分析powershell命令脚本">1.6.2 �
 <p>下面是作者博文（https://cysinfo.com/cyber-attack-targeting-indian-navys- submarine-warship-manufacturer/）中提到的一个攻击中使用的PowerShell下载器的例子。在这种情况下，PowerShell命令通过cmd.exe被包含在微软Excel表格中的恶意宏调用，该表格是以电子邮件附件形式发送给受害者的。
 PowerShell将下载的可执行文件作为doc6.exe丢在%TEMP%目录下。然后，它为被丢弃的可执行文件添加了一个注册表项，并调用eventvwr.exe，这是一种有趣的注册表劫持技术，允许doc6.exe被eventvwr.exe以高完整性级别执行。这种技术还默默地绕过了UAC（用户账户控制）。</p>
 <p>
-<a href="#image-55bdc27f344590880d42c20331c8c87e" class="lightbox-link">
+<a href="#image-3e3c2f29a8d4aefe4b3968eb2ef5e5c5" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315133333418.png" alt="image-20220315133333418" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-55bdc27f344590880d42c20331c8c87e">
+<a href="javascript:history.back();" class="lightbox" id="image-3e3c2f29a8d4aefe4b3968eb2ef5e5c5">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315133333418.png" alt="image-20220315133333418" class="lightbox-image" loading="lazy">
 </a></p>
 <p>以下是一个目标攻击的PowerShell命令（https://cysinfo.com/ uri-terror-attack-spear-phishing-emails-targeting-indian-embassies-and-indian-mea/）。在这种情况下，PowerShell被恶意宏调用，而不是直接下载可执行文件，而是使用DownloadString方法从Pastebin链接下载base64内容。在下载了编码的内容后，它被解码并丢到磁盘上。</p>
@@ -648,10 +648,10 @@ winlogon.exe进程（当用户登录时）启动。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit</code></pre></div><p>以同样的方式，userinit.exe查询以下注册表值来启动默认的用户外壳。默认情况下，这个值被设置为explorer.exe。攻击者可以改变或添加另一个包含恶意可执行程序名称的条目，然后由userinit.exe启动。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell</code></pre></div><p>在下面的例子中，Brontok蠕虫通过用其恶意的可执行文件修改下列Winlogon注册表值来实现持久性。</p>
 <p>
-<a href="#image-70ce61a5e1e6654be6577f7afadbbd8d" class="lightbox-link">
+<a href="#image-fd2ce80341a13ca0591bac31f2ece87c" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315133936379-7322777.png" alt="image-20220315133936379" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-70ce61a5e1e6654be6577f7afadbbd8d">
+<a href="javascript:history.back();" class="lightbox" id="image-fd2ce80341a13ca0591bac31f2ece87c">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315133936379-7322777.png" alt="image-20220315133936379" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了检测这种类型的持久性机制，可以使用Sysinternals Autoruns工具。如前所述，你可以监测注册表中的可疑条目（与合法程序无关）。</p>
@@ -660,18 +660,18 @@ winlogon.exe进程（当用户登录时）启动。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>Key: &#34;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\&lt;executable name&gt;&#34;
 Value: Debugger : REG_SZ : &lt;full-path to the debugger&gt;</code></pre></div><p>进攻者利用这个注册表键来启动他们的恶意程序。为了演示这种技术，通过添加以下注册表项，将notepad.exe的调试器设置为计算器（calc.exe）进程。</p>
 <p>
-<a href="#image-d4e49d65761dd46b9139e5d5ae04f3d4" class="lightbox-link">
+<a href="#image-104a54202c6f4851129aed760b0f1880" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134057537.png" alt="image-20220315134057537" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d4e49d65761dd46b9139e5d5ae04f3d4">
+<a href="javascript:history.back();" class="lightbox" id="image-104a54202c6f4851129aed760b0f1880">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134057537.png" alt="image-20220315134057537" class="lightbox-image" loading="lazy">
 </a></p>
 <p>现在，当你启动记事本时，它将被一个计算器程序启动（尽管它不是一个调试器）。这种行为可以在下面的屏幕截图中看到。</p>
 <p>
-<a href="#image-14fbccfccf30f3c581644f9f4c02d411" class="lightbox-link">
+<a href="#image-e7694568163f6f15c428600a1a7b1826" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134116222.png" alt="image-20220315134116222" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-14fbccfccf30f3c581644f9f4c02d411">
+<a href="javascript:history.back();" class="lightbox" id="image-e7694568163f6f15c428600a1a7b1826">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134116222.png" alt="image-20220315134116222" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面是一个恶意软件样本（TrojanSpy:Win32/Small.M）的例子，它将其恶意程序iexplor.exe配置为Internet的调试器
@@ -687,18 +687,18 @@ explorer, (iexplore.exe)。这是通过添加以下注册表值实现的。在�
 <p>Windows中的AppInit_DLLs功能提供了一种将自定义DLLs加载到每个交互式应用程序的地址空间的方法。一旦DLL被加载到任何进程的地址空间，它就可以在该进程的上下文中运行，并可以钩住知名的API来实现一个替代功能。攻击者可以通过在以下注册表键中设置AppInit_DLLs值来实现其恶意DLL的持久性。这个值通常包含空格或以逗号分隔的DLLs列表。这里指定的所有DLLs都被加载到每个加载User32.dll的进程中。由于User32.dll几乎被所有进程加载，这种技术使攻击者能够将他们的恶意DLL加载到大多数进程中，并在加载进程的上下文中执行恶意代码。除了设置AppInit_DLLs值，攻击者还可以通过将LoadAppInit_DLLs注册表值设置为1来启用AppInit_DLLs功能。在启用安全启动的Windows 8和更高版本中，AppInit_DLLs功能被禁用。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows</code></pre></div><p>以下截图显示了由T9000后门（https://researchcenter.paloaltonetworks.com/2016/02/t9000-advanced-modular- backdoor-uses-complex-anti-analysis-techniques/）添加的AppInit DLL条目。</p>
 <p>
-<a href="#image-df5ba0a2bb1a5b9c65330290e97a8044" class="lightbox-link">
+<a href="#image-af2e4b1253a4f0ea7bee28efa24d130f" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134430995.png" alt="image-20220315134430995" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-df5ba0a2bb1a5b9c65330290e97a8044">
+<a href="javascript:history.back();" class="lightbox" id="image-af2e4b1253a4f0ea7bee28efa24d130f">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134430995.png" alt="image-20220315134430995" class="lightbox-image" loading="lazy">
 </a></p>
 <p>由于添加了前面的注册表项，当任何新进程（加载User32.dll）启动时，都会将恶意DLL（ResN32.dll）加载到其地址空间。下面的截图显示了重启系统后加载恶意DLL（ResN32.dll）的操作系统的进程。由于这些进程大多以高完整性级别运行，它允许对手以高权限执行恶意代码。</p>
 <p>
-<a href="#image-663f131d151170f6628230788c9d57cf" class="lightbox-link">
+<a href="#image-53a35e80185a882a85b41338226098b8" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134449422.png" alt="image-20220315134449422" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-663f131d151170f6628230788c9d57cf">
+<a href="javascript:history.back();" class="lightbox" id="image-53a35e80185a882a85b41338226098b8">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134449422.png" alt="image-20220315134449422" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了检测这种技术，你可以寻找在
@@ -717,18 +717,18 @@ AppInit_DLLs注册表的可疑条目，这些条目与你环境中的合法程�
 <p>攻击者可以利用操作系统搜索DLL的方式来提升权限并实现持久性。考虑一下Operation Groundbait（http://www.welivesecurity.com/wp-content/uploads/ 2016/05/Operation-Groundbait.pdf）中使用的恶意软件（Prikormka dropper）。该恶意软件在执行时，会在Windows目录（C:\Windows）中投放一个名为samlib.dll的恶意DLL，如下所示。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>[CreateFile] toor.exe:4068 &gt; %WinDir%\samlib.dll</code></pre></div><p>在一个干净的操作系统中，一个具有相同名称的DLL（samlib.dll）驻留在C:\Windows\System32目录中，这个干净的DLL被驻留在C:\Windows目录中的explorer.exe加载。这个干净的DLL也被驻扎在system32目录下的其他几个进程加载，如图所示。</p>
 <p>
-<a href="#image-9e7785dc911dd8b3af55f96405cedb9a" class="lightbox-link">
+<a href="#image-e2c49ef39fe7a5f1e0b48264b471d529" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134711266.png" alt="image-20220315134711266" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9e7785dc911dd8b3af55f96405cedb9a">
+<a href="javascript:history.back();" class="lightbox" id="image-e2c49ef39fe7a5f1e0b48264b471d529">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134711266.png" alt="image-20220315134711266" class="lightbox-image" loading="lazy">
 </a></p>
 <p>由于恶意DLL与explorer.exe被丢在同一目录下（即C:\Windows），因此，当系统重新启动时，恶意的samlib.dll被explorer.exe从C:\Windows目录中加载，而不是从system32目录中加载合法的DLL。下面的截图是在重新启动受感染的系统后拍摄的，显示了由于DLL搜索顺序被劫持而被explorer.exe加载的恶意DLL。</p>
 <p>
-<a href="#image-c81664f95c03382ce715de55e4163d71" class="lightbox-link">
+<a href="#image-671ced5a999e37b18ddc32fc0cfe06f8" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134723314.png" alt="image-20220315134723314" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c81664f95c03382ce715de55e4163d71">
+<a href="javascript:history.back();" class="lightbox" id="image-671ced5a999e37b18ddc32fc0cfe06f8">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134723314.png" alt="image-20220315134723314" class="lightbox-image" loading="lazy">
 </a></p>
 <p>DLL搜索顺序劫持技术使取证分析变得更加困难，并逃避了传统的防御措施。为了检测这种攻击，你应该考虑监控DLLs的创建、重命名、替换或删除，并寻找任何由进程从异常路径加载的模块（DLLs）。</p>
@@ -736,18 +736,18 @@ AppInit_DLLs注册表的可疑条目，这些条目与你环境中的合法程�
 <p>组件对象模型（COM）是一个系统，它允许软件组件之间进行交互和通信，即使它们对对方的代码一无所知（https://msdn.microsoft.com/en-us/library/ms694363(v=vs.85).aspx）。软件组件通过使用COM对象进行交互，这些对象可以在单个进程、其他进程或远程计算机上。COM是作为一个客户/服务器框架来实现的。一个COM客户端是一个使用来自COM服务器（COM对象）的服务的程序，而COM服务器是一个向COM客户端提供服务的对象。COM服务器在DLL（称为进程内服务器）或EXE（称为进程外服务器）中实现一个由各种方法（功能）组成的接口。一个COM客户可以利用COM服务器提供的服务，方法是创建一个COM对象的实例，获取接口的指针，并调用其接口中实现的方法。</p>
 <p>Windows操作系统提供了各种COM对象，可供程序（COM客户端）使用。这些COM对象由一个独特的数字标识，称为类标识符（CLSIDs），它们通常在注册表键HKEY_CLASSES_ROOT\CLSID&lt;唯一的clsid&gt;中找到。例如，&ldquo;我的电脑 &ldquo;的COM对象是{20d04fe0-3aea-1069-a2d8-08002b30309d}，在下面的截图中可以看到。</p>
 <p>
-<a href="#image-be8c7b64af773d9e9cd4252c124aeda2" class="lightbox-link">
+<a href="#image-3eae73b36da40ee88b4a131df2f1ab5a" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134827315.png" alt="image-20220315134827315" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-be8c7b64af773d9e9cd4252c124aeda2">
+<a href="javascript:history.back();" class="lightbox" id="image-3eae73b36da40ee88b4a131df2f1ab5a">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134827315.png" alt="image-20220315134827315" class="lightbox-image" loading="lazy">
 </a></p>
 <p>对于每个CLSID键，你还有一个叫做InProcServer32的子键，指定实现COM服务器功能的DLL的文件名。下面的截图告诉你shell32.dll（COM服务器）与我的电脑有关。</p>
 <p>
-<a href="#image-07bc33c4ff1c03f3ab2b5cbc7715bbb6" class="lightbox-link">
+<a href="#image-d812ba0a18e08ea5dde816a43642ae19" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134843823.png" alt="image-20220315134843823" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-07bc33c4ff1c03f3ab2b5cbc7715bbb6">
+<a href="javascript:history.back();" class="lightbox" id="image-d812ba0a18e08ea5dde816a43642ae19">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134843823.png" alt="image-20220315134843823" class="lightbox-image" loading="lazy">
 </a></p>
 <p>与 &ldquo;我的电脑 &ldquo;COM对象类似，微软提供了各种其他的COM对象（在DLL中实现），供合法程序使用。当合法程序（COM客户端）使用特定COM对象（使用其CLSID）的服务时，其相关的DLL被加载到客户端程序的进程地址空间。在COM劫持的情况下，攻击者修改了合法COM对象的注册表项，并将其与攻击者的恶意DLL联系起来。其想法是，当合法程序使用被劫持的对象时，恶意DLL会被加载到合法程序的地址空间。这使得对手能够在系统上持续存在并执行恶意代码。</p>
@@ -756,18 +756,18 @@ AppInit_DLLs注册表的可疑条目，这些条目与你环境中的合法程�
    l1-1-0._dl</code></pre></div><p>然后，该恶意软件在HKCU\Software\Classes\CLSID中设置了以下注册表值。这个条目将MMDeviceEnumerator类的COM对象{BCDE0395-E52F-467C-8E3D-C4579291692E}与当前用户的恶意DLL C:\Windows\system\api-ms- win-downlevel-qgwo-l1-0._dl相关联。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>[RegSetValue] ions.exe:2232 &gt; HKCU\Software\Classes\CLSID\{BCDE0395- E52F-467C-8E3D-C4579291692E}\InprocServer32\(Default) = C:\Windows\system\api-ms-win-downlevel-qgwo-l1-1-0._dl</code></pre></div><p>在一个干净的系统中，MMDeviceEnumerator类的COM对象{BCDE0395-E52F-467C-8E3D-C4579291692E}与DLL MMDevApi.dll相关，其注册表项通常在HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\中找到，而在HKCU\Software\Classes\CLSID\中没有找到相应条目。</p>
 <p>
-<a href="#image-3de0577268145b5f2f84a9c79240ce2a" class="lightbox-link">
+<a href="#image-e6a4daa15a64a280499bcea9f7bb1de7" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134945232.png" alt="image-20220315134945232" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3de0577268145b5f2f84a9c79240ce2a">
+<a href="javascript:history.back();" class="lightbox" id="image-e6a4daa15a64a280499bcea9f7bb1de7">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315134945232.png" alt="image-20220315134945232" class="lightbox-image" loading="lazy">
 </a></p>
 <p>由于恶意软件在HKCU\Software\Classes\CLSID{BCDE0395-E52F-467C-8E3D-C4579291692E}中添加了一个条目，受感染的系统现在包含两个相同CLSID的注册表项。由于HKCU\Software\Classes\CLSID{BCDE0395-E52F-467C-8E3D- C4579291692E}的用户对象在位于HKLM\SOFTWARE\Classes\CLSID{BCDE0395-E52F-467C-8E3D-C4579291692E}的机器对象之前被加载，恶意DLL被加载，从而劫持了MMDeviceEnumerator的COM对象。现在，任何使用MMDeviceEnumerator对象的进程都会加载恶意的DLL。下面的截图是在重新启动受感染的系统后拍摄的。重启后，恶意的DLL被explorer.exe加载，如图所示。</p>
 <p>
-<a href="#image-06cede219e2013cc603efee07efd09bc" class="lightbox-link">
+<a href="#image-2158a036fa45f9d9348a8dff6d9e2da4" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135011347.png" alt="image-20220315135011347" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-06cede219e2013cc603efee07efd09bc">
+<a href="javascript:history.back();" class="lightbox" id="image-2158a036fa45f9d9348a8dff6d9e2da4">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135011347.png" alt="image-20220315135011347" class="lightbox-image" loading="lazy">
 </a></p>
 <p>COM劫持技术逃避了大多数传统工具的检测。为了检测这种攻击，你可以在HKCU\Software\Classes\CLSID\中寻找对象的存在。恶意软件可能不会在HKCU\Software\Classes\CLSID\中添加条目，而是修改HKLM\Software\Classes\CLSID\中的现有条目以指向一个恶意二进制文件，因此你也应该考虑检查这个注册表键中指向未知二进制文件的任何值。</p>
@@ -780,10 +780,10 @@ AppInit_DLLs注册表的可疑条目，这些条目与你环境中的合法程�
 </ul>
 <p>Windows在注册表的HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSetservices键下存储已安装的服务列表及其配置。每个服务都有自己的子键，由指定服务如何、何时以及是否在EXE、DLL或内核驱动中实现的值组成。例如，Windows安装程序服务的名称是msiserver，在下面的截图中，HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services下有一个与服务名称相同的子键。ImagePath值指定这个服务的代码在msiexec.exe中实现，Type值为0x10(16)告诉我们它是Win32OwnProcess，Start值0x3代表SERVICE_DEMAND_START，这意味着这个服务需要手动启动。</p>
 <p>
-<a href="#image-28bef9cec5965d71f25e179b7d5c7102" class="lightbox-link">
+<a href="#image-19603f095c08f89ddce409b2aa4a0f1d" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135121541.png" alt="image-20220315135121541" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-28bef9cec5965d71f25e179b7d5c7102">
+<a href="javascript:history.back();" class="lightbox" id="image-19603f095c08f89ddce409b2aa4a0f1d">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135121541.png" alt="image-20220315135121541" class="lightbox-image" loading="lazy">
 </a></p>
 <p>要确定与常量值相关的符号名称，你可以参考MSDN的CreateService() API文档（https://msdn.microsoft.com/en- us/library/windows/desktop/ms682450(v=vs.85).aspx），或者你可以通过提供服务名称使用sc工具查询服务配置，如下图所示。这将显示在注册表子键中发现的类似信息。</p>
@@ -800,10 +800,10 @@ DEPENDENCIES : rpcss
 SERVICE_START_NAME : LocalSystem</code></pre></div><p>现在让我们看一下Win32ShareProcess服务的例子。Dnsclient服务的服务名称是Dnscache，服务的代码是在DLL中实现的。当一个服务被实现为DLL（服务DLL）时，ImagePath注册表值通常会包含svchost.exe的路径（因为那是加载服务DLL的进程）。要确定与服务相关的DLL，你将不得不查看ServiceDLL值，它存在于
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services&lt;service name&gt;\Parameters子键下。下面的截图显示了与Dnsclient服务相关的DLL（dnsrslvr.dll）；这个DLL被通用主机进程svchost.exe加载。</p>
 <p>
-<a href="#image-83c8bbb09415bf1ac0eb3b307310b532" class="lightbox-link">
+<a href="#image-9150b29dc8f9d048b609dd77acde28d2" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135207264.png" alt="image-20220315135207264" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-83c8bbb09415bf1ac0eb3b307310b532">
+<a href="javascript:history.back();" class="lightbox" id="image-9150b29dc8f9d048b609dd77acde28d2">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135207264.png" alt="image-20220315135207264" class="lightbox-image" loading="lazy">
 </a></p>
 <p>攻击者可以通过许多方式创建服务。下面概述了一些常见的方法。</p>
@@ -824,26 +824,26 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services&lt;service name&gt;\Paramet
 </li>
 </ul>
 <p>
-<a href="#image-4cc572d3f5f7333219cd6d2039aaa4bb" class="lightbox-link">
+<a href="#image-fb79d4fd997ec64834612cfa3c14447d" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135340777.png" alt="image-20220315135340777" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4cc572d3f5f7333219cd6d2039aaa4bb">
+<a href="javascript:history.back();" class="lightbox" id="image-fb79d4fd997ec64834612cfa3c14447d">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135340777.png" alt="image-20220315135340777" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在调用CreateService()后，服务被创建，以下注册表键被添加到服务配置信息中。</p>
 <p>
-<a href="#image-7162655176094e956cd619691bcf41e1" class="lightbox-link">
+<a href="#image-1eb5313790cfcb9eb52e0846f3b3a9f3" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135405824.png" alt="image-20220315135405824" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7162655176094e956cd619691bcf41e1">
+<a href="javascript:history.back();" class="lightbox" id="image-1eb5313790cfcb9eb52e0846f3b3a9f3">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135405824.png" alt="image-20220315135405824" class="lightbox-image" loading="lazy">
 </a></p>
 <p>然后，它在上一步创建的注册表键下创建一个参数子键。</p>
 <p>
-<a href="#image-fc7b7eb94540cc6e63fbaad543c0fb67" class="lightbox-link">
+<a href="#image-9bbb1249c47711176e45535452d8a40e" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135431348.png" alt="image-20220315135431348" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fc7b7eb94540cc6e63fbaad543c0fb67">
+<a href="javascript:history.back();" class="lightbox" id="image-9bbb1249c47711176e45535452d8a40e">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135431348.png" alt="image-20220315135431348" class="lightbox-image" loading="lazy">
 </a></p>
 <p>之后，它丢弃并执行一个批处理脚本，设置注册表值（ServiceDll），将DLL与创建的服务联系起来。批处理脚本的内容在这里显示。</p>
@@ -858,10 +858,10 @@ C:\Windows\system32\FastUserSwitchingCompatibilityex.dll</code></pre></div><p>�
 <p>攻击者可以修改（劫持）现有的服务，而不是创建一个新的服务。通常情况下，攻击者会劫持一个未使用或禁用的服务。这使得检测变得稍微困难，因为如果你试图找到非标准或未被识别的服务，你将错过这种类型的攻击。考虑一下BlackEnergy恶意软件投放器的例子，它劫持了现有的服务以在系统上持续存在。在执行时，BlackEnergy用恶意的aliide.sys驱动替换了驻留在system32\drivers目录下的名为aliide.sys的合法驱动（与名为aliide的服务相关）。替换驱动程序后，它修改了与aliide服务相关的注册表项，并将其设置为自动启动（当系统启动时，该服务自动启动），如以下事件所示。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>[CreateFile] big.exe:4004 &gt; %WinDir%\System32\drivers\aliide.sys [RegSetValue] services.exe:504 &gt; HKLM\System\CurrentControlSet\services\aliide\Start = 2</code></pre></div><p>下面的截图显示了修改前后aliide服务的服务配置。关于BlackEnergy3 big dropper的详细分析，请阅读作者的博文：https://cysinfo.com/blackout-memory-analysis-of-blackenergy- big-ropper/。</p>
 <p>
-<a href="#image-34496ab70e8a4d460dbe6262140b941d" class="lightbox-link">
+<a href="#image-df1b288d7a2bf35dd54e53be55023209" class="lightbox-link">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135534620.png" alt="image-20220315135534620" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-34496ab70e8a4d460dbe6262140b941d">
+<a href="javascript:history.back();" class="lightbox" id="image-df1b288d7a2bf35dd54e53be55023209">
 <img src="%e6%81%b6%e6%84%8f%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90-8-%e6%81%b6%e6%84%8f%e8%bd%af%e4%bb%b6%e5%8a%9f%e8%83%bd%e5%92%8c%e6%8c%81%e4%b9%85%e5%8c%96/image-20220315135534620.png" alt="image-20220315135534620" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了检测此类攻击，请监测与合法程序无关的服务注册表项的变化。寻找与服务相关的二进制路径的修改，以及服务启动类型的变化（从手动到自动）。你还应该考虑监控和记录sc、PowerShell和WMI等工具的使用情况，这些工具可用于与服务互动。Sysinternals AutoRuns工具也可以用来检查服务的使用情况，以实现持久性。</p>
@@ -896,12 +896,12 @@ part-10/ 和 <a href="https://researchcenter.paloaltonetworks.com/2016/" target=
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1690870205" defer></script>
-        <script src="/js/lunr/lunr.min.js?1690870205" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1690870205" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1690870205" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1690870205" defer></script>
-        <script src="/js/search.js?1690870205" defer></script>
+        <script src="/js/auto-complete.js?1690870564" defer></script>
+        <script src="/js/lunr/lunr.min.js?1690870564" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1690870564" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1690870564" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1690870564" defer></script>
+        <script src="/js/search.js?1690870564" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -944,14 +944,15 @@ part-10/ 和 <a href="https://researchcenter.paloaltonetworks.com/2016/" target=
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html">WinHEX(win)<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html">数据恢复工具性能对比<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html" class=""><input type="checkbox" id="section-f72a1ee8fa05d9b7ba0bef33408333a8" aria-controls="subsections-f72a1ee8fa05d9b7ba0bef33408333a8"><label for="section-f72a1ee8fa05d9b7ba0bef33408333a8"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 4系统信息收集</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">4系统信息收集<i class="fas fa-check read-icon"></i></a><ul id="subsections-f72a1ee8fa05d9b7ba0bef33408333a8" class="morespace collapsible-menu">
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">hosts文件检查<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html">国标中电子取证相关要求及综述<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.html" class=""><input type="checkbox" id="section-7be924d72b6e5cb222a2efc9926f97c1" aria-controls="subsections-7be924d72b6e5cb222a2efc9926f97c1"><label for="section-7be924d72b6e5cb222a2efc9926f97c1"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 应急响应关键证据检索提取</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.html">应急响应关键证据检索提取<i class="fas fa-check read-icon"></i></a><ul id="subsections-7be924d72b6e5cb222a2efc9926f97c1" class="morespace collapsible-menu">
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">hosts文件检查<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html">linux下病毒查杀<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">linux软件包管理器文件检查<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html">web后门查杀<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html">启动项检查<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html">命令行历史记录<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">回收站文件检查<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html">国标中电子取证相关要求及综述<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html">安全策略检测<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html">异常端口查询<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html">映像劫持检查<i class="fas fa-check read-icon"></i></a></li>
@@ -965,7 +966,7 @@ part-10/ 和 <a href="https://researchcenter.paloaltonetworks.com/2016/" target=
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html">计划任务检查<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html">重点文件目录检查<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html">钩子检查<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html">防火墙规则检查<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html">防火墙规则检查<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-bba07b074ab74ed3d6f2efbb911ba96a" aria-controls="subsections-bba07b074ab74ed3d6f2efbb911ba96a"><label for="section-bba07b074ab74ed3d6f2efbb911ba96a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x03取证分析</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html">0x03取证分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-bba07b074ab74ed3d6f2efbb911ba96a" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html">【译】取证调查：虚拟内存pagefile.sys<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-1c2e9721036bcac0690861bf4737d812" aria-controls="subsections-1c2e9721036bcac0690861bf4737d812"><label for="section-1c2e9721036bcac0690861bf4737d812"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x06取证辅助工具</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html">0x06取证辅助工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-1c2e9721036bcac0690861bf4737d812" class="morespace collapsible-menu">
@@ -1080,8 +1081,8 @@ part-10/ 和 <a href="https://researchcenter.paloaltonetworks.com/2016/" target=
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1690870205" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1690870205" defer></script>
+    <script src="/js/clipboard.min.js?1690870564" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1690870564" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -1111,15 +1112,15 @@ part-10/ 和 <a href="https://researchcenter.paloaltonetworks.com/2016/" target=
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1690870205" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1690870205" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1690870205" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1690870205" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1690870205" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1690870205" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1690870205" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1690870205" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1690870205" defer></script>
+    <script src="/js/d3/d3-color.min.js?1690870564" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1690870564" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1690870564" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1690870564" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1690870564" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1690870564" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1690870564" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1690870564" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1690870564" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -1128,8 +1129,8 @@ part-10/ 和 <a href="https://researchcenter.paloaltonetworks.com/2016/" target=
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690870205  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1690870564  };
     </script>
-    <script src="/js/theme.js?1690870205" defer></script>
+    <script src="/js/theme.js?1690870564" defer></script>
   </body>
 </html>
