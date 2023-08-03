@@ -9,16 +9,16 @@
     <lastBuildDate>Thu, 20 Feb 2020 23:31:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97CobaltStrike/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CS X86 payload分析混淆加密</title>
-      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</link>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</link>
       <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</guid>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</guid>
       <description>&lt;h1 id=&#34;cobalt-strike--bypassing-windows-defender-with-obfuscation&#34;&gt;Cobalt Strike – Bypassing Windows Defender with Obfuscation&lt;/h1&gt;
 &lt;p&gt;
-&lt;a href=&#34;#image-d5501481a4f7958235a48b52c0c5e0d4&#34; class=&#34;lightbox-link&#34;&gt;
-&lt;img src=&#34;https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;#image-38b695f6eb652f7490b85be47d0e7186&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-d5501481a4f7958235a48b52c0c5e0d4&#34;&gt;
-&lt;img src=&#34;https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-38b695f6eb652f7490b85be47d0e7186&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
 Cobalt Strike 使用混淆绕WindowsDefender
 原文：http://www.offensiveops.io/tools/cobalt-strike-bypassing-windows-defender-with-obfuscation/  （2018-03)
@@ -26,6 +26,18 @@ Cobalt Strike 使用混淆绕WindowsDefender
 &lt;blockquote&gt;
 &lt;p&gt;对于这样一篇18年的文章我们发现目前由于攻防软件的升级，目前已经不再适用绕过了，但是其中的一些手法和方式仍然值得学习借鉴，针对新工具下的攻防仍待进一步学习研究。&lt;/p&gt;
 &lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>linux隐藏进程-进程名伪造</title>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html</link>
+      <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html</guid>
+      <description>分子实验室 https://molecule-labs.com/
+背景： 在测试系统命令对linux隐藏进程的有效性测试，记录的相关知识点。
+原理： 在恶意代码中通过设置具有迷惑性的进程名字，以达到躲避管理员检查的目的
+测试环境： ubuntu
+过程： 这里我们参考：linux 修改进程名称的方法伪造进程 https://www.jb51.net/article/70306.htm，排坑时注意添加声明即可。
+#include &amp;lt;stdio.h&amp;gt; #include &amp;lt;string.h&amp;gt; #include &amp;#34;./util/setproctitle.c&amp;#34; # --这里需要注意规避报错-- # 原版这里我测试的时候报错，需要加上下面的函数引用 #ifdef _WIN32 #include &amp;lt;Windows.h&amp;gt; #else #include &amp;lt;unistd.h&amp;gt; #endif # --引用完毕-- // extern char **environ; // int main(int argc , char *argv[]) // { // int i; // printf(&amp;#34;argc:%d\n&amp;#34; , argc); // for (i = 0; i &amp;lt; argc; ++i){ // printf(&amp;#34;0x%x\n&amp;#34; , argv[i]); // printf(&amp;#34;argv[%d]:%s\n&amp;#34; , i , argv[i]); // } // printf(&amp;#34;evriron=%x\n&amp;#34; , environ[0]); // return 0; // } int main(int argc, char **argv){ spt_init(argc,argv); setproctitle(&amp;#34;设置进程名为:this is a test&amp;#34;); sleep(1000); return 0; }setproctitle.</description>
     </item>
   </channel>
 </rss>

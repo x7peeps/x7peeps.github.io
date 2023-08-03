@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>进程隐藏,持久化 on x7peeps</title>
+    <link>https://x7peeps.com/tags/%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E6%8C%81%E4%B9%85%E5%8C%96/index.html</link>
+    <description>Recent content in 进程隐藏,持久化 on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Feb 2020 23:31:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E6%8C%81%E4%B9%85%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux隐藏进程-目录挂载方式研究</title>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.html</link>
+      <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.html</guid>
+      <description>分子实验室 https://molecule-labs.com/
+最近在精细应急响应相关内容的时候注意到linux进程隐藏确实会是应急响应中的一个问题，因此这里对目录挂载方式的隐藏进程方式进行了实践和查询的对抗了解。
+创建挂载隐藏进程 方式1 mount /dev/sda1 /proc/xxx 方式2 mount -o bind /empty/dir /porc/xxxx 查询隐藏挂载目录方式进程的办法 linux /proc/66003 文件系统内容通过挂载操作已经为空，无法获取细节
+唯一查看到隐藏进程的办法是通过cat /proc/mounts 查看挂载项中包含/proc/pid</description>
+    </item>
+  </channel>
+</rss>
