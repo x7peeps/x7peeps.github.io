@@ -10,18 +10,18 @@
     <title>安全策略检测 - x7peeps</title>
     <link href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.xml" rel="alternate" type="application/rss+xml" title="安全策略检测 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691041207" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691041207" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691041207" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691041207" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691041207" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691041207" rel="stylesheet">
-    <link href="/css/fonts.css?1691041207" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691041207" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691041207" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691041207" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691041207" rel="stylesheet">
-    <link href="/css/print.css?1691041207" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691041207" rel="stylesheet">
-    <script src="/js/url.js?1691041207"></script>
-    <script src="/js/variant.js?1691041207"></script>
+    <link href="/css/fontawesome-all.min.css?1691043498" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691043498" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691043498" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691043498" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691043498" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691043498" rel="stylesheet">
+    <link href="/css/fonts.css?1691043498" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691043498" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691043498" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691043498" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691043498" rel="stylesheet">
+    <link href="/css/print.css?1691043498" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691043498" rel="stylesheet">
+    <script src="/js/url.js?1691043498"></script>
+    <script src="/js/variant.js?1691043498"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -115,10 +115,10 @@
 <p>原文可以在Windows 安全基准（https://docs.microsoft.com/zh-cn/windows/security/threat-protection/windows-security-configuration-framework/windows-security-baselines）找到。</p>
 <p>这里用到的工具有LGPO、PolicyAnalyzer你都可以通过 <a href="https://www.microsoft.com/en-us/download/details.aspx?id=55319" target="_blank">https://www.microsoft.com/en-us/download/details.aspx?id=55319</a> 进行下载。这个下载链接中的其他内容就是windows基线标准，也建议一起下载，用于后续分析对比基线使用。</p>
 <p>
-<a href="#image-80516a7fe4a82da332c066ff16d60aa9" class="lightbox-link">
+<a href="#image-3ea17939daa89ee2a071256b3f10b62d" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633938938772-217d62f1-50d5-4cd0-92db-01fbd3c7abda.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-80516a7fe4a82da332c066ff16d60aa9">
+<a href="javascript:history.back();" class="lightbox" id="image-3ea17939daa89ee2a071256b3f10b62d">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633938938772-217d62f1-50d5-4cd0-92db-01fbd3c7abda.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="lgpoexe">LGPO.exe</h3>
@@ -237,10 +237,10 @@ C:\USERS\XT\DESKTOP\工具\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABCFE5A}
         \---User
                 registry.pol
     </code></pre></div><p>
-<a href="#image-c5bb407b7fbf8d939068fa32bc322c89" class="lightbox-link">
+<a href="#image-d2d3c9165300f4c2e64f5c981c335a4d" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633944629336-8a8fd13f-6092-4ca0-b9ad-802859196b00.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c5bb407b7fbf8d939068fa32bc322c89">
+<a href="javascript:history.back();" class="lightbox" id="image-d2d3c9165300f4c2e64f5c981c335a4d">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633944629336-8a8fd13f-6092-4ca0-b9ad-802859196b00.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="使用lgpo导入策略">使用LGPO导入策略</h4>
@@ -259,34 +259,34 @@ Apply Audit policy from .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABCFE5A}\DomainSysv
 Apply security template: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABCFE5A}\DomainSysvol\GPO\Machine\microsoft\windows nt\SecEdit\GptTmpl.inf
 Import Machine settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABCFE5A}\DomainSysvol\GPO\Machine\registry.pol
 Import User settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABCFE5A}\DomainSysvol\GPO\User\registry.pol</code></pre></div><p>
-<a href="#image-cd1ca788d9dd76e3ff626310e363875d" class="lightbox-link">
+<a href="#image-4f7b83b4fc9947b9cea7f3be6665e88d" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633944827808-3e3ed717-2e00-4457-b7bd-d2e152d59dbc.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-cd1ca788d9dd76e3ff626310e363875d">
+<a href="javascript:history.back();" class="lightbox" id="image-4f7b83b4fc9947b9cea7f3be6665e88d">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633944827808-3e3ed717-2e00-4457-b7bd-d2e152d59dbc.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="导出的策略与windows基线对比">导出的策略与windows基线对比</h4>
 <p>将基线和导出的pol文件导入Policy Anylize程序中。然后同时勾选对比即可。</p>
 <p>
-<a href="#image-db3e347425ecf3b95da9ce2161206979" class="lightbox-link">
+<a href="#image-b094f605e3eea2df838c2814df19cc3b" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633944991597-f683fb6f-b081-4000-9088-eb75bb1dff74.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-db3e347425ecf3b95da9ce2161206979">
+<a href="javascript:history.back();" class="lightbox" id="image-b094f605e3eea2df838c2814df19cc3b">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633944991597-f683fb6f-b081-4000-9088-eb75bb1dff74.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-d899ac1bd889b9c2cd93b29261af260d" class="lightbox-link">
+<a href="#image-cc3515682a1f6524b499d362aa9eff86" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633944974206-733ed4b6-47c1-4c48-b562-8f538a205607.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d899ac1bd889b9c2cd93b29261af260d">
+<a href="javascript:history.back();" class="lightbox" id="image-cc3515682a1f6524b499d362aa9eff86">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633944974206-733ed4b6-47c1-4c48-b562-8f538a205607.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>还可以导出结果</p>
 <p>
-<a href="#image-1a40738dc1cca4b49e5f17ca85e73c54" class="lightbox-link">
+<a href="#image-240668332c3599cd81be6ae174c1031c" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633945006674-402949ed-dfd0-475d-b9cb-1325d5cec9e4.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1a40738dc1cca4b49e5f17ca85e73c54">
+<a href="javascript:history.back();" class="lightbox" id="image-240668332c3599cd81be6ae174c1031c">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1633945006674-402949ed-dfd0-475d-b9cb-1325d5cec9e4.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="参考">参考：</h2>
@@ -370,10 +370,10 @@ Import User settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABC
     More options available. Run &#39;./lynis show options&#39;, or use the man page.</code></pre></div><h5 id="无配置运行">无配置运行</h5>
 <p>Lynis 无需任何预配置即可运行。配置和微调是可能的，将在后面的部分中介绍。现在我们将运行基本扫描：</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code> lynis audit system</code></pre></div><p>
-<a href="#image-e39c100f8efcaf3733841694f561ad21" class="lightbox-link">
+<a href="#image-90a4acbddc52ed00e2b14c8adf4dfe0f" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1634023336943-c77d948b-e38a-46eb-99ef-5fd0ae454f9a.png" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e39c100f8efcaf3733841694f561ad21">
+<a href="javascript:history.back();" class="lightbox" id="image-90a4acbddc52ed00e2b14c8adf4dfe0f">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/1634023336943-c77d948b-e38a-46eb-99ef-5fd0ae454f9a.png" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <h5 id="快速模式">快速模式</h5>
@@ -511,12 +511,12 @@ Import User settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABC
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691041208" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691041208" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691041208" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691041208" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691041208" defer></script>
-        <script src="/js/search.js?1691041208" defer></script>
+        <script src="/js/auto-complete.js?1691043499" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691043499" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691043499" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691043499" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691043499" defer></script>
+        <script src="/js/search.js?1691043499" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -621,7 +621,7 @@ Import User settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABC
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html" class=""><input type="checkbox" id="section-1dcf0d8ab382f88a0dec20aa11c7a8c6" aria-controls="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6"><label for="section-1dcf0d8ab382f88a0dec20aa11c7a8c6"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 组策略</span></label><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html">组策略<i class="fas fa-check read-icon"></i></a><ul id="subsections-1dcf0d8ab382f88a0dec20aa11c7a8c6" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html" class=""><a class="padding" href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html">SID安全标识符<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li></ul></li>
           <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html" class=""><input type="checkbox" id="section-6d101735907668b9565f2b24f0ce6829" aria-controls="subsections-6d101735907668b9565f2b24f0ce6829"><label for="section-6d101735907668b9565f2b24f0ce6829"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 渗透测试</span></label><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fas fa-check read-icon"></i></a><ul id="subsections-6d101735907668b9565f2b24f0ce6829" class="morespace collapsible-menu">
-          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html" class=""><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/WEB%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html" class=""><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><input type="checkbox" id="section-5c9f137f17add9d910670d26ee4e7fe7" aria-controls="subsections-5c9f137f17add9d910670d26ee4e7fe7"><label for="section-5c9f137f17add9d910670d26ee4e7fe7"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 漏洞复现</span></label><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">漏洞复现<i class="fas fa-check read-icon"></i></a><ul id="subsections-5c9f137f17add9d910670d26ee4e7fe7" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Vulhub%E5%AE%9E%E9%AA%8C_Weblogic_SSRF%E6%BC%8F%E6%B4%9E/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-Vulhub%E5%AE%9E%E9%AA%8C_Weblogic_SSRF%E6%BC%8F%E6%B4%9E/index.html">CVE-2014-4210_Weblogic SSRF漏洞<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2017-11882_Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0-CVE-2017-11882_Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8F%8A%E4%B8%80%E7%82%B9%E6%80%9D%E8%80%83/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
@@ -698,8 +698,8 @@ Import User settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABC
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691041208" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691041208" defer></script>
+    <script src="/js/clipboard.min.js?1691043499" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691043499" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -729,15 +729,15 @@ Import User settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABC
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691041208" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691041208" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691041208" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691041208" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691041208" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691041208" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691041208" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691041208" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691041208" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691043499" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691043499" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691043499" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691043499" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691043499" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691043499" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691043499" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691043499" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691043499" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -746,8 +746,8 @@ Import User settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABC
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691041208  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691043499  };
     </script>
-    <script src="/js/theme.js?1691041208" defer></script>
+    <script src="/js/theme.js?1691043499" defer></script>
   </body>
 </html>
