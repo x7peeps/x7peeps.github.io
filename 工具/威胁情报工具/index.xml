@@ -23,7 +23,8 @@ Key Features 指定twitter username或者包含username行的file ，查看最�
       <guid>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/rss2dingtalk/index.html</guid>
       <description>Summary rss2dingtalk是一个简单的用于同步rss订阅资讯到钉钉群机器人的脚本。常用于团队日常订阅资讯使用。
 Getting Started Prerequisites 操作系统: macOS, Linux, Windows 具备的开发环境：python3.X Usage pip3 install -r requirements.txt；
-打开rss.py, 将钉钉机器人的自定义webhook以及seccode填写到rss.py中； 维护rss.db，将需要订阅的rss资源填写到rss表项中即可； 项目地址 https://github.com/x7peeps/Rss2Dingtalk-LTS</description>
+打开rss.py, 将钉钉机器人的自定义webhook以及seccode填写到rss.py中； 维护rss.db，将需要订阅的rss资源填写到rss表项中即可；
+项目地址 https://github.com/x7peeps/Rss2Dingtalk-LTS</description>
     </item>
   </channel>
 </rss>

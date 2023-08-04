@@ -182,7 +182,7 @@ var relearn_search_index = [
     "uri": "/tags/python%E7%88%AC%E8%99%AB/index.html"
   },
   {
-    "content": "Summary rss2dingtalk是一个简单的用于同步rss订阅资讯到钉钉群机器人的脚本。常用于团队日常订阅资讯使用。\nGetting Started Prerequisites 操作系统: macOS, Linux, Windows 具备的开发环境：python3.X Usage pip3 install -r requirements.txt；\n打开rss.py, 将钉钉机器人的自定义webhook以及seccode填写到rss.py中； 维护rss.db，将需要订阅的rss资源填写到rss表项中即可； 项目地址 https://github.com/x7peeps/Rss2Dingtalk-LTS\n",
+    "content": "Summary rss2dingtalk是一个简单的用于同步rss订阅资讯到钉钉群机器人的脚本。常用于团队日常订阅资讯使用。\nGetting Started Prerequisites 操作系统: macOS, Linux, Windows 具备的开发环境：python3.X Usage pip3 install -r requirements.txt；\n打开rss.py, 将钉钉机器人的自定义webhook以及seccode填写到rss.py中； 维护rss.db，将需要订阅的rss资源填写到rss表项中即可；\n项目地址 https://github.com/x7peeps/Rss2Dingtalk-LTS\n",
     "description": "",
     "tags": "python,爬虫",
     "title": "rss2dingtalk",
