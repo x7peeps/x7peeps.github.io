@@ -10,18 +10,18 @@
     <title>linux隐藏进程-目录挂载方式研究 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.xml" rel="alternate" type="application/rss+xml" title="linux隐藏进程-目录挂载方式研究 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691051858" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691051858" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691051858" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691051858" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691051858" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691051858" rel="stylesheet">
-    <link href="/css/fonts.css?1691051858" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691051858" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691051858" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691051858" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691051858" rel="stylesheet">
-    <link href="/css/print.css?1691051858" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691051858" rel="stylesheet">
-    <script src="/js/url.js?1691051858"></script>
-    <script src="/js/variant.js?1691051858"></script>
+    <link href="/css/fontawesome-all.min.css?1691111201" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691111201" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691111201" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691111201" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691111201" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691111201" rel="stylesheet">
+    <link href="/css/fonts.css?1691111201" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691111201" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691111201" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691111201" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691111201" rel="stylesheet">
+    <link href="/css/print.css?1691111201" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691111201" rel="stylesheet">
+    <script src="/js/url.js?1691111201"></script>
+    <script src="/js/variant.js?1691111201"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -100,34 +100,34 @@ mount /dev/sda1 /proc/xxx
 
 方式2
 mount -o bind /empty/dir /porc/xxxx</code></pre></div><p>
-<a href="#image-be35cedcfe8768fce7ed04ee240a4d54" class="lightbox-link">
+<a href="#image-522246e49620a0e112a7170f889adb97" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794545400-4223a5f8-f891-4650-a90a-2affabf09157.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-be35cedcfe8768fce7ed04ee240a4d54">
+<a href="javascript:history.back();" class="lightbox" id="image-522246e49620a0e112a7170f889adb97">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794545400-4223a5f8-f891-4650-a90a-2affabf09157.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-f418abbd01337e13551081f499a1c3f7" class="lightbox-link">
+<a href="#image-f2de63f28a534f513c156d8f66f1cc3e" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794898291-0acf7eb6-22ad-493a-a653-1ae5765daf9f.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f418abbd01337e13551081f499a1c3f7">
+<a href="javascript:history.back();" class="lightbox" id="image-f2de63f28a534f513c156d8f66f1cc3e">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794898291-0acf7eb6-22ad-493a-a653-1ae5765daf9f.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="查询隐藏挂载目录方式进程的办法">查询隐藏挂载目录方式进程的办法</h3>
 <p>linux /proc/66003 文件系统内容通过挂载操作已经为空，无法获取细节</p>
 <p>
-<a href="#image-597b835ad5a5002b2b2925f897c83648" class="lightbox-link">
+<a href="#image-23d30ce07f18b31fd7285f1e66cd44a9" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794903721-735b4b9e-f456-409e-9204-727e9d2f8f4b.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-597b835ad5a5002b2b2925f897c83648">
+<a href="javascript:history.back();" class="lightbox" id="image-23d30ce07f18b31fd7285f1e66cd44a9">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794903721-735b4b9e-f456-409e-9204-727e9d2f8f4b.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>唯一查看到隐藏进程的办法是通过cat /proc/mounts 查看挂载项中包含/proc/pid</p>
 <p>
-<a href="#image-095549c45a78af45d1c59fd07d011f3e" class="lightbox-link">
+<a href="#image-7ee570f0f7718d9dae751e38b46543b2" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794888772-9063872b-562a-480e-ae76-bd7735355c68.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-095549c45a78af45d1c59fd07d011f3e">
+<a href="javascript:history.back();" class="lightbox" id="image-7ee570f0f7718d9dae751e38b46543b2">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794888772-9063872b-562a-480e-ae76-bd7735355c68.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -153,12 +153,12 @@ mount -o bind /empty/dir /porc/xxxx</code></pre></div><p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691051860" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691051860" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691051860" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691051860" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691051860" defer></script>
-        <script src="/js/search.js?1691051860" defer></script>
+        <script src="/js/auto-complete.js?1691111203" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691111203" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691111203" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691111203" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691111203" defer></script>
+        <script src="/js/search.js?1691111203" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -229,7 +229,7 @@ mount -o bind /empty/dir /porc/xxxx</code></pre></div><p>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-bba07b074ab74ed3d6f2efbb911ba96a" aria-controls="subsections-bba07b074ab74ed3d6f2efbb911ba96a"><label for="section-bba07b074ab74ed3d6f2efbb911ba96a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x03取证分析</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html">0x03取证分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-bba07b074ab74ed3d6f2efbb911ba96a" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html">【译】取证调查：虚拟内存pagefile.sys<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-1c2e9721036bcac0690861bf4737d812" aria-controls="subsections-1c2e9721036bcac0690861bf4737d812"><label for="section-1c2e9721036bcac0690861bf4737d812"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x06取证辅助工具</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html">0x06取证辅助工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-1c2e9721036bcac0690861bf4737d812" class="morespace collapsible-menu">
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1EmergencyRocketPackage/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1EmergencyRocketPackage/index.html">EmergencyRocketPackage<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/EmergencyRocketPackage/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/EmergencyRocketPackage/index.html">EmergencyRocketPackage<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b"><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-88c267f9c3b4a34d411e5a90254df00f" aria-controls="subsections-88c267f9c3b4a34d411e5a90254df00f"><label for="section-88c267f9c3b4a34d411e5a90254df00f"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 安卓样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">安卓样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-88c267f9c3b4a34d411e5a90254df00f" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/Mobsf_MAC_AVD_Android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/Mobsf_MAC_AVD_Android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html">Mobsf_MAC_AVD_Android动静态环境搭建排坑实战<i class="fas fa-check read-icon"></i></a></li></ul></li>
@@ -343,8 +343,8 @@ mount -o bind /empty/dir /porc/xxxx</code></pre></div><p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691051860" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691051860" defer></script>
+    <script src="/js/clipboard.min.js?1691111203" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691111203" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -374,15 +374,15 @@ mount -o bind /empty/dir /porc/xxxx</code></pre></div><p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691051860" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691111203" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -391,8 +391,8 @@ mount -o bind /empty/dir /porc/xxxx</code></pre></div><p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691051860  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691111203  };
     </script>
-    <script src="/js/theme.js?1691051860" defer></script>
+    <script src="/js/theme.js?1691111203" defer></script>
   </body>
 </html>

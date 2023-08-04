@@ -10,18 +10,18 @@
     <title>CS X86 payload分析混淆加密 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.xml" rel="alternate" type="application/rss+xml" title="CS X86 payload分析混淆加密 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691051858" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691051858" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691051858" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691051858" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691051858" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691051858" rel="stylesheet">
-    <link href="/css/fonts.css?1691051858" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691051858" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691051858" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691051858" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691051858" rel="stylesheet">
-    <link href="/css/print.css?1691051858" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691051858" rel="stylesheet">
-    <script src="/js/url.js?1691051858"></script>
-    <script src="/js/variant.js?1691051858"></script>
+    <link href="/css/fontawesome-all.min.css?1691111201" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691111201" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691111201" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691111201" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691111201" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691111201" rel="stylesheet">
+    <link href="/css/fonts.css?1691111201" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691111201" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691111201" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691111201" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691111201" rel="stylesheet">
+    <link href="/css/print.css?1691111201" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691111201" rel="stylesheet">
+    <script src="/js/url.js?1691111201"></script>
+    <script src="/js/variant.js?1691111201"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -92,10 +92,10 @@
 
 <h1 id="cobalt-strike--bypassing-windows-defender-with-obfuscation">Cobalt Strike – Bypassing Windows Defender with Obfuscation</h1>
 <p>
-<a href="#image-38b695f6eb652f7490b85be47d0e7186" class="lightbox-link">
+<a href="#image-134d60bed09a67762654a46ce751060f" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-38b695f6eb652f7490b85be47d0e7186">
+<a href="javascript:history.back();" class="lightbox" id="image-134d60bed09a67762654a46ce751060f">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217220720.png" alt="" class="lightbox-image" loading="lazy">
 </a>
 Cobalt Strike 使用混淆绕WindowsDefender
@@ -110,10 +110,10 @@ Cobalt Strike 使用混淆绕WindowsDefender
 <p>在这个样本中我们将会使用Cobalt Strike生成一段powershell payload，之后看看我们如何操作他并让它绕过一台Windows10 PC的Windows Defender。这或许并不是最优雅或者最简单的方法在Windows Defender防护下隐藏你的payloads，但是这是我们使用过的有效的方法之一。</p>
 <p>创建payload的过程如下：</p>
 <p>
-<a href="#image-ba2c6072212a535de7de4f10bebdd1a9" class="lightbox-link">
+<a href="#image-e09ea9ab16d8f46a5060dced7b3640b0" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217223209.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ba2c6072212a535de7de4f10bebdd1a9">
+<a href="javascript:history.back();" class="lightbox" id="image-e09ea9ab16d8f46a5060dced7b3640b0">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217223209.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -121,18 +121,18 @@ Cobalt Strike 使用混淆绕WindowsDefender
 </blockquote>
 <p>这会生成包含有PowerShell指令的一个文件payload.txt
 
-<a href="#image-39f3aeb9d6edab1ab80812c2b414c063" class="lightbox-link">
+<a href="#image-e4d9bfa5f15bb7aec8ec576dbe9b34cf" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20191217221218.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-39f3aeb9d6edab1ab80812c2b414c063">
+<a href="javascript:history.back();" class="lightbox" id="image-e4d9bfa5f15bb7aec8ec576dbe9b34cf">
 <img src="http://blogimage.xtpeeps.cn/20191217221218.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>如果我们尝试在受害者PC执行命令，我们将会被Windows Defender捕获威胁行为。
 
-<a href="#image-6c9ef8a071d1c01689332c6a26e46a06" class="lightbox-link">
+<a href="#image-b8d8c80e2efa1acd0efd021005049f18" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217221419.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6c9ef8a071d1c01689332c6a26e46a06">
+<a href="javascript:history.back();" class="lightbox" id="image-b8d8c80e2efa1acd0efd021005049f18">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217221419.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了绕过Windows Defender我们需要了解下，Cobalt Strike是如何创建payloads的，并且希望当修改一些特征让Windows Defender判定payloads为安全。</p>
@@ -150,20 +150,20 @@ $byteArray = [Convert]::FromBase64String($string)
 $wishWords = &#39;base64 payload here&#39;
 $wishWords = Dncoded-Base64String $wishWords
 $wishWords.Substring(0)</code></pre></div><p>
-<a href="#image-b6fac072e855d3f916611cdf95a347c0" class="lightbox-link">
+<a href="#image-9d02468cbb7c22a4a866ee251d977a25" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224141938.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b6fac072e855d3f916611cdf95a347c0">
+<a href="javascript:history.back();" class="lightbox" id="image-9d02468cbb7c22a4a866ee251d977a25">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224141938.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>合成解码字符包括又一个base64编码的字符，但是尝试解码失败并出现乱码，由于这段字符被下面的Powershell代码Gzip压缩过的：<code> IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s[IO.Compression.CompressionMode]::Decompress))).ReadToEnd()</code></p>
 <blockquote>
 <p>笔者一次base64之后结果如下：
 
-<a href="#image-35845af1f639490d132f46fc696f02e7" class="lightbox-link">
+<a href="#image-1fc4aeecbd0d15ccc95e3f9d754c0f38" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217224343.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-35845af1f639490d132f46fc696f02e7">
+<a href="javascript:history.back();" class="lightbox" id="image-1fc4aeecbd0d15ccc95e3f9d754c0f38">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217224343.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </blockquote>
@@ -176,10 +176,10 @@ $sr = New-Object System.IO.StreamReader(New-Object System.IO.Compression.GZipStr
 $sr.ReadToEnd() | set-clipboard</code></pre></div><blockquote>
 <p>笔者Gzip解码后结果如下：
 
-<a href="#image-7931179979e66c27f11f55ab759e2b97" class="lightbox-link">
+<a href="#image-4f8d32a3f48627e0d0fbaef114650424" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217231326.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7931179979e66c27f11f55ab759e2b97">
+<a href="javascript:history.back();" class="lightbox" id="image-4f8d32a3f48627e0d0fbaef114650424">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217231326.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </blockquote>
@@ -190,10 +190,10 @@ $sr.ReadToEnd() | set-clipboard</code></pre></div><blockquote>
 <div class="wrap-code highlight"><pre tabindex="0"><code>$readString=[System.Text.Encoding]::ASCII.GetString($enc)</code></pre></div><blockquote>
 <p>笔者payload解码:
 
-<a href="#image-8a7d4c62bb748b36722b0d05f212726e" class="lightbox-link">
+<a href="#image-028460f09d88cf06537cf293d593fc53" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217234720.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8a7d4c62bb748b36722b0d05f212726e">
+<a href="javascript:history.back();" class="lightbox" id="image-028460f09d88cf06537cf293d593fc53">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191217234720.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </blockquote>
@@ -204,59 +204,59 @@ $sr.ReadToEnd() | set-clipboard</code></pre></div><blockquote>
 <div class="wrap-code highlight"><pre tabindex="0"><code>Import-Module .\Invoke-Obfuscation.psd1
 Invoke-Obfuscation</code></pre></div><p>现在我们需要定义我们需要混淆的payload部分。可以使用下面的指令，再进行一次混淆操作：</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>Set scriptblock &#39;final_base64payload&#39;</code></pre></div><p>
-<a href="#image-1a09f837ed36138a470b4ad5566032c7" class="lightbox-link">
+<a href="#image-644fe69cca830a57b998f240111fbe38" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218002128.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1a09f837ed36138a470b4ad5566032c7">
+<a href="javascript:history.back();" class="lightbox" id="image-644fe69cca830a57b998f240111fbe38">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218002128.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
 <p>插一句，这里执行的时候其实是触发了火绒，但是Windows Defender并未触发，火绒放行即可：
 
-<a href="#image-b41a5bcc50c80d65c1a891fe533618d4" class="lightbox-link">
+<a href="#image-69361440c46abb0422354b03b7ea92ab" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218001642.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b41a5bcc50c80d65c1a891fe533618d4">
+<a href="javascript:history.back();" class="lightbox" id="image-69361440c46abb0422354b03b7ea92ab">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218001642.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </blockquote>
 <p>该工具会获取我们的脚本然后询问我们想要执行混淆的方式。在这里我选择了COMPRESS，选择1。这并不意味着其他参数不起作用，只是作者编写时发现这个有效。Invoke-Obfuscation处理并输出充分混淆后的PowerShell命令，将潜在的可以绕过Windows Defender。
 
-<a href="#image-965d2f9705098cefe86fb1fecca11596" class="lightbox-link">
+<a href="#image-3dcc2c1920902c49f6b379e7b12ce2fe" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218004810.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-965d2f9705098cefe86fb1fecca11596">
+<a href="javascript:history.back();" class="lightbox" id="image-3dcc2c1920902c49f6b379e7b12ce2fe">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218004810.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>之后打印输出保存</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>Out c:\payload.ps1</code></pre></div><p>
-<a href="#image-f28081f66eec66bf32ca0c443ea86305" class="lightbox-link">
+<a href="#image-3cffe23567b8b20f8e902cf769150c83" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218005231.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f28081f66eec66bf32ca0c443ea86305">
+<a href="javascript:history.back();" class="lightbox" id="image-3cffe23567b8b20f8e902cf769150c83">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218005231.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>替换掉原来的被解压的payload如下所示看起来这样：
 
-<a href="#image-fd3413e26dc707db359b42c3d1078440" class="lightbox-link">
+<a href="#image-5606302f23d88d13e0d3173f49f3438c" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218013101.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fd3413e26dc707db359b42c3d1078440">
+<a href="javascript:history.back();" class="lightbox" id="image-5606302f23d88d13e0d3173f49f3438c">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218013101.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-9c4f5c0711d79135dab0527774154374" class="lightbox-link">
+<a href="#image-a78c08106df9cca9cc36165b8b99b636" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218012146.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9c4f5c0711d79135dab0527774154374">
+<a href="javascript:history.back();" class="lightbox" id="image-a78c08106df9cca9cc36165b8b99b636">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218012146.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>因此最后我们需要通过Invoke-Obfuscation创建新的<code>[Byte[]]$var_code = [System.Convert]::FromBase64String</code>的内容替换原payload。 为了完成这一步，这里定义了一个新的变量命名$evil然后把由Invoke-Obfuscation混淆后的内容放在其中。
 
-<a href="#image-389b9be125eb7f1c929ac33b0e8139a3" class="lightbox-link">
+<a href="#image-9486ecabaad52f58a26ac07782474ee2" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218014707.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-389b9be125eb7f1c929ac33b0e8139a3">
+<a href="javascript:history.back();" class="lightbox" id="image-9486ecabaad52f58a26ac07782474ee2">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191218014707.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>重点：你需要从invoke-Obfuscation输出的内容中剔除 <code>|</code>，因为它是命令执行的指令。我们不需要它因为Cobalt Strike模板会处理这个。</p>
@@ -264,44 +264,44 @@ Invoke-Obfuscation</code></pre></div><p>现在我们需要定义我们需要混�
 <p>原文的图片实在是太模糊了，吐</p>
 </blockquote>
 <p>
-<a href="#image-a57f13f20ff4b4b12e08a78d167d12ba" class="lightbox-link">
+<a href="#image-4997d9db28a84bf71a3fa6e24e50992c" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224172756.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a57f13f20ff4b4b12e08a78d167d12ba">
+<a href="javascript:history.back();" class="lightbox" id="image-4997d9db28a84bf71a3fa6e24e50992c">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224172756.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
 <p>本地测试按照提示进行替换，并保存为.ps1文件，放入靶机测试
 
-<a href="#image-31e6873db82c4e7c58c2cfc6704772fb" class="lightbox-link">
+<a href="#image-90c05f66faee43268eb02c8b287850aa" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224173003.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-31e6873db82c4e7c58c2cfc6704772fb">
+<a href="javascript:history.back();" class="lightbox" id="image-90c05f66faee43268eb02c8b287850aa">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224173003.png" alt="" class="lightbox-image" loading="lazy">
 </a>
 经测试，发现目前此方式由于非base64导致报错，导致脚本无法执行成功
 
-<a href="#image-0464e1c33f42bd500441412c02639a6d" class="lightbox-link">
+<a href="#image-b620828d568a4d74612a262966162830" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224172550.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0464e1c33f42bd500441412c02639a6d">
+<a href="javascript:history.back();" class="lightbox" id="image-b620828d568a4d74612a262966162830">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224172550.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </blockquote>
 <p>保存编辑的脚本到powershell文件并执行。当Cobalt Strike中的beacon点亮，并出现提示@sec_groundzero Aggressor 脚本的注意之后成功。</p>
 <p>
-<a href="#image-5309f99ea52f51bd43c0455111add7fe" class="lightbox-link">
+<a href="#image-d50400828b0e7e0fa79478d25e30c505" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224173157.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5309f99ea52f51bd43c0455111add7fe">
+<a href="javascript:history.back();" class="lightbox" id="image-d50400828b0e7e0fa79478d25e30c505">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224173157.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>如果我们同时检查原始 CS payload和修改过的 CS payload，通过Process Hacker我们看到我们并不会改变beacon的行为。</p>
 <p>
-<a href="#image-087cabbaba8e51abeee2dddc69656dea" class="lightbox-link">
+<a href="#image-30e85cc3d82e54a638961881f2041005" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224173222.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-087cabbaba8e51abeee2dddc69656dea">
+<a href="javascript:history.back();" class="lightbox" id="image-30e85cc3d82e54a638961881f2041005">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/20191224173222.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -329,12 +329,12 @@ Invoke-Obfuscation</code></pre></div><p>现在我们需要定义我们需要混�
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691051860" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691051860" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691051860" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691051860" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691051860" defer></script>
-        <script src="/js/search.js?1691051860" defer></script>
+        <script src="/js/auto-complete.js?1691111203" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691111203" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691111203" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691111203" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691111203" defer></script>
+        <script src="/js/search.js?1691111203" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -405,7 +405,7 @@ Invoke-Obfuscation</code></pre></div><p>现在我们需要定义我们需要混�
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-bba07b074ab74ed3d6f2efbb911ba96a" aria-controls="subsections-bba07b074ab74ed3d6f2efbb911ba96a"><label for="section-bba07b074ab74ed3d6f2efbb911ba96a"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x03取证分析</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html">0x03取证分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-bba07b074ab74ed3d6f2efbb911ba96a" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html">【译】取证调查：虚拟内存pagefile.sys<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html" class=""><input type="checkbox" id="section-1c2e9721036bcac0690861bf4737d812" aria-controls="subsections-1c2e9721036bcac0690861bf4737d812"><label for="section-1c2e9721036bcac0690861bf4737d812"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x06取证辅助工具</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html">0x06取证辅助工具<i class="fas fa-check read-icon"></i></a><ul id="subsections-1c2e9721036bcac0690861bf4737d812" class="morespace collapsible-menu">
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1EmergencyRocketPackage/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1EmergencyRocketPackage/index.html">EmergencyRocketPackage<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/EmergencyRocketPackage/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/EmergencyRocketPackage/index.html">EmergencyRocketPackage<i class="fas fa-check read-icon"></i></a></li></ul></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b"><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-88c267f9c3b4a34d411e5a90254df00f" aria-controls="subsections-88c267f9c3b4a34d411e5a90254df00f"><label for="section-88c267f9c3b4a34d411e5a90254df00f"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 安卓样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">安卓样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-88c267f9c3b4a34d411e5a90254df00f" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/Mobsf_MAC_AVD_Android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/Mobsf_MAC_AVD_Android%E5%8A%A8%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%8E%92%E5%9D%91%E5%AE%9E%E6%88%98/index.html">Mobsf_MAC_AVD_Android动静态环境搭建排坑实战<i class="fas fa-check read-icon"></i></a></li></ul></li>
@@ -519,8 +519,8 @@ Invoke-Obfuscation</code></pre></div><p>现在我们需要定义我们需要混�
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691051860" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691051860" defer></script>
+    <script src="/js/clipboard.min.js?1691111203" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691111203" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -550,15 +550,15 @@ Invoke-Obfuscation</code></pre></div><p>现在我们需要定义我们需要混�
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691051860" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691051860" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691111203" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691111203" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -567,8 +567,8 @@ Invoke-Obfuscation</code></pre></div><p>现在我们需要定义我们需要混�
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691051860  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691111203  };
     </script>
-    <script src="/js/theme.js?1691051860" defer></script>
+    <script src="/js/theme.js?1691111203" defer></script>
   </body>
 </html>

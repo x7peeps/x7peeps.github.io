@@ -172,7 +172,7 @@ var relearn_search_index = [
     "description": "",
     "tags": "应急响应",
     "title": "EmergencyRocketPackage",
-    "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%B7%A5%E5%85%B7%E7%AE%B1EmergencyRocketPackage/index.html"
+    "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/EmergencyRocketPackage/index.html"
   },
   {
     "content": "",
