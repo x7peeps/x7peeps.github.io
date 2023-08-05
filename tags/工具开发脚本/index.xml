@@ -24,10 +24,10 @@
       <description>&lt;h1 id=&#34;本地批量ping域名脚本&#34;&gt;本地批量ping域名脚本&lt;/h1&gt;
 &lt;p&gt;背景是同学在执行一批渗透时需要批量验证一批域名本地ping情况，这里通过powershell脚本简单制作了一个思路供同学们参考。
 
-&lt;a href=&#34;#image-3cc3db66a5636251e195884ace67a7aa&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;a href=&#34;#image-76fd81c59b8acf2cdd881227723ea300&#34; class=&#34;lightbox-link&#34;&gt;
 &lt;img src=&#34;http://blogimage.xtpeeps.cn/20191020001017.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-3cc3db66a5636251e195884ace67a7aa&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-76fd81c59b8acf2cdd881227723ea300&#34;&gt;
 &lt;img src=&#34;http://blogimage.xtpeeps.cn/20191020001017.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;</description>
     </item>
