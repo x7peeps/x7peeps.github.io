@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>应急响应关键证据检索提取 on x7peeps</title>
+    <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.html</link>
+    <description>Recent content in 应急响应关键证据检索提取 on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 13 Oct 2021 15:00:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安全策略检测</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html</link>
+      <pubDate>Wed, 13 Oct 2021 15:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E6%A3%80%E6%B5%8B/index.html</guid>
+      <description>安全策略的检测更倾向与合规检测，这里我们希望的是根据合规的标准发现尽可能多的非合规问题。
+Windows安全策略检查 windows官网操作系统技术文件中的有很多关于windows安全信息的内容，组策略安全扩展协议、安全策略、威胁和对策指南、windows安全基线等等。我们在应急场景下不会过在现场进行策略内容的研究，尤其是安全策略有4800条（3000系统安全配置策略、1800是IE的安全配置策略），更多的是需要取相关策略，并与安全基线进行对比核查，找到可能的弱点所在，协助现场安全分析。这里我们可以使用微软官方的策略检测工具LGPO.exe进行策略的导出，然后通过PolicyAnalyzer对策略和基线进行对比分析，最终得到我们想要了解的安全策略上的问题。
+windows安全基线 有几种获取和使用安全基线的方法：
+可以从 Microsoft 下载中心下载安全基线。 这是 Security Compliance Toolkit (SCT) 的下载页面，其中包含可帮助管理员管理安全基线以及其他基线的各种工具。 安全基线包含在 Security Compliance Toolkit (SCT)中，可从 Microsoft 下载中心进行下载。 SCT 还包含帮助管理员管理安全基线的工具。 还可以获取 对安全基线的支持
+MDM (移动设备管理)安全基线功能，如基于 Microsoft 组策略的安全基线，并且可以轻松地将其集成到现有 MDM 管理工具中。
+MDM 安全基线可以在运行 Microsoft Endpoint Manager 11 的设备上轻松Windows 10配置。 以下文章提供了详细信息步骤：Windows MDM (移动设备) 基线。
+原文可以在Windows 安全基准（https://docs.microsoft.com/zh-cn/windows/security/threat-protection/windows-security-configuration-framework/windows-security-baselines）找到。
+这里用到的工具有LGPO、PolicyAnalyzer你都可以通过 https://www.microsoft.com/en-us/download/details.aspx?id=55319 进行下载。这个下载链接中的其他内容就是windows基线标准，也建议一起下载，用于后续分析对比基线使用。
+LGPO.exe C:\Users\xt&amp;gt;C:\Users\xt\Desktop\工具\LGPO.exe LGPO.exe - Local Group Policy Object Utility Version 3.0.2004.13001 Copyright (C) 2015-2020 Microsoft Corporation Security Compliance Toolkit - https://www.microsoft.com/download/details.aspx?id=55319 LGPO.exe has four modes: * Import and apply policy settings; * Export local policy to a GPO backup; * Parse a registry.</description>
+    </item>
+    <item>
+      <title>linux软件包管理器文件检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Sat, 07 Aug 2021 12:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/linux%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>对于软件包管理器软件检查安装的软件的变动可以参考软件查杀检查rhk工具的使用，该软件已可以充分利用软件包管理器的文件特性进行查找。并且我们可以通过相关内容了解到包管理器中只有RPM和SOLARIS的检查方式提供了除hash之外的其他文件资产检查，因此本章节我们手工check相关文件检查的时候重点针对这RPM包管理器的用法进行实践。
+RPM RPM介绍 home： http://rpm.org/
+RPM 是 Red Hat Package Manager 的缩写，本意是Red Hat 软件包管理，顾名思义是Red Hat 贡献出来的软件包管理；在Fedora 、Redhat、Mandriva、SuSE、YellowDog等主流发行版本，以及在这些版本基础上二次开发出来的发行版采用；
+RPM Package Manager (RPM)是一款功能强大的软件包管理系统
+将计算机软件从源代码构建成易于分发的软件包
+安装、更新和卸载软件包
+查询软件包的详细信息，无论软件包是否已安装
+校验软件包和结果软件安装的完整性
+Fedora 和Red Hat Linux操作系统默认使用RPM包管理器进行软件管理，同yum，up2date，apt等等命令一样。
+RPM基本用法 rpm [-acdhilqRsv][-b&amp;lt;完成阶段&amp;gt;&amp;lt;套间档&amp;gt;+][-e&amp;lt;套件挡&amp;gt;][-f&amp;lt;文件&amp;gt;+][-i&amp;lt;套件档&amp;gt;][-p&amp;lt;套件档&amp;gt;＋][-U&amp;lt;套件档&amp;gt;][-vv][&amp;ndash;addsign&amp;lt;套件档&amp;gt;+][&amp;ndash;allfiles][&amp;ndash;allmatches][&amp;ndash;badreloc][&amp;ndash;buildroot&amp;lt;根目录&amp;gt;][&amp;ndash;changelog][&amp;ndash;checksig&amp;lt;套件档&amp;gt;+][&amp;ndash;clean][&amp;ndash;dbpath&amp;lt;数据库目录&amp;gt;][&amp;ndash;dump][&amp;ndash;excludedocs][&amp;ndash;excludepath&amp;lt;排除目录&amp;gt;][&amp;ndash;force][&amp;ndash;ftpproxy&amp;lt;主机名称或IP地址&amp;gt;][&amp;ndash;ftpport&amp;lt;通信端口&amp;gt;][&amp;ndash;help][&amp;ndash;httpproxy&amp;lt;主机名称或IP地址&amp;gt;][&amp;ndash;httpport&amp;lt;通信端口&amp;gt;][&amp;ndash;ignorearch][&amp;ndash;ignoreos][&amp;ndash;ignoresize][&amp;ndash;includedocs][&amp;ndash;initdb][justdb][&amp;ndash;nobulid][&amp;ndash;nodeps][&amp;ndash;nofiles][&amp;ndash;nogpg][&amp;ndash;nomd5][&amp;ndash;nopgp][&amp;ndash;noorder][&amp;ndash;noscripts][&amp;ndash;notriggers][&amp;ndash;oldpackage][&amp;ndash;percent][&amp;ndash;pipe&amp;lt;执行指令&amp;gt;][&amp;ndash;prefix&amp;lt;目的目录&amp;gt;][&amp;ndash;provides][&amp;ndash;queryformat&amp;lt;档头格式&amp;gt;][&amp;ndash;querytags][&amp;ndash;rcfile&amp;lt;配置档&amp;gt;][&amp;ndash;rebulid&amp;lt;套件档&amp;gt;][&amp;ndash;rebuliddb][&amp;ndash;recompile&amp;lt;套件档&amp;gt;][&amp;ndash;relocate&amp;lt;原目录&amp;gt;=&amp;lt;新目录&amp;gt;][&amp;ndash;replacefiles][&amp;ndash;replacepkgs][&amp;ndash;requires][&amp;ndash;resign&amp;lt;套件档&amp;gt;+][&amp;ndash;rmsource][&amp;ndash;rmsource&amp;lt;文件&amp;gt;][&amp;ndash;root&amp;lt;根目录&amp;gt;][&amp;ndash;scripts][&amp;ndash;setperms][&amp;ndash;setugids][&amp;ndash;short-circuit][&amp;ndash;sign][&amp;ndash;target=&amp;lt;安装平台&amp;gt;+][&amp;ndash;test][&amp;ndash;timecheck&amp;lt;检查秒数&amp;gt;][&amp;ndash;triggeredby&amp;lt;套件档&amp;gt;][&amp;ndash;triggers][&amp;ndash;verify][&amp;ndash;version][&amp;ndash;whatprovides&amp;lt;功能特性&amp;gt;][&amp;ndash;whatrequires&amp;lt;功能特性&amp;gt;]
+-a 查询所有套件。 -b&amp;lt;完成阶段&amp;gt;&amp;lt;套件档&amp;gt;+或-t &amp;lt;完成阶段&amp;gt;&amp;lt;套件档&amp;gt;+ 设置包装套件的完成阶段，并指定套件档的文件名称。 -c 只列出组态配置文件，本参数需配合&amp;#34;-l&amp;#34;参数使用。 -d 只列出文本文件，本参数需配合&amp;#34;-l&amp;#34;参数使用。 -e&amp;lt;套件档&amp;gt;或--erase&amp;lt;套件档&amp;gt; 删除指定的套件。 -f&amp;lt;文件&amp;gt;+ 查询拥有指定文件的套件。 -h或--hash 套件安装时列出标记。 -i 显示套件的相关信息。 -i&amp;lt;套件档&amp;gt;或--install&amp;lt;套件档&amp;gt; 安装指定的套件档。 -l 显示套件的文件列表。 -p&amp;lt;套件档&amp;gt;+ 查询指定的RPM套件档。 -q 使用询问模式，当遇到任何问题时，rpm指令会先询问用户。 -R 显示套件的关联性信息。 -s 显示文件状态，本参数需配合&amp;#34;-l&amp;#34;参数使用。 -U&amp;lt;套件档&amp;gt;或--upgrade&amp;lt;套件档&amp;gt; 升级指定的套件档。 -v 显示指令执行过程。 -vv 详细显示指令执行过程，便于排错。 -addsign&amp;lt;套件档&amp;gt;+ 在指定的套件里加上新的签名认证。 --allfiles 安装所有文件。 --allmatches 删除符合指定的套件所包含的文件。 --badreloc 发生错误时，重新配置文件。 --buildroot&amp;lt;根目录&amp;gt; 设置产生套件时，欲当作根目录的目录。 --changelog 显示套件的更改记录。 --checksig&amp;lt;套件档&amp;gt;+ 检验该套件的签名认证。 --clean 完成套件的包装后，删除包装过程中所建立的目录。 --dbpath&amp;lt;数据库目录&amp;gt; 设置欲存放RPM数据库的目录。 --dump 显示每个文件的验证信息。本参数需配合&amp;#34;-l&amp;#34;参数使用。 --excludedocs 安装套件时，不要安装文件。 --excludepath&amp;lt;排除目录&amp;gt; 忽略在指定目录里的所有文件。 --force 强行置换套件或文件。 --ftpproxy&amp;lt;主机名称或IP地址&amp;gt; 指定FTP代理服务器。 --ftpport&amp;lt;通信端口&amp;gt; 设置FTP服务器或代理服务器使用的通信端口。 --help 在线帮助。 --httpproxy&amp;lt;主机名称或IP地址&amp;gt; 指定HTTP代理服务器。 --httpport&amp;lt;通信端口&amp;gt; 设置HTTP服务器或代理服务器使用的通信端口。 --ignorearch 不验证套件档的结构正确性。 --ignoreos 不验证套件档的结构正确性。 --ignoresize 安装前不检查磁盘空间是否足够。 --includedocs 安装套件时，一并安装文件。 --initdb 确认有正确的数据库可以使用。 --justdb 更新数据库，当不变动任何文件。 --nobulid 不执行任何完成阶段。 --nodeps 不验证套件档的相互关联性。 --nofiles 不验证文件的属性。 --nogpg 略过所有GPG的签名认证。 --nomd5 不使用MD5编码演算确认文件的大小与正确性。 --nopgp 略过所有PGP的签名认证。 --noorder 不重新编排套件的安装顺序，以便满足其彼此间的关联性。 --noscripts 不执行任何安装Script文件。 --notriggers 不执行该套件包装内的任何Script文件。 --oldpackage 升级成旧版本的套件。 --percent 安装套件时显示完成度百分比。 --pipe&amp;lt;执行指令&amp;gt; 建立管道，把输出结果转为该执行指令的输入数据。 --prefix&amp;lt;目的目录&amp;gt; 若重新配置文件，就把文件放到指定的目录下。 --provides 查询该套件所提供的兼容度。 --queryformat&amp;lt;档头格式&amp;gt; 设置档头的表示方式。 --querytags 列出可用于档头格式的标签。 --rcfile&amp;lt;配置文件&amp;gt; 使用指定的配置文件。 --rebulid&amp;lt;套件档&amp;gt; 安装原始代码套件，重新产生二进制文件的套件。 --rebuliddb 以现有的数据库为主，重建一份数据库。 --recompile&amp;lt;套件档&amp;gt; 此参数的效果和指定&amp;#34;--rebulid&amp;#34;参数类似，当不产生套件档。 --relocate&amp;lt;原目录&amp;gt;=&amp;lt;新目录&amp;gt; 把本来会放到原目录下的文件改放到新目录。 --replacefiles 强行置换文件。 --replacepkgs 强行置换套件。 --requires 查询该套件所需要的兼容度。 --resing&amp;lt;套件档&amp;gt;+ 删除现有认证，重新产生签名认证。 --rmsource 完成套件的包装后，删除原始代码。 --rmsource&amp;lt;文件&amp;gt; 删除原始代码和指定的文件。 --root&amp;lt;根目录&amp;gt; 设置欲当作根目录的目录。 --scripts 列出安装套件的Script的变量。 --setperms 设置文件的权限。 --setugids 设置文件的拥有者和所属群组。 --short-circuit 直接略过指定完成阶段的步骤。 --sign 产生PGP或GPG的签名认证。 --target=&amp;lt;安装平台&amp;gt;+ 设置产生的套件的安装平台。 --test 仅作测试，并不真的安装套件。 --timecheck&amp;lt;检查秒数&amp;gt; 设置检查时间的计时秒数。 --triggeredby&amp;lt;套件档&amp;gt; 查询该套件的包装者。 --triggers 展示套件档内的包装Script。 --verify 此参数的效果和指定&amp;#34;-q&amp;#34;参数相同。 --version 显示版本信息。 --whatprovides&amp;lt;功能特性&amp;gt; 查询该套件对指定的功能特性所提供的兼容度。 --whatrequires&amp;lt;功能特性&amp;gt; 查询该套件对指定的功能特性所需要的兼容度。RPM常见用法 # 安装数据包 rpm -i package.</description>
+    </item>
+    <item>
+      <title>web后门查杀</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Fri, 06 Aug 2021 12:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/web%E5%90%8E%E9%97%A8%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>linux下后门查杀 牧云（18年已停止更新） CloudWalker（牧云）是长亭推出的一款开源服务器安全管理平台。根据项目计划会逐步覆盖服务器资产管理、威胁扫描、Webshell扫描查杀、基线检测等各项功能。目前开源版go编写，停留在18年版。
+https://github.com/chaitin/cloudwalker
+使用方法
+./webshell-detector -html -output result.html /path/to/web-root/
+河马（linux） 拥有海量webshell样本，形成科学查杀鉴定标准，可对同行产品进行查杀能力测评。
+http://www.shellpub.com
+linux用法
+./hm scan 你的web目录 # 保存为result.csv文件 ./hm deepscan 你的web目录 扫描时开启深度解码windows下后门查杀 D盾 D盾_防火墙』专为IIS设计的一个主动防御的保护软件,以内外保护的方式 防止网站和服务器给入侵,在正常运行各类网站的情 况下，越少的功能，服务器越安全的理念而设计！ 限制了常见的入侵方法，让服务器更安全!
+http://www.d99net.net/
+直接下载使用
+http://www.d99net.net/News.asp?id=106
+河马（windows） 拥有海量webshell样本，形成科学查杀鉴定标准，可对同行产品进行查杀能力测评。
+http://www.shellpub.com
+https://www.shellpub.com/doc/hm_win_usage.html
+运行程序即可
+查看帮助
+hm -h查看版本
+hm version扫描后门
+hm scan 你的web目录 扫描完成之后结果会保存为result.csv文件，使用记事本或者excel打开查看升级
+hm update服务形式查杀工具 百度webdir+（需要联网） https://scanner.baidu.com/
+您可以通过如下方式提交需要扫描的文件，比如要扫描的文件为 web.zip，那么您需要执行如下命令，
+curl https://scanner.baidu.com/enqueue -F archive=@web.zip如果上传成功，您将会获取到一串JSON
+{ &amp;#34;status&amp;#34;: 0, &amp;#34;descr&amp;#34;: &amp;#34;Task enqueued&amp;#34;, &amp;#34;md5&amp;#34;: &amp;#34;b786fd0010f171cb85803eca877eb9d0&amp;#34;, &amp;#34;url&amp;#34;: &amp;#34;https://scanner.baidu.com/result/b786fd0010f171cb85803eca877eb9d0&amp;#34; }其中URL的值表示扫描结果地址，您可以使用如下命令获取，
+curl https://scanner.baidu.com/result/b786fd0010f171cb85803eca877eb9d0同样，您会获取到一串JSON
+[ { // 文件 md5 &amp;#34;md5&amp;#34;: &amp;#34;b786fd0010f171cb85803eca877eb9d0&amp;#34;, // 一共多少文件 &amp;#34;total&amp;#34;: 1, // 检测出多少 &amp;#34;detected&amp;#34;: 1, // 扫描状态 &amp;#34;status&amp;#34;: &amp;#34;done&amp;#34;, // 已经扫描了多少文件 &amp;#34;scanned&amp;#34;: 1, // 检测结果 &amp;#34;data&amp;#34;: [ { // 文件相对路径 &amp;#34;path&amp;#34;: &amp;#34;/b786fd0010f171cb85803eca877eb9d0.</description>
+    </item>
+    <item>
+      <title>linux下病毒查杀</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Tue, 03 Aug 2021 12:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>linux下病毒查杀 大部分情况，现场是不允许向机器中拷贝程序的，一破坏现场，二使用不明原理的程序对客户业务系统可能造成未知的影响。在更为严格的情形下，可能我们在现场机器查询命令都是会影响证据固定，因此那种场景下需要先镜像，而后在分析证据的时候进行查杀工作，但这种严格的场景不在本文讨论的范围内。因此本文在查杀过程中，讨论的是不太严格的取证场景下，公司内部或个人主机场景下如何进行病毒查杀以及样本提取工作。第一步需要经允许才可拷贝相关程序，之后我们可以借助一些查杀工具进行检测扫描，最后我们通过现有的异常特征进行手工分析。
+Rootkit查杀 rootkit是持久化中是很常见的躲避恶意软件检测的隐藏攻击行为的一类程序，这里一般来说杀软对rootkit具有查杀能力，这里仍然作为了解推荐几个专杀。
+linux和BSD下后门程序一般最为复杂和严重的是内核级的Rootkit，同样在Windows下Rootkit以及BootKit也是最难清理和危害最大又存活最强的后门程序。在Windows下的Rootkit很多样化但相应检测和清理的工具很多种，linux下Rootkit的检测和清理工具相对较少，其中有这两个比较常用：*Chkrootkit*和*RootkitHunter*。（Pestd关于两个工具的使用介绍）
+chkrootkit（rootkit查杀） 官网：http://www.chkrootkit.org
+简介 Chkrootkit是一个本地检查rootkit标志的工具。它包含:
+Chkrootkit: 检查系统二进制文件的rootkit篡改的shell脚本。
+ifpromisc.c: 表示检查接口是否为混杂模式。
+chklastlog.c: 检查最近日志的删除情况。
+chkwtmp.c:检查WTMP是否被删除。
+check_wtmpx.c:检查WTMPX的删除。(仅Solaris)
+chkproc.c: 检查LKM木马的迹象。
+chkdirs.c: 检查LKM木马的迹象。
+strings.c: 快速和肮脏的字符串替换。
+chkutmp.c: 检查是否删除utmp。
+目前已经支持下列相关命令/服务/程序的检测：
+aliens asp bindshell lkm rexedcs sniffer w55808 wted scalper slapper z2 chkutmp OSX_RSPLUG amd basename biff chfn chsh cron crontab date du dirname echo egrep env find fingerd gpm grep hdparm su ifconfig inetd inetdconf identd init killall ldsopreload login ls lsof mail mingetty netstat named passwd pidof pop2 pop3 ps pstree rpcinfo rlogind rshd slogin sendmail sshd syslogd tar tcpd tcpdump top telnetd timed traceroute vdir w write</description>
+    </item>
+    <item>
+      <title>系统日志查询</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Fri, 30 Jul 2021 22:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>linux下系统日志查询 这里仅做取证方式介绍
+/var/log/* 基本命令 日志默认存放位置：/var/log/
+查看日志配置情况：more /etc/rsyslog.conf
+日志文件 说明 /var/log/cron 记录了系统定时任务相关的日志 /var/log/cups 记录打印信息的日志 /var/log/dmesg 记录了系统在开机时内核自检的信息，也可以使用dmesg命令直接查看内核自检信息 /var/log/mailog 记录邮件信息 /var/log/message 记录系统重要信息的日志。这个日志文件中会记录Linux系统的绝大多数重要信息，如果系统出现问题时，首先要检查的就应该是这个日志文件 /var/log/btmp 记录错误登录日志，这个文件是二进制文件，不能直接vi查看，而要使用lastb命令查看 /var/log/lastlog 记录系统中所有用户最后一次登录时间的日志，这个文件是二进制文件，不能直接vi，而要使用lastlog命令查看 /var/log/wtmp 永久记录所有用户的登录、注销信息，同时记录系统的启动、重启、关机事件。同样这个文件也是一个二进制文件，不能直接vi，而需要使用last命令来查看 /var/log/utmp 记录当前已经登录的用户信息，这个文件会随着用户的登录和注销不断变化，只记录当前登录用户的信息。同样这个文件不能直接vi，而要使用w,who,users等命令来查询 /var/log/secure 记录验证和授权方面的信息，只要涉及账号和密码的程序都会记录，比如SSH登录，su切换用户，sudo授权，甚至添加用户和修改用户密码都会记录在这个日志文件中 /var/log/httpd/access.log； apache日志 /var/log/apache/access.log； apache日志 /var/log/apache2/access.log； apache日志 /var/log/httpdaccess.log apache日志 /usr/local/nginx/logs nginx日志 /var/log/messages ftp日志/etc/vsftp/vsftp.conf 常用命令 1、定位有多少IP在爆破主机的root帐号： grep &amp;#34;Failed password for root&amp;#34; /var/log/secure | awk &amp;#39;{print $11}&amp;#39; | sort | uniq -c | sort -nr | more 定位有哪些IP在爆破： grep &amp;#34;Failed password&amp;#34; /var/log/secure|grep -E -o &amp;#34;(25[0-5]|2[0-4][0-9]|[01]?</description>
+    </item>
+    <item>
+      <title>重点文件目录检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Thu, 29 Jul 2021 12:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%87%8D%E7%82%B9%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>在日常应急下，我们除了针对重要数据检查，还会针对一些重点文件目录进行检查，相关目录或多或少受到黑客攻击的影响留下了痕迹，对相关文件的检查和分析有助于我们还原整个攻击链。本文则注重相关目录基本的实用查看查询方式技巧展开。
+Linux下常见重点文件目录检查 临时目录检查 /tmp
+查看敏感目录，如/tmp目录下的文件，同时注意隐藏文件夹，以“..”为名的文件夹具有隐藏属性
+最近访问的文件 find 基本用法 为了方便查阅这里放一下汉化版find的man手册
+总览 find [path...] [expression] 描述 这个文档是GNU版本 find 命令的使用手册。 find 搜索目录树上的每一个文件名，它从左至右运算给定的表达式，按照优先规则(见运 算符OPERATORS一节)进行匹配，直到得出结果（左边运算在 &amp;#39;与&amp;#39; 操作中得出假， 在&amp;#39;或&amp;#39; 操作中得出真），然后 find 移向下一个文件名。 第一个以 &amp;#39;-&amp;#39; , &amp;#39;(&amp;#39; , &amp;#39;)&amp;#39; , &amp;#39;,&amp;#39; 或 &amp;#39;!&amp;#39; 这些字符起始的参数是表达式的开始; 在它之前的任何参数是要搜索的路径，在它之后的任何参数都是表达式的余下部分。 如果没有路径参数，缺省用当前目录。如果没有表达式，缺省表达式 用 &amp;#39;-print&amp;#39;. 当所有文件都成功处理时 find 退出并返回状态值0。如果发生错误则返回一个大于0的值。 表达式 表达式是由选项(选项总是影响所有的操作, 而不仅仅是一个指定的文件的处 理, 而且总是返回真值)，测试(测试返回一个真值或一个假值)，还有动 作(动作有side effects, 返回一个真值或假值) 组成。它们都以运算符分开.忽 略运算符的时候，默认使用 -and 连接. 如果表达式没有包含 -prune 以外的动 作，当表达式为真时会执行 -print 动作。 选项 所有的选项都总是返回真值，它们总会被执行，除非放在表达式中执行不到的地方。 因此，清楚起见，最好把它们放在表达式的开头部分。 -daystart 从当日起始时开始而不是从24小时之前，计算时间(for -amin, -atime, -cmin, -ctime, -mmin, and -mtime)。 -depth 先处理目录的内容再处理目录本身。 -follow 不检索符号链接。隐含了 -noleaf。 -help, --help 列出 find 的命令行用法的概要，然后退出。 -maxdepth levels 进入命令行参数指定的目录下层目录时，最深不超过levels(一个非负整数) 层。`-maxdepth 0&amp;#39; 意味着只在命令行参数指定的目录中执行测试和动作。 -mindepth levels 不在levels(一个非负整数)层之内执行任何测试和动作。`-mindepth 1&amp;#39;意 味着处理所有的文件，除了命令行参数指定的目录中的文件。 -mount 不进入处于其它文件系统之上的目录。可以用-xdev代替，从而和一些其他版本的 find 兼容。 -noleaf 不为“目录中子目录数量比硬连接数少2”这种假设做优化。这个选项在搜索那些不遵 循UNIX文件系统链接约定的文件系统时用，比如CD-ROM,MS-DOS文件系统或AFS卷的 加载点。在普通的UNIX文件系统中,每个目录至少有两个硬连接,它的名字和它 的 &amp;#39;.</description>
+    </item>
+    <item>
+      <title>异常端口查询</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html</link>
+      <pubDate>Tue, 27 Jul 2021 12:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%BC%82%E5%B8%B8%E7%AB%AF%E5%8F%A3%E6%9F%A5%E8%AF%A2/index.html</guid>
+      <description>Linux下异常端口/连接检查 netstat 菜鸟 https://www.runoob.com/linux/linux-comm-netstat.html
+使用netstat 网络连接命令，分析可疑端口、IP、PID
+netstat [-acCeFghilMnNoprstuvVwx][-A&amp;lt;网络类型&amp;gt;][--ip] 参数说明： -a或--all 显示所有连线中的Socket。 -A&amp;lt;网络类型&amp;gt;或--&amp;lt;网络类型&amp;gt; 列出该网络类型连线中的相关地址。 -c或--continuous 持续列出网络状态。 -C或--cache 显示路由器配置的快取信息。 -e或--extend 显示网络其他相关信息。 -F或--fib 显示路由缓存。 -g或--groups 显示多重广播功能群组组员名单。 -h或--help 在线帮助。 -i或--interfaces 显示网络界面信息表单。 -l或--listening 显示监控中的服务器的Socket。 -M或--masquerade 显示伪装的网络连线。 -n或--numeric 直接使用IP地址，而不通过域名服务器。 -N或--netlink或--symbolic 显示网络硬件外围设备的符号连接名称。 -o或--timers 显示计时器。 -p或--programs 显示正在使用Socket的程序识别码和程序名称。 -r或--route 显示Routing Table。 -s或--statistics 显示网络工作信息统计表。 -t或--tcp 显示TCP传输协议的连线状况。 -u或--udp 显示UDP传输协议的连线状况。 -v或--verbose 显示指令执行过程。 -V或--version 显示版本信息。 -w或--raw 显示RAW传输协议的连线状况。 -x或--unix 此参数的效果和指定&amp;#34;-A unix&amp;#34;参数相同。 --ip或--inet 此参数的效果和指定&amp;#34;-A inet&amp;#34;参数相同常用查询语句 netstat -antlp|more 监听使用IP显示所有tcp，显示正在使用socket的程序识别码和程序 netstat -nu 显示当前户籍UDP连接状况 netstat -apu 显示UDP端口号的使用情况 netstat -i 显示网卡列表 netstat -g 显示组播组的关系 netstat -s 显示网络统计信息 netstat -l 显示监听的套接口parallels@parallels-Parallels-Virtual-Platform:~$ netstat -antlp (Not all processes could be identified, non-owned process info will not be shown, you would have to be root to see it all.</description>
+    </item>
+    <item>
+      <title>服务信息检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 19 Jul 2021 12:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>Linux下服务信息检查 chkconfig（linux） redhat中常用
+基本命令 chkconfig [--add][--del][--list][系统服务] 或 chkconfig [--level &amp;lt;等级代号&amp;gt;][系统服务][on/off/reset] --add 增加所指定的系统服务，让 chkconfig 指令得以管理它，并同时在系统启动的叙述文件内增加相关数据。chkconfig确保每个运行级有一项启动(S)或者杀死(K)入口。如有缺少，则会从缺省的init脚本自动建立。 --del 删除所指定的系统服务，不再由 chkconfig 指令管理，并同时在系统启动的叙述文件内删除相关数据。删除服务，并把相关符号连接从/etc/rc[0-6].d删除。 --level&amp;lt;等级代号&amp;gt; 指定读系统服务要在哪一个执行等级中开启或关毕。设置某一服务在指定的运行级是被启动，停止还是重置。列出chkconfig 所知道的所有命令。
+chkconfig --list开启服务。
+chkconfig xxx on/off //开启/关闭xxx服务使用范例 chkconfig –list #列出所有的系统服务 chkconfig –add httpd #增加httpd服务 chkconfig –del httpd #删除httpd服务 chkconfig –level httpd 2345 on #设置httpd在运行级别为2、3、4、5的情况下都是on（开启）的状态 chkconfig –list #列出系统所有的服务启动情况 chkconfig –list mysqld #列出mysqld服务设置情况 chkconfig –level 35 mysqld on #设定mysqld在等级3和5为开机运行服务，–level 35表示操作只在等级3和5执行，on表示启动，off表示关闭 chkconfig mysqld on #设定mysqld在各等级为on，“各等级”包括2、3、4、5等级 ntsysv（linux） redhat特有类图形界面管理模式来设置开机启动
+ntsysv基本命令 ntsysv [--back][--level &amp;lt;等级代号&amp;gt;] --back 在互动式界面里，显示Back钮，而非Cancel钮。 --level &amp;lt;等级代号&amp;gt; 在指定的执行等级中，决定要开启或关闭哪些系统服务。使用ntsysv命令管理自启动，可以管理独立服务和xinetd服务。</description>
+    </item>
+    <item>
+      <title>计划任务检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Thu, 15 Jul 2021 12:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>命令行历史记录</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html</link>
+      <pubDate>Mon, 12 Jul 2021 22:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html</guid>
+      <description>linux下命令行历史记录 原理的解释
+这里参考白胖子关于linux命令行history的解释，其中概述对history的原理解释的比较通俗易懂，这里引用过来：
+当执行命令后，系统默认会在内存记录执行过的命令 当用户正常退出时，会将内存的命令历史存放对应历史文件中，默认是~/.bash_history 登录shell时，会读取命令历史文件中记录下的命令加载到内存中 登录进shell后新执行的命令只会记录在内存的缓存区中；这些命令会用户正常退出时“追加”至命令历史文件中 利用命令历史。可以用它来重复执行命令，提高输入效率 bash history内建函数
+bash提供两个内置命令操纵历史记录列表和历史记录文件。
+fc命令 fc [-e ename] [-lnr] [first] [last] fc -s [pat=rep] [command] -e&amp;lt;文本编辑器&amp;gt; 指定用来编辑命令的文本编辑器，默认是vi -l 列出第一条和最后一条命令范围内的历史命令，如果不跟命令范围则默认显示最近使用过的16条历史命令 -n 显示历史命令时不显示命令序号 -r 反序显示所有历史命令 -s&amp;lt;命令名&amp;gt; 从历史命令中当前位置往前找到指定命令，并执行 显示历史命令列表（默认打印最近的16条历史命令）： fc -l 显示历史命令列表 1-99行： fc -l 1 99 指定使用ex文本编辑器编辑命令： fc -e ex 显示历史命令列表但不显示命令序号： fc -n 反序显示所有历史命令： fc -r 从历史命令中找到find命令，并执行： fc -s find EXTENDED_HISTORY环境变量影响fc命令的执行，如果变量设置为ON，则记录时间，否则不记录时间。在/etc/profile中添加export EXTENDED_HISTORY=ON 即可开启命令时间记录。
+kali：因为shell是zsh，因此配置在/etc/zsh/zshrc
+history命令 history [-c] [-d offset] [n] history -awrn [filename] history -ps arg [arg.</description>
+    </item>
+    <item>
+      <title>启动项检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Sat, 10 Jul 2021 22:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%90%AF%E5%8A%A8%E9%A1%B9%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>在日常应急的过程中，攻击者常常通过恶意软件或自定义脚本插入启动项，利用系统自启实现恶意程序/远控程序/脚本延缓执行，达到持续控制的目的。因此有必要在日常应急场景中，针对启动项检查。本文就是为了记录对linux和windows的启动项检查简要方式梳理，对于linux还根据启动过程进行了额外的分析。
+Linux下启动项检查 linux启动过程 https://www.cnblogs.com/sysk/p/4778976.html
+启动第一步－－加载BIOS 当你打开计算机电源，计算机会首先加载BIOS信息，BIOS信息是如此的重要，以至于计算机必须在最开始就找到它。这是因为BIOS中包含了CPU的相关信息、设备启动顺序信息、硬盘信息、内存信息、时钟信息、PnP特性等等。在此之后，计算机心里就有谱了，知道应该去读取哪个硬件设备了。
+启动第二步－－读取MBR 众所周知，硬盘上第0磁道第一个扇区被称为MBR，也就是Master Boot Record，即主引导记录，它的大小是512字节，别看地方不大，可里面却存放了预启动信息、分区表信息。
+系统找到BIOS所指定的硬盘的MBR后，就会将其复制到0x7c00地址所在的物理内存中。其实被复制到物理内存的内容就是Boot Loader，而具体到你的电脑，那就是lilo或者grub了。
+启动第三步－－Boot Loader / Grup引导加载程序 Boot Loader 就是在操作系统内核运行之前运行的一段小程序。通过这段小程序，我们可以初始化硬件设备、建立内存空间的映射图，从而将系统的软硬件环境带到一个合适的状态，以便为最终调用操作系统内核做好一切准备。
+Boot Loader有若干种，其中Grub、Lilo和spfdisk是常见的Loader。
+我们以Grub为例来讲解吧，毕竟用lilo和spfdisk的人并不多。
+系统读取内存中的grub配置信息（一般为menu.lst或grub.lst），并依照此配置信息来启动不同的操作系统。
+grup引导过程：
+系统启动计划装载grub核心镜像 引导grub区域，由于grub核心镜像较大，因此需要本区域引导到grub核心 grub核心镜像，位于文件系统中 grup引导相关文件系统：
+/boot/未独立分区：/boot/grub/grub.conf
+/boot/独立分区：/grub/grub.conf
+启动第四步－－加载/引导内核kernel 根据grub设定的内核映像所在路径，系统读取内存映像，并进行解压缩操作。此时，屏幕一般会输出“Uncompressing Linux”的提示。当解压缩内核完成后，屏幕输出“OK, booting the kernel”。
+系统将解压后的内核放置在内存之中，并调用start_kernel()函数来启动一系列的初始化函数并初始化各种设备，完成Linux核心环境的建立。至此，Linux内核已经建立起来了，基于Linux的程序应该可以正常运行了。
+加载kernel相关文件系统：
+/boot/*
+/boot/initrd (ubuntu: initrd.img)
+/boot/grub
+启动第五步－－用户层init依据inittab文件来设定运行等级 内核被加载后，第一个运行的程序便是/sbin/init，该文件会读取/etc/inittab文件，并依据此文件来进行初始化工作。
+其实/etc/inittab文件最主要的作用就是设定Linux的运行等级，其设定形式是“：id:5:initdefault:”，这就表明Linux需要运行在等级5上。Linux的运行等级设定如下：
+0：关机
+1：单用户模式
+2：无网络支持的多用户模式
+3：有网络支持的多用户模式
+4：保留，未使用
+5：有网络支持有X-Window支持的多用户模式
+6：重新引导系统，即重启
+关于/etc/inittab文件的学问，其实还有很多。
+initrd初始化的过程
+/sbin/init：（/etc/inittab） upstart: ubuntu, d-bus, event-driven # （比传统init速度快） systemd: #（并行启动多个进程）initrd相关文件系统：
+/sbin/init（/etc/inittab 或/etc/init/）
+在ubuntu20.04下我只找到了/etc/init/whoopsie.conf ,崩溃问题
+parallels@ubuntu:/etc/X11$ cat /etc/init/whoopsie.</description>
+    </item>
+    <item>
+      <title>hosts文件检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/hosts%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>windows下host文件检查 windows下hosts目录位置是在C:\Windows\System32\drivers\etc下hosts文件
+type C:\Windows\System32\drivers\etc\hosts # 创建时间 dir C:\Windows\System32\drivers\etc\hosts /t:C |find &amp;#34;hosts&amp;#34; # 修改时间 dir C:\Windows\System32\drivers\etc\hosts /t:W |find &amp;#34;hosts&amp;#34; # 被访问时间 dir C:\Windows\System32\drivers\etc\hosts /t:A |find &amp;#34;hosts&amp;#34; linux下host文件检查 linux下host文件位置在/etc/文件下hosts文件
+cat /etc/hosts stat /etc/hosts </description>
+    </item>
+    <item>
+      <title>回收站文件检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%96%87%E4%BB%B6%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>windows下回收站文件 查询回收站内容 通过$RECYCLE.BIN+sid查询回收站内容。可以看到查到的文件名称展示都非原始文件名。
+通过dir /s /a c:$Recycle.Bin列出所有回收站中的文件，这里测试发现，当前用户的这个回收站展示的文件名并非原始文件名，而是经过重命名的文件。
+快速打开回收站：
+start shell:RecycleBinFolder
+linux下回收站文件 linux下回收站的位置 ~/.local/share/Trash/
+sudo ls -l ~/.local/share/Trash/file* # 列出所有回收站的文件 sudo rm -rf ~/.local/share/Trash/* # 删除回收站的文件</description>
+    </item>
+    <item>
+      <title>映像劫持检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%98%A0%E5%83%8F%E5%8A%AB%E6%8C%81%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>镜像劫持 映像劫持的定义 所谓的映像劫持（IFEO）就是Image File Execution Options/或字面直译 Image Hijack，
+劫持点1 Image File Execution Options镜像劫持 位于注册表的HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options里面exe被进行修改进行重定向的一个过程
+劫持点2 userinit镜像劫持 参考：https://blog.csdn.net/u013761036/article/details/53527490
+通过了解劫持过程可以知道这个劫持点利用的是windows系统服务启动用户初始化加载程序配置替换或插入自定义程序造成劫持
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\userinit.exe
+这里阅读下userinit的官方释义可知，userinit.exe的作用为：
+运行系统登录脚本
+重新建立网络连接
+当userinit.exe所指向的程序无法运行的时候，启动配置的HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\shell中设定的值，默认是explorer.exe
+这里有个提示：在修改HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\userinit.exe的时候，应包含userinit.exe
+但我们去掉c:\windows\system32\userinit.exe，重启则会引起异常，所以这里一般都还会带上userinit.exe或者包含启动userinit.exe的脚本。通过运行启动userinit进入系统即可。
+劫持点3 shell镜像劫持 镜像劫持检查 针对IFEO劫持点检查 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options 对注册表进行检查，检查不一致的项目即可判断是否存在劫持。
+这里查看IFEO的值，我们直接一句话全读，然后一次审核每一项即可。通过阅读reg query语法可知/s递归查询,/t REG_SZ指定字符。
+reg query &amp;#34;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options&amp;#34; /s /t REG_SZ 针对userinit和shell劫持点检查 这里由于userinit劫持点位于HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon根目录的属性中，因此不需要/s递归。
+reg query &amp;#34;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon&amp;#34; /t REG_SZ </description>
+    </item>
+    <item>
+      <title>浏览器相关检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>windows下浏览器相关检查 通常HKEY_LOCAL_MACHINE（计算机配置）配置权限大于HKEY_CURRENT_USER（当前用户）。这	里尝试使用命令行查询所有IE浏览器相关的主页信息、搜索引擎信息、浏览历史等信息。
+计算机IE注册表配置查询 包括开始页面，默认页面，默认搜索，首页，搜索页，以及32位软件地址等。
+reg query &amp;#34;HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main&amp;#34; ApplicationTileImmersiveActivation REG_DWORD 0x1 AssociationActivationMode REG_DWORD 0x0 AutoHide REG_SZ yes Start Page REG_SZ http://go.microsoft.com/fwlink/p/?LinkId=255141 # 开始页面 Anchor_Visitation_Horizon REG_BINARY 01000000 Cache_Percent_of_Disk REG_BINARY 0A000000 Default_Page_URL REG_SZ http://go.microsoft.com/fwlink/p/?LinkId=255141 # 默认页面 Default_Search_URL REG_SZ http://go.microsoft.com/fwlink/?LinkId=54896 # 默认搜索连接 Default_Secondary_Page_URL REG_MULTI_SZ Delete_Temp_Files_On_Exit REG_SZ yes Enable_Disk_Cache REG_SZ yes Extensions Off Page REG_SZ about:NoAdd-ons Local Page REG_SZ C:\Windows\System32\blank.htm Placeholder_Height REG_BINARY 1A000000 Placeholder_Width REG_BINARY 1A000000 Search Page REG_SZ http://go.microsoft.com/fwlink/?LinkId=54896 Security Risk Page REG_SZ about:SecurityRisk Use_Async_DNS REG_SZ yes x86AppPath REG_SZ C:\Program Files (x86)\Internet Explorer\IEXPLORE.</description>
+    </item>
+    <item>
+      <title>环境变量检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>环境变量一般用于命令行快速执行命令，快速执行程序使用。恶意软件或黑客通常会通过一些环境变量设置，隐藏恶意程序，或添加恶意程序在环境变量中，用于实现对主机的控制。
+windows环境变量检查 利用msinfo32 使用
+Linux环境变量文件介绍https://blog.csdn.net/pengjunlee/article/details/81585726
+windows命令行提取环境变量 path linux环境变量检查 linux命令行提取环境变量 echo $PATH </description>
+    </item>
+    <item>
+      <title>系统共享检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E5%85%B1%E4%BA%AB%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>windows系统共享 net share 查询 查看系统中所有共享
+net share 通过命令看到所有盘符都是默认共享 IPC$空连接尤为不安全,所以我们要关闭默认共享
+删除共享命令
+net share 共享名 /del wmic share查询 C:\Users\xt&amp;gt;wmic share get name,path,status Name Path Status ADMIN$ C:\WINDOWS OK C$ C:\ OK IPC$ OK Users C:\Users OK get-wmiobject查询（powershell） get-wmiobject -class Win32_share 注册表查询 目前找到的资料只知道在创建自定义的共享文件的时候，下面这个注册表内容会有变化
+DelegateFolders
+&amp;gt;reg query &amp;ldquo;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders&amp;rdquo; /s
+实测确实会有变化，从注册表方式查询共享文件内容方式暂时无法继续。
+开启系统默认共享 开启系统的默认共享（Admin$、C$）的方法
+# 默认共享开启自动开启，在系统重启的时候自动打开 reg add &amp;#34;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\LanmanServer\Parameters&amp;#34; /v AutoShareServer /t REG_DWORD /d 0x01 reg add &amp;#34;HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\LanmanServer\Parameters&amp;#34; /v AutoShareWks /t REG_DWORD /d 0x01 # IPC$共享开启，设置命名管道设置为0，不限制 reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Lsa&amp;#34; /v restrictanonymous /t REG_DWORD /d 0x00 reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa&amp;#34; /v restrictanonymous /t REG_DWORD /d 0x00 reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa&amp;#34; /v restrictanonymous /t REG_DWORD /d 0x004.</description>
+    </item>
+    <item>
+      <title>系统用户审查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%AE%A1%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E5%AE%A1%E6%9F%A5/index.html</guid>
+      <description>windows查看用户 whoami 查看当前用户 net user 命令释义 查阅官网文档
+net user [&amp;lt;UserName&amp;gt; {&amp;lt;Password&amp;gt; | *} [&amp;lt;Options&amp;gt;]] [/domain] net user [&amp;lt;UserName&amp;gt; {&amp;lt;Password&amp;gt; | *} /add [&amp;lt;Options&amp;gt;] [/domain]] net user [&amp;lt;UserName&amp;gt; [/delete] [/domain]] 参数 描述 &amp;lt;UserName&amp;gt; 指定用户账户名字用于添加/删除/修改/查看。账户名称最多20字符。 &amp;lt;Password&amp;gt; 分配/修改用户账户密码。password参数输入*，会产生一个前端的提示，“请输入密码 ： ”，这时输入的密码均不会出现原文，密码输入均以不可见方式输入，并且系统会要求两次输入确保输入无误。 /domain 在计算机的主域的域控制器上执行操作。 &amp;lt;Options&amp;gt; 指定命令行选项。关于命令行选项语法的描述请参见下表。 net help &amp;lt;Command&amp;gt; 显示指定net命令的帮助。 命令行选项语法 描述 /active: {no | yes} 启用或禁用用户帐户。如果该用户帐户未激活，则该用户无法访问计算机上的资源。默认为yes(即活动)。 /comment: &amp;quot;&amp;lt;Text&amp;gt;&amp;quot; 提供关于用户帐户的描述性注释。这个注释最多可以有48个字符。将文本用引号括起来。 /countrycode: &amp;lt;NNN&amp;gt; 使用操作系统国家/地区代码实现用户帮助和错误消息的指定语言文件。0表示默认的国家/地区代码。 expires: &amp;lt;MM\/DD\/YYYY&amp;gt; | &amp;lt;DD/MM/YYYY&amp;gt; | &amp;lt;mmm,dd,YYYY&amp;gt; | never 如果指定日期，则导致用户帐户过期。根据国家/地区代码的不同，过期日期的格式可以是[MM/DD/YYYY]、[DD/MM/YYYY]或[mmm, DD,YYYY]。请注意，帐户将在指定日期开始时过期。对于月份值，您可以使用数字，拼写出来，或者使用三个字母的缩写(即，Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)。可以使用两个或四个数字作为年份值。使用逗号或斜杠来分隔日期。不要使用空格。如果忽略&amp;lt;YYYY&amp;gt;，则假定该日期(即，根据您计算机的日期和时间)的下一个出现。例如，以下条目在1994年1月10日和1995年1月8日之间输入是等价的: jan,91/9/95january,9,19951/9 /fullname: &amp;ldquo;&amp;lt;Name&amp;gt;&amp;rdquo; 指定用户的全名而不是用户名。将名称用引号括起来。 /homedir: &amp;lt;Path&amp;gt; 设置用户的主目录的路径。该路径必须已经存在。 /passwordchg: {yes | no} 指定用户是否可以修改自己的密码。默认为yes。 /passwordreq: {yes | no} 指定用户帐户是否必须有密码。默认为yes。 /profilepath: [&amp;lt;Path&amp;gt;] 设置用户登录配置文件的路径。这个路径指向一个注册表配置文件。 /scriptpath: &amp;lt;Path&amp;gt; 设置用户登录脚本的路径。&amp;lt;路径&amp;gt;不能是绝对路径。&amp;lt;Path&amp;gt;相对于%systemroot%\System32\Repl\Import\Scripts。 /times: {&amp;lt;Day&amp;gt;[&amp;lt;-Day&amp;gt;][,&amp;lt;Day&amp;gt;[-&amp;lt;Day&amp;gt;]],&amp;lt;Time&amp;gt;[-&amp;lt;Time&amp;gt;][,&amp;lt;Time&amp;gt;[-&amp;lt;Time&amp;gt;]][;] | all} 指定允许用户使用计算机的次数。&amp;lt; &amp;gt;时间限制为1小时递增。对于&amp;lt;Day&amp;gt;值，您可以拼写出日期的名称或使用缩写(即M、T、W、Th、F、Sa、Su)。您可以使用12小时或24小时表示法表示小时。如果您使用12小时表示法，请使用AM和PM，或A.</description>
+    </item>
+    <item>
+      <title>系统进程检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>linux下系统进程查询 ps https://www.runoob.com/linux/linux-comm-ps.html
+Usage: ps [options] 参数： ps 的参数非常多, 在此仅列出几个常用的参数并大略介绍含义 -A 列出所有的进程 -w 显示加宽可以显示较多的资讯 -au 显示较详细的资讯 -aux 显示所有包含其他使用者的行程 au(x) 输出格式 : USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND USER: 行程拥有者 PID: pid %CPU: 占用的 CPU 使用率 %MEM: 占用的记忆体使用率 VSZ: 占用的虚拟记忆体大小 RSS: 占用的记忆体大小 TTY: 终端的次要装置号码 (minor device number of tty) STAT: 该行程的状态: D: 无法中断的休眠状态 (通常 IO 的进程) R: 正在执行中 S: 静止状态 T: 暂停执行 Z: 不存在但暂时无法消除 W: 没有足够的记忆体分页可分配 &amp;lt;: 高优先序的行程 N: 低优先序的行程 L: 有记忆体分页分配并锁在记忆体内 (实时系统或捱A I/O) START: 行程开始时间 TIME: 执行的时间 COMMAND:所执行的指令使用ps命令，分析进程</description>
+    </item>
+    <item>
+      <title>钩子检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%92%A9%E5%AD%90%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>Hook分为应用层（Ring3）Hook和内核层（Ring0）Hook，应用层Hook适用于x86和x64，而内核层Hook一般仅在x86平台适用，因为从Windows Vista的64版本开始引入的Patch Guard技术极大地限制了Windows x64内核挂钩的使用。
+windows下应用层和内核钩子检查 hook hook原理部分 HOOK和注入技术经常被恶意代码使用,利用HOOK和注入技术,恶意代码提高了执行隐蔽性,增加了恶意代码分析难度，在某些情况下还能实现提权提升和内存常驻。
+钩子(Hook)，是Windows消息处理机制的一个平台,应用程序可以在上面设置子程以监视指定窗口的某种消息，而且所监听的窗口可以是其他进程所创建的。当消息到达后,在目标窗口处理函数之前处理它，钩子机制允许应用程序截获处理Window消息或特定事件。
+hook的分类 Hook分为应用层（Ring3）Hook和内核层（Ring0）Hook，应用层Hook适用于x86和x64，而内核层Hook一般仅在x86平台适用，因为从Windows Vista的64版本开始引入的Patch Guard技术极大地限制了Windows x64内核挂钩的使用。
+消息hook 首先先来了解下常规的Windows消息流：
+发生键盘输入事件时，WM_KEYDOWN消息被添加到[OS message queue]系统消息队列。
+OS判断哪个应用程序中发生了事件，然后从[OS message queue]系统消息队列中取出消息，添加到相应应用程序的[application message queue]应用消息队列中。
+应用程序（如记事本）监视自身的[application message queue]应用消息队列，发现新添加的WM_KEYDOWN消息后，调用相应的事件处理程序处理。
+所以，我们只需在[OS message queue]和[application message queue]之间安装钩子即可窃取键盘消息，并实现恶意操作。
+那么我们该如何安装这个消息钩子呢？很简单，Windows提供了一个官方函数SetWindowsHookEx()用于设置消息Hook，编程时只要调用该API就能简单地实现Hook。
+消息Hook常被窃密木马用来监听用户的键盘输入，程序里只需写入如下代码就能对键盘消息进行Hook:
+SetWindowsHookEx(
+WH_KEYBOARD, //键盘消息
+KeyboardProc, //钩子函数（处理键盘输入的函数）
+hInstance, //钩子函数所在DLL的Handle
+0 //该参数用于设定要Hook的线程ID，为0时表示监视所有线程
+)
+该API在简单高效的同时也有一个弊端，就是它只能监视较少的消息，如：击键消息、鼠标移动消息、窗口消息。想要对系统更全面的进行Hook就要使用以下介绍的两种Hook方法。
+调试hook 调试hook原理 该Hook方法的原理跟调试器的工作机制相似，核心思想都是让进程发生异常，然后自己捕获到该异常，对处于被调试状态下的级才能进行恶意操作。 下图是常规进程的异常事件处理，当进程未被其他进程调试时，其默认异常事件处理者是OS，一旦进程发生异常，OS将捕获到该异常，并进行相应的事件处理。
+若进程被另一个进程调试了（如OllyDbg），异常事件的处理工作将移交给调试者，比如进程发生了除0错误，OllyDbg将接收到这个异常事件并对进行相应处理。 PS：调试器无处理或不关心的调试事件最终由OS处理。
+所以，调试Hook的核心思路就是将API的第一个字节修改为0xCC（INT 3），当API被调用时，由于触发了异常，控制权就被转交给调试器。
+注入hook Hook的核心思想就是修改API的代码，但是，比如我A进程要Hook一个B进程的CreateProcess函数，A是没有权限修改B内存中的代码的，怎么办？这时候使用DLL注入技术就可以解决这问题，我们将Hook的代码写入一个DLL（或直接一个shellcode），将此DLL注入到B进程中，此时因为DLL在B进程的内存中，所以就有权限直接修改B内存中的代码了。
+[
+](https://blog.csdn.net/m0_37552052/article/details/81453591)
+IAT hook**（ring3 windows消息型）** IAT（导入地址表） Import Address Table 由于导入函数就是被程序调用但其执行代码又不在程序中的函数，这些函数的代码位于一个或者多个DLL 中.当PE 文件被装入内存的时候，Windows 装载器才将DLL 装入，并将调用导入函数的指令和函数实际所处的地址联系起来(动态连接)，这操作就需要导入表完成。其中导入地址表就指示函数实际地址。
+IAT hook IAT Hook顾名思义就是通过修改IAT里的函数地址对API进行Hook。</description>
+    </item>
+    <item>
+      <title>防火墙规则检查</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5/index.html</guid>
+      <description>windows下防火墙规则检查 查询防火墙规则可以通过运行WF.msc，也可以通过netsh advfirewall 命令查询。
+netsh advfirewall C:\Users\xt&amp;gt;netsh advfirewall ? 下列指令有效: 此上下文中的命令: ? - 显示命令列表。 consec - 更改到 `netsh advfirewall consec&amp;#39; 上下文。查询连接规则。 dump - 显示一个配置脚本。 export - 将当前策略导出到文件。 firewall - 更改到 `netsh advfirewall firewall&amp;#39; 上下文。查询出入站规则。 help - 显示命令列表。 import - 将策略文件导入当前策略存储。 mainmode - 更改到 `netsh advfirewall mainmode&amp;#39; 上下文。查询主模式规则。 monitor - 更改到 `netsh advfirewall monitor&amp;#39; 上下文。查询防火墙状态信息。 reset - 将策略重置为默认全新策略。 set - 设置每个配置文件或全局设置。 show - 显示配置文件或全局属性。 下列的子上下文可用: consec firewall mainmode monitor 若需要命令的更多帮助信息，请键入命令，接着是空格， 后面跟 ?</description>
+    </item>
+  </channel>
+</rss>

@@ -9,9 +9,9 @@
     <lastBuildDate>Thu, 10 Nov 2022 22:25:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>恶意样本分析-12-使用内存取证检测高级恶意软件</title>
-      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</link>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</link>
       <pubDate>Thu, 10 Nov 2022 22:25:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E6%A3%80%E6%B5%8B%E9%AB%98%E7%BA%A7%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</guid>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</guid>
       <description>11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它们有助于从内存映像中提取有价值的信息。在本章中，我们将继续我们的内存取证之旅，我们将看到更多的插件，这些插件将帮助你从被高级恶意软件感染的内存映像中提取取证痕迹，这些恶意软件使用了隐身和隐藏技术。在下一节中，我们将重点介绍使用内存取证来检测代码注入技术。下一节将讨论在第8章“代码注入和挂钩”中已经涉及到的一些概念，所以强烈建议在阅读下一节之前阅读这一章。
 1. 检测代码注入 回想一下第8章的代码注入和挂钩，代码注入是一种将恶意代码(如EXE、DLL或shellcode)注入合法进程内存并在合法进程的上下文中执行恶意代码的技术。为了向远程进程注入代码，恶意程序通常会分配一个具有读、写和执行权限的内存(PAGE_EXECUTE_READWRITE)，然后将代码注入到远程进程分配的内存中。要检测注入远程进程的代码，可以根据内存保护和内存内容查找可疑的内存范围。一个引人注目的问题是，什么是可疑的内存范围以及如何获得有关进程内存范围的信息?如果你回想一下前一章(在使用ldrmodules检测隐藏DLL部分)，Windows在内核空间中维护一个名为虚拟地址描述符(VADs)的二叉树结构，每个VAD节点描述进程内存中一个几乎连续的内存区域。如果进程内存区域包含一个内存映射文件(如可执行文件、DLL等)，那么其中一个VAD节点存储有关其基址、文件路径和内存保护的信息。下面的描述不是VAD的准确表示，但它应该有助于您理解这个概念。在下面的截图中，内核空间中的一个VAD节点描述了关于进程可执行文件(explorer.exe)加载位置、它的完整路径和内存保护的信息。类似地，其他VAD节点将描述进程内存范围，包括那些包含映射的可执行映像(如DLL)的进程。这意味着VAD可以用来确定每个相邻进程内存范围的内存保护，它还可以给出包含内存映射镜像文件(如可执行文件或DLL)的内存区域的信息: 1.1 通过采用信息 要从内存映像中获取VAD信息，可以使用vadinfo Volatility插件。下面以vadinfo为例，使用进程ID (pid 2180)显示explorer.exe进程的内存区域。在下面的输出中，内核内存中地址为0x8724d718的第一个VAD节点描述了进程内存中的内存范围0x00db0000-0x0102ffff及其内存保护PAGE_EXECUTE_WRITECOPY。由于第一个节点描述的是一个包含内存映射的可执行映像(explorer.exe)的内存范围，因此它还提供了磁盘上的完整路径。第二个节点0x8723fb50描述了0x004b0000-0x004effff的内存范围，它不包含任何内存映射文件。类似地，地址0x8723fb78的第三个节点显示进程内存范围的信息0x77690,000-0x777cbfff，其中包含ntdll.dll及其内存保护:
 $ python vol.py -f win7.vmem --profile=Win7SP1x86 vadinfo -p 2180 Volatility Foundation Volatility Framework 2.6 VAD node @ 0x8724d718 Start 0x00db0000 End 0x0102ffff Tag Vadm Flags: CommitCharge: 4, Protection: 7, VadType: 2 Protection: PAGE_EXECUTE_WRITECOPY Vad Type: VadImageMap ControlArea @87240008 Segment 82135000 NumberOfSectionReferences: 1 NumberOfPfnReferences: 215 NumberOfMappedViews: 1 NumberOfUserReferences: 2 Control Flags: Accessed: 1, File: 1, Image: 1 FileObject @8723f8c0, Name: \Device\HarddiskVolume1\Windows\explorer.</description>
@@ -85,11 +85,11 @@ IDA相关深入了解图书推荐《The IDA Pro Book》by Chris Eagle
       <pubDate>Wed, 25 Sep 2019 19:24:00 +0000</pubDate>
       <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/index.html</guid>
       <description>&lt;p&gt;
-&lt;a href=&#34;#image-2537fbf67d3df99fee0f06042db9c4f5&#34; class=&#34;lightbox-link&#34;&gt;
-&lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;#image-28fc67d685d01ac5e13a653e40611549&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-2537fbf67d3df99fee0f06042db9c4f5&#34;&gt;
-&lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-28fc67d685d01ac5e13a653e40611549&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
 当恶意代码打包进dll，需要对其进行一定量的定性分析，除了平台的手段，这里还有一些基础的dll分析手段。&lt;/p&gt;</description>
     </item>
@@ -110,11 +110,11 @@ IDA相关深入了解图书推荐《The IDA Pro Book》by Chris Eagle
 数组，字符和结构
 64x架构框架
 
-&lt;a href=&#34;#image-0ae3a216a8bb4d0dc1ac7c27d0416943&#34; class=&#34;lightbox-link&#34;&gt;
-&lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;#image-fdd9b060d5da4f4f5a9cbf3ce558851c&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-0ae3a216a8bb4d0dc1ac7c27d0416943&#34;&gt;
-&lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-fdd9b060d5da4f4f5a9cbf3ce558851c&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
@@ -137,29 +137,13 @@ IDA相关深入了解图书推荐《The IDA Pro Book》by Chris Eagle
       <pubDate>Tue, 03 Sep 2019 20:29:03 +0000</pubDate>
       <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html</guid>
       <description>&lt;p&gt;
-&lt;a href=&#34;#image-009599d41d5ad1fa283dfbb0d6910d3d&#34; class=&#34;lightbox-link&#34;&gt;
-&lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;#image-40c888442f0b4f35943be37c23edae64&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-009599d41d5ad1fa283dfbb0d6910d3d&#34;&gt;
-&lt;img src=&#34;%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-40c888442f0b4f35943be37c23edae64&#34;&gt;
+&lt;img src=&#34;https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
 对于日常探针分析工作，样本分析作为不可缺少的一个环节，经常能够在其中发现比较重要的细节，对此部分的学习和总结尤其重要，这一系列即为最近收集总结的一部分。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>恶意样本分析-10-使用内存取证狩猎恶意软件</title>
-      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</guid>
-      <description>恶意样本分析-11-使用内存取证狩猎恶意软件 10.使用内存取证狩猎恶意软件 在到目前为止所涵盖的章节中，我们看了概念、工具和技术用于分析恶意软件使用静态，动态和代码分析。在本章中，你将理解另一种技术，称为内存取证(或内存分析)。
-内存取证(或内存分析)是一种调查性技术，涉及到从计算机的物理内存(RAM)中找到并提取司法证据。一个计算机的内存存储有关系统运行状态的有价值的信息。获取存储并进行分析将为司法提供必要的信息调查，例如系统上正在运行哪些应用程序，哪些对象(文件、注册表等)这些应用程序正在访问、活动网络连接、加载模块、加载的内核驱动程序和其他信息。由于这个原因，内存取证是用于事件响应和恶意软件分析。
-在事件响应期间，在大多数情况下，您将无法访问恶意软件样本但您可能只拥有一个可疑系统的内存映像。例如，你可以从安全产品收到关于系统可能存在恶意行为的警报，在这种情况下，您可以获取可疑系统的内存映像，以执行内存司法鉴定确认感染和找到恶意工件。
-除了将内存取证用于事件响应之外，还可以将其用作恶意软件分析(针对恶意软件样本)来获得额外的信息关于恶意软件感染后的行为。例如，当你有一个恶意软件示例中，除了执行静态、动态和代码分析之外，您还可以执行在一个孤立的环境中采样，然后获取受感染的计算机内存和检查内存图像，了解恶意软件在感染后的行为。
-使用内存取证的另一个原因是，某些恶意软件示例可能不会将恶意组件写入磁盘（仅在内存中）。因此，磁盘取证或文件系统分析可能会失败。在这种情况下，内存取证在查找恶意组件。
-一些恶意软件示例通过挂钩或修改操作系统结构。在这种情况下，内存取证可能很有用，因为它可以绕过恶意软件使用的技巧来隐藏操作系统并实时取证工具。本章向您介绍内存取证的概念并涵盖用于获取和分析内存映像的工具。
-1. 内存取证步骤 是将内存取证用作事件响应的一部分，还是用于恶意软件分析，以下是内存取证中的一般步骤：
-内存获取：这涉及获取（或转储）内存目标计算机到磁盘。取决于您是否正在调查感染者系统或使用内存取证作为恶意软件分析的一部分，目标计算机可以是您怀疑被感染的系统（在您的网络上），也可以是可能是实验室环境中执行的分析计算机恶意软件示例。 内存分析：将内存转储到磁盘后，此步骤涉及分析转储的内存以查找和提取电子证据。 2. 内存采集 存储器采集是将易失性存储器（RAM）采集到非易失性存储器的过程存储（磁盘上的文件）。有各种工具可以让您获取物理机。以下是一些允许您获取（转储）的工具物理内存到 Windows 上。其中一些工具是商业性的，其中许多注册后可以免费下载。以下工具适用于两个 x86 （32-位） 和 x64（64 位）计算机：
-Comae Memory Toolkit （DumpIt） by Comae Technologies （免费下载注册）： https://my.comae.io/ Belkasoft RAM Capturer（注册后免费下载）：https://belkasoft.com/ram-capturer ACCESSData的FTK镜像软件（注册后免费下载）：https://accessdata.com/product-download Memoryze by FireEye（注册后免费下载）：https://www.fireeye.com/services/freeware/memoryze.html Volexity的浪涌收集（商业）：https://www.volexity.com/productsoverview/surge/ PassMark Software的OSForensics（商业）：https://www.osforensics.com/osforensics.html WinPmem（开源），Rekall Memory取证框架的一部分：http://blog.rekall-forensic.com/search?q=winpmem 2.1 使用转储进行内存采集 DumpIt是一款出色的内存采集工具，可让您转储物理内存在视窗上。它支持采集 32 位 （x86） 和 64 位 （x64） 计算机。Dump它是称为Comae内存工具包的工具包的一部分，该工具包由各种独立工具，有助于不同文件之间的内存采集和转换格式。要下载 Comae 内存工具包的最新副本，您需要创建一个通过在 https://my.comae.io 上注册帐户。创建帐户后，您可以登录并下载Comae内存工具包的最新副本。
-下载 Comae 工具包后，解压缩存档，然后导航到 32 位或 64 位目录，具体取决于您是要转储 32 位还是 64 位的内存机器。该目录由各种文件组成，包括 DumpIt.</description>
     </item>
     <item>
       <title>恶意样本分析-10-恶意软件的混淆技术</title>
@@ -181,6 +165,22 @@ Comae Memory Toolkit （DumpIt） by Comae Technologies （免费下载注册）
 (23+3)%26 = 0模数操作允许你循环回到开头。你可以用同样的逻辑来加密字符集中的所有字符（从A到Z），并绕回起点。在凯撒密码中，你可以用以下方法获得被加密（密文）字符的索引。
 (i + key) % (length of the character set 字符串长度) where i = index of plaintext character 明文字符串索引以同样的方式，你可以用以下方式获得明文（解密）字符的索引。
 (j - key) % (length of the character set) where j = index of ciphertext character下图显示了字符集、加密和以3为密钥的文本 &amp;ldquo;ZEUS &amp;ldquo;的解密（移动三个位置）。加密后，文本 &amp;ldquo;ZEUS &amp;ldquo;被翻译成 &amp;ldquo;CHXV&amp;rdquo;，然后解密又将其翻译成 &amp;ldquo;ZEUS&amp;rdquo;。</description>
+    </item>
+    <item>
+      <title>恶意样本分析-11-使用内存取证狩猎恶意软件</title>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html</guid>
+      <description>恶意样本分析-11-使用内存取证狩猎恶意软件 10.使用内存取证狩猎恶意软件 在到目前为止所涵盖的章节中，我们看了概念、工具和技术用于分析恶意软件使用静态，动态和代码分析。在本章中，你将理解另一种技术，称为内存取证(或内存分析)。
+内存取证(或内存分析)是一种调查性技术，涉及到从计算机的物理内存(RAM)中找到并提取司法证据。一个计算机的内存存储有关系统运行状态的有价值的信息。获取存储并进行分析将为司法提供必要的信息调查，例如系统上正在运行哪些应用程序，哪些对象(文件、注册表等)这些应用程序正在访问、活动网络连接、加载模块、加载的内核驱动程序和其他信息。由于这个原因，内存取证是用于事件响应和恶意软件分析。
+在事件响应期间，在大多数情况下，您将无法访问恶意软件样本但您可能只拥有一个可疑系统的内存映像。例如，你可以从安全产品收到关于系统可能存在恶意行为的警报，在这种情况下，您可以获取可疑系统的内存映像，以执行内存司法鉴定确认感染和找到恶意工件。
+除了将内存取证用于事件响应之外，还可以将其用作恶意软件分析(针对恶意软件样本)来获得额外的信息关于恶意软件感染后的行为。例如，当你有一个恶意软件示例中，除了执行静态、动态和代码分析之外，您还可以执行在一个孤立的环境中采样，然后获取受感染的计算机内存和检查内存图像，了解恶意软件在感染后的行为。
+使用内存取证的另一个原因是，某些恶意软件示例可能不会将恶意组件写入磁盘（仅在内存中）。因此，磁盘取证或文件系统分析可能会失败。在这种情况下，内存取证在查找恶意组件。
+一些恶意软件示例通过挂钩或修改操作系统结构。在这种情况下，内存取证可能很有用，因为它可以绕过恶意软件使用的技巧来隐藏操作系统并实时取证工具。本章向您介绍内存取证的概念并涵盖用于获取和分析内存映像的工具。
+1. 内存取证步骤 是将内存取证用作事件响应的一部分，还是用于恶意软件分析，以下是内存取证中的一般步骤：
+内存获取：这涉及获取（或转储）内存目标计算机到磁盘。取决于您是否正在调查感染者系统或使用内存取证作为恶意软件分析的一部分，目标计算机可以是您怀疑被感染的系统（在您的网络上），也可以是可能是实验室环境中执行的分析计算机恶意软件示例。 内存分析：将内存转储到磁盘后，此步骤涉及分析转储的内存以查找和提取电子证据。 2. 内存采集 存储器采集是将易失性存储器（RAM）采集到非易失性存储器的过程存储（磁盘上的文件）。有各种工具可以让您获取物理机。以下是一些允许您获取（转储）的工具物理内存到 Windows 上。其中一些工具是商业性的，其中许多注册后可以免费下载。以下工具适用于两个 x86 （32-位） 和 x64（64 位）计算机：
+Comae Memory Toolkit （DumpIt） by Comae Technologies （免费下载注册）： https://my.comae.io/ Belkasoft RAM Capturer（注册后免费下载）：https://belkasoft.com/ram-capturer ACCESSData的FTK镜像软件（注册后免费下载）：https://accessdata.com/product-download Memoryze by FireEye（注册后免费下载）：https://www.fireeye.com/services/freeware/memoryze.html Volexity的浪涌收集（商业）：https://www.volexity.com/productsoverview/surge/ PassMark Software的OSForensics（商业）：https://www.osforensics.com/osforensics.html WinPmem（开源），Rekall Memory取证框架的一部分：http://blog.rekall-forensic.com/search?q=winpmem 2.1 使用转储进行内存采集 DumpIt是一款出色的内存采集工具，可让您转储物理内存在视窗上。它支持采集 32 位 （x86） 和 64 位 （x64） 计算机。Dump它是称为Comae内存工具包的工具包的一部分，该工具包由各种独立工具，有助于不同文件之间的内存采集和转换格式。要下载 Comae 内存工具包的最新副本，您需要创建一个通过在 https://my.comae.io 上注册帐户。创建帐户后，您可以登录并下载Comae内存工具包的最新副本。
+下载 Comae 工具包后，解压缩存档，然后导航到 32 位或 64 位目录，具体取决于您是要转储 32 位还是 64 位的内存机器。该目录由各种文件组成，包括 DumpIt.</description>
     </item>
     <item>
       <title>恶意样本分析-9-代码注入和钩子</title>

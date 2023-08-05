@@ -117,8 +117,8 @@ Published: 14-Jul-20at 15:37:58
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/Guymager/index.html</guid>
       <description>官网：https://guymager.sourceforge.io/
-下载：https://sourceforge.net/projects/guymager/
-版本更新订阅：https://sourceforge.net/p/guymager/activity/feed
+下载：https://sourceforge.net/projects/
+版本更新订阅：https://sourceforge.net/p/activity/feed
 简介 Guymager[ˈgɪmɪdʒər]是一款免费的媒体采集取证成像仪。它的主要特点是:
 •简单的用户界面在不同的语言
 •在Linux下运行
@@ -130,7 +130,7 @@ Published: 14-Jul-20at 15:37:58
 界面 解释:
 • 连接的存储设备列表在上方。新设备可以在任何时候连接-按下重新扫描按钮显示他们。
 • 浅红色标识的设备为本地硬盘。它们不能被获取，从而防止获取错误的磁盘。本地硬盘可以通过输入配置文件中的序列号来识别。
-• 下方显示了蓝色光标当前所选择的收购的更详细信息。[ 上面的截图显示了默认的获取对话框。存在另一个用于克隆磁盘的对话框。两者都可以很容易地适应您的需求。您可以添加或删除字段。您可以静态(文本)和动态(当前日期，磁盘大小，序列号，…)设置它们的默认值。看一下 /etc/guymager/guymager.cfg**.**
+• 下方显示了蓝色光标当前所选择的收购的更详细信息。[ 上面的截图显示了默认的获取对话框。存在另一个用于克隆磁盘的对话框。两者都可以很容易地适应您的需求。您可以添加或删除字段。您可以静态(文本)和动态(当前日期，磁盘大小，序列号，…)设置它们的默认值。看一下 /etc/guymager.cfg**.**
 安装 Debian和Ubuntu Guymager包含在几个发行版的标准存储库中，例如Debian(紧凑版或更高版本)和Ubuntu(10.04或更高版本)。在Ubuntu中，需要保持更新。
 安装可以通过一个图形工具来完成，比如Ubuntu软件中心或者Synaptic:
 sudo apt-get update
