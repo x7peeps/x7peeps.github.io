@@ -10,18 +10,18 @@
     <title>WinHEX(win) - x7peeps</title>
     <link href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.xml" rel="alternate" type="application/rss+xml" title="WinHEX(win) - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691255924" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691255924" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691255924" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691255924" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691255924" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691255924" rel="stylesheet">
-    <link href="/css/fonts.css?1691255924" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691255924" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691255924" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691255924" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691255924" rel="stylesheet">
-    <link href="/css/print.css?1691255924" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691255924" rel="stylesheet">
-    <script src="/js/url.js?1691255924"></script>
-    <script src="/js/variant.js?1691255924"></script>
+    <link href="/css/fontawesome-all.min.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691256259" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691256259" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691256259" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691256259" rel="stylesheet">
+    <link href="/css/fonts.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691256259" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691256259" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691256259" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691256259" rel="stylesheet">
+    <link href="/css/print.css?1691256259" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691256259" rel="stylesheet">
+    <script src="/js/url.js?1691256259"></script>
+    <script src="/js/variant.js?1691256259"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -197,38 +197,38 @@
 <h5 id="fat32逻辑磁盘基本信息描述">FAT32逻辑磁盘基本信息描述</h5>
 <p>用winhex打开一个FAT32分区格式的逻辑盘F盘，查看该逻辑盘的根目录区。</p>
 <p>
-<a href="#image-b9f38a400fa87ca734491c69e3802ba0" class="lightbox-link">
+<a href="#image-9e4ce4679ad987c50b5854e01b36ecb6" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365574504-468ad296-ed88-41b5-ab53-141738a90616-20210424192610973.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b9f38a400fa87ca734491c69e3802ba0">
+<a href="javascript:history.back();" class="lightbox" id="image-9e4ce4679ad987c50b5854e01b36ecb6">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365574504-468ad296-ed88-41b5-ab53-141738a90616-20210424192610973.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>逻辑盘BPB</p>
 <p>其中0200（蓝框）表示一个扇区512个字节，08（红框）表示每簇8个扇区，即每簇4kb。（查阅资料可得，FAT32分区当分区大小在260MB-8GB时，簇大小为4KB，符合事实）这里由F盘大小5GB及在FAT表中每簇占4个字节的记录可计算得每个FAT（FAT2为FAT1的备份）大小为5MB，与实际相同。</p>
 <p>在F盘根目录下创建一个大概60kb的文本文档。</p>
 <p>
-<a href="#image-7777b4c5b011aa9295b46255679dd5df" class="lightbox-link">
+<a href="#image-d56587f5c11df99b8cd2862b876eb56d" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365605070-f9e12cbc-7583-4b8f-b993-0224c1aceab3-20210424192609073.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7777b4c5b011aa9295b46255679dd5df">
+<a href="javascript:history.back();" class="lightbox" id="image-d56587f5c11df99b8cd2862b876eb56d">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365605070-f9e12cbc-7583-4b8f-b993-0224c1aceab3-20210424192609073.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>创建文件</p>
 <p>在winhex找到该文件位置，查看目录项的信息。</p>
 <p>
-<a href="#image-ea342f1187eb1bc492d9d9160a812789" class="lightbox-link">
+<a href="#image-e8ad9a466ce0ad0f213046dc8c155b90" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365613573-e56b2e4d-898e-4b4a-87ba-ea858635c9d6-20210424192612758.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ea342f1187eb1bc492d9d9160a812789">
+<a href="javascript:history.back();" class="lightbox" id="image-e8ad9a466ce0ad0f213046dc8c155b90">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365613573-e56b2e4d-898e-4b4a-87ba-ea858635c9d6-20210424192612758.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>文件目录项</p>
 <p>由红框内目录项信息可分别知道首簇号高四位和第四位进而求得首簇号为10号，以及文件大小。经计算可得文件大小为58.9kb近似为文件大小。又因为每簇4kb，故共需15簇。</p>
 <p>
-<a href="#image-c9772b3550f18959c066c32a2d497673" class="lightbox-link">
+<a href="#image-682fe8c76dc2fa8ffb99e4b51bcfe4ad" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365619676-ed7370ea-0417-484e-bd9a-150c7883025f-20210424192608882.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c9772b3550f18959c066c32a2d497673">
+<a href="javascript:history.back();" class="lightbox" id="image-682fe8c76dc2fa8ffb99e4b51bcfe4ad">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365619676-ed7370ea-0417-484e-bd9a-150c7883025f-20210424192608882.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>fat1（正常）</p>
@@ -236,62 +236,62 @@
 <h5 id="fat32数据恢复过程">FAT32数据恢复过程</h5>
 <p>将刚才的test.txt文件永久删除。</p>
 <p>
-<a href="#image-c9de10dd085f7c8af26cf835d9c681e6" class="lightbox-link">
+<a href="#image-a2073b669daaba53e543ad7dfa544752" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365622731-eb9977bc-ee12-4243-a1f9-5f48ca6a765a-20210424192609422.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c9de10dd085f7c8af26cf835d9c681e6">
+<a href="javascript:history.back();" class="lightbox" id="image-a2073b669daaba53e543ad7dfa544752">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365622731-eb9977bc-ee12-4243-a1f9-5f48ca6a765a-20210424192609422.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>删除文件</p>
 <p>找到文件目录项，修改对应第一位信息，并由目录项簇号信息及文件大小计算出首簇号为10，簇数为15。</p>
 <p>
-<a href="#image-7d732945cf7c368374094dee64a95cad" class="lightbox-link">
+<a href="#image-d1d323b9f026cd77c4d74f434eb8c481" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365639055-6bfcadce-12eb-40d7-8eb5-0e0f6d57deb5-20210424192611710.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7d732945cf7c368374094dee64a95cad">
+<a href="javascript:history.back();" class="lightbox" id="image-d1d323b9f026cd77c4d74f434eb8c481">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365639055-6bfcadce-12eb-40d7-8eb5-0e0f6d57deb5-20210424192611710.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a>
-<a href="#image-964e6d6591c90e10304c608dcd256373" class="lightbox-link">
+<a href="#image-b0df9b9d4e1014145a454aca63faa688" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365639667-f479b777-436b-4407-8322-761d25108b5f-20210424192610213.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-964e6d6591c90e10304c608dcd256373">
+<a href="javascript:history.back();" class="lightbox" id="image-b0df9b9d4e1014145a454aca63faa688">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365639667-f479b777-436b-4407-8322-761d25108b5f-20210424192610213.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a>
-<a href="#image-186c4c6f4d821b68eef2fa7f923ca188" class="lightbox-link">
+<a href="#image-bce2fc29bdc47fb4116b87c663b3e1f2" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365639822-16bb90c9-d325-4c03-b255-3ed08bacfcd1-20210424192611537.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-186c4c6f4d821b68eef2fa7f923ca188">
+<a href="javascript:history.back();" class="lightbox" id="image-bce2fc29bdc47fb4116b87c663b3e1f2">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365639822-16bb90c9-d325-4c03-b255-3ed08bacfcd1-20210424192611537.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a>
-<a href="#image-598573c7a4315fd3edd2eb917a7af7a9" class="lightbox-link">
+<a href="#image-269c0b29085c2739e008ba2599daf0c3" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365639956-eba75652-3f0e-4bad-a230-39ca45a9bc4a-20210424192613374.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-598573c7a4315fd3edd2eb917a7af7a9">
+<a href="javascript:history.back();" class="lightbox" id="image-269c0b29085c2739e008ba2599daf0c3">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365639956-eba75652-3f0e-4bad-a230-39ca45a9bc4a-20210424192613374.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-1d0d44cbb902a8c991bd0131c53543bc" class="lightbox-link">
+<a href="#image-28b9806db8d83163100326323f822cb6" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365641328-0602c20a-efa4-46f6-812b-dd0b7727c303-20210424192610792.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1d0d44cbb902a8c991bd0131c53543bc">
+<a href="javascript:history.back();" class="lightbox" id="image-28b9806db8d83163100326323f822cb6">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365641328-0602c20a-efa4-46f6-812b-dd0b7727c303-20210424192610792.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>修改第一位</p>
 <p>分别将FAT1和FAT2的信息进行修改，从10号开始填补簇链到15个簇被填满，其中最后一个以FFFFFF0F结尾。</p>
 <p>
-<a href="#image-9d113c30a50daa06eaf851043b7ea209" class="lightbox-link">
+<a href="#image-3f4ae0976d78978d1dea11c7413af03d" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365648903-f827c808-032c-4db3-acce-d68e74ae11eb-20210424192611380.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9d113c30a50daa06eaf851043b7ea209">
+<a href="javascript:history.back();" class="lightbox" id="image-3f4ae0976d78978d1dea11c7413af03d">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365648903-f827c808-032c-4db3-acce-d68e74ae11eb-20210424192611380.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>fat1（恢复）</p>
 <p>保存后发现文件已恢复，内容完整。</p>
 <p>
-<a href="#image-4ca0498a2af802dc540d2f2c6c03237a" class="lightbox-link">
+<a href="#image-b13e346bcde799193e816f46aab4e877" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365657274-201e51f7-de06-4723-aa35-8e2a06c26f85-20210424192611814.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4ca0498a2af802dc540d2f2c6c03237a">
+<a href="javascript:history.back();" class="lightbox" id="image-b13e346bcde799193e816f46aab4e877">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365657274-201e51f7-de06-4723-aa35-8e2a06c26f85-20210424192611814.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>恢复成功</p>
@@ -300,97 +300,97 @@
 <h5 id="ntfs数据恢复过程">NTFS数据恢复过程</h5>
 <p>同样，先在NTFS格式的E盘创建一个文本文档，再使用shift+delete进行删除。</p>
 <p>
-<a href="#image-35330b4b3fd13b3c3f9e37919bf93e12" class="lightbox-link">
+<a href="#image-1cee3ced51921658c310b9603dd8e4fc" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365666720-04b7b4f5-aa35-4cf3-956a-761e671008ca-20210424192611801.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-35330b4b3fd13b3c3f9e37919bf93e12">
+<a href="javascript:history.back();" class="lightbox" id="image-1cee3ced51921658c310b9603dd8e4fc">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365666720-04b7b4f5-aa35-4cf3-956a-761e671008ca-20210424192611801.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>创建文件.png</p>
 <p>打开$MFT元文件。</p>
 <p>
-<a href="#image-d487fd8f01ce34ddd56609e0f29c468a" class="lightbox-link">
+<a href="#image-735b4832c46286cc6f1acc4f69ceb99a" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365670799-e5f7f77d-a033-479e-b36f-e3d14b891374-20210424192613977.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d487fd8f01ce34ddd56609e0f29c468a">
+<a href="javascript:history.back();" class="lightbox" id="image-735b4832c46286cc6f1acc4f69ceb99a">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365670799-e5f7f77d-a033-479e-b36f-e3d14b891374-20210424192613977.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>查找文件名test的位置（MFT文件名是unicode形式），找到对应的MFT。</p>
 <p>
-<a href="#image-fda7ab9d79b85eb8f1bb62e5fd6ab424" class="lightbox-link">
+<a href="#image-8afcc73dbc5d7b064d6cf773954a8010" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365676342-f2cf8e52-1f2d-4510-b711-fadb64e7296a-20210424192612894.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-fda7ab9d79b85eb8f1bb62e5fd6ab424">
+<a href="javascript:history.back();" class="lightbox" id="image-8afcc73dbc5d7b064d6cf773954a8010">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365676342-f2cf8e52-1f2d-4510-b711-fadb64e7296a-20210424192612894.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>查找.png</p>
 <p>
-<a href="#image-28ff475c424385086e2e542631a2b8db" class="lightbox-link">
+<a href="#image-dc4463c3272628b9ad8e24dea194a694" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365681290-a6bf53a8-6028-4926-9806-9c23177b905c-20210424192613048.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-28ff475c424385086e2e542631a2b8db">
+<a href="javascript:history.back();" class="lightbox" id="image-dc4463c3272628b9ad8e24dea194a694">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365681290-a6bf53a8-6028-4926-9806-9c23177b905c-20210424192613048.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>文件MFT.png</p>
 <p>16H为00H说明该文件被删除，系统根据这个标志来决定建立新文件时是否覆盖这个MFT而创建自己的MFT。</p>
 <p>再向下找到80H处，往后八个字节为01，则找到相对80H处30H的EE0D00即0DEE为文件大小，经计算为3.48kb基本符合。再向后偏移10H，31表示往后一个字节01H为簇数1，再后三个字节638002即28063H为首簇号，换算成十进制为163939。</p>
 <p>
-<a href="#image-c42c2cd479618c28ea439341b21d5a24" class="lightbox-link">
+<a href="#image-3d29bc68c3d86bb111a0db23ecb3aafe" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365687725-31189727-ebd7-4816-9e3d-72a7e230d623-20210424192612284.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c42c2cd479618c28ea439341b21d5a24">
+<a href="javascript:history.back();" class="lightbox" id="image-3d29bc68c3d86bb111a0db23ecb3aafe">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365687725-31189727-ebd7-4816-9e3d-72a7e230d623-20210424192612284.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>文件属性.png</p>
 <p>选中$MFT元文件，根据刚才得到的簇号转到文件数据存储扇区。</p>
 <p>
-<a href="#image-277a252d156689e1be18c8f57b79f375" class="lightbox-link">
+<a href="#image-a0f89280ad727ab91b641f8e3d06ec3b" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365693211-6377284e-7eca-4c02-95e3-50f2936b2e69-20210424192613018.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-277a252d156689e1be18c8f57b79f375">
+<a href="javascript:history.back();" class="lightbox" id="image-a0f89280ad727ab91b641f8e3d06ec3b">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365693211-6377284e-7eca-4c02-95e3-50f2936b2e69-20210424192613018.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>转到扇区1.png</p>
 <p>
-<a href="#image-14b8cb7722b90fcd660d2fbcef66b895" class="lightbox-link">
+<a href="#image-e67cf4e387302d50e8de69f1467f0689" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365697411-35b6b18a-183a-4572-bf0f-e51b7e1494ef-20210424192614549.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-14b8cb7722b90fcd660d2fbcef66b895">
+<a href="javascript:history.back();" class="lightbox" id="image-e67cf4e387302d50e8de69f1467f0689">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365697411-35b6b18a-183a-4572-bf0f-e51b7e1494ef-20210424192614549.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>转到扇区2.png</p>
 <p>将起始位置设为起始点，根据文件大小0DEE算出数据结尾处转到当前位置偏移，再设为终止点，即可选中所有数据。</p>
 <p>
-<a href="#image-9e965344d84eb003fab339132c35440a" class="lightbox-link">
+<a href="#image-fc0d20d82836b14d166a137c55f00b20" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365703854-b8d2122a-0387-454c-a6a2-cad3b73f2d7b-20210424192613644.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9e965344d84eb003fab339132c35440a">
+<a href="javascript:history.back();" class="lightbox" id="image-fc0d20d82836b14d166a137c55f00b20">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365703854-b8d2122a-0387-454c-a6a2-cad3b73f2d7b-20210424192613644.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>选中数据区域.png</p>
 <p>
-<a href="#image-03bbaf61e6cef920b13f4ca9dd26f20b" class="lightbox-link">
+<a href="#image-eded964b2cc5faf34a4d5de034886c23" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365709145-deb6be3c-0d4c-4bfd-8fbd-9b14e37705fa-20210424192613107.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-03bbaf61e6cef920b13f4ca9dd26f20b">
+<a href="javascript:history.back();" class="lightbox" id="image-eded964b2cc5faf34a4d5de034886c23">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365709145-deb6be3c-0d4c-4bfd-8fbd-9b14e37705fa-20210424192613107.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>转到终止点.png</p>
 <p>选中数据选择复制导入到新文件，我们选择恢复到E盘（其实最好不应选择恢复到原文件盘，但因无其他数据，经试验此次无影响），即可完成文件恢复。</p>
 <p>
-<a href="#image-1743263eaeab62e4e27aa6bc0755f6b2" class="lightbox-link">
+<a href="#image-86bde92f48dc7f80a352adc89ae83d30" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365714604-f096360e-1758-4c60-9ec1-22363058d4a5-20210424192613949.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1743263eaeab62e4e27aa6bc0755f6b2">
+<a href="javascript:history.back();" class="lightbox" id="image-86bde92f48dc7f80a352adc89ae83d30">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365714604-f096360e-1758-4c60-9ec1-22363058d4a5-20210424192613949.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>生成文件.png</p>
 <p>使用记事本打开发现数据已恢复无误。</p>
 <p>
-<a href="#image-515804e1a4717a157575cb2f2149f38a" class="lightbox-link">
+<a href="#image-db402c5e7b3cf735497dec2b2530d894" class="lightbox-link">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365720167-6d038493-b061-4e05-9c9f-9fedd289992d-20210424192613348.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-515804e1a4717a157575cb2f2149f38a">
+<a href="javascript:history.back();" class="lightbox" id="image-db402c5e7b3cf735497dec2b2530d894">
 <img src="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/1617365720167-6d038493-b061-4e05-9c9f-9fedd289992d-20210424192613348.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>恢复成功.png</p>
@@ -422,12 +422,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691255925" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691255925" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691255925" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691255925" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691255925" defer></script>
-        <script src="/js/search.js?1691255925" defer></script>
+        <script src="/js/auto-complete.js?1691256260" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691256260" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691256260" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691256260" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691256260" defer></script>
+        <script src="/js/search.js?1691256260" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -613,8 +613,8 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691255925" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691255925" defer></script>
+    <script src="/js/clipboard.min.js?1691256260" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691256260" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -644,15 +644,15 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691255925" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691255925" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691255925" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691255925" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691255925" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691255925" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691255925" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691255925" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691255925" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691256260" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691256260" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691256260" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691256260" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691256260" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691256260" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691256260" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691256260" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691256260" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -661,8 +661,8 @@
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691255925  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691256260  };
     </script>
-    <script src="/js/theme.js?1691255925" defer></script>
+    <script src="/js/theme.js?1691256260" defer></script>
   </body>
 </html>

