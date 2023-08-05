@@ -10,18 +10,18 @@
     <title>恶意样本分析-12-使用内存取证检测高级恶意软件 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析-12-使用内存取证检测高级恶意软件 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691258693" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691258693" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691258693" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691258693" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691258693" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691258693" rel="stylesheet">
-    <link href="/css/fonts.css?1691258693" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691258693" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691258693" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691258693" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691258693" rel="stylesheet">
-    <link href="/css/print.css?1691258693" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691258693" rel="stylesheet">
-    <script src="/js/url.js?1691258693"></script>
-    <script src="/js/variant.js?1691258693"></script>
+    <link href="/css/fontawesome-all.min.css?1691258774" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691258774" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691258774" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691258774" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691258774" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691258774" rel="stylesheet">
+    <link href="/css/fonts.css?1691258774" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691258774" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691258774" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691258774" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691258774" rel="stylesheet">
+    <link href="/css/print.css?1691258774" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691258774" rel="stylesheet">
+    <script src="/js/url.js?1691258774"></script>
+    <script src="/js/variant.js?1691258774"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -106,10 +106,10 @@
 <h3 id="1-检测代码注入">1. 检测代码注入</h3>
 <p>回想一下第8章的代码注入和挂钩，代码注入是一种将恶意代码(如EXE、DLL或shellcode)注入合法进程内存并在合法进程的上下文中执行恶意代码的技术。为了向远程进程注入代码，恶意程序通常会分配一个具有读、写和执行权限的内存(PAGE_EXECUTE_READWRITE)，然后将代码注入到远程进程分配的内存中。要检测注入远程进程的代码，可以根据内存保护和内存内容查找可疑的内存范围。一个引人注目的问题是，什么是可疑的内存范围以及如何获得有关进程内存范围的信息?如果你回想一下前一章(在使用ldrmodules检测隐藏DLL部分)，Windows在内核空间中维护一个名为虚拟地址描述符(VADs)的二叉树结构，每个VAD节点描述进程内存中一个几乎连续的内存区域。如果进程内存区域包含一个内存映射文件(如可执行文件、DLL等)，那么其中一个VAD节点存储有关其基址、文件路径和内存保护的信息。下面的描述不是VAD的准确表示，但它应该有助于您理解这个概念。在下面的截图中，内核空间中的一个VAD节点描述了关于进程可执行文件(explorer.exe)加载位置、它的完整路径和内存保护的信息。类似地，其他VAD节点将描述进程内存范围，包括那些包含映射的可执行映像(如DLL)的进程。这意味着VAD可以用来确定每个相邻进程内存范围的内存保护，它还可以给出包含内存映射镜像文件(如可执行文件或DLL)的内存区域的信息:
 
-<a href="#image-de996d0d8a5543c23bb02f8544734334" class="lightbox-link">
+<a href="#image-aa92193ae3d5d79ecc1fe3549df26747" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536618692094.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-de996d0d8a5543c23bb02f8544734334">
+<a href="javascript:history.back();" class="lightbox" id="image-aa92193ae3d5d79ecc1fe3549df26747">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536618692094.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="11-通过采用信息">1.1 通过采用信息</h3>
@@ -149,28 +149,28 @@ Current context: explorer.exe @ 0x86eb4780, pid=1608, ppid=1572 DTB=0x1eb1a340
    Python 2.7.13 (default, Jan 19 2017, 14:48:08)
 &gt;&gt;&gt; db(0x03120000)
 0x03120000 4d 5a 90 00 03 00 00 00 04 00 00 00 ff ff 00 00 MZ.............. 0x03120010 b8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@....... 0x03120020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................ 0x03120030 00 00 00 00 00 00 00 00 00 00 00 00 d8 00 00 00 ................ 0x03120040 0e 1f ba 0e 00 b4 09 cd 21 b8 01 4c cd 21 54 68 ........!..L.!Th 0x03120050 69 73 20 70 72 6f 67 72 61 6d 20 63 61 6e 6e 6f is.program.canno 0x03120060 74 20 62 65 20 72 75 6e 20 69 6e 20 44 4f 53 20 t.be.run.in.DOS. 0x03120070 6d 6f 64 65 2e 0d 0d 0a 24 00 00 00 00 00 00 00 mode....$.......</code></pre></div><p>
-<a href="#image-7fa05774b5bf7cbf2cb5af0ed0e20cef" class="lightbox-link">
+<a href="#image-458c2029c8f5b8ed4c2b18454157f02a" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536619802309.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7fa05774b5bf7cbf2cb5af0ed0e20cef">
+<a href="javascript:history.back();" class="lightbox" id="image-458c2029c8f5b8ed4c2b18454157f02a">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536619802309.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>有时，显示内存区域的内容可能不足以识别恶意代码。当shell代码被注入时尤其如此，在这种情况下，您需要反汇编内容。例如，如果您使用db命令转储地址0x03110000(上面vadinfo输出的第二个条目)的内容，您将看到以下十六进制转储。从输出来看，很难判断这是否是恶意代码:</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>&gt;&gt;&gt; db(0x03110000)
 0x03110000 64 a1 18 00 00 00 c3 55 8b ec 83 ec 54 83 65 fc d......U....T.e. 0x03110010 00 64 a1 30 00 00 00 8b 40 0c 8b 40 1c 8b 40 08 .d.0....@..@..@. 0x03110020 68 34 05 74 78 50 e8 83 00 00 00 59 59 89 45 f0 h4.txP.....YY.E. 0x03110030 85 c0 74 75 8d 45 ac 89 45 f4 8b 55 f4 c7 02 6b ..tu.E..E..U...k 0x03110040 00 65 00 83 c2 04 c7 02 72 00 6e 00 83 c2 04 c7 .e......r.n.....</code></pre></div><p>
-<a href="#image-92ba7bf5f199ed230b93700c11dde7ed" class="lightbox-link">
+<a href="#image-e73c64c8d5d3d241de876d6ecac2b493" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536619936510.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-92ba7bf5f199ed230b93700c11dde7ed">
+<a href="javascript:history.back();" class="lightbox" id="image-e73c64c8d5d3d241de876d6ecac2b493">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536619936510.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>如果您怀疑内存区域包含shell代码，可以使用dis命令
 在volshell中，在给定地址反汇编代码。从下面代码中显示的反汇编输出中，您可以看出shell代码已经注入到这个内存区域，因为它包含有效的CPU指令。为了验证内存区域是否包含任何恶意代码，您需要进一步分析它，以确定上下文。这是因为注入的代码看起来也类似于合法代码:
 
-<a href="#image-5764b28966ee99dd4d787735ce01320d" class="lightbox-link">
+<a href="#image-32402c4c7ad88fab6229ae4f50e33591" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536620221920.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5764b28966ee99dd4d787735ce01320d">
+<a href="javascript:history.back();" class="lightbox" id="image-32402c4c7ad88fab6229ae4f50e33591">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536620221920.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="13-转储进程内存区域">1.3 转储进程内存区域</h3>
@@ -186,17 +186,17 @@ Pid Process Start End Result
 <h3 id="14-使用malfind检测注入的代码">1.4 使用malfind检测注入的代码</h3>
 <p>到目前为止，我们已经了解了如何使用vadinfo手动识别可疑的内存区域。您还了解了如何使用vaddump转储一个内存区域。还有另一个名为malfind的Volatility插件，它根据内存内容和前面介绍的VAD特征自动识别可疑内存区域。在下面的示例中，当针对感染了SpyEye的内存映像运行malfind时，它会自动识别可疑的内存区域(包含PE文件和shellcode)。除此之外，它还显示十六进制转储和从基地址开始的反汇编。如果不指定-p(——pid)选项，malfind将识别系统上运行的所有进程的可疑内存范围:
 
-<a href="#image-ed23fe4cbe986081d0566e6cecda02eb" class="lightbox-link">
+<a href="#image-5b5b1871b7fac70b43a0a30a7aeec2fa" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536628274650.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ed23fe4cbe986081d0566e6cecda02eb">
+<a href="javascript:history.back();" class="lightbox" id="image-5b5b1871b7fac70b43a0a30a7aeec2fa">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536628274650.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-143e184260ea74feeb91105e56387a59" class="lightbox-link">
+<a href="#image-adc3a953cdae8a130a41192c60ba1c3a" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536628371294.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-143e184260ea74feeb91105e56387a59">
+<a href="javascript:history.back();" class="lightbox" id="image-adc3a953cdae8a130a41192c60ba1c3a">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536628371294.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f spyeye.vmem --profile=Win7SP1x86 malfind -p 1608 Volatility Foundation Volatility Framework 2.6
@@ -238,10 +238,10 @@ Flags: CommitCharge: 1, MemCommit: 1, PrivateMemory: 1, Protection: 6
 </ul>
 <p>Stuxnet就是这样一种恶意软件，它使用上述步骤执行伪进程注入。具体来说，Stuxnet在挂起模式下创建合法的lasss.exe进程。因此，lasss.exe通过PAGE_EXECUTE_WRITECOPY(WCX)保护加载到内存中。此时(在空化之前)，PEB和VAD都包含关于lasss.exe的内存保护、基址和完整路径的相同元数据信息。然后，Stuxnet将合法的进程可执行文件(lasss.exe)挖空，并在之前加载lasss.exe的同一区域内，用PAGE_EXECUTE_READWRITE (RWX)保护分配一个新的内存，然后在分配的内存中注入恶意的可执行文件并恢复挂起的线程。由于掏空了进程可执行文件，导致VAD和PEB之间的进程路径信息存在差异，即PEB中的进程路径仍然包含lasss.exe的完整路径，而VAD不显示完整路径。此外，在空化之前(WCX)和空化之后(RWX)存在内存保护差异。下面的图表可以帮助你可视化空心化之前发生了什么，以及空心化过程后在PEB和VAD中产生的差异:
 
-<a href="#image-20bbed7b2f3ba9ae7e1e7b92dc07fc9e" class="lightbox-link">
+<a href="#image-34736241f1da129f683c9df1fa68d66d" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536632166781.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-20bbed7b2f3ba9ae7e1e7b92dc07fc9e">
+<a href="javascript:history.back();" class="lightbox" id="image-34736241f1da129f683c9df1fa68d66d">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536632166781.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -286,10 +286,10 @@ Pid Process Base InLoad InInit InMem MappedPath
 </ul>
 <p>下面的截图显示了空化前后的差异。具体来说，空化后的PEB认为svchost.exe在0x00400000处加载。之前表示svchost.exe(加载在0x1000000)的VAD节点不再存在，因为当恶意软件掏空svchost.exe进程可执行文件时，VAD树中删除了该节点的条目:
 
-<a href="#image-9378b6d182599f9536bec0290a2a5b25" class="lightbox-link">
+<a href="#image-df4daa5edecbfdf3b9c8032847153806" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536634460195.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9378b6d182599f9536bec0290a2a5b25">
+<a href="javascript:history.back();" class="lightbox" id="image-df4daa5edecbfdf3b9c8032847153806">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536634460195.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>要检测伪进程的这种变化，可以遵循相同的方法。根据伪进程的执行方式，结果会有所不同。进程列表显示了svchost.exe进程的多个实例，这是正常的。除了最后一个svchost.exe (pid 1824)之外，所有svchost.exe进程都有一个父进程services.exe (pid 696)。在一个干净的系统中，所有svchos.exe进程都是由services.exe启动的。当您查看svchost.exe (pid 1824)的父进程时，您可以看到它的父进程已经终止。根据进程信息，可以看出最后一个svchost.exe (pid 1824)是可疑的:</p>
@@ -313,18 +313,18 @@ ERROR : volatility.debug : Cannot find PID 1768. If its terminated or unlinked, 
 C:\WINDOWS\system32\svchost.exe
 C:\WINDOWS\system32\ntdll.dll
 C:\WINDOWS\system32\kernel32.dll</code></pre></div><p>
-<a href="#image-8bc158e7f32f3bb1931a2d9d650bb113" class="lightbox-link">
+<a href="#image-330e7b65a5c067eeae39d88898598648" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536634998862.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8bc158e7f32f3bb1931a2d9d650bb113">
+<a href="javascript:history.back();" class="lightbox" id="image-330e7b65a5c067eeae39d88898598648">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536634998862.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>另一方面，ldrmodules插件(依赖于内核中的VAD)并没有显示svchost.exe的任何条目，如下图所示:
 
-<a href="#image-c38bf6646504b914f2a04d153dcef588" class="lightbox-link">
+<a href="#image-f240d3210ef1b6f4e2a1309f4efc6ccc" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536635208561.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c38bf6646504b914f2a04d153dcef588">
+<a href="javascript:history.back();" class="lightbox" id="image-f240d3210ef1b6f4e2a1309f4efc6ccc">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536635208561.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>malfind显示在0x00400000地址存在一个PE文件，其中存在一个可疑的PAGE_EXECUTE_READWRITE内存保护，这表明这个可执行文件被注入了，并且没有正常加载:</p>
@@ -337,10 +337,10 @@ Vad Tag: VadS Protection: PAGE_EXECUTE_READWRITE
    0x00400001 5a POP EDX
    [REMOVED]
    </code></pre></div><p>
-<a href="#image-7766e3956f03374dbf8aae2bbb310f7e" class="lightbox-link">
+<a href="#image-6e6ff7a98ebea4cada991255cce569d7" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536635483963.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7766e3956f03374dbf8aae2bbb310f7e">
+<a href="javascript:history.back();" class="lightbox" id="image-6e6ff7a98ebea4cada991255cce569d7">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536635483963.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -371,10 +371,10 @@ SUB ESP, 0x38
 PUSH ESI
 PUSH 0x38
 LEA EAX, [EBP-0x38]</code></pre></div><p>
-<a href="#image-005941f554f35106d7c29f82d07bc7ba" class="lightbox-link">
+<a href="#image-0c3bcb2ba1ddec489cddb7bf1a092f00" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536637393946.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-005941f554f35106d7c29f82d07bc7ba">
+<a href="javascript:history.back();" class="lightbox" id="image-0c3bcb2ba1ddec489cddb7bf1a092f00">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536637393946.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="4-内核模式rootkit">4. 内核模式rootkit</h3>
@@ -396,10 +396,10 @@ Offset(V) Name Base Size File
 [REMOVED]
 0x86e36388 srv2.sys 0xa46e1000 0x4f000 \SystemRoot\System32\DRIVERS\srv2.sys 0x86ed6d68 srv.sys 0xa4730000 0x51000 \SystemRoot\System32\DRIVERS\srv.sys 0x86fe8f90 spsys.sys 0xa4781000 0x6a000 \SystemRoot\system32\drivers\spsys.sys 0x861ca0d0 lanmandrv.sys 0xa47eb000 0x2000 \??\C:\Windows\System32\lanmandrv.sys
 \SystemRoot\system32\kdcom.dll</code></pre></div><p>
-<a href="#image-6568f3f1c70470ded885e336d9699639" class="lightbox-link">
+<a href="#image-37c45d114dc735f68c9fc1ebae707c81" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536638370800.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6568f3f1c70470ded885e336d9699639">
+<a href="javascript:history.back();" class="lightbox" id="image-37c45d114dc735f68c9fc1ebae707c81">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536638370800.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>由于浏览双链接列表容易受到DKOM攻击(在第10章，使用内存取证查找恶意软件，4.2.1节直接内核对象操作(DKOM)中描述)，通过解除链接可以从列表中隐藏内核驱动程序。为了克服这个问题，您可以使用另一个名为modscan的插件。modscan插件依赖于池标签扫描方法(在第10章，使用内存取证来捕获恶意软件，4.2.2理解池标签扫描)。换句话说，它扫描物理地址空间，寻找与内核模块相关的池标记(MmLd)。通过池标签扫描，可以检测到未链接的模块和之前加载的模块。modscan插件以它们在物理地址空间中被找到的顺序显示内核模块，而不是基于它们被加载的顺序。下面以Necurs rootkit为例，modscan插件显示的恶意内核驱动程序(2683608180e436a1.sys)的名称完全由十六进制字符组成:</p>
@@ -418,17 +418,17 @@ Offset(P)          Name                 Base       Size   File
    \SystemRoot\system32\DRIVERS\rdbss.sys
 [REMOVED]
 0x000000001e089170 2683608180e436a1.sys 0x851ab000 0xd000 \SystemRoot\System32\Drivers\2683608180e436a1.sys 0x000000001e0da478 usbccgp.sys 0x9700b000 0x17000 \SystemRoot\system32\DRIVERS\usbccgp.sys</code></pre></div><p>
-<a href="#image-5b2a5f32ee6617d9a1dba737c01b95e7" class="lightbox-link">
+<a href="#image-507877123a5a3ef33f7f1926325d8249" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536638717525.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5b2a5f32ee6617d9a1dba737c01b95e7">
+<a href="javascript:history.back();" class="lightbox" id="image-507877123a5a3ef33f7f1926325d8249">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536638717525.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-e056911d7e011224f92c37b0bfa10d8a" class="lightbox-link">
+<a href="#image-9e032c719dab2aa5b1002563de9894e9" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536638794882.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e056911d7e011224f92c37b0bfa10d8a">
+<a href="javascript:history.back();" class="lightbox" id="image-9e032c719dab2aa5b1002563de9894e9">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536638794882.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 当您运行模块插件针对感染Necurs rootkit的内存映像时，它不会显示恶意驱动程序(2683608180e436a1.sys):</p>
@@ -436,10 +436,10 @@ Offset(P)          Name                 Base       Size   File
 <div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f necurs.vmem --profile=Win7SP1x86 unloadedmodules Volatility Foundation Volatility Framework 2.6
 Name StartAddress EndAddress Time
 ----------------- ------------ ---------- ------------------- dump_dumpfve.sys 0x00880bb000 0x880cc000 2016-05-11 12:15:08 dump_LSI_SAS.sys 0x00880a3000 0x880bb000 2016-05-11 12:15:08 dump_storport.sys 0x0088099000 0x880a3000 2016-05-11 12:15:08 parport.sys 0x0094151000 0x94169000 2016-05-11 12:15:09 2b9fb.sys 0x00a47eb000 0xa47fe000 2018-05-21 10:57:52</code></pre></div><p>
-<a href="#image-b3a5f3378d7c9a9e5b9b32926e68bbe9" class="lightbox-link">
+<a href="#image-927cac174b29cd2e5a405272bf016664" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536639287412.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b3a5f3378d7c9a9e5b9b32926e68bbe9">
+<a href="javascript:history.back();" class="lightbox" id="image-927cac174b29cd2e5a405272bf016664">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536639287412.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f necurs.vmem --profile=Win7SP1x86 modules | grep -i 2b9fb.sys
@@ -451,10 +451,10 @@ Volatility Foundation Volatility Framework 2.6
 Offset(P) Start Size Service Key Name Driver Name ------------------ -------- ------- ----------- ------ ----------- 0x00000000108b9030 0x88148000 0x8000 RDPENCDD RDPENCDD \Driver\RDPENCDD 0x00000000108b9478 0x97023000 0xb7000 DXGKrnl DXGKrnl \Driver\DXGKrnl 0x00000000108b9870 0x88150000 0x8000 RDPREFMP RDPREFMP \Driver\RDPREFMP 0x0000000010b3b1d0 0x96ef6000 0x41000 rdbss rdbss \FileSystem\rdbss 0x0000000011781188 0x88171000 0x17000 tdx tdx \Driver\tdx 0x0000000011ff6a00 0x881ed000 0xd000 kbdclass kbdclass \Driver\kbdclass 0x0000000011ff6ba0 0x880f2000 0x7000 Beep Beep \Driver\Beep [REMOVED]
    0x000000001e155668 0x851ab000 0xd000 2683608180e436a1 26836...36a1
    \Driver\2683608180e436a1</code></pre></div><p>
-<a href="#image-e2bb74cdf07e3ad0030e1dd51bc149df" class="lightbox-link">
+<a href="#image-3d3894ba74d7316a6d13e786caa4be36" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536639956864.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e2bb74cdf07e3ad0030e1dd51bc149df">
+<a href="javascript:history.back();" class="lightbox" id="image-3d3894ba74d7316a6d13e786caa4be36">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536639956864.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>要列出使用内核调试器(Windbg)的内核模块，请如下所示使用lm k命令。对于详细输出，可以使用lm kv命令:</p>
@@ -477,10 +477,10 @@ Module Base Module Name Result
 <p>在讨论driverscan插件时，我提到过driverscan从DRIVER_OBJECT结构中获取模块信息。你想知道DRIVER_OBJECT结构是?这一点很快就会清楚。在本节中，您将了解用户模式和内核模式组件之间的交互、设备驱动程序的角色以及它与I/O管理器的交互。通常，一个rootkit由一个用户模式组件(EXE或DLL)和一个内核模式组件(设备驱动程序)组成。rootkit的用户模式组件使用特定的机制与内核模式组件通信。从取证的角度来看，必须了解这些通信的工作方式以及所涉及的组件。本节将帮助您理解通信机制，并为接下来的主题奠定基础。</p>
 <p>让我们试着理解当用户模式应用程序执行输入/输出(I/O)操作时发生了什么，以及在高级别上如何处理它。在讨论在第8章API调用流时,代码注入和连接(在Windows API调用流部分),我使用一个用户模式应用程序的示例使用WriteFile () API执行写操作,而最终调用NtWriteFile()系统服务程序在内核中执行(ntoskrnl.exe),然后将请求定向到I/O管理器，然后I/O管理器请求设备驱动程序执行I/O操作。在这里，我将再次详细讨论这个主题，重点是内核空间组件(主要是设备驱动程序和I/O管理器)。下面的图表说明了写请求的流程(其他类型的I/O请求，如read类似;它们只是使用了不同的api):
 
-<a href="#image-5e6b328dd4586880e8a358239136dab9" class="lightbox-link">
+<a href="#image-b6f0effaa465669f0b84d3d6ae09aa7d" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536641187898.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5e6b328dd4586880e8a358239136dab9">
+<a href="javascript:history.back();" class="lightbox" id="image-b6f0effaa465669f0b84d3d6ae09aa7d">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536641187898.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 以下几点讨论了设备驱动程序和I/O管理器在高级别上的角色:</p>
@@ -536,42 +536,42 @@ Device queue is not busy.</code></pre></div><p>您还可以通过在display type
       +0x030 StackSize : 1 &#39;&#39;
       [REMOVED]</code></pre></div><p>从前面的输出中，您可以看到DEVICE_OBJECT包含一个指向驱动对象的DriverObject字段。换句话说，关联的驱动程序可以从设备对象中确定。这就是当I/O管理器接收到特定设备的I/O请求时，它可以确定相关驱动程序的方式。这个概念可以通过以下图表来可视化:
 
-<a href="#image-c6e2e07485914d4a32ad2be9c4001755" class="lightbox-link">
+<a href="#image-1b44f1068060e3785b40f58c715201f1" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536643306755.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c6e2e07485914d4a32ad2be9c4001755">
+<a href="javascript:history.back();" class="lightbox" id="image-1b44f1068060e3785b40f58c715201f1">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536643306755.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>您可以使用GUI工具，如DeviceTree (<a href="http://www.osronline.com/article.cfm?article=97" target="_blank">http://www.osronline.com/article.cfm?article=97</a>)查看驱动程序创建的设备。下面是一个工具的屏幕截图，显示了Null设备创建的Null.sys驱动:
 
-<a href="#image-f61f9f41c1488d68640eb8804f0f4c03" class="lightbox-link">
+<a href="#image-d6b566858e2c07358f04a63d642abf83" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536643509739.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f61f9f41c1488d68640eb8804f0f4c03">
+<a href="javascript:history.back();" class="lightbox" id="image-d6b566858e2c07358f04a63d642abf83">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536643509739.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>当一个驱动程序创建一个设备时，设备对象被放置在Windows对象管理器命名空间的\device目录中。要查看对象管理器的名称空间信息，可以使用WinObj工具(<a href="https://docs.microsoft.com/en-us/sysinternals/downloads/WinObj" target="_blank">https://docs.microsoft.com/en-us/sysinternals/downloads/WinObj</a>)。下面的截图显示了Null创建的设备Null.sys在\Device目录下。你也可以看到其他驱动程序创建的设备:</p>
 <p>
-<a href="#image-2489029c4f2477fd0b7ef22a92f3e2c8" class="lightbox-link">
+<a href="#image-84715d022388b381333dc0641917d957" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536643870741.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2489029c4f2477fd0b7ef22a92f3e2c8">
+<a href="javascript:history.back();" class="lightbox" id="image-84715d022388b381333dc0641917d957">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536643870741.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>运行在用户模式下的应用程序无法访问在\device目录下创建的设备。换句话说，如果用户模式应用程序想要在设备上执行I/O操作，它不能通过传递设备的名称(如\device\Null)作为CreateFile函数的参数直接打开设备句柄。CreateFile函数不仅仅用于创建或打开文件，它还可以用于打开设备的句柄。如果用户模式应用程序不能访问设备，那么它如何执行I/O操作?为了让用户模式应用程序可以访问设备，驱动程序需要发布设备。这是通过创建到设备的符号链接来完成的。驱动程序可以使用内核API IoCreateSymbolicLink来创建符号链接。当为一个设备(如\device\Null)创建一个符号链接时，您可以在\GLOBAL??对象管理器名称空间中的目录，也可以使用WinObj工具。在下面的截图中，您可以看到NUL是通过null.sys驱动的名为为\Device\Null设备创建的符号链接。
 
-<a href="#image-76e4218f210537aee8aeaff11bcac26a" class="lightbox-link">
+<a href="#image-d6d2855685246272fe632c511d505b36" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536644093393.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-76e4218f210537aee8aeaff11bcac26a">
+<a href="javascript:history.back();" class="lightbox" id="image-d6d2855685246272fe632c511d505b36">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536644093393.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>符号链接也被称为MS-DOS设备名。用户模式应用程序可以简单地使用符号链接的名称(MS-DOS设备名)来使用约定打开设备句柄 \.&lt;symboliclink name&gt;。例如，要打开\Device\Null的句柄，用户模式应用程序必须只传递\.\NUL作为CreateFile函数的第一个参数(lpFilename)，它返回设备的文件句柄。具体地说，对象管理器目录GLOBAL中的任何符号链接。可以使用CreateFile函数打开。如下图所示，C:卷只是一个到\Device\HarddiskVolume1的符号链接。在Windows操作系统中，I/O操作是在虚拟文件上进行的。换句话说，设备、目录、管道和文件都被视为虚拟文件(可以使用CreateFile函数打开):
 
-<a href="#image-28244fbe0e5def366019ceefed16ddb7" class="lightbox-link">
+<a href="#image-0a67fe773085f1f59ab72be43fd06341" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536644257412.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-28244fbe0e5def366019ceefed16ddb7">
+<a href="javascript:history.back();" class="lightbox" id="image-0a67fe773085f1f59ab72be43fd06341">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536644257412.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 此时，您知道驱动程序在其初始化过程中创建设备，并使用符号链接将其发布给用户应用程序使用。现在，问题是，驱动程序如何告诉I/O管理器它支持设备的什么类型的操作(打开、读、写，等等)?在初始化期间，驱动程序通常做的另一件事是用DRIVER_OBJECT结构中分派例程的地址更新Major函数表(分派例程数组)。通过查看主要函数表，您可以了解驱动程序支持的操作类型(打开、读取、写入等)，以及与特定操作关联的调度例程的地址。主函数表是一个包含28个函数指针的数组;索引值0到27表示一个特定的操作。例如，索引值0对应于主函数代码IRP_MJ_CREATE，索引值3对应于主函数代码IRP_MJ_READ，以此类推。换句话说，如果应用程序想打开一个文件或设备对象的句柄，请求将被发送到I/O管理器，然后使用将IRP_MJ_CREATE主函数代码作为主函数表的索引，以查找将处理此请求的调度例程的地址。与读取操作相同，使用IRP_MJ_READ作为索引来确定分派例程的地址。</p>
@@ -628,25 +628,25 @@ Dispatch routines:
 82ac5fbe nt!IopInvalidDeviceRequest
 82ac5fbe nt!IopInvalidDeviceRequest
 82ac5fbe nt!IopInvalidDeviceRequest</code></pre></div><p>
-<a href="#image-d4f445f000e9e7a5d52cf3e9e8474867" class="lightbox-link">
+<a href="#image-88c6bfeda40d37b7d646661183c46141" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536644721936.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d4f445f000e9e7a5d52cf3e9e8474867">
+<a href="javascript:history.back();" class="lightbox" id="image-88c6bfeda40d37b7d646661183c46141">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536644721936.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-02e37937cbf8708cf96c11a2be1aecb4" class="lightbox-link">
+<a href="#image-8cf0d76edc7f38b718a7ceb2aed7a560" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536644849181.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-02e37937cbf8708cf96c11a2be1aecb4">
+<a href="javascript:history.back();" class="lightbox" id="image-8cf0d76edc7f38b718a7ceb2aed7a560">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536644849181.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 您还可以在DeviceTree工具中查看支持的操作，如下截图所示:
 
-<a href="#image-36285f7cb6fc45f11dcdefb80f420f12" class="lightbox-link">
+<a href="#image-8eb83122899c293d00ce8574f70de5f0" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536645054488.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-36285f7cb6fc45f11dcdefb80f420f12">
+<a href="javascript:history.back();" class="lightbox" id="image-8eb83122899c293d00ce8574f70de5f0">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536645054488.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 此时，您知道驱动程序创建了设备，将其发布给用户应用程序使用，并且它还更新调度例程数组(主函数表)，告诉I/O管理器它支持什么操作。现在，让我们看看I/O管理器的角色是什么，并理解如何将从用户应用程序接收的I/O请求分派给驱动程序。</p>
@@ -658,45 +658,45 @@ Dispatch routines:
 <h4 id="63-与设备驱动程序通信">6.3 与设备驱动程序通信</h4>
 <p>现在，让我们回顾一下用户模式组件和内核模式组件之间的交互。我们会回到null.sys的例子驱动程序从用户模式触发对其设备(\device\Null)的写操作，并监视IRP发送到Null.sys的系统驱动程序。为了监视发送给驱动程序的IRP包，我们可以使用IrpTracker工具(<a href="https://www.osronline.com/article.cfm?article=199" target="_blank">https://www.osronline.com/article.cfm?article=199</a>)。要以管理员身份监视IrpTracker的启动，单击File | Select Driver并输入驱动程序的名称(在本例中为null)，如下面的截图所示，然后选择OK按钮:
 
-<a href="#image-2075925703da8fabbdbd5300d8ec8d59" class="lightbox-link">
+<a href="#image-6db4005a9d8ebc653b993459c415d2af" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536645923465.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2075925703da8fabbdbd5300d8ec8d59">
+<a href="javascript:history.back();" class="lightbox" id="image-6db4005a9d8ebc653b993459c415d2af">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536645923465.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>现在，要触发I/O操作，可以打开命令提示符并键入以下命令。这将把字符串&quot;hello&quot;写入空设备。如前所述，符号链接名称是用户模式应用程序(如cmd.exe)可以使用的名称;这就是我指定设备符号链接名称(NUL)来写入内容的原因:</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>C:\&gt;echo &#34;hello&#34; &gt; NUL</code></pre></div><p>设备被视为一个虚拟文件，在写入设备之前，设备的句柄将使用CreateFile()(一个用于创建/打开文件或设备的API)打开。CreateFile() API最终将调用ntoskrnl.exe中的NtCreateFile()，它将请求发送给I/O管理器。I/O管理器根据符号链接名称找到与设备相关联的驱动程序，并调用与IRP_MJ_CREATE主函数代码相对应的调度例程。打开设备句柄后，使用WriteFile()执行写操作，它将调用NtWriteFile。这个请求将由I/O管理器分派到与IRP_MJ_WRITE主函数代码相对应的驱动程序例程。下面的截图显示了对IRP_MJ_CREATE和IRP_MJ_WRITE对应的驱动调度例程的调用和它们的完成状态:
 
-<a href="#image-ece8fc7912df576fbec6d6e6c0704f76" class="lightbox-link">
+<a href="#image-d10cd3fc95c1957c95461dfd6307562c" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536646855405.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ece8fc7912df576fbec6d6e6c0704f76">
+<a href="javascript:history.back();" class="lightbox" id="image-d10cd3fc95c1957c95461dfd6307562c">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536646855405.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>此时，您应该了解执行I/O操作的用户模式代码如何与内核模式驱动程序通信。Windows支持另一种机制，它允许用户模式代码直接与内核模式设备驱动程序通信。这是使用称为DeviceIoControl的通用API(由kernel32.dll导出)完成的。这个API接受设备的句柄作为参数之一。它接受的另一个参数是控制代码，称为IOCTL (I/O控制)代码，它是一个32位整数值。每个控制代码标识要执行的特定操作以及执行该操作的设备类型。用户态应用程序可以打开设备句柄(使用CreateFile)，调用DeviceIoControl，并通过Windows操作系统提供的标准控制代码，对设备进行直接的输入输出操作，如硬盘驱动器、磁带驱动器、光盘驱动器等。另外，一个设备驱动程序(一个rootkit驱动程序)可以定义它自己的特定于设备的控制代码，rootkit的用户模式组件可以使用这些代码通过DeviceIoControl API与驱动程序通信。当用户模式组件通过传递IOCTL代码来调用DeviceIoControl时，它会在ntdll.dll中调用NtDeviceIoControlFile，它会将线程转换到内核模式，并在Windows执行程序ntoskrnl.exe中调用系统服务例程NtDeviceIoControlFile。Windows执行程序调用I/O管理器，I/O管理器构建一个包含IOCTL代码的IRP包，然后将其路由到由IRP_MJ_DEVICE_CONTROL标识的内核调度例程。下面的图表说明了用户模式代码和内核模式驱动程序之间通信的概念:
 
-<a href="#image-67b52add786ab96885101a844b607ed3" class="lightbox-link">
+<a href="#image-47726ecbef215bf0534e095e51177f2b" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536647044682.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-67b52add786ab96885101a844b607ed3">
+<a href="javascript:history.back();" class="lightbox" id="image-47726ecbef215bf0534e095e51177f2b">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536647044682.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="64-io请求分层驱动">6.4 I/O请求分层驱动</h4>
 <p>到目前为止，您已经了解了I/O请求是如何由单个驱动程序控制的简单设备处理的。I/O请求可以经过多层驱动程序;分层驱动程序的I/O处理也以同样的方式进行。下面的截图展示了一个I/O请求如何在到达基于硬件的设备之前通过分层驱动程序的例子:
 
-<a href="#image-112ef6387d5e9dbe84297e74badb9731" class="lightbox-link">
+<a href="#image-737a777c9c93d70d60fdd0dd73b097c8" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536647326395.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-112ef6387d5e9dbe84297e74badb9731">
+<a href="javascript:history.back();" class="lightbox" id="image-737a777c9c93d70d60fdd0dd73b097c8">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536647326395.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通过一个示例可以更好地理解这个概念，所以让我们触发一个写操作使用以下命令到c:\abc.txt。当执行该命令时，netstat将打开abc.txt的句柄并写入:</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>C:\Windows\system32&gt;netstat -an -t 60 &gt; C:\abc.txt</code></pre></div><p>这里要注意的一点是文件名(C:\abc.txt)还包括文件所在设备的名称，即卷C:是符号链接的名称HarddiskVolume1(你可以使用WinObj工具验证它，如前所述)。这意味着写操作将被路由到与设备\device\HarddiskVolume1相关联的驱动程序。当netstat.exe打开abc.txt时，I/O管理器创建一个文件对象(FILE_OBJECT结构)，并在返回netstat.exe句柄之前，将指向设备对象的指针存储在文件对象中。下面这张来自ProcessHacker工具的截图显示了已被netstat.exe打开的C:\abc.txt的句柄。对象地址0x85f78ce8表示文件对象:
 
-<a href="#image-86c3e8222abab8b4ce7c90da25d4fdd8" class="lightbox-link">
+<a href="#image-0c6eea2756cd2cc0654605357459debd" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536650447139.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-86c3e8222abab8b4ce7c90da25d4fdd8">
+<a href="javascript:history.back();" class="lightbox" id="image-0c6eea2756cd2cc0654605357459debd">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536650447139.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>可以使用对象地址检查文件对象(FILE_OBJECT)，如下所示。从输出中，可以看到FileName字段包含文件名称，DeviceObject字段包含指向设备对象(DEVICE_OBJECT)的指针:</p>
@@ -723,10 +723,10 @@ Device queue is not busy.</code></pre></div><p>要确定I/O请求通过的驱动
 868e7b28 \Driver\fvevol 868e7be0
 &gt; 868e7e20 \Driver\volmgr 868e7ed8 HarddiskVolume1</code></pre></div><p>要查看设备树，可以使用GUI工具DeviceTree(我们在前面提到过)。该工具将驱动程序显示在树的外缘，它们的设备缩进了一级。附件中的设备是进一步的打算，如下截图所示。你可以将下面的截图与前面的!devstack的输出进行比较，以了解如何解释这些信息:
 
-<a href="#image-12f9b127ea8f1d93abb3891693b7c1f3" class="lightbox-link">
+<a href="#image-b539c4705a0a5ef410f2786457423d0f" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536651346176.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-12f9b127ea8f1d93abb3891693b7c1f3">
+<a href="javascript:history.back();" class="lightbox" id="image-b539c4705a0a5ef410f2786457423d0f">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536651346176.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>理解这种分层的方法是很重要的，因为有时候，一个新手驱动可以插入或附加在目标设备的堆栈下面或上面来接收IRP。使用这种技术，rootkit驱动程序可以在将IRP传递给合法驱动程序之前记录或修改它。例如，键盘记录器可以通过插入位于键盘函数驱动程序之上的恶意驱动程序来记录击键。</p>
@@ -740,10 +740,10 @@ Device queue is not busy.</code></pre></div><p>要确定I/O请求通过的驱动
 DRV 0xbf2e0bd8 \Driver\volmgr
 ---| DEV 0x868e7e20 HarddiskVolume1 FILE_DEVICE_DISK
 ------| ATT 0x868e7b28 - \Driver\fvevol FILE_DEVICE_DISK ---------| ATT 0x868e78c0 - \Driver\rdyboost FILE_DEVICE_DISK ------------| ATT 0x85707658 - \Driver\volsnap FILE_DEVICE_DISK [REMOVED]</code></pre></div><p>
-<a href="#image-05e9a60bcd881b335fa3f74489cfee77" class="lightbox-link">
+<a href="#image-b567938e5039ccc1b25ef4e4c707b0d8" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536651772114.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-05e9a60bcd881b335fa3f74489cfee77">
+<a href="javascript:history.back();" class="lightbox" id="image-b567938e5039ccc1b25ef4e4c707b0d8">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536651772114.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>为了帮助您理解devicetree插件在司法调查中的使用，让我们来看看一个恶意软件，它创建自己的设备来存储恶意二进制文件。在下面的ZeroAccess rootkit示例中，我使用了cmdline插件，它显示进程命令行参数。这在确定进程的完整路径时很有用(您也可以使用dlllist插件)。从输出中可以看到最后一个svchost.exe进程在可疑的命名空间中运行:</p>
@@ -785,10 +785,10 @@ DriverStartIo: 0x0
 13 IRP_MJ_FILE_SYSTEM_CONTROL
 14 IRP_MJ_DEVICE_CONTROL
 15 IRP_MJ_INTERNAL_DEVICE_CONTROL 0xfffff80002a5865c ntoskrnl.exe [REMOVED]</code></pre></div><p>
-<a href="#image-d4f461f9da879df9de073fb73a030e7b" class="lightbox-link">
+<a href="#image-e4bade24ea9469d1c09d6f0fd55c171c" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536653003646.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d4f461f9da879df9de073fb73a030e7b">
+<a href="javascript:history.back();" class="lightbox" id="image-e4bade24ea9469d1c09d6f0fd55c171c">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536653003646.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="8-检测内核空间挂钩">8. 检测内核空间挂钩</h3>
@@ -796,10 +796,10 @@ DriverStartIo: 0x0
 <h4 id="81-检测ssdt挂钩">8.1 检测SSDT挂钩</h4>
 <p>内核空间中的系统服务描述符表(SSDT)包含内核执行程序(ntoskrnl.exe、ntkrnlpa.exe等)导出的系统服务例程(内核函数)的指针。当应用程序调用WriteFile()、ReadFile()或CreateProcess()等API时，它会调用ntdll.dll中的存根，它会将线程切换到内核模式。在内核模式下运行的线程会查询SSDT以确定要调用的内核函数的地址。下面的截图用一个WriteFile()的例子说明了这个概念(这个概念和其他api类似):
 
-<a href="#image-edb4edb022f13cc01ead9274e64c6638" class="lightbox-link">
+<a href="#image-744319b10aeac76ce2afddd2dfe0bfd9" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536653442382.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-edb4edb022f13cc01ead9274e64c6638">
+<a href="javascript:history.back();" class="lightbox" id="image-744319b10aeac76ce2afddd2dfe0bfd9">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536653442382.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通常，ntoskrnl.exe导出核心内核API函数，例如NtReadFile()， NtWrite()File，等等。在x86平台中，指向这些内核函数的指针直接存储在SSDT中，而在x64平台上，SSDT不包含指针。相反，它存储一个经过编码的整数，该整数被解码以确定内核函数的地址。无论实现是什么，概念都是相同的，并且要咨询SSDT来确定特定内核函数的地址。Windows7 x86平台下的WinDbg命令会显示SSDT的内容。表中的条目包含指向ntoskrnl.exe (nt)实现的函数的指针。条目的顺序和数量因操作系统版本而异:</p>
@@ -825,10 +825,10 @@ DriverStartIo: 0x0
      Entry 0x1001: 0x96bd9497 (NtGdiAbortPath) owned by win32k.sys
      Entry 0x1002: 0x96a272c1 (NtGdiAddFontResourceW) owned by win32k.sys
      Entry 0x1003: 0x96bcff67 (NtGdiAddRemoteFontToDC) owned by win32k.sys</code></pre></div><p>
-<a href="#image-be18d76582fff8b37f5f98869ab45fb0" class="lightbox-link">
+<a href="#image-32e9ee161863f15ad20f22bb7acdeb33" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536653901545.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-be18d76582fff8b37f5f98869ab45fb0">
+<a href="javascript:history.back();" class="lightbox" id="image-32e9ee161863f15ad20f22bb7acdeb33">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536653901545.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 要检测SSDT挂钩，可以在SSDT表中查找不指向ntoskrnl.exe或win32k.sys中的地址的条目。以下代码是一个示例
@@ -860,10 +860,10 @@ Volatility Foundation Volatility Framework 2.6
 0 C1 0x8 0x8282f3f4 hal.dll _PAGELK 
 0 C2 0x8 0x8288eea4 ntoskrnl.exe .text 
 0 C3 0x8 0x8288eeae ntoskrnl.exe .text</code></pre></div><p>
-<a href="#image-6775425a8a1b3b88115facf4144b9b7b" class="lightbox-link">
+<a href="#image-761864f1db7ba54671e6216b93065180" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536654655910.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6775425a8a1b3b88115facf4144b9b7b">
+<a href="javascript:history.back();" class="lightbox" id="image-761864f1db7ba54671e6216b93065180">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536654655910.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>下面的输出显示钩住的条目。可以看到IDT中的0xC3条目指向UNKNOWN模块中的一个地址。换句话说，被钩入的条目位于ntoskrnl.exe模块的范围之外:</p>
@@ -882,17 +882,17 @@ Volatility Foundation Volatility Framework 2.6
 0 C1 0x8 0x8282f3f4 hal.dll _PAGELK 
 0 C2 0x8 0x8288eea4 ntoskrnl.exe .text 
 0 C3 0x8 0x85b422b0 UNKNOWN</code></pre></div><p>
-<a href="#image-98a860732d7b25fedd6049b98ed0bc13" class="lightbox-link">
+<a href="#image-8b33f132685490814b0d7e61c64e0d18" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536654952428.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-98a860732d7b25fedd6049b98ed0bc13">
+<a href="javascript:history.back();" class="lightbox" id="image-8b33f132685490814b0d7e61c64e0d18">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536654952428.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-ac59dc7b5342a398f62325607e9ffdf2" class="lightbox-link">
+<a href="#image-8adab5114e41507cd3d811a857d208ac" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536655016561.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ac59dc7b5342a398f62325607e9ffdf2">
+<a href="javascript:history.back();" class="lightbox" id="image-8adab5114e41507cd3d811a857d208ac">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536655016561.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -901,17 +901,17 @@ Volatility Foundation Volatility Framework 2.6
 <h4 id="83-识别内联内核钩子">8.3 识别内联内核钩子</h4>
 <p>攻击者可以使用jmp指令修改现有内核驱动程序中的一个或多个内核函数，从而将执行流重定向到恶意代码，而不是替换SSDT中的指针(这使其易于识别)。正如本章前面提到的，你可以使用apihooks插件来检测内核空间中的内联挂接。通过指定-P参数，你可以告诉apihooks插件只扫描内核空间中的钩子。在下面这个TDL3 rootkit的例子中，apihook检测内核函数IofCallDriver和IofCompleteRequest中的钩子。被钩子连接的API函数被重定向到名称未知的恶意模块中的0xb878dfb2和0xb878e6bb地址(可能是因为它通过解除KLDR_DATA_TABLE_ENTRY结构的链接来隐藏):
 
-<a href="#image-c961ae4720b74c4cf281cb5abf240603" class="lightbox-link">
+<a href="#image-30fd73113d1b1c48849af03376846a7a" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536655850773.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c961ae4720b74c4cf281cb5abf240603">
+<a href="javascript:history.back();" class="lightbox" id="image-30fd73113d1b1c48849af03376846a7a">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536655850773.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-212de443f73b28b02d68f654f9404e50" class="lightbox-link">
+<a href="#image-3bed2d87ce0baba16ed85185ad8bd3fd" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536656103360.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-212de443f73b28b02d68f654f9404e50">
+<a href="javascript:history.back();" class="lightbox" id="image-3bed2d87ce0baba16ed85185ad8bd3fd">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536656103360.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 apihooks -P Volatility Foundation Volatility Framework 2.6 ************************************************************************ Hook mode: Kernelmode
@@ -939,18 +939,18 @@ $ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 modscan | grep -i 0xb878 Vola
 0x0000000009773c98 TDSSserv.sys 0xb878c000 0x11000 \systemroot\system32\drivers\TDSSserv.sys</code></pre></div><h4 id="84-检测irp函数钩子">8.4 检测IRP函数钩子</h4>
 <p>rootkit可以修改主函数表(调度例程数组)中的条目，以指向恶意模块中的例程，而不是与内核API函数挂钩。例如，rootkit可以通过覆盖驱动主函数表中IRP_MJ_WRITE对应的地址来检查写入磁盘或网络的数据缓冲区。下面的图表说明了这个概念:
 
-<a href="#image-c64171bbf781c0b8a0fc11c0b8dd62a4" class="lightbox-link">
+<a href="#image-2340986352689509aa40ea9bdf7a832d" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536659609189.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c64171bbf781c0b8a0fc11c0b8dd62a4">
+<a href="javascript:history.back();" class="lightbox" id="image-2340986352689509aa40ea9bdf7a832d">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536659609189.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>通常，IRP处理程序在它们自己的模块中运行驱动程序点。例如，与null的IRP_MJ_WRITE相关联的例程。Sys指向一个空地址。然而，有时一个驱动程序会将处理函数转发给另一个驱动程序。下面是磁盘驱动程序转发处理程序函数到CLASSPNP.SYS的示例(存储类设备驱动):
 
-<a href="#image-24cf6302921b1ab31beef5b3a199eeda" class="lightbox-link">
+<a href="#image-4c74393c8dd7ef1819c406f102f7fe7b" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536659800070.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-24cf6302921b1ab31beef5b3a199eeda">
+<a href="javascript:history.back();" class="lightbox" id="image-4c74393c8dd7ef1819c406f102f7fe7b">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536659800070.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f win7_clean.vmem --profile=Win7SP1x64 driverirp -r disk Volatility Foundation Volatility Framework 2.6 --------------------------------------------------
@@ -982,10 +982,10 @@ DriverStartIo: 0x0
 0xbabe2bde Unknown
 0xbabe2bde Unknown
 0xbabe2bde Unknown</code></pre></div><p>
-<a href="#image-5320a79d5dcb3367a675d20eb8c23d7a" class="lightbox-link">
+<a href="#image-07e3a2ec66b3a2a5dd9be2216aae5c6b" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536660449223.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5320a79d5dcb3367a675d20eb8c23d7a">
+<a href="javascript:history.back();" class="lightbox" id="image-07e3a2ec66b3a2a5dd9be2216aae5c6b">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536660449223.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 modscan的以下输出显示了与ZeroAccess相关的恶意驱动程序(具有一个可疑的名称)和它在内存中加载的base地址(可以用来将驱动程序转储到磁盘):</p>
@@ -1023,17 +1023,17 @@ As discussed so far, detecting standard hooking techniques is fairly straightfor
 0x880ee07c Null.SYS
 0x828ee437 ntoskrnl.exe
 0x880ee040 Null.SYS</code></pre></div><p>
-<a href="#image-038f21fbd7b64a0e227af53dd5087d5f" class="lightbox-link">
+<a href="#image-ff67ca16a514e600a223cb2efea66c5a" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536661693974.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-038f21fbd7b64a0e227af53dd5087d5f">
+<a href="javascript:history.back();" class="lightbox" id="image-ff67ca16a514e600a223cb2efea66c5a">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536661693974.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-f022ff0ccca6ea65531cbe1c5daa5529" class="lightbox-link">
+<a href="#image-8c96134e7ac54676c045aff3539b637b" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536661779079.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f022ff0ccca6ea65531cbe1c5daa5529">
+<a href="javascript:history.back();" class="lightbox" id="image-8c96134e7ac54676c045aff3539b637b">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536661779079.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -1063,10 +1063,10 @@ Module Base
  Module Name      Result
 ----------------- ------
  core.sys         OK: driver.f66e9000.sys</code></pre></div><p>
-<a href="#image-998a0427f27700ed9493008d9922a3ff" class="lightbox-link">
+<a href="#image-7e4c07e208820cbc3d9e9ddb59ea3562" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536663256897.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-998a0427f27700ed9493008d9922a3ff">
+<a href="javascript:history.back();" class="lightbox" id="image-7e4c07e208820cbc3d9e9ddb59ea3562">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536663256897.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 在下面的例子中，TDL3 rootkit安装进程回调和镜像加载回调通知。这允许rootkit监控进程事件，并在可执行映像(EXE、DLL或内核模块)映射到内存时获得通知。条目中的模块名称设置为UNKNOWN;这告诉你，回调例程存在于一个未知模块中，如果rootkit驱动程序试图通过解除KLDR_DATA_TABLE_ENTRY结构的链接来隐藏，或者如果一个rootkit正在运行一个孤儿线程(一个隐藏或从内核模块分离的线程)，就会发生这种情况。在这种情况下，UNKNOWN条目让你很容易发现可疑条目:</p>
@@ -1081,10 +1081,10 @@ GenericKernelCallback 0xb878e8e9 UNKNOWN PsSetLoadImageNotifyRoutine 0xb878f108 
 -
 - - -
 Ndis miniport</code></pre></div><p>
-<a href="#image-9f1fd83042fe494a540585fa744b7c2e" class="lightbox-link">
+<a href="#image-3d6a068464940248ca52f69ee1d80471" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536663590321.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-9f1fd83042fe494a540585fa744b7c2e">
+<a href="javascript:history.back();" class="lightbox" id="image-3d6a068464940248ca52f69ee1d80471">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536663590321.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 即使模块名是UNKNOWN，根据回调例程地址，我们可以推断恶意模块应该位于地址为0xb878的内存区域的某个地方。从模块插件的输出中，您可以看到模块本身已经解除了链接，但是modscan插件能够检测到加载在0xb878c000且大小为0x11000的内核模块。显然，所有回调例程地址都在这个模块的范围内。现在已经知道了内核模块的base地址，你可以使用moddump插件来转储它，以便进一步分析:</p>
@@ -1093,18 +1093,18 @@ $ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 modscan | grep -i 0xb878 Vola
 0x9773c98 TDSSserv.sys 0xb878c000 0x11000 \system32\drivers\TDSSserv.sys</code></pre></div><p>像回调一样，rootkit驱动程序可以创建一个计时器，并在指定的时间经过时得到通知。rootkit驱动程序可以使用此功能来定期执行操作。它的工作方式是，rootkit创建一个计时器，并提供一个名为DPC(延迟过程调用)的回调例程，它将在计时器过期时被调用。当回调例程被调用时，rootkit可以执行恶意操作。换句话说，计时器是rootkit执行恶意代码的另一种方式。关于内核计时器如何工作的详细信息，请参考以下Microsoft文档:https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/timer-objects-and-dpcs。</p>
 <p>要列出内核计时器，可以使用timersVolatility插件。需要注意的一点是，计时器本身并不是恶意的;这是Windows的功能，所以在一个干净的系统上，你会看到一些合法的驱动程序安装了计时器。与回调函数一样，可能需要进一步分析来识别恶意模块。由于大多数rootkit试图隐藏它们的驱动程序，因此，会创建明显的工件，可以帮助您快速识别恶意模块。在下面的例子中，ZeroAccess rootkit安装了一个6000毫秒的计时器。当这段时间过去时，将调用UNKNOWN模块中地址0x814f9db0的例程。Module列中的UNKNOWN告诉我们模块可能是隐藏的，但是例程地址指向恶意代码存在的内存范围:</p>
 <p>
-<a href="#image-b91d60b0a46a6871ec871183381a77f9" class="lightbox-link">
+<a href="#image-bc1a5ae0a2b11f5b7fa70405f096ddc2" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536666999673.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b91d60b0a46a6871ec871183381a77f9">
+<a href="javascript:history.back();" class="lightbox" id="image-bc1a5ae0a2b11f5b7fa70405f096ddc2">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536666999673.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 timers</code></pre></div><p>除了计时器，ZeroAccess还安装回调来监视注册表操作。同样，回调例程地址指向相同的内存范围(从0x814f开始):
 
-<a href="#image-8949f8d29fe3ea809882c392fba0dbb4" class="lightbox-link">
+<a href="#image-f774d9fc8a2f90a0058df32d1f5fbbdf" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536667213847.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8949f8d29fe3ea809882c392fba0dbb4">
+<a href="javascript:history.back();" class="lightbox" id="image-f774d9fc8a2f90a0058df32d1f5fbbdf">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536667213847.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 callbacks</code></pre></div><p>尝试使用modules, modscan，和driverscan插件来查找UNKNOWN模块不会返回任何结果:</p>
@@ -1112,18 +1112,18 @@ $ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 modscan | grep -i 0xb878 Vola
 $ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 modscan | grep -i 0x814f
 $ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 driverscan | grep -i 0x814f</code></pre></div><p>检查驱动器列表发现了可疑的条目，其中基址和大小被归零(这是不正常的，可能是一个绕过的伎俩)。将基址归零解释了为什么模块、modscan和驱动程序不返回任何结果。输出还显示恶意驱动程序的名称仅由数字组成，这增加了怀疑:</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 driverscan</code></pre></div><p>
-<a href="#image-d6a410c5853321e660d7c3872cd841e4" class="lightbox-link">
+<a href="#image-b9d2d9841ab387da3e7d7d59030b57ca" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536667653357.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d6a410c5853321e660d7c3872cd841e4">
+<a href="javascript:history.back();" class="lightbox" id="image-b9d2d9841ab387da3e7d7d59030b57ca">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536667653357.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 通过清空基地地址，rootkit使得司法分析人员很难确定内核模块的起始地址，这也阻止了我们转储恶意模块。我们仍然知道恶意代码的所在位置(以0x814f开头的地址)。一个引人注目的问题是，我们如何使用这些信息来确定基址?一种方法是取其中一个地址并减去一定数量的字节(反向)，直到找到MZ签名，但这种方法的问题是不容易确定要减去多少字节。最快的方法是使用yarascan插件，这个插件允许你在内存中扫描一个模式(字符串，十六进制字节，或正则表达式)。因为我们试图找到位于内核内存中以地址0x814f开始的模块，所以我们可以使用带有-K的yarascan(它只扫描内核内存)来寻找MZ签名。从输出中，可以看到地址为0x814f1b80的可执行文件。您可以将此指定为使用moddump插件将恶意模块转储到磁盘的基本地址。转储模块的大小大约为53.2 KB，即十六进制的0xd000字节。换句话说，模块从地址0x814f1b80开始，到地址0x814feb80结束。所有回调地址都在这个模块的地址范围内:
 
-<a href="#image-800a2c4c502fd2091e3ba8d426db60cb" class="lightbox-link">
+<a href="#image-c5a80cfe729f02b8cf2b2c8085e0096f" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536667906606.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-800a2c4c502fd2091e3ba8d426db60cb">
+<a href="javascript:history.back();" class="lightbox" id="image-c5a80cfe729f02b8cf2b2c8085e0096f">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536667906606.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>$ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 yarascan -K -Y &#34;MZ&#34; | grep -i 0x814f
@@ -1137,10 +1137,10 @@ $ ls -al
 [REMOVED]
 -rw-r--r-- 1 ubuntu ubuntu 53248 Jun 9 15:25 driver.814f1b80.sys</code></pre></div><p>为了确认转储的模块是恶意的，将其提交给VirusTotal。反病毒软件供应商的结果证实，它是ZeroAccess Rootkit(也被称为Sirefef):</p>
 <p>
-<a href="#image-808c9e52d850a59608481fc0d85cc4c6" class="lightbox-link">
+<a href="#image-e8db045a692bbec5df7081346fd154bd" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536668404388.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-808c9e52d850a59608481fc0d85cc4c6">
+<a href="javascript:history.back();" class="lightbox" id="image-e8db045a692bbec5df7081346fd154bd">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536668404388.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="总结">总结</h3>
@@ -1168,12 +1168,12 @@ $ ls -al
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691258695" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691258695" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691258695" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691258695" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691258695" defer></script>
-        <script src="/js/search.js?1691258695" defer></script>
+        <script src="/js/auto-complete.js?1691258775" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691258775" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691258775" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691258775" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691258775" defer></script>
+        <script src="/js/search.js?1691258775" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -1361,8 +1361,8 @@ $ ls -al
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691258695" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691258695" defer></script>
+    <script src="/js/clipboard.min.js?1691258775" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691258775" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -1392,15 +1392,15 @@ $ ls -al
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691258695" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691258695" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691258695" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691258695" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691258695" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691258695" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691258695" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691258695" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691258695" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691258775" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691258775" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691258775" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691258775" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691258775" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691258775" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691258775" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691258775" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691258775" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -1409,8 +1409,8 @@ $ ls -al
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691258695  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691258775  };
     </script>
-    <script src="/js/theme.js?1691258695" defer></script>
+    <script src="/js/theme.js?1691258775" defer></script>
   </body>
 </html>
