@@ -10,18 +10,18 @@
     <title>介绍恶意软件中RC4加密的识别与解码 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.xml" rel="alternate" type="application/rss+xml" title="介绍恶意软件中RC4加密的识别与解码 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691256259" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691256259" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691256259" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691256259" rel="stylesheet">
-    <link href="/css/fonts.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691256259" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691256259" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691256259" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691256259" rel="stylesheet">
-    <link href="/css/print.css?1691256259" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691256259" rel="stylesheet">
-    <script src="/js/url.js?1691256259"></script>
-    <script src="/js/variant.js?1691256259"></script>
+    <link href="/css/fontawesome-all.min.css?1691256414" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691256414" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691256414" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691256414" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691256414" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691256414" rel="stylesheet">
+    <link href="/css/fonts.css?1691256414" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691256414" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691256414" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691256414" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691256414" rel="stylesheet">
+    <link href="/css/print.css?1691256414" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691256414" rel="stylesheet">
+    <script src="/js/url.js?1691256414"></script>
+    <script src="/js/variant.js?1691256414"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -127,10 +127,10 @@ endfor</code></pre></div><p>为了更好地理解算法是如何工作的，可�
 endfor</code></pre></div><p>本节创建一个数组(或“SBox”/Substitution Box)，其中每个值等于它在数组中从0-255 (0x00-0xFF)的位置，这也称为其标识排列:
 在恶意软件样本中寻找这种类型的加密时，这种初始表创建是一个关键指标。对于这个示例，使用x86汇编代码中的以下循环初始化RC4 KSA:</p>
 <p>
-<a href="#image-ba35bb78be25bfbe2fc3213e9b1bc7b6" class="lightbox-link">
+<a href="#image-e0fc1c6f4f43efbf285cd1531953d3e9" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16678940225844.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ba35bb78be25bfbe2fc3213e9b1bc7b6">
+<a href="javascript:history.back();" class="lightbox" id="image-e0fc1c6f4f43efbf285cd1531953d3e9">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16678940225844.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>在恶意软件样本中寻找这种类型的加密时，这种初始表创建是一个关键指标。对于这个示例，使用x86汇编代码中的以下循环初始化RC4 KSA:</p>
@@ -184,19 +184,19 @@ endfor</code></pre></div><p>这个例程接受初始化的表，并使用键及�
 1000211Ccmp    esi,100h           ; Check if i &lt; 256 // NOTE THE 100h!
 10002122mov    [edi+ecx],bl       ; S[j] = S[i]
 10002125jl     shortloop; Loop if Less  In IDA Pro, the SBox Scramble loop following the Initialization loop may resemble these basic blocks:</code></pre></div><p>
-<a href="#image-3e0501ccb350b35a915cada53d51f0cf" class="lightbox-link">
+<a href="#image-8045a31fd9c3aec21b0108df30911940" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679112849915.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3e0501ccb350b35a915cada53d51f0cf">
+<a href="javascript:history.back();" class="lightbox" id="image-8045a31fd9c3aec21b0108df30911940">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679112849915.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>用一支铅笔和一张纸手动计算这个例子的至少前几个字节将有助于更清楚地了解字节是如何交换来生成这个新的SBox的:</p>
 <p>初始化SBox:
 
-<a href="#image-931730c06a2e54ae5709950c05b08b80" class="lightbox-link">
+<a href="#image-3879474c2f335e8baf10866312f172be" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679114026480.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-931730c06a2e54ae5709950c05b08b80">
+<a href="javascript:history.back();" class="lightbox" id="image-3879474c2f335e8baf10866312f172be">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679114026480.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 对于键“0006”的第一个字节(键[0])是“0”，记住这是ASCII“0x30&gt;”:</p>
@@ -223,10 +223,10 @@ S[0x1]=0x100
 S[0x61]=0x100</code></pre></div><p>在字节S[0x01]和S[0x61]交换之后，结果表看起来像这样:
 该算法将继续执行此计算256次。注意，这些值将继续被交换出来，甚至还将交换以前交换的字节。使用“0006”键，恶意软件示例将最终在堆栈上生成以下SBox(我添加了相应的SBox数组索引，仅为了可视化目的):
 
-<a href="#image-174c445c78df2beeeb74acbe27aa0207" class="lightbox-link">
+<a href="#image-c20dc272c51329cc407721209be6215c" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679119002998.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-174c445c78df2beeeb74acbe27aa0207">
+<a href="javascript:history.back();" class="lightbox" id="image-c20dc272c51329cc407721209be6215c">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679119002998.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>S[00] | 0012FBB0  18 8A 98 7B|16 35 F4 A8|C0 A5 53 94|D0 0D 87 90| 
@@ -347,26 +347,26 @@ __int32 index2;// j
 100021CFcmpedi,[ebp+68h+arg_4]; Check if x &lt; len(Plaintext)
 
 100021D2jbshortloop; Loop if x &lt; len(Plain  In IDA Pro, the RC4_Crypt loop may resemble these basic blocks:</code></pre></div><p>
-<a href="#image-d971c77222198aba312d93dae82d4c6a" class="lightbox-link">
+<a href="#image-2b869206af2866880865390e8259c09e" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679121436420.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d971c77222198aba312d93dae82d4c6a">
+<a href="javascript:history.back();" class="lightbox" id="image-2b869206af2866880865390e8259c09e">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679121436420.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 一旦明文的长度满足，密钥流K就完全生成。随着K的每一个值的生成，它被用来对明文的补充字节进行异或运算，在这种情况下，它看起来像这样:
 
-<a href="#image-c18a31549b12ba188e06c189f50bace6" class="lightbox-link">
+<a href="#image-cfc0f9a09dae603ab3ef3f3684062c31" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122213502.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c18a31549b12ba188e06c189f50bace6">
+<a href="javascript:history.back();" class="lightbox" id="image-cfc0f9a09dae603ab3ef3f3684062c31">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122213502.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 要解密密文，只需将此过程反向:
 
-<a href="#image-26dd0c88fb28f3daeb25c2f25fef9d92" class="lightbox-link">
+<a href="#image-68c9bc411d773d74ad971e692bdf8263" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122448633.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-26dd0c88fb28f3daeb25c2f25fef9d92">
+<a href="javascript:history.back();" class="lightbox" id="image-68c9bc411d773d74ad971e692bdf8263">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122448633.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 用python把它们组合在一起
@@ -399,12 +399,12 @@ __int32 index2;// j
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691256261" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691256261" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691256261" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691256261" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691256261" defer></script>
-        <script src="/js/search.js?1691256261" defer></script>
+        <script src="/js/auto-complete.js?1691256415" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691256415" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691256415" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691256415" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691256415" defer></script>
+        <script src="/js/search.js?1691256415" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -590,8 +590,8 @@ __int32 index2;// j
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691256261" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691256261" defer></script>
+    <script src="/js/clipboard.min.js?1691256415" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691256415" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -621,15 +621,15 @@ __int32 index2;// j
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691256261" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691256261" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691256261" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691256261" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691256261" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691256261" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691256261" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691256261" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691256261" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691256415" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -638,8 +638,8 @@ __int32 index2;// j
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691256261  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691256415  };
     </script>
-    <script src="/js/theme.js?1691256261" defer></script>
+    <script src="/js/theme.js?1691256415" defer></script>
   </body>
 </html>

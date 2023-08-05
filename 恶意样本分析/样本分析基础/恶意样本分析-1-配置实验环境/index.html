@@ -10,18 +10,18 @@
     <title>恶意样本分析1-配置实验环境 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析1-配置实验环境 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691256259" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691256259" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691256259" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691256259" rel="stylesheet">
-    <link href="/css/fonts.css?1691256259" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691256259" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691256259" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691256259" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691256259" rel="stylesheet">
-    <link href="/css/print.css?1691256259" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691256259" rel="stylesheet">
-    <script src="/js/url.js?1691256259"></script>
-    <script src="/js/variant.js?1691256259"></script>
+    <link href="/css/fontawesome-all.min.css?1691256414" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691256414" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691256414" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691256414" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691256414" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691256414" rel="stylesheet">
+    <link href="/css/fonts.css?1691256414" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691256414" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691256414" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691256414" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691256414" rel="stylesheet">
+    <link href="/css/print.css?1691256414" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691256414" rel="stylesheet">
+    <script src="/js/url.js?1691256414"></script>
+    <script src="/js/variant.js?1691256414"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -90,10 +90,10 @@
 <h1 id="恶意样本分析1-配置实验环境">恶意样本分析1-配置实验环境</h1>
 
 <p>
-<a href="#image-de1b902c884f442d43f4c54bbbe97b46" class="lightbox-link">
+<a href="#image-929fc146f45e0aeb4588b0be6a3c2ce1" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-de1b902c884f442d43f4c54bbbe97b46">
+<a href="javascript:history.back();" class="lightbox" id="image-929fc146f45e0aeb4588b0be6a3c2ce1">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 对于日常探针分析工作，样本分析作为不可缺少的一个环节，经常能够在其中发现比较重要的细节，对此部分的学习和总结尤其重要，这一系列即为最近收集总结的一部分。</p>
@@ -159,17 +159,17 @@ python 2.7 (仅限本书)</li>
 确认windows主机网段：192.168.1.105  DNS：192.168.1.100
 测试win和linux之间联通节点</p>
 <p>
-<a href="#image-729861af819679aa04ee3a38359441a9" class="lightbox-link">
+<a href="#image-69f8b66534249bba4fd8c6064275ca42" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555672944518.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-729861af819679aa04ee3a38359441a9">
+<a href="javascript:history.back();" class="lightbox" id="image-69f8b66534249bba4fd8c6064275ca42">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555672944518.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-67ab99b2816db367b03197e5f68bda67" class="lightbox-link">
+<a href="#image-c3aa1706afd57b9957664b6b00f9fb17" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555672906183.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-67ab99b2816db367b03197e5f68bda67">
+<a href="javascript:history.back();" class="lightbox" id="image-c3aa1706afd57b9957664b6b00f9fb17">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555672906183.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="12-windows">1.2 WINDOWS</h3>
@@ -179,10 +179,10 @@ python 2.7 (仅限本书)</li>
 Windows Defender 服务需要在虚拟机禁用掉。运行》gpedit.msc》本地计算机策略》计算机配置》管理模板》windows组件》 Windows Defender（Windows10里面叫“Windows Defender防病毒程序”）
 在右边部分双“关闭WindowsDefender策略”关闭Windows Defender防病毒程序。（下图为Win10的图）
 
-<a href="#image-b8b6d379e08732de396c02af3bd8c961" class="lightbox-link">
+<a href="#image-1b87d1dda3f21344bdeb70a335d1a688" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514-20210929091836061.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b8b6d379e08732de396c02af3bd8c961">
+<a href="javascript:history.back();" class="lightbox" id="image-1b87d1dda3f21344bdeb70a335d1a688">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514-20210929091836061.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 配置虚拟机使其允许双向复制粘贴剪切板。
@@ -202,10 +202,10 @@ theZoo: <a href="http://thezoo.morirt.com/" target="_blank">http://thezoo.morirt
 <p>对于在虚拟机中运行的监控类软件还应该注意修改程序名称：
 wireshark主程序修改入口程序名称可以改变进程名
 
-<a href="#image-b0cce7f06dd502cd5d121bdec57fb92c" class="lightbox-link">
+<a href="#image-3b1a1771931ecb1692c7d84b737b1737" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/20190916162455.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b0cce7f06dd502cd5d121bdec57fb92c">
+<a href="javascript:history.back();" class="lightbox" id="image-3b1a1771931ecb1692c7d84b737b1737">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/20190916162455.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
             <footer class="footline">
@@ -230,12 +230,12 @@ wireshark主程序修改入口程序名称可以改变进程名
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691256260" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691256260" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691256260" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691256260" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691256260" defer></script>
-        <script src="/js/search.js?1691256260" defer></script>
+        <script src="/js/auto-complete.js?1691256415" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691256415" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691256415" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691256415" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691256415" defer></script>
+        <script src="/js/search.js?1691256415" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -421,8 +421,8 @@ wireshark主程序修改入口程序名称可以改变进程名
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691256260" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691256260" defer></script>
+    <script src="/js/clipboard.min.js?1691256415" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691256415" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -452,15 +452,15 @@ wireshark主程序修改入口程序名称可以改变进程名
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691256260" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691256260" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691256260" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691256260" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691256260" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691256260" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691256260" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691256260" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691256260" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691256415" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691256415" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -469,8 +469,8 @@ wireshark主程序修改入口程序名称可以改变进程名
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691256260  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691256415  };
     </script>
-    <script src="/js/theme.js?1691256260" defer></script>
+    <script src="/js/theme.js?1691256415" defer></script>
   </body>
 </html>
