@@ -6,14 +6,7 @@
     <description>Recent content in Tags on x7peeps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 05 Aug 2023 22:31:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>AI,claude</title>
-      <link>https://x7peeps.com/tags/AIclaude/index.html</link>
-      <pubDate>Sat, 05 Aug 2023 22:31:00 +0000</pubDate>
-      <guid>https://x7peeps.com/tags/AIclaude/index.html</guid>
-      <description></description>
-    </item>
+    <lastBuildDate>Wed, 01 Feb 2023 12:03:49 +0000</lastBuildDate><atom:link href="https://x7peeps.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>应急响应;调查取证;虚拟内存</title>
       <link>https://x7peeps.com/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E8%B0%83%E6%9F%A5%E5%8F%96%E8%AF%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/index.html</link>
@@ -145,6 +138,20 @@
       <link>https://x7peeps.com/tags/AIchatgptwechat/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://x7peeps.com/tags/AIchatgptwechat/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI,claude</title>
+      <link>https://x7peeps.com/tags/AIclaude/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/tags/AIclaude/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>hugo</title>
+      <link>https://x7peeps.com/tags/hugo/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/tags/hugo/index.html</guid>
       <description></description>
     </item>
   </channel>

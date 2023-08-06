@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on x7peeps</title>
+    <link>https://x7peeps.com/tags/hugo/index.html</link>
+    <description>Recent content in hugo on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://x7peeps.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>本站搭建</title>
+      <link>https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html</guid>
+      <description>本站搭建 背景 早些年从wordpress，转hexo，到目前hugo，根据需求做了调整，我对于自定义框架和速度的要求也是越来越高，目前框架采用建站速度更快的hugo+github.io托管，好处是可以不用成本并且建站速度快、维护方便，其实和hexo类似，只是主题上我需要一个类似知识库一样的主题hexo原来的tree虽然我基于原版的调整了但还是不够灵活方便需要手工调整主题源码，经过查找后来选定了目前的hugo并且使用relearn主题承接之前的所有内容。目前博客内容已经完全继承之前的文章并且显示ok，又可以开心的写blog了。
+下面是我的建站记录仅供参考：
+安装 brew install hugo
+hugo version cd ~/想要存放的目录下
+hugo new site x7peeps&amp;amp;&amp;amp; cd x7peeps
+下载喜欢的主题https://mcshelby.github.io/hugo-theme-relearn/basics/installation/index.html
+mkdir -p themes&amp;amp;&amp;amp; cd themes
+git clone https://github.com/McShelby/hugo-theme-relearn.git relearn
+编辑hugo.toml配置文件
+cd public
+git init
+git remote add new-hugo https://github.com/x7peeps/x7peeps.github.io.git
+git pull
+git add .
+git commit -m &amp;ldquo;Initial commit&amp;rdquo;
+git branch &amp;ndash;set-upstream-to=new-hugo/new-hugo
+git checkout new-hugo
+git push new-hugo new-hugo
+基础信息 内容管理 内容模版archetype（原件） 当使用hugo new &amp;lt;filepath&amp;gt;创建新文章的时候是会通过内容模版进行创建的，这个模版被称为archetype（原件）。 archetype的模版可以从以下位置找到其archetype文件。
+archetypes/posts.md archetypes/default.md themes/my-theme/archetypes/posts.md themes/my-theme/archetypes/default.mdTags 链接 Hugo 中默认会把链接中的字母变成小写，比如标签 Go ，在之前对应地址 /tags/Go ，换成 Hugo 后则是 /tags/go ，可以通过下面的配置关闭这个转化。</description>
+    </item>
+  </channel>
+</rss>
