@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI,chatgpt,wechat on x7peeps</title>
+    <link>https://x7peeps.com/tags/AIchatgptwechat/index.html</link>
+    <description>Recent content in AI,chatgpt,wechat on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://x7peeps.com/tags/AIchatgptwechat/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>chatgpt微信机器人搭建</title>
+      <link>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/chatgpt/chatgpt%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/chatgpt/chatgpt%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA/index.html</guid>
+      <description>chatgpt对接微信服务搭建 背景，这里有个需求就是我希望在日常微信的某个群中使用chatgpt回答群里的日常问题。如果你也想搭建一个对接微信的chatgpt问答机器人那么可以参考本文。
+这里使用chatgpt-on-wechat项目进行搭建，项目地址： https://github.com/zhayujie/chatgpt-on-wechat
+安装过程 git config &amp;ndash;global &amp;ndash;unset http.proxy git clone https://github.com/zhayujie/chatgpt-on-wechat.git pip3 install -r requirements.txt pip3 install -r requirements-optional.txt pip3 install azure-cognitiveservices-speech 修改config.json配置 windows: pip3 install SpeechRecognition windows注意：在执行的时候要使用git bash类linux的命令行防止unicode报错 ffmpeg安装 http://ffmpeg.org/ 配置 https://zhuanlan.zhihu.com/p/118362010 运行python3 app.py bug 编码问题 Q: UnicodeEncodeError: &amp;lsquo;gbk&amp;rsquo; codec can&amp;rsquo;t encode character &amp;lsquo;\u2580&amp;rsquo; in position 0: illegal multibyte sequence A: 在app.py文件中加入 import io sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&amp;#39;utf8&amp;#39;) #改变标准输出的默认编码 目前启动的时候每次都要手动登录才行，不定期会自动退出登录需要重新登录，尝试解决。</description>
+    </item>
+  </channel>
+</rss>
