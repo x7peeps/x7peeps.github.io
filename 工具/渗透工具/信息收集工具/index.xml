@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>信息收集工具 on x7peeps</title>
+    <link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/index.html</link>
+    <description>Recent content in 信息收集工具 on x7peeps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 03 Jan 2020 21:51:00 +0000</lastBuildDate><atom:link href="https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>本地批量ping域名脚本</title>
+      <link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html</link>
+      <pubDate>Fri, 03 Jan 2020 21:51:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html</guid>
+      <description>&lt;h1 id=&#34;本地批量ping域名脚本&#34;&gt;本地批量ping域名脚本&lt;/h1&gt;
+&lt;p&gt;背景是同学在执行一批渗透时需要批量验证一批域名本地ping情况，这里通过powershell脚本简单制作了一个思路供同学们参考。
+
+&lt;a href=&#34;#image-7ee6c7ddc21bf95471ea17b3384718fd&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;img src=&#34;http://blogimage.xtpeeps.cn/20191020001017.png-A&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
+&lt;/a&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-7ee6c7ddc21bf95471ea17b3384718fd&#34;&gt;
+&lt;img src=&#34;http://blogimage.xtpeeps.cn/20191020001017.png-A&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
+&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>HEDnsExtractor</title>
+      <link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/HEDnsExtractor/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/HEDnsExtractor/index.html</guid>
+      <description>介绍 从 Hurricane Electric (球網際網路服務提供商)门户网站提取原始 HTML
+特征 通过命令行参数或标准输入自动识别 IPAddr ou 网络 根据 IPAddr 提取网络。 从网络中提取域名。
+安装 go install -v github.com/HuntDownProject/hednsextractor/cmd/hednsextractor@latest用法 usage -hHEDnsExtractor - Raw html extractor from Hurricane Electric portal! Usage: hednsextractor [flags] Flags: CONFIGURATION: -vt-api-key string Virustotal API Key OTHER OPTIONS: -only-domains show only domains -only-networks show only networks -vt show Virustotal score -vt-score string Minimum Virustotal score to show (default &amp;#34;0&amp;#34;) -target string IP Address or Network to query -silent show silent output -verbose show verbose output运行 获取用于 hackerone.</description>
+    </item>
+  </channel>
+</rss>

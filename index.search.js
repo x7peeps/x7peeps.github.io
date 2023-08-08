@@ -637,11 +637,18 @@ var relearn_search_index = [
     "uri": "/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html"
   },
   {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "信息收集工具",
+    "uri": "/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/index.html"
+  },
+  {
     "content": "本地批量ping域名脚本 背景是同学在执行一批渗透时需要批量验证一批域名本地ping情况，这里通过powershell脚本简单制作了一个思路供同学们参考。 源码如下：\n\u003c#Author :PWN.ZHANG@XTPEEPS\u003eCN#\u003e if($args[0] -ne \"\"){ $File=Get-Content $args[0] foreach ($skuLine in $File) { Write-Host -NoNewline $skuLine \" \" (((ping $skuLine -n 1) -match \"^(\\d{1,3}\\.){3}\\d{1,3}\") -split \" \")[0]} \u003c#Sleep 100#\u003e } Else { \"useage: xx.ps \u003curlfile_path\u003e\" }",
     "description": "",
     "tags": "工具开发,脚本",
     "title": "本地批量ping域名脚本",
-    "uri": "/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E5%B7%A5%E5%85%B7-%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html"
+    "uri": "/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/%E6%9C%AC%E5%9C%B0%E6%89%B9%E9%87%8Fping%E5%9F%9F%E5%90%8D%E8%84%9A%E6%9C%AC/index.html"
   },
   {
     "content": "",
