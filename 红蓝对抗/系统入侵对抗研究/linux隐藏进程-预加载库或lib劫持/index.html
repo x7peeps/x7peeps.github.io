@@ -10,18 +10,18 @@
     <title>linux隐藏进程-预加载库或lib劫持 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.xml" rel="alternate" type="application/rss+xml" title="linux隐藏进程-预加载库或lib劫持 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691514045" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691514045" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691514045" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691514045" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691514045" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691514045" rel="stylesheet">
-    <link href="/css/fonts.css?1691514045" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691514045" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691514045" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691514045" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691514045" rel="stylesheet">
-    <link href="/css/print.css?1691514045" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691514045" rel="stylesheet">
-    <script src="/js/url.js?1691514045"></script>
-    <script src="/js/variant.js?1691514045"></script>
+    <link href="/css/fontawesome-all.min.css?1691597735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691597735" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691597735" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691597735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691597735" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691597735" rel="stylesheet">
+    <link href="/css/fonts.css?1691597735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691597735" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691597735" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691597735" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691597735" rel="stylesheet">
+    <link href="/css/print.css?1691597735" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691597735" rel="stylesheet">
+    <script src="/js/url.js?1691597735"></script>
+    <script src="/js/variant.js?1691597735"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -96,34 +96,34 @@ gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
 parallels@ubuntu:~/Documents/libprocesshider-master$ sudo mv libprocesshider.so /usr/local/lib/
 sudo -i 进入管理员权限 
 root@ubuntu:/home/parallels/Documents/libprocesshider-master# echo /usr/local/lib/libprocesshider.so &gt;&gt; /etc/ld.so.preload</code></pre></div><p><strong>
-<a href="#image-a1afcbcb2e48019c8153f049aae4c807" class="lightbox-link">
+<a href="#image-2b037ddddc550dbaffb789cd5969cdae" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624255353587-babc09ec-8357-41ac-84f5-3fc24fc1c0eb.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a1afcbcb2e48019c8153f049aae4c807">
+<a href="javascript:history.back();" class="lightbox" id="image-2b037ddddc550dbaffb789cd5969cdae">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624255353587-babc09ec-8357-41ac-84f5-3fc24fc1c0eb.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></strong></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>echo /usr/local/lib/libprocesshider.so &gt;&gt; /etc/ld.so.preload
 cat /etc/ld.so.preload</code></pre></div><p>
-<a href="#image-3b56d8c7d35dd120c2d3abe23bdd764f" class="lightbox-link">
+<a href="#image-f60e19c719e0f0fd818a22565ac0c020" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624255929839-bac576f0-d14f-4276-887c-c81c64add466.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-3b56d8c7d35dd120c2d3abe23bdd764f">
+<a href="javascript:history.back();" class="lightbox" id="image-f60e19c719e0f0fd818a22565ac0c020">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624255929839-bac576f0-d14f-4276-887c-c81c64add466.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>测试ps是否会访问预加载，发现是加载了。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>strace -f ps 2&gt;&amp;1 |grep ld.so.preload</code></pre></div><p><strong>
-<a href="#image-2d7da1ad88a9d71bf7228ef30dbd26bc" class="lightbox-link">
+<a href="#image-e99b335143e0fa0a5883df7dc12c3f90" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624254619844-4d972141-b5d9-4904-abf6-ec357225572e.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2d7da1ad88a9d71bf7228ef30dbd26bc">
+<a href="javascript:history.back();" class="lightbox" id="image-e99b335143e0fa0a5883df7dc12c3f90">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624254619844-4d972141-b5d9-4904-abf6-ec357225572e.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></strong></p>
 <p><strong>这里注意需要./执行evil_script.py, 进程名才会被过滤，如果想使用python执行，那么前面****processhider.c需要关键字设置为python。然后ps查询，程序名称已被过滤。</strong></p>
 <p>
-<a href="#image-ad433bdfa8a9a9918a07a99bc4567d7d" class="lightbox-link">
+<a href="#image-c8b69eefbb6ffbbe94d5c7c83cd687fb" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624280175985-9593ccfb-a160-4379-9a86-428aa80a2207.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ad433bdfa8a9a9918a07a99bc4567d7d">
+<a href="javascript:history.back();" class="lightbox" id="image-c8b69eefbb6ffbbe94d5c7c83cd687fb">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624280175985-9593ccfb-a160-4379-9a86-428aa80a2207.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>当然这里也可以进行改进，我们在另外研究。如豪宝改的通过关键字检索并用于过滤进程，匹配关键字的进程隐藏。这段代码可以在这里查看更多细节 <a href="https://github.com/ghostsang/Learning-library" target="_blank">https://github.com/ghostsang/Learning-library</a></p>
@@ -261,10 +261,10 @@ struct dirent* readdir(DIR *dirp)                                       \
 DECLARE_READDIR(dirent64, readdir64);
 DECLARE_READDIR(dirent, readdir);</code></pre></div><p>这里测试含有script的过滤，evil_script.py 成功被过滤掉了。</p>
 <p>
-<a href="#image-d942f7ee7a318a6183768bef0ba8947a" class="lightbox-link">
+<a href="#image-b213c5276eb6a7071524203c109bc377" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624282662124-a538532b-4fb1-4a32-b243-c6de08a32064.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d942f7ee7a318a6183768bef0ba8947a">
+<a href="javascript:history.back();" class="lightbox" id="image-b213c5276eb6a7071524203c109bc377">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624282662124-a538532b-4fb1-4a32-b243-c6de08a32064.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p><strong>应对方式</strong></p>
@@ -273,10 +273,10 @@ DECLARE_READDIR(dirent, readdir);</code></pre></div><p>这里测试含有script�
 </ol>
 <p>busybox ps方式执行ps，可以不预加载库对于劫持lib场景有奇效。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>busybox ps</code></pre></div><p>
-<a href="#image-ca89cfa1fad0e6e39dfa237549dc8b81" class="lightbox-link">
+<a href="#image-e852caed3824b65b4ad4ccacdb8af358" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624289356199-f755f928-30d5-4387-8104-30730afd7e6b.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ca89cfa1fad0e6e39dfa237549dc8b81">
+<a href="javascript:history.back();" class="lightbox" id="image-e852caed3824b65b4ad4ccacdb8af358">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624289356199-f755f928-30d5-4387-8104-30730afd7e6b.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <ol>
@@ -288,27 +288,27 @@ sudo sysdig proc.name contains evil_script   # 针对包含evil_script的进程�
 # 监测网络情况
 sudo sysdig -c topprocs_net
 sudo sysdig -c topconns</code></pre></div><p>
-<a href="#image-af05b8b24740d3acc7ccd762d545732e" class="lightbox-link">
+<a href="#image-58c8cff855e850f5d71f10630cd6aaaf" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624292686615-1c30cb84-2212-49f7-88b8-db5df06b0d1f.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-af05b8b24740d3acc7ccd762d545732e">
+<a href="javascript:history.back();" class="lightbox" id="image-58c8cff855e850f5d71f10630cd6aaaf">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624292686615-1c30cb84-2212-49f7-88b8-db5df06b0d1f.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-42aa9c25e92ab7b6e996318205b34633" class="lightbox-link">
+<a href="#image-ed3cf58b74b1cf50205bd3b901f17a55" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624292943754-e07865cc-9bcd-4e8c-80fe-fd5fc978bc2f.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-42aa9c25e92ab7b6e996318205b34633">
+<a href="javascript:history.back();" class="lightbox" id="image-ed3cf58b74b1cf50205bd3b901f17a55">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624292943754-e07865cc-9bcd-4e8c-80fe-fd5fc978bc2f.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <ol>
 <li>/proc/PID/cmdline</li>
 </ol>
 <p>
-<a href="#image-4c5a935462eae635f932d5fe853af4c0" class="lightbox-link">
+<a href="#image-2c4e63ddaf5e577fb6b54db5958ff632" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624293441157-224ef943-2385-4608-9e40-08cfdbed1c6d.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4c5a935462eae635f932d5fe853af4c0">
+<a href="javascript:history.back();" class="lightbox" id="image-2c4e63ddaf5e577fb6b54db5958ff632">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624293441157-224ef943-2385-4608-9e40-08cfdbed1c6d.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -334,12 +334,12 @@ sudo sysdig -c topconns</code></pre></div><p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691514046" defer></script>
-        <script src="/js/search.js?1691514046" defer></script>
+        <script src="/js/auto-complete.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691597737" defer></script>
+        <script src="/js/search.js?1691597737" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -406,7 +406,8 @@ sudo sysdig -c topconns</code></pre></div><p>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2014-4210_Weblogic-SSRF%E6%BC%8F%E6%B4%9E/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2014-4210_Weblogic-SSRF%E6%BC%8F%E6%B4%9E/index.html">CVE-2014-4210_Weblogic SSRF漏洞<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html">CVE-2020-14645_weblogic_T3反序列化RCE复测<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-0796-SMBGhost-Remote-Code-Execution/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-0796-SMBGhost-Remote-Code-Execution/index.html">CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E9%87%91%E5%B1%B1WPS_RCE-WPSSRC-2023-0701/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E9%87%91%E5%B1%B1WPS_RCE-WPSSRC-2023-0701/index.html">金山WPS_RCE-WPSSRC-2023-0701<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b"><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html" class=""><input type="checkbox" id="section-ffb6fc95178918741432017d1bacd773" aria-controls="subsections-ffb6fc95178918741432017d1bacd773"><label for="section-ffb6fc95178918741432017d1bacd773"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析基础</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">样本分析基础<i class="fas fa-check read-icon"></i></a><ul id="subsections-ffb6fc95178918741432017d1bacd773" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-12-使用内存取证检测高级恶意软件<i class="fas fa-check read-icon"></i></a></li>
@@ -532,8 +533,8 @@ sudo sysdig -c topconns</code></pre></div><p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691514046" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691514046" defer></script>
+    <script src="/js/clipboard.min.js?1691597737" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691597737" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -563,15 +564,15 @@ sudo sysdig -c topconns</code></pre></div><p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691514046" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691597737" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -580,8 +581,8 @@ sudo sysdig -c topconns</code></pre></div><p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691514046  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691597737  };
     </script>
-    <script src="/js/theme.js?1691514046" defer></script>
+    <script src="/js/theme.js?1691597737" defer></script>
   </body>
 </html>

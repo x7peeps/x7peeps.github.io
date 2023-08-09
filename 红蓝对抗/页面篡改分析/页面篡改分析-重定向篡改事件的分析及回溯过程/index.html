@@ -10,18 +10,18 @@
     <title>页面篡改分析-基于sojson.v4混淆的页面篡思路分析 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-基于sojson.v4混淆的页面篡思路分析 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691514045" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691514045" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691514045" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691514045" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691514045" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691514045" rel="stylesheet">
-    <link href="/css/fonts.css?1691514045" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691514045" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691514045" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691514045" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691514045" rel="stylesheet">
-    <link href="/css/print.css?1691514045" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691514045" rel="stylesheet">
-    <script src="/js/url.js?1691514045"></script>
-    <script src="/js/variant.js?1691514045"></script>
+    <link href="/css/fontawesome-all.min.css?1691597735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691597735" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691597735" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691597735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691597735" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691597735" rel="stylesheet">
+    <link href="/css/fonts.css?1691597735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691597735" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691597735" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691597735" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691597735" rel="stylesheet">
+    <link href="/css/print.css?1691597735" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691597735" rel="stylesheet">
+    <script src="/js/url.js?1691597735"></script>
+    <script src="/js/variant.js?1691597735"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -91,10 +91,10 @@
 <h3 id="某站页面篡改事件取证分析">某站页面篡改事件取证分析</h3>
 <p>一处BoCai内容重定向篡改事件的分析及回溯过程。</p>
 <p>
-<a href="#image-d0d62656023977473c6539173b959c65" class="lightbox-link">
+<a href="#image-39a0d13a0a4c798dee29c5a387c5c762" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/54b455b839515992ad1688fdf1548f76.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d0d62656023977473c6539173b959c65">
+<a href="javascript:history.back();" class="lightbox" id="image-39a0d13a0a4c798dee29c5a387c5c762">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/54b455b839515992ad1688fdf1548f76.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="0x01-篡改内容调查取证">0x01 篡改内容调查取证</h4>
@@ -102,10 +102,10 @@
 文本篡改如前文图片所示。
 主要篡改点如下：
 
-<a href="#image-30d52af60346de0910c3a83e27be105c" class="lightbox-link">
+<a href="#image-cd6e52f25c0da33f8451014caa9b52ff" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/52aa44d470792fc9c06f64e56c9bb6f8.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-30d52af60346de0910c3a83e27be105c">
+<a href="javascript:history.back();" class="lightbox" id="image-cd6e52f25c0da33f8451014caa9b52ff">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/52aa44d470792fc9c06f64e56c9bb6f8.png" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h4 id="0x02-篡改代码分析">0x02 篡改代码分析</h4>
@@ -116,10 +116,10 @@
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span></span></span></code></pre></div><p>可以看出该页面除了页面篡改还存在针对来自google、sogou、baidu的请求重定向脚本，脚本重定向到http[://www].a5qqq.com （198.16.46.26）</p>
 <p>此外页面还存在有可能有助于定位的，页面统计代码：
 
-<a href="#image-ba1c69b62acdd2fce3cde0d639217f6b" class="lightbox-link">
+<a href="#image-8362c2bf36f2fc6b11f1ed84e723c6b8" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/116546529fe786cf2ba70418d6bdde3d.png" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ba1c69b62acdd2fce3cde0d639217f6b">
+<a href="javascript:history.back();" class="lightbox" id="image-8362c2bf36f2fc6b11f1ed84e723c6b8">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E9%87%8D%E5%AE%9A%E5%90%91%E7%AF%A1%E6%94%B9%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E5%8F%8A%E5%9B%9E%E6%BA%AF%E8%BF%87%E7%A8%8B/116546529fe786cf2ba70418d6bdde3d.png" alt="" class="lightbox-image" loading="lazy">
 </a>
 <a href="http://js.passport.qihucdn.com/11.0.1.js?0cafbe109ab248eb7be06d7f99c4009f" target="_blank">http://js.passport.qihucdn.com/11.0.1.js?0cafbe109ab248eb7be06d7f99c4009f</a>  奇虎75cdn统计</p>
@@ -148,12 +148,12 @@ vip.haxhr.com</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691514046" defer></script>
-        <script src="/js/search.js?1691514046" defer></script>
+        <script src="/js/auto-complete.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691597737" defer></script>
+        <script src="/js/search.js?1691597737" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -220,7 +220,8 @@ vip.haxhr.com</p>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2014-4210_Weblogic-SSRF%E6%BC%8F%E6%B4%9E/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2014-4210_Weblogic-SSRF%E6%BC%8F%E6%B4%9E/index.html">CVE-2014-4210_Weblogic SSRF漏洞<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html">CVE-2020-14645_weblogic_T3反序列化RCE复测<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-0796-SMBGhost-Remote-Code-Execution/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-0796-SMBGhost-Remote-Code-Execution/index.html">CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E9%87%91%E5%B1%B1WPS_RCE-WPSSRC-2023-0701/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E9%87%91%E5%B1%B1WPS_RCE-WPSSRC-2023-0701/index.html">金山WPS_RCE-WPSSRC-2023-0701<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class=""><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b"><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html" class=""><input type="checkbox" id="section-ffb6fc95178918741432017d1bacd773" aria-controls="subsections-ffb6fc95178918741432017d1bacd773"><label for="section-ffb6fc95178918741432017d1bacd773"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析基础</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">样本分析基础<i class="fas fa-check read-icon"></i></a><ul id="subsections-ffb6fc95178918741432017d1bacd773" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-12-使用内存取证检测高级恶意软件<i class="fas fa-check read-icon"></i></a></li>
@@ -346,8 +347,8 @@ vip.haxhr.com</p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691514046" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691514046" defer></script>
+    <script src="/js/clipboard.min.js?1691597737" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691597737" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -377,15 +378,15 @@ vip.haxhr.com</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691514046" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691597737" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -394,8 +395,8 @@ vip.haxhr.com</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691514046  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691597737  };
     </script>
-    <script src="/js/theme.js?1691514046" defer></script>
+    <script src="/js/theme.js?1691597737" defer></script>
   </body>
 </html>

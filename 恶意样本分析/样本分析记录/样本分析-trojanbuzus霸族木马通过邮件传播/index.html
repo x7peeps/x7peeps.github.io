@@ -10,18 +10,18 @@
     <title>样本分析-trojan/buzus“霸族”木马通过邮件传播 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/index.xml" rel="alternate" type="application/rss+xml" title="样本分析-trojan/buzus“霸族”木马通过邮件传播 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691514045" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691514045" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691514045" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691514045" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691514045" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691514045" rel="stylesheet">
-    <link href="/css/fonts.css?1691514045" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691514045" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691514045" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691514045" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691514045" rel="stylesheet">
-    <link href="/css/print.css?1691514045" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691514045" rel="stylesheet">
-    <script src="/js/url.js?1691514045"></script>
-    <script src="/js/variant.js?1691514045"></script>
+    <link href="/css/fontawesome-all.min.css?1691597735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691597735" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691597735" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691597735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691597735" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691597735" rel="stylesheet">
+    <link href="/css/fonts.css?1691597735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691597735" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691597735" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691597735" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691597735" rel="stylesheet">
+    <link href="/css/print.css?1691597735" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691597735" rel="stylesheet">
+    <script src="/js/url.js?1691597735"></script>
+    <script src="/js/variant.js?1691597735"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -97,10 +97,10 @@
 <h2 id="trojanbuzus霸族木马通过邮件传播">Trojan/Buzus“霸族”木马通过邮件传播</h2>
 <h3 id="背景">背景</h3>
 <p>
-<a href="#image-a0503114d4c996b3eca06b3ba038e478" class="lightbox-link">
+<a href="#image-5aca06d51b47f0d6f8643a03719611ee" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911144841.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a0503114d4c996b3eca06b3ba038e478">
+<a href="javascript:history.back();" class="lightbox" id="image-5aca06d51b47f0d6f8643a03719611ee">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911144841.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 探针恶意邮件样本中发现此木马，邮件内容如下：</p>
@@ -124,50 +124,50 @@ SHA1：	b6c0f0588c8efffc48f308dfddecbf6170204dd9
 <h3 id="动态分析">动态分析</h3>
 <p>前台无任何异常，进程看到子程序调用，rundll32.exe调用并处在运行，可看到触发报错告警。
 
-<a href="#image-f64d4c9ba0196b66f4b873783d113e4f" class="lightbox-link">
+<a href="#image-b316b2bf324b5bef13577e72dd0ee87e" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145335.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f64d4c9ba0196b66f4b873783d113e4f">
+<a href="javascript:history.back();" class="lightbox" id="image-b316b2bf324b5bef13577e72dd0ee87e">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145335.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 可以观察到rundll32.exe调用plareb.dll运行命令：
 
-<a href="#image-15fbcfb0b22bb3a12116b5e934a6c850" class="lightbox-link">
+<a href="#image-7ab9296c75f61a8bb4b40f084322d39c" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145344.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-15fbcfb0b22bb3a12116b5e934a6c850">
+<a href="javascript:history.back();" class="lightbox" id="image-7ab9296c75f61a8bb4b40f084322d39c">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145344.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 通过行为分析复盘可以看到：
 document.exe再执行时开始创建调起进程：&quot;%Temp%\NvMcTray.exe&quot;
 
-<a href="#image-e912035c7e0468667c07e078408d1682" class="lightbox-link">
+<a href="#image-01723605dc4373b174e1164930a7a2fc" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911154310.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e912035c7e0468667c07e078408d1682">
+<a href="javascript:history.back();" class="lightbox" id="image-01723605dc4373b174e1164930a7a2fc">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911154310.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-f077b71d4939666efefb9c70083724e2" class="lightbox-link">
+<a href="#image-3e0f140696df07f086cb0b7d088f0a31" class="lightbox-link">
 <img src="http://blogimage.xtpeeps.cn/20190911153108.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f077b71d4939666efefb9c70083724e2">
+<a href="javascript:history.back();" class="lightbox" id="image-3e0f140696df07f086cb0b7d088f0a31">
 <img src="http://blogimage.xtpeeps.cn/20190911153108.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 查找删除防护软件注册表操作：
 
-<a href="#image-7d04265e47691c51f4e656a7eacd2625" class="lightbox-link">
+<a href="#image-28588d41347f6d598312e504984d840d" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911152748.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7d04265e47691c51f4e656a7eacd2625">
+<a href="javascript:history.back();" class="lightbox" id="image-28588d41347f6d598312e504984d840d">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911152748.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>样本行为审计可以总结下完整的样本document.exe行为：document.exe运行创建%Temp%\NvMcTray.exe和%Temp%\NvTaskbarInit.exe（这个是受保护隐藏的备份），之后通过NvMcTray.exe进行正常流程调用rundll32.exe运行，删除英伟达注册表并新增额外启动项指向隐藏备份的释放文件NvTaskbarInit.exe，开启代理，删除防护软件启动项等操作。之后NvTaskbarInit.exe还会调用下载dll进行后续下载操作。
 
-<a href="#image-50ab0ce62e00f8e7bd78046a1d4def79" class="lightbox-link">
+<a href="#image-d0e731bc7e5f412a89c91b085107e6b2" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911164453.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-50ab0ce62e00f8e7bd78046a1d4def79">
+<a href="javascript:history.back();" class="lightbox" id="image-d0e731bc7e5f412a89c91b085107e6b2">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911164453.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>[CreateProcess] document.exe:2372 &gt; &#34;%UserProfile%\Desktop\document.exe&#34;	[Child PID: 2856]
@@ -306,38 +306,38 @@ crl.microsoft/pki/crl/products/CSPCA.crl（校验.net证书）
 081007e30903.lantzel.com/get2.php?c=CNEUQIGW&amp;d=26606B67393435363E2F676268307D3F222022222425243177757E4469747A224213131B1212151E0E5C434F116F1C6A76057701040172050A0D0309797F7F0C7304707A01707E767F7E0C7F7F6B2C263E2737216964606F7E31333F616E6A3A535155505243070305545A4D031E180A024C442C455329031B12474B4C4D4E47B6B0B6BABDA3F6F5E7EAB7F9F9E3EAE3FCA2A0BDF1EDF3B1F4FDABC4F9A0AFB9C3CDCCD7FBC09B978EDE9C9F919C88C98D8094C1898490D4D6DDD6869AD4DADEB4A4FFF2F6FDF0F6FEFCF8FFFDEB8B8082</code></pre></div><h3 id="静态分析">静态分析</h3>
 <p>情况基本一致不在赘述：
 
-<a href="#image-172bf47b62ebb36c3679df8d7654e76d" class="lightbox-link">
+<a href="#image-f95ecc5d2bf6eeeaf0b89207adf35d44" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145246.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-172bf47b62ebb36c3679df8d7654e76d">
+<a href="javascript:history.back();" class="lightbox" id="image-f95ecc5d2bf6eeeaf0b89207adf35d44">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911145246.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-6d755ac7d6ea267abecc4cf1df1b0e53" class="lightbox-link">
+<a href="#image-89164b8def5a2f099dbb02f89ae667f3" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174026.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-6d755ac7d6ea267abecc4cf1df1b0e53">
+<a href="javascript:history.back();" class="lightbox" id="image-89164b8def5a2f099dbb02f89ae667f3">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174026.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-df06ab8ffbb4e171c7b772e7b5a351d5" class="lightbox-link">
+<a href="#image-599db68465523598aaebfe801e04b75b" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174349.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-df06ab8ffbb4e171c7b772e7b5a351d5">
+<a href="javascript:history.back();" class="lightbox" id="image-599db68465523598aaebfe801e04b75b">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174349.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-1a1d424eda09473ccffdecfc4bea2f01" class="lightbox-link">
+<a href="#image-c072b767e0935cb77580a43d22a88533" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174339.png-A" alt="img" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1a1d424eda09473ccffdecfc4bea2f01">
+<a href="javascript:history.back();" class="lightbox" id="image-c072b767e0935cb77580a43d22a88533">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174339.png-A" alt="img" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-5d92ae2888553919ffa6096367811d59" class="lightbox-link">
+<a href="#image-8b343d1cc4839d9285f01d9b06b2809c" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174404.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5d92ae2888553919ffa6096367811d59">
+<a href="javascript:history.back();" class="lightbox" id="image-8b343d1cc4839d9285f01d9b06b2809c">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-TrojanBuzus%E9%9C%B8%E6%97%8F%E6%9C%A8%E9%A9%AC%E9%80%9A%E8%BF%87%E9%82%AE%E4%BB%B6%E4%BC%A0%E6%92%AD/20190911174404.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h3 id="iocs">IOCs:</h3>
@@ -396,12 +396,12 @@ f0a3eec2709682107edae2372e8984e15bd3b2b7e3de9878ba76cd69cc556ce0</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691514046" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691514046" defer></script>
-        <script src="/js/search.js?1691514046" defer></script>
+        <script src="/js/auto-complete.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691597737" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691597737" defer></script>
+        <script src="/js/search.js?1691597737" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -468,7 +468,8 @@ f0a3eec2709682107edae2372e8984e15bd3b2b7e3de9878ba76cd69cc556ce0</p>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2014-4210_Weblogic-SSRF%E6%BC%8F%E6%B4%9E/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2014-4210_Weblogic-SSRF%E6%BC%8F%E6%B4%9E/index.html">CVE-2014-4210_Weblogic SSRF漏洞<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-14645_weblogic_T3%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96RCE%E5%A4%8D%E6%B5%8B/index.html">CVE-2020-14645_weblogic_T3反序列化RCE复测<i class="fas fa-check read-icon"></i></a></li>
           <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-0796-SMBGhost-Remote-Code-Execution/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2020-0796-SMBGhost-Remote-Code-Execution/index.html">CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution<i class="fas fa-check read-icon"></i></a></li>
-          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li></ul></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2017-11882-Office%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">CVE-2017-11882 Office远程代码执行漏洞复现<i class="fas fa-check read-icon"></i></a></li>
+          <li data-nav-id="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E9%87%91%E5%B1%B1WPS_RCE-WPSSRC-2023-0701/index.html" class=""><a class="padding" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E9%87%91%E5%B1%B1WPS_RCE-WPSSRC-2023-0701/index.html">金山WPS_RCE-WPSSRC-2023-0701<i class="fas fa-check read-icon"></i></a></li></ul></li>
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" class="parent "><input type="checkbox" id="section-f6f64f6160a793873f491026d06d497b" aria-controls="subsections-f6f64f6160a793873f491026d06d497b" checked><label for="section-f6f64f6160a793873f491026d06d497b"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 恶意样本分析</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html">恶意样本分析<i class="fas fa-check read-icon"></i></a><ul id="subsections-f6f64f6160a793873f491026d06d497b" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html" class=""><input type="checkbox" id="section-ffb6fc95178918741432017d1bacd773" aria-controls="subsections-ffb6fc95178918741432017d1bacd773"><label for="section-ffb6fc95178918741432017d1bacd773"><i class="fas fa-chevron-down"></i><i class="fas fa-chevron-right"></i><span class="a11y-only">Submenu 样本分析基础</span></label><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">样本分析基础<i class="fas fa-check read-icon"></i></a><ul id="subsections-ffb6fc95178918741432017d1bacd773" class="morespace collapsible-menu">
           <li data-nav-id="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html" class=""><a class="padding" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">恶意样本分析-12-使用内存取证检测高级恶意软件<i class="fas fa-check read-icon"></i></a></li>
@@ -594,8 +595,8 @@ f0a3eec2709682107edae2372e8984e15bd3b2b7e3de9878ba76cd69cc556ce0</p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691514046" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691514046" defer></script>
+    <script src="/js/clipboard.min.js?1691597737" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691597737" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -625,15 +626,15 @@ f0a3eec2709682107edae2372e8984e15bd3b2b7e3de9878ba76cd69cc556ce0</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691514046" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691514046" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691597737" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691597737" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -642,8 +643,8 @@ f0a3eec2709682107edae2372e8984e15bd3b2b7e3de9878ba76cd69cc556ce0</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691514046  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691597737  };
     </script>
-    <script src="/js/theme.js?1691514046" defer></script>
+    <script src="/js/theme.js?1691597737" defer></script>
   </body>
 </html>
