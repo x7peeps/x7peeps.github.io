@@ -10,18 +10,18 @@
     <title>页面篡改分析-服务器端重定向跳转 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-服务器端重定向跳转 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691607253" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691607253" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691607253" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691607253" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691607253" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691607253" rel="stylesheet">
-    <link href="/css/fonts.css?1691607253" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691607253" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691607253" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691607253" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691607253" rel="stylesheet">
-    <link href="/css/print.css?1691607253" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691607253" rel="stylesheet">
-    <script src="/js/url.js?1691607253"></script>
-    <script src="/js/variant.js?1691607253"></script>
+    <link href="/css/fontawesome-all.min.css?1691607312" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691607312" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691607312" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691607312" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691607312" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691607312" rel="stylesheet">
+    <link href="/css/fonts.css?1691607312" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691607312" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691607312" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691607312" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691607312" rel="stylesheet">
+    <link href="/css/print.css?1691607312" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691607312" rel="stylesheet">
+    <script src="/js/url.js?1691607312"></script>
+    <script src="/js/variant.js?1691607312"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -79,33 +79,33 @@
 <p>现象：
 收到事件线索，客户某网站在打开的时候出现了跳转游戏网站的现象，并且可以复现。通过描述可以确定篡改一定存在。下面需要本地复现一下看看情况。</p>
 <p>
-<a href="#image-f5cd6dedb02fb309a1305a824b642a1c" class="lightbox-link">
+<a href="#image-83e1d9ab2a58f5da793d1a2645bb4d49" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114222624.png" alt="image-20220624下午114222624" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-f5cd6dedb02fb309a1305a824b642a1c">
+<a href="javascript:history.back();" class="lightbox" id="image-83e1d9ab2a58f5da793d1a2645bb4d49">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114222624.png" alt="image-20220624下午114222624" class="lightbox-image" loading="lazy">
 </a></p>
 <p>跳转的情况总结有2种，一种是服务器无返回，之后直接出现菠菜网站请求响应；大概出现了3-6次的这种情况。</p>
 <p>
-<a href="#image-c5bc2a21e3e0c2eeea11616c282fd705" class="lightbox-link">
+<a href="#image-3b58b3343eea75dcb4c5dfd809bd3ffa" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122255747.png" alt="image-20220625上午122255747" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c5bc2a21e3e0c2eeea11616c282fd705">
+<a href="javascript:history.back();" class="lightbox" id="image-3b58b3343eea75dcb4c5dfd809bd3ffa">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122255747.png" alt="image-20220625上午122255747" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-0d54c0f01e83490acf8ee9ace41d5448" class="lightbox-link">
+<a href="#image-8c592236d31c693484fb1383040a8aca" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122545470.png" alt="image-20220625上午122545470" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0d54c0f01e83490acf8ee9ace41d5448">
+<a href="javascript:history.back();" class="lightbox" id="image-8c592236d31c693484fb1383040a8aca">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122545470.png" alt="image-20220625上午122545470" class="lightbox-image" loading="lazy">
 </a></p>
 <p>第二种是匹配到AppleWebKit 也就是移动端UA及MAC端返回跳转脚本导致跳转。并且返回包设置缓存1天，Cache-Control: max-age=86400，导致不清缓存的情况下会出现不断出现跳转现象。</p>
 <p>
-<a href="#image-0fc401f9f3c98556fe3976f2c201399e" class="lightbox-link">
+<a href="#image-2f1b46717d7464ca3d9aa9bf97f56e37" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114608440.png" alt="image-20220624下午114608440" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0fc401f9f3c98556fe3976f2c201399e">
+<a href="javascript:history.back();" class="lightbox" id="image-2f1b46717d7464ca3d9aa9bf97f56e37">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114608440.png" alt="image-20220624下午114608440" class="lightbox-image" loading="lazy">
 </a></p>
 <div class="wrap-code highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>HTTP/1.0 200 OK
@@ -141,10 +141,10 @@
 </span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;</span></span></code></pre></div><p>
-<a href="#image-b45a7c98ec7474d4eb17f5ae269ee654" class="lightbox-link">
+<a href="#image-421dc018b32f50bdd6b2205693289987" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114443121.png" alt="image-20220624下午114443121" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b45a7c98ec7474d4eb17f5ae269ee654">
+<a href="javascript:history.back();" class="lightbox" id="image-421dc018b32f50bdd6b2205693289987">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114443121.png" alt="image-20220624下午114443121" class="lightbox-image" loading="lazy">
 </a></p>
 <p>uIYQU(a)为自定义解密函数，[58, 80, 185, 215, 135, 166, 126, 193, 57, 79, 169, 193, 204, 178, 50, 129, 63, 11]为密文。</p>
@@ -171,12 +171,12 @@
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691607254" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691607254" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691607254" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691607254" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691607254" defer></script>
-        <script src="/js/search.js?1691607254" defer></script>
+        <script src="/js/auto-complete.js?1691607313" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691607313" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691607313" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691607313" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691607313" defer></script>
+        <script src="/js/search.js?1691607313" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -370,8 +370,8 @@
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691607254" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691607254" defer></script>
+    <script src="/js/clipboard.min.js?1691607313" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691607313" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -401,15 +401,15 @@
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691607254" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691607313" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -418,8 +418,8 @@
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691607254  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691607313  };
     </script>
-    <script src="/js/theme.js?1691607254" defer></script>
+    <script src="/js/theme.js?1691607313" defer></script>
   </body>
 </html>

