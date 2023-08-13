@@ -13,10 +13,10 @@
       <pubDate>Fri, 17 Apr 2020 20:18:00 +0000</pubDate>
       <guid>https://x7peeps.com/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2014-4210_Weblogic-SSRF%E6%BC%8F%E6%B4%9E/index.html</guid>
       <description>&lt;p&gt;
-&lt;a href=&#34;#image-37f8906054599283f2a11e53b361cc8a&#34; class=&#34;lightbox-link&#34;&gt;
+&lt;a href=&#34;#image-f1d367c5f96e59dae1e53a681f92f585&#34; class=&#34;lightbox-link&#34;&gt;
 &lt;img src=&#34;http://image.xtpeeps.cn/11e411c2b9412e6d6c552b53b74eab6c.png&#34; alt=&#34;&#34; style=&#34;height: auto; width: auto;&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;
-&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-37f8906054599283f2a11e53b361cc8a&#34;&gt;
+&lt;a href=&#34;javascript:history.back();&#34; class=&#34;lightbox&#34; id=&#34;image-f1d367c5f96e59dae1e53a681f92f585&#34;&gt;
 &lt;img src=&#34;http://image.xtpeeps.cn/11e411c2b9412e6d6c552b53b74eab6c.png&#34; alt=&#34;&#34; class=&#34;lightbox-image&#34; loading=&#34;lazy&#34;&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -36,6 +36,8 @@
 cd C:\Users\IEUser\Desktop\poc python -m http.server 80 点击触发漏洞。 由于加载了恶意shellcode html因此命令执行成功。 影响： 随后程序崩溃 分析： 我们可以看到这是在wps中插入了动态图表，而图表可以对应的链接被我们篡改了解析地址，造成了问题。
 这里有个现象，如果把这个图表放到最小那么点击的时候他是不用经过信任不信任选项，就默认会跳转的。所以poc是把这个缩小到最小，就是为了方便点击之后不用点击信任按钮，造成直接跳转。
 在这里我们可以看到实际上在原有功能上如果可以加载指定内容的类似超链接、图片等内容的，由于修改了host实际上相当于更换了服务器，也就自然可以换成攻击者的服务器，对应的html执行的命令也就可以不局限于弹计算器。
+WPS Office 远程代码执行漏洞消息及Poc，经漏洞云复核，确认为chromium 历史漏洞（编号：CVE-2022-1364，标题：Google Chrome V8类型混淆漏洞)的适配，影响【WPS Office 个人版&amp;lt;11.1.0.15120，WPS office 企业版&amp;lt;11.8.2.12085 】，最新版本WPS Office 不受此漏洞影响
+https://github.com/b2git/WPS-0DAY-20230809
 修复建议 如果您在使用 WPS Office 个人版，您可以通过WPS 官网 https://www.wps.cn 获取最新版本进行升级。
 不受影响软件名称及版本：
 wps个人版大于12.1.0.15120，wps机构版/专业版/专业增强版大雨11.8.2.12055。
