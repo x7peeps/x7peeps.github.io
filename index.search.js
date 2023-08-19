@@ -70,6 +70,27 @@ var relearn_search_index = [
     "uri": "/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html"
   },
   {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Tags",
+    "uri": "/tags/index.html"
+  },
+  {
+    "content": "企业微信私有化部署api未授权漏洞 安全等级 高\n漏洞影响 未知\n描述 私有化部署企业微信API未授权，/cgi-bin/gateway/agentinfo接口未授权访问导致，corpsecret、corpid、Secret泄露，进而可获取accesstoken，获取企业微信接口调用权限，导致数据泄露。\n复现 漏洞详情分析： 第一步：，通过泄露信息接口可以获取corpid和corpsecret https://\u003c企业微信域名\u003e/cgi-bin/gateway/agentinfo 第二步，使用corpsecret和corpid获得token https://\u003c企业微信域名\u003e/cgi-bin/gettoken?corpid=ID\u0026corpsecret=SECRET 注意：ID使用strcorpid\n第三步，使用token访问诸如企业通讯录信息，修改用户密码，发送消息，云盘等接口 https://\u003c企业微信域名\u003e/cgi-bin/user/get?access_token=ACCESS_TOKEN\u0026userid=USERID\n修复建议 API接口限制，IP白名单限制； 跟进企业微信产品更新。\n",
+    "description": "",
+    "tags": "红蓝对抗,漏洞复现",
+    "title": "企业微信私有化部署api未授权漏洞",
+    "uri": "/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/index.html"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Tag - 红蓝对抗,漏洞复现",
+    "uri": "/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html"
+  },
+  {
     "content": "【译】取证调查：虚拟内存pagefile.sys 原文：https://www.hackingarticles.in/forensic-investigation-pagefile-sys/\n在这片文章中，我们将学习如何在虚拟内存文件中进行取证调查。这里有很多信息能用于在内存镜像中提取有价值的信息。当然，更多的你还可以直接通过虚拟内存分析而不分析内存镜像。\n在设备上有很多包含很多内存片段的记录。这些文件是pagefile.sys,swapfile.sys和hiberfil.sys。我们将对pagefile.sys进行分析。\n目录 介绍 使用FTK imager获取内存和虚拟内存 使用Belkasoft Evidence Centre分析 介绍 pagefile.sys也指在windows操作系统中被用于swap交换文件或者虚拟内存文件存储超出物理内存容量部分的信息。pagefile.sys在windows操作系统的位置位于 C:\\pagefile.sys。windows操作系统最高支持16个分页文件；目前只有一个被使用。\n无论处于什么目的，当你在Windows中打开一个应用，你的PC将会用到RAM内存。当你打开更多的应用超出了PC内存能够容纳的范围，在内存中运行的程序将会被移动到虚拟内存中。这就是分页或者意味着分页文件被用作强化了内存，也被称为虚拟内存。\n使用获取内存和虚拟内存 我们将使用FTK imager获取虚拟内存pagefile.sys。\nFTK imager是一个镜像和数据查看工具，FTK imager通常创建系统镜像（取证镜像）电子证据。你可以在这里下载FTK imager（https://www.exterro.com/ftk-imager）\n点击capture memory创建内存镜像。 下一步是选择保存的目录，勾选”include pagefile“，点击获取内存capture memory。 内存获取进程将会在点击capture memory按钮之后开始。 进程结束后，内存镜像和虚拟内存就会被写在之前选定的目录中。 使用Belkasoft Evidence Centre分析 现在我们来Belkasoft Evidence Centre分析写入pagefile.sys。Belkasoft Evidence Centre是一个集成获取、分析和刻入数字证据的分析工具。你可以在这里下载免费版本的工具（https://belkasoft.com/get）\n首先，我们创建个新的case。填写case信息，选择有管理权限的文件夹，如果你想的话，你还可以添加一个case的描述。点击“create and open”执行分析。 用于分析虚拟内存文件，选择配置RAM image内存镜像；添加使用FTK imager镜像的pagefile.sys文件。\n选择想要的数据类型进行搜索。这里有大量的数据类型可以扫描。点击完成按钮即可。 完成了上述步骤后会显示这样一个面板。展示了正确的关于虚拟内存的统计数据信息。总数1097个文件被识别，其中包括URLs、图片和其他文件。 在这个case explorer标签在dashboard标签旁边可以扩展和查看每个概要文件列。数据被切分为浏览器、图片、系统文件和其他文件。 让我们展开分析Browser配置文件。让我们检查chrome切分部分的更多细节，其中之一被分为chrome历史记录包含了URLs。其中高亮的部分就是历史访问的URL地址列。\n另一个浏览器配置是opera浏览器，分析opera部分的内容也是同样，其中展示了URL浏览记录。 从配置文件切分的数据也包含了一些图片信息。这些图片是我访问过的网站的图片或者是其他缩略图。 belkasoft evidence center的一个非常好的特性是，它允许你简单在图片上按右键，可以进行分析各方面，例如检查皮肤、图片中的色情信息，特定的文字或者脸。所有的这些特性都在分析的时候会起到比较有用的效果。 一些系统文件也被从虚拟内存中切分，显示了NetBios名字，文件地址，文件大小等数据。 时间轴标签展示了数据切分的整体情况可以通过时间和URL来进行简单的分析历史访问的网站。 search results标签展示搜索结果概要的工具。下面的截图展示了搜索引擎返回的带有link和配置文件名的结果。 相同的，你可以对休眠文件进行取证调查。使用FTK 在系统C:/hiberfile.sys目录下扩展hiberfil.sys（用于存储系统休眠模式下存储的信息）进行取证，并且使用Belkasoft Evidence Centre进行分析。\n虚拟内存文件的分析对于浏览器鉴定有很大帮助。\n",
     "description": "",
     "tags": "应急响应;调查取证;虚拟内存",
@@ -82,13 +103,6 @@ var relearn_search_index = [
     "tags": null,
     "title": "0x03取证分析",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "Tags",
-    "uri": "/tags/index.html"
   },
   {
     "content": "",
@@ -509,13 +523,6 @@ var relearn_search_index = [
     "tags": "红蓝对抗,漏洞复现",
     "title": "CVE-2014-4210_Weblogic SSRF漏洞",
     "uri": "/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/CVE-2014-4210_Weblogic-SSRF%E6%BC%8F%E6%B4%9E/index.html"
-  },
-  {
-    "content": "",
-    "description": "",
-    "tags": null,
-    "title": "Tag - 红蓝对抗,漏洞复现",
-    "uri": "/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html"
   },
   {
     "content": "摘要 WPS Office 软件是由金山办公软件股份有限公司自主研发的一款办公软件套装，可以实现办公软件最常用的文字、表格、演示等多种功能，覆盖 Windows、 macos、 Linux、 Android、 IOS及鸿蒙等平台。目前该漏洞已修复，请升级至最新版本。\n准备 准备个低版本wps，13703 win10 环境 原poc的说明： 需要将在1.html当前路径下启动http server并监听80端口，修改hosts文件（测试写死的） 127.0.0.1 clientweb.docer.wps.cn.cloudwps.cn\n漏洞触发需让域名规则满足clientweb.docer.wps.cn.{xxxxx}wps.cn即可，cloudwps.cn和wps.cn没有任何关系。正常攻击，也可以使用clientweb.docer.wps.cn.hellowps.cn.\n配置host，C:\\Windows\\System32\\drivers\\etc\\host，增\n127.0.0.1 clientweb.docer.wps.cn.cloudwps.cn 漏洞触发需让域名规则满足clientweb.docer.wps.cn.{xxxxx}wps.cn即可，cloudwps.cn和wps.cn没有任何关系。正常攻击，也可以使用clientweb.docer.wps.cn.hellowps.cn. 配置监听 注意：要在1.html目录下进行监听\ncd C:\\Users\\IEUser\\Desktop\\poc python -m http.server 80 点击触发漏洞。 由于加载了恶意shellcode html因此命令执行成功。 影响： 随后程序崩溃 分析： 我们可以看到这是在wps中插入了动态图表，而图表可以对应的链接被我们篡改了解析地址，造成了问题。\n这里有个现象，如果把这个图表放到最小那么点击的时候他是不用经过信任不信任选项，就默认会跳转的。所以poc是把这个缩小到最小，就是为了方便点击之后不用点击信任按钮，造成直接跳转。\n在这里我们可以看到实际上在原有功能上如果可以加载指定内容的类似超链接、图片等内容的，由于修改了host实际上相当于更换了服务器，也就自然可以换成攻击者的服务器，对应的html执行的命令也就可以不局限于弹计算器。\nWPS Office 远程代码执行漏洞消息及Poc，经漏洞云复核，确认为chromium 历史漏洞（编号：CVE-2022-1364，标题：Google Chrome V8类型混淆漏洞)的适配，影响【WPS Office 个人版\u003c11.1.0.15120，WPS office 企业版\u003c11.8.2.12085 】，最新版本WPS Office 不受此漏洞影响\nhttps://github.com/b2git/WPS-0DAY-20230809\n修复建议 如果您在使用 WPS Office 个人版，您可以通过WPS 官网 https://www.wps.cn 获取最新版本进行升级。\n不受影响软件名称及版本：\nwps个人版大于12.1.0.15120，wps机构版/专业版/专业增强版大雨11.8.2.12055。\n参考资料 金山办公安全应急响应中心 (wps.cn)\n",
