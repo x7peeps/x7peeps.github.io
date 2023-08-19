@@ -10,18 +10,18 @@
     <title>企业微信私有化部署api未授权漏洞 - x7peeps</title>
     <link href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/index.xml" rel="alternate" type="application/rss+xml" title="企业微信私有化部署api未授权漏洞 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1692426362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692426362" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1692426362" rel="stylesheet">
-    <link href="/css/auto-complete.css?1692426362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692426362" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1692426362" rel="stylesheet">
-    <link href="/css/fonts.css?1692426362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692426362" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1692426362" rel="stylesheet">
-    <link href="/css/theme-auto.css?1692426362" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1692426362" rel="stylesheet">
-    <link href="/css/print.css?1692426362" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1692426362" rel="stylesheet">
-    <script src="/js/url.js?1692426362"></script>
-    <script src="/js/variant.js?1692426362"></script>
+    <link href="/css/fontawesome-all.min.css?1692427735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692427735" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1692427735" rel="stylesheet">
+    <link href="/css/auto-complete.css?1692427735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692427735" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1692427735" rel="stylesheet">
+    <link href="/css/fonts.css?1692427735" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692427735" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1692427735" rel="stylesheet">
+    <link href="/css/theme-auto.css?1692427735" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1692427735" rel="stylesheet">
+    <link href="/css/print.css?1692427735" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1692427735" rel="stylesheet">
+    <script src="/js/url.js?1692427735"></script>
+    <script src="/js/variant.js?1692427735"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -99,29 +99,29 @@
 第一步：，通过泄露信息接口可以获取corpid和corpsecret
 https://&lt;企业微信域名&gt;/cgi-bin/gateway/agentinfo
 
-<a href="#image-63ad1f9f42c70b182a10be0aa36fb78c" class="lightbox-link">
+<a href="#image-5c00825768056b8c56af9252f649b054" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918916855311.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-63ad1f9f42c70b182a10be0aa36fb78c">
+<a href="javascript:history.back();" class="lightbox" id="image-5c00825768056b8c56af9252f649b054">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918916855311.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>第二步，使用corpsecret和corpid获得token
 https://&lt;企业微信域名&gt;/cgi-bin/gettoken?corpid=ID&amp;corpsecret=SECRET
 注意：ID使用strcorpid</p>
 <p>
-<a href="#image-4c5669e6f391c2959bfbc217d11dd15e" class="lightbox-link">
+<a href="#image-dd2e7d66e7b4836ab4406cd24e4e5c5e" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917094323.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4c5669e6f391c2959bfbc217d11dd15e">
+<a href="javascript:history.back();" class="lightbox" id="image-dd2e7d66e7b4836ab4406cd24e4e5c5e">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917094323.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>第三步，使用token访问诸如企业通讯录信息，修改用户密码，发送消息，云盘等接口
 https://&lt;企业微信域名&gt;/cgi-bin/user/get?access_token=ACCESS_TOKEN&amp;userid=USERID</p>
 <p>
-<a href="#image-5d15e5d91c3e936961d4d61697428677" class="lightbox-link">
+<a href="#image-3837d94c7a92d92c3b2dac906694261d" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917811336.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-5d15e5d91c3e936961d4d61697428677">
+<a href="javascript:history.back();" class="lightbox" id="image-3837d94c7a92d92c3b2dac906694261d">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917811336.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="修复建议">修复建议</h2>
@@ -150,12 +150,12 @@ https://&lt;企业微信域名&gt;/cgi-bin/user/get?access_token=ACCESS_TOKEN&am
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1692426364" defer></script>
-        <script src="/js/lunr/lunr.min.js?1692426364" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1692426364" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1692426364" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1692426364" defer></script>
-        <script src="/js/search.js?1692426364" defer></script>
+        <script src="/js/auto-complete.js?1692427737" defer></script>
+        <script src="/js/lunr/lunr.min.js?1692427737" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1692427737" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1692427737" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1692427737" defer></script>
+        <script src="/js/search.js?1692427737" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -350,8 +350,8 @@ https://&lt;企业微信域名&gt;/cgi-bin/user/get?access_token=ACCESS_TOKEN&am
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1692426364" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1692426364" defer></script>
+    <script src="/js/clipboard.min.js?1692427737" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1692427737" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -381,15 +381,15 @@ https://&lt;企业微信域名&gt;/cgi-bin/user/get?access_token=ACCESS_TOKEN&am
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1692426364" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1692426364" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1692426364" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1692426364" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1692426364" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1692426364" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1692426364" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1692426364" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1692426364" defer></script>
+    <script src="/js/d3/d3-color.min.js?1692427737" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1692427737" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1692427737" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1692427737" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1692427737" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1692427737" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1692427737" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1692427737" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1692427737" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -398,8 +398,8 @@ https://&lt;企业微信域名&gt;/cgi-bin/user/get?access_token=ACCESS_TOKEN&am
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692426364  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692427737  };
     </script>
-    <script src="/js/theme.js?1692426364" defer></script>
+    <script src="/js/theme.js?1692427737" defer></script>
   </body>
 </html>
