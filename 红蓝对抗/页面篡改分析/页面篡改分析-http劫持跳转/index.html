@@ -10,18 +10,18 @@
     <title>页面篡改分析-http流量劫持页面篡分析 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-http流量劫持页面篡分析 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1692432042" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692432042" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1692432042" rel="stylesheet">
-    <link href="/css/auto-complete.css?1692432042" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692432042" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1692432042" rel="stylesheet">
-    <link href="/css/fonts.css?1692432042" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692432042" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1692432042" rel="stylesheet">
-    <link href="/css/theme-auto.css?1692432042" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1692432042" rel="stylesheet">
-    <link href="/css/print.css?1692432042" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1692432042" rel="stylesheet">
-    <script src="/js/url.js?1692432042"></script>
-    <script src="/js/variant.js?1692432042"></script>
+    <link href="/css/fontawesome-all.min.css?1692433941" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692433941" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1692433941" rel="stylesheet">
+    <link href="/css/auto-complete.css?1692433941" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692433941" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1692433941" rel="stylesheet">
+    <link href="/css/fonts.css?1692433941" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692433941" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1692433941" rel="stylesheet">
+    <link href="/css/theme-auto.css?1692433941" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1692433941" rel="stylesheet">
+    <link href="/css/print.css?1692433941" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1692433941" rel="stylesheet">
+    <script src="/js/url.js?1692433941"></script>
+    <script src="/js/variant.js?1692433941"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -81,92 +81,92 @@
 访问某页面, http://xxx/xx 偶尔会跳转到 https[://]1121[.]24368212[.]top/1106/pandash https[://]98vv[.]vip/ , 经确认访问后的特点除了以下几个返回内容之外, 同时header存在max-age=0, 触发方式不固定, 而将UA修改为移动端或切换移动端UA访问会有一定几率触发跳转.</p>
 <p>跳转情况1:</p>
 <p>
-<a href="#image-35fe8e2b5191c420ae4a2e1bb7be851c" class="lightbox-link">
+<a href="#image-84b72860fdcfa1148282eff85e968598" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213415348.png" alt="image-20211212213415348" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-35fe8e2b5191c420ae4a2e1bb7be851c">
+<a href="javascript:history.back();" class="lightbox" id="image-84b72860fdcfa1148282eff85e968598">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213415348.png" alt="image-20211212213415348" class="lightbox-image" loading="lazy">
 </a>
 使用top.location.href=&ldquo;xxx&rdquo;, 在样式顶层进行跳转, 可以在iframe外进行跳转.</p>
 <p>跳转情况2:</p>
 <p>
-<a href="#image-587e0f621410f09e6c4ba1597c4d9bbd" class="lightbox-link">
+<a href="#image-be54b67e1d0cc7d86375140f4f2f0894" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213541674.png" alt="image-20211212213541674" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-587e0f621410f09e6c4ba1597c4d9bbd">
+<a href="javascript:history.back();" class="lightbox" id="image-be54b67e1d0cc7d86375140f4f2f0894">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213541674.png" alt="image-20211212213541674" class="lightbox-image" loading="lazy">
 </a>
 通过分析可以看到跳转的连接为 https[://]98vv[.]vip/
 
-<a href="#image-c5685042ec936e0c9b8f504106cc999f" class="lightbox-link">
+<a href="#image-66772832ea48060f48a85d69848378de" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213810207.png" alt="image-20211212213810207" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c5685042ec936e0c9b8f504106cc999f">
+<a href="javascript:history.back();" class="lightbox" id="image-66772832ea48060f48a85d69848378de">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213810207.png" alt="image-20211212213810207" class="lightbox-image" loading="lazy">
 </a></p>
 <p>跳转情况3:</p>
 <p>
-<a href="#image-e18126b27f2055ddfd78cd15a5d2a290" class="lightbox-link">
+<a href="#image-24132ca077dc4a33baa6580a9982f483" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213643528.png" alt="image-20211212213643528" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e18126b27f2055ddfd78cd15a5d2a290">
+<a href="javascript:history.back();" class="lightbox" id="image-24132ca077dc4a33baa6580a9982f483">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213643528.png" alt="image-20211212213643528" class="lightbox-image" loading="lazy">
 </a></p>
 <p>也是使用了top.location.href=&ldquo;xxx&rdquo;, 使用的不同的地址跳转.</p>
 <p>由于每次跳转触发不固定, 因此复现的时候也花了一会时间, 这里看到返回包的js我们可以知道确实是通常相关黑灰产使用的js跳转方式. 可以注意到这里使用了top.location.href的方式, 这种方式可以在iframe之外进行跳转.</p>
 <p>通常的页面篡改, 到这里我们看到的现象是访问不论是页面还是js都会发生跳转, 首要目的我们会思考是否页面中被插入的js导致返回的内容受控跳转. 这里我们针对三种情况的关键词都在系统中进行全文查找内容, 结果并没有发现相关内容.</p>
 <p>
-<a href="#image-bb69b45fec0d637075e4f34cee8bf400" class="lightbox-link">
+<a href="#image-bdeabcc9512fbd26e0e1a93f0111837b" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212214835345.png" alt="image-20211212214835345" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-bb69b45fec0d637075e4f34cee8bf400">
+<a href="javascript:history.back();" class="lightbox" id="image-bdeabcc9512fbd26e0e1a93f0111837b">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212214835345.png" alt="image-20211212214835345" class="lightbox-image" loading="lazy">
 </a></p>
 <p>
-<a href="#image-526bfcd16098532956fd86135faaf88d" class="lightbox-link">
+<a href="#image-54e730cf5250359d87464ff098febf18" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215011796.png" alt="image-20211212215011796" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-526bfcd16098532956fd86135faaf88d">
+<a href="javascript:history.back();" class="lightbox" id="image-54e730cf5250359d87464ff098febf18">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215011796.png" alt="image-20211212215011796" class="lightbox-image" loading="lazy">
 </a></p>
 <p>接着我们查看相关的页面和js内容, 结果都没有发现可疑的脚本.</p>
 <p>
-<a href="#image-ba76a91857cd64382ebcc7a32055b1b0" class="lightbox-link">
+<a href="#image-4732249de44b4fc5fd00e7cf019577ab" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215532821.png" alt="image-20211212215532821" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ba76a91857cd64382ebcc7a32055b1b0">
+<a href="javascript:history.back();" class="lightbox" id="image-4732249de44b4fc5fd00e7cf019577ab">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215532821.png" alt="image-20211212215532821" class="lightbox-image" loading="lazy">
 </a></p>
 <p>这里只在文件内容中发现了一些max-age=0的页面.</p>
 <p>
-<a href="#image-b4d5a06e19d24b9f0a1fd134fac20820" class="lightbox-link">
+<a href="#image-be72abc22ac29195356d5017f5695e87" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215321773.png" alt="image-20211212215321773" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b4d5a06e19d24b9f0a1fd134fac20820">
+<a href="javascript:history.back();" class="lightbox" id="image-be72abc22ac29195356d5017f5695e87">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215321773.png" alt="image-20211212215321773" class="lightbox-image" loading="lazy">
 </a></p>
 <p>我们查看下中间件的配置, 发现中间件配置也没有发现问题</p>
 <p>
-<a href="#image-2fb26a2c5e64105f2355f1ee42239ce0" class="lightbox-link">
+<a href="#image-256d293741e1737b5b52eaecc91d0fe9" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212220402723.png" alt="image-20211212220402723" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-2fb26a2c5e64105f2355f1ee42239ce0">
+<a href="javascript:history.back();" class="lightbox" id="image-256d293741e1737b5b52eaecc91d0fe9">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212220402723.png" alt="image-20211212220402723" class="lightbox-image" loading="lazy">
 </a></p>
 <p>到此为止我们发现与传统的跳转方式都不同, 与中间件控制的跳转方式也不同. 因此这里考虑到是否存在劫持. 首先dns劫持, 经过排查发现不论是多地多运营商解析域名、还是通过dnslookup都没有看到域名解析异常情况, 由于客户的域名是阿里的域名, 使用修改本地的dns为223.5.5.5以及223.6.6.6再访问还是有问题. 但ip在以上情形下都无变化, 因此判断不是dns劫持情况.</p>
 <p>
-<a href="#image-8e7c034cfc256bfefd856029ff23a2c9" class="lightbox-link">
+<a href="#image-09ce6ad987b747b46c81a2dc95222aad" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221027065.png" alt="image-20211212221027065" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8e7c034cfc256bfefd856029ff23a2c9">
+<a href="javascript:history.back();" class="lightbox" id="image-09ce6ad987b747b46c81a2dc95222aad">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221027065.png" alt="image-20211212221027065" class="lightbox-image" loading="lazy">
 </a></p>
 <p>最后我们排出了系统异常登录、ssh密钥登录等情况判断可能是流量劫持问题. 与阿里同事的客服的判断相同.</p>
 <p>
-<a href="#image-77928bc65891f358c38f2a2d03c1d7d4" class="lightbox-link">
+<a href="#image-8f53614ec842b29217f3696616165f9f" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221103130.png" alt="image-20211212221103130" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-77928bc65891f358c38f2a2d03c1d7d4">
+<a href="javascript:history.back();" class="lightbox" id="image-8f53614ec842b29217f3696616165f9f">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221103130.png" alt="image-20211212221103130" class="lightbox-image" loading="lazy">
 </a></p>
 <p>最后我们给出了我们的最终的排查或解决方案,</p>
@@ -212,12 +212,12 @@ https[://]98vv[.]vip/</p>
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1692432044" defer></script>
-        <script src="/js/lunr/lunr.min.js?1692432044" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1692432044" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1692432044" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1692432044" defer></script>
-        <script src="/js/search.js?1692432044" defer></script>
+        <script src="/js/auto-complete.js?1692433942" defer></script>
+        <script src="/js/lunr/lunr.min.js?1692433942" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1692433942" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1692433942" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1692433942" defer></script>
+        <script src="/js/search.js?1692433942" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -412,8 +412,8 @@ https[://]98vv[.]vip/</p>
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1692432044" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1692432044" defer></script>
+    <script src="/js/clipboard.min.js?1692433942" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1692433942" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -443,15 +443,15 @@ https[://]98vv[.]vip/</p>
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1692432044" defer></script>
+    <script src="/js/d3/d3-color.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1692433942" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -460,8 +460,8 @@ https[://]98vv[.]vip/</p>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692432044  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692433942  };
     </script>
-    <script src="/js/theme.js?1692432044" defer></script>
+    <script src="/js/theme.js?1692433942" defer></script>
   </body>
 </html>

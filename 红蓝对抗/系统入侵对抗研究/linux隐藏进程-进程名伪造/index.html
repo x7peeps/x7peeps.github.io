@@ -10,18 +10,18 @@
     <title>linux隐藏进程-进程名伪造 - x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.xml" rel="alternate" type="application/rss+xml" title="linux隐藏进程-进程名伪造 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1692432042" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692432042" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1692432042" rel="stylesheet">
-    <link href="/css/auto-complete.css?1692432042" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692432042" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1692432042" rel="stylesheet">
-    <link href="/css/fonts.css?1692432042" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692432042" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1692432042" rel="stylesheet">
-    <link href="/css/theme-auto.css?1692432042" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1692432042" rel="stylesheet">
-    <link href="/css/print.css?1692432042" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1692432042" rel="stylesheet">
-    <script src="/js/url.js?1692432042"></script>
-    <script src="/js/variant.js?1692432042"></script>
+    <link href="/css/fontawesome-all.min.css?1692433941" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692433941" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1692433941" rel="stylesheet">
+    <link href="/css/auto-complete.css?1692433941" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692433941" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1692433941" rel="stylesheet">
+    <link href="/css/fonts.css?1692433941" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692433941" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1692433941" rel="stylesheet">
+    <link href="/css/theme-auto.css?1692433941" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1692433941" rel="stylesheet">
+    <link href="/css/print.css?1692433941" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1692433941" rel="stylesheet">
+    <script src="/js/url.js?1692433941"></script>
+    <script src="/js/variant.js?1692433941"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -325,10 +325,10 @@ error:
 <div class="wrap-code highlight"><pre tabindex="0"><code>parallels@ubuntu:~/Documents$ gcc -o changepressname changepress.c 
 parallels@ubuntu:~/Documents$ ./changepressname</code></pre></div><p>ps查询可以看到我们已经修改进程名</p>
 <p>
-<a href="#image-4edc009aa1cec78a403c631b5259939d" class="lightbox-link">
+<a href="#image-828d184e16b627a2e34a3f919db1f292" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623677841324-2ed15d1e-01df-4406-b5e9-40ed56ddbd33.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-4edc009aa1cec78a403c631b5259939d">
+<a href="javascript:history.back();" class="lightbox" id="image-828d184e16b627a2e34a3f919db1f292">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623677841324-2ed15d1e-01df-4406-b5e9-40ed56ddbd33.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <p>这里攻击的角度，我们就可以集成，并通过指定我们攻击进程进行隐藏。</p>
@@ -338,10 +338,10 @@ parallels@ubuntu:~/Documents$ ./changepressname</code></pre></div><p>ps查询可
 <li>可以看到ll /proc/PID/exe，可以通过对比ps结果名与exe对应进程名审计到异常</li>
 </ol>
 <p>
-<a href="#image-c87e1b6194c3a9825e2df84a4e2d13a9" class="lightbox-link">
+<a href="#image-61b079ba38e623af26c888f1de4a658f" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623677852664-5be46575-b005-4f6e-a9c9-16d3e8c4619c.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c87e1b6194c3a9825e2df84a4e2d13a9">
+<a href="javascript:history.back();" class="lightbox" id="image-61b079ba38e623af26c888f1de4a658f">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623677852664-5be46575-b005-4f6e-a9c9-16d3e8c4619c.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 <ol start="2">
@@ -350,10 +350,10 @@ parallels@ubuntu:~/Documents$ ./changepressname</code></pre></div><p>ps查询可
 <p>parallels@ubuntu:~/Documents$ pstree -aphn 24565</p>
 <p>changepressname,24565</p>
 <p>
-<a href="#image-0ab35d52db696748846c32fc5aad38cc" class="lightbox-link">
+<a href="#image-3d399ed17cec8531cb2bea84a5033950" class="lightbox-link">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623678099892-ad994b9f-395a-414f-bc89-977172e14bcd.png" alt="image.png" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-0ab35d52db696748846c32fc5aad38cc">
+<a href="javascript:history.back();" class="lightbox" id="image-3d399ed17cec8531cb2bea84a5033950">
 <img src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623678099892-ad994b9f-395a-414f-bc89-977172e14bcd.png" alt="image.png" class="lightbox-image" loading="lazy">
 </a></p>
 
@@ -379,12 +379,12 @@ parallels@ubuntu:~/Documents$ ./changepressname</code></pre></div><p>ps查询可
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1692432044" defer></script>
-        <script src="/js/lunr/lunr.min.js?1692432044" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1692432044" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1692432044" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1692432044" defer></script>
-        <script src="/js/search.js?1692432044" defer></script>
+        <script src="/js/auto-complete.js?1692433942" defer></script>
+        <script src="/js/lunr/lunr.min.js?1692433942" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1692433942" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1692433942" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1692433942" defer></script>
+        <script src="/js/search.js?1692433942" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -579,8 +579,8 @@ parallels@ubuntu:~/Documents$ ./changepressname</code></pre></div><p>ps查询可
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1692432044" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1692432044" defer></script>
+    <script src="/js/clipboard.min.js?1692433942" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1692433942" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -610,15 +610,15 @@ parallels@ubuntu:~/Documents$ ./changepressname</code></pre></div><p>ps查询可
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1692432044" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1692432044" defer></script>
+    <script src="/js/d3/d3-color.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1692433942" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1692433942" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -627,8 +627,8 @@ parallels@ubuntu:~/Documents$ ./changepressname</code></pre></div><p>ps查询可
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692432044  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692433942  };
     </script>
-    <script src="/js/theme.js?1692432044" defer></script>
+    <script src="/js/theme.js?1692433942" defer></script>
   </body>
 </html>
