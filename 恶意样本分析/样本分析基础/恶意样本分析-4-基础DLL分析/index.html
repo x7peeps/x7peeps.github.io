@@ -10,18 +10,18 @@
     <title>恶意样本分析4-基础DLL分析 - x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/index.xml" rel="alternate" type="application/rss+xml" title="恶意样本分析4-基础DLL分析 - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1692426311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692426311" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1692426311" rel="stylesheet">
-    <link href="/css/auto-complete.css?1692426311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692426311" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1692426311" rel="stylesheet">
-    <link href="/css/fonts.css?1692426311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692426311" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1692426311" rel="stylesheet">
-    <link href="/css/theme-auto.css?1692426311" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1692426311" rel="stylesheet">
-    <link href="/css/print.css?1692426311" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1692426311" rel="stylesheet">
-    <script src="/js/url.js?1692426311"></script>
-    <script src="/js/variant.js?1692426311"></script>
+    <link href="/css/fontawesome-all.min.css?1692426362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692426362" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1692426362" rel="stylesheet">
+    <link href="/css/auto-complete.css?1692426362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692426362" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1692426362" rel="stylesheet">
+    <link href="/css/fonts.css?1692426362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692426362" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1692426362" rel="stylesheet">
+    <link href="/css/theme-auto.css?1692426362" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1692426362" rel="stylesheet">
+    <link href="/css/print.css?1692426362" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1692426362" rel="stylesheet">
+    <script src="/js/url.js?1692426362"></script>
+    <script src="/js/variant.js?1692426362"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -90,10 +90,10 @@
 <h1 id="恶意样本分析4-基础dll分析">恶意样本分析4-基础DLL分析</h1>
 
 <p>
-<a href="#image-8c31b456e39ef0e0f6bf8514ecf7a8b9" class="lightbox-link">
+<a href="#image-ff7800a3655b6fcf6150caacff42d364" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8c31b456e39ef0e0f6bf8514ecf7a8b9">
+<a href="javascript:history.back();" class="lightbox" id="image-ff7800a3655b6fcf6150caacff42d364">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 当恶意代码打包进dll，需要对其进行一定量的定性分析，除了平台的手段，这里还有一些基础的dll分析手段。</p>
@@ -130,10 +130,10 @@ optional arguments:可选参数
 <h5 id="01无函数输出的dll分析">01.无函数输出的dll分析</h5>
 <p>当dll被调用，dllmain主函数作为入口函数被调用。攻击者在dllmain函数中直接实现键盘记录，信息窃取等操作，期间无任何函数输出。</p>
 <p>
-<a href="#image-b32d54ad400c6c708d27953ae2c20224" class="lightbox-link">
+<a href="#image-b0f0cee021a2e6bfe82cf8e183244bb9" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190909165549.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-b32d54ad400c6c708d27953ae2c20224">
+<a href="javascript:history.back();" class="lightbox" id="image-b0f0cee021a2e6bfe82cf8e183244bb9">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190909165549.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <blockquote>
@@ -142,10 +142,10 @@ optional arguments:可选参数
 <h5 id="02-分析一个包含输出的dll">02. 分析一个包含输出的dll</h5>
 <p>使用cff，可以看到出口函数表。</p>
 <p>
-<a href="#image-60fafa2e75396c9b4521573259ea3f4d" class="lightbox-link">
+<a href="#image-904704f396d9a0ce907ee956a88fc051" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190909165436.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-60fafa2e75396c9b4521573259ea3f4d">
+<a href="javascript:history.back();" class="lightbox" id="image-904704f396d9a0ce907ee956a88fc051">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190909165436.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>可能会遇到C:&gt;rundll32.exe c:\samples\obe.dll,test运行dll但是dll没有任何行为的时候考虑dll入口函数没有实现任何函数。如果使用c:\rundll32.exe c:\samples\obe.dll,dllregisterserver直接调用可以触发cc回链请求，因此可以推断出这个函数实现网络连接功能。</p>
 <p>这里有一个相关fuzz恶意dll函数的工具可以用来方便检测：
@@ -156,19 +156,19 @@ DLLRunner是一个智能DLL执行脚本，用于沙盒系统中的恶意软件�
 <blockquote>
 <p>这里有个典型的案例，样本使用powerpoit加密尝试绕过安全检测分析：https://securingtomorrow.mcafee.com/mcafee-labs/threat-actors-use-encrypted-office-binary-format-evade-detection/
 
-<a href="#image-c6af32b5390169e12e263253fc7d42f4" class="lightbox-link">
+<a href="#image-8a2bde445d5d19e84d322eaba0020510" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190909170518.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-c6af32b5390169e12e263253fc7d42f4">
+<a href="javascript:history.back();" class="lightbox" id="image-8a2bde445d5d19e84d322eaba0020510">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190909170518.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </blockquote>
 <p>一个dll（searchcache.dll）由出口函数，具有删除文件功能函数的_flushfile@16函数组成。这个出口函数能够接收一个参数，用来接收要删除的文件：（cff图）
 
-<a href="#image-18b506897fd448161a352a8f6552ea9d" class="lightbox-link">
+<a href="#image-302cf6ed7087466a46607ec37d0e0fbf" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190909165400.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-18b506897fd448161a352a8f6552ea9d">
+<a href="javascript:history.back();" class="lightbox" id="image-302cf6ed7087466a46607ec37d0e0fbf">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190909165400.png-A" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>测试其函数：
@@ -186,18 +186,18 @@ File Activity:
 <h5 id="tdss-rootkit一个组件tdldll样本分析">TDSS Rootkit一个组件tdl.dll样本分析</h5>
 <p>这个样本不包含任何输出；所有的恶意代码都在dll的入口函数中实现。使用下面的命令执行会导致一个DLL初始化例程报错，说明程序没有正确执行：
 
-<a href="#image-dff947e36be14a90e7f766fddf31ffbd" class="lightbox-link">
+<a href="#image-afe79267a0fba3e0da2a43670a62959f" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925-20210929091716668.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-dff947e36be14a90e7f766fddf31ffbd">
+<a href="javascript:history.back();" class="lightbox" id="image-afe79267a0fba3e0da2a43670a62959f">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925-20210929091716668.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 通过静态分析代码，发现DLL入口函数包含一个确认检查（运行在spoolsv.exe下面）如果运行在其他程序下，dll就会初始化例程错误。
 
-<a href="#image-7136ce5a17845be5ed68614fcc370314" class="lightbox-link">
+<a href="#image-99bd8bf4cecd25f2ee18c6d3f0af7202" class="lightbox-link">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20200405002012.png-A" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-7136ce5a17845be5ed68614fcc370314">
+<a href="javascript:history.back();" class="lightbox" id="image-99bd8bf4cecd25f2ee18c6d3f0af7202">
 <img src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20200405002012.png-A" alt="" class="lightbox-image" loading="lazy">
 </a>
 为了触发行为，恶意DLL必须注入到spoolsv.exe进程中。之后可以通过捕捉正常观察到程序操作。</p>
@@ -228,12 +228,12 @@ File Activity:
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1692426312" defer></script>
-        <script src="/js/lunr/lunr.min.js?1692426312" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1692426312" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1692426312" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1692426312" defer></script>
-        <script src="/js/search.js?1692426312" defer></script>
+        <script src="/js/auto-complete.js?1692426363" defer></script>
+        <script src="/js/lunr/lunr.min.js?1692426363" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1692426363" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1692426363" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1692426363" defer></script>
+        <script src="/js/search.js?1692426363" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -428,8 +428,8 @@ File Activity:
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1692426312" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1692426312" defer></script>
+    <script src="/js/clipboard.min.js?1692426363" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1692426363" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -459,15 +459,15 @@ File Activity:
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1692426312" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1692426312" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1692426312" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1692426312" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1692426312" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1692426312" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1692426312" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1692426312" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1692426312" defer></script>
+    <script src="/js/d3/d3-color.min.js?1692426363" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1692426363" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1692426363" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1692426363" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1692426363" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1692426363" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1692426363" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1692426363" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1692426363" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -476,8 +476,8 @@ File Activity:
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692426312  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692426363  };
     </script>
-    <script src="/js/theme.js?1692426312" defer></script>
+    <script src="/js/theme.js?1692426363" defer></script>
   </body>
 </html>

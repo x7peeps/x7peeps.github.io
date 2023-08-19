@@ -10,18 +10,18 @@
     <title>WPSSRC-2023-0701金山WPS_RCE - x7peeps</title>
     <link href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/index.xml" rel="alternate" type="application/rss+xml" title="WPSSRC-2023-0701金山WPS_RCE - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
-    <link href="/css/fontawesome-all.min.css?1692426311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692426311" rel="stylesheet"></noscript>
-    <link href="/css/nucleus.css?1692426311" rel="stylesheet">
-    <link href="/css/auto-complete.css?1692426311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692426311" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar.min.css?1692426311" rel="stylesheet">
-    <link href="/css/fonts.css?1692426311" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692426311" rel="stylesheet"></noscript>
-    <link href="/css/theme.css?1692426311" rel="stylesheet">
-    <link href="/css/theme-auto.css?1692426311" rel="stylesheet" id="variant-style">
-    <link href="/css/variant.css?1692426311" rel="stylesheet">
-    <link href="/css/print.css?1692426311" rel="stylesheet" media="print">
-    <link href="/css/ie.css?1692426311" rel="stylesheet">
-    <script src="/js/url.js?1692426311"></script>
-    <script src="/js/variant.js?1692426311"></script>
+    <link href="/css/fontawesome-all.min.css?1692426362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1692426362" rel="stylesheet"></noscript>
+    <link href="/css/nucleus.css?1692426362" rel="stylesheet">
+    <link href="/css/auto-complete.css?1692426362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/auto-complete.css?1692426362" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar.min.css?1692426362" rel="stylesheet">
+    <link href="/css/fonts.css?1692426362" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fonts.css?1692426362" rel="stylesheet"></noscript>
+    <link href="/css/theme.css?1692426362" rel="stylesheet">
+    <link href="/css/theme-auto.css?1692426362" rel="stylesheet" id="variant-style">
+    <link href="/css/variant.css?1692426362" rel="stylesheet">
+    <link href="/css/print.css?1692426362" rel="stylesheet" media="print">
+    <link href="/css/ie.css?1692426362" rel="stylesheet">
+    <script src="/js/url.js?1692426362"></script>
+    <script src="/js/variant.js?1692426362"></script>
     <script>
       // hack to let hugo tell us how to get to the root when using relativeURLs, it needs to be called *url= for it to do its magic:
       // https://github.com/gohugoio/hugo/blob/145b3fcce35fbac25c7033c91c1b7ae6d1179da8/transform/urlreplacers/absurlreplacer.go#L72
@@ -90,10 +90,10 @@
 <p>准备个低版本wps，13703
 win10
 
-<a href="#image-ded4aa8e406faebf504e34f1603f0513" class="lightbox-link">
+<a href="#image-da21579f3357b079c595e5ceec4711a9" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915915497685.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-ded4aa8e406faebf504e34f1603f0513">
+<a href="javascript:history.back();" class="lightbox" id="image-da21579f3357b079c595e5ceec4711a9">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915915497685.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="环境">环境</h2>
@@ -107,10 +107,10 @@ win10
 <div class="wrap-code highlight"><pre tabindex="0"><code>127.0.0.1 clientweb.docer.wps.cn.cloudwps.cn
 
 漏洞触发需让域名规则满足clientweb.docer.wps.cn.{xxxxx}wps.cn即可，cloudwps.cn和wps.cn没有任何关系。正常攻击，也可以使用clientweb.docer.wps.cn.hellowps.cn.</code></pre></div><p>
-<a href="#image-46556a5975a3b8ffd30781b7d808f14c" class="lightbox-link">
+<a href="#image-8c0bef9a1013367f49277aa6370ab150" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915891293423.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-46556a5975a3b8ffd30781b7d808f14c">
+<a href="javascript:history.back();" class="lightbox" id="image-8c0bef9a1013367f49277aa6370ab150">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915891293423.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </li>
@@ -124,20 +124,20 @@ python -m http.server 80</code></pre></div><ol start="3">
 <li>
 <p>点击触发漏洞。
 
-<a href="#image-155344016b192994760b133eb9b189bc" class="lightbox-link">
+<a href="#image-40c77a9ca5cf70be1cc52afc9ecd2409" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915925161910.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-155344016b192994760b133eb9b189bc">
+<a href="javascript:history.back();" class="lightbox" id="image-40c77a9ca5cf70be1cc52afc9ecd2409">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915925161910.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </li>
 <li>
 <p>由于加载了恶意shellcode html因此命令执行成功。
 
-<a href="#image-89f130306aaaa45cde4a2f8246d8f19c" class="lightbox-link">
+<a href="#image-87d1aeaf45d33072e823101d2893593c" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915917647389.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-89f130306aaaa45cde4a2f8246d8f19c">
+<a href="javascript:history.back();" class="lightbox" id="image-87d1aeaf45d33072e823101d2893593c">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915917647389.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 </li>
@@ -145,25 +145,25 @@ python -m http.server 80</code></pre></div><ol start="3">
 <p>影响：
 随后程序崩溃
 
-<a href="#image-311c94e73bed9a7814798ac4c14f106a" class="lightbox-link">
+<a href="#image-7b52dd633d0d96403b9f1e7e550cb0f2" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915924902719.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-311c94e73bed9a7814798ac4c14f106a">
+<a href="javascript:history.back();" class="lightbox" id="image-7b52dd633d0d96403b9f1e7e550cb0f2">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915924902719.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>分析：
 
-<a href="#image-192928c97fb35eb2b357d4a6b53153b2" class="lightbox-link">
+<a href="#image-4e0a38bd9e722134fe18654d8da46acb" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915934982710.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-192928c97fb35eb2b357d4a6b53153b2">
+<a href="javascript:history.back();" class="lightbox" id="image-4e0a38bd9e722134fe18654d8da46acb">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915934982710.jpg" alt="" class="lightbox-image" loading="lazy">
 </a>
 
-<a href="#image-e9cbdef909cac61ae43e048b1d5bc505" class="lightbox-link">
+<a href="#image-a3521d22e0613c94959cfae8261ad3d4" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915935387914.jpg" alt="" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-e9cbdef909cac61ae43e048b1d5bc505">
+<a href="javascript:history.back();" class="lightbox" id="image-a3521d22e0613c94959cfae8261ad3d4">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/16915935387914.jpg" alt="" class="lightbox-image" loading="lazy">
 </a></p>
 <p>我们可以看到这是在wps中插入了动态图表，而图表可以对应的链接被我们篡改了解析地址，造成了问题。</p>
@@ -182,10 +182,10 @@ python -m http.server 80</code></pre></div><ol start="3">
 </li>
 </ol>
 <p>
-<a href="#image-8294df045c6610fabbccc5bedec2fb04" class="lightbox-link">
+<a href="#image-4f2f31d9838e75c74e98f19873f6dd9a" class="lightbox-link">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/image-20230810025017221.png" alt="image-20230810025017221" style="height: auto; width: auto;" loading="lazy">
 </a>
-<a href="javascript:history.back();" class="lightbox" id="image-8294df045c6610fabbccc5bedec2fb04">
+<a href="javascript:history.back();" class="lightbox" id="image-4f2f31d9838e75c74e98f19873f6dd9a">
 <img src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/WPSSRC-2023-0701%E9%87%91%E5%B1%B1WPS_RCE/image-20230810025017221.png" alt="image-20230810025017221" class="lightbox-image" loading="lazy">
 </a></p>
 <h2 id="参考资料">参考资料</h2>
@@ -213,12 +213,12 @@ python -m http.server 80</code></pre></div><ol start="3">
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="/js/auto-complete.js?1692426313" defer></script>
-        <script src="/js/lunr/lunr.min.js?1692426313" defer></script>
-        <script src="/js/lunr/lunr.stemmer.support.min.js?1692426313" defer></script>
-        <script src="/js/lunr/lunr.multi.min.js?1692426313" defer></script>
-        <script src="/js/lunr/lunr.en.min.js?1692426313" defer></script>
-        <script src="/js/search.js?1692426313" defer></script>
+        <script src="/js/auto-complete.js?1692426364" defer></script>
+        <script src="/js/lunr/lunr.min.js?1692426364" defer></script>
+        <script src="/js/lunr/lunr.stemmer.support.min.js?1692426364" defer></script>
+        <script src="/js/lunr/lunr.multi.min.js?1692426364" defer></script>
+        <script src="/js/lunr/lunr.en.min.js?1692426364" defer></script>
+        <script src="/js/search.js?1692426364" defer></script>
       </div>
       <div id="content-wrapper" class="highlightable">
         <ul class="topics enlarge morespace collapsible-menu">
@@ -413,8 +413,8 @@ python -m http.server 80</code></pre></div><ol start="3">
         </div>
       </div>
     </aside>
-    <script src="/js/clipboard.min.js?1692426313" defer></script>
-    <script src="/js/perfect-scrollbar.min.js?1692426313" defer></script>
+    <script src="/js/clipboard.min.js?1692426364" defer></script>
+    <script src="/js/perfect-scrollbar.min.js?1692426364" defer></script>
     <script>
       function useMathJax( config ){
         if( !Object.assign ){
@@ -444,15 +444,15 @@ python -m http.server 80</code></pre></div><ol start="3">
       useMathJax( JSON.parse("{}") );
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1692426313" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1692426313" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1692426313" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1692426313" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1692426313" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1692426313" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1692426313" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1692426313" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1692426313" defer></script>
+    <script src="/js/d3/d3-color.min.js?1692426364" defer></script>
+    <script src="/js/d3/d3-dispatch.min.js?1692426364" defer></script>
+    <script src="/js/d3/d3-drag.min.js?1692426364" defer></script>
+    <script src="/js/d3/d3-ease.min.js?1692426364" defer></script>
+    <script src="/js/d3/d3-interpolate.min.js?1692426364" defer></script>
+    <script src="/js/d3/d3-selection.min.js?1692426364" defer></script>
+    <script src="/js/d3/d3-timer.min.js?1692426364" defer></script>
+    <script src="/js/d3/d3-transition.min.js?1692426364" defer></script>
+    <script src="/js/d3/d3-zoom.min.js?1692426364" defer></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
     <script>
       window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
@@ -461,8 +461,8 @@ python -m http.server 80</code></pre></div><ol start="3">
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
     <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
     <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692426313  };
+      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1692426364  };
     </script>
-    <script src="/js/theme.js?1692426313" defer></script>
+    <script src="/js/theme.js?1692426364" defer></script>
   </body>
 </html>
