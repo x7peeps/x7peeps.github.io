@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="zh-CN" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
@@ -8,6 +8,13 @@
     <meta name="description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
     <meta name="author" content="x7peeps">
     <title>竹林 - Bamboo grove - x7peeps</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="竹林 - Bamboo grove - x7peeps">
+    <meta property="og:description" content="当你的才华还不足以支撑理想，那么你就应该沉下心去学习。">
+    <meta property="og:url" content="https://x7peeps.com/">
+    <meta property="og:image" content="https://x7peeps.com/images/head.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://x7peeps.com/images/head.png">
     <link href="/index.xml" rel="alternate" type="application/rss+xml" title="竹林 - Bamboo grove - x7peeps"><link rel="icon" href="/images/head.png" type="image/png">
     <!-- https://github.com/filamentgroup/loadCSS/blob/master/README.md#how-to-use -->
     <link href="/css/fontawesome-all.min.css?1698213736" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/css/fontawesome-all.min.css?1698213736" rel="stylesheet"></noscript>
@@ -20,6 +27,43 @@
     <link href="/css/variant.css?1698213736" rel="stylesheet">
     <link href="/css/print.css?1698213736" rel="stylesheet" media="print">
     <link href="/css/ie.css?1698213736" rel="stylesheet">
+    <style>
+      #body-inner.home{padding-top:2.75rem}
+      #body-inner.home .flex-block-wrapper{max-width:56rem}
+      #body-inner.home article.home{padding:0}
+      #body-inner.home .home-hero{display:flex;gap:2.25rem;align-items:center;justify-content:space-between;margin:0 0 2.75rem 0}
+      #body-inner.home .home-hero-media{flex:0 0 auto}
+      #body-inner.home .home-hero-body{flex:1 1 auto;min-width:0}
+      #body-inner.home .home-avatar-link{display:inline-block}
+      #body-inner.home .home-avatar{width:7.25rem;height:7.25rem;border-radius:999px;display:block;object-fit:cover;box-shadow:0 12px 40px rgba(0,0,0,.12)}
+      #body-inner.home .home-title{margin:0 0 .6rem 0;font-size:2.15rem;line-height:1.15;font-weight:500;letter-spacing:-.02em;text-transform:none;text-align:start}
+      #body-inner.home .home-subtitle{margin:0 0 1.25rem 0;font-size:1.05rem;line-height:1.7;opacity:.82}
+      #body-inner.home .home-actions{display:flex;flex-wrap:wrap;gap:.6rem .6rem}
+      #body-inner.home .home-btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.55rem .85rem;border-radius:.75rem;border:1px solid rgba(127,127,127,.28);text-decoration:none;line-height:1;font-weight:450}
+      #body-inner.home .home-btn:hover{text-decoration:none;border-color:rgba(127,127,127,.42);transform:translateY(-1px)}
+      #body-inner.home .home-btn:active{transform:translateY(0)}
+      #body-inner.home .home-btn-primary{background:var(--INTERNAL-ACCENT-color);color:rgba(0,0,0,.9);border-color:transparent}
+      #body-inner.home .home-btn-primary:hover{border-color:transparent}
+      #body-inner.home .home-sections{margin-top:2.5rem}
+      #body-inner.home .home-section-title{margin:0 0 1rem 0;font-size:1.1rem;font-weight:600;letter-spacing:.02em;text-transform:uppercase;text-align:start;opacity:.75}
+      #body-inner.home .home-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.75rem}
+      #body-inner.home .home-link{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding:.85rem 1rem;border-radius:1rem;border:1px solid rgba(127,127,127,.18);text-decoration:none}
+      #body-inner.home .home-link:hover{text-decoration:none;border-color:rgba(127,127,127,.34)}
+      #body-inner.home .home-link-title{font-size:1.05rem;font-weight:600}
+      #body-inner.home .home-link-desc{font-size:.95rem;opacity:.7;text-align:end}
+      @media screen and (max-width:48rem){
+        #body-inner.home{padding-top:1.75rem}
+        #body-inner.home .home-hero{flex-direction:column;align-items:flex-start;gap:1.35rem}
+        #body-inner.home .home-avatar{width:6.25rem;height:6.25rem}
+        #body-inner.home .home-link{flex-direction:column;align-items:flex-start}
+        #body-inner.home .home-link-desc{text-align:start}
+      }
+      @media (prefers-reduced-motion:no-preference){
+        #body-inner.home .home-hero{animation:homefade .7s cubic-bezier(.2,.9,.2,1) both}
+        #body-inner.home .home-sections{animation:homefade .7s cubic-bezier(.2,.9,.2,1) both;animation-delay:.08s}
+        @keyframes homefade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+      }
+    </style>
     <script src="/js/url.js?1698213736"></script>
     <script src="/js/variant.js?1698213736"></script>
     <script>
@@ -68,14 +112,56 @@
             <header class="headline">
             </header>
 
-<p>
-<a href="#image-6afc1b66c04b31557e858df586c9a5ac" class="lightbox-link">
-<img src="https://x7peeps.com/images/head.png" alt="head" style="height: auto; width: auto;" loading="lazy">
-</a>
-<a href="javascript:history.back();" class="lightbox" id="image-6afc1b66c04b31557e858df586c9a5ac">
-<img src="https://x7peeps.com/images/head.png" alt="head" class="lightbox-image" loading="lazy">
-</a></p>
-<p>​    是嘟，你找到了一只正在咀嚼竹子的🐼 &hellip;&hellip;</p>
+<section class="home-hero" aria-label="首页介绍">
+  <div class="home-hero-media">
+    <a href="#home-avatar" class="lightbox-link home-avatar-link">
+      <img src="/images/head.png" alt="x7peeps 头像" class="home-avatar" width="116" height="116" loading="lazy" decoding="async">
+    </a>
+    <a href="javascript:history.back();" class="lightbox" id="home-avatar">
+      <img src="/images/head.png" alt="x7peeps 头像" class="lightbox-image" loading="lazy" decoding="async">
+    </a>
+  </div>
+  <div class="home-hero-body">
+    <h1 class="home-title">x7peeps</h1>
+    <p class="home-subtitle">当你的才华还不足以支撑理想，那么你就应该沉下心去学习。</p>
+    <div class="home-actions" aria-label="快速入口">
+      <a class="home-btn home-btn-primary" href="/%E5%85%B3%E4%BA%8E/index.html">关于</a>
+      <a class="home-btn" href="/categories/index.html">分类</a>
+      <a class="home-btn" href="/tags/index.html">标签</a>
+      <a class="home-btn" href="/search.html">搜索</a>
+    </div>
+  </div>
+</section>
+
+<section class="home-sections" aria-label="内容导航">
+  <h2 class="home-section-title">内容</h2>
+  <div class="home-links" role="list">
+    <a class="home-link" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html" role="listitem">
+      <span class="home-link-title">渗透测试</span>
+      <span class="home-link-desc">方法论 / 实战</span>
+    </a>
+    <a class="home-link" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html" role="listitem">
+      <span class="home-link-title">应急响应</span>
+      <span class="home-link-desc">取证 / 排查</span>
+    </a>
+    <a class="home-link" href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html" role="listitem">
+      <span class="home-link-title">漏洞复现</span>
+      <span class="home-link-desc">CVE / 复测</span>
+    </a>
+    <a class="home-link" href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html" role="listitem">
+      <span class="home-link-title">恶意样本分析</span>
+      <span class="home-link-desc">分析 / 记录</span>
+    </a>
+    <a class="home-link" href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html" role="listitem">
+      <span class="home-link-title">红蓝对抗</span>
+      <span class="home-link-desc">对抗 / 研究</span>
+    </a>
+    <a class="home-link" href="/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html" role="listitem">
+      <span class="home-link-title">情报跟踪</span>
+      <span class="home-link-desc">动态 / 线索</span>
+    </a>
+  </div>
+</section>
 
             <footer class="footline">
 
@@ -302,54 +388,7 @@
     </aside>
     <script src="/js/clipboard.min.js?1698213736" defer></script>
     <script src="/js/perfect-scrollbar.min.js?1698213736" defer></script>
-    <script>
-      function useMathJax( config ){
-        if( !Object.assign ){
-          
-          return;
-        }
-        window.MathJax = Object.assign( window.MathJax || {}, {
-          loader: {
-            load: ['[tex]/mhchem']
-          },
-          startup: {
-            elements: [
-              '.math'
-            ]
-          },
-          tex: {
-            inlineMath: [
-              ['$', '$'], 
-              ['\\(', '\\)']
-            ]
-          },
-          options: {
-            enableMenu: false 
-          }
-        }, config );
-      }
-      useMathJax( JSON.parse("{}") );
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="/js/d3/d3-color.min.js?1698213736" defer></script>
-    <script src="/js/d3/d3-dispatch.min.js?1698213736" defer></script>
-    <script src="/js/d3/d3-drag.min.js?1698213736" defer></script>
-    <script src="/js/d3/d3-ease.min.js?1698213736" defer></script>
-    <script src="/js/d3/d3-interpolate.min.js?1698213736" defer></script>
-    <script src="/js/d3/d3-selection.min.js?1698213736" defer></script>
-    <script src="/js/d3/d3-timer.min.js?1698213736" defer></script>
-    <script src="/js/d3/d3-transition.min.js?1698213736" defer></script>
-    <script src="/js/d3/d3-zoom.min.js?1698213736" defer></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" defer></script>
-    <script>
-      window.themeUseMermaid = JSON.parse("{ \"theme\": \"default\" }");
-    </script>
     <script>window.noZensmooth = true;</script>
-    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js" defer></script>
-    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-standalone-preset.js" defer></script>
-    <script>
-      window.themeUseOpenapi = { css: "https://unpkg.com/swagger-ui-dist/swagger-ui.css", assetsBuster:  1698213736  };
-    </script>
     <script src="/js/theme.js?1698213736" defer></script>
   </body>
 </html>

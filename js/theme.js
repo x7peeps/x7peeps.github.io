@@ -1339,7 +1339,7 @@ function useMermaid( config ){
         mermaid.initialize( Object.assign( { "securityLevel": "antiscript", "startOnLoad": false     }, config ) );
         if( config.theme && variants ){
             var write_style = variants.findLoadedStylesheet( 'variant-style' );
-            write_style.setProperty( '--CONFIG-MERMAID-theme', config.theme );
+            (write_style || document.documentElement.style).setProperty( '--CONFIG-MERMAID-theme', config.theme );
         }
     }
 }
