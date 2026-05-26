@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>chatgpt微信机器人搭建 on x7peeps</title>
-    <link>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/chatgpt/chatgpt%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA/index.html</link>
-    <description>Recent content in chatgpt微信机器人搭建 on x7peeps</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/chatgpt/chatgpt%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>chatgpt微信机器人搭建 :: x7peeps</title><link>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/chatgpt/chatgpt%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA/index.html</link><description>chatgpt对接微信服务搭建 背景，这里有个需求就是我希望在日常微信的某个群中使用chatgpt回答群里的日常问题。如果你也想搭建一个对接微信的chatgpt问答机器人那么可以参考本文。</description><generator>Hugo</generator><language>zh-CN</language><atom:link href="https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/chatgpt/chatgpt%E5%BE%AE%E4%BF%A1%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
