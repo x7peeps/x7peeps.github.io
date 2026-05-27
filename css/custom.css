@@ -327,7 +327,10 @@ aside#R-sidebar {
 .topbar-sidebar-divider,
 .R-shortcutmenu-footercontrols,
 .R-menu-divider,
-hr.padding {
+hr.padding,
+.topbar-area-end .topbar-button-prev,
+.topbar-area-end .topbar-button-next,
+.topbar-area-end .topbar-button-more {
   display: none !important;
 }
 
