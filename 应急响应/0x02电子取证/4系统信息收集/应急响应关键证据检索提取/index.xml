@@ -3,7 +3,7 @@
   <channel>
     <title>应急响应关键证据检索提取 :: x7peeps</title>
     <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.html</link>
-    <description></description>
+    <description>安全策略检测&#xD;钩子检查&#xD;系统共享检查&#xD;环境变量检查&#xD;回收站文件检查&#xD;浏览器相关检查&#xD;hosts文件检查&#xD;防火墙规则检查&#xD;映像劫持检查&#xD;linux软件包管理器文件检查&#xD;web后门查杀&#xD;linux下病毒查杀&#xD;系统进程检查&#xD;系统日志查询&#xD;重点文件目录检查&#xD;异常端口查询&#xD;服务信息检查&#xD;计划任务检查&#xD;命令行历史记录&#xD;启动项检查&#xD;系统用户审查</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 13 Oct 2021 15:00:00 +0800</lastBuildDate>
@@ -132,7 +132,7 @@
       <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html</link>
       <pubDate>Thu, 15 Jul 2021 12:00:00 +0800</pubDate>
       <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html</guid>
-      <description></description>
+      <description>计划任务检查</description>
     </item>
     <item>
       <title>命令行历史记录</title>

@@ -151,9 +151,16 @@ aside#R-sidebar {
 
 /* 2. Header & Logo Area */
 #R-header-wrapper {
+  background: transparent !important;
   border-bottom: 1px solid transparent !important;
   position: relative;
   padding-top: 1.5rem !important;
+}
+
+#R-header-wrapper .searchbox {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 6px !important;
 }
 
 /* 3. Search Box Modernization */
@@ -184,6 +191,13 @@ aside#R-sidebar {
   position: relative;
   margin: 0 !important;
   padding: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+}
+
+.R-sidebarmenu ul.collapsible-menu > li > ul {
+  width: 100% !important;
 }
 
 /* Base link styling */
@@ -192,6 +206,8 @@ aside#R-sidebar {
   margin: 1px 8px !important;
   border-radius: 4px !important;
   display: block !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
   min-width: 0 !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
@@ -228,12 +244,24 @@ aside#R-sidebar {
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
-  z-index: 10 !important;
+  z-index: 2 !important;
   background: transparent !important;
   color: rgba(255,255,255,0.3) !important;
   padding: 0 !important;
   margin: 0 !important;
   transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+/* Hide native checkbox to prevent square outlines */
+#R-sidebar ul.collapsible-menu > li > input[type="checkbox"] {
+  opacity: 0 !important;
+  width: 24px !important;
+  height: 25px !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: 1px !important;
+  z-index: 3 !important;
+  cursor: pointer !important;
 }
 
 #R-sidebar ul.collapsible-menu > li > label:hover {
@@ -396,7 +424,8 @@ main#R-body-inner.home .flex-block-wrapper {
 }
 
 main#R-body-inner.home {
-  padding-top: 0 !important;
+  padding: 0 !important;
+  overflow-y: hidden !important;
 }
 
 /* 2. Container & Entrance Animation */

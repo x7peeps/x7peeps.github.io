@@ -3,7 +3,7 @@
   <channel>
     <title>系统入侵对抗研究 :: x7peeps</title>
     <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html</link>
-    <description></description>
+    <description>windows计划任务隐藏-检查方式&#xD;CS X86 payload分析混淆加密&#xD;linux隐藏进程-进程名伪造&#xD;linux隐藏进程-目录挂载方式研究&#xD;linux隐藏进程-预加载库或lib劫持&#xD;Mysql提权小结</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 30 Aug 2021 10:00:00 +0800</lastBuildDate>

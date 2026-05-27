@@ -17,64 +17,64 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "web应用渗透测试方法论",
+    "description": "web应用渗透测试方法论",
     "tags": [],
     "title": "渗透测试",
     "uri": "/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "0x03取证分析\r0x06取证辅助工具\r0x02电子取证\r0x00电子取证标准\r0x01现场勘查",
+    "description": "0x03取证分析\r0x06取证辅助工具\r0x02电子取证\r0x00电子取证标准\r0x01现场勘查",
     "tags": [],
     "title": "应急响应",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "企业微信私有化部署api未授权漏洞\rCVE-2014-4210_Weblogic SSRF漏洞\rWPSSRC-2023-0701金山WPS_RCE\rCVE-2020-14645_weblogic_T3反序列化RCE复测\rCVE-2020-0796 ‘SMBGhost’ Remote Code Execution\rCVE-2017-11882 Office远程代码执行漏洞复现",
+    "description": "企业微信私有化部署api未授权漏洞\rCVE-2014-4210_Weblogic SSRF漏洞\rWPSSRC-2023-0701金山WPS_RCE\rCVE-2020-14645_weblogic_T3反序列化RCE复测\rCVE-2020-0796 ‘SMBGhost’ Remote Code Execution\rCVE-2017-11882 Office远程代码执行漏洞复现",
     "tags": [],
     "title": "漏洞复现",
     "uri": "/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "样本分析基础\r样本分析拓展\r样本分析记录\r安卓样本分析",
+    "description": "样本分析基础\r样本分析拓展\r样本分析记录\r安卓样本分析",
     "tags": [],
     "title": "恶意样本分析",
     "uri": "/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "页面篡改分析\r系统入侵对抗研究",
+    "description": "页面篡改分析\r系统入侵对抗研究",
     "tags": [],
     "title": "红蓝对抗",
     "uri": "/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "黑客背后的\"Thrip\"网络间谍组织",
+    "description": "黑客背后的\"Thrip\"网络间谍组织",
     "tags": [],
     "title": "情报跟踪",
     "uri": "/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "渗透工具\r威胁情报工具\r日志分析工具",
+    "description": "渗透工具\r威胁情报工具\r日志分析工具",
     "tags": [],
     "title": "工具",
     "uri": "/%E5%B7%A5%E5%85%B7/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "chatgpt\rclaude",
+    "description": "chatgpt\rclaude",
     "tags": [],
     "title": "机器学习",
     "uri": "/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html"
@@ -125,16 +125,16 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 工具",
-    "content": "",
-    "description": "",
+    "content": "信息收集工具\r渗透验证工具",
+    "description": "信息收集工具\r渗透验证工具",
     "tags": [],
     "title": "渗透工具",
     "uri": "/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 工具 \u003e 渗透工具",
-    "content": "",
-    "description": "",
+    "content": "HEDnsExtractor\r本地批量ping域名脚本",
+    "description": "HEDnsExtractor\r本地批量ping域名脚本",
     "tags": [],
     "title": "信息收集工具",
     "uri": "/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/index.html"
@@ -151,8 +151,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应",
-    "content": "",
-    "description": "",
+    "content": "【译】取证调查：虚拟内存pagefile.sys",
+    "description": "【译】取证调查：虚拟内存pagefile.sys",
     "tags": [],
     "title": "0x03取证分析",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html"
@@ -185,8 +185,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 恶意样本分析",
-    "content": "",
-    "description": "",
+    "content": "恶意样本分析-12-使用内存取证检测高级恶意软件\r恶意样本分析-11-使用内存取证狩猎恶意软件\r恶意样本分析-10-恶意软件的混淆技术\r恶意样本分析-9-代码注入和钩子\r恶意样本分析-8-恶意软件的功能和持久化\r恶意样本分析-7-调试恶意软件二进制文件\r恶意样本分析6-IDA使用\r恶意样本分析4-基础DLL分析\r恶意样本分析4-基础DLL分析\r恶意样本分析3-基础动态分析\r恶意样本分析2-基础静态分析\r恶意样本分析1-配置实验环境",
+    "description": "恶意样本分析-12-使用内存取证检测高级恶意软件\r恶意样本分析-11-使用内存取证狩猎恶意软件\r恶意样本分析-10-恶意软件的混淆技术\r恶意样本分析-9-代码注入和钩子\r恶意样本分析-8-恶意软件的功能和持久化\r恶意样本分析-7-调试恶意软件二进制文件\r恶意样本分析6-IDA使用\r恶意样本分析4-基础DLL分析\r恶意样本分析4-基础DLL分析\r恶意样本分析3-基础动态分析\r恶意样本分析2-基础静态分析\r恶意样本分析1-配置实验环境",
     "tags": [],
     "title": "样本分析基础",
     "uri": "/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html"
@@ -221,8 +221,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 恶意样本分析",
-    "content": "",
-    "description": "",
+    "content": "介绍恶意软件中RC4加密的识别与解码\r真正的垫片黑幕\r使用和滥用Microsoft的Fix It修补程序",
+    "description": "介绍恶意软件中RC4加密的识别与解码\r真正的垫片黑幕\r使用和滥用Microsoft的Fix It修补程序",
     "tags": [],
     "title": "样本分析拓展",
     "uri": "/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/index.html"
@@ -287,8 +287,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 工具",
-    "content": "",
-    "description": "",
+    "content": "TwitterTimelineClientScript\rrss2dingtalk",
+    "description": "TwitterTimelineClientScript\rrss2dingtalk",
     "tags": [],
     "title": "威胁情报工具",
     "uri": "/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html"
@@ -303,8 +303,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 红蓝对抗",
-    "content": "",
-    "description": "",
+    "content": "页面篡改分析-服务器端重定向跳转\r页面篡改分析-http流量劫持页面篡分析\r页面篡改分析-基于sojson.v4混淆的页面篡思路分析\r页面篡改分析一处BoCai页面\r页面篡改分析-js的eval加密方式跳转\r页面篡改分析-EVAL加密\r页面篡改分析-基于sojson.v4混淆的页面篡思路分析\r页面篡改分析-短链接多级跳转\r页面篡改分析-首次会话跳转菠菜页面篡改分析",
+    "description": "页面篡改分析-服务器端重定向跳转\r页面篡改分析-http流量劫持页面篡分析\r页面篡改分析-基于sojson.v4混淆的页面篡思路分析\r页面篡改分析一处BoCai页面\r页面篡改分析-js的eval加密方式跳转\r页面篡改分析-EVAL加密\r页面篡改分析-基于sojson.v4混淆的页面篡思路分析\r页面篡改分析-短链接多级跳转\r页面篡改分析-首次会话跳转菠菜页面篡改分析",
     "tags": [],
     "title": "页面篡改分析",
     "uri": "/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html"
@@ -321,8 +321,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应",
-    "content": "",
-    "description": "",
+    "content": "EmergencyRocketPackage",
+    "description": "EmergencyRocketPackage",
     "tags": [],
     "title": "0x06取证辅助工具",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x06%E5%8F%96%E8%AF%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/index.html"
@@ -395,16 +395,16 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应",
-    "content": "",
-    "description": "",
+    "content": "3文件恢复\r4系统信息收集\r2磁盘挂载\r1磁盘镜像",
+    "description": "3文件恢复\r4系统信息收集\r2磁盘挂载\r1磁盘镜像",
     "tags": [],
     "title": "0x02电子取证",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应 \u003e 0x02电子取证",
-    "content": "",
-    "description": "",
+    "content": "R-studio network(win)\rDiskGenius(win)\rUFS explorer professional recovery(win/mac/linux)\rWinHEX(win)\r数据恢复工具性能对比",
+    "description": "R-studio network(win)\rDiskGenius(win)\rUFS explorer professional recovery(win/mac/linux)\rWinHEX(win)\r数据恢复工具性能对比",
     "tags": [],
     "title": "3文件恢复",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html"
@@ -419,8 +419,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应 \u003e 0x02电子取证",
-    "content": "",
-    "description": "",
+    "content": "应急响应关键证据检索提取\r国标中电子取证相关要求及综述",
+    "description": "应急响应关键证据检索提取\r国标中电子取证相关要求及综述",
     "tags": [],
     "title": "4系统信息收集",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html"
@@ -435,8 +435,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应 \u003e 0x02电子取证 \u003e 4系统信息收集",
-    "content": "",
-    "description": "",
+    "content": "安全策略检测\r钩子检查\r系统共享检查\r环境变量检查\r回收站文件检查\r浏览器相关检查\rhosts文件检查\r防火墙规则检查\r映像劫持检查\rlinux软件包管理器文件检查\rweb后门查杀\rlinux下病毒查杀\r系统进程检查\r系统日志查询\r重点文件目录检查\r异常端口查询\r服务信息检查\r计划任务检查\r命令行历史记录\r启动项检查\r系统用户审查",
+    "description": "安全策略检测\r钩子检查\r系统共享检查\r环境变量检查\r回收站文件检查\r浏览器相关检查\rhosts文件检查\r防火墙规则检查\r映像劫持检查\rlinux软件包管理器文件检查\rweb后门查杀\rlinux下病毒查杀\r系统进程检查\r系统日志查询\r重点文件目录检查\r异常端口查询\r服务信息检查\r计划任务检查\r命令行历史记录\r启动项检查\r系统用户审查",
     "tags": [],
     "title": "应急响应关键证据检索提取",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.html"
@@ -459,8 +459,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 红蓝对抗",
-    "content": "",
-    "description": "",
+    "content": "windows计划任务隐藏-检查方式\rCS X86 payload分析混淆加密\rlinux隐藏进程-进程名伪造\rlinux隐藏进程-目录挂载方式研究\rlinux隐藏进程-预加载库或lib劫持\rMysql提权小结",
+    "description": "windows计划任务隐藏-检查方式\rCS X86 payload分析混淆加密\rlinux隐藏进程-进程名伪造\rlinux隐藏进程-目录挂载方式研究\rlinux隐藏进程-预加载库或lib劫持\rMysql提权小结",
     "tags": [],
     "title": "系统入侵对抗研究",
     "uri": "/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html"
@@ -531,8 +531,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 工具 \u003e 渗透工具",
-    "content": "",
-    "description": "",
+    "content": "漏洞验证工具nuclei官方模版编写中文译文归档\r漏洞验证工具nuclei官方文档中文译文归档\rUnsafeHttpMethod类型漏洞检测脚本",
+    "description": "漏洞验证工具nuclei官方模版编写中文译文归档\r漏洞验证工具nuclei官方文档中文译文归档\rUnsafeHttpMethod类型漏洞检测脚本",
     "tags": [],
     "title": "渗透验证工具",
     "uri": "/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/index.html"
@@ -611,8 +611,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应 \u003e 0x02电子取证 \u003e 4系统信息收集 \u003e 应急响应关键证据检索提取",
-    "content": "",
-    "description": "",
+    "content": "计划任务检查",
+    "description": "计划任务检查",
     "tags": [],
     "title": "计划任务检查",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%A3%80%E6%9F%A5/index.html"
@@ -651,8 +651,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应 \u003e 0x02电子取证",
-    "content": "",
-    "description": "",
+    "content": "GetData Mount Image Pro\rArsenal_Image_Mounter\rmount_command\rOSFMount\r磁盘挂载工具特点对比表",
+    "description": "GetData Mount Image Pro\rArsenal_Image_Mounter\rmount_command\rOSFMount\r磁盘挂载工具特点对比表",
     "tags": [],
     "title": "2磁盘挂载",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/index.html"
@@ -667,8 +667,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 编程",
-    "content": "",
-    "description": "",
+    "content": "scapy",
+    "description": "scapy",
     "tags": [],
     "title": "python",
     "uri": "/%E7%BC%96%E7%A8%8B/python/index.html"
@@ -685,8 +685,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "- ## [python](/编程/python)\n- ### [scapy](/编程/python/scrapy爬虫框架)\n\n    如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip\n    scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。\n{class=\"children children-type-list children-sort-\"}",
-    "description": "- ## [python](/编程/python)\n- ### [scapy](/编程/python/scrapy爬虫框架)\n\n    如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip\n    scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。\n{class=\"children children-type-list children-sort-\"}",
+    "content": "python",
+    "description": "python",
     "tags": [],
     "title": "编程",
     "uri": "/%E7%BC%96%E7%A8%8B/index.html"
@@ -709,8 +709,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "手机丢失后一定要做的几件必做事！",
+    "description": "手机丢失后一定要做的几件必做事！",
     "tags": [],
     "title": "科普",
     "uri": "/%E7%A7%91%E6%99%AE/index.html"
@@ -953,8 +953,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 工具",
-    "content": "",
-    "description": "",
+    "content": "Coremail日志分析脚本",
+    "description": "Coremail日志分析脚本",
     "tags": [],
     "title": "日志分析工具",
     "uri": "/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html"
@@ -989,8 +989,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 恶意样本分析",
-    "content": "",
-    "description": "",
+    "content": "样本分析-trojan/buzus“霸族”木马通过邮件传播\r样本分析-邮件恶意样本发现azorult间谍软件传播\r样本分析-邮件恶意样本中发现新mydoom蠕虫传播地址\rqax-vpn-pwn工具投毒事件分析",
+    "description": "样本分析-trojan/buzus“霸族”木马通过邮件传播\r样本分析-邮件恶意样本发现azorult间谍软件传播\r样本分析-邮件恶意样本中发现新mydoom蠕虫传播地址\rqax-vpn-pwn工具投毒事件分析",
     "tags": [],
     "title": "样本分析记录",
     "uri": "/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E8%AE%B0%E5%BD%95/index.html"
@@ -1129,24 +1129,24 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应",
-    "content": "",
-    "description": "",
+    "content": "2.0电子取证标准",
+    "description": "2.0电子取证标准",
     "tags": [],
     "title": "0x00电子取证标准",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x00%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E6%A0%87%E5%87%86/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应",
-    "content": "",
-    "description": "",
+    "content": "现场勘查",
+    "description": "现场勘查",
     "tags": [],
     "title": "0x01现场勘查",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x01%E7%8E%B0%E5%9C%BA%E5%8B%98%E6%9F%A5/index.html"
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 应急响应 \u003e 0x02电子取证",
-    "content": "",
-    "description": "",
+    "content": "Clonezilla\rDatanumen_disk_image\rdd/dc3dd(linux)\rEnCase_forensic_imager.\rGetdataForensicImager\rGuymager\r镜像类型及各产品特性对比",
+    "description": "Clonezilla\rDatanumen_disk_image\rdd/dc3dd(linux)\rEnCase_forensic_imager.\rGetdataForensicImager\rGuymager\r镜像类型及各产品特性对比",
     "tags": [],
     "title": "1磁盘镜像",
     "uri": "/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html"
@@ -1193,8 +1193,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 机器学习",
-    "content": "",
-    "description": "",
+    "content": "chatgpt微信机器人搭建",
+    "description": "chatgpt微信机器人搭建",
     "tags": [],
     "title": "chatgpt",
     "uri": "/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/chatgpt/index.html"
@@ -1211,8 +1211,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 机器学习",
-    "content": "",
-    "description": "",
+    "content": "claude注册",
+    "description": "claude注册",
     "tags": [],
     "title": "claude",
     "uri": "/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/claude/index.html"
@@ -1317,8 +1317,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 操作系统 \u003e windows",
-    "content": "",
-    "description": "",
+    "content": "[MS-GPSB]Window核心协议-安全扩展协议",
+    "description": "[MS-GPSB]Window核心协议-安全扩展协议",
     "tags": [],
     "title": "Powershell",
     "uri": "/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/Powershell/index.html"
@@ -1359,8 +1359,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 操作系统",
-    "content": "",
-    "description": "",
+    "content": "Powershell\r组策略",
+    "description": "Powershell\r组策略",
     "tags": [],
     "title": "windows",
     "uri": "/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html"
@@ -1375,8 +1375,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 恶意样本分析",
-    "content": "",
-    "description": "",
+    "content": "Mobsf_MAC_AVD_Android动静态环境搭建排坑实战",
+    "description": "Mobsf_MAC_AVD_Android动静态环境搭建排坑实战",
     "tags": [],
     "title": "安卓样本分析",
     "uri": "/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E5%AE%89%E5%8D%93%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html"
@@ -1393,8 +1393,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "windows",
+    "description": "windows",
     "tags": [],
     "title": "操作系统",
     "uri": "/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html"
@@ -1425,8 +1425,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "《考试脑科学》池谷裕二\r《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森.",
+    "description": "《考试脑科学》池谷裕二\r《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森.",
     "tags": [],
     "title": "社科",
     "uri": "/%E7%A4%BE%E7%A7%91/index.html"
@@ -1449,8 +1449,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove \u003e 操作系统 \u003e windows",
-    "content": "",
-    "description": "",
+    "content": "SID安全标识符",
+    "description": "SID安全标识符",
     "tags": [],
     "title": "组策略",
     "uri": "/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html"

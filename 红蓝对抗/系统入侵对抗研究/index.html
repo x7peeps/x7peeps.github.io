@@ -5,41 +5,45 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.161.1">
     <meta name="generator" content="Relearn 9.0.3+36307e4ed23582638ab689240ac7b427217803ee">
-    <meta name="description" content="">
+    <meta name="description" content="windows计划任务隐藏-检查方式CS X86 payload分析混淆加密linux隐藏进程-进程名伪造linux隐藏进程-目录挂载方式研究linux隐藏进程-预加载库或lib劫持Mysql提权小结">
     <meta name="author" content="x7peeps">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="系统入侵对抗研究 :: x7peeps">
+    <meta name="twitter:description" content="windows计划任务隐藏-检查方式CS X86 payload分析混淆加密linux隐藏进程-进程名伪造linux隐藏进程-目录挂载方式研究linux隐藏进程-预加载库或lib劫持Mysql提权小结">
     <meta property="og:url" content="https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html">
     <meta property="og:site_name" content="x7peeps">
     <meta property="og:title" content="系统入侵对抗研究 :: x7peeps">
+    <meta property="og:description" content="windows计划任务隐藏-检查方式CS X86 payload分析混淆加密linux隐藏进程-进程名伪造linux隐藏进程-目录挂载方式研究linux隐藏进程-预加载库或lib劫持Mysql提权小结">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:type" content="website">
     <meta itemprop="name" content="系统入侵对抗研究 :: x7peeps">
+    <meta itemprop="description" content="windows计划任务隐藏-检查方式CS X86 payload分析混淆加密linux隐藏进程-进程名伪造linux隐藏进程-目录挂载方式研究linux隐藏进程-预加载库或lib劫持Mysql提权小结">
     <meta itemprop="datePublished" content="2021-08-30T10:00:00+08:00">
     <meta itemprop="dateModified" content="2021-08-30T10:00:00+08:00">
+    <meta itemprop="wordCount" content="95">
     <title>系统入侵对抗研究 :: x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.xml" rel="alternate" type="application/rss+xml" title="系统入侵对抗研究 :: x7peeps">
-    <link href="/images/favicon.png?1779844614" rel="icon" type="image/png">
-    <link href="/css/auto-complete/auto-complete.min.css?1779844614" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1779844614" defer></script>
-    <script src="/js/search-lunr.min.js?1779844614" defer></script>
-    <script src="/js/search.min.js?1779844614" defer></script>
+    <link href="/images/favicon.png?1779859586" rel="icon" type="image/png">
+    <link href="/css/auto-complete/auto-complete.min.css?1779859586" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1779859586" defer></script>
+    <script src="/js/search-lunr.min.js?1779859586" defer></script>
+    <script src="/js/search.min.js?1779859586" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.zh.js?1779844614";
+      window.relearn.index_js_url="/searchindex.zh.js?1779859586";
     </script>
-    <script src="/js/lunr/lunr.min.js?1779844614" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1779844614" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1779844614" defer></script>
-    <script src="/js/lunr/lunr.zh.min.js?1779844614" defer></script>
+    <script src="/js/lunr/lunr.min.js?1779859586" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1779859586" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1779859586" defer></script>
+    <script src="/js/lunr/lunr.zh.min.js?1779859586" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['zh'];
     </script>
-    <link href="/fonts/fontawesome/css/all.min.css?1779844614" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779844614" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779844614" rel="stylesheet">
-    <link href="/css/theme.min.css?1779844614" rel="stylesheet">
-    <link href="/css/format-html.min.css?1779844614" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/all.min.css?1779859586" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779859586" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779859586" rel="stylesheet">
+    <link href="/css/theme.min.css?1779859586" rel="stylesheet">
+    <link href="/css/format-html.min.css?1779859586" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -88,8 +92,8 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <link href="/css/custom.css?1779844614" rel="stylesheet">
-    <script src="/js/custom.js?1779844614" defer></script>
+    <link href="/css/custom.css?1779859586" rel="stylesheet">
+    <script src="/js/custom.js?1779859586" defer></script>
   </head>
   <body class="mobile-support html" data-origin="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html">
     <div id="R-body" class="default-animation">
@@ -139,6 +143,74 @@
 
 <h1 id="系统入侵对抗研究">系统入侵对抗研究</h1>
 
+<ul class="card-container">
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-21f575daf9565e66b66ae2ba7d767b48">
+    <div class="card-content">
+      <div class="card-title" id="R-card-21f575daf9565e66b66ae2ba7d767b48">
+        <a href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html">
+        windows计划任务隐藏-检查方式
+        </a>
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-2e27927e94216f30b3c1a3eb8aedee55">
+    <div class="card-content">
+      <div class="card-title" id="R-card-2e27927e94216f30b3c1a3eb8aedee55">
+        <a href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html">
+        CS X86 payload分析混淆加密
+        </a>
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-e374f4a2dd7b783bc89aa2d81c4bc914">
+    <div class="card-content">
+      <div class="card-title" id="R-card-e374f4a2dd7b783bc89aa2d81c4bc914">
+        <a href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html">
+        linux隐藏进程-进程名伪造
+        </a>
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-3f9a6a62fb469a016f824fde27d6ca45">
+    <div class="card-content">
+      <div class="card-title" id="R-card-3f9a6a62fb469a016f824fde27d6ca45">
+        <a href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.html">
+        linux隐藏进程-目录挂载方式研究
+        </a>
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-95a314743fbf1472f9a4d94eabb5659d">
+    <div class="card-content">
+      <div class="card-title" id="R-card-95a314743fbf1472f9a4d94eabb5659d">
+        <a href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html">
+        linux隐藏进程-预加载库或lib劫持
+        </a>
+      </div>
+    </div>
+  </article>
+</li>
+<li>
+  <article class="card card-popout" aria-labelledby="R-card-0f3437ab880a15046f10e95e1d726b54">
+    <div class="card-content">
+      <div class="card-title" id="R-card-0f3437ab880a15046f10e95e1d726b54">
+        <a href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/Mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html">
+        Mysql提权小结
+        </a>
+      </div>
+    </div>
+  </article>
+</li>
+</ul>
 
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> 2021年8月30日
@@ -356,8 +428,8 @@
 <div id="R-footer" class="default-animation"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779844614" defer></script>
-    <script src="/js/theme.min.js?1779844614" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779859586" defer></script>
+    <script src="/js/theme.min.js?1779859586" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

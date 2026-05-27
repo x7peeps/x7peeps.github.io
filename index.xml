@@ -20,84 +20,84 @@
       <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</guid>
-      <description></description>
+      <description>web应用渗透测试方法论</description>
     </item>
     <item>
       <title>应急响应</title>
       <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</link>
       <pubDate>Wed, 01 Feb 2023 12:03:49 +0800</pubDate>
       <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</guid>
-      <description></description>
+      <description>0x03取证分析&#xD;0x06取证辅助工具&#xD;0x02电子取证&#xD;0x00电子取证标准&#xD;0x01现场勘查</description>
     </item>
     <item>
       <title>漏洞复现</title>
       <link>https://x7peeps.com/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</link>
       <pubDate>Sun, 13 Aug 2023 08:18:00 +0800</pubDate>
       <guid>https://x7peeps.com/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</guid>
-      <description></description>
+      <description>企业微信私有化部署api未授权漏洞&#xD;CVE-2014-4210_Weblogic SSRF漏洞&#xD;WPSSRC-2023-0701金山WPS_RCE&#xD;CVE-2020-14645_weblogic_T3反序列化RCE复测&#xD;CVE-2020-0796 ‘SMBGhost’ Remote Code Execution&#xD;CVE-2017-11882 Office远程代码执行漏洞复现</description>
     </item>
     <item>
       <title>恶意样本分析</title>
       <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html</link>
       <pubDate>Thu, 10 Nov 2022 22:25:00 +0800</pubDate>
       <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html</guid>
-      <description></description>
+      <description>样本分析基础&#xD;样本分析拓展&#xD;样本分析记录&#xD;安卓样本分析</description>
     </item>
     <item>
       <title>红蓝对抗</title>
       <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</link>
       <pubDate>Fri, 24 Jun 2022 20:08:00 +0800</pubDate>
       <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</guid>
-      <description></description>
+      <description>页面篡改分析&#xD;系统入侵对抗研究</description>
     </item>
     <item>
       <title>情报跟踪</title>
       <link>https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html</link>
       <pubDate>Sat, 04 Apr 2020 21:18:00 +0800</pubDate>
       <guid>https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html</guid>
-      <description></description>
+      <description>黑客背后的&#34;Thrip&#34;网络间谍组织</description>
     </item>
     <item>
       <title>工具</title>
       <link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/index.html</link>
       <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
       <guid>https://x7peeps.com/%E5%B7%A5%E5%85%B7/index.html</guid>
-      <description></description>
+      <description>渗透工具&#xD;威胁情报工具&#xD;日志分析工具</description>
     </item>
     <item>
       <title>机器学习</title>
       <link>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html</guid>
-      <description></description>
+      <description>chatgpt&#xD;claude</description>
     </item>
     <item>
       <title>编程</title>
       <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</link>
       <pubDate>Fri, 11 Sep 2020 12:03:49 +0800</pubDate>
       <guid>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</guid>
-      <description>- ## [python](/编程/python)&#xA;- ### [scapy](/编程/python/scrapy爬虫框架)&#xA;&#xA;    如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip&#xA;    scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。&#xA;{class=&#34;children children-type-list children-sort-&#34;}</description>
+      <description>python</description>
     </item>
     <item>
       <title>科普</title>
       <link>https://x7peeps.com/%E7%A7%91%E6%99%AE/index.html</link>
       <pubDate>Thu, 10 Sep 2020 11:49:00 +0800</pubDate>
       <guid>https://x7peeps.com/%E7%A7%91%E6%99%AE/index.html</guid>
-      <description></description>
+      <description>手机丢失后一定要做的几件必做事！</description>
     </item>
     <item>
       <title>操作系统</title>
       <link>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</guid>
-      <description></description>
+      <description>windows</description>
     </item>
     <item>
       <title>社科</title>
       <link>https://x7peeps.com/%E7%A4%BE%E7%A7%91/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://x7peeps.com/%E7%A4%BE%E7%A7%91/index.html</guid>
-      <description></description>
+      <description>《考试脑科学》池谷裕二&#xD;《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森.</description>
     </item>
   </channel>
 </rss>

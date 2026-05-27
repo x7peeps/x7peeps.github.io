@@ -3,7 +3,7 @@
   <channel>
     <title>编程 :: x7peeps</title>
     <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</link>
-    <description>- ## [python](/编程/python)&#xA;- ### [scapy](/编程/python/scrapy爬虫框架)&#xA;&#xA;    如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip&#xA;    scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。&#xA;{class=&#34;children children-type-list children-sort-&#34;}</description>
+    <description>python</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 11 Sep 2020 12:03:49 +0800</lastBuildDate>
@@ -13,7 +13,7 @@
       <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.html</link>
       <pubDate>Fri, 11 Sep 2020 12:03:49 +0800</pubDate>
       <guid>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.html</guid>
-      <description></description>
+      <description>scapy</description>
     </item>
   </channel>
 </rss>
