@@ -322,6 +322,17 @@ aside#R-sidebar {
 
 .topbar-wrapper {
   border-left: none !important;
+  background-image: none !important;
+}
+
+/* Force remove any before/after pseudo-elements on topbar that might carry the theme's accent color */
+.topbar-wrapper::before,
+.topbar-wrapper::after,
+#R-topbar::before,
+#R-topbar::after {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
 }
 
 /* Hide perfect-scrollbar visual elements completely */
