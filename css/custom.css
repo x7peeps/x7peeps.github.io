@@ -1,8 +1,8 @@
 :root{
   --x7-border: rgba(255,255,255,.10);
   --x7-border-2: rgba(255,255,255,.14);
-  --x7-bg: rgba(15,18,22,1);
-  --x7-bg-2: rgba(11,13,16,1);
+  --x7-bg: #000000;
+  --x7-bg-2: #000000;
   --x7-surface: rgba(255,255,255,.03);
   --x7-text: rgba(234,240,248,.92);
   --x7-muted: rgba(234,240,248,.68);
@@ -54,7 +54,10 @@ main#R-body-inner .flex-block-wrapper{
 }
 
 nav#R-topbar{
-  border-bottom: 1px solid var(--INTERNAL-TOPBAR-SEPARATOR-color);
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: none !important;
 }
 
 nav#R-topbar .topbar-breadcrumbs{
@@ -67,7 +70,7 @@ nav#R-topbar .topbar-button a{
 }
 
 aside#R-sidebar{
-  border-right: 1px solid rgba(255,255,255,.10);
+  border-right: none !important;
   overflow: hidden;
 }
 
@@ -104,10 +107,10 @@ aside#R-sidebar {
   top: 0;
   height: 100vh !important;
   z-index: 50;
-  background: rgba(30, 32, 36, 0.6) !important; /* Semi-transparent dark background */
+  background: rgba(0, 0, 0, 0.6) !important; /* Semi-transparent black background */
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-right: 1px solid rgba(255, 255, 255, 0.05) !important; /* Very subtle glass edge */
+  border-right: none !important; /* Remove boundary */
   box-shadow: none !important; /* Remove harsh shadow */
   /* Remove layout overrides so trackpad scroll works with perfect-scrollbar */
   width: var(--INTERNAL-MENU-L-width) !important;
