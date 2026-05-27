@@ -82,7 +82,7 @@ aside#R-sidebar{
 }
 
 #R-search-by{
-  padding: 0;
+  padding-left: 1.75rem !important;
 }
 
 #R-search-by .searchbox{
@@ -293,6 +293,12 @@ aside#R-sidebar {
   display: none !important;
 }
 
+/* 7. Hide unused sidebar elements */
+#R-homelinks,
+#R-footer {
+  display: none !important;
+}
+
 .ps__rail-x{
   display: none !important;
 }
@@ -383,12 +389,14 @@ article.home table{
   border-radius: .7rem;
   border: 1px solid var(--x7-border-2);
   background: var(--x7-surface);
+  color: var(--x7-text) !important;
   font-weight: 800;
   letter-spacing: -.02em;
 }
 
 .x7-logo-text{
   font-weight: 750;
+  color: var(--x7-text) !important;
   letter-spacing: -.01em;
 }
 
