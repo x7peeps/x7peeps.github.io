@@ -540,3 +540,101 @@ html, body {
   overflow-x: hidden;
   overscroll-behavior-x: none;
 }
+
+/* ==========================================================================
+   Card Grid Design (with Thumbnail Support)
+   ========================================================================== */
+
+.card-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 1.5rem !important;
+  padding: 0 !important;
+  margin: 2rem 0 !important;
+  list-style: none !important;
+}
+
+.card-container > li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+article.card.card-popout {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+article.card.card-popout:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.card-image-link {
+  display: block;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.4s ease;
+}
+
+article.card.card-popout:hover .card-image {
+  transform: scale(1.05);
+}
+
+article.card.card-popout .card-content {
+  padding: 1.25rem !important;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+article.card.card-popout .card-title {
+  margin: 0 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+
+article.card.card-popout .card-title a {
+  color: var(--x7-text) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+  /* Multi-line truncation for title */
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+article.card.card-popout:hover .card-title a {
+  color: var(--x7-accent) !important;
+}
+
+article.card.card-popout .card-content-text {
+  color: var(--x7-muted) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  /* Multi-line truncation for summary */
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  margin-top: 0.25rem !important;
+}
