@@ -1,2 +1,103 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>竹林 - Bamboo grove :: x7peeps</title><link>https://x7peeps.com/index.html</link><description>安全研究 / 工具开发 / 取证与攻防知识库。把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sun, 13 Aug 2023 08:18:00 +0800</lastBuildDate><atom:link href="https://x7peeps.com/index.xml" rel="self" type="application/rss+xml"/><item><title>关于</title><link>https://x7peeps.com/%E5%85%B3%E4%BA%8E/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://x7peeps.com/%E5%85%B3%E4%BA%8E/index.html</guid><description>竹林中的一处小屋🛖，种植着大量的竹子，如果你需要那就多逛逛竹林吧，希望日后你也能多多种植属于你的竹子。
-当你的才华还撑不起你的野心的时候，你就应该静下心来学习；当你的能力还驾驭不了你的目标时，就应该沉下心来，历练；梦想，不是浮躁，而是沉淀和积累，只有拼出来的美丽，没有等出来的辉煌，机会永远是留给最渴望的那个人，学会与内心深处的你对话，问问自己，想要怎样的人生，静心学习，耐心沉淀，送给自己，共勉。——莫言</description></item><item><title>渗透测试</title><link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</guid><description/></item><item><title>应急响应</title><link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</link><pubDate>Wed, 01 Feb 2023 12:03:49 +0800</pubDate><guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</guid><description/></item><item><title>漏洞复现</title><link>https://x7peeps.com/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</link><pubDate>Sun, 13 Aug 2023 08:18:00 +0800</pubDate><guid>https://x7peeps.com/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</guid><description/></item><item><title>恶意样本分析</title><link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html</link><pubDate>Thu, 10 Nov 2022 22:25:00 +0800</pubDate><guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html</guid><description/></item><item><title>红蓝对抗</title><link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</link><pubDate>Fri, 24 Jun 2022 20:08:00 +0800</pubDate><guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</guid><description/></item><item><title>情报跟踪</title><link>https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html</link><pubDate>Sat, 04 Apr 2020 21:18:00 +0800</pubDate><guid>https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html</guid><description/></item><item><title>工具</title><link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/index.html</link><pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate><guid>https://x7peeps.com/%E5%B7%A5%E5%85%B7/index.html</guid><description/></item><item><title>机器学习</title><link>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html</guid><description/></item><item><title>编程</title><link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</link><pubDate>Fri, 11 Sep 2020 12:03:49 +0800</pubDate><guid>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</guid><description/></item><item><title>科普</title><link>https://x7peeps.com/%E7%A7%91%E6%99%AE/index.html</link><pubDate>Thu, 10 Sep 2020 11:49:00 +0800</pubDate><guid>https://x7peeps.com/%E7%A7%91%E6%99%AE/index.html</guid><description/></item><item><title>操作系统</title><link>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</guid><description/></item><item><title>社科</title><link>https://x7peeps.com/%E7%A4%BE%E7%A7%91/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://x7peeps.com/%E7%A4%BE%E7%A7%91/index.html</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>竹林 - Bamboo grove :: x7peeps</title>
+    <link>https://x7peeps.com/index.html</link>
+    <description>安全研究 / 工具开发 / 取证与攻防知识库。把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 13 Aug 2023 08:18:00 +0800</lastBuildDate>
+    <atom:link href="https://x7peeps.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于</title>
+      <link>https://x7peeps.com/%E5%85%B3%E4%BA%8E/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%85%B3%E4%BA%8E/index.html</guid>
+      <description>竹林中的一处小屋🛖，种植着大量的竹子，如果你需要那就多逛逛竹林吧，希望日后你也能多多种植属于你的竹子。&#xA;当你的才华还撑不起你的野心的时候，你就应该静下心来学习；当你的能力还驾驭不了你的目标时，就应该沉下心来，历练；梦想，不是浮躁，而是沉淀和积累，只有拼出来的美丽，没有等出来的辉煌，机会永远是留给最渴望的那个人，学会与内心深处的你对话，问问自己，想要怎样的人生，静心学习，耐心沉淀，送给自己，共勉。——莫言</description>
+    </item>
+    <item>
+      <title>渗透测试</title>
+      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>应急响应</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</link>
+      <pubDate>Wed, 01 Feb 2023 12:03:49 +0800</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>漏洞复现</title>
+      <link>https://x7peeps.com/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</link>
+      <pubDate>Sun, 13 Aug 2023 08:18:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>恶意样本分析</title>
+      <link>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html</link>
+      <pubDate>Thu, 10 Nov 2022 22:25:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>红蓝对抗</title>
+      <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</link>
+      <pubDate>Fri, 24 Jun 2022 20:08:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>情报跟踪</title>
+      <link>https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html</link>
+      <pubDate>Sat, 04 Apr 2020 21:18:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>工具</title>
+      <link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/index.html</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%B7%A5%E5%85%B7/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>机器学习</title>
+      <link>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>编程</title>
+      <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</link>
+      <pubDate>Fri, 11 Sep 2020 12:03:49 +0800</pubDate>
+      <guid>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</guid>
+      <description>- ## [python](/编程/python)&#xA;- ### [scapy](/编程/python/scrapy爬虫框架)&#xA;&#xA;    如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip&#xA;    scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。&#xA;{class=&#34;children children-type-list children-sort-&#34;}</description>
+    </item>
+    <item>
+      <title>科普</title>
+      <link>https://x7peeps.com/%E7%A7%91%E6%99%AE/index.html</link>
+      <pubDate>Thu, 10 Sep 2020 11:49:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E7%A7%91%E6%99%AE/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>操作系统</title>
+      <link>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>社科</title>
+      <link>https://x7peeps.com/%E7%A4%BE%E7%A7%91/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E7%A4%BE%E7%A7%91/index.html</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

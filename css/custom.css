@@ -95,61 +95,174 @@ aside#R-sidebar{
   letter-spacing: .01em;
 }
 
-#R-content-wrapper{
-  overflow-x: hidden;
+/* --- Obsidian Style Sidebar Redesign --- */
+
+/* 1. Sidebar Background & Border (Glassmorphism) */
+aside#R-sidebar {
+  position: fixed !important; /* Make it float so content scrolls underneath */
+  left: 0;
+  top: 0;
+  height: 100vh !important;
+  z-index: 50;
+  background: rgba(30, 32, 36, 0.6) !important; /* Semi-transparent dark background */
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important; /* Very subtle glass edge */
+  box-shadow: none !important; /* Remove harsh shadow */
+  /* Remove layout overrides so trackpad scroll works with perfect-scrollbar */
+  width: var(--INTERNAL-MENU-L-width) !important;
+  max-width: var(--INTERNAL-MENU-L-width) !important;
+  min-width: var(--INTERNAL-MENU-L-width) !important;
 }
 
-.R-sidebarmenu ul.collapsible-menu.enlarge.morespace{
-  padding: .25rem .6rem .9rem .6rem;
-  overflow-x: hidden;
+/* Allow body background to be visible under the glass sidebar */
+#R-body {
+  margin-left: var(--INTERNAL-MENU-L-width) !important; /* Match sidebar width */
+  padding-left: 0 !important; 
+  width: calc(100% - var(--INTERNAL-MENU-L-width)) !important;
+  max-width: calc(100% - var(--INTERNAL-MENU-L-width)) !important;
+}
+/* Ensure responsive behavior */
+@media (max-width: 59.999rem) {
+  aside#R-sidebar {
+    width: var(--INTERNAL-MENU-M-width) !important;
+    max-width: var(--INTERNAL-MENU-M-width) !important;
+    min-width: var(--INTERNAL-MENU-M-width) !important;
+  }
+  #R-body {
+    margin-left: var(--INTERNAL-MENU-M-width) !important;
+    width: calc(100% - var(--INTERNAL-MENU-M-width)) !important;
+    max-width: calc(100% - var(--INTERNAL-MENU-M-width)) !important;
+  }
+}
+@media (max-width: 47.999rem) {
+  aside#R-sidebar {
+    position: absolute !important; /* Theme handles mobile flyout natively */
+    width: var(--INTERNAL-MENU-S-width) !important;
+    max-width: var(--INTERNAL-MENU-S-width) !important;
+    min-width: var(--INTERNAL-MENU-S-width) !important;
+  }
+  #R-body {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }
 
-.R-sidebarmenu ul.collapsible-menu.enlarge.morespace > li > a.padding{
-  padding: .38rem .6rem;
-  border-radius: .65rem;
-  line-height: 1.25;
-  display: flex;
-  align-items: center;
-  gap: .55rem;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+/* 2. Header & Logo Area */
+#R-header-wrapper {
+  border-bottom: 1px solid transparent !important;
+  position: relative;
+  padding-top: 1.5rem !important;
 }
 
-.R-sidebarmenu ul.collapsible-menu.enlarge.morespace li > ul.collapsible-menu{
-  margin: .15rem 0 .35rem .6rem;
-  padding-left: .6rem;
-  border-left: 1px solid rgba(255,255,255,.08);
-  overflow-x: hidden;
+/* 3. Search Box Modernization */
+#R-search-by .searchbox {
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+#R-search-by .searchbox:focus-within {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: var(--x7-accent) !important;
+  box-shadow: 0 0 0 2px rgba(98,185,255,0.15) !important;
 }
 
-.R-sidebarmenu ul.collapsible-menu.enlarge.morespace li > ul.collapsible-menu a.padding{
-  padding: .3rem .55rem;
-  border-radius: .6rem;
-  font-size: .95em;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+/* 4. Menu Items - Obsidian Style (Tight, Left Chevron, Full Width Hover) */
+.R-sidebarmenu ul.collapsible-menu {
+  overflow-x: hidden !important;
 }
 
-.R-sidebarmenu ul.collapsible-menu li.active > a.padding{
-  background: rgba(255,255,255,.04);
-  box-shadow: inset 2px 0 0 var(--INTERNAL-PRIMARY-color);
+/* Prevent theme default background on entire parent block */
+#R-sidebar ul.enlarge > li.parent,
+#R-sidebar ul.enlarge > li.active {
+  background-color: transparent !important;
 }
 
-.R-sidebarmenu ul.collapsible-menu li.active > a.padding{
-  font-weight: 600;
+.R-sidebarmenu ul.collapsible-menu > li {
+  position: relative;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.R-sidebarmenu ul.collapsible-menu i.read-icon{
-  opacity: .35;
-  margin-left: auto;
-  flex: 0 0 auto;
+/* Base link styling */
+.R-sidebarmenu ul.collapsible-menu a.padding {
+  padding: 4px 8px 4px 28px !important; /* Uniform left padding so text aligns perfectly */
+  margin: 1px 8px !important;
+  border-radius: 4px !important;
+  display: block !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  color: var(--x7-muted) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.4 !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+  position: relative;
+}
+
+/* Hover effect */
+.R-sidebarmenu ul.collapsible-menu a.padding:hover {
+  background: rgba(255,255,255,0.06) !important;
+  color: var(--x7-text) !important;
+}
+
+/* Active Item */
+.R-sidebarmenu ul.collapsible-menu li.active > a.padding {
+  background: rgba(98,185,255,0.12) !important;
+  color: var(--x7-accent) !important;
+  font-weight: 500 !important;
+  box-shadow: none !important;
+}
+
+/* 5. Chevron positioning (Left side) */
+#R-sidebar ul.collapsible-menu > li > label {
+  position: absolute !important;
+  left: 12px !important; /* Adjusted to align cleanly in the 28px padding space */
+  top: 1px !important;
+  height: 25px !important; 
+  width: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  background: transparent !important;
+  color: rgba(255,255,255,0.3) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+#R-sidebar ul.collapsible-menu > li > label:hover {
+  color: var(--x7-text) !important;
+}
+
+/* Chevron rotation */
+#R-sidebar ul.collapsible-menu > li > input[type="checkbox"]:checked ~ label > i {
+  transform: rotate(90deg) !important;
+}
+
+/* 6. Sub-menu Indentation */
+.R-sidebarmenu ul.collapsible-menu li > ul.collapsible-menu {
+  margin-left: 16px !important;
+  padding-left: 0 !important;
+  border-left: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.R-sidebarmenu ul.collapsible-menu li > ul.collapsible-menu:hover {
+  border-left-color: rgba(255,255,255,0.15) !important;
+}
+
+.R-sidebarmenu ul.collapsible-menu li > ul.collapsible-menu a.padding {
+  margin: 1px 8px 1px 4px !important;
+}
+
+/* Hide default read icon to keep it clean */
+.R-sidebarmenu ul.collapsible-menu i.read-icon {
+  display: none !important;
 }
 
 .ps__rail-x{
@@ -264,4 +377,122 @@ article.home table{
   *{
     scroll-behavior: auto !important;
   }
+}
+
+/* ==========================================================================
+   Home Page Redesign (Professional Frontend UI)
+   ========================================================================== */
+
+/* Hide the default article footer (e.g., date) on the home page to maintain a clean poster style */
+main#R-body-inner.home article > footer.footline {
+  display: none !important;
+}
+
+/* 1. Reset inner wrapper for home page to allow wider/centered layouts */
+main#R-body-inner.home .flex-block-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+main#R-body-inner.home {
+  padding-top: 0 !important;
+}
+
+/* 2. Container & Entrance Animation */
+.x7-home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 120px);
+  padding: 0;
+  max-width: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  animation: x7-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+@keyframes x7-fade-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Hero Section */
+.x7-home-hero {
+  text-align: center;
+  padding: 5rem 1.5rem 6rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%);
+  border-bottom: none;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.x7-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Avatar styling */
+.x7-avatar-wrapper {
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, var(--x7-border-2), rgba(255,255,255,0.02));
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.x7-avatar-large {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  border: 1px solid var(--x7-border);
+  background: var(--x7-bg);
+}
+
+/* Typography */
+.x7-hero-title {
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 1.25rem 0;
+  color: var(--MAIN-TITLES-TEXT-color);
+  line-height: 1.1;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+
+.x7-hero-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--x7-accent);
+  font-weight: 500;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.x7-hero-mission {
+  font-size: 1.15rem;
+  color: var(--x7-muted);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 768px) {
+  .x7-home-hero {
+    padding: 4rem 1rem 4rem 1rem;
+  }
+}
+
+/* Prevent global horizontal scrolling / trackpad shaking */
+html, body {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }

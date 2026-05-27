@@ -1,7 +1,7 @@
 var relearn_searchindex = [
   {
     "breadcrumb": "",
-    "content": "x7peeps 安全研究 / 工具开发 / 取证与攻防知识库\n把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。\n快速入口 关于 渗透测试 应急响应 工具 分类 标签 搜索 Projects HEDnsExtractor：信息收集 / DNS / 自动化 rss2dingtalk：情报订阅 / 通知 / 流水线 电子取证知识库：采集 / 分析 / 复盘",
+    "content": "X7PEEPS 安全研究 / 工具开发 / 取证与攻防知识库\n把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。",
     "description": "安全研究 / 工具开发 / 取证与攻防知识库。把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。",
     "tags": [],
     "title": "竹林 - Bamboo grove",
@@ -685,8 +685,8 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "竹林 - Bamboo grove",
-    "content": "",
-    "description": "",
+    "content": "- ## [python](/编程/python)\n- ### [scapy](/编程/python/scrapy爬虫框架)\n\n    如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip\n    scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。\n{class=\"children children-type-list children-sort-\"}",
+    "description": "- ## [python](/编程/python)\n- ### [scapy](/编程/python/scrapy爬虫框架)\n\n    如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip\n    scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。\n{class=\"children children-type-list children-sort-\"}",
     "tags": [],
     "title": "编程",
     "uri": "/%E7%BC%96%E7%A8%8B/index.html"

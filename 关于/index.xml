@@ -1,2 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>关于 :: x7peeps</title><link>https://x7peeps.com/%E5%85%B3%E4%BA%8E/index.html</link><description>竹林中的一处小屋🛖，种植着大量的竹子，如果你需要那就多逛逛竹林吧，希望日后你也能多多种植属于你的竹子。
-当你的才华还撑不起你的野心的时候，你就应该静下心来学习；当你的能力还驾驭不了你的目标时，就应该沉下心来，历练；梦想，不是浮躁，而是沉淀和积累，只有拼出来的美丽，没有等出来的辉煌，机会永远是留给最渴望的那个人，学会与内心深处的你对话，问问自己，想要怎样的人生，静心学习，耐心沉淀，送给自己，共勉。——莫言</description><generator>Hugo</generator><language>zh-CN</language><atom:link href="https://x7peeps.com/%E5%85%B3%E4%BA%8E/index.xml" rel="self" type="application/rss+xml"/><item><title>本站搭建</title><link>https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html</guid><description>本站搭建 背景 早些年从wordpress，转hexo，到目前hugo，根据需求做了调整，我对于自定义框架和速度的要求也是越来越高，目前框架采用建站速度更快的hugo+github.io托管，好处是可以不用成本并且建站速度快、维护方便，其实和hexo类似，只是主题上我需要一个类似知识库一样的主题hexo原来的tree虽然我基于原版的调整了但还是不够灵活方便需要手工调整主题源码，经过查找后来选定了目前的hugo并且使用relearn主题承接之前的所有内容。目前博客内容已经完全继承之前的文章并且显示ok，又可以开心的写blog了。</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>关于 :: x7peeps</title>
+    <link>https://x7peeps.com/%E5%85%B3%E4%BA%8E/index.html</link>
+    <description>竹林中的一处小屋🛖，种植着大量的竹子，如果你需要那就多逛逛竹林吧，希望日后你也能多多种植属于你的竹子。&#xA;当你的才华还撑不起你的野心的时候，你就应该静下心来学习；当你的能力还驾驭不了你的目标时，就应该沉下心来，历练；梦想，不是浮躁，而是沉淀和积累，只有拼出来的美丽，没有等出来的辉煌，机会永远是留给最渴望的那个人，学会与内心深处的你对话，问问自己，想要怎样的人生，静心学习，耐心沉淀，送给自己，共勉。——莫言</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <atom:link href="https://x7peeps.com/%E5%85%B3%E4%BA%8E/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>本站搭建</title>
+      <link>https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html</guid>
+      <description>本站搭建 背景 早些年从wordpress，转hexo，到目前hugo，根据需求做了调整，我对于自定义框架和速度的要求也是越来越高，目前框架采用建站速度更快的hugo+github.io托管，好处是可以不用成本并且建站速度快、维护方便，其实和hexo类似，只是主题上我需要一个类似知识库一样的主题hexo原来的tree虽然我基于原版的调整了但还是不够灵活方便需要手工调整主题源码，经过查找后来选定了目前的hugo并且使用relearn主题承接之前的所有内容。目前博客内容已经完全继承之前的文章并且显示ok，又可以开心的写blog了。</description>
+    </item>
+  </channel>
+</rss>
