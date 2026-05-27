@@ -112,7 +112,7 @@ aside#R-sidebar {
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border-right: none !important; /* Remove boundary */
-  box-shadow: none !important; /* Remove harsh shadow */
+  box-shadow: 20px 0 50px 15px #000000 !important; /* Cast a deep black shadow to the right to create a fade-out effect for text scrolling underneath */
   /* Remove layout overrides so trackpad scroll works with perfect-scrollbar */
   width: var(--INTERNAL-MENU-L-width) !important;
   max-width: var(--INTERNAL-MENU-L-width) !important;
@@ -324,7 +324,10 @@ aside#R-sidebar {
 /* 7. Hide unused sidebar elements and residual borders */
 #R-homelinks,
 #R-footer,
-.topbar-sidebar-divider {
+.topbar-sidebar-divider,
+.R-shortcutmenu-footercontrols,
+.R-menu-divider,
+hr.padding {
   display: none !important;
 }
 
