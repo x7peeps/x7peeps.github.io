@@ -119,6 +119,22 @@ aside#R-sidebar {
   min-width: var(--INTERNAL-MENU-L-width) !important;
 }
 
+/* Allow sidebar to scroll natively and horizontally if needed */
+.R-sidebarmenu {
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+  max-height: calc(100vh - 120px) !important; /* leave space for header */
+}
+
+/* Hide native scrollbars but keep functionality */
+.R-sidebarmenu::-webkit-scrollbar {
+  display: none !important;
+}
+.R-sidebarmenu {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
 /* Allow body background to be visible under the glass sidebar */
 #R-body {
   margin-left: var(--INTERNAL-MENU-L-width) !important; /* Match sidebar width */
@@ -182,7 +198,7 @@ aside#R-sidebar {
 
 /* 4. Menu Items - Obsidian Style (Tight, Left Chevron, Full Width Hover) */
 .R-sidebarmenu ul.collapsible-menu {
-  overflow-x: hidden !important;
+  /* Allow content to overflow horizontally without cropping */
 }
 
 /* Prevent theme default background on entire parent block */
@@ -212,10 +228,8 @@ aside#R-sidebar {
   display: block !important;
   flex: 1 1 auto !important;
   width: 100% !important;
-  min-width: 0 !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
+  min-width: max-content !important; /* Allow width to grow with text */
+  white-space: nowrap !important; /* Keep text on one line */
   color: var(--x7-muted) !important;
   font-size: 0.9rem !important;
   line-height: 1.4 !important;
@@ -308,28 +322,12 @@ aside#R-sidebar {
   border-left: none !important;
 }
 
-.ps__rail-x{
+/* Hide perfect-scrollbar visual elements completely */
+.ps__rail-x,
+.ps__rail-y,
+.ps__thumb-x,
+.ps__thumb-y {
   display: none !important;
-}
-
-.ps__rail-y{
-  width: 6px !important;
-  background: transparent !important;
-  right: 2px !important;
-  opacity: .55;
-}
-
-.ps__rail-y:hover{
-  opacity: .85;
-}
-
-.ps__thumb-y{
-  background: rgba(255,255,255,.22) !important;
-  border-radius: 999px !important;
-}
-
-.ps__rail-y:hover .ps__thumb-y{
-  background: rgba(255,255,255,.32) !important;
 }
 
 article.default p,
