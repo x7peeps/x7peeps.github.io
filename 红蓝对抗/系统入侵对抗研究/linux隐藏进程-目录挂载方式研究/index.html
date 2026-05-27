@@ -28,27 +28,27 @@
     <meta itemprop="keywords" content="进程隐藏,持久化">
     <title>linux隐藏进程-目录挂载方式研究 :: x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.xml" rel="alternate" type="application/rss+xml" title="linux隐藏进程-目录挂载方式研究 :: x7peeps">
-    <link href="/images/favicon.png?1779859928" rel="icon" type="image/png">
-    <link href="/css/auto-complete/auto-complete.min.css?1779859928" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1779859928" defer></script>
-    <script src="/js/search-lunr.min.js?1779859928" defer></script>
-    <script src="/js/search.min.js?1779859928" defer></script>
+    <link href="/images/favicon.png?1779860034" rel="icon" type="image/png">
+    <link href="/css/auto-complete/auto-complete.min.css?1779860034" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1779860034" defer></script>
+    <script src="/js/search-lunr.min.js?1779860034" defer></script>
+    <script src="/js/search.min.js?1779860034" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.zh.js?1779859928";
+      window.relearn.index_js_url="/searchindex.zh.js?1779860034";
     </script>
-    <script src="/js/lunr/lunr.min.js?1779859928" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1779859928" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1779859928" defer></script>
-    <script src="/js/lunr/lunr.zh.min.js?1779859928" defer></script>
+    <script src="/js/lunr/lunr.min.js?1779860034" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1779860034" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1779860034" defer></script>
+    <script src="/js/lunr/lunr.zh.min.js?1779860034" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['zh'];
     </script>
-    <link href="/fonts/fontawesome/css/all.min.css?1779859928" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779859928" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779859928" rel="stylesheet">
-    <link href="/css/theme.min.css?1779859928" rel="stylesheet">
-    <link href="/css/format-html.min.css?1779859928" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/all.min.css?1779860034" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779860034" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779860034" rel="stylesheet">
+    <link href="/css/theme.min.css?1779860034" rel="stylesheet">
+    <link href="/css/format-html.min.css?1779860034" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -97,8 +97,8 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <link href="/css/custom.css?1779859928" rel="stylesheet">
-    <script src="/js/custom.js?1779859928" defer></script>
+    <link href="/css/custom.css?1779860034" rel="stylesheet">
+    <script src="/js/custom.js?1779860034" defer></script>
   </head>
   <body class="mobile-support html" data-origin="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.html">
     <div id="R-body" class="default-animation">
@@ -175,17 +175,17 @@ mount /dev/sda1 /proc/xxx
 
 方式2
 mount -o bind /empty/dir /porc/xxxx</code></pre></div>
-<p><a href="#R-image-5a20d7dde89c047975439f1212c41085" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794545400-4223a5f8-f891-4650-a90a-2affabf09157.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5a20d7dde89c047975439f1212c41085"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794545400-4223a5f8-f891-4650-a90a-2affabf09157.png"></a></p>
-<p><a href="#R-image-7318e6f8a691ba0638c543003530de16" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794898291-0acf7eb6-22ad-493a-a653-1ae5765daf9f.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-7318e6f8a691ba0638c543003530de16"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794898291-0acf7eb6-22ad-493a-a653-1ae5765daf9f.png"></a></p>
+<p><a href="#R-image-065773c922615bcecfd82df30fc8b82f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794545400-4223a5f8-f891-4650-a90a-2affabf09157.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-065773c922615bcecfd82df30fc8b82f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794545400-4223a5f8-f891-4650-a90a-2affabf09157.png"></a></p>
+<p><a href="#R-image-52051dd728c5a33ee178a938b12fb565" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794898291-0acf7eb6-22ad-493a-a653-1ae5765daf9f.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-52051dd728c5a33ee178a938b12fb565"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794898291-0acf7eb6-22ad-493a-a653-1ae5765daf9f.png"></a></p>
 <h3 id="查询隐藏挂载目录方式进程的办法">查询隐藏挂载目录方式进程的办法<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="复制链接到剪贴板"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3>
 <p>linux /proc/66003 文件系统内容通过挂载操作已经为空，无法获取细节</p>
-<p><a href="#R-image-df9b266b13e900d6ec43087f3142988f" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794903721-735b4b9e-f456-409e-9204-727e9d2f8f4b.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-df9b266b13e900d6ec43087f3142988f"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794903721-735b4b9e-f456-409e-9204-727e9d2f8f4b.png"></a></p>
+<p><a href="#R-image-60a554259ec4f0fd6b4161c11c5a7541" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794903721-735b4b9e-f456-409e-9204-727e9d2f8f4b.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-60a554259ec4f0fd6b4161c11c5a7541"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794903721-735b4b9e-f456-409e-9204-727e9d2f8f4b.png"></a></p>
 <p>唯一查看到隐藏进程的办法是通过cat /proc/mounts 查看挂载项中包含/proc/pid</p>
-<p><a href="#R-image-a73846e50d65b0319fb9c6eb89781393" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794888772-9063872b-562a-480e-ae76-bd7735355c68.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-a73846e50d65b0319fb9c6eb89781393"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794888772-9063872b-562a-480e-ae76-bd7735355c68.png"></a></p>
+<p><a href="#R-image-56dd7176d16c09b1394cd4803e9e5302" class="lightbox-link"><img alt="image.png" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794888772-9063872b-562a-480e-ae76-bd7735355c68.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-56dd7176d16c09b1394cd4803e9e5302"><img alt="image.png" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/1622794888772-9063872b-562a-480e-ae76-bd7735355c68.png"></a></p>
 
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> 2020年2月20日
@@ -403,8 +403,8 @@ mount -o bind /empty/dir /porc/xxxx</code></pre></div>
 <div id="R-footer" class="default-animation"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779859928" defer></script>
-    <script src="/js/theme.min.js?1779859928" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779860034" defer></script>
+    <script src="/js/theme.min.js?1779860034" defer></script>
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
 </html>

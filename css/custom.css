@@ -43,6 +43,7 @@
 
 body{
   letter-spacing: .01em;
+  background: #000000 !important;
 }
 
 main#R-body-inner .flex-block-wrapper{
@@ -50,7 +51,7 @@ main#R-body-inner .flex-block-wrapper{
 }
 
 #R-body{
-  background: var(--INTERNAL-MAIN-BG-color);
+  background: #000000 !important;
 }
 
 nav#R-topbar{
