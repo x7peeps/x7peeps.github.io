@@ -295,7 +295,8 @@ aside#R-sidebar {
 
 /* 7. Hide unused sidebar elements */
 #R-homelinks,
-#R-footer {
+#R-footer,
+.topbar-sidebar-divider {
   display: none !important;
 }
 
