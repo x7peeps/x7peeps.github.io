@@ -34,7 +34,7 @@
   --TOPBAR-BG-color: var(--x7-bg);
   --TOPBAR-TEXT-color: rgba(234,240,248,.82);
   --TOPBAR-SEPARATOR-color: rgba(255,255,255,.10);
-  --MAIN-TOPBAR-BORDER-color: rgba(255,255,255,.10);
+  --MAIN-TOPBAR-BORDER-color: transparent;
   --MENU-WIDTH-S: 15.5rem;
   --MENU-WIDTH-M: 15.5rem;
   --MENU-WIDTH-L: 18rem;
@@ -297,11 +297,15 @@ aside#R-sidebar {
   display: none !important;
 }
 
-/* 7. Hide unused sidebar elements */
+/* 7. Hide unused sidebar elements and residual borders */
 #R-homelinks,
 #R-footer,
 .topbar-sidebar-divider {
   display: none !important;
+}
+
+.topbar-wrapper {
+  border-left: none !important;
 }
 
 .ps__rail-x{
