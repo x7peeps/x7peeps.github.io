@@ -352,11 +352,6 @@ aside#R-sidebar {
   box-shadow: none !important;
 }
 
-/* Global catch-all for any stray borders that might use the primary color */
-* {
-  border-color: rgba(255, 255, 255, 0.1) !important;
-}
-
 /* Specifically override any potential green borders from the theme */
 #R-body-inner, #R-header-wrapper, #R-sidebar, #R-topbar, .topbar-wrapper, .topbar-button, .searchbox {
   border-color: transparent !important;
