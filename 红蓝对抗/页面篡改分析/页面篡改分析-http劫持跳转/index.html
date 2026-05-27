@@ -32,27 +32,27 @@
     <meta itemprop="keywords" content="红蓝对抗,页面篡改">
     <title>页面篡改分析-http流量劫持页面篡分析 :: x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-http流量劫持页面篡分析 :: x7peeps">
-    <link href="/images/favicon.png?1779862195" rel="icon" type="image/png">
-    <link href="/css/auto-complete/auto-complete.min.css?1779862195" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1779862195" defer></script>
-    <script src="/js/search-lunr.min.js?1779862195" defer></script>
-    <script src="/js/search.min.js?1779862195" defer></script>
+    <link href="/images/favicon.png?1779875729" rel="icon" type="image/png">
+    <link href="/css/auto-complete/auto-complete.min.css?1779875729" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1779875729" defer></script>
+    <script src="/js/search-lunr.min.js?1779875729" defer></script>
+    <script src="/js/search.min.js?1779875729" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.zh.js?1779862195";
+      window.relearn.index_js_url="/searchindex.zh.js?1779875729";
     </script>
-    <script src="/js/lunr/lunr.min.js?1779862195" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1779862195" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1779862195" defer></script>
-    <script src="/js/lunr/lunr.zh.min.js?1779862195" defer></script>
+    <script src="/js/lunr/lunr.min.js?1779875729" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1779875729" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1779875729" defer></script>
+    <script src="/js/lunr/lunr.zh.min.js?1779875729" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['zh'];
     </script>
-    <link href="/fonts/fontawesome/css/all.min.css?1779862195" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779862195" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779862195" rel="stylesheet">
-    <link href="/css/theme.min.css?1779862195" rel="stylesheet">
-    <link href="/css/format-html.min.css?1779862195" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/all.min.css?1779875729" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779875729" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779875729" rel="stylesheet">
+    <link href="/css/theme.min.css?1779875729" rel="stylesheet">
+    <link href="/css/format-html.min.css?1779875729" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -101,8 +101,8 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <link href="/css/custom.css?1779862195" rel="stylesheet">
-    <script src="/js/custom.js?1779862195" defer></script>
+    <link href="/css/custom.css?1779875729" rel="stylesheet">
+    <script src="/js/custom.js?1779875729" defer></script>
   </head>
   <body class="mobile-support html" data-origin="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/index.html">
     <div id="R-body" class="default-animation">
@@ -163,40 +163,40 @@
 <p>首先我们复现页面篡改安全事件的现象, 观察页面篡改的实际情况:
 访问某页面, http://xxx/xx 偶尔会跳转到 https[://]1121[.]24368212[.]top/1106/pandash https[://]98vv[.]vip/ , 经确认访问后的特点除了以下几个返回内容之外, 同时header存在max-age=0, 触发方式不固定, 而将UA修改为移动端或切换移动端UA访问会有一定几率触发跳转.</p>
 <p>跳转情况1:</p>
-<p><a href="#R-image-661e76e145df01547cca0281bdeed8a9" class="lightbox-link"><img alt="image-20211212213415348" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213415348.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-661e76e145df01547cca0281bdeed8a9"><img alt="image-20211212213415348" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213415348.png"></a>
+<p><a href="#R-image-181e46ccb3a32bc76be2c7b7327c2d42" class="lightbox-link"><img alt="image-20211212213415348" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213415348.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-181e46ccb3a32bc76be2c7b7327c2d42"><img alt="image-20211212213415348" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213415348.png"></a>
 使用top.location.href=&ldquo;xxx&rdquo;, 在样式顶层进行跳转, 可以在iframe外进行跳转.</p>
 <p>跳转情况2:</p>
-<p><a href="#R-image-ee155e41a29d5fa853fafaab9592f9ff" class="lightbox-link"><img alt="image-20211212213541674" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213541674.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ee155e41a29d5fa853fafaab9592f9ff"><img alt="image-20211212213541674" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213541674.png"></a>
+<p><a href="#R-image-b403c25e35a104c4c4abd977f51b2873" class="lightbox-link"><img alt="image-20211212213541674" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213541674.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-b403c25e35a104c4c4abd977f51b2873"><img alt="image-20211212213541674" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213541674.png"></a>
 通过分析可以看到跳转的连接为 https[://]98vv[.]vip/
-<a href="#R-image-3f2c81c81cd40e3f5b7efb4af23256d2" class="lightbox-link"><img alt="image-20211212213810207" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213810207.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-3f2c81c81cd40e3f5b7efb4af23256d2"><img alt="image-20211212213810207" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213810207.png"></a></p>
+<a href="#R-image-097876e0cb5c807dfcd32322c4d13d8a" class="lightbox-link"><img alt="image-20211212213810207" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213810207.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-097876e0cb5c807dfcd32322c4d13d8a"><img alt="image-20211212213810207" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213810207.png"></a></p>
 <p>跳转情况3:</p>
-<p><a href="#R-image-e3efd1b69eee8de23a6d949ff5184223" class="lightbox-link"><img alt="image-20211212213643528" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213643528.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e3efd1b69eee8de23a6d949ff5184223"><img alt="image-20211212213643528" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213643528.png"></a></p>
+<p><a href="#R-image-6f0eaff0bad5bbaa57387edf2b7e069c" class="lightbox-link"><img alt="image-20211212213643528" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213643528.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6f0eaff0bad5bbaa57387edf2b7e069c"><img alt="image-20211212213643528" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212213643528.png"></a></p>
 <p>也是使用了top.location.href=&ldquo;xxx&rdquo;, 使用的不同的地址跳转.</p>
 <p>由于每次跳转触发不固定, 因此复现的时候也花了一会时间, 这里看到返回包的js我们可以知道确实是通常相关黑灰产使用的js跳转方式. 可以注意到这里使用了top.location.href的方式, 这种方式可以在iframe之外进行跳转.</p>
 <p>通常的页面篡改, 到这里我们看到的现象是访问不论是页面还是js都会发生跳转, 首要目的我们会思考是否页面中被插入的js导致返回的内容受控跳转. 这里我们针对三种情况的关键词都在系统中进行全文查找内容, 结果并没有发现相关内容.</p>
-<p><a href="#R-image-e0729126919f95ba4ea2106b95062e18" class="lightbox-link"><img alt="image-20211212214835345" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212214835345.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e0729126919f95ba4ea2106b95062e18"><img alt="image-20211212214835345" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212214835345.png"></a></p>
-<p><a href="#R-image-37f3f752f3e57dc34b046f033f8971ed" class="lightbox-link"><img alt="image-20211212215011796" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215011796.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-37f3f752f3e57dc34b046f033f8971ed"><img alt="image-20211212215011796" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215011796.png"></a></p>
+<p><a href="#R-image-76a0d68219369ddde24037980844963c" class="lightbox-link"><img alt="image-20211212214835345" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212214835345.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-76a0d68219369ddde24037980844963c"><img alt="image-20211212214835345" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212214835345.png"></a></p>
+<p><a href="#R-image-dcaed35fb35670d51924aea02220ea9e" class="lightbox-link"><img alt="image-20211212215011796" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215011796.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-dcaed35fb35670d51924aea02220ea9e"><img alt="image-20211212215011796" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215011796.png"></a></p>
 <p>接着我们查看相关的页面和js内容, 结果都没有发现可疑的脚本.</p>
-<p><a href="#R-image-61d33ddb25b8df1b28bd616ee7c328e4" class="lightbox-link"><img alt="image-20211212215532821" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215532821.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-61d33ddb25b8df1b28bd616ee7c328e4"><img alt="image-20211212215532821" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215532821.png"></a></p>
+<p><a href="#R-image-f0f0bbee1370f2a7b9d2b8db569129d0" class="lightbox-link"><img alt="image-20211212215532821" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215532821.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f0f0bbee1370f2a7b9d2b8db569129d0"><img alt="image-20211212215532821" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215532821.png"></a></p>
 <p>这里只在文件内容中发现了一些max-age=0的页面.</p>
-<p><a href="#R-image-da5fbd47cff4883add5b20473f48c8a4" class="lightbox-link"><img alt="image-20211212215321773" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215321773.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-da5fbd47cff4883add5b20473f48c8a4"><img alt="image-20211212215321773" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215321773.png"></a></p>
+<p><a href="#R-image-006f1a087ea126b3040aa13f6b0b4ebf" class="lightbox-link"><img alt="image-20211212215321773" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215321773.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-006f1a087ea126b3040aa13f6b0b4ebf"><img alt="image-20211212215321773" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212215321773.png"></a></p>
 <p>我们查看下中间件的配置, 发现中间件配置也没有发现问题</p>
-<p><a href="#R-image-0100d1285ce8849aa4d6ba269d22c087" class="lightbox-link"><img alt="image-20211212220402723" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212220402723.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-0100d1285ce8849aa4d6ba269d22c087"><img alt="image-20211212220402723" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212220402723.png"></a></p>
+<p><a href="#R-image-5283eb8387322dec241fc6232a5d6b84" class="lightbox-link"><img alt="image-20211212220402723" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212220402723.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-5283eb8387322dec241fc6232a5d6b84"><img alt="image-20211212220402723" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212220402723.png"></a></p>
 <p>到此为止我们发现与传统的跳转方式都不同, 与中间件控制的跳转方式也不同. 因此这里考虑到是否存在劫持. 首先dns劫持, 经过排查发现不论是多地多运营商解析域名、还是通过dnslookup都没有看到域名解析异常情况, 由于客户的域名是阿里的域名, 使用修改本地的dns为223.5.5.5以及223.6.6.6再访问还是有问题. 但ip在以上情形下都无变化, 因此判断不是dns劫持情况.</p>
-<p><a href="#R-image-1e9b6e7df2489362fcb9373657107b41" class="lightbox-link"><img alt="image-20211212221027065" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221027065.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-1e9b6e7df2489362fcb9373657107b41"><img alt="image-20211212221027065" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221027065.png"></a></p>
+<p><a href="#R-image-7d555cb51b08114a197a271b62f9adfd" class="lightbox-link"><img alt="image-20211212221027065" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221027065.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7d555cb51b08114a197a271b62f9adfd"><img alt="image-20211212221027065" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221027065.png"></a></p>
 <p>最后我们排出了系统异常登录、ssh密钥登录等情况判断可能是流量劫持问题. 与阿里同事的客服的判断相同.</p>
-<p><a href="#R-image-283aeb76b9bc5fa71893e2c1cba7995f" class="lightbox-link"><img alt="image-20211212221103130" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221103130.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-283aeb76b9bc5fa71893e2c1cba7995f"><img alt="image-20211212221103130" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221103130.png"></a></p>
+<p><a href="#R-image-f24a3e5efa3a77acb9ba857a9a47f012" class="lightbox-link"><img alt="image-20211212221103130" class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221103130.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f24a3e5efa3a77acb9ba857a9a47f012"><img alt="image-20211212221103130" class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-http%E5%8A%AB%E6%8C%81%E8%B7%B3%E8%BD%AC/image-20211212221103130.png"></a></p>
 <p>最后我们给出了我们的最终的排查或解决方案,</p>
 <ol>
 <li>
@@ -434,8 +434,8 @@ https[://]98vv[.]vip/</p>
 <div id="R-footer" class="default-animation"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779862195" defer></script>
-    <script src="/js/theme.min.js?1779862195" defer></script><script src="/js/custom.js" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779875729" defer></script>
+    <script src="/js/theme.min.js?1779875729" defer></script><script src="/js/custom.js" defer></script>
 
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>

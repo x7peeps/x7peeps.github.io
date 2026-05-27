@@ -10,9 +10,9 @@
 }
 
 :root[data-r-theme-variant='relearn-dark']{
-  --PRIMARY-color: var(--x7-accent);
-  --SECONDARY-color: var(--x7-accent);
-  --ACCENT-color: rgba(255, 210, 0, 1);
+  --PRIMARY-color: transparent !important;
+  --SECONDARY-color: transparent !important;
+  --ACCENT-color: var(--x7-accent);
   --MAIN-BG-color: var(--x7-bg);
   --MAIN-TEXT-color: var(--x7-text);
   --MAIN-TITLES-TEXT-color: rgba(245,248,255,.96);
@@ -350,6 +350,19 @@ aside#R-sidebar {
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+/* Global catch-all for any stray borders that might use the primary color */
+* {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Specifically override any potential green borders from the theme */
+#R-body-inner, #R-header-wrapper, #R-sidebar, #R-topbar, .topbar-wrapper, .topbar-button, .searchbox {
+  border-color: transparent !important;
+}
+.searchbox {
+  border: 1px solid rgba(255,255,255,0.1) !important;
 }
 
 /* Hide perfect-scrollbar visual elements completely */
