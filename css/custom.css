@@ -133,6 +133,8 @@ aside#R-sidebar {
 .R-sidebarmenu {
   -ms-overflow-style: none !important;  /* IE and Edge */
   scrollbar-width: none !important;  /* Firefox */
+  /* Disable JS scroll-into-view behavior from affecting scroll position if possible */
+  scroll-behavior: auto !important;
 }
 
 /* Allow body background to be visible under the glass sidebar */
