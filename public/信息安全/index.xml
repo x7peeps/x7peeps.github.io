@@ -3,7 +3,7 @@
   <channel>
     <title>信息安全 :: x7peeps</title>
     <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/index.html</link>
-    <description>渗透测试 01 前期交互 前期交互阶段指南 前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目 … 应急响应 0x03取证分析 【译】取证调查：虚拟内存pagefile.sys 【译】取证调查：虚拟内存pagefile.sys 原文 … 0x06取证辅助工具 … 漏洞复现 企业微信私有化部署api未授权漏洞 企业微信私有化部署api未授权漏洞 安全等级 高 漏洞影响 未知 描述 私有化部署企业微信API未授权 … 恶意样本分析 样本分析基础 恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它 … 红蓝对抗 页面篡改分析 页面篡改分析-服务器端重定向跳转 在本样本实例中，我们发现篡改的页面出现的情况与以往的都不同，原因在于不同ua服务器返回的信息不同，甚至出现了疑 … 情报跟踪 黑客背后的&#34;Thrip&#34;网络间谍组织 By Catalin Cimpanu 文章出处 … 科普 手机丢失后一定要做的几件必做事！ 前文还是老骆驼今天发的超长文，完整的记录了整个手机丢失到积极避免损失的过程，通过整个过程基本上可以梳理一遍整个手机黑产过程了 …</description>
+    <description>渗透测试 01 前期交互 前期交互阶段指南 前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目 … 应急响应 0x03取证分析 【译】取证调查：虚拟内存pagefile.sys 【译】取证调查：虚拟内存pagefile.sys 原文 … 0x06取证辅助工具 … 恶意样本分析 样本分析基础 恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它 … 红蓝对抗 页面篡改分析 页面篡改分析-服务器端重定向跳转 在本样本实例中，我们发现篡改的页面出现的情况与以往的都不同，原因在于不同ua服务器返回的信息不同，甚至出现了疑 … 情报跟踪 黑客背后的&#34;Thrip&#34;网络间谍组织 By Catalin Cimpanu 文章出处 … 科普 手机丢失后一定要做的几件必做事！ 前文还是老骆驼今天发的超长文，完整的记录了整个手机丢失到积极避免损失的过程，通过整个过程基本上可以梳理一遍整个手机黑产过程了 …</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 13 Aug 2023 08:18:00 +0800</lastBuildDate>
@@ -11,9 +11,9 @@
     <item>
       <title>渗透测试</title>
       <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 13 Aug 2023 08:18:00 +0800</pubDate>
       <guid>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</guid>
-      <description>01 前期交互 前期交互阶段指南 前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目的、范围、限制条 … 02 信息收集 暂无内容 03 漏洞分析 暂无内容 04 渗透攻击 暂无内容 05 后渗透利用 暂无内容 06 报告 暂无内容 00 准备阶段 web应用渗透测试方法论 WEB应用程序渗透测试方法论 指导思想：方法论中一系列任务根据他们之间的逻辑依赖关系组织和排序。实际上，渗透测试过程往往需要发挥自己 …</description>
+      <description>01 前期交互 前期交互阶段指南 前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目的、范围、限制条 … 02 信息收集 暂无内容 03 漏洞分析 企业微信私有化部署api未授权漏洞 企业微信私有化部署api未授权漏洞 安全等级 高 漏洞影响 未知 描述 私有化部署企业微信API未授权 … 04 渗透攻击 暂无内容 05 后渗透利用 暂无内容 06 报告 暂无内容 00 准备阶段 web应用渗透测试方法论 WEB应用程序渗透测试方法论 指导思想：方法论中一系列任务根据他们之间的逻辑依赖关系组织和排序。实际上，渗透测试过程往往需要发挥自己 …</description>
     </item>
     <item>
       <title>应急响应</title>
@@ -21,13 +21,6 @@
       <pubDate>Wed, 01 Feb 2023 12:03:49 +0800</pubDate>
       <guid>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</guid>
       <description>0x03取证分析 【译】取证调查：虚拟内存pagefile.sys 【译】取证调查：虚拟内存pagefile.sys 原文 … 0x06取证辅助工具 EmergencyRocketPackage EmergencyRocketPackage Emergency Rocket Package 应急响应火箭包 … 0x02电子取证 3文件恢复 R-studio network(win) 近期在应急数据恢复场景，客户使用Hyper-V运行业务系统，由于没有设置快照，在误操作下恢复了虚拟机， … 0x00电子取证标准 2.0电子取证标准 第一部分：国内的相关标准规范 原文：微信公众号“cnforensics”，微信公众号“取证杂谈” 国家标准（4） GB/T … 0x01现场勘查 现场勘查 1. 现场勘查 一般包括询问、访问、观察情况记录，用于前期记录已知安全事件发生到发现后过程的细节。需要根据问答根据专业的角度判断哪些可以采纳哪些不可 …</description>
-    </item>
-    <item>
-      <title>漏洞复现</title>
-      <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</link>
-      <pubDate>Sun, 13 Aug 2023 08:18:00 +0800</pubDate>
-      <guid>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</guid>
-      <description>企业微信私有化部署api未授权漏洞 企业微信私有化部署api未授权漏洞 安全等级 高 漏洞影响 未知 描述 私有化部署企业微信API未授权，/cgi-bin/gateway/agentinfo接口 … CVE-2014-4210_Weblogic SSRF漏洞 Weblogic中存在一个SSRF漏洞，利用该漏洞可以发送任意HTTP请求，进而攻击内网中redis、fastcgi等脆弱组件。 WPSSRC-2023-0701金山WPS_RCE 摘要 WPS Office 软件是由金山办公软件股份有限公司自主研发的一款办公软件套装，可以实现办公软件最常用的文字、表格、演示等多种功能，覆盖 … CVE-2020-14645_weblogic_T3反序列化RCE复测 影响版本 Vulnerability in the Oracle WebLogic Server product of Oracle Fusion … CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution CVE-2020-0796 ‘SMBGhost’ Remote Code Execution 漏洞描述： 在Windows SMBv3版 … CVE-2017-11882 Office远程代码执行漏洞复现 CVE-2017-11882 Office远程代码执行漏洞及一点思考 0x01 概述 作为上一代office通杀漏洞，CVE-2017-11882是典型的具有 …</description>
     </item>
     <item>
       <title>恶意样本分析</title>
