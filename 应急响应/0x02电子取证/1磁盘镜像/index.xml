@@ -3,7 +3,7 @@
   <channel>
     <title>1磁盘镜像 :: x7peeps</title>
     <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.html</link>
-    <description>Clonezilla&#xD;Datanumen_disk_image&#xD;dd/dc3dd(linux)&#xD;EnCase_forensic_imager.&#xD;GetdataForensicImager&#xD;Guymager&#xD;镜像类型及各产品特性对比</description>
+    <description>Clonezilla Clonezilla：https://clonezilla.org/ 多平台的分区和磁盘克隆程序。 Clonezilla是一个分区和磁盘成像/克隆程序，类似于 … Datanumen_disk_image Datanumen disk image： https://www.datanumen.com/disk-image/免费管理磁盘驱动器镜像创建制作和恢复的软件 … dd/dc3dd(linux) dd镜像取证 在一些无法使用工具的特殊情况下可以考虑dd做镜像，注意不要将镜像保存到被取证硬盘中，覆盖磁盘造成证据现场破坏。 使用dd做磁盘镜像 dd一般镜像方 … EnCase_forensic_imager. EnCase Forensic Imager(win) EnCase V8是美国Guidance Software推出的最新计算机取证软件，全新的操作界面，采用 … GetdataForensicImager 官网 http://www.forensicimager.com/ 基于windows程序，文件格式取证转换工具 Forensic Explorer (FEX) … Guymager 官网：https://guymager.sourceforge.io/ 下载：https://sourceforge.net/projects/ 版本更新订阅 … 镜像类型及各产品特性对比 镜像格式 镜像各格式的区别 **DD镜像：**也称成原始格式(RAW Image)。DD镜像 的优点是兼容性强，目前所有磁盘镜像和分析工具都支持DD格式。此外， …</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <atom:link href="https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/index.xml" rel="self" type="application/rss+xml" />

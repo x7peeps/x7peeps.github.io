@@ -3,7 +3,7 @@
   <channel>
     <title>编程 :: x7peeps</title>
     <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</link>
-    <description>python</description>
+    <description>python scapy 如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip …</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 11 Sep 2020 12:03:49 +0800</lastBuildDate>
@@ -13,7 +13,7 @@
       <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.html</link>
       <pubDate>Fri, 11 Sep 2020 12:03:49 +0800</pubDate>
       <guid>https://x7peeps.com/%E7%BC%96%E7%A8%8B/python/index.html</guid>
-      <description>scapy</description>
+      <description>scapy 如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip scrapy是 …</description>
     </item>
   </channel>
 </rss>

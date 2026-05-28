@@ -28,27 +28,27 @@
     <meta itemprop="keywords" content="样本分析拓展">
     <title>介绍恶意软件中RC4加密的识别与解码 :: x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.xml" rel="alternate" type="application/rss+xml" title="介绍恶意软件中RC4加密的识别与解码 :: x7peeps">
-    <link href="/images/favicon.png?1779950813" rel="icon" type="image/png">
-    <link href="/css/auto-complete/auto-complete.min.css?1779950813" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1779950813" defer></script>
-    <script src="/js/search-lunr.min.js?1779950813" defer></script>
-    <script src="/js/search.min.js?1779950813" defer></script>
+    <link href="/images/favicon.png?1779970704" rel="icon" type="image/png">
+    <link href="/css/auto-complete/auto-complete.min.css?1779970704" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1779970704" defer></script>
+    <script src="/js/search-lunr.min.js?1779970704" defer></script>
+    <script src="/js/search.min.js?1779970704" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.zh.js?1779950813";
+      window.relearn.index_js_url="/searchindex.zh.js?1779970704";
     </script>
-    <script src="/js/lunr/lunr.min.js?1779950813" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1779950813" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1779950813" defer></script>
-    <script src="/js/lunr/lunr.zh.min.js?1779950813" defer></script>
+    <script src="/js/lunr/lunr.min.js?1779970704" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1779970704" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1779970704" defer></script>
+    <script src="/js/lunr/lunr.zh.min.js?1779970704" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['zh'];
     </script>
-    <link href="/fonts/fontawesome/css/all.min.css?1779950813" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779950813" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779950813" rel="stylesheet">
-    <link href="/css/theme.min.css?1779950813" rel="stylesheet">
-    <link href="/css/format-html.min.css?1779950813" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/all.min.css?1779970704" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779970704" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779970704" rel="stylesheet">
+    <link href="/css/theme.min.css?1779970704" rel="stylesheet">
+    <link href="/css/format-html.min.css?1779970704" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -97,8 +97,8 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <link href="/css/custom.css?1779950813" rel="stylesheet">
-    <script src="/js/custom.js?1779950813" defer></script>
+    <link href="/css/custom.css?1779970704" rel="stylesheet">
+    <script src="/js/custom.js?1779970704" defer></script>
   </head>
   <body class="mobile-support html" data-origin="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/index.html">
     <div id="R-body" class="default-animation">
@@ -203,8 +203,8 @@ endfor</code></pre></div>
 endfor</code></pre></div>
 <p>本节创建一个数组(或“SBox”/Substitution Box)，其中每个值等于它在数组中从0-255 (0x00-0xFF)的位置，这也称为其标识排列:
 在恶意软件样本中寻找这种类型的加密时，这种初始表创建是一个关键指标。对于这个示例，使用x86汇编代码中的以下循环初始化RC4 KSA:</p>
-<p><a href="#R-image-6c8d623ad4b5616bae13ac6854874cf2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16678940225844.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-6c8d623ad4b5616bae13ac6854874cf2"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16678940225844.jpg"></a></p>
+<p><a href="#R-image-bab529064b761478176ed7104e1faa6d" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16678940225844.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bab529064b761478176ed7104e1faa6d"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16678940225844.jpg"></a></p>
 <p>在恶意软件样本中寻找这种类型的加密时，这种初始表创建是一个关键指标。对于这个示例，使用x86汇编代码中的以下循环初始化RC4 KSA:</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>100020E5xoreax,eax    ; Initialize counter to 0
  loop:
@@ -259,12 +259,12 @@ endfor</code></pre></div>
 1000211Ccmp    esi,100h           ; Check if i &lt; 256 // NOTE THE 100h!
 10002122mov    [edi+ecx],bl       ; S[j] = S[i]
 10002125jl     shortloop; Loop if Less  In IDA Pro, the SBox Scramble loop following the Initialization loop may resemble these basic blocks:</code></pre></div>
-<p><a href="#R-image-5f1704ba015fc2e1e67c9c8ab2f24cd2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679112849915.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-5f1704ba015fc2e1e67c9c8ab2f24cd2"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679112849915.jpg"></a></p>
+<p><a href="#R-image-2f0524d30618c4f0dde1f220094fee7c" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679112849915.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-2f0524d30618c4f0dde1f220094fee7c"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679112849915.jpg"></a></p>
 <p>用一支铅笔和一张纸手动计算这个例子的至少前几个字节将有助于更清楚地了解字节是如何交换来生成这个新的SBox的:</p>
 <p>初始化SBox:
-<a href="#R-image-9d57daeb835ccf3713b55fe790fed83a" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679114026480.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9d57daeb835ccf3713b55fe790fed83a"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679114026480.jpg"></a>
+<a href="#R-image-88712f6b810891abcdcc41860fb5fb66" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679114026480.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-88712f6b810891abcdcc41860fb5fb66"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679114026480.jpg"></a>
 对于键“0006”的第一个字节(键[0])是“0”，记住这是ASCII“0x30&gt;”:</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>j :=(j + S[i]+ key[i mod keylength])mod256
 swap values of S[i]andS[j]
@@ -290,8 +290,8 @@ S[0x1]=0x100
 S[0x61]=0x100</code></pre></div>
 <p>在字节S[0x01]和S[0x61]交换之后，结果表看起来像这样:
 该算法将继续执行此计算256次。注意，这些值将继续被交换出来，甚至还将交换以前交换的字节。使用“0006”键，恶意软件示例将最终在堆栈上生成以下SBox(我添加了相应的SBox数组索引，仅为了可视化目的):
-<a href="#R-image-d6bd730857512da08bb1835d034cce74" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679119002998.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-d6bd730857512da08bb1835d034cce74"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679119002998.jpg"></a></p>
+<a href="#R-image-4b245aaac1d76aa7f28b0363934750d2" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679119002998.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-4b245aaac1d76aa7f28b0363934750d2"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679119002998.jpg"></a></p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>S[00] | 0012FBB0  18 8A 98 7B|16 35 F4 A8|C0 A5 53 94|D0 0D 87 90| 
 
 S[10] | 0012FBC0  2B 11 BA 26|08 25 C7 75|EB C6 83 D4|20 12 73 DB|
@@ -413,14 +413,14 @@ __int32 index2;// j
 100021CFcmpedi,[ebp+68h+arg_4]; Check if x &lt; len(Plaintext)
 
 100021D2jbshortloop; Loop if x &lt; len(Plain  In IDA Pro, the RC4_Crypt loop may resemble these basic blocks:</code></pre></div>
-<p><a href="#R-image-9b79a6592f2496e4d1b2d77cd1e10b75" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679121436420.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9b79a6592f2496e4d1b2d77cd1e10b75"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679121436420.jpg"></a>
+<p><a href="#R-image-c96a71e2790c169ab42bf5af607831f9" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679121436420.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-c96a71e2790c169ab42bf5af607831f9"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679121436420.jpg"></a>
 一旦明文的长度满足，密钥流K就完全生成。随着K的每一个值的生成，它被用来对明文的补充字节进行异或运算，在这种情况下，它看起来像这样:
-<a href="#R-image-c2d19c22b146df7140b720999b3110ff" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122213502.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c2d19c22b146df7140b720999b3110ff"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122213502.jpg"></a>
+<a href="#R-image-545f1f479412402a3cef24dd615b7853" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122213502.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-545f1f479412402a3cef24dd615b7853"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122213502.jpg"></a>
 要解密密文，只需将此过程反向:
-<a href="#R-image-e5373c8460692eb102c7fa11b5e41241" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122448633.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-e5373c8460692eb102c7fa11b5e41241"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122448633.jpg"></a>
+<a href="#R-image-e1636885c9098835b6fec9444e94782c" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122448633.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e1636885c9098835b6fec9444e94782c"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E6%8B%93%E5%B1%95/%E4%BB%8B%E7%BB%8D%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%B8%ADRC4%E5%8A%A0%E5%AF%86%E7%9A%84%E8%AF%86%E5%88%AB%E4%B8%8E%E8%A7%A3%E7%A0%81/16679122448633.jpg"></a>
 用python把它们组合在一起
 我在python中实现了rc4，将输入视为字符串，并在打乱之前和之后输出sbox内容。</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0"><code>*注意:由于此脚本将输入作为字符串，您必须为非ascii字符发送原始字节。在上面的例子中，这可以像这样完成:
@@ -431,7 +431,6 @@ __int32 index2;// j
 <p><a href="http://blog.talosintelligence.com/2014/06/an-introduction-to-recognizing-and.html" rel="external">介绍恶意软件中RC4加密的识别与解码 Talos</a></p>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> 2022年11月8日
   </footer>
 </article>
         </div>
@@ -478,7 +477,15 @@ __int32 index2;// j
             <li class="" data-nav-id="/%E5%85%B3%E4%BA%8E/index.html"><input type="checkbox" id="R-section-77722aba2e6ab1a57ee1ff7ce19fdfc6" aria-controls="R-subsections-77722aba2e6ab1a57ee1ff7ce19fdfc6"><label for="R-section-77722aba2e6ab1a57ee1ff7ce19fdfc6"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单关于</span></label><a class="padding default-animation" href="/%E5%85%B3%E4%BA%8E/index.html">关于<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-77722aba2e6ab1a57ee1ff7ce19fdfc6" class="collapsible-menu">
             <li class="" data-nav-id="/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html"><a class="padding" href="/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html">本站搭建<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
             <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html"><input type="checkbox" id="R-section-958443c8a874cc447d6f65c16e72ca2e" aria-controls="R-subsections-958443c8a874cc447d6f65c16e72ca2e"><label for="R-section-958443c8a874cc447d6f65c16e72ca2e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单渗透测试</span></label><a class="padding default-animation" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-958443c8a874cc447d6f65c16e72ca2e" class="collapsible-menu">
-            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/index.html"><input type="checkbox" id="R-section-a629172a05ec79a3207e0c3309787707" aria-controls="R-subsections-a629172a05ec79a3207e0c3309787707"><label for="R-section-a629172a05ec79a3207e0c3309787707"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单01 前期交互</span></label><a class="padding default-animation" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/index.html">01 前期交互<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a629172a05ec79a3207e0c3309787707" class="collapsible-menu">
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92%E9%98%B6%E6%AE%B5%E6%8C%87%E5%8D%97/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92%E9%98%B6%E6%AE%B5%E6%8C%87%E5%8D%97/index.html">前期交互阶段指南<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/02-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/02-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">02 信息收集<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/03-%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/03-%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/index.html">03 漏洞分析<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/04-%E6%B8%97%E9%80%8F%E6%94%BB%E5%87%BB/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/04-%E6%B8%97%E9%80%8F%E6%94%BB%E5%87%BB/index.html">04 渗透攻击<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/05-%E5%90%8E%E6%B8%97%E9%80%8F%E5%88%A9%E7%94%A8/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/05-%E5%90%8E%E6%B8%97%E9%80%8F%E5%88%A9%E7%94%A8/index.html">05 后渗透利用<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/06-%E6%8A%A5%E5%91%8A/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/06-%E6%8A%A5%E5%91%8A/index.html">06 报告<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/index.html"><input type="checkbox" id="R-section-b102614539e3d9cd1ffa07af80f07aba" aria-controls="R-subsections-b102614539e3d9cd1ffa07af80f07aba"><label for="R-section-b102614539e3d9cd1ffa07af80f07aba"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单00 准备阶段</span></label><a class="padding default-animation" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/index.html">00 准备阶段<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b102614539e3d9cd1ffa07af80f07aba" class="collapsible-menu">
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
             <li class="" data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html"><input type="checkbox" id="R-section-13ecbd85c22b876cbfbec6bc0caa965c" aria-controls="R-subsections-13ecbd85c22b876cbfbec6bc0caa965c"><label for="R-section-13ecbd85c22b876cbfbec6bc0caa965c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单应急响应</span></label><a class="padding default-animation" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html">应急响应<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-13ecbd85c22b876cbfbec6bc0caa965c" class="collapsible-menu">
             <li class="" data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html"><input type="checkbox" id="R-section-035ae9a87a90a296162bd02a60487e71" aria-controls="R-subsections-035ae9a87a90a296162bd02a60487e71"><label for="R-section-035ae9a87a90a296162bd02a60487e71"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单0x03取证分析</span></label><a class="padding default-animation" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html">0x03取证分析<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-035ae9a87a90a296162bd02a60487e71" class="collapsible-menu">
             <li class="" data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html"><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html">【译】取证调查：虚拟内存pagefile.sys<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
@@ -646,8 +653,8 @@ __int32 index2;// j
 <div id="R-footer" class="default-animation"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779950813" defer></script>
-    <script src="/js/theme.min.js?1779950813" defer></script><script src="/js/custom.js" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779970704" defer></script>
+    <script src="/js/theme.min.js?1779970704" defer></script><script src="/js/custom.js" defer></script>
 
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>

@@ -5,45 +5,45 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.161.1">
     <meta name="generator" content="Relearn 9.0.3+36307e4ed23582638ab689240ac7b427217803ee">
-    <meta name="description" content="恶意样本分析-12-使用内存取证检测高级恶意软件恶意样本分析-11-使用内存取证狩猎恶意软件恶意样本分析-10-恶意软件的混淆技术恶意样本分析-9-代码注入和钩子恶意样本分析-8-恶意软件的功能和持久化恶意样本分析-7-调试恶意软件二进制文件恶意样本分析6-IDA使用恶意样本分析4-基础DLL分析恶意样本分析4-基础DLL分析恶意样本分析3-基础动态分析恶意样本分析2-基础静态分析恶意样本分析1-配置实验环境">
+    <meta name="description" content="恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它们有助于从内存映像中提取有价值的信息。在本章中，我们将继续我们的内 … 恶意样本分析-11-使用内存取证狩猎恶意软件 恶意样本分析-11-使用内存取证狩猎恶意软件 10.使用内存取证狩猎恶意软件 在到目前为止所涵盖的章节中，我们看了概念、工具和技术用于分析恶意软件使用静态，动态 … 恶意样本分析-10-恶意软件的混淆技术 9. 恶意软件的混淆技术 混淆一词指的是掩盖有意义信息的过程。恶意软件作者经常使用各种混淆技术来隐藏信息，并修改恶意内容，使安全分析人员难以发现和分析。敌方通常 … 恶意样本分析-9-代码注入和钩子 8. 代码注入和钩子 在上一章中，我们研究了恶意软件用来留在受害者系统中的不同持久性机制。在本章中，你将学习恶意程序如何将代码注入另一个进程（称为目标进程或远程 … 恶意样本分析-8-恶意软件的功能和持久化 7. 恶意软件的功能和持久化 恶意软件可以进行各种操作，它可以包括各种功能。了解一个恶意软件所做的事情和它所表现出来的行为，对于理解恶意二进制文件的性质和目的至 … 恶意样本分析-7-调试恶意软件二进制文件 6. 调试恶意软件二进制文件 调试时一个通过受控方式执行恶意代码的技术。Debugger是一个程序，使你可以在更细颗粒度的级别上检查恶意代码。debugger提 … 恶意样本分析6-IDA使用 使用IDA反汇编 代码分析常用语了解恶意样本内部源码不可见时使用。 1. 代码分析工具 代码分析工具可以根据他们的功能、描述、数量进行分类。 反汇编程序是一个可 … 恶意样本分析4-基础DLL分析 当恶意代码打包进dll，需要对其进行一定量的定性分析，除了平台的手段，这里还有一些基础的dll分析手段。 恶意样本分析4-基础DLL分析 汇编及反汇编入门 基于基础动态分析有其局限，为了获取更深的洞察，需要代码分析（逆向分析） 例如，大多数样本使用c2服务加密通信。使用动态分析我们能够确定加密通信 … 恶意样本分析3-基础动态分析 动态分析过程中，当恶意程序执行的时候，需要监控其行为。目标过程的目标是获取恶意程序行为的实时数据，以及其对操作系统的影响。 恶意样本分析2-基础静态分析 基础的静态分析可以考虑直接使用各公司平台产品分析产出，这里根据国外的习惯使用一些基本工具脚本进行相关分析的基础工作梳理。 恶意样本分析1-配置实验环境 对于日常探针分析工作，样本分析作为不可缺少的一个环节，经常能够在其中发现比较重要的细节，对此部分的学习和总结尤其重要，这一系列即为最近收集总结的一部分。">
     <meta name="author" content="x7peeps">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="样本分析基础 :: x7peeps">
-    <meta name="twitter:description" content="恶意样本分析-12-使用内存取证检测高级恶意软件恶意样本分析-11-使用内存取证狩猎恶意软件恶意样本分析-10-恶意软件的混淆技术恶意样本分析-9-代码注入和钩子恶意样本分析-8-恶意软件的功能和持久化恶意样本分析-7-调试恶意软件二进制文件恶意样本分析6-IDA使用恶意样本分析4-基础DLL分析恶意样本分析4-基础DLL分析恶意样本分析3-基础动态分析恶意样本分析2-基础静态分析恶意样本分析1-配置实验环境">
+    <meta name="twitter:description" content="恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它们有助于从内存映像中提取有价值的信息。在本章中，我们将继续我们的内 … 恶意样本分析-11-使用内存取证狩猎恶意软件 恶意样本分析-11-使用内存取证狩猎恶意软件 10.使用内存取证狩猎恶意软件 在到目前为止所涵盖的章节中，我们看了概念、工具和技术用于分析恶意软件使用静态，动态 … 恶意样本分析-10-恶意软件的混淆技术 9. 恶意软件的混淆技术 混淆一词指的是掩盖有意义信息的过程。恶意软件作者经常使用各种混淆技术来隐藏信息，并修改恶意内容，使安全分析人员难以发现和分析。敌方通常 … 恶意样本分析-9-代码注入和钩子 8. 代码注入和钩子 在上一章中，我们研究了恶意软件用来留在受害者系统中的不同持久性机制。在本章中，你将学习恶意程序如何将代码注入另一个进程（称为目标进程或远程 … 恶意样本分析-8-恶意软件的功能和持久化 7. 恶意软件的功能和持久化 恶意软件可以进行各种操作，它可以包括各种功能。了解一个恶意软件所做的事情和它所表现出来的行为，对于理解恶意二进制文件的性质和目的至 … 恶意样本分析-7-调试恶意软件二进制文件 6. 调试恶意软件二进制文件 调试时一个通过受控方式执行恶意代码的技术。Debugger是一个程序，使你可以在更细颗粒度的级别上检查恶意代码。debugger提 … 恶意样本分析6-IDA使用 使用IDA反汇编 代码分析常用语了解恶意样本内部源码不可见时使用。 1. 代码分析工具 代码分析工具可以根据他们的功能、描述、数量进行分类。 反汇编程序是一个可 … 恶意样本分析4-基础DLL分析 当恶意代码打包进dll，需要对其进行一定量的定性分析，除了平台的手段，这里还有一些基础的dll分析手段。 恶意样本分析4-基础DLL分析 汇编及反汇编入门 基于基础动态分析有其局限，为了获取更深的洞察，需要代码分析（逆向分析） 例如，大多数样本使用c2服务加密通信。使用动态分析我们能够确定加密通信 … 恶意样本分析3-基础动态分析 动态分析过程中，当恶意程序执行的时候，需要监控其行为。目标过程的目标是获取恶意程序行为的实时数据，以及其对操作系统的影响。 恶意样本分析2-基础静态分析 基础的静态分析可以考虑直接使用各公司平台产品分析产出，这里根据国外的习惯使用一些基本工具脚本进行相关分析的基础工作梳理。 恶意样本分析1-配置实验环境 对于日常探针分析工作，样本分析作为不可缺少的一个环节，经常能够在其中发现比较重要的细节，对此部分的学习和总结尤其重要，这一系列即为最近收集总结的一部分。">
     <meta property="og:url" content="https://x7peeps.com/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">
     <meta property="og:site_name" content="x7peeps">
     <meta property="og:title" content="样本分析基础 :: x7peeps">
-    <meta property="og:description" content="恶意样本分析-12-使用内存取证检测高级恶意软件恶意样本分析-11-使用内存取证狩猎恶意软件恶意样本分析-10-恶意软件的混淆技术恶意样本分析-9-代码注入和钩子恶意样本分析-8-恶意软件的功能和持久化恶意样本分析-7-调试恶意软件二进制文件恶意样本分析6-IDA使用恶意样本分析4-基础DLL分析恶意样本分析4-基础DLL分析恶意样本分析3-基础动态分析恶意样本分析2-基础静态分析恶意样本分析1-配置实验环境">
+    <meta property="og:description" content="恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它们有助于从内存映像中提取有价值的信息。在本章中，我们将继续我们的内 … 恶意样本分析-11-使用内存取证狩猎恶意软件 恶意样本分析-11-使用内存取证狩猎恶意软件 10.使用内存取证狩猎恶意软件 在到目前为止所涵盖的章节中，我们看了概念、工具和技术用于分析恶意软件使用静态，动态 … 恶意样本分析-10-恶意软件的混淆技术 9. 恶意软件的混淆技术 混淆一词指的是掩盖有意义信息的过程。恶意软件作者经常使用各种混淆技术来隐藏信息，并修改恶意内容，使安全分析人员难以发现和分析。敌方通常 … 恶意样本分析-9-代码注入和钩子 8. 代码注入和钩子 在上一章中，我们研究了恶意软件用来留在受害者系统中的不同持久性机制。在本章中，你将学习恶意程序如何将代码注入另一个进程（称为目标进程或远程 … 恶意样本分析-8-恶意软件的功能和持久化 7. 恶意软件的功能和持久化 恶意软件可以进行各种操作，它可以包括各种功能。了解一个恶意软件所做的事情和它所表现出来的行为，对于理解恶意二进制文件的性质和目的至 … 恶意样本分析-7-调试恶意软件二进制文件 6. 调试恶意软件二进制文件 调试时一个通过受控方式执行恶意代码的技术。Debugger是一个程序，使你可以在更细颗粒度的级别上检查恶意代码。debugger提 … 恶意样本分析6-IDA使用 使用IDA反汇编 代码分析常用语了解恶意样本内部源码不可见时使用。 1. 代码分析工具 代码分析工具可以根据他们的功能、描述、数量进行分类。 反汇编程序是一个可 … 恶意样本分析4-基础DLL分析 当恶意代码打包进dll，需要对其进行一定量的定性分析，除了平台的手段，这里还有一些基础的dll分析手段。 恶意样本分析4-基础DLL分析 汇编及反汇编入门 基于基础动态分析有其局限，为了获取更深的洞察，需要代码分析（逆向分析） 例如，大多数样本使用c2服务加密通信。使用动态分析我们能够确定加密通信 … 恶意样本分析3-基础动态分析 动态分析过程中，当恶意程序执行的时候，需要监控其行为。目标过程的目标是获取恶意程序行为的实时数据，以及其对操作系统的影响。 恶意样本分析2-基础静态分析 基础的静态分析可以考虑直接使用各公司平台产品分析产出，这里根据国外的习惯使用一些基本工具脚本进行相关分析的基础工作梳理。 恶意样本分析1-配置实验环境 对于日常探针分析工作，样本分析作为不可缺少的一个环节，经常能够在其中发现比较重要的细节，对此部分的学习和总结尤其重要，这一系列即为最近收集总结的一部分。">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:type" content="website">
     <meta itemprop="name" content="样本分析基础 :: x7peeps">
-    <meta itemprop="description" content="恶意样本分析-12-使用内存取证检测高级恶意软件恶意样本分析-11-使用内存取证狩猎恶意软件恶意样本分析-10-恶意软件的混淆技术恶意样本分析-9-代码注入和钩子恶意样本分析-8-恶意软件的功能和持久化恶意样本分析-7-调试恶意软件二进制文件恶意样本分析6-IDA使用恶意样本分析4-基础DLL分析恶意样本分析4-基础DLL分析恶意样本分析3-基础动态分析恶意样本分析2-基础静态分析恶意样本分析1-配置实验环境">
+    <meta itemprop="description" content="恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它们有助于从内存映像中提取有价值的信息。在本章中，我们将继续我们的内 … 恶意样本分析-11-使用内存取证狩猎恶意软件 恶意样本分析-11-使用内存取证狩猎恶意软件 10.使用内存取证狩猎恶意软件 在到目前为止所涵盖的章节中，我们看了概念、工具和技术用于分析恶意软件使用静态，动态 … 恶意样本分析-10-恶意软件的混淆技术 9. 恶意软件的混淆技术 混淆一词指的是掩盖有意义信息的过程。恶意软件作者经常使用各种混淆技术来隐藏信息，并修改恶意内容，使安全分析人员难以发现和分析。敌方通常 … 恶意样本分析-9-代码注入和钩子 8. 代码注入和钩子 在上一章中，我们研究了恶意软件用来留在受害者系统中的不同持久性机制。在本章中，你将学习恶意程序如何将代码注入另一个进程（称为目标进程或远程 … 恶意样本分析-8-恶意软件的功能和持久化 7. 恶意软件的功能和持久化 恶意软件可以进行各种操作，它可以包括各种功能。了解一个恶意软件所做的事情和它所表现出来的行为，对于理解恶意二进制文件的性质和目的至 … 恶意样本分析-7-调试恶意软件二进制文件 6. 调试恶意软件二进制文件 调试时一个通过受控方式执行恶意代码的技术。Debugger是一个程序，使你可以在更细颗粒度的级别上检查恶意代码。debugger提 … 恶意样本分析6-IDA使用 使用IDA反汇编 代码分析常用语了解恶意样本内部源码不可见时使用。 1. 代码分析工具 代码分析工具可以根据他们的功能、描述、数量进行分类。 反汇编程序是一个可 … 恶意样本分析4-基础DLL分析 当恶意代码打包进dll，需要对其进行一定量的定性分析，除了平台的手段，这里还有一些基础的dll分析手段。 恶意样本分析4-基础DLL分析 汇编及反汇编入门 基于基础动态分析有其局限，为了获取更深的洞察，需要代码分析（逆向分析） 例如，大多数样本使用c2服务加密通信。使用动态分析我们能够确定加密通信 … 恶意样本分析3-基础动态分析 动态分析过程中，当恶意程序执行的时候，需要监控其行为。目标过程的目标是获取恶意程序行为的实时数据，以及其对操作系统的影响。 恶意样本分析2-基础静态分析 基础的静态分析可以考虑直接使用各公司平台产品分析产出，这里根据国外的习惯使用一些基本工具脚本进行相关分析的基础工作梳理。 恶意样本分析1-配置实验环境 对于日常探针分析工作，样本分析作为不可缺少的一个环节，经常能够在其中发现比较重要的细节，对此部分的学习和总结尤其重要，这一系列即为最近收集总结的一部分。">
     <meta itemprop="datePublished" content="2022-11-10T22:25:00+08:00">
     <meta itemprop="dateModified" content="2022-11-10T22:25:00+08:00">
-    <meta itemprop="wordCount" content="206">
+    <meta itemprop="wordCount" content="1077">
     <title>样本分析基础 :: x7peeps</title>
     <link href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.xml" rel="alternate" type="application/rss+xml" title="样本分析基础 :: x7peeps">
-    <link href="/images/favicon.png?1779950813" rel="icon" type="image/png">
-    <link href="/css/auto-complete/auto-complete.min.css?1779950813" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1779950813" defer></script>
-    <script src="/js/search-lunr.min.js?1779950813" defer></script>
-    <script src="/js/search.min.js?1779950813" defer></script>
+    <link href="/images/favicon.png?1779970704" rel="icon" type="image/png">
+    <link href="/css/auto-complete/auto-complete.min.css?1779970704" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1779970704" defer></script>
+    <script src="/js/search-lunr.min.js?1779970704" defer></script>
+    <script src="/js/search.min.js?1779970704" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.zh.js?1779950813";
+      window.relearn.index_js_url="/searchindex.zh.js?1779970704";
     </script>
-    <script src="/js/lunr/lunr.min.js?1779950813" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1779950813" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1779950813" defer></script>
-    <script src="/js/lunr/lunr.zh.min.js?1779950813" defer></script>
+    <script src="/js/lunr/lunr.min.js?1779970704" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1779970704" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1779970704" defer></script>
+    <script src="/js/lunr/lunr.zh.min.js?1779970704" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['zh'];
     </script>
-    <link href="/fonts/fontawesome/css/all.min.css?1779950813" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779950813" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779950813" rel="stylesheet">
-    <link href="/css/theme.min.css?1779950813" rel="stylesheet">
-    <link href="/css/format-html.min.css?1779950813" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/all.min.css?1779970704" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779970704" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779970704" rel="stylesheet">
+    <link href="/css/theme.min.css?1779970704" rel="stylesheet">
+    <link href="/css/format-html.min.css?1779970704" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -92,8 +92,8 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <link href="/css/custom.css?1779950813" rel="stylesheet">
-    <script src="/js/custom.js?1779950813" defer></script>
+    <link href="/css/custom.css?1779970704" rel="stylesheet">
+    <script src="/js/custom.js?1779970704" defer></script>
   </head>
   <body class="mobile-support html" data-origin="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/index.html">
     <div id="R-body" class="default-animation">
@@ -143,143 +143,194 @@
 
 <h1 id="样本分析基础">样本分析基础</h1>
 
-<ul class="card-container">
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-821a6402995e21f52797438080d2bb35">
-    <div class="card-content">
-      <div class="card-title" id="R-card-821a6402995e21f52797438080d2bb35">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">
-        恶意样本分析-12-使用内存取证检测高级恶意软件
-        </a>
+<div class="card-container">
+    <article class="card card-popout" aria-labelledby="R-card-d091860b6552d1cc5a1396a604624577">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16536618692094.jpg');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-12-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/" class="card-link-overlay" aria-label="恶意样本分析-12-使用内存取证检测高级恶意软件"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-d091860b6552d1cc5a1396a604624577">
+          恶意样本分析-12-使用内存取证检测高级恶意软件
+        </div>
+        <div class="card-content-text">
+          11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它们有助于从内存映像中提取有价值的信息。在本章中，我们将继续我们的内 …
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-4594b6c71b1f86d6bace5959881936be">
-    <div class="card-content">
-      <div class="card-title" id="R-card-4594b6c71b1f86d6bace5959881936be">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/index.html">
-        恶意样本分析-11-使用内存取证狩猎恶意软件
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-39674ee6df049e659b5d7c52f0361ef9">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/16535545681820.jpg');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-11-%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E7%8B%A9%E7%8C%8E%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/" class="card-link-overlay" aria-label="恶意样本分析-11-使用内存取证狩猎恶意软件"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-39674ee6df049e659b5d7c52f0361ef9">
+          恶意样本分析-11-使用内存取证狩猎恶意软件
+        </div>
+        <div class="card-content-text">
+          恶意样本分析-11-使用内存取证狩猎恶意软件 10.使用内存取证狩猎恶意软件 在到目前为止所涵盖的章节中，我们看了概念、工具和技术用于分析恶意软件使用静态，动态 …
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-d26573f44e79d8a43bbdc2b2e05418a5">
-    <div class="card-content">
-      <div class="card-title" id="R-card-d26573f44e79d8a43bbdc2b2e05418a5">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/index.html">
-        恶意样本分析-10-恶意软件的混淆技术
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-e598ae33bc9a90c44239e323c81fb732">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/image-20220316141323421.png');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-10-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/" class="card-link-overlay" aria-label="恶意样本分析-10-恶意软件的混淆技术"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-e598ae33bc9a90c44239e323c81fb732">
+          恶意样本分析-10-恶意软件的混淆技术
+        </div>
+        <div class="card-content-text">
+          9. 恶意软件的混淆技术 混淆一词指的是掩盖有意义信息的过程。恶意软件作者经常使用各种混淆技术来隐藏信息，并修改恶意内容，使安全分析人员难以发现和分析。敌方通常 …
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-fd99ccd178a444a43d1faee8516f081b">
-    <div class="card-content">
-      <div class="card-title" id="R-card-fd99ccd178a444a43d1faee8516f081b">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/index.html">
-        恶意样本分析-9-代码注入和钩子
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-a60d283233d7b04d653ba21a9bd04e95">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/image-20220315150240415.png');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-9-%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%92%8C%E9%92%A9%E5%AD%90/" class="card-link-overlay" aria-label="恶意样本分析-9-代码注入和钩子"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-a60d283233d7b04d653ba21a9bd04e95">
+          恶意样本分析-9-代码注入和钩子
+        </div>
+        <div class="card-content-text">
+          8. 代码注入和钩子 在上一章中，我们研究了恶意软件用来留在受害者系统中的不同持久性机制。在本章中，你将学习恶意程序如何将代码注入另一个进程（称为目标进程或远程 …
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-110412ec3c1efd1b7fa7614081158f93">
-    <div class="card-content">
-      <div class="card-title" id="R-card-110412ec3c1efd1b7fa7614081158f93">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/index.html">
-        恶意样本分析-8-恶意软件的功能和持久化
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-97e4899ebd8b9f70bed1557168d34815">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/image-20220308145245581.png');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-8-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%92%8C%E6%8C%81%E4%B9%85%E5%8C%96/" class="card-link-overlay" aria-label="恶意样本分析-8-恶意软件的功能和持久化"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-97e4899ebd8b9f70bed1557168d34815">
+          恶意样本分析-8-恶意软件的功能和持久化
+        </div>
+        <div class="card-content-text">
+          7. 恶意软件的功能和持久化 恶意软件可以进行各种操作，它可以包括各种功能。了解一个恶意软件所做的事情和它所表现出来的行为，对于理解恶意二进制文件的性质和目的至 …
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-132ddac3ab8e1a32006c9f7f331738bf">
-    <div class="card-content">
-      <div class="card-title" id="R-card-132ddac3ab8e1a32006c9f7f331738bf">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/index.html">
-        恶意样本分析-7-调试恶意软件二进制文件
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-318aebcac0f962eb512fd45b2bec1cac">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/image-20220114020703095.png');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-7-%E8%B0%83%E8%AF%95%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/" class="card-link-overlay" aria-label="恶意样本分析-7-调试恶意软件二进制文件"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-318aebcac0f962eb512fd45b2bec1cac">
+          恶意样本分析-7-调试恶意软件二进制文件
+        </div>
+        <div class="card-content-text">
+          6. 调试恶意软件二进制文件 调试时一个通过受控方式执行恶意代码的技术。Debugger是一个程序，使你可以在更细颗粒度的级别上检查恶意代码。debugger提 …
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-f43c46da37ebfb133c7be0f74d58e356">
-    <div class="card-content">
-      <div class="card-title" id="R-card-f43c46da37ebfb133c7be0f74d58e356">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-IDA%E4%BD%BF%E7%94%A8/index.html">
-        恶意样本分析6-IDA使用
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-7928680abef7767d4165093dc8844e0b">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-IDA%E4%BD%BF%E7%94%A8/20200902140108.png');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-6-IDA%E4%BD%BF%E7%94%A8/" class="card-link-overlay" aria-label="恶意样本分析6-IDA使用"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-7928680abef7767d4165093dc8844e0b">
+          恶意样本分析6-IDA使用
+        </div>
+        <div class="card-content-text">
+          使用IDA反汇编 代码分析常用语了解恶意样本内部源码不可见时使用。
+1. 代码分析工具 代码分析工具可以根据他们的功能、描述、数量进行分类。 反汇编程序是一个可 …
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-3d9a9bc5c00e75185facb092eaea22a5">
-    <div class="card-content">
-      <div class="card-title" id="R-card-3d9a9bc5c00e75185facb092eaea22a5">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/index.html">
-        恶意样本分析4-基础DLL分析
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-013e6f9472347b4bf824bf12ae9669f3">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/20190923224925.png-A');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-4-%E5%9F%BA%E7%A1%80DLL%E5%88%86%E6%9E%90/" class="card-link-overlay" aria-label="恶意样本分析4-基础DLL分析"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-013e6f9472347b4bf824bf12ae9669f3">
+          恶意样本分析4-基础DLL分析
+        </div>
+        <div class="card-content-text">
+           当恶意代码打包进dll，需要对其进行一定量的定性分析，除了平台的手段，这里还有一些基础的dll分析手段。
+
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-3d9a9bc5c00e75185facb092eaea22a5">
-    <div class="card-content">
-      <div class="card-title" id="R-card-3d9a9bc5c00e75185facb092eaea22a5">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/index.html">
-        恶意样本分析4-基础DLL分析
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-fbf73ae5a345ab8fa8450ae7f813374e">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/20200428160722.png-A');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-5-%E6%B1%87%E7%BC%96%E5%8F%8A%E5%8F%8D%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80/" class="card-link-overlay" aria-label="恶意样本分析4-基础DLL分析"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-fbf73ae5a345ab8fa8450ae7f813374e">
+          恶意样本分析4-基础DLL分析
+        </div>
+        <div class="card-content-text">
+          汇编及反汇编入门 基于基础动态分析有其局限，为了获取更深的洞察，需要代码分析（逆向分析） 例如，大多数样本使用c2服务加密通信。使用动态分析我们能够确定加密通信 …
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-a3c047a573f546b8047e95528f7fd6de">
-    <div class="card-content">
-      <div class="card-title" id="R-card-a3c047a573f546b8047e95528f7fd6de">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/index.html">
-        恶意样本分析3-基础动态分析
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-6b8ea94ea4ffc7bcbc130cd7fb61385b">
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-3-%E5%9F%BA%E7%A1%80%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90/" class="card-link-overlay" aria-label="恶意样本分析3-基础动态分析"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-6b8ea94ea4ffc7bcbc130cd7fb61385b">
+          恶意样本分析3-基础动态分析
+        </div>
+        <div class="card-content-text">
+          动态分析过程中，当恶意程序执行的时候，需要监控其行为。目标过程的目标是获取恶意程序行为的实时数据，以及其对操作系统的影响。
+
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-fd06ba164f53afe0d838d3c876f61636">
-    <div class="card-content">
-      <div class="card-title" id="R-card-fd06ba164f53afe0d838d3c876f61636">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/index.html">
-        恶意样本分析2-基础静态分析
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-f7cfee2df7a958aff1f0b73834ece20c">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/20190903151733.png-A');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-2-%E5%9F%BA%E7%A1%80%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" class="card-link-overlay" aria-label="恶意样本分析2-基础静态分析"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-f7cfee2df7a958aff1f0b73834ece20c">
+          恶意样本分析2-基础静态分析
+        </div>
+        <div class="card-content-text">
+          基础的静态分析可以考虑直接使用各公司平台产品分析产出，这里根据国外的习惯使用一些基本工具脚本进行相关分析的基础工作梳理。
+
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-<li>
-  <article class="card card-popout" aria-labelledby="R-card-9f4d0e48b96e93bb5f581a27d5730239">
-    <div class="card-content">
-      <div class="card-title" id="R-card-9f4d0e48b96e93bb5f581a27d5730239">
-        <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/index.html">
-        恶意样本分析1-配置实验环境
-        </a>
+    </article>
+    <article class="card card-popout" aria-labelledby="R-card-b59926c90efbdc00b31a1c14944742e3">
+      <div class="card-bg-layer" style="background-image: url('/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/1555673578514.png-A');"></div>
+      <div class="card-glass-layer"></div>
+      
+      <a href="/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90-1-%E9%85%8D%E7%BD%AE%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83/" class="card-link-overlay" aria-label="恶意样本分析1-配置实验环境"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-b59926c90efbdc00b31a1c14944742e3">
+          恶意样本分析1-配置实验环境
+        </div>
+        <div class="card-content-text">
+           对于日常探针分析工作，样本分析作为不可缺少的一个环节，经常能够在其中发现比较重要的细节，对此部分的学习和总结尤其重要，这一系列即为最近收集总结的一部分。
+
+        </div>
       </div>
-    </div>
-  </article>
-</li>
-</ul>
+    </article>
+</div>
 
   <footer class="footline">
-              <i class='fa-fw fas fa-calendar'></i> 2022年11月10日
   </footer>
 </article>
         </div>
@@ -326,7 +377,15 @@
             <li class="" data-nav-id="/%E5%85%B3%E4%BA%8E/index.html"><input type="checkbox" id="R-section-77722aba2e6ab1a57ee1ff7ce19fdfc6" aria-controls="R-subsections-77722aba2e6ab1a57ee1ff7ce19fdfc6"><label for="R-section-77722aba2e6ab1a57ee1ff7ce19fdfc6"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单关于</span></label><a class="padding default-animation" href="/%E5%85%B3%E4%BA%8E/index.html">关于<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-77722aba2e6ab1a57ee1ff7ce19fdfc6" class="collapsible-menu">
             <li class="" data-nav-id="/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html"><a class="padding" href="/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html">本站搭建<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
             <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html"><input type="checkbox" id="R-section-958443c8a874cc447d6f65c16e72ca2e" aria-controls="R-subsections-958443c8a874cc447d6f65c16e72ca2e"><label for="R-section-958443c8a874cc447d6f65c16e72ca2e"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单渗透测试</span></label><a class="padding default-animation" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">渗透测试<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-958443c8a874cc447d6f65c16e72ca2e" class="collapsible-menu">
-            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/index.html"><input type="checkbox" id="R-section-a629172a05ec79a3207e0c3309787707" aria-controls="R-subsections-a629172a05ec79a3207e0c3309787707"><label for="R-section-a629172a05ec79a3207e0c3309787707"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单01 前期交互</span></label><a class="padding default-animation" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/index.html">01 前期交互<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-a629172a05ec79a3207e0c3309787707" class="collapsible-menu">
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92%E9%98%B6%E6%AE%B5%E6%8C%87%E5%8D%97/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92%E9%98%B6%E6%AE%B5%E6%8C%87%E5%8D%97/index.html">前期交互阶段指南<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/02-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/02-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">02 信息收集<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/03-%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/03-%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/index.html">03 漏洞分析<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/04-%E6%B8%97%E9%80%8F%E6%94%BB%E5%87%BB/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/04-%E6%B8%97%E9%80%8F%E6%94%BB%E5%87%BB/index.html">04 渗透攻击<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/05-%E5%90%8E%E6%B8%97%E9%80%8F%E5%88%A9%E7%94%A8/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/05-%E5%90%8E%E6%B8%97%E9%80%8F%E5%88%A9%E7%94%A8/index.html">05 后渗透利用<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/06-%E6%8A%A5%E5%91%8A/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/06-%E6%8A%A5%E5%91%8A/index.html">06 报告<i class="fa-fw fas fa-check read-icon"></i></a></li>
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/index.html"><input type="checkbox" id="R-section-b102614539e3d9cd1ffa07af80f07aba" aria-controls="R-subsections-b102614539e3d9cd1ffa07af80f07aba"><label for="R-section-b102614539e3d9cd1ffa07af80f07aba"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单00 准备阶段</span></label><a class="padding default-animation" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/index.html">00 准备阶段<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-b102614539e3d9cd1ffa07af80f07aba" class="collapsible-menu">
+            <li class="" data-nav-id="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html"><a class="padding" href="/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html">web应用渗透测试方法论<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li>
             <li class="" data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html"><input type="checkbox" id="R-section-13ecbd85c22b876cbfbec6bc0caa965c" aria-controls="R-subsections-13ecbd85c22b876cbfbec6bc0caa965c"><label for="R-section-13ecbd85c22b876cbfbec6bc0caa965c"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单应急响应</span></label><a class="padding default-animation" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html">应急响应<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-13ecbd85c22b876cbfbec6bc0caa965c" class="collapsible-menu">
             <li class="" data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html"><input type="checkbox" id="R-section-035ae9a87a90a296162bd02a60487e71" aria-controls="R-subsections-035ae9a87a90a296162bd02a60487e71"><label for="R-section-035ae9a87a90a296162bd02a60487e71"><i class="fa-fw fas fa-chevron-right"></i><span class="a11y-only">子菜单0x03取证分析</span></label><a class="padding default-animation" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html">0x03取证分析<i class="fa-fw fas fa-check read-icon"></i></a><ul id="R-subsections-035ae9a87a90a296162bd02a60487e71" class="collapsible-menu">
             <li class="" data-nav-id="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html"><a class="padding" href="/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html">【译】取证调查：虚拟内存pagefile.sys<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li>
@@ -494,8 +553,8 @@
 <div id="R-footer" class="default-animation"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779950813" defer></script>
-    <script src="/js/theme.min.js?1779950813" defer></script><script src="/js/custom.js" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779970704" defer></script>
+    <script src="/js/theme.min.js?1779970704" defer></script><script src="/js/custom.js" defer></script>
 
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>

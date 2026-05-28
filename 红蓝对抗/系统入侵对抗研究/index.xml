@@ -3,7 +3,7 @@
   <channel>
     <title>系统入侵对抗研究 :: x7peeps</title>
     <link>https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html</link>
-    <description>windows计划任务隐藏-检查方式&#xD;CS X86 payload分析混淆加密&#xD;linux隐藏进程-进程名伪造&#xD;linux隐藏进程-目录挂载方式研究&#xD;linux隐藏进程-预加载库或lib劫持&#xD;Mysql提权小结</description>
+    <description>windows计划任务隐藏-检查方式 计划任务隐藏 这里我们参考AnonySec的文章创建隐藏计划任务 … CS X86 payload分析混淆加密 Cobalt Strike – Bypassing Windows Defender with Obfuscation Cobalt Strike 使用混淆绕 … linux隐藏进程-进程名伪造 分子实验室 https://molecule-labs.com/ 背景： 在测试系统命令对linux隐藏进程的有效性测试，记录的相关知识点。 原理： 在恶意代 … linux隐藏进程-目录挂载方式研究 分子实验室 https://molecule-labs.com/ 最近在精细应急响应相关内容的时候注意到linux进程隐藏确实会是应急响应中的一个问题，因此这 … linux隐藏进程-预加载库或lib劫持 劫持lib库 原理解析：利用环境变量LD_PRELOAD或者配置ld.so.preload文件使的恶意的动态库先于系统标准库加载，以达到架空系统标准库中相关函数 … Mysql提权小结 学习Mysql提权小结一下，基本过程。明确了基本思路和方式方法。</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 30 Aug 2021 10:00:00 +0800</lastBuildDate>

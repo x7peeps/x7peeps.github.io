@@ -3,7 +3,7 @@
   <channel>
     <title>漏洞复现 :: x7peeps</title>
     <link>https://x7peeps.com/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html</link>
-    <description>企业微信私有化部署api未授权漏洞&#xD;CVE-2014-4210_Weblogic SSRF漏洞&#xD;WPSSRC-2023-0701金山WPS_RCE&#xD;CVE-2020-14645_weblogic_T3反序列化RCE复测&#xD;CVE-2020-0796 ‘SMBGhost’ Remote Code Execution&#xD;CVE-2017-11882 Office远程代码执行漏洞复现</description>
+    <description>企业微信私有化部署api未授权漏洞 企业微信私有化部署api未授权漏洞 安全等级 高 漏洞影响 未知 描述 私有化部署企业微信API未授权，/cgi-bin/gateway/agentinfo接口 … CVE-2014-4210_Weblogic SSRF漏洞 Weblogic中存在一个SSRF漏洞，利用该漏洞可以发送任意HTTP请求，进而攻击内网中redis、fastcgi等脆弱组件。 WPSSRC-2023-0701金山WPS_RCE 摘要 WPS Office 软件是由金山办公软件股份有限公司自主研发的一款办公软件套装，可以实现办公软件最常用的文字、表格、演示等多种功能，覆盖 … CVE-2020-14645_weblogic_T3反序列化RCE复测 影响版本 Vulnerability in the Oracle WebLogic Server product of Oracle Fusion … CVE-2020-0796 &#39;SMBGhost&#39; Remote Code Execution CVE-2020-0796 ‘SMBGhost’ Remote Code Execution 漏洞描述： 在Windows SMBv3版 … CVE-2017-11882 Office远程代码执行漏洞复现 CVE-2017-11882 Office远程代码执行漏洞及一点思考 0x01 概述 作为上一代office通杀漏洞，CVE-2017-11882是典型的具有 …</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 13 Aug 2023 08:18:00 +0800</lastBuildDate>

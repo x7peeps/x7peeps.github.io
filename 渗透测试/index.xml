@@ -3,16 +3,58 @@
   <channel>
     <title>渗透测试 :: x7peeps</title>
     <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html</link>
-    <description>web应用渗透测试方法论</description>
+    <description>01 前期交互 前期交互阶段指南 前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目的、范围、限制条 … 02 信息收集 暂无内容 03 漏洞分析 暂无内容 04 渗透攻击 暂无内容 05 后渗透利用 暂无内容 06 报告 暂无内容 00 准备阶段 web应用渗透测试方法论 WEB应用程序渗透测试方法论 指导思想：方法论中一系列任务根据他们之间的逻辑依赖关系组织和排序。实际上，渗透测试过程往往需要发挥自己 …</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <atom:link href="https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>web应用渗透测试方法论</title>
-      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html</link>
+      <title>01 前期交互</title>
+      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E8%AE%BA/index.html</guid>
-      <description>WEB应用程序渗透测试方法论 指导思想：方法论中一系列任务根据他们之间的逻辑依赖关系组织和排序。实际上，渗透测试过程往往需要发挥自己的想象，思考可采取的攻击方向，并根据所发现的有关目标应用程序的信息指导攻击方向。</description>
+      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/index.html</guid>
+      <description>前期交互阶段指南 前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目的、范围、限制条件以及双方的责任和义 …</description>
+    </item>
+    <item>
+      <title>02 信息收集</title>
+      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/02-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/02-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html</guid>
+      <description>暂无内容</description>
+    </item>
+    <item>
+      <title>03 漏洞分析</title>
+      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/03-%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/03-%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/index.html</guid>
+      <description>暂无内容</description>
+    </item>
+    <item>
+      <title>04 渗透攻击</title>
+      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/04-%E6%B8%97%E9%80%8F%E6%94%BB%E5%87%BB/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/04-%E6%B8%97%E9%80%8F%E6%94%BB%E5%87%BB/index.html</guid>
+      <description>暂无内容</description>
+    </item>
+    <item>
+      <title>05 后渗透利用</title>
+      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/05-%E5%90%8E%E6%B8%97%E9%80%8F%E5%88%A9%E7%94%A8/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/05-%E5%90%8E%E6%B8%97%E9%80%8F%E5%88%A9%E7%94%A8/index.html</guid>
+      <description>暂无内容</description>
+    </item>
+    <item>
+      <title>06 报告</title>
+      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/06-%E6%8A%A5%E5%91%8A/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/06-%E6%8A%A5%E5%91%8A/index.html</guid>
+      <description>暂无内容</description>
+    </item>
+    <item>
+      <title>00 准备阶段</title>
+      <link>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/00-%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5/index.html</guid>
+      <description>web应用渗透测试方法论 WEB应用程序渗透测试方法论 指导思想：方法论中一系列任务根据他们之间的逻辑依赖关系组织和排序。实际上，渗透测试过程往往需要发挥自己的想象，思考可采取的攻击方向 …</description>
     </item>
   </channel>
 </rss>

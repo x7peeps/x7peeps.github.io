@@ -3,7 +3,7 @@
   <channel>
     <title>威胁情报工具 :: x7peeps</title>
     <link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html</link>
-    <description>TwitterTimelineClientScript&#xD;rss2dingtalk</description>
+    <description>TwitterTimelineClientScript TwitterTimelineClientScript 一个本地命令行查询/批量查询twitter推文的脚本. This is a script to get … rss2dingtalk Summary rss2dingtalk是一个简单的用于同步rss订阅资讯到钉钉群机器人的脚本。常用于团队日常订阅资讯使用。 Getting Started …</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 28 Jun 2022 12:03:49 +0800</lastBuildDate>
