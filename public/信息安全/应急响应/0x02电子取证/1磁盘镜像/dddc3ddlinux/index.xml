@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dd/dc3dd(linux) :: x7peeps</title>
+    <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.html</link>
+    <description>dd镜像取证&#xA;在一些无法使用工具的特殊情况下可以考虑dd做镜像，注意不要将镜像保存到被取证硬盘中，覆盖磁盘造成证据现场破坏。&#xA;使用dd做磁盘镜像 dd一般镜像方式 1、fdisk -l 判断目标磁盘编号：</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <atom:link href="https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/1%E7%A3%81%E7%9B%98%E9%95%9C%E5%83%8F/dddc3ddlinux/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
