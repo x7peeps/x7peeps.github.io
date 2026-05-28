@@ -32,27 +32,27 @@
     <meta itemprop="keywords" content="红蓝对抗,漏洞复现">
     <title>企业微信私有化部署api未授权漏洞 :: x7peeps</title>
     <link href="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/index.xml" rel="alternate" type="application/rss+xml" title="企业微信私有化部署api未授权漏洞 :: x7peeps">
-    <link href="/images/favicon.png?1779913988" rel="icon" type="image/png">
-    <link href="/css/auto-complete/auto-complete.min.css?1779913988" rel="stylesheet">
-    <script src="/js/auto-complete/auto-complete.min.js?1779913988" defer></script>
-    <script src="/js/search-lunr.min.js?1779913988" defer></script>
-    <script src="/js/search.min.js?1779913988" defer></script>
+    <link href="/images/favicon.png?1779949905" rel="icon" type="image/png">
+    <link href="/css/auto-complete/auto-complete.min.css?1779949905" rel="stylesheet">
+    <script src="/js/auto-complete/auto-complete.min.js?1779949905" defer></script>
+    <script src="/js/search-lunr.min.js?1779949905" defer></script>
+    <script src="/js/search.min.js?1779949905" defer></script>
     <script>
       window.relearn = window.relearn || {};
-      window.relearn.index_js_url="/searchindex.zh.js?1779913988";
+      window.relearn.index_js_url="/searchindex.zh.js?1779949905";
     </script>
-    <script src="/js/lunr/lunr.min.js?1779913988" defer></script>
-    <script src="/js/lunr/lunr.stemmer.support.min.js?1779913988" defer></script>
-    <script src="/js/lunr/lunr.multi.min.js?1779913988" defer></script>
-    <script src="/js/lunr/lunr.zh.min.js?1779913988" defer></script>
+    <script src="/js/lunr/lunr.min.js?1779949905" defer></script>
+    <script src="/js/lunr/lunr.stemmer.support.min.js?1779949905" defer></script>
+    <script src="/js/lunr/lunr.multi.min.js?1779949905" defer></script>
+    <script src="/js/lunr/lunr.zh.min.js?1779949905" defer></script>
     <script>
       window.relearn = window.relearn || {};
       window.relearn.contentLangs=['zh'];
     </script>
-    <link href="/fonts/fontawesome/css/all.min.css?1779913988" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779913988" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779913988" rel="stylesheet">
-    <link href="/css/theme.min.css?1779913988" rel="stylesheet">
-    <link href="/css/format-html.min.css?1779913988" rel="stylesheet" id="R-format-style">
+    <link href="/fonts/fontawesome/css/all.min.css?1779949905" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779949905" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779949905" rel="stylesheet">
+    <link href="/css/theme.min.css?1779949905" rel="stylesheet">
+    <link href="/css/format-html.min.css?1779949905" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -101,8 +101,8 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <link href="/css/custom.css?1779913988" rel="stylesheet">
-    <script src="/js/custom.js?1779913988" defer></script>
+    <link href="/css/custom.css?1779949905" rel="stylesheet">
+    <script src="/js/custom.js?1779949905" defer></script>
   </head>
   <body class="mobile-support html" data-origin="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/index.html">
     <div id="R-body" class="default-animation">
@@ -178,17 +178,17 @@
 <p>漏洞详情分析：
 第一步：，通过泄露信息接口可以获取corpid和corpsecret
 https://&lt;企业微信域名&gt;/cgi-bin/gateway/agentinfo
-<a href="#R-image-4d788add6484e5c20535a4122f7df5dc" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918916855311.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4d788add6484e5c20535a4122f7df5dc"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918916855311.jpg"></a></p>
+<a href="#R-image-f1abdd257b66895ec64a19e8a84949cf" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918916855311.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-f1abdd257b66895ec64a19e8a84949cf"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918916855311.jpg"></a></p>
 <p>第二步，使用corpsecret和corpid获得token
 https://&lt;企业微信域名&gt;/cgi-bin/gettoken?corpid=ID&amp;corpsecret=SECRET
 注意：ID使用strcorpid</p>
-<p><a href="#R-image-dab73f792f29b85e4bb5f52ec3488237" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917094323.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-dab73f792f29b85e4bb5f52ec3488237"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917094323.jpg"></a></p>
+<p><a href="#R-image-bd48bce3aa452af505e89016525fcf98" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917094323.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-bd48bce3aa452af505e89016525fcf98"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917094323.jpg"></a></p>
 <p>第三步，使用token访问诸如企业通讯录信息，修改用户密码，发送消息，云盘等接口
 https://&lt;企业微信域名&gt;/cgi-bin/user/get?access_token=ACCESS_TOKEN&amp;userid=USERID</p>
-<p><a href="#R-image-62d01245c147ea17fac71b61cffdf292" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917811336.jpg" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-62d01245c147ea17fac71b61cffdf292"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917811336.jpg"></a></p>
+<p><a href="#R-image-7ddae162149b98bc1c8fb8e17351cd74" class="lightbox-link"><img class="lazy lightbox figure-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917811336.jpg" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7ddae162149b98bc1c8fb8e17351cd74"><img class="lazy lightbox lightbox-image" loading="lazy" src="/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E7%A7%81%E6%9C%89%E5%8C%96%E9%83%A8%E7%BD%B2api%E6%9C%AA%E6%8E%88%E6%9D%83%E6%BC%8F%E6%B4%9E/16918917811336.jpg"></a></p>
 <h2 id="修复建议">修复建议<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="复制链接到剪贴板"><i class="fa-fw fas fa-link fa-lg"></i></button></span></h2>
 <p>API接口限制，IP白名单限制；
 跟进企业微信产品更新。</p>
@@ -409,8 +409,8 @@ https://&lt;企业微信域名&gt;/cgi-bin/user/get?access_token=ACCESS_TOKEN&am
 <div id="R-footer" class="default-animation"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779913988" defer></script>
-    <script src="/js/theme.min.js?1779913988" defer></script><script src="/js/custom.js" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779949905" defer></script>
+    <script src="/js/theme.min.js?1779949905" defer></script><script src="/js/custom.js" defer></script>
 
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>

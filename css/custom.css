@@ -65,6 +65,19 @@ nav#R-topbar .topbar-breadcrumbs{
   opacity: .9;
 }
 
+/* Fix breadcrumb text visibility affected by global primary color removal */
+.topbar-breadcrumbs,
+.topbar-breadcrumbs a,
+.topbar-breadcrumbs span {
+  color: var(--x7-muted) !important;
+  text-decoration: none !important;
+}
+
+.topbar-breadcrumbs a:hover,
+.topbar-breadcrumbs a:hover span {
+  color: var(--x7-text) !important;
+}
+
 nav#R-topbar .topbar-button button,
 nav#R-topbar .topbar-button a{
   border-radius: .6rem;
