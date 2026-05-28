@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>01 前期交互 :: x7peeps</title>
+    <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/index.html</link>
+    <description>前期交互阶段指南 前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目的、范围、限制条件以及双方的责任和义 …</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <atom:link href="https://x7peeps.com/%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>前期交互阶段指南</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92%E9%98%B6%E6%AE%B5%E6%8C%87%E5%8D%97/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/01-%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92/%E5%89%8D%E6%9C%9F%E4%BA%A4%E4%BA%92%E9%98%B6%E6%AE%B5%E6%8C%87%E5%8D%97/index.html</guid>
+      <description>前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目的、范围、限制条件以及双方的责任和义务。良好的前期交互能够有效避免后续测试中可能出现的“范围蔓延”、业务中断等问题，是整个项目顺利进行的基石。</description>
+    </item>
+  </channel>
+</rss>

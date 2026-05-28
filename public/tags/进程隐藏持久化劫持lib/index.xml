@@ -10,9 +10,9 @@
     <atom:link href="https://x7peeps.com/tags/%E8%BF%9B%E7%A8%8B%E9%9A%90%E8%97%8F%E6%8C%81%E4%B9%85%E5%8C%96%E5%8A%AB%E6%8C%81lib/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>linux隐藏进程-预加载库或lib劫持</title>
-      <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html</link>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html</link>
       <pubDate>Thu, 20 Feb 2020 23:31:00 +0800</pubDate>
-      <guid>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html</guid>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html</guid>
       <description>劫持lib库 原理解析：利用环境变量LD_PRELOAD或者配置ld.so.preload文件使的恶意的动态库先于系统标准库加载，以达到架空系统标准库中相关函数的目的，最终实现对特定进程的隐藏。 实现通过劫持lib库隐藏进程&#xA;这里参考：&#xA;https://github.com/gianlucaborello/libprocesshider ，英文教程&#xA;https://www.anquanke.com/post/id/226285&#xA;首先下载环境&#xA;git clone git@github.com:gianlucaborello/libprocesshider.git cd libprocesshider-master 自定义过滤函数&#xA;编辑 processhider.c，根据需要过滤的程序名称，修改process_to_filter变量值。这里需要注意下，这里匹配的是程序运行时候显示的名字，如果要使用python运行的话，这里应该填写的是python，python3同理。这里填写evil_script.py那么执行的时候就应该使用./方式执行，这样程序名为evil_script.py才会匹配并过滤。</description>
     </item>
   </channel>
