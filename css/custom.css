@@ -230,13 +230,15 @@ aside#R-sidebar {
   background-color: transparent !important;
 }
 
+/* Ensure proper list item height and layout */
 .R-sidebarmenu ul.collapsible-menu > li {
   position: relative;
   margin: 0 !important;
   padding: 0 !important;
   display: flex !important;
   flex-wrap: wrap !important;
-  align-items: center !important;
+  align-items: flex-start !important; /* Change from center to flex-start to prevent vertical centering issues */
+  min-height: 28px !important;
 }
 
 .R-sidebarmenu ul.collapsible-menu > li > ul {
@@ -248,9 +250,10 @@ aside#R-sidebar {
   padding: 4px 8px 4px 28px !important; /* Uniform left padding so text aligns perfectly */
   margin: 1px 8px !important;
   border-radius: 4px !important;
-  display: block !important;
+  display: flex !important; /* Change to flex to prevent wrapping */
+  align-items: center !important;
   flex: 1 1 auto !important;
-  width: 100% !important;
+  width: calc(100% - 16px) !important; /* Account for margins */
   min-width: max-content !important; /* Allow width to grow with text */
   white-space: nowrap !important; /* Keep text on one line */
   color: var(--x7-muted) !important;
@@ -291,6 +294,13 @@ aside#R-sidebar {
   padding: 0 !important;
   margin: 0 !important;
   transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+/* Fix for chevron being pushed down when text wraps or when using flex */
+#R-sidebar ul.collapsible-menu > li > label i {
+  position: relative !important;
+  display: block !important;
+  line-height: 1 !important;
 }
 
 /* Hide native checkbox to prevent square outlines */
