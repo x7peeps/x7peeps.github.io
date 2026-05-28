@@ -13,7 +13,7 @@
       <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/index.html</link>
       <pubDate>Sun, 13 Aug 2023 08:18:00 +0800</pubDate>
       <guid>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/index.html</guid>
-      <description>渗透测试 01 前期交互 前期交互阶段指南 前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目 … 应急响应 0x03取证分析 【译】取证调查：虚拟内存pagefile.sys 【译】取证调查：虚拟内存pagefile.sys 原文 … 0x06取证辅助工具 … 恶意样本分析 样本分析基础 恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它 … 红蓝对抗 页面篡改分析 页面篡改分析-服务器端重定向跳转 在本样本实例中，我们发现篡改的页面出现的情况与以往的都不同，原因在于不同ua服务器返回的信息不同，甚至出现了疑 … 情报跟踪 黑客背后的&#34;Thrip&#34;网络间谍组织 By Catalin Cimpanu 文章出处 … 科普 手机丢失后一定要做的几件必做事！ 前文还是老骆驼今天发的超长文，完整的记录了整个手机丢失到积极避免损失的过程，通过整个过程基本上可以梳理一遍整个手机黑产过程了 …</description>
+      <description>渗透测试 01 前期交互 前期交互阶段指南 前期交互阶段指南 在进行渗透测试项目时，前期交互阶段是至关重要的第一步。这个阶段的主要目的是与客户进行充分沟通，明确测试的目 … 应急响应 0x03取证分析 恶意样本分析 样本分析基础 恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不 … 威胁情报 黑客背后的&#34;Thrip&#34;网络间谍组织 By Catalin Cimpanu 文章出处 … 工具 渗透工具 信息收集工具 HEDnsExtractor 介绍 从 Hurricane Electric (球網際網路服務提供商)门户网站提取原始 HTML 特征 … 安全基础 操作系统 windows Powershell [MS-GPSB]Window核心协议-安全扩展协议 原文由于没有中文版，因此这里手工整理翻译了一下全文方便大 … 科普 手机丢失后一定要做的几件必做事！ 前文还是老骆驼今天发的超长文，完整的记录了整个手机丢失到积极避免损失的过程，通过整个过程基本上可以梳理一遍整个手机黑产过程了 …</description>
     </item>
     <item>
       <title>关于</title>
@@ -21,13 +21,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://x7peeps.com/%E5%85%B3%E4%BA%8E/index.html</guid>
       <description>竹林中的一处小屋🛖，种植着大量的竹子，如果你需要那就多逛逛竹林吧，希望日后你也能多多种植属于你的竹子。&#xA;当你的才华还撑不起你的野心的时候，你就应该静下心来学习；当你的能力还驾驭不了你的目标时，就应该沉下心来，历练；梦想，不是浮躁，而是沉淀和积累，只有拼出来的美丽，没有等出来的辉煌，机会永远是留给最渴望的那个人，学会与内心深处的你对话，问问自己，想要怎样的人生，静心学习，耐心沉淀，送给自己，共勉。——莫言</description>
-    </item>
-    <item>
-      <title>工具</title>
-      <link>https://x7peeps.com/%E5%B7%A5%E5%85%B7/index.html</link>
-      <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%B7%A5%E5%85%B7/index.html</guid>
-      <description>渗透工具 信息收集工具 HEDnsExtractor 介绍 从 Hurricane Electric (球網際網路服務提供商)门户网站提取原始 HTML 特征 通过命令 … 威胁情报工具 TwitterTimelineClientScript TwitterTimelineClientScript 一个本地命令行查询/批量查询twitter推文 … 日志分析工具 Coremail日志分析脚本 Coremail Log Analyze script 同学在应急的时候遇到coremail日志取证问题，量比较大，需要针对邮件 …</description>
     </item>
     <item>
       <title>AI</title>
@@ -39,16 +32,9 @@
     <item>
       <title>编程</title>
       <link>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</link>
-      <pubDate>Fri, 11 Sep 2020 12:03:49 +0800</pubDate>
-      <guid>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</guid>
-      <description>python scapy 如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip …</description>
-    </item>
-    <item>
-      <title>操作系统</title>
-      <link>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</guid>
-      <description>windows Powershell [MS-GPSB]Window核心协议-安全扩展协议 原文由于没有中文版，因此这里手工整理翻译了一下全文方便大佬们后续参考。 原文 …</description>
+      <guid>https://x7peeps.com/%E7%BC%96%E7%A8%8B/index.html</guid>
+      <description>python 暂无内容</description>
     </item>
     <item>
       <title>阅读</title>

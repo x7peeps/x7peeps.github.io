@@ -3,7 +3,7 @@
   <channel>
     <title>应急响应 :: x7peeps</title>
     <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html</link>
-    <description>0x03取证分析 【译】取证调查：虚拟内存pagefile.sys 【译】取证调查：虚拟内存pagefile.sys 原文 … 0x06取证辅助工具 EmergencyRocketPackage EmergencyRocketPackage Emergency Rocket Package 应急响应火箭包 … 0x02电子取证 3文件恢复 R-studio network(win) 近期在应急数据恢复场景，客户使用Hyper-V运行业务系统，由于没有设置快照，在误操作下恢复了虚拟机， … 0x00电子取证标准 2.0电子取证标准 第一部分：国内的相关标准规范 原文：微信公众号“cnforensics”，微信公众号“取证杂谈” 国家标准（4） GB/T … 0x01现场勘查 现场勘查 1. 现场勘查 一般包括询问、访问、观察情况记录，用于前期记录已知安全事件发生到发现后过程的细节。需要根据问答根据专业的角度判断哪些可以采纳哪些不可 …</description>
+    <description>0x03取证分析 恶意样本分析 样本分析基础 恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的 … 0x06取证辅助工具 EmergencyRocketPackage EmergencyRocketPackage Emergency Rocket Package 应急响应火箭包 … 0x02电子取证 3文件恢复 R-studio network(win) 近期在应急数据恢复场景，客户使用Hyper-V运行业务系统，由于没有设置快照，在误操作下恢复了虚拟机， … 0x00电子取证标准 2.0电子取证标准 第一部分：国内的相关标准规范 原文：微信公众号“cnforensics”，微信公众号“取证杂谈” 国家标准（4） GB/T … 0x01现场勘查 现场勘查 1. 现场勘查 一般包括询问、访问、观察情况记录，用于前期记录已知安全事件发生到发现后过程的细节。需要根据问答根据专业的角度判断哪些可以采纳哪些不可 …</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 01 Feb 2023 12:03:49 +0800</lastBuildDate>
@@ -13,7 +13,7 @@
       <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html</link>
       <pubDate>Wed, 01 Feb 2023 12:03:49 +0800</pubDate>
       <guid>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html</guid>
-      <description>【译】取证调查：虚拟内存pagefile.sys 【译】取证调查：虚拟内存pagefile.sys 原文 …</description>
+      <description>恶意样本分析 样本分析基础 恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它 … 【译】取证调查：虚拟内存pagefile.sys 【译】取证调查：虚拟内存pagefile.sys 原文 … 页面篡改分析 页面篡改分析-服务器端重定向跳转 在本样本实例中，我们发现篡改的页面出现的情况与以往的都不同，原因在于不同ua服务器返回的信息不同，甚至出现了疑似流量转发的少 … 系统入侵对抗研究 windows计划任务隐藏-检查方式 计划任务隐藏 这里我们参考AnonySec的文章创建隐藏计划任务 … CS X86 payload分析混淆加密 …</description>
     </item>
     <item>
       <title>0x06取证辅助工具</title>

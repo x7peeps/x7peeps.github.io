@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>组策略 :: x7peeps</title>
+    <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.html</link>
+    <description>SID安全标识符 众所周知的安全标识符(SID) 标识通用组和通用用户。例如，有一些众所周知的 SID 来标识以下组和用户： 每个人或世界，这是一个包含所有用户的组。 …</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <atom:link href="https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SID安全标识符</title>
+      <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/%E7%BB%84%E7%AD%96%E7%95%A5/sid%E5%AE%89%E5%85%A8%E6%A0%87%E8%AF%86%E7%AC%A6/index.html</guid>
+      <description>众所周知的安全标识符(SID) 标识通用组和通用用户。例如，有一些众所周知的 SID 来标识以下组和用户：&#xA;每个人或世界，这是一个包含所有用户的组。&#xA;CREATOR_OWNER，用作可继承 ACE 中的占位符。继承 ACE 时，系统将 CREATOR_OWNER SID 替换为对象创建者的 SID。</description>
+    </item>
+  </channel>
+</rss>

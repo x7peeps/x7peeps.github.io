@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>渗透工具 :: x7peeps</title>
+    <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html</link>
+    <description>信息收集工具 HEDnsExtractor 介绍 从 Hurricane Electric (球網際網路服務提供商)门户网站提取原始 HTML 特征 通过命令行参数或标准输 … 渗透验证工具 漏洞验证工具nuclei官方模版编写中文译文归档 参考 …</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>信息收集工具</title>
+      <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/index.html</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7/index.html</guid>
+      <description>HEDnsExtractor 介绍 从 Hurricane Electric (球網際網路服務提供商)门户网站提取原始 HTML 特征 通过命令行参数或标准输入自动识别 IPAddr ou … 本地批量ping域名脚本 本地批量ping域名脚本 背景是同学在执行一批渗透时需要批量验证一批域名本地ping情况，这里通过powershell脚本简单制作了一个思路供同学们参考。</description>
+    </item>
+    <item>
+      <title>渗透验证工具</title>
+      <link>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/index.html</link>
+      <pubDate>Fri, 13 Aug 2021 12:00:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81%E5%B7%A5%E5%85%B7/index.html</guid>
+      <description>漏洞验证工具nuclei官方模版编写中文译文归档 参考：https://nuclei.projectdiscovery.io/templating-guide/ 模版详情 ID 每个模板都有一个唯一的 ID，在 … 漏洞验证工具nuclei官方文档中文译文归档 特性 支持：HTTP | DNS | TCP | FILE support 所有模版都是可以配置的 可大量扫描 基于外带发现 便于编写自定义模版 安装 go 安 … UnsafeHttpMethod类型漏洞检测脚本 对于大量UnsafeHttpMethod类型漏洞一直苦于耗费时间，而几乎无产出，对于安全检测人员来说简直是浪费了不必要的时间，所以根据具体的几种常见的漏洞通过 …</description>
+    </item>
+  </channel>
+</rss>
