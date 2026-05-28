@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux下病毒查杀 :: x7peeps</title>
+    <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.html</link>
+    <description>linux下病毒查杀 大部分情况，现场是不允许向机器中拷贝程序的，一破坏现场，二使用不明原理的程序对客户业务系统可能造成未知的影响。在更为严格的情形下，可能我们在现场机器查询命令都是会影响证据固定，因此那种场景下需要先镜像，而后在分析证据的时候进行查杀工作，但这种严格的场景不在本文讨论的范围内。因此本文在查杀过程中，讨论的是不太严格的取证场景下，公司内部或个人主机场景下如何进行病毒查杀以及样本提取工作。第一步需要经允许才可拷贝相关程序，之后我们可以借助一些查杀工具进行检测扫描，最后我们通过现有的异常特征进行手工分析。</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/%E7%97%85%E6%AF%92%E6%9F%A5%E6%9D%80%E6%A3%80%E6%9F%A5/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

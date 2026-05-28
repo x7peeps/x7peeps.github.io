@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OSFMount :: x7peeps</title>
+    <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/OSFMount/index.html</link>
+    <description>概况： OSFMount允许将Windows中的本地磁盘镜像文件(整个磁盘或磁盘分区的逐位拷贝)作为物理磁盘或逻辑驱动器号挂载。然后，您可以使用PassMark OSForensics™来分析磁盘映像文件，方法是使用PassMark OSForensics™指定物理磁盘名称(例如，\.\PhysicalDrive1)或逻辑驱动器号(例如:Z:)。</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <atom:link href="https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/OSFMount/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

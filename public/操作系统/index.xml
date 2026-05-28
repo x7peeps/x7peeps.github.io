@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>操作系统 :: x7peeps</title>
+    <link>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</link>
+    <description>windows Powershell [MS-GPSB]Window核心协议-安全扩展协议 原文由于没有中文版，因此这里手工整理翻译了一下全文方便大佬们后续参考。 原文 …</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <atom:link href="https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>windows</title>
+      <link>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Windows/index.html</guid>
+      <description>Powershell [MS-GPSB]Window核心协议-安全扩展协议 原文由于没有中文版，因此这里手工整理翻译了一下全文方便大佬们后续参考。 原文：[MS-GPSB] 组策略 … 组策略 SID安全标识符 众所周知的安全标识符(SID) 标识通用组和通用用户。例如，有一些众所周知的 SID 来标识以下组和用户： 每个人或世界，这是一个包含所有用 …</description>
+    </item>
+  </channel>
+</rss>

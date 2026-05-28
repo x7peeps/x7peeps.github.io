@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>4系统信息收集 :: x7peeps</title>
+    <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html</link>
+    <description>应急响应关键证据检索提取 安全策略检测 安全策略的检测更倾向与合规检测，这里我们希望的是根据合规的标准发现尽可能多的非合规问题。 Windows安全策略检查 windows官网操作系统 … 国标中电子取证相关要求及综述 应急/司法举证关注什么？国标对于电子取证有哪些明确要求？ 在进行下面之前，我们需要了解下现行国家标准中提及的有关取证需要关注重要点。这里我们参考的国标有：</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 13 Oct 2021 15:00:00 +0800</lastBuildDate>
+    <atom:link href="https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>应急响应关键证据检索提取</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.html</link>
+      <pubDate>Wed, 13 Oct 2021 15:00:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%B3%E9%94%AE%E8%AF%81%E6%8D%AE%E6%A3%80%E7%B4%A2%E6%8F%90%E5%8F%96/index.html</guid>
+      <description>安全策略检测 安全策略的检测更倾向与合规检测，这里我们希望的是根据合规的标准发现尽可能多的非合规问题。 Windows安全策略检查 windows官网操作系统技术文件中的有很 … 钩子检查 Hook分为应用层（Ring3）Hook和内核层（Ring0）Hook，应用层Hook适用于x86和x64，而内核层Hook一般仅在x86平台适用，因为从 … 系统共享检查 windows系统共享 net share 查询 查看系统中所有共享 net share 通过命令看到所有盘符都是默认共享 IPC$空连接尤为不安全,所以我们要 … 环境变量检查 环境变量一般用于命令行快速执行命令，快速执行程序使用。恶意软件或黑客通常会通过一些环境变量设置，隐藏恶意程序，或添加恶意程序在环境变量中，用于实现对主机的控制。 … 回收站文件检查 windows下回收站文件 查询回收站内容 通过$RECYCLE.BIN+sid查询回收站内容。可以看到查到的文件名称展示都非原始文件名。 浏览器相关检查 windows下浏览器相关检查 通常HKEY_LOCAL_MACHINE（计算机配置）配置权限大于HKEY_CURRENT_USER（当前用户）。这&#x9;里尝试使用 … hosts文件检查 windows下host文件检查 windows下hosts目录位置是在C:\Windows\System32\drivers\etc下hosts文件 type … 防火墙规则检查 windows下防火墙规则检查 查询防火墙规则可以通过运行WF.msc，也可以通过netsh advfirewall 命令查询。 netsh … 映像劫持检查 镜像劫持 映像劫持的定义 所谓的映像劫持（IFEO）就是Image File Execution Options/或字面直译 Image Hijack， 劫持点 … linux软件包管理器文件检查 对于软件包管理器软件检查安装的软件的变动可以参考软件查杀检查rhk工具的使用，该软件已可以充分利用软件包管理器的文件特性进行查找。并且我们可以通过相关内容了解到 … web后门查杀 linux下后门查杀 牧云（18年已停止更新） CloudWalker（牧云）是长亭推出的一款开源服务器安全管理平台。根据项目计划会逐步覆盖服务器资产管理、威胁 … linux下病毒查杀 linux下病毒查杀 大部分情况，现场是不允许向机器中拷贝程序的，一破坏现场，二使用不明原理的程序对客户业务系统可能造成未知的影响。在更为严格的情形下，可能我们 … 系统进程检查 linux下系统进程查询 ps https://www.runoob.com/linux/linux-comm-ps.html Usage: ps … 系统日志查询 linux下系统日志查询 这里仅做取证方式介绍 /var/log/* 基本命令 日志默认存放位置：/var/log/ 查看日志配置情况：more … 重点文件目录检查 在日常应急下，我们除了针对重要数据检查，还会针对一些重点文件目录进行检查，相关目录或多或少受到黑客攻击的影响留下了痕迹，对相关文件的检查和分析有助于我们还原整个 … 异常端口查询 Linux下异常端口/连接检查 netstat 菜鸟 https://www.runoob.com/linux/linux-comm-netstat.html … 服务信息检查 Linux下服务信息检查 chkconfig（linux） redhat中常用 基本命令 chkconfig [--add][--del][--list][系统 … 计划任务检查 计划任务检查 linux计划任务检查 crontab 基本使用 crontab [ -u user ] file crontab [ -u user ] { … 命令行历史记录 linux下命令行历史记录 原理的解释 这里参考白胖子关于linux命令行history的解释，其中概述对history的原理解释的比较通俗易懂，这里引用过来： … 启动项检查 在日常应急的过程中，攻击者常常通过恶意软件或自定义脚本插入启动项，利用系统自启实现恶意程序/远控程序/脚本延缓执行，达到持续控制的目的。因此有必要在日常应急场景 … 系统用户审查 windows查看用户 whoami 查看当前用户 net user 命令释义 查阅官网文档 net user [&lt;UserName&gt; … [译]快速pcap-使用powershell抓取pacp包 title: [译]快速pcap-使用powershell抓取pacp包 date: …</description>
+    </item>
+    <item>
+      <title>国标中电子取证相关要求及综述</title>
+      <link>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/4%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/%E5%9B%BD%E6%A0%87%E4%B8%AD%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81%E7%9B%B8%E5%85%B3%E8%A6%81%E6%B1%82%E5%8F%8A%E7%BB%BC%E8%BF%B0/index.html</guid>
+      <description>应急/司法举证关注什么？国标对于电子取证有哪些明确要求？&#xA;在进行下面之前，我们需要了解下现行国家标准中提及的有关取证需要关注重要点。这里我们参考的国标有：</description>
+    </item>
+  </channel>
+</rss>
