@@ -609,8 +609,64 @@ html, body {
 }
 
 /* ==========================================================================
-   Card Grid Design (with Thumbnail Support)
+   Taxonomy (Tags) Page Redesign
    ========================================================================== */
+
+/* Fix weird duplicate title "恶" and clear up the tags header */
+main#R-body-inner article h1 {
+  font-size: 2rem !important;
+  color: var(--MAIN-TITLES-TEXT-color) !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Hide the weird duplicated second heading that contains a copy anchor */
+main#R-body-inner article h2:has(span.anchor) {
+  display: none !important;
+}
+
+/* Improve taxonomy list readability */
+main#R-body-inner article ul {
+  list-style: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+}
+
+main#R-body-inner article ul li {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 8px !important;
+  padding: 1rem 1.25rem !important;
+  transition: background-color 0.2s ease !important;
+}
+
+main#R-body-inner article ul li:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+main#R-body-inner article ul li p {
+  margin: 0 !important;
+}
+
+/* Taxonomy article title */
+main#R-body-inner article ul li p:first-child a {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  color: var(--x7-text) !important;
+  text-decoration: none !important;
+}
+
+main#R-body-inner article ul li p:first-child a:hover {
+  color: var(--x7-accent) !important;
+}
+
+/* Taxonomy breadcrumb path (the second p tag) */
+main#R-body-inner article ul li p:last-child {
+  font-size: 0.85rem !important;
+  color: var(--x7-muted) !important;
+  margin-top: 0.5rem !important;
+}
 
 .card-container {
   display: grid !important;
