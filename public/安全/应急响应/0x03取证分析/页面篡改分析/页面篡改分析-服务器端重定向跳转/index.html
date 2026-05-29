@@ -28,11 +28,11 @@
     <meta itemprop="keywords" content="红蓝对抗,页面篡改">
     <title>页面篡改分析-服务器端重定向跳转 :: x7peeps</title>
     <link href="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.xml" rel="alternate" type="application/rss+xml" title="页面篡改分析-服务器端重定向跳转 :: x7peeps">
-    <link href="/images/favicon.png?1779988877" rel="icon" type="image/png">
-    <link href="/fonts/fontawesome/css/all.min.css?1779988877" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1779988877" rel="stylesheet"></noscript>
-    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1779988877" rel="stylesheet">
-    <link href="/css/theme.min.css?1779988877" rel="stylesheet">
-    <link href="/css/format-html.min.css?1779988877" rel="stylesheet" id="R-format-style">
+    <link href="/images/favicon.png?1780035088" rel="icon" type="image/png">
+    <link href="/fonts/fontawesome/css/all.min.css?1780035088" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="/fonts/fontawesome/css/all.min.css?1780035088" rel="stylesheet"></noscript>
+    <link href="/css/perfect-scrollbar/perfect-scrollbar.min.css?1780035088" rel="stylesheet">
+    <link href="/css/theme.min.css?1780035088" rel="stylesheet">
+    <link href="/css/format-html.min.css?1780035088" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       // configuration
@@ -81,8 +81,8 @@
       window.relearn.initVariant();
       window.relearn.markVariant();
     </script>
-    <link href="/css/custom.css?1779988877" rel="stylesheet">
-    <script src="/js/custom.js?1779988877" defer></script>
+    <link href="/css/custom.css?1780035088" rel="stylesheet">
+    <script src="/js/custom.js?1780035088" defer></script>
   </head>
   <body class="mobile-support html" data-origin="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/index.html">
     <div id="R-body" class="default-animation">
@@ -141,16 +141,16 @@
 <p>在本样本实例中，我们发现篡改的页面出现的情况与以往的都不同，原因在于不同ua服务器返回的信息不同，甚至出现了疑似流量转发的少见的情况。</p>
 <p>现象：
 收到事件线索，客户某网站在打开的时候出现了跳转游戏网站的现象，并且可以复现。通过描述可以确定篡改一定存在。下面需要本地复现一下看看情况。</p>
-<p><a href="#R-image-4d6f868ecf2927cc4da5c1c2212a2d46" class="lightbox-link"><img alt="image-20220624下午114222624" class="lazy lightbox figure-image" loading="lazy" src="image-20220624%E4%B8%8B%E5%8D%88114222624.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-4d6f868ecf2927cc4da5c1c2212a2d46"><img alt="image-20220624下午114222624" class="lazy lightbox lightbox-image" loading="lazy" src="image-20220624%E4%B8%8B%E5%8D%88114222624.png"></a></p>
+<p><a href="#R-image-66db29e65b90540993b6c90b4465183b" class="lightbox-link"><img alt="image-20220624下午114222624" class="lazy lightbox figure-image" loading="lazy" src="image-20220624%E4%B8%8B%E5%8D%88114222624.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-66db29e65b90540993b6c90b4465183b"><img alt="image-20220624下午114222624" class="lazy lightbox lightbox-image" loading="lazy" src="image-20220624%E4%B8%8B%E5%8D%88114222624.png"></a></p>
 <p>跳转的情况总结有2种，一种是服务器无返回，之后直接出现菠菜网站请求响应；大概出现了3-6次的这种情况。</p>
-<p><a href="#R-image-9c3220fd96b824e6d3af45d8821de980" class="lightbox-link"><img alt="image-20220625上午122255747" class="lazy lightbox figure-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122255747.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-9c3220fd96b824e6d3af45d8821de980"><img alt="image-20220625上午122255747" class="lazy lightbox lightbox-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122255747.png"></a></p>
-<p><a href="#R-image-ca255c072fbb22b71cff6b0a6ef7f01a" class="lightbox-link"><img alt="image-20220625上午122545470" class="lazy lightbox figure-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122545470.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-ca255c072fbb22b71cff6b0a6ef7f01a"><img alt="image-20220625上午122545470" class="lazy lightbox lightbox-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122545470.png"></a></p>
+<p><a href="#R-image-397bbeab0ac36fd29cbb942c0990e3e1" class="lightbox-link"><img alt="image-20220625上午122255747" class="lazy lightbox figure-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122255747.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-397bbeab0ac36fd29cbb942c0990e3e1"><img alt="image-20220625上午122255747" class="lazy lightbox lightbox-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122255747.png"></a></p>
+<p><a href="#R-image-d7299d261ccbc160a7f9cde3b46f8a70" class="lightbox-link"><img alt="image-20220625上午122545470" class="lazy lightbox figure-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122545470.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-d7299d261ccbc160a7f9cde3b46f8a70"><img alt="image-20220625上午122545470" class="lazy lightbox lightbox-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220625%E4%B8%8A%E5%8D%88122545470.png"></a></p>
 <p>第二种是匹配到AppleWebKit 也就是移动端UA及MAC端返回跳转脚本导致跳转。并且返回包设置缓存1天，Cache-Control: max-age=86400，导致不清缓存的情况下会出现不断出现跳转现象。</p>
-<p><a href="#R-image-c0feb5cc480b1f9bf46ea1d1c1d9703e" class="lightbox-link"><img alt="image-20220624下午114608440" class="lazy lightbox figure-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114608440.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-c0feb5cc480b1f9bf46ea1d1c1d9703e"><img alt="image-20220624下午114608440" class="lazy lightbox lightbox-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114608440.png"></a></p>
+<p><a href="#R-image-fb2b836863ca64f10c1591651ac654cc" class="lightbox-link"><img alt="image-20220624下午114608440" class="lazy lightbox figure-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114608440.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-fb2b836863ca64f10c1591651ac654cc"><img alt="image-20220624下午114608440" class="lazy lightbox lightbox-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114608440.png"></a></p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>HTTP/1.0 200 OK
 </span></span><span style="display:flex;"><span>Content-Type: text/html
 </span></span><span style="display:flex;"><span>Content-Length: 511
@@ -184,8 +184,8 @@
 </span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;</span></span></code></pre></div>
-<p><a href="#R-image-593ec2ec0bc8eea22ecd887126ff2d8e" class="lightbox-link"><img alt="image-20220624下午114443121" class="lazy lightbox figure-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114443121.png" style="height: auto;width: auto;"></a>
-<a href="javascript:history.back();" class="lightbox-back" id="R-image-593ec2ec0bc8eea22ecd887126ff2d8e"><img alt="image-20220624下午114443121" class="lazy lightbox lightbox-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114443121.png"></a></p>
+<p><a href="#R-image-7d21bfa3e6756732455182b2b71317ea" class="lightbox-link"><img alt="image-20220624下午114443121" class="lazy lightbox figure-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114443121.png" style="height: auto;width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-7d21bfa3e6756732455182b2b71317ea"><img alt="image-20220624下午114443121" class="lazy lightbox lightbox-image" loading="lazy" src="/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%87%8D%E5%AE%9A%E5%90%91%E8%B7%B3%E8%BD%AC/image-20220624%E4%B8%8B%E5%8D%88114443121.png"></a></p>
 <p>uIYQU(a)为自定义解密函数，[58, 80, 185, 215, 135, 166, 126, 193, 57, 79, 169, 193, 204, 178, 50, 129, 63, 11]为密文。</p>
 
   <footer class="footline">
@@ -402,8 +402,8 @@
 <div id="R-footer" class="default-animation"><p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p></div>
       </div>
     </aside>
-    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1779988877" defer></script>
-    <script src="/js/theme.min.js?1779988877" defer></script><script src="/js/custom.js" defer></script>
+    <script src="/js/perfect-scrollbar/perfect-scrollbar.min.js?1780035088" defer></script>
+    <script src="/js/theme.min.js?1780035088" defer></script><script src="/js/custom.js" defer></script>
 
     <div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
   </body>
