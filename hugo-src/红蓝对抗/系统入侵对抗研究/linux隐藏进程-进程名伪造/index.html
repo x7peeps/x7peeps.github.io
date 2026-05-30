@@ -1,0 +1,236 @@
+<!doctype html><html id=R-html lang=zh-CN dir=ltr itemscope itemtype=http://schema.org/Article data-r-output-format=html><head><meta charset=utf-8><meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1"><meta name=generator content="Hugo 0.161.1"><meta name=generator content="Relearn 9.0.3+36307e4ed23582638ab689240ac7b427217803ee"><meta name=description content="分子实验室 https://molecule-labs.com/
+背景： 在测试系统命令对linux隐藏进程的有效性测试，记录的相关知识点。
+原理： 在恶意代码中通过设置具有迷惑性的进程名字，以达到躲避管理员检查的目的"><meta name=author content="x7peeps"><meta name=twitter:card content="summary"><meta name=twitter:title content="linux隐藏进程-进程名伪造 :: x7peeps"><meta name=twitter:description content="分子实验室 https://molecule-labs.com/
+背景： 在测试系统命令对linux隐藏进程的有效性测试，记录的相关知识点。
+原理： 在恶意代码中通过设置具有迷惑性的进程名字，以达到躲避管理员检查的目的"><meta property="og:url" content="https://x7peeps.com/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html"><meta property="og:site_name" content="x7peeps"><meta property="og:title" content="linux隐藏进程-进程名伪造 :: x7peeps"><meta property="og:description" content="分子实验室 https://molecule-labs.com/
+背景： 在测试系统命令对linux隐藏进程的有效性测试，记录的相关知识点。
+原理： 在恶意代码中通过设置具有迷惑性的进程名字，以达到躲避管理员检查的目的"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="website"><meta itemprop=name content="linux隐藏进程-进程名伪造 :: x7peeps"><meta itemprop=description content="分子实验室 https://molecule-labs.com/
+背景： 在测试系统命令对linux隐藏进程的有效性测试，记录的相关知识点。
+原理： 在恶意代码中通过设置具有迷惑性的进程名字，以达到躲避管理员检查的目的"><meta itemprop=datePublished content="2020-02-20T23:31:00+08:00"><meta itemprop=dateModified content="2020-02-20T23:31:00+08:00"><meta itemprop=wordCount content="1352"><meta itemprop=keywords content="红蓝对抗,CobaltStrike"><title>linux隐藏进程-进程名伪造 :: x7peeps</title><link href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.xml rel=alternate type=application/rss+xml title="linux隐藏进程-进程名伪造 :: x7peeps"><link href=/images/favicon.png?1779764080 rel=icon type=image/png><link href=/css/auto-complete/auto-complete.min.css?1779764080 rel=stylesheet><script src=/js/auto-complete/auto-complete.min.js?1779764080 defer></script><script src=/js/search-lunr.min.js?1779764080 defer></script><script src=/js/search.min.js?1779764080 defer></script><script>window.relearn=window.relearn||{},window.relearn.index_js_url="/searchindex.zh.js?1779764080"</script><script src=/js/lunr/lunr.min.js?1779764080 defer></script><script src=/js/lunr/lunr.stemmer.support.min.js?1779764080 defer></script><script src=/js/lunr/lunr.multi.min.js?1779764080 defer></script><script src=/js/lunr/lunr.zh.min.js?1779764080 defer></script><script>window.relearn=window.relearn||{},window.relearn.contentLangs=["zh"]</script><link href=/fonts/fontawesome/css/all.min.css?1779764080 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=/fonts/fontawesome/css/all.min.css?1779764080 rel=stylesheet></noscript><link href=/css/perfect-scrollbar/perfect-scrollbar.min.css?1779764080 rel=stylesheet><link href=/css/theme.min.css?1779764080 rel=stylesheet><link href=/css/format-html.min.css?1779764080 rel=stylesheet id=R-format-style><script>window.relearn=window.relearn||{},window.relearn.min=`.min`,window.relearn.path="/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html",window.relearn.relBasePath="../../..",window.relearn.relBaseUri="../../..",window.relearn.absBaseUri="https://x7peeps.com",window.relearn.disableInlineCopyToClipboard=!1,window.relearn.enableBlockCodeWrap=!0,window.T_Copy_to_clipboard=`复制文本到剪贴板`,window.T_Copied_to_clipboard=`文本已复制到剪贴板！`,window.T_Link_copied_to_clipboard=`链接已复制到剪贴板！`,window.T_Reset_view=`重置视图`,window.T_View_reset=`查看重置！`,window.T_No_results_found=`找不到"{0}"的结果`,window.T_N_results_found=`为"{0}"找到 {1} 个结果`,window.T_Browser_unsupported_feature=`此浏览器不支持此功能`,window.relearn.themevariants=["relearn-dark"],window.relearn.customvariantprefix="my-custom-",window.relearn.changeVariant=function(e){var t=document.documentElement.dataset.rThemeVariant;window.localStorage.setItem(window.relearn.absBaseUri+"/variant",e),document.documentElement.dataset.rThemeVariant=e,t!=e&&(document.dispatchEvent(new CustomEvent("themeVariantLoaded",{detail:{variant:e,oldVariant:t}})),window.relearn.markVariant())},window.relearn.markVariant=function(){var e=window.localStorage.getItem(window.relearn.absBaseUri+"/variant");document.querySelectorAll(".R-variantswitcher select").forEach(t=>{t.value=e})},window.relearn.initVariant=function(){var e=window.localStorage.getItem(window.relearn.absBaseUri+"/variant")??"";(!e||!e.startsWith(window.relearn.customvariantprefix)&&!window.relearn.themevariants.includes(e)||e.startsWith(window.relearn.customvariantprefix)&&!window.localStorage.getItem(window.relearn.absBaseUri+"/variantstylesheet-"+e))&&(e=window.relearn.themevariants[0],window.localStorage.setItem(window.relearn.absBaseUri+"/variant",e)),document.documentElement.dataset.rThemeVariant=e},window.relearn.initVariant(),window.relearn.markVariant()</script><link href=/css/custom.css?1779764080 rel=stylesheet><script src=/js/custom.js?1779764080 defer></script></head><body class="mobile-support html" data-origin=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html><div id=R-body class=default-animation><div id=R-body-overlay></div><nav id=R-topbar class=default-animation><div class="topbar-wrapper default-animation"><div class="topbar-sidebar-divider default-animation"></div><div class="topbar-area topbar-area-start" data-area=start><div class="topbar-button topbar-button-sidebar default-animation" data-content-empty=disable data-width-s=show data-width-m=hide data-width-l=hide><span class="btn cstyle button link noborder notitle interactive"><button onclick=toggleNav() type=button title="导航 (CTRL+ALT+n)"><i class="fa-fw fas fa-bars"></i></button></span></div><div class="topbar-button topbar-button-toc default-animation" data-content-empty=hide data-width-s=show data-width-m=show data-width-l=show><span class="btn cstyle button link noborder notitle interactive"><button onclick=toggleTopbarFlyout(this) type=button title="目录 (CTRL+ALT+t)"><i class="fa-fw fas fa-table-list"></i></button></span><div class=topbar-content><div class=topbar-content-wrapper><nav class=TableOfContents><ul><li><ul><li><a href=#背景>背景：</a></li><li><a href=#原理>原理：</a></li><li><a href=#测试环境>测试环境：</a></li><li><a href=#过程>过程：</a></li><li><a href=#防守对抗角度>防守对抗角度</a></li></ul></li></ul></nav></div></div></div></div><ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype=http://schema.org/BreadcrumbList><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/index.html><span itemprop=name>竹林 - Bamboo grove</span></a><meta itemprop=position content="1">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html><span itemprop=name>红蓝对抗</span></a><meta itemprop=position content="2">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html><span itemprop=name>系统入侵对抗研究</span></a><meta itemprop=position content="3">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>linux隐藏进程-进程名伪造</span><meta itemprop=position content="4"></li></ol><div class="topbar-area topbar-area-end" data-area=end><div class="topbar-button topbar-button-prev default-animation" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><span class="btn cstyle button link noborder notitle interactive"><a href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html title="CS X86 payload分析混淆加密 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></span></div><div class="topbar-button topbar-button-next default-animation" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><span class="btn cstyle button link noborder notitle interactive"><a href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.html title="linux隐藏进程-目录挂载方式研究 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></span></div><div class="topbar-button topbar-button-more default-animation" data-content-empty=hide data-width-s=show data-width-m=show data-width-l=show><span class="btn cstyle button link noborder notitle interactive"><button onclick=toggleTopbarFlyout(this) type=button title=更多><i class="fa-fw fas fa-ellipsis-v"></i></button></span><div class=topbar-content><div class=topbar-content-wrapper><div class="topbar-area topbar-area-more" data-area=more></div></div></div></div></div></div></nav><div id=R-main-overlay></div><main id=R-body-inner class="highlightable 红蓝对抗" tabindex=-1><div class=flex-block-wrapper><article class=default><header class=headline><div class="R-taxonomy taxonomy-tags cstyle tags" title=标签 style=--VARIABLE-TAGS-BG-color:var(--INTERNAL-TAG-BG-color)><i class="fa-fw fas fa-layer-group"></i><ul><li><a class=term-link href=/tags/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97CobaltStrike/index.html>红蓝对抗,CobaltStrike</a></li></ul></div></header><h1 id=linux隐藏进程-进程名伪造>linux隐藏进程-进程名伪造</h1><blockquote><p>分子实验室 <a href=https://molecule-labs.com/ rel=external>https://molecule-labs.com/</a></p></blockquote><h3 id=背景>背景：<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type=button title=复制链接到剪贴板><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3><p>在测试系统命令对linux隐藏进程的有效性测试，记录的相关知识点。</p><h3 id=原理>原理：<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type=button title=复制链接到剪贴板><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3><p>在恶意代码中通过设置具有迷惑性的进程名字，以达到躲避管理员检查的目的</p><h3 id=测试环境>测试环境：<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type=button title=复制链接到剪贴板><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3><p>ubuntu</p><h3 id=过程>过程：<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type=button title=复制链接到剪贴板><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3><p>这里我们参考：linux 修改进程名称的方法伪造进程 <a href=https://www.jb51.net/article/70306.htm rel=external>https://www.jb51.net/article/70306.htm</a>，排坑时注意添加声明即可。</p><div class="highlight actionbar-wrapper wrap-code" dir=auto><pre tabindex=0><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &#34;./util/setproctitle.c&#34;
+# --这里需要注意规避报错--
+# 原版这里我测试的时候报错，需要加上下面的函数引用
+#ifdef _WIN32
+#include &lt;Windows.h&gt;
+#else
+#include &lt;unistd.h&gt;
+#endif
+# --引用完毕--
+// extern char **environ;
+// int main(int argc , char *argv[])
+// {
+// int i;
+// printf(&#34;argc:%d\n&#34; , argc);
+// for (i = 0; i &lt; argc; ++i){
+// printf(&#34;0x%x\n&#34; , argv[i]);
+// printf(&#34;argv[%d]:%s\n&#34; , i , argv[i]);
+// }
+// printf(&#34;evriron=%x\n&#34; , environ[0]);
+// return 0;
+// }
+int main(int argc, char **argv){
+ spt_init(argc,argv);
+ setproctitle(&#34;设置进程名为:this is a test&#34;);
+ sleep(1000);
+ return 0;
+}</code></pre></div><p>setproctitle.c（这个不变）文件如下：</p><div class="highlight actionbar-wrapper wrap-code" dir=auto><pre tabindex=0><code>/* ==========================================================================
+ * setproctitle.c - Linux/Darwin setproctitle.
+ * --------------------------------------------------------------------------
+ * Copyright (C) 2010 William Ahern
+ * Copyright (C) 2013 Salvatore Sanfilippo
+ * Copyright (C) 2013 Stam He
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the
+ * &#34;Software&#34;), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to permit
+ * persons to whom the Software is furnished to do so, subject to the
+ * following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included
+ * in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED &#34;AS IS&#34;, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+ * NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+ * USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * ==========================================================================
+ */
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
+ 
+#include &lt;stddef.h&gt;  /* NULL size_t */
+#include &lt;stdarg.h&gt;  /* va_list va_start va_end */
+#include &lt;stdlib.h&gt;  /* malloc(3) setenv(3) clearenv(3) setproctitle(3) getprogname(3) */
+#include &lt;stdio.h&gt;  /* vsnprintf(3) snprintf(3) */
+#include &lt;string.h&gt;  /* strlen(3) strchr(3) strdup(3) memset(3) memcpy(3) */
+#include &lt;errno.h&gt;  /* errno program_invocation_name program_invocation_short_name */
+#if !defined(HAVE_SETPROCTITLE)
+#define HAVE_SETPROCTITLE (defined __NetBSD__ || defined __FreeBSD__ || defined __OpenBSD__)
+#endif
+#if !HAVE_SETPROCTITLE
+#if (defined __linux || defined __APPLE__)
+extern char **environ;
+static struct {
+  /* original value */
+  const char *arg0;
+  /* title space available */
+  char *base, *end;
+   /* pointer to original nul character within base */
+  char *nul;
+  _Bool reset;
+  int error;
+} SPT;
+#ifndef SPT_MIN
+#define SPT_MIN(a, b) (((a) &lt; (b))? (a) : (b))
+#endif
+static inline size_t spt_min(size_t a, size_t b);
+static int spt_clearenv(void);
+static int spt_copyenv(char *oldenv[]);
+static int spt_copyargs(int argc, char *argv[]) ;
+void spt_init(int argc, char *argv[]);
+void setproctitle(const char *fmt, ...);
+static inline size_t spt_min(size_t a, size_t b) {
+  return SPT_MIN(a, b);
+} /* spt_min() */
+/*
+ * For discussion on the portability of the various methods, see
+ * http://lists.freebsd.org/pipermail/freebsd-stable/2008-June/043136.html
+ */
+static int spt_clearenv(void) {
+#if __GLIBC__
+  clearenv();
+  return 0;
+#else
+  extern char **environ;
+  static char **tmp;
+  if (!(tmp = malloc(sizeof *tmp)))
+    return errno;
+  tmp[0] = NULL;
+  environ = tmp;
+  return 0;
+#endif
+} /* spt_clearenv() */
+static int spt_copyenv(char *oldenv[]) {
+  extern char **environ;
+  char *eq;
+  int i, error;
+  if (environ != oldenv)
+    return 0;
+  if ((error = spt_clearenv()))
+    goto error;
+  for (i = 0; oldenv[i]; i++) {
+    if (!(eq = strchr(oldenv[i], &#39;=&#39;)))
+      continue;
+    *eq = &#39;\0&#39;;
+    error = (0 != setenv(oldenv[i], eq + 1, 1))? errno : 0;
+    *eq = &#39;=&#39;;
+    if (error)
+      goto error;
+  }
+  return 0;
+error:
+  environ = oldenv;
+  return error;
+} /* spt_copyenv() */
+static int spt_copyargs(int argc, char *argv[]) {
+  char *tmp;
+  int i;
+  for (i = 1; i &lt; argc || (i &gt;= argc &amp;&amp; argv[i]); i++) {
+    if (!argv[i])
+      continue;
+    if (!(tmp = strdup(argv[i])))
+      return errno;
+    argv[i] = tmp;
+  }
+  return 0;
+} /* spt_copyargs() */
+void spt_init(int argc, char *argv[]) {
+    char **envp = environ;
+  char *base, *end, *nul, *tmp;
+  int i, error;
+  if (!(base = argv[0]))
+    return;
+  nul = &amp;base[strlen(base)];
+  end = nul + 1;
+  for (i = 0; i &lt; argc || (i &gt;= argc &amp;&amp; argv[i]); i++) {
+    if (!argv[i] || argv[i] &lt; end)
+      continue;
+    end = argv[i] + strlen(argv[i]) + 1;
+  }
+  for (i = 0; envp[i]; i++) {
+    if (envp[i] &lt; end)
+      continue;
+    end = envp[i] + strlen(envp[i]) + 1;
+  }
+  if (!(SPT.arg0 = strdup(argv[0])))
+    goto syerr;
+  if ((error = spt_copyenv(envp)))
+    goto error;
+  if ((error = spt_copyargs(argc, argv)))
+    goto error;
+  SPT.nul = nul;
+  SPT.base = base;
+  SPT.end = end;
+  return;
+syerr:
+  error = errno;
+error:
+  SPT.error = error;
+} /* spt_init() */
+#ifndef SPT_MAXTITLE
+#define SPT_MAXTITLE 255
+#endif
+void setproctitle(const char *fmt, ...) {
+  char buf[SPT_MAXTITLE + 1]; /* use buffer in case argv[0] is passed */
+  va_list ap;
+  char *nul;
+  int len, error;
+  if (!SPT.base)
+    return;
+  if (fmt) {
+    va_start(ap, fmt);
+    len = vsnprintf(buf, sizeof buf, fmt, ap);
+    va_end(ap);
+  } else {
+    len = snprintf(buf, sizeof buf, &#34;%s&#34;, SPT.arg0);
+  }
+  if (len &lt;= 0)
+    { error = errno; goto error; }
+  if (!SPT.reset) {
+    memset(SPT.base, 0, SPT.end - SPT.base);
+    SPT.reset = 1;
+  } else {
+    memset(SPT.base, 0, spt_min(sizeof buf, SPT.end - SPT.base));
+  }
+  len = spt_min(len, spt_min(sizeof buf, SPT.end - SPT.base) - 1);
+  memcpy(SPT.base, buf, len);
+  nul = &amp;SPT.base[len];
+  if (nul &lt; SPT.nul) {
+    *SPT.nul = &#39;.&#39;;
+  } else if (nul == SPT.nul &amp;&amp; &amp;nul[1] &lt; SPT.end) {
+    *SPT.nul = &#39; &#39;;
+    *++nul = &#39;\0&#39;;
+  }
+  return;
+error:
+  SPT.error = error;
+} /* setproctitle() */
+#endif /* __linux || __APPLE__ */
+#endif /* !HAVE_SETPROCTITLE */</code></pre></div><p>测试修改进程名shell：</p><div class="highlight actionbar-wrapper wrap-code" dir=auto><pre tabindex=0><code>parallels@ubuntu:~/Documents$ gcc -o changepressname changepress.c 
+parallels@ubuntu:~/Documents$ ./changepressname</code></pre></div><p>ps查询可以看到我们已经修改进程名</p><p><a href=#R-image-ec03754a734f467e7ec8be412741b2cc class=lightbox-link><img alt=image.png class="lazy lightbox figure-image" loading=lazy src=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623677841324-2ed15d1e-01df-4406-b5e9-40ed56ddbd33.png style=height:auto;width:auto></a>
+<a href=javascript:history.back(); class=lightbox-back id=R-image-ec03754a734f467e7ec8be412741b2cc><img alt=image.png class="lazy lightbox lightbox-image" loading=lazy src=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623677841324-2ed15d1e-01df-4406-b5e9-40ed56ddbd33.png></a></p><p>这里攻击的角度，我们就可以集成，并通过指定我们攻击进程进行隐藏。</p><h3 id=防守对抗角度>防守对抗角度<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type=button title=复制链接到剪贴板><i class="fa-fw fas fa-link fa-lg"></i></button></span></h3><p>从防守角度，测试一下我们应对方法，</p><ol><li>可以看到ll /proc/PID/exe，可以通过对比ps结果名与exe对应进程名审计到异常</li></ol><p><a href=#R-image-6ff3cd2879bee69f3f710bbb6a0528cf class=lightbox-link><img alt=image.png class="lazy lightbox figure-image" loading=lazy src=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623677852664-5be46575-b005-4f6e-a9c9-16d3e8c4619c.png style=height:auto;width:auto></a>
+<a href=javascript:history.back(); class=lightbox-back id=R-image-6ff3cd2879bee69f3f710bbb6a0528cf><img alt=image.png class="lazy lightbox lightbox-image" loading=lazy src=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623677852664-5be46575-b005-4f6e-a9c9-16d3e8c4619c.png></a></p><ol start=2><li>另外一个就是pstree查询，可以看到执行的程序名与ps查询结果无法对应也可以审计到异常</li></ol><p>parallels@ubuntu:~/Documents$ pstree -aphn 24565</p><p>changepressname,24565</p><p><a href=#R-image-968d24689093009bb19aa13f3ef2ed2a class=lightbox-link><img alt=image.png class="lazy lightbox figure-image" loading=lazy src=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623678099892-ad994b9f-395a-414f-bc89-977172e14bcd.png style=height:auto;width:auto></a>
+<a href=javascript:history.back(); class=lightbox-back id=R-image-968d24689093009bb19aa13f3ef2ed2a><img alt=image.png class="lazy lightbox lightbox-image" loading=lazy src=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/1623678099892-ad994b9f-395a-414f-bc89-977172e14bcd.png></a></p><footer class=footline><i class='fa-fw fas fa-calendar'></i> 2020年2月20日</footer></article></div></main></div><aside id=R-sidebar class=default-animation><div id=R-header-topbar class=default-animation></div><div id=R-header-wrapper class=default-animation><a class=x7-logo href=/ aria-label=x7peeps><span class=x7-logo-mark aria-hidden=true>x7</span>
+<span class=x7-logo-text>x7peeps</span>
+</a><search><form action=/search/index.html method=get><div class="searchbox default-animation"><button class=search-detail type=submit title="搜索 (CTRL+ALT+f)"><i class="fas fa-fw fa-search"></i></button>
+<label class=a11y-only for=R-search-by>搜索</label>
+<input data-search-input id=R-search-by name=search-by class=search-by type=search placeholder=搜索...>
+<button class=search-clear type=button data-search-clear title=清除搜索><i class="fas fa-fw fa-times" title=清除搜索></i></button></div></form></search></div><div id=R-homelinks class=default-animation><div class="R-menu-divider default-animation"><hr class="padding default-animation"></div><div class="R-sidebarmenu R-shortcutmenu-homelinks default-animation"><ul class="space collapsible-menu"></ul></div><div class="R-menu-divider default-animation"><hr class="padding default-animation"></div><div class="R-sidebarmenu R-shortcutmenu-headercontrols default-animation"><ul></ul></div><div class="R-menu-divider default-animation"><hr class="padding default-animation"></div></div><div id=R-content-wrapper class=highlightable><div class="R-sidebarmenu R-shortcutmenu-main default-animation"><ul class="enlarge morespace collapsible-menu"><li data-nav-id=/%E5%85%B3%E4%BA%8E/index.html><a class="padding default-animation" href=/%E5%85%B3%E4%BA%8E/index.html>关于<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-77722aba2e6ab1a57ee1ff7ce19fdfc6 class=collapsible-menu></ul></li><li data-nav-id=/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html><a class="padding default-animation" href=/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html>渗透测试<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-958443c8a874cc447d6f65c16e72ca2e class=collapsible-menu></ul></li><li data-nav-id=/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html><a class="padding default-animation" href=/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/index.html>应急响应<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-13ecbd85c22b876cbfbec6bc0caa965c class=collapsible-menu></ul></li><li data-nav-id=/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html><a class="padding default-animation" href=/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html>漏洞复现<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-47ea2d07cf26ebe1719465c2bbac5240 class=collapsible-menu></ul></li><li data-nav-id=/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html><a class="padding default-animation" href=/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html>恶意样本分析<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-cf927f213988900a8cc84d87bccdfc37 class=collapsible-menu></ul></li><li class=parent data-nav-id=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html><a class="padding default-animation" href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/index.html>红蓝对抗<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-84836047ee0d33935f4044b32b5e2770 class=collapsible-menu><li data-nav-id=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html><a class="padding default-animation" href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html>页面篡改分析<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-50c27c10b1dc7ff41c4f667a6fc7e580 class=collapsible-menu></ul></li><li class=parent data-nav-id=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html><a class="padding default-animation" href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html>系统入侵对抗研究<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-4901e7b2312f25e612a86b7cf50ca6fa class=collapsible-menu><li data-nav-id=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html><a class=padding href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/windows%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E9%9A%90%E8%97%8F-%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F/index.html>windows计划任务隐藏-检查方式<i class="fa-fw fas fa-check read-icon"></i></a></li><li data-nav-id=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html><a class=padding href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/CS-X86-payload%E5%88%86%E6%9E%90%E6%B7%B7%E6%B7%86%E5%8A%A0%E5%AF%86/index.html>CS X86 payload分析混淆加密<i class="fa-fw fas fa-check read-icon"></i></a></li><li class=active data-nav-id=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html><a class=padding href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E8%BF%9B%E7%A8%8B%E5%90%8D%E4%BC%AA%E9%80%A0/index.html>linux隐藏进程-进程名伪造<i class="fa-fw fas fa-check read-icon"></i></a></li><li data-nav-id=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.html><a class=padding href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E7%9B%AE%E5%BD%95%E6%8C%82%E8%BD%BD%E6%96%B9%E5%BC%8F%E7%A0%94%E7%A9%B6/index.html>linux隐藏进程-目录挂载方式研究<i class="fa-fw fas fa-check read-icon"></i></a></li><li data-nav-id=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html><a class=padding href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/linux%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-%E9%A2%84%E5%8A%A0%E8%BD%BD%E5%BA%93%E6%88%96lib%E5%8A%AB%E6%8C%81/index.html>linux隐藏进程-预加载库或lib劫持<i class="fa-fw fas fa-check read-icon"></i></a></li><li data-nav-id=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/Mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html><a class=padding href=/%E7%BA%A2%E8%93%9D%E5%AF%B9%E6%8A%97/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/Mysql%E6%8F%90%E6%9D%83%E5%B0%8F%E7%BB%93/index.html>Mysql提权小结<i class="fa-fw fas fa-check read-icon"></i></a></li></ul></li></ul></li><li data-nav-id=/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html><a class="padding default-animation" href=/%E6%83%85%E6%8A%A5%E8%B7%9F%E8%B8%AA/index.html>情报跟踪<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-433c52e019e04b9e38fb13f3c6b7dfd3 class=collapsible-menu></ul></li><li data-nav-id=/%E5%B7%A5%E5%85%B7/index.html><a class="padding default-animation" href=/%E5%B7%A5%E5%85%B7/index.html>工具<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-cd8910b7fc748623c5ae38c2d6ecffa0 class=collapsible-menu></ul></li><li data-nav-id=/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html><a class="padding default-animation" href=/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html>机器学习<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-e3dadb46392f0c76c9951cc455762ed9 class=collapsible-menu></ul></li><li data-nav-id=/%E7%BC%96%E7%A8%8B/index.html><a class="padding default-animation" href=/%E7%BC%96%E7%A8%8B/index.html>编程<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-4685e6cc76d8cb651a3ab3164304f2b6 class=collapsible-menu></ul></li><li data-nav-id=/%E7%A7%91%E6%99%AE/index.html><a class="padding default-animation" href=/%E7%A7%91%E6%99%AE/index.html>科普<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-7007d493b20522cef26ccf78f3f5f695 class=collapsible-menu></ul></li><li data-nav-id=/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html><a class="padding default-animation" href=/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html>操作系统<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-071c983c36066a06af1fa2580337cdb9 class=collapsible-menu></ul></li><li data-nav-id=/%E7%A4%BE%E7%A7%91/index.html><a class="padding default-animation" href=/%E7%A4%BE%E7%A7%91/index.html>社科<i class="fa-fw fas fa-check read-icon"></i></a><ul id=R-subsections-8a2f2562b146e40aace31f702c192fb1 class=collapsible-menu></ul></li></ul></div><div class="R-sidebarmenu R-shortcutmenu-shortcuts default-animation"><ul class="space collapsible-menu"></ul></div><div id=R-footer-margin class=default-animation></div><div class="R-menu-divider default-animation"><hr class="padding default-animation"></div><div class="R-sidebarmenu R-shortcutmenu-footercontrols default-animation"><ul><li class=R-historyclearer><div class="padding menu-control"><i class="fa-fw fas fa-history"></i>
+<span>&nbsp;</span><div class=control-style><button>清理历史记录</button></div><div class=clear></div></div></li></ul></div><div id=R-footer class=default-animation><p>Built with <a href=https://github.com/McShelby/hugo-theme-relearn title=love><i class="fas fa-heart"></i></a> by <a href=https://gohugo.io/>Hugo</a></p></div></div></aside><script>window.MathJax=Object.assign(window.MathJax||{},{tex:{inlineMath:[["\\(","\\)"],["$","$"]],displayMath:[["\\[","\\]"],["$$","$$"]]},options:{enableMenu:!1}},JSON.parse("{}"))</script><script id=MathJax-script async src=/js/mathjax/tex-mml-chtml.js?1779764080></script><script src=/js/perfect-scrollbar/perfect-scrollbar.min.js?1779764080 defer></script><script src=/js/theme.min.js?1779764080 defer></script><div id=toast-container role=status aria-live=polite aria-atomic=false></div></body></html>

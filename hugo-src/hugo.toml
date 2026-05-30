@@ -1,0 +1,56 @@
+baseURL = "https://x7peeps.com/"
+title = "x7peeps"
+defaultContentLanguage = "zh"
+locale = "zh-CN"
+hasCJKLanguage = true
+disablePathToLower = true
+preserveTaxonomyNames = true
+enableRobotsTXT = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+    unsafe = true
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+
+[module]
+[[module.imports]]
+path = "github.com/McShelby/hugo-theme-relearn"
+
+[params]
+ordersectionsby = "weight"
+disableSearch = true
+alwaysopen = false
+collapsibleMenu = true
+showVisitedLinks = true
+disableLandingPageButton = true
+disableShortcutsTitle = true
+themeVariant = "relearn-dark"
+hideAuthorDate = true
+hideAuthorName = true
+hideAuthorEmail = true
+
+[params.math]
+disable = true
+
+[params.mermaid]
+disable = true
+
+[params.openapi]
+disable = true
+
+[params.author]
+name = "x7peeps"
+
+[languages]
+  [languages.zh]
+  title = "x7peeps"
+  weight = 1
+  label = "中文"
+
+[params.search]
+disable = true
+

@@ -1,0 +1,18 @@
+---
+title: "竹林 - Bamboo grove"
+type: "home"
+weight : 1
+description: "安全研究 / 工具开发 / 取证与攻防知识库。把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。"
+---
+<div class="x7-home-container">
+  <header class="x7-home-hero">
+    <div class="x7-hero-content">
+      <div class="x7-avatar-wrapper">
+        <img class="x7-avatar-large" src="/images/head.png" alt="x7peeps">
+      </div>
+      <h1 class="x7-hero-title">X7PEEPS</h1>
+      <p class="x7-hero-subtitle">安全研究 / 工具开发 / 取证与攻防知识库</p>
+      <p class="x7-hero-mission">把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。</p>
+    </div>
+  </header>
+</div>

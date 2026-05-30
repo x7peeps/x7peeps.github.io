@@ -1,0 +1,40 @@
+{{- $pages := .Page.Pages }}
+{{- if len $pages -}}
+<div class="card-container">
+  {{- range $pages }}
+    <article class="card card-popout" aria-labelledby="R-card-{{ .File.UniqueID }}">
+      {{- $images := findRE "(?i)<img[^>]*src=\"([^\"]+)\"[^>]*>" .Content -}}
+      {{- $thumbnail := "" -}}
+      {{- if ge (len $images) 1 -}}
+        {{- $thumbnail = replaceRE "(?i)<img[^>]*src=\"([^\"]+)\"[^>]*>" "$1" (index $images 0) -}}
+        {{- $thumbnail = replaceRE "([\\?#].*)$" "" $thumbnail -}}
+      {{- end -}}
+      {{- if not $thumbnail -}}
+        {{- $mdImages := findRE "(?i)!\\[.*?\\]\\(([^\\)]+)\\)" .RawContent -}}
+        {{- if ge (len $mdImages) 1 -}}
+          {{- $thumbnail = replaceRE "(?i)!\\[.*?\\]\\(([^\\)]+)\\)" "$1" (index $mdImages 0) -}}
+          {{- $thumbnail = replaceRE "([\\?#].*)$" "" $thumbnail -}}
+        {{- end -}}
+      {{- end -}}
+      
+      {{- if $thumbnail }}
+      <div class="card-bg-layer" style="background-image: url('{{ $thumbnail }}');"></div>
+      {{- end }}
+      <div class="card-glass-layer"></div>
+      
+      <a href="{{ .RelPermalink }}" class="card-link-overlay" aria-label="{{ .Title }}"></a>
+      
+      <div class="card-content">
+        <div class="card-title" id="R-card-{{ .File.UniqueID }}">
+          {{ .Title }}
+        </div>
+        <div class="card-content-text">
+          {{ .Summary | plainify | truncate 80 }}
+        </div>
+      </div>
+    </article>
+  {{- end }}
+</div>
+{{- else -}}
+<p>暂无内容</p>
+{{- end -}}

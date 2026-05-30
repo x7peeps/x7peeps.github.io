@@ -1,0 +1,58 @@
+{{- $page := .page }}
+{{- $childPage := $page }}
+{{- if and .params .params.page }}
+  {{- $childPage = .params.page }}
+{{- end }}
+{{- $renderedtitle := .title | $page.RenderString }}
+{{- $renderedcontent := .content | $page.RenderString }}
+{{- $itemid := printf "R-card-%s" (printf "%s%s" $renderedtitle $renderedcontent | plainify | md5) }}
+{{- $popout := or .href .hrefattributes }}
+{{- $thumbnail := .image -}}
+{{- if and (not $thumbnail) $childPage -}}
+  {{- $images := findRE "(?i)<img[^>]*src=\"([^\"]+)\"[^>]*>" $childPage.Content -}}
+  {{- if ge (len $images) 1 -}}
+    {{- $thumbnail = replaceRE "(?i)<img[^>]*src=\"([^\"]+)\"[^>]*>" "$1" (index $images 0) -}}
+    {{- $thumbnail = replaceRE "([\\?#].*)$" "" $thumbnail -}}
+  {{- end -}}
+  {{- if not $thumbnail -}}
+    {{- $mdImages := findRE "(?i)!\\[.*?\\]\\(([^\\)]+)\\)" $childPage.RawContent -}}
+    {{- if ge (len $mdImages) 1 -}}
+      {{- $thumbnail = replaceRE "(?i)!\\[.*?\\]\\(([^\\)]+)\\)" "$1" (index $mdImages 0) -}}
+      {{- $thumbnail = replaceRE "([\\?#].*)$" "" $thumbnail -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<article class="card{{ if $popout }} card-popout{{ end }}"{{if .title}} aria-labelledby="{{ $itemid }}"{{end}}>
+  {{- if $thumbnail }}
+  <div class="card-bg-layer" style="background-image: url('{{ $thumbnail | safeURL }}');"></div>
+  {{- end }}
+  <div class="card-glass-layer"></div>
+  {{- if .hrefattributes }}
+  <a class="card-link-overlay"
+    {{- range $k, $v := .hrefattributes }}
+      {{- if $v }}
+        {{- if eq (printf "%T" $v) "bool" }}
+          {{- printf " %s" $k | safeHTMLAttr }}
+        {{- else }}
+          {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+        {{- end }}
+      {{- end }}
+    {{- end }}></a>
+  {{- else if .href }}
+  <a class="card-link-overlay" href="{{ .href | safeURL }}"></a>
+  {{- end }}
+  {{- if or $renderedtitle $renderedcontent }}
+  <div class="card-content">
+      {{- if $renderedtitle }}
+    <div class="card-title" id="{{ $itemid }}">
+      {{ $renderedtitle | safeHTML }}
+    </div>
+      {{- end }}
+      {{- with .content }}
+    <div class="card-content-text">
+        {{ $renderedcontent | safeHTML }}
+    </div>
+      {{- end }}
+  </div>
+  {{- end }}
+</article>
