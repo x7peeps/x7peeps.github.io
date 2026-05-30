@@ -23,9 +23,14 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
       - uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.115.4"
+          hugo-version: "latest"
           extended: true
 
       - uses: actions/configure-pages@v5
