@@ -121,11 +121,11 @@ aside#R-sidebar {
   top: 0;
   height: 100vh !important;
   z-index: 50;
-  background: rgba(0, 0, 0, 0.6) !important; /* Semi-transparent black background */
+  background: rgba(0, 0, 0, 0.45) !important; /* Semi-transparent black background */
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-right: none !important; /* Remove boundary */
-  box-shadow: 20px 0 50px 15px #000000 !important; /* Cast a deep black shadow to the right to create a fade-out effect for text scrolling underneath */
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important; /* Subtle inner border */
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2) !important; /* Soft, subtle shadow instead of heavy black line */
   /* Remove layout overrides so trackpad scroll works with perfect-scrollbar */
   width: var(--INTERNAL-MENU-L-width) !important;
   max-width: var(--INTERNAL-MENU-L-width) !important;
