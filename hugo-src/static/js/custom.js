@@ -109,5 +109,30 @@ window.addEventListener('DOMContentLoaded', function() {
         if (topbarTocBtn) {
             topbarTocBtn.style.display = 'none';
         }
+
+        // Add smooth scrolling to TOC links
+        const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href').substring(1);
+                // Decode URI component in case of Chinese characters
+                const decodedTargetId = decodeURIComponent(targetId);
+                const targetElement = document.getElementById(decodedTargetId) || document.getElementById(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    history.pushState(null, null, '#' + targetId);
+                    
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    tocLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
     }
 });
+

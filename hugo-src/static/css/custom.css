@@ -258,7 +258,7 @@ aside#R-sidebar {
   display: flex !important; /* Change to flex to prevent wrapping */
   align-items: center !important;
   flex: 1 1 auto !important;
-  width: 100% !important; /* Stretch to parent width */
+  width: calc(100% - 16px) !important; /* Account for margins */
   min-width: max-content !important; /* Allow width to grow with text */
   white-space: nowrap !important; /* Keep text on one line */
   color: var(--x7-muted) !important;
