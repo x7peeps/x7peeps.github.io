@@ -29,7 +29,11 @@ showVisitedLinks = true
 disableLandingPageButton = true
 disableShortcutsTitle = true
 themeVariant = "relearn-dark"
-hideAuthorDate = true
+hideAuthorDate = false
+
+[frontmatter]
+date = ["date", ":fileModTime", ":default"]
+
 hideAuthorName = true
 hideAuthorEmail = true
 

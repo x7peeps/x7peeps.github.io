@@ -860,3 +860,16 @@ article.card.card-popout .card-content-text {
   overflow: hidden !important;
   margin-top: 0.25rem !important;
 }
+
+/* 8. Topbar Buttons & Overlay Optimization */
+.topbar-button button, .topbar-button span {
+  color: var(--x7-text) !important;
+}
+.topbar-button button:hover, .topbar-button span:hover {
+  color: var(--x7-accent) !important;
+}
+#R-body-overlay {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
