@@ -869,8 +869,9 @@ article.card.card-popout .card-content-text {
   color: var(--x7-accent) !important;
 }
 #R-body-overlay {
-  background-color: rgba(0, 0, 0, 0.7) !important;
-  backdrop-filter: blur(4px) !important;
+  background-color: rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 
 
