@@ -127,8 +127,8 @@ aside#R-sidebar {
   border-right: none !important; /* Remove inner border */
   box-shadow: none !important; /* Remove shadow */
   /* Add mask to fade out the right edge smoothly */
-  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to right, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
   /* Remove layout overrides so trackpad scroll works with perfect-scrollbar */
   width: var(--INTERNAL-MENU-L-width) !important;
   max-width: var(--INTERNAL-MENU-L-width) !important;
@@ -268,14 +268,14 @@ aside#R-sidebar {
 
 /* Hover effect */
 .R-sidebarmenu ul.collapsible-menu a.padding:hover {
-  background: linear-gradient(to right, rgba(255,255,255,0.06) 85%, rgba(255,255,255,0) 100%) !important;
+  background: linear-gradient(to right, rgba(255,255,255,0.06) 70%, rgba(255,255,255,0) 100%) !important;
   color: var(--x7-text) !important;
 }
 
   /* Active Item */
 .R-sidebarmenu ul.collapsible-menu li.active > a.padding {
   /* Use a background gradient that matches the sidebar's fade-out mask */
-  background: linear-gradient(to right, rgba(98,185,255,0.12) 85%, rgba(98,185,255,0) 100%) !important;
+  background: linear-gradient(to right, rgba(98,185,255,0.12) 70%, rgba(98,185,255,0) 100%) !important;
   color: var(--x7-accent) !important;
   font-weight: 500 !important;
   box-shadow: none !important;
@@ -283,7 +283,7 @@ aside#R-sidebar {
 
 /* Hover effect on Active Item */
 .R-sidebarmenu ul.collapsible-menu li.active > a.padding:hover {
-  background: linear-gradient(to right, rgba(98,185,255,0.18) 85%, rgba(98,185,255,0) 100%) !important;
+  background: linear-gradient(to right, rgba(98,185,255,0.18) 70%, rgba(98,185,255,0) 100%) !important;
 }
 
 /* 5. Chevron positioning (Left side) */
