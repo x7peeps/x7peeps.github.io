@@ -172,32 +172,41 @@ window.addEventListener('DOMContentLoaded', function() {
                     e.preventDefault();
                     history.pushState(null, null, '#' + targetId);
                     
-                    // Try to explicitly scroll the main container to avoid browser scrollIntoView bugs
-                    const scrollContainer = document.querySelector('#R-body-inner');
-                    if (scrollContainer) {
-                        const containerRect = scrollContainer.getBoundingClientRect();
-                        const elementRect = targetElement.getBoundingClientRect();
-                        const absoluteTop = elementRect.top + scrollContainer.scrollTop - containerRect.top;
-                        
-                        scrollContainer.scrollTo({
-                            top: absoluteTop - 20, // Add 20px padding at the top
-                            behavior: 'smooth'
-                        });
-                    } else {
+                    // Auto-close sidebar on mobile/narrow screens BEFORE scrolling
+                    // because the theme locks body scrolling (overflow: hidden) when sidebar is open!
+                    const overlay = document.querySelector('#R-body-overlay');
+                    let delay = 10;
+                    if (overlay && window.getComputedStyle(overlay).display !== 'none') {
+                        overlay.click();
+                        delay = 150; // Give time for the sidebar close animation and overflow:hidden removal
+                    }
+                    
+                    // Update active state
+                    tocLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Wait for layout unlock, then scroll
+                    setTimeout(() => {
+                        // Use standard scrollIntoView which is most reliable once overflow is restored
                         targetElement.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
-                    }
-                    
-                    tocLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Auto-close sidebar on mobile/narrow screens after clicking a TOC link
-                    const overlay = document.querySelector('#R-body-overlay');
-                    if (overlay && window.getComputedStyle(overlay).display !== 'none') {
-                        overlay.click();
-                    }
+                        
+                        // Fallback: if scrollIntoView is blocked by some flex layouts, try window.scrollBy
+                        // We check if it scrolled by comparing bounding rects after a short delay
+                        setTimeout(() => {
+                            const rect = targetElement.getBoundingClientRect();
+                            if (rect.top > 100 || rect.top < 0) {
+                                // It didn't scroll properly, force scroll the document
+                                const absoluteTop = rect.top + window.pageYOffset;
+                                window.scrollTo({
+                                    top: absoluteTop - 40,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }, 100);
+                    }, delay);
                 }
             });
         });
