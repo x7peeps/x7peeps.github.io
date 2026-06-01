@@ -224,7 +224,9 @@ aside#R-sidebar {
 
 /* 4. Menu Items - Obsidian Style (Tight, Left Chevron, Full Width Hover) */
 .R-sidebarmenu ul.collapsible-menu {
-  /* Allow content to overflow horizontally without cropping */
+  /* Allow content to overflow horizontally without cropping, and stretch to fit the longest item */
+  min-width: 100% !important;
+  width: max-content !important;
 }
 
 /* Prevent theme default background on entire parent block */
@@ -256,7 +258,7 @@ aside#R-sidebar {
   display: flex !important; /* Change to flex to prevent wrapping */
   align-items: center !important;
   flex: 1 1 auto !important;
-  width: calc(100% - 16px) !important; /* Account for margins */
+  width: 100% !important; /* Stretch to parent width */
   min-width: max-content !important; /* Allow width to grow with text */
   white-space: nowrap !important; /* Keep text on one line */
   color: var(--x7-muted) !important;

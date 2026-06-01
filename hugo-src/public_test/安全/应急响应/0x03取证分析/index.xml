@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>0x03取证分析 :: x7peeps</title>
+    <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.html</link>
+    <description>恶意样本分析 样本分析基础 恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它 … 【译】取证调查：虚拟内存pagefile.sys 【译】取证调查：虚拟内存pagefile.sys 原文 … 页面篡改分析 页面篡改分析-服务器端重定向跳转 在本样本实例中，我们发现篡改的页面出现的情况与以往的都不同，原因在于不同ua服务器返回的信息不同，甚至出现了疑似流量转发的少 … 系统入侵对抗研究 windows计划任务隐藏-检查方式 计划任务隐藏 这里我们参考AnonySec的文章创建隐藏计划任务 … CS X86 payload分析混淆加密 …</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 01 Feb 2023 12:03:49 +0800</lastBuildDate>
+    <atom:link href="https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>恶意样本分析</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html</link>
+      <pubDate>Thu, 10 Nov 2022 22:25:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E6%81%B6%E6%84%8F%E6%A0%B7%E6%9C%AC%E5%88%86%E6%9E%90/index.html</guid>
+      <description>样本分析基础 恶意样本分析-12-使用内存取证检测高级恶意软件 11. 使用内存取证检测高级恶意软件 在前一章中，我们研究了不同的Volatility插件，它们有助于从内存 … 样本分析拓展 介绍恶意软件中RC4加密的识别与解码 介绍恶意软件中RC4加密的识别与解码 Jonathan Munshaw 背景 在第九章9.2.4中RC4的利用简单不容易 … 样本分析记录 样本分析-trojan/buzus“霸族”木马通过邮件传播 Trojan/Buzus“霸族”木马通过邮件传播 背景 探针恶意邮件样本中发现此木马，邮件内容如下 … 安卓样本分析 Mobsf_MAC_AVD_Android动静态环境搭建排坑实战 关于Mobsf一直没有看到比较全面的实战的教程或者最佳实践发出来，由于目前手头有的 …</description>
+    </item>
+    <item>
+      <title>【译】取证调查：虚拟内存pagefile.sys</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html</link>
+      <pubDate>Wed, 01 Feb 2023 12:03:49 +0800</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E8%AF%91%E5%8F%96%E8%AF%81%E8%B0%83%E6%9F%A5%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98pagefile.sys/index.html</guid>
+      <description>【译】取证调查：虚拟内存pagefile.sys 原文：https://www.hackingarticles.in/forensic-investigation-pagefile-sys/</description>
+    </item>
+    <item>
+      <title>页面篡改分析</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html</link>
+      <pubDate>Fri, 24 Jun 2022 20:08:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%A1%B5%E9%9D%A2%E7%AF%A1%E6%94%B9%E5%88%86%E6%9E%90/index.html</guid>
+      <description>页面篡改分析-服务器端重定向跳转 在本样本实例中，我们发现篡改的页面出现的情况与以往的都不同，原因在于不同ua服务器返回的信息不同，甚至出现了疑似流量转发的少见的情况。 现象： 收到事件线索，客 … 页面篡改分析-http流量劫持页面篡分析 近期的一个应急中我们注意到某客户web应用每隔一段时间移动端UA访问会发生跳转现象, 但是并非传统的篡改情况比较特殊, 这里特殊记录下. … 页面篡改分析-基于sojson.v4混淆的页面篡思路分析 背景： 近期同事同步了一段js说客户收到相关内容通报需要确认，如果是页面篡改理论上一定是一段混淆的代码，下面就针对此代码分析和解密加密分析。 页面篡改分析一处BoCai页面 BoCai网站分析 页面篡改分析-js的eval加密方式跳转 Referer触发后端直接返回跳转 一般菠菜采用引用JS或者写入源码的JS静态加载固定加载的方式触发加载博彩页面，而近期发现了更为隐蔽的加载方式，仅通过 … 页面篡改分析-EVAL加密 一处被篡改网站 本次样本概况页面篡改菠菜内容，同时加入eval加密js脚本，经过一次跳转及2次收集用户统计信息之后跳转到菠菜网站。 页面篡改分析-基于sojson.v4混淆的页面篡思路分析 某站页面篡改事件取证分析 一处BoCai内容重定向篡改事件的分析及回溯过程。 页面篡改分析-短链接多级跳转 在此样本中，我们发现该篡改通过在业务页面插入外链的短连接中转JS脚本，通过多级跳转，最终将用户重定向到BoCai网。 页面篡改分析-首次会话跳转菠菜页面篡改分析 首次会话跳转菠菜页面篡改分析 前言 在某会曾经出现过一次基于运营商的某度广告推广导致手机平台恶意跳转现象，本次样本发现了一处类似的现象，对其分析发现通过脚本实现 … 页面篡改分析-两次js加密案例 两次js加密案例 本次案例在日常工作中发现，2次的js加密案例，分享分析过程。 案例分析 在访问页面的时候baidu UA导致跳转，源码如下：</description>
+    </item>
+    <item>
+      <title>系统入侵对抗研究</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html</link>
+      <pubDate>Mon, 30 Aug 2021 10:00:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E7%B3%BB%E7%BB%9F%E5%85%A5%E4%BE%B5%E5%AF%B9%E6%8A%97%E7%A0%94%E7%A9%B6/index.html</guid>
+      <description>windows计划任务隐藏-检查方式 计划任务隐藏 这里我们参考AnonySec的文章创建隐藏计划任务 … CS X86 payload分析混淆加密 Cobalt Strike – Bypassing Windows Defender with Obfuscation Cobalt Strike 使用混淆绕 … linux隐藏进程-进程名伪造 分子实验室 https://molecule-labs.com/ 背景： 在测试系统命令对linux隐藏进程的有效性测试，记录的相关知识点。 原理： 在恶意代 … linux隐藏进程-目录挂载方式研究 分子实验室 https://molecule-labs.com/ 最近在精细应急响应相关内容的时候注意到linux进程隐藏确实会是应急响应中的一个问题，因此这 … linux隐藏进程-预加载库或lib劫持 劫持lib库 原理解析：利用环境变量LD_PRELOAD或者配置ld.so.preload文件使的恶意的动态库先于系统标准库加载，以达到架空系统标准库中相关函数 … Mysql提权小结 学习Mysql提权小结一下，基本过程。明确了基本思路和方式方法。</description>
+    </item>
+  </channel>
+</rss>

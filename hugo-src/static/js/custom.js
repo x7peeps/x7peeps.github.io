@@ -8,4 +8,27 @@ window.addEventListener('DOMContentLoaded', function() {
             // Do nothing to prevent the sidebar from jumping to center
         };
     }
+
+    // Persist sidebar menu state across page loads
+    const checkboxes = document.querySelectorAll('#R-sidebar input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+        const id = cb.id;
+        if (id) {
+            const state = sessionStorage.getItem('sidebar_state_' + id);
+            if (state === 'checked') {
+                cb.checked = true;
+            } else if (state === 'unchecked') {
+                // Do not uncheck if it's the active path (Hugo sets active path to checked by default)
+                const li = cb.closest('li');
+                if (li && !li.classList.contains('active')) {
+                    cb.checked = false;
+                }
+            }
+        }
+        
+        // Save state on change
+        cb.addEventListener('change', function() {
+            sessionStorage.setItem('sidebar_state_' + this.id, this.checked ? 'checked' : 'unchecked');
+        });
+    });
 });

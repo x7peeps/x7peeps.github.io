@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>安全基础 :: x7peeps</title>
+    <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/index.html</link>
+    <description>操作系统 windows Powershell [MS-GPSB]Window核心协议-安全扩展协议 原文由于没有中文版，因此这里手工整理翻译了一下全文方便大佬们后续参 …</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <atom:link href="https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>操作系统</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html</guid>
+      <description>windows Powershell [MS-GPSB]Window核心协议-安全扩展协议 原文由于没有中文版，因此这里手工整理翻译了一下全文方便大佬们后续参考。 原文 …</description>
+    </item>
+  </channel>
+</rss>

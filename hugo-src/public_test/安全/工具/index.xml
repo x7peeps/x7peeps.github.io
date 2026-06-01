@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工具 :: x7peeps</title>
+    <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/index.html</link>
+    <description>渗透工具 信息收集工具 HEDnsExtractor 介绍 从 Hurricane Electric (球網際網路服務提供商)门户网站提取原始 HTML 特征 通过命令 … 威胁情报工具 TwitterTimelineClientScript TwitterTimelineClientScript 一个本地命令行查询/批量查询twitter推文 … scapy 如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip scrapy是 … 日志分析工具 Coremail日志分析脚本 Coremail Log Analyze script 同学在应急的时候遇到coremail日志取证问题，量比较大，需要针对邮件 …</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>渗透工具</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/index.html</guid>
+      <description>信息收集工具 HEDnsExtractor 介绍 从 Hurricane Electric (球網際網路服務提供商)门户网站提取原始 HTML 特征 通过命令行参数或标准输 … 渗透验证工具 漏洞验证工具nuclei官方模版编写中文译文归档 参考 …</description>
+    </item>
+    <item>
+      <title>威胁情报工具</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html</link>
+      <pubDate>Tue, 28 Jun 2022 12:03:49 +0800</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5%E5%B7%A5%E5%85%B7/index.html</guid>
+      <description>TwitterTimelineClientScript TwitterTimelineClientScript 一个本地命令行查询/批量查询twitter推文的脚本. This is a script to get … rss2dingtalk Summary rss2dingtalk是一个简单的用于同步rss订阅资讯到钉钉群机器人的脚本。常用于团队日常订阅资讯使用。 Getting Started …</description>
+    </item>
+    <item>
+      <title>scapy</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</link>
+      <pubDate>Fri, 11 Sep 2020 12:03:49 +0800</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/scrapy%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6/index.html</guid>
+      <description>如何使用pip安装scrapy 参考：https://www.simplified.guide/scrapy/install-using-pip&#xA;scrapy是一个基于python的web爬虫。可以在python包索引(https://pypi.org/)中找到。这意味着可以通过pip安装scrapy。尽管通过pip安装的scrapy是一个很好的方式测试和融入现有的系统环境中，但是通过该渠道更新的包有可能不是最新版本的。</description>
+    </item>
+    <item>
+      <title>日志分析工具</title>
+      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html</link>
+      <pubDate>Wed, 08 Jan 2020 23:31:00 +0800</pubDate>
+      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/index.html</guid>
+      <description>Coremail日志分析脚本 Coremail Log Analyze script 同学在应急的时候遇到coremail日志取证问题，量比较大，需要针对邮件或IP搜索。这里做了个简易的筛选 …</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>磁盘挂载工具特点对比表 :: x7peeps</title>
+    <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.html</link>
+    <description>工具名 支持的系统 收费情况 支持挂载镜像的格式 Arsenal Image Mounter win 收费，有破解工具 .dd(RAW).AFF4.E01/.Ex01 .VHD/VDI/XVA/VMDK/OVA.AVHD/AVHDX GetData Mount Image Pro win 收费 .AD1.DMG.E01/Ex01/L01/Lx01.aff.ISO .VHD/.VHDX.NUIX/MFS01ProDiscoverSMARTDD(RAW)VMWareXways OSFMount win 免费 .img/.dd.iso/.bin.00n.NRG.AFF.AFM.AFD.VMDK.E01.S01.VHD Mount command linux linux自带 .raw/img/iso</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <atom:link href="https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/2%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD/%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E5%B7%A5%E5%85%B7%E7%89%B9%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

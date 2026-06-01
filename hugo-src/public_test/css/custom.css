@@ -1,0 +1,860 @@
+:root{
+  --x7-border: rgba(255,255,255,.10);
+  --x7-border-2: rgba(255,255,255,.14);
+  --x7-bg: #000000;
+  --x7-bg-2: #000000;
+  --x7-surface: rgba(255,255,255,.03);
+  --x7-text: rgba(234,240,248,.92);
+  --x7-muted: rgba(234,240,248,.68);
+  --x7-accent: rgba(98,185,255,1);
+}
+
+:root[data-r-theme-variant='relearn-dark']{
+  --PRIMARY-color: transparent !important;
+  --SECONDARY-color: transparent !important;
+  --ACCENT-color: var(--x7-accent);
+  --MAIN-BG-color: var(--x7-bg);
+  --MAIN-TEXT-color: var(--x7-text);
+  --MAIN-TITLES-TEXT-color: rgba(245,248,255,.96);
+  --MAIN-LINK-HOVER-color: rgba(154, 212, 255, 1);
+  --CODE-INLINE-color: rgba(185, 255, 205, 1);
+  --CODE-INLINE-BG-color: rgba(255,255,255,.04);
+  --CODE-INLINE-BORDER-color: rgba(255,255,255,.10);
+  --CODE-BLOCK-BG-color: rgba(255,255,255,.03);
+  --CODE-BLOCK-color: rgba(240,244,255,.92);
+  --MENU-SECTIONS-BG-color: var(--x7-bg-2);
+  --MENU-SECTIONS-LINK-color: rgba(234,240,248,.70);
+  --MENU-SECTIONS-LINK-HOVER-color: rgba(234,240,248,.92);
+  --MENU-SECTIONS-ACTIVE-BG-color: rgba(255,255,255,.04);
+  --MENU-SECTION-ACTIVE-CATEGORY-color: rgba(245,248,255,.96);
+  --MENU-SECTION-HR-color: rgba(255,255,255,.10);
+  --MENU-SEARCH-color: rgba(234,240,248,.82);
+  --MENU-SEARCH-BG-color: rgba(255,255,255,.03);
+  --MENU-SEARCH-BORDER-color: rgba(255,255,255,.10);
+  --TOPBAR-BG-color: var(--x7-bg);
+  --TOPBAR-TEXT-color: rgba(234,240,248,.82);
+  --TOPBAR-SEPARATOR-color: rgba(255,255,255,.10);
+  --MAIN-TOPBAR-BORDER-color: transparent;
+  --MENU-WIDTH-S: 15.5rem;
+  --MENU-WIDTH-M: 15.5rem;
+  --MENU-WIDTH-L: 18rem;
+  --MAIN-WIDTH-MAX: 78rem;
+}
+
+body{
+  letter-spacing: .01em;
+  background: #000000 !important;
+}
+
+main#R-body-inner .flex-block-wrapper{
+  max-width: 62rem;
+}
+
+#R-body{
+  background: #000000 !important;
+}
+
+nav#R-topbar{
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: none !important;
+}
+
+nav#R-topbar .topbar-breadcrumbs{
+  opacity: .9;
+}
+
+/* Fix breadcrumb text visibility affected by global primary color removal */
+.topbar-breadcrumbs,
+.topbar-breadcrumbs a,
+.topbar-breadcrumbs span {
+  color: var(--x7-muted) !important;
+  text-decoration: none !important;
+}
+
+.topbar-breadcrumbs a:hover,
+.topbar-breadcrumbs a:hover span {
+  color: var(--x7-text) !important;
+}
+
+nav#R-topbar .topbar-button button,
+nav#R-topbar .topbar-button a{
+  border-radius: .6rem;
+}
+
+aside#R-sidebar{
+  border-right: none !important;
+  overflow: hidden;
+}
+
+#R-header-wrapper{
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding: 1.05rem .9rem .9rem .9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: .8rem;
+}
+
+#R-search-by{
+  padding-left: 1.75rem !important;
+}
+
+#R-search-by .searchbox{
+  border-radius: .75rem;
+  border: 1px solid var(--INTERNAL-MENU-SEARCH-BORDER-color);
+  width: 100%;
+}
+
+#R-search-by input{
+  letter-spacing: .01em;
+}
+
+/* --- Obsidian Style Sidebar Redesign --- */
+
+/* 1. Sidebar Background & Border (Glassmorphism) */
+aside#R-sidebar {
+  position: fixed !important; /* Make it float so content scrolls underneath */
+  left: 0;
+  top: 0;
+  height: 100vh !important;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.45) !important; /* Semi-transparent black background */
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-right: none !important; /* Remove inner border */
+  box-shadow: none !important; /* Remove shadow */
+  /* Add mask to fade out the right edge smoothly */
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  /* Remove layout overrides so trackpad scroll works with perfect-scrollbar */
+  width: var(--INTERNAL-MENU-L-width) !important;
+  max-width: var(--INTERNAL-MENU-L-width) !important;
+  min-width: var(--INTERNAL-MENU-L-width) !important;
+}
+
+/* Allow sidebar to scroll natively and horizontally if needed */
+.R-sidebarmenu {
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+  max-height: calc(100vh - 120px) !important; /* leave space for header */
+}
+
+/* Hide native scrollbars but keep functionality */
+.R-sidebarmenu::-webkit-scrollbar {
+  display: none !important;
+}
+.R-sidebarmenu {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+  /* Disable JS scroll-into-view behavior from affecting scroll position if possible */
+  scroll-behavior: auto !important;
+}
+
+/* Allow body background to be visible under the glass sidebar */
+#R-body {
+  margin-left: var(--INTERNAL-MENU-L-width) !important; /* Match sidebar width */
+  padding-left: 0 !important; 
+  width: calc(100% - var(--INTERNAL-MENU-L-width)) !important;
+  max-width: calc(100% - var(--INTERNAL-MENU-L-width)) !important;
+}
+/* Ensure responsive behavior */
+@media (max-width: 59.999rem) {
+  aside#R-sidebar {
+    width: var(--INTERNAL-MENU-M-width) !important;
+    max-width: var(--INTERNAL-MENU-M-width) !important;
+    min-width: var(--INTERNAL-MENU-M-width) !important;
+  }
+  #R-body {
+    margin-left: var(--INTERNAL-MENU-M-width) !important;
+    width: calc(100% - var(--INTERNAL-MENU-M-width)) !important;
+    max-width: calc(100% - var(--INTERNAL-MENU-M-width)) !important;
+  }
+}
+@media (max-width: 47.999rem) {
+  aside#R-sidebar {
+    position: absolute !important; /* Theme handles mobile flyout natively */
+    width: var(--INTERNAL-MENU-S-width) !important;
+    max-width: var(--INTERNAL-MENU-S-width) !important;
+    min-width: var(--INTERNAL-MENU-S-width) !important;
+  }
+  #R-body {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* 2. Header & Logo Area */
+#R-header-wrapper {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  position: relative;
+  padding-top: 1.5rem !important;
+}
+
+#R-header-wrapper::before,
+#R-header-wrapper::after {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+}
+
+#R-header-wrapper .searchbox {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 6px !important;
+}
+
+/* 3. Search Box Modernization */
+#R-search-by .searchbox {
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+}
+#R-search-by .searchbox:focus-within {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: var(--x7-accent) !important;
+  box-shadow: 0 0 0 2px rgba(98,185,255,0.15) !important;
+}
+
+/* 4. Menu Items - Obsidian Style (Tight, Left Chevron, Full Width Hover) */
+.R-sidebarmenu ul.collapsible-menu {
+  /* Allow content to overflow horizontally without cropping */
+}
+
+/* Prevent theme default background on entire parent block */
+#R-sidebar ul.enlarge > li.parent,
+#R-sidebar ul.enlarge > li.active {
+  background-color: transparent !important;
+}
+
+/* Ensure proper list item height and layout */
+.R-sidebarmenu ul.collapsible-menu > li {
+  position: relative;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important; /* Change from center to flex-start to prevent vertical centering issues */
+  min-height: 28px !important;
+}
+
+.R-sidebarmenu ul.collapsible-menu > li > ul {
+  width: 100% !important;
+}
+
+/* Base link styling */
+.R-sidebarmenu ul.collapsible-menu a.padding {
+  padding: 4px 8px 4px 28px !important; /* Uniform left padding so text aligns perfectly */
+  margin: 1px 8px !important;
+  border-radius: 4px !important;
+  display: flex !important; /* Change to flex to prevent wrapping */
+  align-items: center !important;
+  flex: 1 1 auto !important;
+  width: calc(100% - 16px) !important; /* Account for margins */
+  min-width: max-content !important; /* Allow width to grow with text */
+  white-space: nowrap !important; /* Keep text on one line */
+  color: var(--x7-muted) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.4 !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+  position: relative;
+}
+
+/* Hover effect */
+.R-sidebarmenu ul.collapsible-menu a.padding:hover {
+  background: linear-gradient(to right, rgba(255,255,255,0.06) 70%, rgba(255,255,255,0) 100%) !important;
+  color: var(--x7-text) !important;
+}
+
+  /* Active Item */
+.R-sidebarmenu ul.collapsible-menu li.active > a.padding {
+  /* Use a background gradient that matches the sidebar's fade-out mask */
+  background: linear-gradient(to right, rgba(98,185,255,0.12) 70%, rgba(98,185,255,0) 100%) !important;
+  color: var(--x7-accent) !important;
+  font-weight: 500 !important;
+  box-shadow: none !important;
+}
+
+/* Hover effect on Active Item */
+.R-sidebarmenu ul.collapsible-menu li.active > a.padding:hover {
+  background: linear-gradient(to right, rgba(98,185,255,0.18) 70%, rgba(98,185,255,0) 100%) !important;
+}
+
+/* 5. Chevron positioning (Left side) */
+#R-sidebar ul.collapsible-menu > li > label {
+  position: absolute !important;
+  left: 12px !important; /* Adjusted to align cleanly in the 28px padding space */
+  top: 1px !important;
+  height: 25px !important; 
+  width: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 2 !important;
+  background: transparent !important;
+  color: rgba(255,255,255,0.3) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+/* Fix for chevron being pushed down when text wraps or when using flex */
+#R-sidebar ul.collapsible-menu > li > label i {
+  position: relative !important;
+  display: block !important;
+  line-height: 1 !important;
+}
+
+/* Hide native checkbox to prevent square outlines */
+#R-sidebar ul.collapsible-menu > li > input[type="checkbox"] {
+  opacity: 0 !important;
+  width: 24px !important;
+  height: 25px !important;
+  position: absolute !important;
+  left: 8px !important;
+  top: 1px !important;
+  z-index: 3 !important;
+  cursor: pointer !important;
+}
+
+#R-sidebar ul.collapsible-menu > li > label:hover {
+  color: var(--x7-text) !important;
+}
+
+/* Chevron rotation */
+#R-sidebar ul.collapsible-menu > li > input[type="checkbox"]:checked ~ label > i {
+  transform: rotate(90deg) !important;
+}
+
+/* 6. Sub-menu Indentation */
+.R-sidebarmenu ul.collapsible-menu li > ul.collapsible-menu {
+  margin-left: 16px !important;
+  padding-left: 0 !important;
+  border-left: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.R-sidebarmenu ul.collapsible-menu li > ul.collapsible-menu:hover {
+  border-left-color: rgba(255,255,255,0.15) !important;
+}
+
+.R-sidebarmenu ul.collapsible-menu li > ul.collapsible-menu a.padding {
+  margin: 1px 8px 1px 4px !important;
+}
+
+/* Hide default read icon to keep it clean */
+.R-sidebarmenu ul.collapsible-menu i.read-icon {
+  display: none !important;
+}
+
+/* 7. Hide unused sidebar elements and residual borders */
+#R-homelinks,
+#R-footer,
+.topbar-sidebar-divider,
+.R-shortcutmenu-footercontrols,
+.R-menu-divider,
+hr.padding,
+.topbar-area-end .topbar-button-prev,
+.topbar-area-end .topbar-button-next,
+.topbar-area-end .topbar-button-more {
+  display: none !important;
+}
+
+.topbar-wrapper {
+  border-left: none !important;
+  background-image: none !important;
+}
+
+/* Force remove any before/after pseudo-elements on topbar that might carry the theme's accent color */
+.topbar-wrapper::before,
+.topbar-wrapper::after,
+#R-topbar::before,
+#R-topbar::after,
+.topbar-sidebar-divider::before,
+.topbar-sidebar-divider::after {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+}
+
+/* Ensure no background color on the topbar wrapper itself */
+.topbar-wrapper {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Specifically override any potential green borders from the theme */
+#R-body-inner, #R-header-wrapper, #R-sidebar, #R-topbar, .topbar-wrapper, .topbar-button, .searchbox {
+  border-color: transparent !important;
+}
+.searchbox {
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+/* Hide perfect-scrollbar visual elements completely */
+.ps__rail-x,
+.ps__rail-y,
+.ps__thumb-x,
+.ps__thumb-y {
+  display: none !important;
+}
+
+article.default p,
+article.home p{
+  line-height: 1.85;
+}
+
+article.default h1,
+article.default h2,
+article.default h3,
+article.default h4,
+article.home h1,
+article.home h2,
+article.home h3,
+article.home h4{
+  letter-spacing: -.01em;
+}
+
+article.default a,
+article.home a{
+  text-decoration-thickness: .08em;
+  text-underline-offset: .16em;
+}
+
+article.default pre,
+article.home pre{
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: .9rem;
+}
+
+article.default :not(pre) > code,
+article.home :not(pre) > code{
+  border-radius: .45rem;
+}
+
+article.default blockquote,
+article.home blockquote{
+  border-left: .2rem solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.02);
+  border-radius: .75rem;
+}
+
+article.default table,
+article.home table{
+  border-radius: .9rem;
+  overflow: hidden;
+}
+
+.x7-logo{
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  text-decoration: none;
+}
+
+.x7-logo:hover{
+  text-decoration: none;
+}
+
+.x7-logo-mark{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.05rem;
+  height: 2.05rem;
+  border-radius: .7rem;
+  border: 1px solid var(--x7-border-2);
+  background: var(--x7-surface);
+  color: var(--x7-text) !important;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.x7-logo-text{
+  font-weight: 750;
+  color: var(--x7-text) !important;
+  letter-spacing: -.01em;
+}
+
+.x7-avatar{
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 999px;
+  display: block;
+  object-fit: cover;
+  border: 1px solid var(--x7-border);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Home Page Redesign (Professional Frontend UI)
+   ========================================================================== */
+
+/* Hide the default article footer (e.g., date) globally to maintain a clean style */
+main#R-body-inner article > footer.footline,
+.footline {
+  display: none !important;
+}
+
+/* 1. Reset inner wrapper for home page to allow wider/centered layouts */
+main#R-body-inner.home .flex-block-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+main#R-body-inner.home {
+  padding: 0 !important;
+  overflow-y: hidden !important;
+}
+
+/* 2. Container & Entrance Animation */
+.x7-home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 120px);
+  padding: 0;
+  max-width: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  animation: x7-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+@keyframes x7-fade-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Hero Section */
+.x7-home-hero {
+  text-align: center;
+  padding: 5rem 1.5rem 6rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%);
+  border-bottom: none;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.x7-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Avatar styling */
+.x7-avatar-wrapper {
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, var(--x7-border-2), rgba(255,255,255,0.02));
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.x7-avatar-large {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  border: 1px solid var(--x7-border);
+  background: var(--x7-bg);
+}
+
+/* Typography */
+.x7-hero-title {
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 1.25rem 0;
+  color: var(--MAIN-TITLES-TEXT-color);
+  line-height: 1.1;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+
+.x7-hero-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--x7-accent);
+  font-weight: 500;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.x7-hero-mission {
+  font-size: 1.15rem;
+  color: var(--x7-muted);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 768px) {
+  .x7-home-hero {
+    padding: 4rem 1rem 4rem 1rem;
+  }
+}
+
+/* Prevent global horizontal scrolling / trackpad shaking */
+html, body {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
+/* ==========================================================================
+   Taxonomy (Tags) Page Redesign
+   ========================================================================== */
+
+/* Fix weird duplicate title "恶" and clear up the tags header */
+main#R-body-inner article h1 {
+  font-size: 2rem !important;
+  color: var(--MAIN-TITLES-TEXT-color) !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Hide the weird duplicated second heading that contains a copy anchor */
+main#R-body-inner article h2:has(span.anchor) {
+  display: none !important;
+}
+
+/* Fix tags displaying "标签" twice and style article tags */
+.R-taxonomy.taxonomy-tags::before,
+.R-taxonomy.taxonomy-tags::after,
+.cstyle.tags::before,
+.cstyle.tags::after {
+  display: none !important;
+  content: none !important;
+}
+
+article .R-taxonomy.taxonomy-tags ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  margin: 0.5rem 0 !important;
+}
+
+article .R-taxonomy ul > li::before,
+article .R-taxonomy ul > li ~ li::before {
+  content: none !important;
+  display: none !important;
+}
+
+article .R-taxonomy.taxonomy-tags ul li a.term-link {
+  display: inline-block !important;
+  padding: 0.2rem 0.8rem !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 15px !important;
+  color: var(--x7-text) !important;
+  text-decoration: none !important;
+  font-size: 0.85rem !important;
+  transition: all 0.2s ease !important;
+}
+
+article .R-taxonomy.taxonomy-tags ul li a.term-link:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: var(--x7-accent) !important;
+}
+
+/* Improve taxonomy list readability */
+main.tags h2 {
+  display: none !important; /* Hide the single-character group headers like "恶" */
+}
+
+main.tags ul.children {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 1rem 0 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.8rem !important;
+  column-count: auto !important; /* Fix overlapping li bug in WebKit */
+}
+
+main.tags ul.children li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+main.tags ul.children li a {
+  display: inline-block !important;
+  padding: 0.4rem 1rem !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  color: var(--x7-text) !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important;
+}
+
+main.tags ul.children li a:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: var(--x7-accent) !important;
+  color: var(--x7-accent) !important;
+  transform: translateY(-2px) !important;
+}
+/* Removed destructive global article ul li styles */
+
+
+
+.card-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  grid-auto-rows: 160px !important; /* Force all rows to be exactly 160px tall */
+  gap: 2rem !important; /* Increased gap */
+  grid-gap: 2rem !important; /* Safari fallback */
+  padding: 0 !important;
+  margin: 2rem 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Removed obsolete .card-container > li block */
+
+article.card.card-popout {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease !important;
+  height: 100% !important; 
+  min-height: 0 !important; /* Force override theme.css min-height: 300px */
+  max-height: none !important; /* Force override theme.css max-height */
+  width: 100% !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  box-shadow: none !important; /* Remove any theme default shadow */
+  /* Fix WebKit/Safari border-radius overflow bugs with transform and backdrop-filter */
+  -webkit-mask-image: -webkit-radial-gradient(white, black) !important;
+  isolation: isolate !important;
+  transform: translateZ(0) !important;
+}
+
+/* Override dark theme shadows completely */
+body[data-theme='dark'] .card-container .card,
+.relearn-dark .card-container .card {
+  box-shadow: none !important;
+}
+
+body[data-theme='dark'] .card-container .card:hover,
+.relearn-dark .card-container .card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+article.card.card-popout::before,
+article.card.card-popout::after,
+.card-container .card::before,
+.card-container .card::after {
+  display: none !important;
+  content: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+article.card.card-popout:hover {
+  transform: translateY(-4px) translateZ(0) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.card-bg-layer {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center center !important; /* Ensure image is centered */
+  background-repeat: no-repeat !important;
+  z-index: 1 !important;
+  transition: transform 0.4s ease !important;
+  border-radius: inherit !important;
+}
+
+article.card.card-popout:hover .card-bg-layer {
+  transform: scale(1.05) !important;
+}
+
+.card-glass-layer {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2 !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  backdrop-filter: blur(10px) !important;
+  background: rgba(0, 0, 0, 0.4) !important; /* Base darkness */
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.9) !important; /* Vignette / 暗角 */
+  pointer-events: none !important;
+  border-radius: inherit !important;
+  transform: translate3d(0, 0, 0) !important; /* Fix Safari subpixel shift */
+}
+
+.card-link-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 10 !important;
+  display: block !important;
+}
+
+article.card.card-popout .card-content {
+  position: relative !important;
+  z-index: 3 !important;
+  padding: 1.25rem !important;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+  pointer-events: none !important;
+}
+
+article.card.card-popout .card-title {
+  margin: 0 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  color: var(--x7-text) !important;
+  transition: color 0.2s ease !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+article.card.card-popout:hover .card-title {
+  color: var(--x7-accent) !important;
+}
+
+article.card.card-popout .card-content-text {
+  color: var(--x7-muted) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  /* Multi-line truncation for summary */
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  margin-top: 0.25rem !important;
+}
