@@ -116,6 +116,32 @@ window.addEventListener('DOMContentLoaded', function() {
             topbarTocBtn.style.display = 'none';
         }
 
+        // Make TOC collapsible
+        const tocItems = tocContainer.querySelectorAll('li');
+        let tocCounter = 0;
+        tocItems.forEach(li => {
+            const subUl = li.querySelector(':scope > ul');
+            if (subUl) {
+                tocCounter++;
+                const cbId = 'toc-toggle-' + tocCounter;
+                
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.id = cbId;
+                cb.className = 'toc-checkbox';
+                cb.checked = true; // Default expanded
+                
+                const label = document.createElement('label');
+                label.htmlFor = cbId;
+                label.className = 'toc-label';
+                label.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                
+                li.insertBefore(label, li.firstChild);
+                li.insertBefore(cb, li.firstChild);
+                li.classList.add('toc-has-children');
+            }
+        });
+
         // Add smooth scrolling to TOC links
         const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
         tocLinks.forEach(link => {
