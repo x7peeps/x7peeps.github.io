@@ -873,3 +873,37 @@ article.card.card-popout .card-content-text {
   backdrop-filter: blur(4px) !important;
 }
 
+
+/* 9. Mobile Sidebar Flyout Optimization (No Fade) */
+@media (max-width: 47.999rem) {
+  aside#R-sidebar {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    background: rgba(18, 18, 18, 0.95) !important;
+  }
+  .R-sidebarmenu ul.collapsible-menu a.padding:hover {
+    background: rgba(255,255,255,0.06) !important;
+  }
+  .R-sidebarmenu ul.collapsible-menu li.active > a.padding {
+    background: rgba(98,185,255,0.12) !important;
+  }
+  .R-sidebarmenu ul.collapsible-menu li.active > a.padding:hover {
+    background: rgba(98,185,255,0.18) !important;
+  }
+}
+
+.mobile-support.sidebar-flyout aside#R-sidebar {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  background: rgba(18, 18, 18, 0.95) !important;
+}
+.mobile-support.sidebar-flyout .R-sidebarmenu ul.collapsible-menu a.padding:hover {
+  background: rgba(255,255,255,0.06) !important;
+}
+.mobile-support.sidebar-flyout .R-sidebarmenu ul.collapsible-menu li.active > a.padding {
+  background: rgba(98,185,255,0.12) !important;
+}
+.mobile-support.sidebar-flyout .R-sidebarmenu ul.collapsible-menu li.active > a.padding:hover {
+  background: rgba(98,185,255,0.18) !important;
+}
+
