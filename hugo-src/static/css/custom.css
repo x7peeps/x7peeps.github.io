@@ -932,33 +932,47 @@ article.card.card-popout .card-content-text {
 
 
 /* 11. Sidebar Inline TOC */
-.sidebar-inline-toc {
+#R-sidebar .sidebar-inline-toc {
   width: 100%;
   padding-left: 28px;
   margin-bottom: 8px;
+  display: block !important;
 }
-.sidebar-inline-toc nav.TableOfContents > ul {
+#R-sidebar .sidebar-inline-toc nav.TableOfContents {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#R-sidebar .sidebar-inline-toc nav.TableOfContents > ul {
   border-left: 2px solid rgba(255,255,255,0.1);
   padding-left: 0 !important;
   margin: 4px 0 8px 12px !important;
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
 }
-.sidebar-inline-toc ul {
+#R-sidebar .sidebar-inline-toc ul {
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
 }
-.sidebar-inline-toc li {
+#R-sidebar .sidebar-inline-toc li {
   margin: 4px 0 !important;
   padding: 0 0 0 12px !important;
   min-height: auto !important;
   display: block !important;
 }
-.sidebar-inline-toc li ul {
+#R-sidebar .sidebar-inline-toc li ul {
   margin-top: 4px !important;
   border-left: 1px dashed rgba(255,255,255,0.08);
   margin-left: 4px !important;
 }
-.sidebar-inline-toc a {
+#R-sidebar .sidebar-inline-toc a {
   padding: 2px 0 !important;
   margin: 0 !important;
   font-size: 0.82rem !important;
@@ -968,13 +982,15 @@ article.card.card-popout .card-content-text {
   display: block !important;
   border-radius: 0 !important;
   background: transparent !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
-.sidebar-inline-toc a:hover {
+#R-sidebar .sidebar-inline-toc a:hover {
   color: var(--x7-accent) !important;
   background: transparent !important;
 }
 /* Override any theme active TOC highlighting for the sidebar inline TOC */
-.sidebar-inline-toc a.active {
+#R-sidebar .sidebar-inline-toc a.active {
   color: var(--x7-accent) !important;
   font-weight: 500 !important;
 }

@@ -58,3 +58,8 @@ name = "x7peeps"
 [params.search]
 disable = true
 
+
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
