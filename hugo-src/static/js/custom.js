@@ -160,21 +160,44 @@ window.addEventListener('DOMContentLoaded', function() {
         tocLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href').substring(1);
-                // Decode URI component in case of Chinese characters
-                const decodedTargetId = decodeURIComponent(targetId);
+                
+                let decodedTargetId = targetId;
+                try {
+                    decodedTargetId = decodeURIComponent(targetId);
+                } catch(err) {}
+                
                 const targetElement = document.getElementById(decodedTargetId) || document.getElementById(targetId);
                 
                 if (targetElement) {
                     e.preventDefault();
                     history.pushState(null, null, '#' + targetId);
                     
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    // Try to explicitly scroll the main container to avoid browser scrollIntoView bugs
+                    const scrollContainer = document.querySelector('#R-body-inner');
+                    if (scrollContainer) {
+                        const containerRect = scrollContainer.getBoundingClientRect();
+                        const elementRect = targetElement.getBoundingClientRect();
+                        const absoluteTop = elementRect.top + scrollContainer.scrollTop - containerRect.top;
+                        
+                        scrollContainer.scrollTo({
+                            top: absoluteTop - 20, // Add 20px padding at the top
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                     
                     tocLinks.forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
+                    
+                    // Auto-close sidebar on mobile/narrow screens after clicking a TOC link
+                    const overlay = document.querySelector('#R-body-overlay');
+                    if (overlay && window.getComputedStyle(overlay).display !== 'none') {
+                        overlay.click();
+                    }
                 }
             });
         });
