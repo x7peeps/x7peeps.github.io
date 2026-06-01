@@ -268,16 +268,22 @@ aside#R-sidebar {
 
 /* Hover effect */
 .R-sidebarmenu ul.collapsible-menu a.padding:hover {
-  background: rgba(255,255,255,0.06) !important;
+  background: linear-gradient(to right, rgba(255,255,255,0.06) 85%, rgba(255,255,255,0) 100%) !important;
   color: var(--x7-text) !important;
 }
 
-/* Active Item */
+  /* Active Item */
 .R-sidebarmenu ul.collapsible-menu li.active > a.padding {
-  background: rgba(98,185,255,0.12) !important;
+  /* Use a background gradient that matches the sidebar's fade-out mask */
+  background: linear-gradient(to right, rgba(98,185,255,0.12) 85%, rgba(98,185,255,0) 100%) !important;
   color: var(--x7-accent) !important;
   font-weight: 500 !important;
   box-shadow: none !important;
+}
+
+/* Hover effect on Active Item */
+.R-sidebarmenu ul.collapsible-menu li.active > a.padding:hover {
+  background: linear-gradient(to right, rgba(98,185,255,0.18) 85%, rgba(98,185,255,0) 100%) !important;
 }
 
 /* 5. Chevron positioning (Left side) */
