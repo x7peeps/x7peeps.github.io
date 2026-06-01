@@ -138,7 +138,7 @@ aside#R-sidebar {
 /* Allow sidebar to scroll natively and horizontally if needed */
 .R-sidebarmenu {
   overflow-y: auto !important;
-  overflow-x: hidden !important;
+  overflow-x: auto !important;
   max-height: calc(100vh - 120px) !important; /* leave space for header */
 }
 
@@ -261,6 +261,7 @@ aside#R-sidebar {
   width: calc(100% - 16px) !important; /* Account for margins */
   /* Removed min-width: max-content to prevent horizontal dragging */
   white-space: normal !important; /* Allow text to wrap cleanly */
+  word-break: break-word !important;
   color: var(--x7-muted) !important;
   font-size: 0.9rem !important;
   line-height: 1.4 !important;

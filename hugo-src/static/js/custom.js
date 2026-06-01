@@ -54,6 +54,12 @@ window.addEventListener('DOMContentLoaded', function() {
         sidebarMenu.addEventListener('scroll', function() {
             sessionStorage.setItem('sidebar_scroll_pos', sidebarMenu.scrollTop);
         });
+        
+        // Also listen to wheel events in case perfect-scrollbar is interfering
+        sidebarMenu.addEventListener('wheel', function(e) {
+            // Let the native scroll handle it
+        }, { passive: true });
+
     }
 
     // Allow clicking empty space in the mobile sidebar to close it
