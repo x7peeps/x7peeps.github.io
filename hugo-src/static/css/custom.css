@@ -916,3 +916,17 @@ article.card.card-popout .card-content-text {
   background: rgba(98,185,255,0.18) !important;
 }
 
+
+/* 10. Topbar Content Dropdown (TOC) Glassmorphism */
+.topbar-content {
+  background: rgba(18, 18, 18, 0.7) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+.topbar-content .topbar-content-wrapper {
+  background: transparent !important;
+}
+

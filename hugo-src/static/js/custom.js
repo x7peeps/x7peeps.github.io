@@ -70,3 +70,19 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Allow Esc key to toggle sidebar
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const overlay = document.querySelector('#R-body-overlay');
+            const sidebarBtn = document.querySelector('.topbar-button-sidebar button');
+            
+            // If overlay is visible, clicking it closes the sidebar
+            if (overlay && window.getComputedStyle(overlay).display !== 'none') {
+                overlay.click();
+            } else if (sidebarBtn && window.getComputedStyle(sidebarBtn).display !== 'none') {
+                // Otherwise, if the sidebar button is visible, click it to open
+                sidebarBtn.click();
+            }
+        }
+    });
