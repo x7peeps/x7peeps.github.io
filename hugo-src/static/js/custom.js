@@ -107,6 +107,16 @@ window.addEventListener('DOMContentLoaded', function() {
         const activeLink = activeSidebarItem.querySelector(':scope > a');
         if (activeLink) {
             activeLink.insertAdjacentElement('afterend', tocContainer);
+            
+            // Allow clicking the active article title to toggle the entire inline TOC
+            activeLink.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent jumping to top
+                if (tocContainer.style.display === 'none') {
+                    tocContainer.style.display = 'block';
+                } else {
+                    tocContainer.style.display = 'none';
+                }
+            });
         } else {
             activeSidebarItem.appendChild(tocContainer);
         }
