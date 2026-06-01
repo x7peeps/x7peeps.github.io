@@ -14,6 +14,7 @@ window.addEventListener('DOMContentLoaded', function() {
     checkboxes.forEach(cb => {
         const id = cb.id;
         if (id) {
+            // 1. Restore state from sessionStorage
             const state = sessionStorage.getItem('sidebar_state_' + id);
             if (state === 'checked') {
                 cb.checked = true;
@@ -24,9 +25,15 @@ window.addEventListener('DOMContentLoaded', function() {
                     cb.checked = false;
                 }
             }
+            
+            // 2. If Hugo auto-expanded this because it's the active path, 
+            // save it to sessionStorage so it stays open when clicking other folders.
+            if (cb.checked) {
+                sessionStorage.setItem('sidebar_state_' + id, 'checked');
+            }
         }
         
-        // Save state on change
+        // 3. Save state on manual toggle
         cb.addEventListener('change', function() {
             sessionStorage.setItem('sidebar_state_' + this.id, this.checked ? 'checked' : 'unchecked');
         });
