@@ -202,25 +202,24 @@ window.addEventListener('DOMContentLoaded', function() {
                     
                     // Wait for layout unlock, then scroll
                     setTimeout(() => {
-                        // Use standard scrollIntoView which is most reliable once overflow is restored
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        const scrollContainer = document.querySelector('#R-body-inner');
                         
-                        // Fallback: if scrollIntoView is blocked by some flex layouts, try window.scrollBy
-                        // We check if it scrolled by comparing bounding rects after a short delay
-                        setTimeout(() => {
-                            const rect = targetElement.getBoundingClientRect();
-                            if (rect.top > 100 || rect.top < 0) {
-                                // It didn't scroll properly, force scroll the document
-                                const absoluteTop = rect.top + window.pageYOffset;
-                                window.scrollTo({
-                                    top: absoluteTop - 40,
-                                    behavior: 'smooth'
-                                });
-                            }
-                        }, 100);
+                        if (scrollContainer) {
+                            // Calculate relative position within the scroll container
+                            const containerRect = scrollContainer.getBoundingClientRect();
+                            const elementRect = targetElement.getBoundingClientRect();
+                            const absoluteTop = elementRect.top + scrollContainer.scrollTop - containerRect.top;
+                            
+                            scrollContainer.scrollTo({
+                                top: absoluteTop - 20, // Add padding
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
                     }, delay);
                 }
             });
