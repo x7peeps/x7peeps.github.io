@@ -96,7 +96,14 @@ window.addEventListener('DOMContentLoaded', function() {
         
         // Move the TOC from topbar to sidebar
         tocContainer.appendChild(topbarTocNav);
-        activeSidebarItem.appendChild(tocContainer);
+        
+        // Insert right after the <a> tag to avoid being placed after child pages
+        const activeLink = activeSidebarItem.querySelector(':scope > a');
+        if (activeLink) {
+            activeLink.insertAdjacentElement('afterend', tocContainer);
+        } else {
+            activeSidebarItem.appendChild(tocContainer);
+        }
 
         // Hide the original topbar TOC button
         if (topbarTocBtn) {

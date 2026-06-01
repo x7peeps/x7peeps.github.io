@@ -945,6 +945,10 @@ article.card.card-popout .card-content-text {
 .sidebar-inline-toc ul {
   list-style: none !important;
 }
+.sidebar-inline-toc ul ul {
+  padding-left: 12px !important;
+  margin-top: 2px !important;
+}
 .sidebar-inline-toc li {
   margin: 4px 0 !important;
   padding: 0 !important;
