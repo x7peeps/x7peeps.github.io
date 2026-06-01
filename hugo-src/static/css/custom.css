@@ -879,7 +879,11 @@ article.card.card-popout .card-content-text {
   aside#R-sidebar {
     -webkit-mask-image: none !important;
     mask-image: none !important;
-    background: rgba(18, 18, 18, 0.95) !important;
+    background: rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    width: calc(100% - 3rem) !important;
+    max-width: calc(100% - 3rem) !important;
   }
   .R-sidebarmenu ul.collapsible-menu a.padding:hover {
     background: rgba(255,255,255,0.06) !important;
@@ -895,7 +899,11 @@ article.card.card-popout .card-content-text {
 .mobile-support.sidebar-flyout aside#R-sidebar {
   -webkit-mask-image: none !important;
   mask-image: none !important;
-  background: rgba(18, 18, 18, 0.95) !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  width: calc(100% - 3rem) !important;
+  max-width: calc(100% - 3rem) !important;
 }
 .mobile-support.sidebar-flyout .R-sidebarmenu ul.collapsible-menu a.padding:hover {
   background: rgba(255,255,255,0.06) !important;

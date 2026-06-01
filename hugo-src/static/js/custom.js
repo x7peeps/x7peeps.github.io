@@ -38,4 +38,21 @@ window.addEventListener('DOMContentLoaded', function() {
             sessionStorage.setItem('sidebar_state_' + this.id, this.checked ? 'checked' : 'unchecked');
         });
     });
+
+    // Restore sidebar scroll position
+    const sidebarMenu = document.querySelector('.R-sidebarmenu');
+    if (sidebarMenu) {
+        const scrollPos = sessionStorage.getItem('sidebar_scroll_pos');
+        if (scrollPos) {
+            // Use setTimeout to ensure DOM is fully rendered and other scripts have run
+            setTimeout(() => {
+                sidebarMenu.scrollTop = parseInt(scrollPos, 10);
+            }, 10);
+        }
+
+        // Save scroll position
+        sidebarMenu.addEventListener('scroll', function() {
+            sessionStorage.setItem('sidebar_scroll_pos', sidebarMenu.scrollTop);
+        });
+    }
 });
