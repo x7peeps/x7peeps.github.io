@@ -930,3 +930,45 @@ article.card.card-popout .card-content-text {
   background: transparent !important;
 }
 
+
+/* 11. Sidebar Inline TOC */
+.sidebar-inline-toc {
+  width: 100%;
+  padding-left: 28px;
+  margin-bottom: 8px;
+}
+.sidebar-inline-toc nav.TableOfContents > ul {
+  border-left: 1px solid rgba(255,255,255,0.1);
+  padding-left: 12px !important;
+  margin: 4px 0 !important;
+}
+.sidebar-inline-toc ul {
+  list-style: none !important;
+}
+.sidebar-inline-toc li {
+  margin: 4px 0 !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  display: block !important;
+}
+.sidebar-inline-toc a {
+  padding: 2px 0 !important;
+  margin: 0 !important;
+  font-size: 0.82rem !important;
+  color: var(--x7-muted) !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+  display: block !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+.sidebar-inline-toc a:hover {
+  color: var(--x7-accent) !important;
+  background: transparent !important;
+}
+/* Override any theme active TOC highlighting for the sidebar inline TOC */
+.sidebar-inline-toc a.active {
+  color: var(--x7-accent) !important;
+  font-weight: 500 !important;
+}
+

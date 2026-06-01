@@ -86,3 +86,23 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    // Move TOC to active sidebar item
+    const activeSidebarItem = document.querySelector("#R-sidebar li.active");
+    const topbarTocNav = document.querySelector('.topbar-button-toc nav.TableOfContents');
+    const topbarTocBtn = document.querySelector('.topbar-button-toc');
+
+    if (activeSidebarItem && topbarTocNav && topbarTocNav.textContent.trim().length > 0) {
+        const tocContainer = document.createElement('div');
+        tocContainer.className = 'sidebar-inline-toc';
+        
+        // Move the TOC from topbar to sidebar
+        tocContainer.appendChild(topbarTocNav);
+        activeSidebarItem.appendChild(tocContainer);
+
+        // Hide the original topbar TOC button
+        if (topbarTocBtn) {
+            topbarTocBtn.style.display = 'none';
+        }
+    }
+});
