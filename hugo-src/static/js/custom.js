@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     // Restore sidebar scroll position
-    const sidebarMenu = document.querySelector('.R-sidebarmenu');
+    const sidebarMenu = document.querySelector('.R-sidebarmenu.R-shortcutmenu-main');
     if (sidebarMenu) {
         const scrollPos = sessionStorage.getItem('sidebar_scroll_pos');
         if (scrollPos) {
@@ -56,3 +56,17 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+    // Allow clicking empty space in the mobile sidebar to close it
+    const sidebar = document.querySelector('#R-sidebar');
+    if (sidebar) {
+        sidebar.addEventListener('click', function(e) {
+            // If the click is directly on the sidebar or content wrapper (empty space)
+            if (e.target.id === 'R-sidebar' || e.target.id === 'R-content-wrapper' || e.target.classList.contains('R-sidebarmenu')) {
+                const overlay = document.querySelector('#R-body-overlay');
+                if (overlay) {
+                    overlay.click(); // Trigger the theme's close logic
+                }
+            }
+        });
+    }
