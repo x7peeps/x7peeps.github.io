@@ -55,7 +55,6 @@ window.addEventListener('DOMContentLoaded', function() {
             sessionStorage.setItem('sidebar_scroll_pos', sidebarMenu.scrollTop);
         });
     }
-});
 
     // Allow clicking empty space in the mobile sidebar to close it
     const sidebar = document.querySelector('#R-sidebar');
@@ -70,7 +69,6 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
     // Allow Esc key to toggle sidebar
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
