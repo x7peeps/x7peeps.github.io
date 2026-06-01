@@ -938,22 +938,25 @@ article.card.card-popout .card-content-text {
   margin-bottom: 8px;
 }
 .sidebar-inline-toc nav.TableOfContents > ul {
-  border-left: 1px solid rgba(255,255,255,0.1);
-  padding-left: 12px !important;
-  margin: 4px 0 !important;
+  border-left: 2px solid rgba(255,255,255,0.1);
+  padding-left: 0 !important;
+  margin: 4px 0 8px 12px !important;
 }
 .sidebar-inline-toc ul {
   list-style: none !important;
-}
-.sidebar-inline-toc ul ul {
-  padding-left: 12px !important;
-  margin-top: 2px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .sidebar-inline-toc li {
   margin: 4px 0 !important;
-  padding: 0 !important;
+  padding: 0 0 0 12px !important;
   min-height: auto !important;
   display: block !important;
+}
+.sidebar-inline-toc li ul {
+  margin-top: 4px !important;
+  border-left: 1px dashed rgba(255,255,255,0.08);
+  margin-left: 4px !important;
 }
 .sidebar-inline-toc a {
   padding: 2px 0 !important;
