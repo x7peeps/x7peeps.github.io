@@ -117,10 +117,9 @@ aside#R-sidebar{
 /* 1. Sidebar Background & Border (Glassmorphism) */
 aside#R-sidebar {
   position: fixed !important; /* Make it float so content scrolls underneath */
-  left: 0;
   top: 0;
   height: 100vh !important;
-  z-index: 50;
+  z-index: 200 !important; /* Ensure it's above the body overlay */
   background: rgba(0, 0, 0, 0.45) !important; /* Semi-transparent black background */
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
@@ -175,7 +174,6 @@ aside#R-sidebar {
 }
 @media (max-width: 47.999rem) {
   aside#R-sidebar {
-    position: absolute !important; /* Theme handles mobile flyout natively */
     width: var(--INTERNAL-MENU-S-width) !important;
     max-width: var(--INTERNAL-MENU-S-width) !important;
     min-width: var(--INTERNAL-MENU-S-width) !important;
@@ -881,11 +879,9 @@ article.card.card-popout .card-content-text {
   aside#R-sidebar {
     -webkit-mask-image: none !important;
     mask-image: none !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    background: rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
   }
   .R-sidebarmenu ul.collapsible-menu a.padding:hover {
     background: rgba(255,255,255,0.06) !important;
@@ -901,11 +897,15 @@ article.card.card-popout .card-content-text {
 .mobile-support.sidebar-flyout aside#R-sidebar {
   -webkit-mask-image: none !important;
   mask-image: none !important;
-  background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
   width: 100% !important;
   max-width: 100% !important;
+}
+.mobile-support.sidebar-flyout #R-body-overlay {
+  opacity: 0 !important;
+  pointer-events: none !important; /* Hide the native overlay visually since our sidebar covers the screen with glassmorphism */
 }
 .mobile-support.sidebar-flyout .R-sidebarmenu ul.collapsible-menu a.padding:hover {
   background: rgba(255,255,255,0.06) !important;

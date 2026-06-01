@@ -1,5 +1,12 @@
 // Override the theme's scrollToPositions function to prevent sidebar from jumping around on refresh
 window.addEventListener('DOMContentLoaded', function() {
+    // Make the logo scroll with the sidebar instead of staying fixed at the top
+    const headerWrapper = document.getElementById('R-header-wrapper');
+    const contentWrapper = document.getElementById('R-content-wrapper');
+    if (headerWrapper && contentWrapper) {
+        contentWrapper.insertBefore(headerWrapper, contentWrapper.firstChild);
+    }
+
     // We can intercept the scrollIntoView on the active element to prevent the jumping
     const activeItem = document.querySelector("#R-sidebar li.active a");
     if (activeItem) {
