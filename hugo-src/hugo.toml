@@ -60,6 +60,14 @@ name = "x7peeps"
 [params.search]
 disable = true
 
+[minify]
+  disableHTML = false
+  disableCSS = false
+  disableJS = false
+  disableJSON = false
+  disableSVG = false
+  disableXML = false
+  minifyOutput = true
 
   [markup.tableOfContents]
     endLevel = 4

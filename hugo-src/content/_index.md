@@ -8,7 +8,7 @@ description: "安全研究 / 工具开发 / 取证与攻防知识库。把复杂
   <header class="x7-home-hero">
     <div class="x7-hero-content">
       <div class="x7-avatar-wrapper">
-        <img class="x7-avatar-large" src="/images/head.png" alt="x7peeps">
+        <img class="x7-avatar-large" src="/images/head.png" alt="x7peeps" width="120" height="120" fetchpriority="high" decoding="async">
       </div>
       <h1 class="x7-hero-title">X7PEEPS</h1>
       <p class="x7-hero-subtitle">安全研究 / 工具开发 / 取证与攻防知识库</p>
