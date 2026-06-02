@@ -20,6 +20,7 @@ Invoke this skill when the user requests to:
    - Detailed description (漏洞详情)
    - Proof of Concept (POC)
    - Real-world exploit cases (利用案例)
+   - **Advanced exploitation techniques (高级利用姿势)**: Focus on memory web shells, WAF bypass, echo techniques, network evasion, and variant payloads. Do not just stop at vulnerability verification; elaborate on weaponization.
    - Emergency response and log trace analysis (应急排查日志痕迹分析)
    - References (参考材料)
 2. **Article Generation**: Format the gathered information into a well-structured Markdown article.

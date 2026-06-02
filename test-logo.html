@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+<aside id="R-sidebar">
+  <div id="R-header-wrapper">Logo</div>
+  <div id="R-content-wrapper">
+    <div class="menu">Menu item</div>
+  </div>
+</aside>
+<script>
+  const header = document.getElementById('R-header-wrapper');
+  const contentWrapper = document.getElementById('R-content-wrapper');
+  if (header && contentWrapper) {
+      contentWrapper.insertBefore(header, contentWrapper.firstChild);
+  }
+</script>
+</body>
+</html>

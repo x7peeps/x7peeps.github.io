@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .sidebar { width: 300px; background: #222; }
+  ul.collapsible-menu { list-style: none; padding: 0; margin: 0; }
+  ul.collapsible-menu > li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-start; /* So multi-line text stays at top */
+    min-height: 28px;
+    background: #222;
+  }
+  a.padding {
+    padding: 4px 8px 4px 28px;
+    margin: 1px 8px;
+    display: block; /* changed from flex */
+    width: calc(100% - 16px);
+    color: white;
+    text-decoration: none;
+    line-height: 1.4;
+    white-space: normal; /* allow wrapping */
+    box-sizing: border-box;
+  }
+  label {
+    position: absolute;
+    left: 12px;
+    top: 4px; /* adjusted slightly for multi-line */
+    height: 20px; 
+    width: 16px;
+    background: red;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+</head>
+<body>
+  <div class="sidebar">
+    <ul class="collapsible-menu">
+      <li>
+        <label>v</label>
+        <a class="padding" href="#">01 前期交互 这是一个非常长的文字测试看看会不会换行以及换行后的效果对齐是否正常</a>
+      </li>
+      <li>
+        <label>v</label>
+        <a class="padding" href="#">02 短文字</a>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
