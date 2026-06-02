@@ -425,8 +425,14 @@ article.home h4{
 
 article.default a,
 article.home a{
+  color: var(--x7-accent) !important;
   text-decoration-thickness: .08em;
   text-underline-offset: .16em;
+}
+
+article.default a:hover,
+article.home a:hover{
+  color: var(--MAIN-LINK-HOVER-color) !important;
 }
 
 article.default pre,
