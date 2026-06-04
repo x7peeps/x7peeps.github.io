@@ -15,6 +15,8 @@ weight = 10
 
 OfflinePassbook 是一个本地优先、端上加密、可走 iCloud Documents 自动同步的 Apple 生态密码本原型。
 
+**下载地址：** [App Store (https://apps.apple.com/app/offlinepassbook/id6775487353)](https://apps.apple.com/app/offlinepassbook/id6775487353)
+
 **核心特性：**
 - **原生与跨平台**：基于 Swift / SwiftUI 构建，目标平台为 iOS 17 和 macOS 14。
 - **极致安全**：
