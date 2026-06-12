@@ -1,0 +1,45 @@
+Watching for changes in /Users/pwndazhang/Library/Mobile Documents/com~apple~CloudDocs/6 开发项目/个人主页/x7peeps.github.io/hugo-src/archetypes, /Users/pwndazhang/Library/Mobile Documents/com~apple~CloudDocs/6 开发项目/个人主页/x7peeps.github.io/hugo-src/content/{AI,产品,关于,安全,阅读}, /Users/pwndazhang/Library/Mobile Documents/com~apple~CloudDocs/6 开发项目/个人主页/x7peeps.github.io/hugo-src/layouts/{partials,shortcodes}, /Users/pwndazhang/Library/Mobile Documents/com~apple~CloudDocs/6 开发项目/个人主页/x7peeps.github.io/hugo-src/static/{css,images,js}
+Watching for config changes in /Users/pwndazhang/Library/Mobile Documents/com~apple~CloudDocs/6 开发项目/个人主页/x7peeps.github.io/hugo-src/hugo.toml, /Users/pwndazhang/Library/Mobile Documents/com~apple~CloudDocs/6 开发项目/个人主页/x7peeps.github.io/hugo-src/go.mod
+Start building sites … 
+hugo v0.161.1+extended+withdeploy darwin/arm64 BuildDate=2026-04-29T13:56:01Z VendorInfo=Homebrew
+
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+WARN  deprecated: .Language.LanguageDirection was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Direction instead.
+WARN  DEPRECATED option 'disableSearch=true' found, use 'search=false' or 'search.disable=true' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0
+WARN  deprecated: .Site.Sites and .Page.Sites was deprecated in Hugo v0.156.0 and will be removed in a future release. Use hugo.Sites instead.
+WARN  deprecated: .Site.Languages was deprecated in Hugo v0.156.0 and will be removed in a future release. See https://discourse.gohugo.io/t/56732.
+
+                  │ ZH  
+──────────────────┼─────
+ Pages            │ 606 
+ Paginator pages  │   0 
+ Non-page files   │ 999 
+ Static files     │  33 
+ Processed images │   0 
+ Aliases          │   0 
+ Cleaned          │   0 
+
+Built in 639 ms
+Environment: "development"
+Serving pages from disk
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1) 
+Press Ctrl+C to stop
+
+Change detected, rebuilding site (#1).
+2026-06-11 13:47:09.656 +0800
+Source changed /安全/应急响应/0x03取证分析/勒索病毒与后门逆向分析基础.md
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+WARN  deprecated: .Language.LanguageDirection was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Direction instead.
+WARN  DEPRECATED option 'disableSearch=true' found, use 'search=false' or 'search.disable=true' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 69 ms
+
+Change detected, rebuilding site (#2).
+2026-06-11 13:47:33.156 +0800
+Source changed /安全/应急响应/0x03取证分析/内存取证分析/利用volatility捕获无文件恶意代码.md
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+WARN  deprecated: .Language.LanguageDirection was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Direction instead.
+WARN  DEPRECATED option 'disableSearch=true' found, use 'search=false' or 'search.disable=true' instead; see https://mcshelby.github.io/hugo-theme-relearn/introduction/releasenotes/8/#8-0-0
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 62 ms
