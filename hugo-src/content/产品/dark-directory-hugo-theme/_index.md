@@ -15,11 +15,11 @@ weight = 20
   </div>
   <div class="x7-theme-showcase">
     <div class="x7-theme-showcase-main">
-      <img src="/images/products/offlinepassbook/01.png" alt="Dark Directory Hugo Theme product showcase" loading="eager" decoding="async">
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20mode%20website%20template%2C%20cyberpunk%20dashboard%20UI%2C%20minimalist%20hacker%20blog%20layout%2C%20neon%20blue%20accents%2C%20high%20quality%20web%20design&image_size=landscape_16_9" alt="Dark Directory Hugo Theme product showcase" loading="eager" decoding="async">
     </div>
     <div class="x7-theme-showcase-stack">
-      <img src="/images/products/offlinepassbook/02.png" alt="Dark Directory Hugo Theme product layout" loading="lazy" decoding="async">
-      <img src="/images/products/offlinepassbook/03.png" alt="Dark Directory Hugo Theme visual detail" loading="lazy" decoding="async">
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20mode%20code%20editor%20interface%2C%20hacker%20portfolio%20website%2C%20glassmorphism%2C%20dark%20background%20with%20glowing%20grid%2C%20UI%2FUX%20design&image_size=landscape_16_9" alt="Dark Directory Hugo Theme product layout" loading="lazy" decoding="async">
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20theme%20article%20reading%20page%2C%20minimalist%20typography%2C%20cyberpunk%20web%20design%2C%20glowing%20neon%20text%20accents%2C%20high%20quality%20UI&image_size=landscape_16_9" alt="Dark Directory Hugo Theme visual detail" loading="lazy" decoding="async">
     </div>
   </div>
 </div>
@@ -59,7 +59,7 @@ Dark Directory Hugo Theme 不是从零重写的独立主题，而是一个可复
     </ul>
   </div>
   <div>
-    <img src="/images/products/offlinepassbook/appicon.png" alt="OfflinePassbook app icon" loading="lazy" decoding="async">
+    <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Minimalist%20dark%20theme%20icon%2C%20folder%20or%20directory%20concept%2C%20cyberpunk%20or%20hacker%20style%2C%20neon%20blue%20accents%2C%20flat%20design%2C%20high%20quality&image_size=square" alt="Dark Directory theme icon" loading="lazy" decoding="async">
   </div>
 </div>
 

@@ -1232,15 +1232,20 @@ article.default > h1:first-of-type:has(~ h1) {
 
 .x7-promo-button-primary,
 .x7-theme-button-primary {
-  background: linear-gradient(135deg, rgba(98, 185, 255, 0.95), rgba(123, 214, 255, 0.82));
-  color: #04111f !important;
+  background: linear-gradient(135deg, #0e4b9e, #1a8ad6);
+  color: #ffffff !important;
   border-color: transparent;
   font-weight: 700;
 }
 
+.x7-promo-button-primary i,
+.x7-theme-button-primary i {
+  color: #ffffff !important;
+}
+
 .x7-promo-button-primary:hover,
 .x7-theme-button-primary:hover {
-  background: linear-gradient(135deg, rgba(121, 199, 255, 1), rgba(163, 227, 255, 0.9));
+  background: linear-gradient(135deg, #125bc0, #22a0f5);
 }
 
 .x7-promo-visual {
@@ -1301,6 +1306,7 @@ article.default > h1:first-of-type:has(~ h1) {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  margin-bottom: 0.8rem;
 }
 
 .x7-theme-kicker::before {

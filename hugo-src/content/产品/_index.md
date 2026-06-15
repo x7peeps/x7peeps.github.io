@@ -19,9 +19,9 @@ weight = 30
   </div>
   <div class="x7-promo-visual">
     <div class="x7-promo-grid">
-      <img src="/images/products/offlinepassbook/01.png" alt="Theme product showcase" loading="eager" decoding="async">
-      <img src="/images/products/offlinepassbook/02.png" alt="Theme visual sample 1" loading="lazy" decoding="async">
-      <img src="/images/products/offlinepassbook/03.png" alt="Theme visual sample 2" loading="lazy" decoding="async">
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20mode%20website%20template%2C%20cyberpunk%20dashboard%20UI%2C%20minimalist%20hacker%20blog%20layout%2C%20neon%20blue%20accents%2C%20high%20quality%20web%20design&image_size=landscape_16_9" alt="Theme product showcase" loading="eager" decoding="async">
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20mode%20code%20editor%20interface%2C%20hacker%20portfolio%20website%2C%20glassmorphism%2C%20dark%20background%20with%20glowing%20grid%2C%20UI%2FUX%20design&image_size=landscape_16_9" alt="Theme visual sample 1" loading="lazy" decoding="async">
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20theme%20article%20reading%20page%2C%20minimalist%20typography%2C%20cyberpunk%20web%20design%2C%20glowing%20neon%20text%20accents%2C%20high%20quality%20UI&image_size=landscape_16_9" alt="Theme visual sample 2" loading="lazy" decoding="async">
     </div>
   </div>
 </div>
