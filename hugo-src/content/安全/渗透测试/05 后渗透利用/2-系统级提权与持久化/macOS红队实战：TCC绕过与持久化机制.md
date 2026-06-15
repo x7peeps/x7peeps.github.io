@@ -1,6 +1,6 @@
 ---
 title: "macOS红队实战：TCC绕过与持久化机制"
-weight: 60
+weight: 30
 ---
 
 # macOS红队实战：TCC绕过与持久化机制

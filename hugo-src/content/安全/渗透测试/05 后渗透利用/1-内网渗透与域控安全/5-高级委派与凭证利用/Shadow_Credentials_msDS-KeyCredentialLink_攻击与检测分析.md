@@ -1,6 +1,6 @@
 ---
 title: "Shadow Credentials(msDS-KeyCredentialLink)攻击与检测分析"
-weight: 40
+weight: 20
 ---
 
 # Shadow Credentials(msDS-KeyCredentialLink)攻击与检测分析

@@ -1,6 +1,6 @@
 ---
 title: "Linux本地提权与内核级后门实战利用"
-weight: 30
+weight: 20
 ---
 
 # Linux本地提权与内核级后门实战利用
