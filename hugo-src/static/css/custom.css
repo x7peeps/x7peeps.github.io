@@ -1129,3 +1129,11 @@ article.card.card-popout .card-content-text {
 #R-sidebar .sidebar-inline-toc li.toc-has-children > a {
   padding-left: 14px !important; /* Make room for the chevron */
 }
+
+/* --------------------------------------------------------------------------
+ * 隐藏文章详情页重复的 H1 标题
+ * 当主题生成了一个 h1，且用户在 Markdown 中也写了 h1 时，隐藏主题生成的那个 h1
+ * -------------------------------------------------------------------------- */
+article.default > h1:first-of-type:has(~ h1) {
+    display: none !important;
+}

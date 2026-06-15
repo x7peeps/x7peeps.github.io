@@ -1,47 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>3文件恢复 :: x7peeps</title>
-    <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html</link>
-    <description>R-studio network(win) 近期在应急数据恢复场景，客户使用Hyper-V运行业务系统，由于没有设置快照，在误操作下恢复了虚拟机，导致数据丢失，因此客户需求需要将数据恢复。用过很多方式最后 … DiskGenius(win) 官网 https://www.diskgenius.cn/ DiskGenius有免费版、标准版与专业版三个版本状态（功能对比）。三个版本共用同一个发行包，不必 … UFS explorer professional recovery(win/mac/linux) 官网 https://www.ufsexplorer.com/ufs-explorer-professional-recovery.php 国内常见的支持E01 … WinHEX(win) https://www.jianshu.com/p/f14a41e8cfbe 官网 http://www.x-ways.com/index-c.html … 数据恢复工具性能对比 工具名 支持的系统 收费情况 支持挂恢复数据的格式 UFS explorer professional recovery win/mac/linux 收费 数 …</description>
-    <generator>Hugo</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Wed, 13 Oct 2021 23:00:00 +0800</lastBuildDate>
-    <atom:link href="https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>R-studio network(win)</title>
-      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/R-studio-networkwin/index.html</link>
-      <pubDate>Wed, 13 Oct 2021 23:00:00 +0800</pubDate>
-      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/R-studio-networkwin/index.html</guid>
-      <description>近期在应急数据恢复场景，客户使用Hyper-V运行业务系统，由于没有设置快照，在误操作下恢复了虚拟机，导致数据丢失，因此客户需求需要将数据恢复。用过很多方式最后这个好用，这里作为记录归档。</description>
-    </item>
-    <item>
-      <title>DiskGenius(win)</title>
-      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/DiskGeniuswin/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/DiskGeniuswin/index.html</guid>
-      <description>官网 https://www.diskgenius.cn/&#xA;DiskGenius有免费版、标准版与专业版三个版本状态（功能对比）。三个版本共用同一个发行包，不必分别下载。&#xA;下载后，即可立即使用免费版DiskGenius；注册后，可自动升级为标准版或专业版。</description>
-    </item>
-    <item>
-      <title>UFS explorer professional recovery(win/mac/linux)</title>
-      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/UFS-explorer-professional-recoverywinmaclinux/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/UFS-explorer-professional-recoverywinmaclinux/index.html</guid>
-      <description>官网 https://www.ufsexplorer.com/ufs-explorer-professional-recovery.php&#xA;国内常见的支持E01镜像文件访问的软件主要有GetData Mount Image Pro、AccessData FTK Imager和OSFMount等。我们使用GetData Mount Image Pro将镜像文件映射为本地磁盘驱动，然后再将镜像文件中的操作系统加载到虚拟机上运行。</description>
-    </item>
-    <item>
-      <title>WinHEX(win)</title>
-      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html</guid>
-      <description>https://www.jianshu.com/p/f14a41e8cfbe&#xA;官网 http://www.x-ways.com/index-c.html&#xA;winhex http://www.x-ways.com/winhex/index-m.html&#xA;WinHex：计算机取证和数据恢复软件，&#xA;十六进制编辑器和磁盘编辑器&#xA;Windows XP / 2003 / Vista / 2008/7/8 / 8.1 / 2012/10 / 2016，32位/ 64位*&#xA;特性 WinHex的核心是通用的十六进制编辑器，在计算机取证，数据恢复，低级数据处理和IT安全领域特别有用。日常和紧急使用的高级工具：检查和编辑所有类型的文件，从文件系统损坏的硬盘驱动器或数码相机卡中恢复已删除的文件或丢失的数据。功能取决于许可证类型（许可证类型比较），其中：</description>
-    </item>
-    <item>
-      <title>数据恢复工具性能对比</title>
-      <link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html</guid>
-      <description>工具名 支持的系统 收费情况 支持挂恢复数据的格式 UFS explorer professional recovery win/mac/linux 收费 数据访问和恢复Windows: NTFS, FAT, FAT32, exFAT, ReFS/ReFS3;macOS: HFS+, APFS;Linux: Ext2, Ext3, Ext4, XFS, Extended format XFS, JFS, ReiserFS, UFS, UFS2, Adaptec UFS, big-endian UFS, Btrfs, F2FS;BSD/Solaris: ZFS volumes;VMware: VMFS, VMFS6.仅支持数据访问macOS: HFS;Novell: NWFS, NSS, NSS64;IBM/Microsoft: HPFS. DiskGenius win 收费 数据访问和恢复Windows: exFAT/GPT/NTFS（智能加载）Linux: EXT2/3/4（还支持分区恢复）虚拟磁盘 WinHEX win 收费 数据访问和恢复Windows: FAT12/16/32/NTFS/exFATLinux: Ext2/3/4, 本机支持Next3 ® , CDFS, UDF</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>3文件恢复 :: x7peeps</title><link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.html</link><description>DiskGenius(win) 官网 https://www.diskgenius.cn/ DiskGenius有免费版、标准版与专业版三个版本状态（功能对比）。三个版本共用同一个发行包，不必 … UFS explorer professional recovery(win/mac/linux) 官网 https://www.ufsexplorer.com/ufs-explorer-professional-recovery.php 国内常见的支持E01 … WinHEX(win) https://www.jianshu.com/p/f14a41e8cfbe 官网 http://www.x-ways.com/index-c.html … 数据恢复工具性能对比 工具名 支持的系统 收费情况 支持挂恢复数据的格式 UFS explorer professional recovery win/mac/linux 收费 数 … R-studio network(win) 近期在应急数据恢复场景，客户使用Hyper-V运行业务系统，由于没有设置快照，在误操作下恢复了虚拟机，导致数据丢失，因此客户需求需要将数据恢复。用过很多方式最后 …</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Fri, 29 May 2026 01:15:35 +0800</lastBuildDate><atom:link href="https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/index.xml" rel="self" type="application/rss+xml"/><item><title>DiskGenius(win)</title><link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/DiskGeniuswin/index.html</link><pubDate>Fri, 29 May 2026 01:15:35 +0800</pubDate><guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/DiskGeniuswin/index.html</guid><description>官网 https://www.diskgenius.cn/
+DiskGenius有免费版、标准版与专业版三个版本状态（功能对比）。三个版本共用同一个发行包，不必分别下载。
+下载后，即可立即使用免费版DiskGenius；注册后，可自动升级为标准版或专业版。</description></item><item><title>UFS explorer professional recovery(win/mac/linux)</title><link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/UFS-explorer-professional-recoverywinmaclinux/index.html</link><pubDate>Fri, 29 May 2026 01:15:35 +0800</pubDate><guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/UFS-explorer-professional-recoverywinmaclinux/index.html</guid><description>官网 https://www.ufsexplorer.com/ufs-explorer-professional-recovery.php
+国内常见的支持E01镜像文件访问的软件主要有GetData Mount Image Pro、AccessData FTK Imager和OSFMount等。我们使用GetData Mount Image Pro将镜像文件映射为本地磁盘驱动，然后再将镜像文件中的操作系统加载到虚拟机上运行。</description></item><item><title>WinHEX(win)</title><link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html</link><pubDate>Fri, 29 May 2026 01:15:35 +0800</pubDate><guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/WinHEXwin/index.html</guid><description>https://www.jianshu.com/p/f14a41e8cfbe
+官网 http://www.x-ways.com/index-c.html
+winhex http://www.x-ways.com/winhex/index-m.html
+WinHex：计算机取证和数据恢复软件，
+十六进制编辑器和磁盘编辑器
+Windows XP / 2003 / Vista / 2008/7/8 / 8.1 / 2012/10 / 2016，32位/ 64位*
+特性 WinHex的核心是通用的十六进制编辑器，在计算机取证，数据恢复，低级数据处理和IT安全领域特别有用。日常和紧急使用的高级工具：检查和编辑所有类型的文件，从文件系统损坏的硬盘驱动器或数码相机卡中恢复已删除的文件或丢失的数据。功能取决于许可证类型（许可证类型比较），其中：</description></item><item><title>数据恢复工具性能对比</title><link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html</link><pubDate>Fri, 29 May 2026 01:15:35 +0800</pubDate><guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/index.html</guid><description>工具名 支持的系统 收费情况 支持挂恢复数据的格式 UFS explorer professional recovery win/mac/linux 收费 数据访问和恢复Windows: NTFS, FAT, FAT32, exFAT, ReFS/ReFS3;macOS: HFS+, APFS;Linux: Ext2, Ext3, Ext4, XFS, Extended format XFS, JFS, ReiserFS, UFS, UFS2, Adaptec UFS, big-endian UFS, Btrfs, F2FS;BSD/Solaris: ZFS volumes;VMware: VMFS, VMFS6.仅支持数据访问macOS: HFS;Novell: NWFS, NSS, NSS64;IBM/Microsoft: HPFS. DiskGenius win 收费 数据访问和恢复Windows: exFAT/GPT/NTFS（智能加载）Linux: EXT2/3/4（还支持分区恢复）虚拟磁盘 WinHEX win 收费 数据访问和恢复Windows: FAT12/16/32/NTFS/exFATLinux: Ext2/3/4, 本机支持Next3 ® , CDFS, UDF</description></item><item><title>R-studio network(win)</title><link>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/R-studio-networkwin/index.html</link><pubDate>Wed, 13 Oct 2021 23:00:00 +0800</pubDate><guid>https://x7peeps.com/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x02%E7%94%B5%E5%AD%90%E5%8F%96%E8%AF%81/3%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/R-studio-networkwin/index.html</guid><description>近期在应急数据恢复场景，客户使用Hyper-V运行业务系统，由于没有设置快照，在误操作下恢复了虚拟机，导致数据丢失，因此客户需求需要将数据恢复。用过很多方式最后这个好用，这里作为记录归档。</description></item></channel></rss>

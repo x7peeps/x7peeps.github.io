@@ -117,18 +117,17 @@ aside#R-sidebar{
 /* 1. Sidebar Background & Border (Glassmorphism) */
 aside#R-sidebar {
   position: fixed !important; /* Make it float so content scrolls underneath */
-  left: 0;
   top: 0;
   height: 100vh !important;
-  z-index: 50;
+  z-index: 200 !important; /* Ensure it's above the body overlay */
   background: rgba(0, 0, 0, 0.45) !important; /* Semi-transparent black background */
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border-right: none !important; /* Remove inner border */
   box-shadow: none !important; /* Remove shadow */
   /* Add mask to fade out the right edge smoothly */
-  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
   /* Remove layout overrides so trackpad scroll works with perfect-scrollbar */
   width: var(--INTERNAL-MENU-L-width) !important;
   max-width: var(--INTERNAL-MENU-L-width) !important;
@@ -175,7 +174,6 @@ aside#R-sidebar {
 }
 @media (max-width: 47.999rem) {
   aside#R-sidebar {
-    position: absolute !important; /* Theme handles mobile flyout natively */
     width: var(--INTERNAL-MENU-S-width) !important;
     max-width: var(--INTERNAL-MENU-S-width) !important;
     min-width: var(--INTERNAL-MENU-S-width) !important;
@@ -224,7 +222,9 @@ aside#R-sidebar {
 
 /* 4. Menu Items - Obsidian Style (Tight, Left Chevron, Full Width Hover) */
 .R-sidebarmenu ul.collapsible-menu {
-  /* Allow content to overflow horizontally without cropping */
+  /* Allow content to overflow horizontally without cropping, and stretch to fit the longest item */
+  min-width: 100% !important;
+  /* Removed width: max-content */
 }
 
 /* Prevent theme default background on entire parent block */
@@ -257,8 +257,9 @@ aside#R-sidebar {
   align-items: center !important;
   flex: 1 1 auto !important;
   width: calc(100% - 16px) !important; /* Account for margins */
-  min-width: max-content !important; /* Allow width to grow with text */
-  white-space: nowrap !important; /* Keep text on one line */
+  /* Removed min-width: max-content to prevent horizontal dragging */
+  white-space: normal !important; /* Allow text to wrap cleanly */
+  word-break: break-word !important;
   color: var(--x7-muted) !important;
   font-size: 0.9rem !important;
   line-height: 1.4 !important;
@@ -424,8 +425,14 @@ article.home h4{
 
 article.default a,
 article.home a{
+  color: var(--x7-accent) !important;
   text-decoration-thickness: .08em;
   text-underline-offset: .16em;
+}
+
+article.default a:hover,
+article.home a:hover{
+  color: var(--MAIN-LINK-HOVER-color) !important;
 }
 
 article.default pre,
@@ -520,6 +527,11 @@ main#R-body-inner.home {
   overflow-y: hidden !important;
 }
 
+/* Hide the default Hugo H1 title ("竹林 - BAMBOO GROVE") on the home page so our Hero section takes full focus */
+main#R-body-inner.home article > h1:first-of-type {
+  display: none !important;
+}
+
 /* 2. Container & Entrance Animation */
 .x7-home-container {
   display: flex;
@@ -538,72 +550,137 @@ main#R-body-inner.home {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* 3. Hero Section */
+/* 3. Hero Section (Global Interactive Design) */
 .x7-home-hero {
   text-align: center;
-  padding: 5rem 1.5rem 6rem 1.5rem;
+  padding: 15vh 1.5rem;
   position: relative;
-  overflow: hidden;
-  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%);
+  overflow: visible; /* Let elements break out if needed */
+  background: transparent;
   border-bottom: none;
   margin-bottom: 0;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+/* Base grid pattern - Global level */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: perspective(1000px) rotateX(45deg) translateY(0) translateZ(-200px);
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+@keyframes gridMove {
+  0% { transform: perspective(1000px) rotateX(45deg) translateY(0) translateZ(-200px); }
+  100% { transform: perspective(1000px) rotateX(45deg) translateY(80px) translateZ(-200px); }
+}
+
+/* Mouse-tracking Spotlight / Glow - Global Level */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(800px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(98,185,255,0.08), transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .x7-hero-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 4rem 0;
+  /* Removed the restrictive box/border */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.x7-hero-content:hover {
+  /* Removed border/box-shadow hover effects since the box is gone */
 }
 
 /* Avatar styling */
 .x7-avatar-wrapper {
   display: inline-block;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   border-radius: 50%;
   padding: 6px;
-  background: linear-gradient(135deg, var(--x7-border-2), rgba(255,255,255,0.02));
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  background: linear-gradient(135deg, var(--x7-accent), rgba(255,255,255,0.05));
+  box-shadow: 0 0 30px rgba(98,185,255,0.3);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+  animation: floatAvatar 6s ease-in-out infinite;
+}
+
+@keyframes floatAvatar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.x7-avatar-wrapper:hover {
+  transform: scale(1.15) rotate(5deg) !important;
+  box-shadow: 0 0 60px rgba(98,185,255,0.8);
+  animation-play-state: paused;
 }
 
 .x7-avatar-large {
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   display: block;
   object-fit: cover;
-  border: 1px solid var(--x7-border);
+  border: 4px solid var(--x7-bg);
   background: var(--x7-bg);
 }
 
 /* Typography */
 .x7-hero-title {
-  font-size: clamp(3rem, 8vw, 4.5rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  margin: 0 0 1.25rem 0;
-  color: var(--MAIN-TITLES-TEXT-color);
-  line-height: 1.1;
-  text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  font-size: clamp(3.5rem, 8vw, 5rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.05em !important;
+  margin: 0 0 1.25rem 0 !important;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 0%, var(--x7-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(98,185,255,0.4);
+  line-height: 1.1 !important;
 }
 
 .x7-hero-subtitle {
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  color: var(--x7-accent);
-  font-weight: 500;
-  margin: 0 0 1.5rem 0;
-  letter-spacing: 0.02em;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem) !important;
+  color: var(--x7-accent) !important;
+  font-weight: 600 !important;
+  margin: 0 0 1.5rem 0 !important;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .x7-hero-mission {
-  font-size: 1.15rem;
-  color: var(--x7-muted);
-  max-width: 560px;
-  margin: 0 auto;
-  line-height: 1.8;
-  letter-spacing: 0.01em;
+  font-size: 1.15rem !important;
+  color: var(--x7-muted) !important;
+  max-width: 600px;
+  margin: 0 auto !important;
+  line-height: 1.8 !important;
+  font-weight: 400 !important;
 }
 
 @media (max-width: 768px) {
@@ -857,4 +934,206 @@ article.card.card-popout .card-content-text {
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
   margin-top: 0.25rem !important;
+}
+
+/* 8. Topbar Buttons & Overlay Optimization */
+.topbar-button button, .topbar-button span {
+  color: var(--x7-text) !important;
+}
+.topbar-button button:hover, .topbar-button span:hover {
+  color: var(--x7-accent) !important;
+}
+#R-body-overlay {
+  background-color: rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+
+/* 9. Mobile Sidebar Flyout Optimization (No Fade) */
+@media (max-width: 47.999rem) {
+  aside#R-sidebar {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    background: rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
+  .R-sidebarmenu ul.collapsible-menu a.padding:hover {
+    background: rgba(255,255,255,0.06) !important;
+  }
+  .R-sidebarmenu ul.collapsible-menu li.active > a.padding {
+    background: rgba(98,185,255,0.12) !important;
+  }
+  .R-sidebarmenu ul.collapsible-menu li.active > a.padding:hover {
+    background: rgba(98,185,255,0.18) !important;
+  }
+}
+
+.mobile-support.sidebar-flyout aside#R-sidebar {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.mobile-support.sidebar-flyout #R-body-overlay {
+  opacity: 0 !important;
+  pointer-events: none !important; /* Hide the native overlay visually since our sidebar covers the screen with glassmorphism */
+}
+.mobile-support.sidebar-flyout .R-sidebarmenu ul.collapsible-menu a.padding:hover {
+  background: rgba(255,255,255,0.06) !important;
+}
+.mobile-support.sidebar-flyout .R-sidebarmenu ul.collapsible-menu li.active > a.padding {
+  background: rgba(98,185,255,0.12) !important;
+}
+.mobile-support.sidebar-flyout .R-sidebarmenu ul.collapsible-menu li.active > a.padding:hover {
+  background: rgba(98,185,255,0.18) !important;
+}
+
+
+/* 10. Topbar Content Dropdown (TOC) Glassmorphism */
+.topbar-content {
+  background: rgba(18, 18, 18, 0.7) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+.topbar-content .topbar-content-wrapper {
+  background: transparent !important;
+}
+
+
+/* 11. Sidebar Inline TOC */
+#R-sidebar .sidebar-inline-toc {
+  width: 100%;
+  padding-left: 28px;
+  margin-bottom: 8px;
+  display: block !important;
+}
+#R-sidebar .sidebar-inline-toc nav.TableOfContents {
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#R-sidebar .sidebar-inline-toc nav.TableOfContents > ul {
+  border-left: 2px solid rgba(255,255,255,0.1);
+  padding-left: 0 !important;
+  margin: 4px 0 8px 12px !important;
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+#R-sidebar .sidebar-inline-toc ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+#R-sidebar .sidebar-inline-toc li {
+  margin: 4px 0 !important;
+  padding: 0 0 0 12px !important;
+  min-height: auto !important;
+  display: block !important;
+}
+/* Hide completely empty li elements generated by Hugo */
+#R-sidebar .sidebar-inline-toc li:empty {
+  display: none !important;
+}
+#R-sidebar .sidebar-inline-toc li ul {
+  margin-top: 4px !important;
+  border-left: 1px dashed rgba(255,255,255,0.08);
+  margin-left: 4px !important;
+}
+#R-sidebar .sidebar-inline-toc a {
+  padding: 2px 0 !important;
+  margin: 0 !important;
+  font-size: 0.82rem !important;
+  color: var(--x7-muted) !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+  display: block !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+#R-sidebar .sidebar-inline-toc a:hover {
+  color: var(--x7-accent) !important;
+  background: transparent !important;
+}
+/* Override any theme active TOC highlighting for the sidebar inline TOC */
+#R-sidebar .sidebar-inline-toc a.active {
+  color: var(--x7-accent) !important;
+  font-weight: 500 !important;
+}
+
+
+
+/* 12. Collapsible Sidebar Inline TOC */
+#R-sidebar .sidebar-inline-toc li.toc-has-children {
+  position: relative;
+}
+#R-sidebar .sidebar-inline-toc input.toc-checkbox {
+  position: absolute !important;
+  opacity: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
+  left: -4px !important;
+  top: 2px !important;
+  z-index: 3 !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+}
+#R-sidebar .sidebar-inline-toc label.toc-label {
+  position: absolute !important;
+  left: -4px !important;
+  top: 2px !important;
+  height: 16px !important;
+  width: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 2 !important;
+  color: rgba(255,255,255,0.3) !important;
+  transition: color 0.2s ease !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#R-sidebar .sidebar-inline-toc label.toc-label:hover {
+  color: var(--x7-text) !important;
+}
+#R-sidebar .sidebar-inline-toc label.toc-label i {
+  font-size: 0.65rem !important;
+  transition: transform 0.2s ease !important;
+  display: block !important;
+}
+#R-sidebar .sidebar-inline-toc input.toc-checkbox:checked ~ label.toc-label i {
+  transform: rotate(90deg) !important;
+}
+#R-sidebar .sidebar-inline-toc li.toc-has-children > input.toc-checkbox ~ ul {
+  display: none !important;
+}
+#R-sidebar .sidebar-inline-toc li.toc-has-children > input.toc-checkbox:checked ~ ul {
+  display: block !important;
+}
+#R-sidebar .sidebar-inline-toc li.toc-has-children > a {
+  padding-left: 14px !important; /* Make room for the chevron */
+}
+
+/* --------------------------------------------------------------------------
+ * 隐藏文章详情页重复的 H1 标题
+ * 当主题生成了一个 h1，且用户在 Markdown 中也写了 h1 时，隐藏主题生成的那个 h1
+ * -------------------------------------------------------------------------- */
+article.default > h1:first-of-type:has(~ h1) {
+    display: none !important;
 }

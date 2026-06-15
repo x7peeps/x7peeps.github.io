@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>本站搭建 :: x7peeps</title>
-    <link>https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html</link>
-    <description>本站搭建 背景 早些年从wordpress，转hexo，到目前hugo，根据需求做了调整，我对于自定义框架和速度的要求也是越来越高，目前框架采用建站速度更快的hugo+github.io托管，好处是可以不用成本并且建站速度快、维护方便，其实和hexo类似，只是主题上我需要一个类似知识库一样的主题hexo原来的tree虽然我基于原版的调整了但还是不够灵活方便需要手工调整主题源码，经过查找后来选定了目前的hugo并且使用relearn主题承接之前的所有内容。目前博客内容已经完全继承之前的文章并且显示ok，又可以开心的写blog了。</description>
-    <generator>Hugo</generator>
-    <language>zh-CN</language>
-    <atom:link href="https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>本站搭建 :: x7peeps</title><link>https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.html</link><description>本站搭建 背景 早些年从wordpress，转hexo，到目前hugo，根据需求做了调整，我对于自定义框架和速度的要求也是越来越高，目前框架采用建站速度更快的hugo+github.io托管，好处是可以不用成本并且建站速度快、维护方便，其实和hexo类似，只是主题上我需要一个类似知识库一样的主题hexo原来的tree虽然我基于原版的调整了但还是不够灵活方便需要手工调整主题源码，经过查找后来选定了目前的hugo并且使用relearn主题承接之前的所有内容。目前博客内容已经完全继承之前的文章并且显示ok，又可以开心的写blog了。</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate/><atom:link href="https://x7peeps.com/%E5%85%B3%E4%BA%8E/%E6%9C%AC%E7%AB%99%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
