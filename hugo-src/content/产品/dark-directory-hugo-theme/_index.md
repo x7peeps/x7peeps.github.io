@@ -7,10 +7,10 @@ weight = 20
   <div class="x7-theme-hero-copy">
     <span class="x7-theme-kicker">Open Source Theme</span>
     <h1>Dark Directory Hugo Theme</h1>
-    <p>一个基于 Hugo + Relearn 打造的暗色知识库主题扩展层，适合安全研究、产品展示、技术博客与个人品牌站点。它延续了本站的导航结构、信息密度与视觉气质，也能像展示 OfflinePassbook 一样自然承载产品宣传。</p>
+    <p>一个基于 Hugo + Relearn 打造的暗色极客风知识库主题扩展层，专为安全研究员、开发者与技术布道者设计。它以极致的深色模式、无界沉浸的全屏交互和高密度的目录结构，为你构建独具赛博朋克气质的个人技术主页。</p>
     <div class="x7-theme-actions">
-      <a class="x7-theme-button x7-theme-button-primary" href="/产品/OfflinePassbook/">查看产品示例</a>
-      <a class="x7-theme-button" href="#theme-features">查看主题能力</a>
+      <a class="x7-theme-button x7-theme-button-primary" href="/">查看演示站点</a>
+      <a class="x7-theme-button" href="#theme-features">了解核心特性</a>
     </div>
   </div>
   <div class="x7-theme-showcase">
@@ -24,42 +24,40 @@ weight = 20
   </div>
 </div>
 
-## 开源定位 {#theme-features}
+## 核心特性 {#theme-features}
 
-Dark Directory Hugo Theme 不是从零重写的独立主题，而是一个可复用、可开源、可继续演化的主题扩展层：
+Dark Directory Hugo Theme 不是从零重写的独立主题，而是一个轻量级、可复用、易于演化的主题扩展层：
 
-- 保留 Hugo + Relearn 的稳定底座，避免重复造轮子。
-- 通过 `layouts`、`static/css/custom.css` 和 `static/js/custom.js` 完成导航、交互和视觉层升级。
-- 用少量示例内容即可跑出和本站一致的暗色目录风格。
+- **底层稳定**：保留 Hugo + Relearn 的强大文档引擎底座，避免重复造轮子。
+- **全局沉浸**：拆除传统布局的边框限制，引入 3D 透视星际网格与全屏鼠标追踪光晕特效。
+- **极致纯粹**：深度定制的纯黑背景（Deep Dark），消除多余视觉分割线，让内容与技术成为绝对的焦点。
+- **网格美学**：创新的 Grid 卡片布局，结合文章头图提取、磨砂玻璃质感与 45% 圆角暗角，打破传统列表的单调。
 
 <div class="x7-theme-grid">
   <section class="x7-theme-panel">
-    <h3>目录结构清晰</h3>
-    <p>适合文章、专题、知识库、产品页混合共存，侧边栏层级结构清楚，长文和分类页都能保持稳定阅读体验。</p>
+    <h3>清晰的知识图谱</h3>
+    <p>专为海量技术文档设计。侧边栏层级结构分明，支持无缝顺滑滚动。长篇技术推演和渗透测试报告都能获得稳定的阅读体验。</p>
   </section>
   <section class="x7-theme-panel">
-    <h3>产品展示自然</h3>
-    <p>不仅能放技术内容，也能像上面的 OfflinePassbook 一样，把产品截图、下载链接和价值主张直接融入主题表达。</p>
+    <h3>多维度的内容承载</h3>
+    <p>不仅能完美展示技术博客与漏洞分析，还能通过自定义的 HTML/CSS 模块自然融入独立产品的发布宣传，打造统一的个人品牌。</p>
   </section>
   <section class="x7-theme-panel">
-    <h3>暗色调与交互感</h3>
-    <p>主题加入了更强的层次、光感和悬浮反馈，在保持信息密度的同时，让首页、栏目页和产品页更有品牌识别度。</p>
+    <h3>前卫的大胆交互</h3>
+    <p>全局 CSS 变量与 JavaScript 动态联动，鼠标所至，光晕随行。在保持高信息密度的同时，赋予页面极强的赛博朋克与高级感。</p>
   </section>
 </div>
 
-## 产品宣传能力
+## 为什么选择它？
 
 <div class="x7-theme-meta">
   <div>
-    <p>对于个人开发者和小团队来说，一个好用的 Hugo 主题不应该只会展示文档，还应该能承接产品发布、版本更新、下载入口和品牌表达。</p>
+    <p>对于安全研究员、独立开发者和技术团队来说，一个优秀的个人主页不应该只是枯燥的文档堆砌，它应该展现出你的技术品味与极客精神。</p>
     <ul class="x7-theme-list">
-      <li>适合把博客、知识库、产品介绍、更新日志放到同一个站点里。</li>
-      <li>适合为独立应用、开发工具或安全项目做长期沉淀。</li>
-      <li>适合用极少的模板改动，把文章型站点升级成带产品感的个人官网。</li>
+      <li>**化繁为简**：强行接管并覆盖冗余的第三方样式，告别错位与臃肿。</li>
+      <li>**开箱即用**：只需少量示例内容与配置，即可复现高逼格的暗色目录风格。</li>
+      <li>**灵活扩展**：基于标准的 Hugo `layouts` 与 `custom.css/js`，二次开发极其容易。</li>
     </ul>
-  </div>
-  <div>
-    <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Minimalist%20dark%20theme%20icon%2C%20folder%20or%20directory%20concept%2C%20cyberpunk%20or%20hacker%20style%2C%20neon%20blue%20accents%2C%20flat%20design%2C%20high%20quality&image_size=square" alt="Dark Directory theme icon" loading="lazy" decoding="async">
   </div>
 </div>
 
