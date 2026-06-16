@@ -24,6 +24,12 @@ weight = 20
   </div>
 </div>
 
+## 开源项目地址
+
+- **预定仓库名**：`dark-directory-hugo-theme`
+- **预定仓库地址**：[https://github.com/x7peeps/dark-directory-hugo-theme](https://github.com/x7peeps/dark-directory-hugo-theme)
+- **当前状态**：仓库页面已预留，等待 GitHub 登录完成后正式创建并推送代码
+
 ## 核心特性 {#theme-features}
 
 Dark Directory Hugo Theme 不是从零重写的独立主题，而是一个轻量级、可复用、易于演化的主题扩展层：
