@@ -267,7 +267,111 @@ Linux 持久化通常偏好以下位置：
 
 ---
 
-## 0x08 总结
+## 0x08 公开案例与现场命令
+
+### 1. 案例一：TeamTNT 在云主机中收集 SSH 密钥与云身份材料
+
+Unit 42 在 2021 年披露的 TeamTNT 云环境活动里，给出了一条非常适合 Linux 主机取证落地的后渗透链：
+
+- 攻击者先拿到云主机
+- 随后运行脚本批量收集 AWS/GCP 身份材料
+- 同时抓取本机和用户目录中的 SSH 密钥
+- 继续枚举可执行程序、云资源和后续横向机会
+
+这个案例的价值在于，它说明 Linux 主机上的 SSH 痕迹不能只看“有没有成功登录”，还要继续看：
+
+- 登录后有没有搜集私钥、公钥与 `authorized_keys`
+- 是否开始对其他主机发起 SSH、SCP、RSYNC
+- 是否和云侧枚举行为形成闭环
+
+公开来源：
+
+- Unit 42: [TeamTNT Actively Enumerating Cloud Environments to Infiltrate Organizations](https://unit42.paloaltonetworks.com/teamtnt-operations-cloud-environments/)
+
+### 2. 案例二：SSH 暴力破解仍然是高频初始入口
+
+Kaspersky 2023 年 IoT 威胁报告虽然主要面向联网设备，但其中关于 SSH 暴力破解的统计非常适合用来说明一个现实问题：
+
+- SSH 仍然是攻击者高频尝试的远程入口
+- 一旦默认口令或弱口令存在，后续就很容易演变成任意命令执行和样本注入
+
+虽然这不是单个主机案例，但对 Linux 取证章节非常实用，因为它能解释为什么：
+
+- `Failed password`
+- `Invalid user`
+- 账号字典尝试
+
+这些日志在应急里一直有实战价值。
+
+公开来源：
+
+- Securelist: [Overview of IoT threats in 2023](https://securelist.com/iot-threat-report-2023/110644/)
+
+### 3. Linux 现场排查命令模板
+
+#### 认证日志与爆破源 IP 统计
+
+```bash
+# Ubuntu / Debian
+grep "Failed password" /var/log/auth.log* 2>/dev/null | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head
+grep "Accepted " /var/log/auth.log* 2>/dev/null
+
+# CentOS / RHEL
+grep "Failed password" /var/log/secure* 2>/dev/null | awk '{print $(NF-3)}' | sort | uniq -c | sort -nr | head
+grep "Accepted " /var/log/secure* 2>/dev/null
+```
+
+#### 登录会话与失败登录
+
+```bash
+last -ai | head -n 50
+lastb -ai | head -n 50
+lastlog | head -n 50
+```
+
+#### 使用 journalctl 缩时间窗
+
+```bash
+journalctl --since "2026-06-15 00:00:00" --until "2026-06-15 06:00:00" -u ssh
+journalctl --since "2026-06-15 00:00:00" --until "2026-06-15 06:00:00" | egrep 'sshd|sudo|su:|cron'
+```
+
+#### SSH 公钥与用户目录取证
+
+```bash
+find /root /home -maxdepth 3 -type f \( -name "authorized_keys" -o -name "known_hosts" -o -name "id_rsa" -o -name "id_ed25519" \) -ls 2>/dev/null
+stat /root/.ssh/authorized_keys /home/*/.ssh/authorized_keys 2>/dev/null
+grep -RIn "ssh-rsa\|ssh-ed25519" /root/.ssh /home/*/.ssh 2>/dev/null
+```
+
+#### 命令历史与横向工具
+
+```bash
+grep -RInE 'ssh |scp |rsync |sftp |sshpass|proxychains|socat|curl |wget ' /root/.bash_history /home/*/.bash_history 2>/dev/null
+```
+
+#### 临时目录与落地文件
+
+```bash
+find /tmp /var/tmp /dev/shm -type f -mtime -3 -ls 2>/dev/null
+find /etc/cron* /var/spool/cron /etc/systemd/system -type f -mtime -3 -ls 2>/dev/null
+```
+
+### 4. 一条可直接执行的实战流程
+
+如果你怀疑 Linux 主机是通过 SSH 进入并继续横向，建议按下面顺序执行：
+
+1. 先查 `auth.log/secure` 里的 `Failed password` 和 `Accepted`
+2. 再查 `last/lastb/lastlog` 是否和认证日志一致
+3. 再查 `authorized_keys/known_hosts/id_rsa` 是否在同时间窗被访问或修改
+4. 再查 `bash_history` 里是否出现 `ssh/scp/rsync/sshpass`
+5. 最后再看 `/tmp`、`cron`、`systemd` 是否承接了后续驻留
+
+这样就能把“外部登录 -> 公钥驻留 -> 横向移动 -> 持久化”收成一条完整时间线。
+
+---
+
+## 0x09 总结
 
 Linux 主机取证最怕两件事：一是只会导日志不会分析，二是把单点异常误判成完整攻击链。真正有效的入侵溯源，必须把**认证日志、命令历史、文件落地与网络行为**拼成同一条时间线。
 

