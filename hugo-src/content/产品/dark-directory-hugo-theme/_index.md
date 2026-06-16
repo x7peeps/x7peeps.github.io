@@ -28,7 +28,7 @@ weight = 20
 
 - **预定仓库名**：`dark-directory-hugo-theme`
 - **预定仓库地址**：[https://github.com/x7peeps/dark-directory-hugo-theme](https://github.com/x7peeps/dark-directory-hugo-theme)
-- **当前状态**：仓库页面已预留，等待 GitHub 登录完成后正式创建并推送代码
+- **当前状态**：仓库已创建并完成首次推送，可直接访问和使用
 
 ## 核心特性 {#theme-features}
 
