@@ -1,6 +1,11 @@
 ---
 title: "Grafana监控面打点与接口利用技术"
+date: 2026-06-13T13:56:17+08:00
+draft: false
 weight: 48
+description: "围绕Grafana相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
+categories: ["安全", "渗透测试"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "Grafana"]
 ---
 
 # Grafana监控面打点与接口利用技术

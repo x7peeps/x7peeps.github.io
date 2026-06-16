@@ -1,6 +1,11 @@
 ---
 title: "XSS漏洞深度利用与CSRF攻击链构造"
+date: 2026-06-12T11:16:51+08:00
+draft: false
 weight: 10
+description: "围绕XSS漏洞深度利用与CSRF攻击链构造相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
+categories: ["安全", "渗透测试"]
+tags: ["渗透测试", "漏洞利用", "Web安全", "XSS", "CSRF", "XSS漏洞深度利用与CSRF攻击链构造"]
 ---
 
 # XSS漏洞深度利用与CSRF攻击链构造

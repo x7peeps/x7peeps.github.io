@@ -1,6 +1,11 @@
 ---
 title: "Apollo配置中心管理面打点与OpenAPI利用技术"
+date: 2026-06-15T20:49:11+08:00
+draft: false
 weight: 65
+description: "围绕Apollo配置中心相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
+categories: ["安全", "渗透测试"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "OpenAPI", "Apollo", "Apollo配置中心"]
 ---
 
 # Apollo配置中心管理面打点与OpenAPI利用技术

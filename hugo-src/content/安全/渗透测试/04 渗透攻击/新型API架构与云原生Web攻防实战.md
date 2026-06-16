@@ -1,6 +1,11 @@
 ---
 title: "新型API架构与云原生Web攻防实战"
+date: 2026-06-12T13:24:08+08:00
+draft: false
 weight: 90
+description: "围绕新型API架构与云原生Web相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
+categories: ["安全", "渗透测试"]
+tags: ["渗透测试", "漏洞利用", "Web安全", "新型API架构与云原生Web"]
 ---
 
 # 新型API架构与云原生Web攻防实战

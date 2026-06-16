@@ -1,6 +1,11 @@
 ---
 title: "Kubernetes Dashboard管理面打点与接口利用技术"
+date: 2026-06-15T11:36:24+08:00
+draft: false
 weight: 57
+description: "围绕Kubernetes Dashboard相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
+categories: ["安全", "渗透测试"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "Dashboard", "Kubernetes Dashboard"]
 ---
 
 # Kubernetes Dashboard管理面打点与接口利用技术

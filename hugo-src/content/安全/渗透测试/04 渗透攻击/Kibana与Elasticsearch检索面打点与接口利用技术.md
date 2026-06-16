@@ -1,6 +1,11 @@
 ---
 title: "Kibana与Elasticsearch检索面打点与接口利用技术"
+date: 2026-06-13T19:59:47+08:00
+draft: false
 weight: 54
+description: "围绕Kibana与Elasticsearch相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
+categories: ["安全", "渗透测试"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "Kibana", "Elasticsearch", "Kibana与Elasticsearch"]
 ---
 
 # Kibana与Elasticsearch检索面打点与接口利用技术

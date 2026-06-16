@@ -1,6 +1,11 @@
 +++
 title = "Active Directory Certificate Services 漏洞利用与防御：ESC1 与 ESC8"
+date = "2026-06-12T20:39:11+08:00"
+draft = false
 weight = 30
+description = "围绕 Active Directory Certificate Services、ESC1 与 ESC8 相关利用链，分析证书模板滥用、NTLM 中继、日志痕迹与蓝队防守处置思路。"
+categories = ["安全", "渗透测试"]
+tags = ["渗透测试", "漏洞利用", "AD CS", "ESC1", "ESC8", "证书服务"]
 +++
 
 ## 0x00 概述

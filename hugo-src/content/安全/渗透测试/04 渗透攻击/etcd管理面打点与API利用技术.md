@@ -1,6 +1,11 @@
 ---
 title: "etcd管理面打点与API利用技术"
+date: 2026-06-15T13:19:03+08:00
+draft: false
 weight: 61
+description: "围绕etcd相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
+categories: ["安全", "渗透测试"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "etcd"]
 ---
 
 # etcd管理面打点与API利用技术

@@ -1,6 +1,11 @@
 ---
 title: "Spring Boot Actuator与Jolokia未授权访问打点利用技术"
+date: 2026-06-13T13:40:32+08:00
+draft: false
 weight: 45
+description: "围绕Spring Boot Actuator与Jolokia相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
+categories: ["安全", "渗透测试"]
+tags: ["渗透测试", "漏洞利用", "Web安全", "Spring Boot Actuator", "Jolokia", "Spring Boot Actuator与Jolokia"]
 ---
 
 # Spring Boot Actuator与Jolokia未授权访问打点利用技术

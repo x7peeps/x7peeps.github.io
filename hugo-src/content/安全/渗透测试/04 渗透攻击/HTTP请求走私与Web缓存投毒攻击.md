@@ -1,6 +1,11 @@
 ---
 title: "HTTP请求走私与Web缓存投毒攻击"
+date: 2026-06-12T13:23:28+08:00
+draft: false
 weight: 80
+description: "围绕HTTP请求走私与Web缓存投毒攻击相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
+categories: ["安全", "渗透测试"]
+tags: ["渗透测试", "漏洞利用", "Web安全", "HTTP请求走私", "Web缓存投毒", "HTTP请求走私与Web缓存投毒攻击"]
 ---
 
 # HTTP请求走私与Web缓存投毒攻击
