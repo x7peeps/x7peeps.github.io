@@ -5,7 +5,7 @@ draft: false
 weight: 66
 description: "围绕Zabbix监控平台相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
 categories: ["安全", "渗透测试"]
-tags: ["渗透测试", "漏洞利用", "管理面打点", "Zabbix", "Zabbix监控平台"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "监控平台", "Zabbix"]
 ---
 
 # Zabbix监控平台管理面打点与API利用技术

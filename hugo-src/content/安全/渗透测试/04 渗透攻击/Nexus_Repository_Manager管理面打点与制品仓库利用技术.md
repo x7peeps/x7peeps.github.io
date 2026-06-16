@@ -5,7 +5,7 @@ draft: false
 weight: 49
 description: "围绕Nexus Repository Manager相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
 categories: ["安全", "渗透测试"]
-tags: ["渗透测试", "漏洞利用", "管理面打点", "Nexus", "Nexus Repository Manager"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "制品仓库", "Nexus"]
 ---
 
 # Nexus Repository Manager管理面打点与制品仓库利用技术

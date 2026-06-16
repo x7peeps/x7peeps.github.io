@@ -5,7 +5,7 @@ draft: false
 weight: 47
 description: "围绕Jenkins相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
 categories: ["安全", "渗透测试"]
-tags: ["渗透测试", "漏洞利用", "管理面打点", "Jenkins"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "CI/CD", "Jenkins"]
 ---
 
 # Jenkins管理面打点与接口利用技术

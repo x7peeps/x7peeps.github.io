@@ -5,7 +5,7 @@ draft: false
 weight: 50
 description: "围绕GitLab管理面与API打点相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
 categories: ["安全", "渗透测试"]
-tags: ["渗透测试", "漏洞利用", "管理面打点", "GitLab", "GitLab管理面与API打点"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "DevOps平台", "GitLab", "API"]
 ---
 
 # GitLab管理面与API打点利用技术

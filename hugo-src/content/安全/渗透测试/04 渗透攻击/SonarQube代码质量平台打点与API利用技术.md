@@ -5,7 +5,7 @@ draft: false
 weight: 53
 description: "围绕SonarQube代码质量平台相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
 categories: ["安全", "渗透测试"]
-tags: ["渗透测试", "漏洞利用", "Web安全", "SonarQube", "SonarQube代码质量平台"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "代码质量", "SonarQube"]
 ---
 
 # SonarQube代码质量平台打点与API利用技术

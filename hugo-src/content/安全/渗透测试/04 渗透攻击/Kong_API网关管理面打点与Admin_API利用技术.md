@@ -5,7 +5,7 @@ draft: false
 weight: 69
 description: "围绕Kong API网关相关攻击面与利用路径，分析打点识别、接口枚举、风险链条、日志痕迹与防守处置思路。"
 categories: ["安全", "渗透测试"]
-tags: ["渗透测试", "漏洞利用", "管理面打点", "API网关", "Admin API", "Kong"]
+tags: ["渗透测试", "漏洞利用", "管理面打点", "API网关", "Kong", "Admin API"]
 ---
 
 # Kong API网关管理面打点与Admin API利用技术
