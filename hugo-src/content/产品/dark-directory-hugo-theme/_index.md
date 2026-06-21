@@ -10,6 +10,7 @@ weight = 20
     <p>一个基于 Hugo + Relearn 打造的暗色极客风知识库主题扩展层，专为安全研究员、开发者与技术布道者设计。它以极致的深色模式、无界沉浸的全屏交互和高密度的目录结构，为你构建独具赛博朋克气质的个人技术主页。</p>
     <div class="x7-theme-actions">
       <a class="x7-theme-button x7-theme-button-primary" href="/">查看演示站点</a>
+      <a class="x7-theme-button" href="https://github.com/x7peeps/x7peeps.github.io" target="_blank"><i class="fab fa-github"></i> 获取开源代码</a>
       <a class="x7-theme-button" href="#theme-features">了解核心特性</a>
     </div>
   </div>
@@ -56,15 +57,13 @@ Dark Directory Hugo Theme 不是从零重写的独立主题，而是一个轻量
 
 ## 为什么选择它？
 
-<div class="x7-theme-meta">
-  <div>
-    <p>对于安全研究员、独立开发者和技术团队来说，一个优秀的个人主页不应该只是枯燥的文档堆砌，它应该展现出你的技术品味与极客精神。</p>
-    <ul class="x7-theme-list">
-      <li>**化繁为简**：强行接管并覆盖冗余的第三方样式，告别错位与臃肿。</li>
-      <li>**开箱即用**：只需少量示例内容与配置，即可复现高逼格的暗色目录风格。</li>
-      <li>**灵活扩展**：基于标准的 Hugo `layouts` 与 `custom.css/js`，二次开发极其容易。</li>
-    </ul>
-  </div>
+<div class="x7-theme-meta-full">
+  <p>对于安全研究员、独立开发者和技术团队来说，一个优秀的个人主页不应该只是枯燥的文档堆砌，它应该展现出你的技术品味与极客精神。</p>
+  <ul class="x7-theme-list">
+    <li><strong>化繁为简</strong>：强行接管并覆盖冗余的第三方样式，告别错位与臃肿。</li>
+    <li><strong>开箱即用</strong>：只需少量示例内容与配置，即可复现高逼格的暗色目录风格。</li>
+    <li><strong>灵活扩展</strong>：基于标准的 Hugo <code>layouts</code> 与 <code>custom.css/js</code>，二次开发极其容易。</li>
+  </ul>
 </div>
 
 ## 使用方式

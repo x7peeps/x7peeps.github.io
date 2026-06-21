@@ -14,6 +14,7 @@ weight: 1
 | [The Gentlemen](TheGentlemen/) | Storm-2697 / LARVA-368 | 🔴 极高 | 活跃 | 俄罗斯 RaaS 组织，483+ 受害者，66+ 国家，支持蠕虫式自传播 |
 | [Black Basta](BlackBasta/) | UNC4393 / Vengeful Mantis | 🔴 高 | 已停止 | Conti 重组，500+ 受害者，1.07亿美元+收入，2025年品牌崩溃 |
 | [Akira](Akira/) | Storm-1567 / Howling Scorpius | 🔴 极高 | 活跃 | 1,400+ 受害者，2.44亿美元+收入，最短1小时完成加密，四阶段洗钱演化 |
+| [Cl0p](Cl0p/) | TA505 / FIN11 / G0092 | 🔴 极高 | 活跃 | 11,000+ 受害组织，5亿美元+收入，MFT 零日专家，四重勒索模型 |
 
 ---
 

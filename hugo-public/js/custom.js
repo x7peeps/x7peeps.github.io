@@ -1,0 +1,244 @@
+// Override the theme's scrollToPositions function to prevent sidebar from jumping around on refresh
+window.addEventListener('DOMContentLoaded', function() {
+    // Make the logo scroll with the sidebar instead of staying fixed at the top
+    const headerWrapper = document.getElementById('R-header-wrapper');
+    const contentWrapper = document.getElementById('R-content-wrapper');
+    if (headerWrapper && contentWrapper) {
+        contentWrapper.insertBefore(headerWrapper, contentWrapper.firstChild);
+    }
+
+    // We can intercept the scrollIntoView on the active element to prevent the jumping
+    const activeItem = document.querySelector("#R-sidebar li.active a");
+    if (activeItem) {
+        // Prevent scrollIntoView from doing anything when called by the theme's JS
+        activeItem.scrollIntoView = function() {
+            // Do nothing to prevent the sidebar from jumping to center
+        };
+    }
+
+    // Persist sidebar menu state across page loads
+    const checkboxes = document.querySelectorAll('#R-sidebar input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+        const id = cb.id;
+        if (id) {
+            // 1. Restore state from sessionStorage
+            const state = sessionStorage.getItem('sidebar_state_' + id);
+            if (state === 'checked') {
+                cb.checked = true;
+            } else if (state === 'unchecked') {
+                // Do not uncheck if it's the active path (Hugo sets active path to checked by default)
+                const li = cb.closest('li');
+                if (li && !li.classList.contains('active')) {
+                    cb.checked = false;
+                }
+            }
+            
+            // 2. If Hugo auto-expanded this because it's the active path, 
+            // save it to sessionStorage so it stays open when clicking other folders.
+            if (cb.checked) {
+                sessionStorage.setItem('sidebar_state_' + id, 'checked');
+            }
+        }
+        
+        // 3. Save state on manual toggle
+        cb.addEventListener('change', function() {
+            sessionStorage.setItem('sidebar_state_' + this.id, this.checked ? 'checked' : 'unchecked');
+        });
+    });
+
+    // Restore sidebar scroll position
+    const sidebarMenu = document.querySelector('.R-sidebarmenu.R-shortcutmenu-main');
+    if (sidebarMenu) {
+        const scrollPos = sessionStorage.getItem('sidebar_scroll_pos');
+        if (scrollPos) {
+            // Use setTimeout to ensure DOM is fully rendered and other scripts have run
+            setTimeout(() => {
+                sidebarMenu.scrollTop = parseInt(scrollPos, 10);
+            }, 10);
+        }
+
+        // Save scroll position
+        sidebarMenu.addEventListener('scroll', function() {
+            sessionStorage.setItem('sidebar_scroll_pos', sidebarMenu.scrollTop);
+        });
+        
+        // Also listen to wheel events in case perfect-scrollbar is interfering
+        sidebarMenu.addEventListener('wheel', function(e) {
+            // Let the native scroll handle it
+        }, { passive: true });
+
+    }
+
+    // Allow clicking empty space in the mobile sidebar to close it
+    const sidebar = document.querySelector('#R-sidebar');
+    if (sidebar) {
+        sidebar.addEventListener('click', function(e) {
+            // If the click is directly on the sidebar or content wrapper (empty space)
+            if (e.target.id === 'R-sidebar' || e.target.id === 'R-content-wrapper' || e.target.classList.contains('R-sidebarmenu')) {
+                const overlay = document.querySelector('#R-body-overlay');
+                if (overlay) {
+                    overlay.click(); // Trigger the theme's close logic
+                }
+            }
+        });
+    }
+    // Allow Esc key to toggle sidebar
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const overlay = document.querySelector('#R-body-overlay');
+            const sidebarBtn = document.querySelector('.topbar-button-sidebar button');
+            
+            // If overlay is visible, clicking it closes the sidebar
+            if (overlay && window.getComputedStyle(overlay).display !== 'none') {
+                overlay.click();
+            } else if (sidebarBtn && window.getComputedStyle(sidebarBtn).display !== 'none') {
+                // Otherwise, if the sidebar button is visible, click it to open
+                sidebarBtn.click();
+            }
+        }
+    });
+
+    // Move TOC to active sidebar item
+    const activeSidebarItem = document.querySelector("#R-sidebar li.active");
+    const topbarTocNav = document.querySelector('.topbar-button-toc nav.TableOfContents');
+    const topbarTocBtn = document.querySelector('.topbar-button-toc');
+
+    if (activeSidebarItem && topbarTocNav && topbarTocNav.textContent.trim().length > 0) {
+        const tocContainer = document.createElement('div');
+        tocContainer.className = 'sidebar-inline-toc';
+        
+        // Move the TOC from topbar to sidebar
+        tocContainer.appendChild(topbarTocNav);
+        
+        // Cleanup empty wrapper li elements generated by Hugo for skipped heading levels (e.g. H1 -> H3)
+        const emptyLis = Array.from(tocContainer.querySelectorAll('li')).filter(li => {
+            return li.querySelector('ul') && !li.querySelector('a');
+        }).reverse();
+        
+        emptyLis.forEach(li => {
+            const ul = li.querySelector('ul');
+            if (ul) {
+                while (ul.children.length > 0) {
+                    li.parentNode.insertBefore(ul.children[0], li);
+                }
+            }
+            li.remove();
+        });
+
+        // Insert right after the <a> tag to avoid being placed after child pages
+        const activeLink = activeSidebarItem.querySelector(':scope > a');
+        if (activeLink) {
+            activeLink.insertAdjacentElement('afterend', tocContainer);
+            
+            // Allow clicking the active article title to toggle the entire inline TOC
+            activeLink.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent jumping to top
+                if (tocContainer.style.display === 'none') {
+                    tocContainer.style.display = 'block';
+                } else {
+                    tocContainer.style.display = 'none';
+                }
+            });
+        } else {
+            activeSidebarItem.appendChild(tocContainer);
+        }
+
+        // Hide the original topbar TOC button
+        if (topbarTocBtn) {
+            topbarTocBtn.style.display = 'none';
+        }
+
+        // Make TOC collapsible
+        const tocItems = tocContainer.querySelectorAll('li');
+        let tocCounter = 0;
+        tocItems.forEach(li => {
+            const subUl = li.querySelector(':scope > ul');
+            const link = li.querySelector(':scope > a');
+            // Only add toggle if the li has both a sub-list and an actual link (text)
+            // This prevents duplicate chevrons on empty wrapper <li> generated by Hugo for skipped heading levels
+            if (subUl && link) {
+                tocCounter++;
+                const cbId = 'toc-toggle-' + tocCounter;
+                
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.id = cbId;
+                cb.className = 'toc-checkbox';
+                cb.checked = true; // Default expanded
+                
+                const label = document.createElement('label');
+                label.htmlFor = cbId;
+                label.className = 'toc-label';
+                label.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                
+                li.insertBefore(label, li.firstChild);
+                li.insertBefore(cb, li.firstChild);
+                li.classList.add('toc-has-children');
+            }
+        });
+
+        // Add smooth scrolling to TOC links
+        const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+        tocLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href').substring(1);
+                
+                let decodedTargetId = targetId;
+                try {
+                    decodedTargetId = decodeURIComponent(targetId);
+                } catch(err) {}
+                
+                const targetElement = document.getElementById(decodedTargetId) || document.getElementById(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    history.pushState(null, null, '#' + targetId);
+                    
+                    // Auto-close sidebar on mobile/narrow screens BEFORE scrolling
+                    // because the theme locks body scrolling (overflow: hidden) when sidebar is open!
+                    const overlay = document.querySelector('#R-body-overlay');
+                    let delay = 10;
+                    if (overlay && window.getComputedStyle(overlay).display !== 'none') {
+                        overlay.click();
+                        delay = 150; // Give time for the sidebar close animation and overflow:hidden removal
+                    }
+                    
+                    // Update active state
+                    tocLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Wait for layout unlock, then scroll
+                    setTimeout(() => {
+                        const scrollContainer = document.querySelector('#R-body-inner');
+                        
+                        if (scrollContainer) {
+                            // Calculate relative position within the scroll container
+                            const containerRect = scrollContainer.getBoundingClientRect();
+                            const elementRect = targetElement.getBoundingClientRect();
+                            const absoluteTop = elementRect.top + scrollContainer.scrollTop - containerRect.top;
+                            
+                            scrollContainer.scrollTo({
+                                top: absoluteTop - 20, // Add padding
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }, delay);
+                }
+            });
+        });
+    }
+});
+
+
+// Interactive Global Spotlight
+window.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('mousemove', (e) => {
+        document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
+        document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
+    });
+});

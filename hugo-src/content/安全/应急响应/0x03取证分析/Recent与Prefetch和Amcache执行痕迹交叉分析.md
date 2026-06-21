@@ -1,0 +1,441 @@
+---
+title: "Recent与Prefetch和Amcache执行痕迹交叉分析"
+date: 2026-06-16T16:10:00+08:00
+draft: false
+weight: 200
+description: "围绕 Recent、LNK、Prefetch、Amcache 等执行痕迹，分析程序是仅存在、被用户点击，还是已经真实执行，并给出交叉印证方法。"
+categories: ["应急响应", "取证分析"]
+tags: ["Prefetch", "Amcache", "Recent", "LNK", "执行痕迹", "Windows取证"]
+---
+
+# Recent与Prefetch和Amcache执行痕迹交叉分析
+
+在 Windows 事件调查里，最容易被误解的一类证据，就是“程序执行痕迹”。很多现场会把：
+
+- 看见一个文件
+- 看见一个快捷方式
+- 看见一个 Prefetch
+- 看见一个 Amcache 记录
+
+混成一句“这个恶意程序执行过了”。但实际上，这几类痕迹证明力并不一样。
+
+`0x02电子取证` 里，`重点文件检查`、`浏览器相关检查`、`系统日志检查` 已经能把这些痕迹取回来。到了 `0x03取证分析`，真正要沉淀的是：
+
+- 哪种痕迹只能证明“存在过”
+- 哪种痕迹更接近“用户点击过”
+- 哪种痕迹最能支持“程序执行成立”
+- 多种痕迹怎么交叉，从弱结论升级成强结论
+
+---
+
+## 0x01 这篇对应 `0x02` 里的什么内容
+
+这篇主要承接 `0x02电子取证` 里的这些证据入口：
+
+- `重点文件目录检查`
+- `浏览器相关检查`
+- `系统日志检查`
+- `回收站文件检查`
+
+尤其是 Windows 上常见的：
+
+- `Recent` / `LNK`
+- `Prefetch`
+- `Amcache`
+- 下载目录
+- 桌面目录
+
+因此本文不再讲“去哪拷贝这些文件”，而是假设你已经把它们取回来了，现在要解释它们。
+
+---
+
+## 0x02 先把这几类痕迹的证明力分清楚
+
+### 1. `Recent` / `LNK`
+
+更偏向证明：
+
+- 某个目标文件被资源管理器、应用程序或用户会话引用过
+- 用户可能点击、打开、浏览或访问过某对象
+
+它不天然等于：
+
+- 恶意程序一定已执行
+
+### 2. `Amcache`
+
+更偏向证明：
+
+- 系统曾记录到该可执行文件、安装包或程序实体
+- 它很适合做“文件落地与历史存在”确认
+
+但单独看时，不总能严格等同于：
+
+- 当前事件时间窗内真实执行成立
+
+### 3. `Prefetch`
+
+更偏向证明：
+
+- 某程序在本机被执行过
+- 还可给出最近执行时间、执行次数、关联路径和加载上下文
+
+这类痕迹通常比“文件存在”或“快捷方式存在”更强。
+
+### 4. 三者联合
+
+如果同时出现：
+
+- 下载目录中有可疑文件
+- `Recent/LNK` 指向该文件
+- `Amcache` 记录该程序
+- `Prefetch` 存在对应 `.pf`
+
+那么结论就不再是“很可疑”，而是已经相当接近：
+
+- 文件被引入主机
+- 用户或进程对其产生了交互
+- 程序很大概率已被执行
+
+---
+
+## 0x03 `Recent/LNK` 结果如何解释
+
+### 1. `Recent` 指向下载目录文件，更像“用户交互接触”而不是后台落地
+
+如果你看到：
+
+```text
+C:\Users\Alice\AppData\Roaming\Microsoft\Windows\Recent\invoice.lnk
+Target: C:\Users\Alice\Downloads\invoice.iso
+```
+
+更合理的分析结论是：
+
+- 用户会话层面确实接触过该文件
+- 该文件不只是后台静默落地
+- 这更像浏览、点击、打开或拖拽访问行为
+
+但仍不要直接写成：
+
+- ISO 已经成功执行了恶意载荷
+
+因为 `LNK/Recent` 更接近“交互痕迹”，不总是“执行实锤”。
+
+### 2. `LNK` 指向可执行文件、脚本或共享路径时，风险显著高于普通文档
+
+例如：
+
+```text
+Target: C:\Users\Public\svchost.exe
+Target: \\APP-02\ADMIN$\Temp\run.bat
+Target: C:\Temp\payload.dll
+```
+
+这类路径的分析重点是：
+
+- 目标对象本身就具备执行或投送属性
+- 如果路径位于 `Public`、`Temp`、管理共享，语义已经明显偏离正常用户文档访问
+- 此时 `LNK` 不只是“打开过文件”，而更像“接触过攻击组件”
+
+### 3. `LNK` 的时间线价值，往往比文件名本身更大
+
+如果同一时间窗里同时看到：
+
+- 浏览器下载记录
+- `Recent` 新增
+- `Prefetch` 出现
+
+那么 `LNK` 最重要的价值不是证明“有这个文件”，而是帮助你把：
+
+- 下载
+- 用户交互
+- 后续执行
+
+串成一条更完整的链。
+
+---
+
+## 0x04 `Amcache` 结果如何解释
+
+### 1. `Amcache` 更强的是“历史存在和属性”，不是天然的“执行即成立”
+
+如果你解析后看到：
+
+```text
+Path: C:\Users\Alice\Downloads\tool.exe
+SHA1: ...
+Size: ...
+ProgramID: ...
+```
+
+更合理的结论是：
+
+- 该程序实体曾被系统记录
+- 文件属性、路径、哈希等信息可进入溯源和比对
+- 它非常适合证明“这不是空穴来风的文件名”
+
+但单独只有 Amcache 时，更稳妥的写法仍是：
+
+- 已确认该程序在系统中存在过并被系统记录
+
+而不是直接写：
+
+- 已确认该恶意程序在本次时间窗内执行成功
+
+### 2. `Amcache` 命中已被删除的程序，价值往往反而更高
+
+如果现场文件已经没了，但 `Amcache` 还在：
+
+- 说明该文件曾经落地
+- 即使攻击者后续删除文件，仍然保留了历史存在线索
+- 如果再叠加 Prefetch、事件日志或 Recent，常常足以补回“执行链”
+
+这也是为什么 `Amcache` 在清痕场景里很有价值。
+
+### 3. `Amcache` 的强项是属性归一，不是时间精确还原
+
+它特别适合回答：
+
+- 文件路径是什么
+- 大小和哈希是什么
+- 和 IOC、样本库、威胁情报是否能对上
+
+它不如事件日志或 Prefetch 那样擅长给出“执行的精确时点”。
+
+---
+
+## 0x05 `Prefetch` 结果如何解释
+
+### 1. `Prefetch` 命中某 EXE，通常比 `LNK` 和 `Amcache` 更接近“执行成立”
+
+如果看到：
+
+```text
+TOOL.EXE-3AE4F9.pf
+Run Count: 3
+Last Run: 2026-06-15 01:21:03
+```
+
+更合理的分析结论是：
+
+- `tool.exe` 在本机至少执行过
+- 存在最近执行时间和执行次数信息
+- 如果原始文件路径也能对上，则执行链证据明显增强
+
+公开的 Prefetch 分析资料也反复强调，Prefetch 的真正价值不在“有个 `.pf` 文件”，而在于它通常能把“程序存在”提升为“程序执行过”。
+
+### 2. `Run Count` 很高，不一定是攻击高频执行，也可能是正常程序噪声
+
+如果某条 Prefetch 显示：
+
+```text
+Run Count: 87
+```
+
+不要立刻写成：
+
+- 恶意程序反复执行 87 次
+
+更好的分析是：
+
+- 先判断它是不是系统程序、常用应用、软件更新组件
+- 再看最后执行时间是否落在事件时间窗
+- 再看路径是否为异常路径
+
+真正有价值的不是单纯次数大，而是：
+
+- 次数与路径异常同时成立
+- 最后执行时间与告警/下载/横向时间吻合
+
+### 3. 没有 Prefetch，不等于没执行过
+
+这类误判很常见。没有 Prefetch 可能是因为：
+
+- Windows Server 默认或策略上禁用
+- 目标程序执行条件不满足
+- `.pf` 被清理
+- 环境中 Prefetch 数量已轮换覆盖
+
+所以正确写法是：
+
+- 当前未见对应 Prefetch
+- 不足以单独排除执行行为
+- 需联合 Amcache、事件日志、Recent、PCA、新型执行痕迹继续判断
+
+这也是很多实战文章都强调“Prefetch 必须做交叉分析”的原因。
+
+---
+
+## 0x06 三者联合时，结论怎么升级
+
+### 1. 只有文件 + `Recent/LNK`
+
+更适合写成：
+
+- 用户或会话接触过该对象
+- 可能发生过打开或浏览
+- 尚不足以单独确认程序执行成立
+
+### 2. 文件 + `Amcache`
+
+更适合写成：
+
+- 文件已在系统中被记录
+- 可确认其路径、属性、哈希等信息
+- 对“曾存在/曾落地”判断较强
+
+### 3. 文件 + `Prefetch`
+
+更适合写成：
+
+- 程序在本机执行成立
+- 若路径和时间匹配，可直接进入攻击链
+
+### 4. `Recent/LNK` + `Amcache` + `Prefetch`
+
+这是最理想的一组：
+
+- `Recent/LNK` 说明用户/资源管理器层面接触
+- `Amcache` 说明程序实体存在并被系统记录
+- `Prefetch` 说明执行成立
+
+这时就能更有把握地写成：
+
+- 该程序由用户交互或可见方式进入系统后被实际执行
+
+---
+
+## 0x07 新旧执行痕迹交叉时要注意什么
+
+### 1. Windows 11 新的 PCA 文本痕迹，适合补强“用户发起执行”
+
+公开资料已提到 Windows 11 22H2+ 下：
+
+```text
+C:\Windows\appcompat\pca\PcaAppLaunchDic.txt
+```
+
+可能记录由 Explorer 发起的程序启动路径和时间。
+
+这类痕迹的价值在于：
+
+- 比某些传统痕迹更直观
+- 很适合和 `Recent`、`Prefetch`、`Amcache` 做补强
+- 尤其在文件本体已删除时，仍可能保留启动路径
+
+### 2. 旧痕迹被清理时，新的痕迹可能还能补链
+
+如果攻击者清理了：
+
+- Prefetch
+- Recent
+- 部分快捷方式
+
+但 PCA、Amcache、事件日志或其他 artifact 还在，那么更适合写成：
+
+- 存在部分执行痕迹清理行为
+- 但现有其他执行证据仍能支持程序运行判断
+
+---
+
+## 0x08 三个最容易误判的边界
+
+### 1. 有 `LNK/Recent`，不等于恶意程序一定执行过
+
+它更偏“交互痕迹”，不是自动等于执行痕迹。
+
+### 2. 有 `Amcache`，不等于当前事件时间窗内一定执行过
+
+它强在“存在与属性”，弱在“精确时点和上下文”。
+
+### 3. 没有 `Prefetch`，不等于程序没执行
+
+你必须先排除：
+
+- 功能禁用
+- 轮换覆盖
+- 服务器默认策略
+- 清理行为
+
+---
+
+## 0x09 如何把这些执行痕迹串进攻击链
+
+### 场景一：浏览器投递执行链
+
+1. 浏览器下载记录出现 `invoice.iso`
+2. `Recent` 指向下载对象或其中解压出的 LNK/EXE
+3. `Amcache` 记录目标程序
+4. `Prefetch` 证明执行
+5. 后续出现 C2 或横向
+
+### 场景二：共享目录或 U 盘执行链
+
+1. `LNK` 指向 `D:\` 或网络共享
+2. `PcaAppLaunchDic.txt` 或 `Prefetch` 显示从该路径启动
+3. `Amcache` 提供实体属性和哈希
+
+这时更能支撑：
+
+- 文件不是本地随机出现
+- 而是经由外部介质或共享路径被引入后执行
+
+### 场景三：执行后清痕链
+
+1. 文件已被删除
+2. 但 `Amcache`、`Prefetch`、`Recent` 仍保留
+3. 回收站、未分配空间或日志补上时间线
+
+这时分析重点就从“找文件本体”转成“保住执行结论”。
+
+---
+
+## 0x0A 和其他分析篇怎样联动
+
+这篇最适合和以下文章联动：
+
+- [浏览器痕迹与下载执行链分析.md](file:///Users/pwndazhang/Library/Mobile%20Documents/com~apple~CloudDocs/6%20%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5/x7peeps.github.io/hugo-src/content/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%97%95%E8%BF%B9%E4%B8%8E%E4%B8%8B%E8%BD%BD%E6%89%A7%E8%A1%8C%E9%93%BE%E5%88%86%E6%9E%90.md)：解释文件是怎么进来的
+- [重点目录异常文件与落地载荷关联分析.md](file:///Users/pwndazhang/Library/Mobile%20Documents/com~apple~CloudDocs/6%20%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5/x7peeps.github.io/hugo-src/content/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E9%87%8D%E7%82%B9%E7%9B%AE%E5%BD%95%E5%BC%82%E5%B8%B8%E6%96%87%E4%BB%B6%E4%B8%8E%E8%90%BD%E5%9C%B0%E8%BD%BD%E8%8D%B7%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90.md)：解释文件为什么在那个目录
+- [可疑进程树与父子进程异常取证分析.md](file:///Users/pwndazhang/Library/Mobile%20Documents/com~apple~CloudDocs/6%20%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5/x7peeps.github.io/hugo-src/content/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A0%91%E4%B8%8E%E7%88%B6%E5%AD%90%E8%BF%9B%E7%A8%8B%E5%BC%82%E5%B8%B8%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90.md)：解释程序执行后做了什么
+- [回收站残留与删除意图分析.md](file:///Users/pwndazhang/Library/Mobile%20Documents/com~apple~CloudDocs/6%20%E5%BC%80%E5%8F%91%E9%A1%B9%E7%9B%AE/%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5/x7peeps.github.io/hugo-src/content/%E5%AE%89%E5%85%A8/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/0x03%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90/%E5%9B%9E%E6%94%B6%E7%AB%99%E6%AE%8B%E7%95%99%E4%B8%8E%E5%88%A0%E9%99%A4%E6%84%8F%E5%9B%BE%E5%88%86%E6%9E%90.md)：解释文件是不是执行后又被清掉了
+
+---
+
+## 0x0B 公开资料与分析借鉴
+
+下面这些资料适合继续深挖：
+
+- [Windows Forensics Part 3: Tracking Program Execution with Prefetch](https://www.it-connect.tech/windows-forensics-part-3-tracking-program-execution-with-prefetch/)
+- [PECmd: A Powerful Tool for DFIR and Incident Response](https://blog.secopsgarage.com/pecmd-a-powerful-tool-for-dfir-and-incident-response/)
+- [Eric Zimmerman Tools](https://www.dfir.training/dfirtools-cat/eric-zimmerman-tools)
+- [Windows 11 quietly introduced a new execution artifact investigators should start checking](https://andreafortuna.org/2026/03/19/windows11-pca-artifact/)
+
+这些公开资料最值得借鉴的一点是完全一致的：**单个执行痕迹很少能独立定罪，真正可靠的是多 Artifact 交叉印证。**
+
+---
+
+## 0x0C 建议的交付结构
+
+执行痕迹分析结果建议整理为如下表格：
+
+| 时间 | Artifact | 对象 | 解释 | 结论强度 |
+| --- | --- | --- | --- | --- |
+| 01:12:03 | 浏览器下载 | `invoice.iso` | 文件已进入主机 | 弱 |
+| 01:13:11 | `Recent/LNK` | `invoice.iso` | 用户接触或点击对象 | 中 |
+| 01:14:09 | `Amcache` | `payload.exe` | 程序实体存在并被系统记录 | 中 |
+| 01:14:22 | `Prefetch` | `PAYLOAD.EXE` | 程序执行成立 | 强 |
+| 01:15:40 | 进程日志/网络 | `payload.exe` | 执行后产生后续行为 | 强 |
+
+---
+
+## 0x0D 总结
+
+`Recent`、`Prefetch`、`Amcache` 的分析关键，不是把它们都叫做“执行痕迹”，而是要分清：
+
+- 哪个证明接触
+- 哪个证明存在
+- 哪个更接近证明执行
+- 哪些组合足以把结论升级为“执行成立”
+
+当你把这些 Artifact 的证明力分层，再与下载、目录、进程和日志联动时，`0x02` 里的基础检查才真正升级成 `0x03` 的“执行行为交叉验证能力”。
