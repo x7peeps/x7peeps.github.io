@@ -13,6 +13,7 @@ weight: 1
 | [Qilin（麒麟）](Qilin/) | Agenda / S1242 | 🔴 极高 | 活跃 | 全球最活跃 RaaS，1,888+ 受害者，5000万美元+年收入，Go→Rust 重写 |
 | [The Gentlemen](TheGentlemen/) | Storm-2697 / LARVA-368 | 🔴 极高 | 活跃 | 俄罗斯 RaaS 组织，483+ 受害者，66+ 国家，支持蠕虫式自传播 |
 | [Black Basta](BlackBasta/) | UNC4393 / Vengeful Mantis | 🔴 高 | 已停止 | Conti 重组，500+ 受害者，1.07亿美元+收入，2025年品牌崩溃 |
+| [Akira](Akira/) | Storm-1567 / Howling Scorpius | 🔴 极高 | 活跃 | 1,400+ 受害者，2.44亿美元+收入，最短1小时完成加密，四阶段洗钱演化 |
 
 ---
 
