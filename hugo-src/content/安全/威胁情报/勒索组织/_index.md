@@ -16,6 +16,7 @@ weight: 1
 | [Akira](Akira/) | Storm-1567 / Howling Scorpius | 🔴 极高 | 活跃 | 1,400+ 受害者，2.44亿美元+收入，最短1小时完成加密，四阶段洗钱演化 |
 | [Cl0p](Cl0p/) | TA505 / FIN11 / G0092 | 🔴 极高 | 活跃 | 11,000+ 受害组织，5亿美元+收入，MFT 零日专家，四重勒索模型 |
 | [RansomHub](RansomHub/) | Greenbottle / Water Bakunawa / Knight | 🔴 极高 | 已停止 | 2024年最活跃RaaS，534+受害者，90/10附属分成，2025.04被DragonForce接管 |
+| [Play](Play/) | G1040 / Playcrypt / Balloonfly | 🟠 高 | 活跃 | 900+ 受害者（FBI确认），间歇性加密，封闭式RaaS，Conti生态关联 |
 
 ---
 

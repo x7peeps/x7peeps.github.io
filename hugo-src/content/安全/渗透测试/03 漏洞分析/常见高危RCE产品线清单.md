@@ -103,6 +103,8 @@ categories: ["漏洞分析"]
 | Cisco 产品 | AnyConnect / CUCM / SD-WAN | 3 |
 | 网络协议与基础库 | HTTP/2 Rapid Reset / OpenSSL / FreeType | 7 |
 | 企业应用与CMS | Swagger UI / J2eeFAST / XunruiCMS / Ivanti Sentry / Check Point VPN | 6 |
+| CI/CD 与构建发布平台 | TeamCity / Jenkins / GitLab | 7 |
+| IT 运维与系统管理平台 | ManageEngine / PaperCut / ScreenConnect / Kaseya | 6 |
 
 以下产品线已有**单篇 CVE 分析文章**：
 
@@ -118,16 +120,16 @@ categories: ["漏洞分析"]
 
 按优先级排序：
 
-### P0 级（边界设备未覆盖的厂商）
-1. Palo Alto PAN-OS 单独专题（CVE-2024-3400 已在边界设备专题中，但 PAN-OS 其他漏洞链值得单独扩展）
-2. Sophos / WatchGuard / Zyxel 边界设备
+### P0 级（边界设备）
+1. ~~Sophos / WatchGuard / Zyxel 边界设备~~ ✅（已撰写专题，含 CVE-2022-1040 / CVE-2022-26318 / CVE-2022-30525 / CVE-2023-28771 等 8 个 CVE）
+2. Palo Alto PAN-OS 单独专题（CVE-2024-3400 已在边界设备专题中，但 PAN-OS 其他漏洞链值得单独扩展）
 
-### P1 级（IT 运维与 CI/CD 平台）
-3. JetBrains TeamCity（CVE-2023-20887 等）
-4. Jenkins（CVE-2024-23897 等）
-5. GitLab（CVE-2023-7028 等）
-6. Zoho ManageEngine（CVE-2022-47966 等）
-7. PaperCut（CVE-2023-27350 等）
+### P1 级（已完成 ✅）
+3. ~~JetBrains TeamCity~~ ✅
+4. ~~Jenkins~~ ✅
+5. ~~GitLab~~ ✅
+6. ~~Zoho ManageEngine~~ ✅
+7. ~~PaperCut~~ ✅
 
 ### P2 级（协作与办公平台扩展）
 8. 协作与办公平台综合专题（Seafile / 企业微信 / 其他 OA 系统）
