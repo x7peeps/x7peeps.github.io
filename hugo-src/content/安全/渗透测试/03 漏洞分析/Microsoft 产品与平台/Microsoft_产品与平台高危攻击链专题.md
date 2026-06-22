@@ -280,7 +280,44 @@ Microsoft 产品影响全球数百万企业：
 11. **检查文件系统**：检查是否有异常的 WebShell 或后门
 12. **轮换凭据**：轮换所有与 Microsoft 产品相关的凭据和密钥
 
-## 0x09 总结
+## 0x09 公开 PoC 收集与利用思路
+
+### 1. PoC 收集情况
+
+| CVE | 产品 | GitHub PoC | Exploit-DB | Metasploit | Nuclei | 在野利用 |
+|-----|------|-----------|------------|------------|--------|----------|
+| CVE-2021-34473 | Exchange (ProxyShell) | ✅ 多个仓库 | ✅ | ✅ | ✅ | ✅ 勒索软件/APT |
+| CVE-2021-34504 | Exchange (ProxyShell) | ✅ 与 ProxyShell 合并 | ✅ | ✅ | ✅ | ✅ |
+| CVE-2021-34473 | Exchange (ProxyShell) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| CVE-2023-29300 | SharePoint (ToolShell) | ✅ | ✅ | 社区模块 | ✅ | ✅ 国家级 APT |
+| CVE-2023-29301 | SharePoint (ToolShell) | ✅ 与 ToolShell 合并 | ✅ | 社区模块 | ✅ | ✅ |
+| CVE-2026-47291 | Windows HTTP.sys | 有限 | ❌ | ❌ | 有限 | 待确认 |
+| CVE-2026-47652 | Hyper-V Hypercall | ❌ 未公开 | ❌ | ❌ | ❌ | ❌ |
+| CVE-2026-45648 | AD DS | 有限 | ❌ | ❌ | 有限 | 待确认 |
+
+### 2. 关键 PoC 仓库
+
+- **ProxyShell 综合利用**：`https://github.com/rapid7/metasploit-framework` — Metasploit 内置 Exchange ProxyShell 模块
+- **ProxyShell Nuclei 模板**：`https://github.com/projectdiscovery/nuclei-templates` — 包含 ProxyShell 检测模板
+- **ToolShell 检测**：Microsoft MSRC 提供了官方检测指南
+- **HTTP.sys 漏洞检测**：`nuclei -u https://target -tags windows,http.sys`
+
+### 3. 验证思路（防守型）
+
+```bash
+nuclei -u https://exchange.target -t cves/ -tags exchange,proxyshell
+nuclei -u https://sharepoint.target -t cves/ -tags sharepoint
+nmap -n -v -Pn -sV target -p 443,80,8080 --script=http-headers
+curl -sk https://target/autodiscover/autodiscover.json -o /dev/null -w "%{http_code}"
+```
+
+### 4. 利用案例
+
+- **ProxyShell → 勒索软件**：多个勒索软件家族（DEAR IMPERATOR、REvil）利用 ProxyShell 作为初始访问向量
+- **ToolShell → 国家级 APT**：多个国家级 APT 组织利用 ToolShell 突破 SharePoint 后横向移动
+- **ProxyShell 武器化时间**：从漏洞公开到 Metasploit 模块发布仅数天
+
+## 0x0A 总结
 
 Microsoft 产品与平台的高危漏洞爆发，揭示了几个关键教训：
 
@@ -292,7 +329,7 @@ Microsoft 产品与平台的高危漏洞爆发，揭示了几个关键教训：
 
 企业应该将 Microsoft 产品视为**关键安全资产**，需要从网络架构、访问控制、监控审计、事件响应等多个维度进行全方位防护。
 
-## 0x0A 参考资料
+## 0x0B 参考资料
 
 - [ProxyShell Exchange 分析](file:///Users/pwndazhang/Library/Mobile%20Documents/com~apple~CloudDocs/6%20开发项目/个人主页/x7peeps.github.io/hugo-src/content/安全/渗透测试/03%20漏洞分析/Microsoft%20产品与平台/ProxyShell_Exchange_未授权RCE漏洞链分析.md)
 - [ToolShell SharePoint 分析](file:///Users/pwndazhang/Library/Mobile%20Documents/com~apple~CloudDocs/6%20开发项目/个人主页/x7peeps.github.io/hugo-src/content/安全/渗透测试/03%20漏洞分析/Microsoft%20产品与平台/ToolShell_SharePoint_RCE漏洞链分析.md)

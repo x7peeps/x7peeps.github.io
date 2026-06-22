@@ -90,30 +90,47 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-目前知识库已经初步覆盖以下产品线：
+截至 2026-06-21，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
-- Oracle WebLogic / PeopleSoft
-- Cisco AnyConnect / CUCM / SD-WAN
-- Microsoft Windows / AD DS / Hyper-V / AKS / Office / SMB
-- Confluence / Seafile / 企业微信
-- Spring / Apache / SnakeYAML / Bouncy Castle
-- OpenSSL / HTTP/2 / FreeType
-- XunruiCMS / J2eeFAST / Swagger UI
-- Chrome / Chromium V8
-- WPS Office
+| 产品线 | 专题文章 | 覆盖 CVE 数 |
+|--------|----------|------------|
+| 边界设备与安全网关 | Cisco ASA/FTD / F5 BIG-IP / Pulse Secure / Ivanti / PAN-OS / FortiOS / Citrix / SonicWall / Check Point Gateway | 10+ |
+| 文件传输与数据交换平台 | MOVEit / GoAnywhere / WS_FTP | 3 |
+| 远程支持与RMM | ConnectWise ScreenConnect / Kaseya / SimpleHelp | 4 |
+| Java 组件与框架生态 | Log4Shell / Commons Collections / SnakeYAML / Spring / Bouncy Castle | 7 |
+| Microsoft 产品与平台 | Exchange / SharePoint / Hyper-V / HTTP.sys / AD DS / AKS | 10+ |
+| Oracle 产品 | WebLogic / Forms / WebCenter / PeopleSoft | 6 |
+| Cisco 产品 | AnyConnect / CUCM / SD-WAN | 3 |
+| 网络协议与基础库 | HTTP/2 Rapid Reset / OpenSSL / FreeType | 7 |
+| 企业应用与CMS | Swagger UI / J2eeFAST / XunruiCMS / Ivanti Sentry / Check Point VPN | 6 |
+
+以下产品线已有**单篇 CVE 分析文章**：
+
+- Atlassian Confluence（未授权 RCE 专题，含 CVE-2022-26134 / CVE-2023-22515 / CVE-2023-22527 / CVE-2023-22555 / CVE-2024-21888）
+- Apache Tomcat（CVE-2025-24813）
+- Seafile（CVE-2025-24813 SQL 注入）
+- 企业微信私有化部署（未授权 API）
+- Chrome / Chromium V8（CVE-2026-11645）
+- WPS Office（WPSSRC-2023-0701）
+- 二进制漏洞（汇编与栈帧、ASLR 与 Ret2Libc、ROP 链、堆利用）
 
 ## 0x05 下一批建议优先写作
 
-建议后续按以下顺序继续补齐：
+按优先级排序：
 
-1. Microsoft Exchange（ProxyShell / ProxyNotShell）
-2. Microsoft SharePoint（多条 RCE 链）
-3. ConnectWise ScreenConnect
-4. MOVEit Transfer
-5. GoAnywhere MFT
-6. PAN-OS / Citrix NetScaler / Fortinet FortiOS
-7. TeamCity / Jenkins / GitLab
-8. ManageEngine / PaperCut / KACE
+### P0 级（边界设备未覆盖的厂商）
+1. Palo Alto PAN-OS 单独专题（CVE-2024-3400 已在边界设备专题中，但 PAN-OS 其他漏洞链值得单独扩展）
+2. Sophos / WatchGuard / Zyxel 边界设备
+
+### P1 级（IT 运维与 CI/CD 平台）
+3. JetBrains TeamCity（CVE-2023-20887 等）
+4. Jenkins（CVE-2024-23897 等）
+5. GitLab（CVE-2023-7028 等）
+6. Zoho ManageEngine（CVE-2022-47966 等）
+7. PaperCut（CVE-2023-27350 等）
+
+### P2 级（协作与办公平台扩展）
+8. 协作与办公平台综合专题（Seafile / 企业微信 / 其他 OA 系统）
 
 ## 0x06 写作规范
 
