@@ -352,28 +352,3 @@ Vincent Dinh 的博客详细说明了 IFEO 劫持的检测和取证方法：
 | Winlogon `Userinit` | `userinit.exe,C:\malware\backdoor.exe` | Userinit 劫持 | 强 | 恢复原始值 |
 | Winlogon `Shell` | `C:\malware\backdoor.exe` | Shell 劫持 | 强 | 恢复为 `explorer.exe` |
 | Winlogon `Notify` | 发现未知 DLL 子键 | Notify 劫持 | 中 | 检查 DLL 来源 |
-
----
-
-## 0x08 和其他分析篇怎样联动
-
-本文最适合和以下专题联动：
-
-- `自启动项计划任务与服务持久化分析`：提供更广泛的持久化检测框架
-- `系统进程检查结果与伪装及LOLBin执行链分析`：提供进程层面的异常判定
-- `系统日志检查结果证据强度分层与事件链构建分析`：提供日志层面的注册表修改事件
-
-本文的定位是聚焦 `0x02` 映像劫持检查中"IFEO 劫持"和"Winlogon 持久化"这两个维度，而不是覆盖整个注册表取证领域。
-
----
-
-## 0x09 总结
-
-映像劫持分析的关键，不是"列出所有 IFEO 键值"，而是：
-
-- 判断 `Debugger` 值是否属于正常调试器配置
-- 识别 SilentProcessExit 监控的恶意利用
-- 检测 Winlogon 键值的篡改
-- 从注册表修改中读出持久化和权限提升意图
-
-当你能从 IFEO 注册表键值中读出调试器劫持信号、SilentProcessExit 利用、Winlogon 持久化意图时，`0x02` 里的"映像劫持检查"才真正升级为 `0x03` 的"映像劫持检查结果与 IFEO 及 Winlogon 持久化判断分析"。

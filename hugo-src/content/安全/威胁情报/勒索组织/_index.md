@@ -17,6 +17,7 @@ weight: 1
 | [Cl0p](Cl0p/) | TA505 / FIN11 / G0092 | 🔴 极高 | 活跃 | 11,000+ 受害组织，5亿美元+收入，MFT 零日专家，四重勒索模型 |
 | [RansomHub](RansomHub/) | Greenbottle / Water Bakunawa / Knight | 🔴 极高 | 已停止 | 2024年最活跃RaaS，534+受害者，90/10附属分成，2025.04被DragonForce接管 |
 | [Play](Play/) | G1040 / Playcrypt / Balloonfly | 🟠 高 | 活跃 | 900+ 受害者（FBI确认），间歇性加密，封闭式RaaS，Conti生态关联 |
+| [Hive](Hive/) | DEV-0237 / Pistachio Tempest | 🔴 极高 | 已瓦解 | 1,500+ 受害者，80+国家，$1亿+赎金，2023.01被FBI秘密渗透瓦解 |
 
 ---
 
