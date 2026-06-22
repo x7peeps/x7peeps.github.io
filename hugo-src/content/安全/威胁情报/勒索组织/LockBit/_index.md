@@ -19,13 +19,13 @@ weight: 3
 |------|----------|
 | **组织规模** | 全球最活跃 RaaS 之一，数千受害者，成熟附属网络 |
 | **攻击速度** | RDP 暴力破解 + 快速横向移动 + 数小时内全网加密 |
-| **加密强度** | AES-256-GCM + RSA-4096，**无公开解密工具** |
+| **加密强度** | AES-256-GCM + RSA-4096，**有解密器**（LockBit 3.0 Black，Operation Cronos 执法行动后发布） |
 | **首要入口** | RDP 暴力破解、Apache Log4j、Fortinet、MOVEit 漏洞 |
 | **商业模式** | 80/20 分成（附属80%，运营者20%），租赁模式 |
 | **赎金区间** | 5万美元 - 5000万美元（大型企业） |
 | **双重勒索** | 窃取数据 + 加密 + 泄露网站公开羞辱 |
 | **执法打击** | FBI/Secret Service 联合行动，多名成员被捕 |
-| **解密可能性** | **不存在**（截至2026年6月无公开解密工具） |
+| **解密可能性** | **部分存在**（LockBit 3.0 Black 解密器由日本警方/NCA/FBI 开发，通过 No More Ransom 门户免费提供，仅覆盖密钥被执法机构获取的部分受害者） |
 
 ### 威胁等级评估
 
@@ -686,7 +686,24 @@ Get-ChildItem -Recurse -Filter "README.txt" -ErrorAction SilentlyContinue
 | 无备份 | 等待执法行动 | 极低 | ⏳ 持续监控 |
 | 考虑付费 | — | 不推荐 | ❌ **强烈不建议** |
 
-**⚠️ 重要提示**：截至2026年6月，**无公开可用的 LockBit 解密工具**。
+**✅ 解密工具**：LockBit 3.0 Black 解密器（Operation Cronos 执法行动产物）
+
+**工具来源**：[No More Ransom 门户](https://www.nomoreransom.org/en/decryption-tools.html#Lockbit30)
+**开发方**：日本警方 + 英国国家犯罪局（NCA）+ FBI（Europol 支持）
+**获取方式**：免费下载
+**适用版本**：LockBit 3.0（Black）加密器加密的文件
+**前提条件**：仅适用于密钥在 Operation Cronos 执法行动中被获取的受害者（约 1,000+ 密钥）
+
+**操作步骤**：
+1. 下载 [Decryption Checker for LockBit Guide](https://www.nomoreransom.org/uploads/Decryption_Checker_for_LockBit_Guide.pdf)
+2. 使用检查器工具检测您的文件是否可解密
+3. 如结果显示可解密，按指引联系获取解密密钥
+
+**注意**：此解密器仅覆盖部分受害者，LockBit 4.0/5.0 及未被执法机构获取密钥的受害者暂无可用解密工具。
+
+**其他恢复途径**：
+- Operation Cronos 拉取了超过 1,000 个解密密钥
+- 执法机构可能联系已知受害者提供解密协助
 
 ---
 

@@ -19,13 +19,13 @@ weight: 5
 |------|----------|
 | **组织规模** | 1,400+ 受害者，2.44亿美元+勒索金额 |
 | **攻击速度** | 从初始入侵到完全加密最短仅需 **1小时**，通常不超过4小时 |
-| **加密强度** | ChaCha20 + RSA-4096，**无公开解密工具** |
+| **加密强度** | ChaCha20 + RSA-4096，**有解密器**（Avast，仅限早期 Windows 变体） |
 | **首要入口** | VPN 漏洞利用（Cisco ASA/AnyConnect、SonicWall、Fortinet） |
 | **商业模式** | RaaS，20万美元-数百万美元赎金 |
 | **加密器变体** | Akira（C++）、Akira_v2（Rust）、Megazord（Rust） |
 | **多平台支持** | Windows、Linux、VMware ESXi、Hyper-V、Nutanix AHV |
 | **洗钱策略** | 四阶段演化，与 Fog/Frag 共享基础设施 |
-| **解密可能性** | **不存在**（截至2026年6月无公开解密工具） |
+| **解密可能性** | **部分存在**（Avast 解密器适用于早期 Windows 变体，新版/v2 及 Linux 变体暂无解密工具） |
 
 ### 威胁等级评估
 
@@ -685,7 +685,28 @@ Get-ChildItem -Recurse -Filter "akira_readme.txt" -ErrorAction SilentlyContinue
 | 无备份 | 等待执法行动 | 极低 | ⏳ 持续监控 |
 | 考虑付费 | — | 不推荐 | ❌ **强烈不建议** |
 
-**⚠️ 重要提示**：截至2026年6月，**无公开可用的 Akira 解密工具**。
+**✅ 解密工具**：Avast Decryption Tool for Akira（早期 Windows 变体）
+
+**工具来源**：[No More Ransom 门户](https://www.nomoreransom.org/en/decryption-tools.html#Akira)
+**开发方**：Avast（杀毒厂商）
+**下载地址**：[64位版](https://files.avast.com/files/decryptor/avast_decryptor_akira64.exe) | [32位版](https://files.avast.com/files/decryptor/avast_decryptor_akira.exe)
+**适用版本**：2023年3月-2023年中期的 Akira 早期 Windows 加密器
+**前提条件**：需要提供一对文件（一个加密文件 + 其对应的原始未加密文件）
+
+**操作步骤**：
+1. 下载 Avast 解密器（64位或32位）
+2. 准备一对文件：加密文件 + 其原始未加密版本
+3. 运行解密器向导，按提示选择文件对
+4. 建议选择尽可能大的文件对以提高成功率
+
+**不适用场景**：
+- Akira v2（Rust 重写版本，.powerranges 扩展名）
+- Akira Linux 变体（Avast 正在开发 Linux 版解密器）
+- Megazord 变体
+
+**其他恢复途径**：
+- 检查是否存在离线备份
+- 使用卷影副本恢复（如未被删除）
 
 ---
 

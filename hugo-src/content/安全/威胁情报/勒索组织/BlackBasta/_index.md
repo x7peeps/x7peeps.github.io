@@ -19,13 +19,13 @@ weight: 4
 |------|----------|
 | **组织规模** | 500+ 受害者，1.07亿美元+勒索金额 |
 | **攻击速度** | 初始访问到加密通常只需数天 |
-| **加密强度** | ChaCha20 + RSA-2048，**无公开解密工具** |
+| **加密强度** | ChaCha20 + RSA-2048，**有解密器**（SRLabs Black Basta Buster，仅限 2022.11-2023.12 变体） |
 | **首要入口** | Qakbot、钓鱼邮件、漏洞利用（62个CVE） |
 | **商业模式** | 封闭式 RaaS，100/0 分成（附属100%，运营者0%） |
 | **赎金区间** | 数万至数百万美元 |
 | **组织状态** | 2025年3月品牌崩溃，首领逃脱引渡 |
 | **后继组织** | Cactus、SafePay 等 |
-| **解密可能性** | **不存在**（截至2026年6月无公开解密工具） |
+| **解密可能性** | **部分存在**（SRLabs 解密器适用于 2022年11月-2023年12月的变体，2024年后变体已修复漏洞） |
 
 ### 威胁等级评估
 
@@ -634,7 +634,34 @@ Get-ChildItem -Recurse -Filter "HOW_TO_DECRYPT.txt" -ErrorAction SilentlyContinu
 | 无备份 | 等待执法行动 | 极低 | ⏳ 持续监控 |
 | 考虑付费 | — | 不推荐 | ❌ **强烈不建议** |
 
-**⚠️ 重要提示**：截至2026年6月，**无公开可用的 Black Basta 解密工具**。
+**✅ 解密工具**：Black Basta Buster（SRLabs 开发）
+
+**工具来源**：[No More Ransom 门户](https://www.nomoreransom.org/en/decryption-tools.html#BlackBasta)
+**开发方**：Security Research Labs (SRLabs)，柏林
+**GitHub**：[github.com/srlabs/black-basta-buster](https://github.com/srlabs/black-basta-buster)
+**适用版本**：2022年11月-2023年12月期间使用的 Black Basta 加密器（ChaCha/XChaCha20 漏洞版本）
+**原理**：利用 XChaCha20 密钥流未正确推进的漏洞（已知明文攻击），通过加密后的零字节块恢复 64 字节密钥
+
+**恢复能力**：
+- 文件 < 5,000 字节：**无法恢复**
+- 文件 5,000 字节 - 1GB：**完全可恢复**
+- 文件 > 1GB：前 5,000 字节丢失，**其余部分可恢复**
+- 虚拟机磁盘镜像（VMDK/VHDX）：**高恢复概率**（因大量零字节区域）
+
+**操作步骤**：
+1. 下载 SRLabs 提供的 Python 脚本工具集
+2. 使用 `decryptauto.py` 自动检测并提取加密密钥
+3. 工具自动解密文件（需先确定 MAGIC 鉴别器）
+4. 对于虚拟机磁盘，使用 `vmlsfs.py` 列出文件系统
+
+**不适用场景**：
+- 2023年12月后修改加密实现的 Black Basta 变体（已修复漏洞）
+- 早期使用 `.basta` 扩展名的版本
+- 小于 5,000 字节的文件
+
+**其他恢复途径**：
+- 检查是否存在离线备份或虚拟机快照
+- 联系 SRLabs（tobias@srlabs.de）获取技术协助
 
 ---
 
