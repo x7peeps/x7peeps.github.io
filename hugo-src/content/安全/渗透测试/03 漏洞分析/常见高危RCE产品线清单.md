@@ -90,11 +90,11 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-06-21，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-06-22，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
-| 边界设备与安全网关 | Cisco ASA/FTD / F5 BIG-IP / Pulse Secure / Ivanti / PAN-OS / FortiOS / Citrix / SonicWall / Check Point Gateway | 10+ |
+| 边界设备与安全网关 | Cisco ASA/FTD / F5 BIG-IP / Pulse Secure / Ivanti / PAN-OS / FortiOS / Citrix / SonicWall / Check Point / Sophos / WatchGuard / Zyxel / **PAN-OS 单独专题** | 18+ |
 | 文件传输与数据交换平台 | MOVEit / GoAnywhere / WS_FTP | 3 |
 | 远程支持与RMM | ConnectWise ScreenConnect / Kaseya / SimpleHelp | 4 |
 | Java 组件与框架生态 | Log4Shell / Commons Collections / SnakeYAML / Spring / Bouncy Castle | 7 |
@@ -105,6 +105,7 @@ categories: ["漏洞分析"]
 | 企业应用与CMS | Swagger UI / J2eeFAST / XunruiCMS / Ivanti Sentry / Check Point VPN | 6 |
 | CI/CD 与构建发布平台 | TeamCity / Jenkins / GitLab | 7 |
 | IT 运维与系统管理平台 | ManageEngine / PaperCut / ScreenConnect / Kaseya | 6 |
+| 协作与办公平台 | **Zimbra / Nextcloud / OnlyOffice / Roundcube / Rainloop**（+ 已有 Confluence / Seafile / 企业微信） | 8+ |
 
 以下产品线已有**单篇 CVE 分析文章**：
 
@@ -120,9 +121,9 @@ categories: ["漏洞分析"]
 
 按优先级排序：
 
-### P0 级（边界设备）
-1. ~~Sophos / WatchGuard / Zyxel 边界设备~~ ✅（已撰写专题，含 CVE-2022-1040 / CVE-2022-26318 / CVE-2022-30525 / CVE-2023-28771 等 8 个 CVE）
-2. Palo Alto PAN-OS 单独专题（CVE-2024-3400 已在边界设备专题中，但 PAN-OS 其他漏洞链值得单独扩展）
+### P0 级（已完成 ✅）
+1. ~~Sophos / WatchGuard / Zyxel 边界设备~~ ✅
+2. ~~Palo Alto PAN-OS 单独专题~~ ✅（CVE-2024-0012/9474/9463/9464/2025-0108/2026-0300 等 7 个 CVE）
 
 ### P1 级（已完成 ✅）
 3. ~~JetBrains TeamCity~~ ✅
@@ -131,8 +132,8 @@ categories: ["漏洞分析"]
 6. ~~Zoho ManageEngine~~ ✅
 7. ~~PaperCut~~ ✅
 
-### P2 级（协作与办公平台扩展）
-8. 协作与办公平台综合专题（Seafile / 企业微信 / 其他 OA 系统）
+### P2 级（已完成 ✅）
+8. ~~协作与办公平台综合专题~~ ✅（Zimbra / Nextcloud / OnlyOffice / Roundcube / Rainloop 等 8 个 CVE）
 
 ## 0x06 写作规范
 
