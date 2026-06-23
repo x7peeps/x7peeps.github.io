@@ -19,6 +19,7 @@ weight: 1
 | [Play](Play/) | G1040 / Playcrypt / Balloonfly | 🟠 高 | 活跃 | 900+ 受害者（FBI确认），间歇性加密，封闭式RaaS，Conti生态关联 |
 | [Hive](Hive/) | DEV-0237 / Pistachio Tempest | 🔴 极高 | 已瓦解 | 1,500+ 受害者，80+国家，$1亿+赎金，2023.01被FBI秘密渗透瓦解 |
 | [Royal](Royal/) | DEV-0569 / Ignoble Scorpius / S1073 | 🔴 极高 | 疑似活跃 | Conti直系继承，450+美国受害者，$3.7亿+赎金，六阶段品牌演化（Conti→Chaos），Operation Checkmate后以Chaos品牌重建 |
+| [INC Ransom](INCRansom/) | G1032 / GOLD IONIC / S1139 | 🔴 极高 | 活跃 | 800+受害者，Rust重写，源码出售催生Lynx/Sinobi，GootLoader供应链入口，无道德底线（医疗/教育/政府均攻击） |
 
 ---
 

@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-06-22，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-06-23，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -102,8 +102,8 @@ categories: ["漏洞分析"]
 | Oracle 产品 | WebLogic / Forms / WebCenter / PeopleSoft | 6 |
 | Cisco 产品 | AnyConnect / CUCM / SD-WAN | 3 |
 | 网络协议与基础库 | HTTP/2 Rapid Reset / OpenSSL / FreeType | 7 |
-| 企业应用与CMS | Swagger UI / J2eeFAST / XunruiCMS / Ivanti Sentry / Check Point VPN | 6 |
-| CI/CD 与构建发布平台 | TeamCity / Jenkins / GitLab | 7 |
+| 企业应用与CMS | Swagger UI / J2eeFAST / XunruiCMS / Ivanti Sentry / Check Point VPN / **Progress Telerik** | 12+ |
+| CI/CD 与构建发布平台 | TeamCity / Jenkins / GitLab / **Sonatype Nexus / JFrog Artifactory** | 12+ |
 | IT 运维与系统管理平台 | ManageEngine / PaperCut / ScreenConnect / Kaseya | 6 |
 | 协作与办公平台 | **Zimbra / Nextcloud / OnlyOffice / Roundcube / Rainloop**（+ 已有 Confluence / Seafile / 企业微信） | 8+ |
 
