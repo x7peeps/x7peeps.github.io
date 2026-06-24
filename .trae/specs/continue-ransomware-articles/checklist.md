@@ -1,0 +1,17 @@
+- [ ] Rhysida 文章已创建且遵循 13 节标准模板
+- [ ] Rhysida 文章包含 ≥ 3 条 Sigma 规则 + ≥ 1 条 YARA 规则
+- [ ] Rhysida 文章包含 MITRE ATT&CK 映射（G1039/S1147）
+- [ ] Rhysida 文章包含解密可能性评估
+- [ ] Rhysida Hugo 构建通过（0 错误）
+- [ ] Cactus 文章已创建且遵循 13 节标准模板
+- [ ] Cactus 文章包含 ≥ 3 条 Sigma 规则 + ≥ 1 条 YARA 规则
+- [ ] Cactus 文章包含 MITRE ATT&CK 映射
+- [ ] Cactus 文章包含解密可能性评估
+- [ ] Cactus Hugo 构建通过（0 错误）
+- [ ] Medusa 文章已创建且遵循 13 节标准模板
+- [ ] Medusa 文章包含 ≥ 3 条 Sigma 规则 + ≥ 1 条 YARA 规则
+- [ ] Medusa 文章包含 MITRE ATT&CK 映射
+- [ ] Medusa 文章包含解密可能性评估
+- [ ] Medusa Hugo 构建通过（0 错误）
+- [ ] 目录索引 `_index.md` 已更新，包含全部 14 个组织条目
+- [ ] 所有变更已 Git 提交并推送至 GitHub

@@ -94,7 +94,7 @@ categories: ["漏洞分析"]
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
-| 边界设备与安全网关 | Cisco ASA/FTD / F5 BIG-IP / Pulse Secure / Ivanti / PAN-OS / FortiOS / Citrix / SonicWall / Check Point / Sophos / WatchGuard / Zyxel / **PAN-OS 单独专题** | 18+ |
+| 边界设备与安全网关 | Cisco ASA/FTD / F5 BIG-IP / Pulse Secure / Ivanti / PAN-OS / FortiOS / Citrix / SonicWall / Check Point / Sophos / WatchGuard / Zyxel / **PAN-OS 单独专题** / **Juniper Junos** | 23+ |
 | 文件传输与数据交换平台 | MOVEit / GoAnywhere / WS_FTP | 3 |
 | 远程支持与RMM | ConnectWise ScreenConnect / Kaseya / SimpleHelp | 4 |
 | Java 组件与框架生态 | Log4Shell / Commons Collections / SnakeYAML / Spring / Bouncy Castle | 7 |
@@ -106,6 +106,8 @@ categories: ["漏洞分析"]
 | CI/CD 与构建发布平台 | TeamCity / Jenkins / GitLab / **Sonatype Nexus / JFrog Artifactory** | 12+ |
 | IT 运维与系统管理平台 | ManageEngine / PaperCut / ScreenConnect / Kaseya | 6 |
 | 协作与办公平台 | **Zimbra / Nextcloud / OnlyOffice / Roundcube / Rainloop**（+ 已有 Confluence / Seafile / 企业微信） | 8+ |
+| **VMware 虚拟化平台** | **vCenter / ESXi / Aria Operations**（Volt Typhoon / Sandworm） | 8+ |
+| **Web 中间件** | **JBoss / WildFly / Undertow / Jetty / Tomcat / WebSphere** | 6+ |
 
 以下产品线已有**单篇 CVE 分析文章**：
 

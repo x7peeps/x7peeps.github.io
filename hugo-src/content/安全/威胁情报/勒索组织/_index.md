@@ -20,6 +20,9 @@ weight: 1
 | [Hive](Hive/) | DEV-0237 / Pistachio Tempest | 🔴 极高 | 已瓦解 | 1,500+ 受害者，80+国家，$1亿+赎金，2023.01被FBI秘密渗透瓦解 |
 | [Royal](Royal/) | DEV-0569 / Ignoble Scorpius / S1073 | 🔴 极高 | 疑似活跃 | Conti直系继承，450+美国受害者，$3.7亿+赎金，六阶段品牌演化（Conti→Chaos），Operation Checkmate后以Chaos品牌重建 |
 | [INC Ransom](INCRansom/) | G1032 / GOLD IONIC / S1139 | 🔴 极高 | 活跃 | 800+受害者，Rust重写，源码出售催生Lynx/Sinobi，GootLoader供应链入口，无道德底线（医疗/教育/政府均攻击） |
+| [Rhysida](Rhysida/) | G1039 / S1147 / DEV-0832 | 🟠 高 | 活跃 | 200+受害者，Vice Society演化品牌，ChaCha20+RSA-4096，CleanUpLoader恶意广告分发，无解密器，教育/医疗/政府重点目标 |
+| [Cactus](Cactus/) | GOLD VILLAGE / TA2101 / Storm-0216 | 🔴 极高 | 活跃 | 248+受害者，自加密二进制逃避检测，24小时漏洞武器化，Black Basta成员2025年转入融合，ESXi+Hyper-V双平台 |
+| [Medusa](Medusa/) | G1051 / Storm-1175 / Spearwing | 🔴 极高 | 活跃 | 500+受害者，45+国家，三重勒索（加密+泄露+DDoS），RMM工具大规模滥用，朝鲜Lazarus介入，CISA/FBI AA25-071A |
 
 ---
 
