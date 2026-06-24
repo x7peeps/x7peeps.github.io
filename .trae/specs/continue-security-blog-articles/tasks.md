@@ -1,18 +1,18 @@
 # Tasks
 
-- [ ] Task 1: 编写第 30 篇文章 — Palo Alto PAN-OS GlobalProtect
-  - [ ] SubTask 1.1: Grep 检查是否已存在相关文章
-  - [ ] SubTask 1.2: Task 子代理研究 Palo Alto PAN-OS 攻击面 (CVE-2024-3400, CVE-2024-0012, CVE-2024-9474, CVE-2023-0004, CVE-2022-0778 等)
-  - [ ] SubTask 1.3: Write 写入 `PaloAlto_PAN-OS_GlobalProtect_认证绕过_RCE_SSLVPN_CVE漏洞链利用技术.md` (weight 117)
-  - [ ] SubTask 1.4: Hugo 构建验证
-  - [ ] SubTask 1.5: Git commit --only 提交单文件并推送
+- [x] Task 1: 编写第 30 篇文章 — Palo Alto PAN-OS GlobalProtect
+  - [x] SubTask 1.1: Grep 检查是否已存在相关文章
+  - [x] SubTask 1.2: Task 子代理研究 Palo Alto PAN-OS 攻击面 (CVE-2024-3400, CVE-2024-0012, CVE-2024-9474, CVE-2023-0004, CVE-2022-0778 等)
+  - [x] SubTask 1.3: Write 写入 `PaloAlto_PAN-OS_GlobalProtect_认证绕过_RCE_SSLVPN_CVE漏洞链利用技术.md` (weight 117)
+  - [x] SubTask 1.4: Hugo 构建验证
+  - [x] SubTask 1.5: Git commit --only 提交单文件并推送
 
-- [ ] Task 2: 编写第 31 篇文章 — Cisco IOS/ASA/FTD
-  - [ ] SubTask 2.1: Grep 检查是否已存在相关文章
-  - [ ] SubTask 2.2: Task 子代理研究 Cisco 设备攻击面 (CVE-2023-20198, CVE-2023-20273, CVE-2024-20353, CVE-2023-46805 等)
-  - [ ] SubTask 2.3: Write 写入 `Cisco_IOS_ASA_FTD_边界设备管理面打点与CVE漏洞链利用技术.md` (weight 118)
-  - [ ] SubTask 2.4: Hugo 构建验证
-  - [ ] SubTask 2.5: Git commit --only 提交单文件并推送
+- [x] Task 2: 编写第 31 篇文章 — Cisco IOS/ASA/FTD
+  - [x] SubTask 2.1: Grep 检查是否已存在相关文章
+  - [x] SubTask 2.2: Task 子代理研究 Cisco 设备攻击面 (CVE-2023-20198, CVE-2023-20273, CVE-2024-20353, CVE-2023-46805 等)
+  - [x] SubTask 2.3: Write 写入 `Cisco_IOS_ASA_FTD_边界设备管理面打点与CVE漏洞链利用技术.md` (weight 118)
+  - [x] SubTask 2.4: Hugo 构建验证
+  - [x] SubTask 2.5: Git commit --only 提交单文件并推送
 
 - [ ] Task 3: 编写第 32 篇文章 — Ivanti Connect Secure
   - [ ] SubTask 3.1: Grep 检查是否已存在相关文章

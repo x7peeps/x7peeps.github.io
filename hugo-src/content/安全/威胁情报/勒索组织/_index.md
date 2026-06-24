@@ -23,6 +23,9 @@ weight: 1
 | [Rhysida](Rhysida/) | G1039 / S1147 / DEV-0832 | 🟠 高 | 活跃 | 200+受害者，Vice Society演化品牌，ChaCha20+RSA-4096，CleanUpLoader恶意广告分发，无解密器，教育/医疗/政府重点目标 |
 | [Cactus](Cactus/) | GOLD VILLAGE / TA2101 / Storm-0216 | 🔴 极高 | 活跃 | 248+受害者，自加密二进制逃避检测，24小时漏洞武器化，Black Basta成员2025年转入融合，ESXi+Hyper-V双平台 |
 | [Medusa](Medusa/) | G1051 / Storm-1175 / Spearwing | 🔴 极高 | 活跃 | 500+受害者，45+国家，三重勒索（加密+泄露+DDoS），RMM工具大规模滥用，朝鲜Lazarus介入，CISA/FBI AA25-071A |
+| [ALPHV / BlackCat](ALPHV/) | S1068 / Noberus | 🔴 极高 | 活跃 | 1,000+攻击，首个Rust编写RaaS，跨平台（Win/Linux/ESXi），三重勒索，Change Healthcare事件（1亿+数据泄露，$2200万赎金），美国国务院悬赏$1000万 |
+| [BianLian](BianLian/) | — | 🔴 极高 | 活跃 | 553+受害者，2024年起完全放弃加密转向纯数据勒索，SAP零日（CVE-2025-31324），USPS实体勒索信，医疗行业Top3威胁，CISA AA23-136A |
+| [NoEscape](NoEscape/) | Avaddon 继承者 | 🟠 高 | 活跃 | Avaddon后继组织，ChaCha20+RSA-2048，Safe Mode加密，DDoS/电话/垃圾邮件附加服务（$500K+），美国为主要目标 |
 
 ---
 

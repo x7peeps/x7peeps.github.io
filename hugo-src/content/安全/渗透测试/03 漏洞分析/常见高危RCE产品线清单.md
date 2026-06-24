@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-06-23，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-06-24，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -108,6 +108,9 @@ categories: ["漏洞分析"]
 | 协作与办公平台 | **Zimbra / Nextcloud / OnlyOffice / Roundcube / Rainloop**（+ 已有 Confluence / Seafile / 企业微信） | 8+ |
 | **VMware 虚拟化平台** | **vCenter / ESXi / Aria Operations**（Volt Typhoon / Sandworm） | 8+ |
 | **Web 中间件** | **JBoss / WildFly / Undertow / Jetty / Tomcat / WebSphere** | 6+ |
+| **容器与编排平台** | **runc / containerd / Docker Engine / Kubernetes**（CVE-2024-21626 / CVE-2023-5528 等） | 7+ |
+| **身份与密钥管理** | **Keycloak / HashiCorp Vault**（OAuth2 认证绕过 / Shamir 密钥绕过 / OIDC 绕过） | 6+ |
+| **数据库系统** | **MySQL / PostgreSQL / Redis / MongoDB**（Lua 沙箱逃逸 / 权限提升 / 缓冲区溢出） | 7+ |
 
 以下产品线已有**单篇 CVE 分析文章**：
 
