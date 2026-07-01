@@ -8,8 +8,6 @@ tags: [CAAC, 飞行控制, 飞控系统, PID控制]
 
 飞行控制系统（Flight Control System, FCS）是无人机的"大脑"，负责接收操控指令、处理传感器数据并输出控制信号以维持和调整飞行状态。理解飞控系统的工作原理、控制层级和传感器融合机制，是 CAAC 考试中技术类题目的核心考点。本节将从基本组成到控制层级，从传感器作用到冗余设计，进行系统全面的讲解。
 
-<img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=drone%20flight%20controller%20system%20architecture%20diagram%20showing%20GPS%20mode%20vs%20attitude%20mode%20control%20loop%20PID%20controller%20IMU%20sensor%20fusion%20technical%20schematic&image_size=landscape_16_9" alt="飞行控制系统架构" width="100%">
-
 ---
 
 ## 1. 飞行控制系统的基本组成和功能

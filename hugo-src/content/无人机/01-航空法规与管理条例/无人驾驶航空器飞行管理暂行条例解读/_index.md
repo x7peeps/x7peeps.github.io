@@ -8,8 +8,6 @@ tags: [CAAC, 无人机法规, 暂行条例, 飞行管理]
 
 《无人驾驶航空器飞行管理暂行条例》（以下简称"暂行条例"）是我国无人机领域首部专项行政法规，于 **2024 年 1 月 1 日** 起正式施行。该条例的颁布标志着我国无人机管理从"无章可循"迈入"依法治理"的新阶段，对规范无人机飞行活动、保障公共安全、促进产业发展具有里程碑意义。本文将从条例的核心框架出发，系统梳理各知识点，并结合考试高频考点进行深入解读。
 
-<img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Chinese%20civil%20drone%20regulation%20infographic%20showing%20five%20categories%20of%20unmanned%20aircraft%20micro%20light%20small%20medium%20large%20with%20weight%20limits%20professional%20technical%20diagram&image_size=landscape_16_9" alt="无人机分类管理体系" width="100%">
-
 ---
 
 ## 1. 条例出台的背景与意义

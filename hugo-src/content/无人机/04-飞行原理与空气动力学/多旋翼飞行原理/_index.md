@@ -8,8 +8,6 @@ tags: [CAAC, 多旋翼, 飞行原理, 空气动力学]
 
 <!--more-->
 
-<img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=quadcopter%20drone%20aerodynamics%20diagram%20showing%20lift%20force%20thrust%20Bernoulli%20principle%20airspeed%20pressure%20difference%20wing%20cross%20section%20technical%20illustration&image_size=landscape_16_9" alt="多旋翼升力原理示意图" width="100%">
-
 ## 升力产生的原理
 
 多旋翼无人机的升力产生可以从两个经典理论来解释，考试中经常考查这两种理论的区别与联系。

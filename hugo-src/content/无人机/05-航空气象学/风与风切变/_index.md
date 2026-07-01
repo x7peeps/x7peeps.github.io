@@ -8,8 +8,6 @@ tags: [CAAC, 风, 风切变, 湍流]
 
 <!--more-->
 
-<img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=wind%20shear%20phenomenon%20aviation%20safety%20diagram%20showing%20low%20level%20wind%20shear%20microburst%20downdraft%20aircraft%20flight%20path%20disruption%20meteorological%20illustration&image_size=landscape_16_9" alt="低空风切变示意图" width="100%">
-
 ## 风的形成原因和分类
 
 ### 风的形成

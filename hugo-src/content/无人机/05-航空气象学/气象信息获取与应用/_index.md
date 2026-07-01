@@ -8,8 +8,6 @@ tags: [CAAC, 气象信息, METAR, TAF]
 
 <!--more-->
 
-<img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=METAR%20aviation%20weather%20report%20format%20decode%20example%20showing%20station%20identifier%20datetime%20wind%20visibility%20cloud%20temperature%20pressure%20QNH%20technical%20reference&image_size=landscape_16_9" alt="METAR气象报文格式解读" width="100%">
-
 ## 航空气象报文种类
 
 ### 主要报文类型
