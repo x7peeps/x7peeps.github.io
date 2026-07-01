@@ -14,12 +14,12 @@
   - [x] SubTask 2.4: Hugo 构建验证
   - [x] SubTask 2.5: Git commit --only 提交单文件并推送
 
-- [ ] Task 3: 编写第 32 篇文章 — Ivanti Connect Secure
-  - [ ] SubTask 3.1: Grep 检查是否已存在相关文章
-  - [ ] SubTask 3.2: Task 子代理研究 Ivanti 攻击面 (CVE-2023-46805, CVE-2024-21887, CVE-2024-21893 等)
-  - [ ] SubTask 3.3: Write 写入 `Ivanti_Connect_Secure_SSLVPN_认证绕过_RCE_命令注入_CVE漏洞链利用技术.md` (weight 119)
-  - [ ] SubTask 3.4: Hugo 构建验证
-  - [ ] SubTask 3.5: Git commit --only 提交单文件并推送
+- [x] Task 3: 编写第 32 篇文章 — Ivanti Connect Secure
+  - [x] SubTask 3.1: Grep 检查是否已存在相关文章
+  - [x] SubTask 3.2: Task 子代理研究 Ivanti 攻击面 (CVE-2023-46805, CVE-2024-21887, CVE-2024-21893 等)
+  - [x] SubTask 3.3: Write 写入 `Ivanti_Connect_Secure_SSLVPN_认证绕过_RCE_命令注入_CVE漏洞链利用技术.md` (weight 119)
+  - [x] SubTask 3.4: Hugo 构建验证
+  - [x] SubTask 3.5: Git commit --only 提交单文件并推送
 
 - [ ] Task 4: 编写第 33 篇文章 — VMware vSphere/ESXi
   - [ ] SubTask 4.1: Grep 检查是否已存在相关文章

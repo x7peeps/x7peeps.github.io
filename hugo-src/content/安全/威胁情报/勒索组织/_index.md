@@ -29,6 +29,9 @@ weight: 1
 | [DragonForce](DragonForce/) | Water Tambanakua / Hackledorb | 🔴 极高 | 活跃 | 579+受害者，LockBit+Conti双代码库，卡特尔模式，BYOVD多驱动，首个Teams TURN中继C2（Backdoor.Turn），英国零售高调攻击，吞并RansomHub |
 | [Lynx](Lynx/) | Water Lalawag | 🔴 极高 | 活跃 | 414+受害者/48国，INC Ransom源码衍生（50%+函数重叠），AES-128 CTR+Curve25519，单日20家峰值，RaaS 80/20分成 |
 | [SafePay](SafePay/) | — | 🔴 极高 | 活跃 | 403+受害者，集中化封闭运营（非RaaS），24小时攻击周期，AES-256-CBC+RSA-4096，单月70次攻击峰值，Ingram Micro供应链级影响 |
+| [Hunters International](HuntersInternational/) | Hive 继承者 | 🔴 极高 | 疑似转型 | 307+受害者，Hive直系继承（≥60%代码重合），Rust ChaCha20-Poly1305+RSA OAEP，中国工商银行伦敦分行6.6TB泄露，转向World Leaks纯数据模式 |
+| [8Base](8Base/) | Phobos Affiliate 2803 | 🟠 高 | 受重创 | 455+受害者，Phobos v2.9.1变体，Operation PHOBOS AETOR（2025.02，4人逮捕/泰国），RansomHouse 99%勒索信匹配，$1600万收入 |
+| [Fog](Fog/) | — | 🟠 高 | 疑似沉寂 | 100+受害者/173次检测，APT级间谍工具（Syteca屏幕录制），BYOVD+多C2框架，DOGE政治宣传非典型特征，Monero支付，CVE-2024-40711 Veeam利用 |
 
 ---
 
