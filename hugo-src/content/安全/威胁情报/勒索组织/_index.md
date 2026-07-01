@@ -32,6 +32,9 @@ weight: 1
 | [Hunters International](HuntersInternational/) | Hive 继承者 | 🔴 极高 | 疑似转型 | 307+受害者，Hive直系继承（≥60%代码重合），Rust ChaCha20-Poly1305+RSA OAEP，中国工商银行伦敦分行6.6TB泄露，转向World Leaks纯数据模式 |
 | [8Base](8Base/) | Phobos Affiliate 2803 | 🟠 高 | 受重创 | 455+受害者，Phobos v2.9.1变体，Operation PHOBOS AETOR（2025.02，4人逮捕/泰国），RansomHouse 99%勒索信匹配，$1600万收入 |
 | [Fog](Fog/) | — | 🟠 高 | 疑似沉寂 | 100+受害者/173次检测，APT级间谍工具（Syteca屏幕录制），BYOVD+多C2框架，DOGE政治宣传非典型特征，Monero支付，CVE-2024-40711 Veeam利用 |
+| [Cloak](Cloak/) | — | 🟠 高 | 活跃 | 162+受害者/30国，凭证驱动攻击（Russian Market+信息窃取器），91-96%极高支付率，无恶意文件绕过端点检测，2025年目标扩展至政府/关键基础设施 |
+| [Trigona](Trigona/) | Water Ungaw / Rhantus | 🔴 极高 | 活跃 | 政府机构21.4%（最高行业占比），AES-256 OFB+RSA-4112，内核级BYOVD多驱动（HRSword/PCHunter/Gmer），自研uploader_client.exe窃取工具，数据擦除器功能，CryLock/ALPHV关联 |
+| [Scattered Lapsus$ Hunters](ScatteredLapsus/) | Octo Tempest 联盟 | 🔴 极高 | 活跃 | SOCRadar 2025 #1，Scattered Spider+LAPSUS$+ShinyHunters情境性联盟，纯社会工程（无恶意软件/漏洞），JLR £19亿损失（G7最严重网络攻击），ShinySp1d3r自研工具，SaaS环境入侵 |
 
 ---
 
