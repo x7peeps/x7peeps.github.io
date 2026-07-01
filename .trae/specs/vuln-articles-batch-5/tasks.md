@@ -30,11 +30,11 @@
   - [ ] SubTask 6.2: 撰写专题文章，覆盖 ≥ 6 个 CVE，包含完整 PoC 代码、Nuclei 模板、Python 脚本
   - [ ] SubTask 6.3: 验证文章字数 ≥ 8000 字符
 
-- [ ] Task 7: 更新覆盖清单
-  - [ ] SubTask 7.1: 更新 `常见高危RCE产品线清单.md` 覆盖状态表格，新增消息队列与流处理平台、监控与可观测性平台、API 网关与服务网格三行
+- [x] Task 7: 更新覆盖清单
+  - [x] SubTask 7.1: 更新 `常见高危RCE产品线清单.md` 覆盖状态表格，新增消息队列与流处理平台、监控与可观测性平台、API 网关与服务网格三行
 
-- [ ] Task 8: Hugo 构建验证
-  - [ ] SubTask 8.1: 运行 `hugo --gc --minify` 验证构建通过，页面数 ≥ 2850
+- [x] Task 8: Hugo 构建验证
+  - [x] SubTask 8.1: 运行 `hugo --gc --minify` 验证构建通过，页面数 ≥ 2850
 
 # Task Dependencies
 - [Task 1] 无依赖，可立即执行

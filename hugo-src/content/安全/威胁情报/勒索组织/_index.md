@@ -26,6 +26,9 @@ weight: 1
 | [ALPHV / BlackCat](ALPHV/) | S1068 / Noberus | 🔴 极高 | 活跃 | 1,000+攻击，首个Rust编写RaaS，跨平台（Win/Linux/ESXi），三重勒索，Change Healthcare事件（1亿+数据泄露，$2200万赎金），美国国务院悬赏$1000万 |
 | [BianLian](BianLian/) | — | 🔴 极高 | 活跃 | 553+受害者，2024年起完全放弃加密转向纯数据勒索，SAP零日（CVE-2025-31324），USPS实体勒索信，医疗行业Top3威胁，CISA AA23-136A |
 | [NoEscape](NoEscape/) | Avaddon 继承者 | 🟠 高 | 活跃 | Avaddon后继组织，ChaCha20+RSA-2048，Safe Mode加密，DDoS/电话/垃圾邮件附加服务（$500K+），美国为主要目标 |
+| [DragonForce](DragonForce/) | Water Tambanakua / Hackledorb | 🔴 极高 | 活跃 | 579+受害者，LockBit+Conti双代码库，卡特尔模式，BYOVD多驱动，首个Teams TURN中继C2（Backdoor.Turn），英国零售高调攻击，吞并RansomHub |
+| [Lynx](Lynx/) | Water Lalawag | 🔴 极高 | 活跃 | 414+受害者/48国，INC Ransom源码衍生（50%+函数重叠），AES-128 CTR+Curve25519，单日20家峰值，RaaS 80/20分成 |
+| [SafePay](SafePay/) | — | 🔴 极高 | 活跃 | 403+受害者，集中化封闭运营（非RaaS），24小时攻击周期，AES-256-CBC+RSA-4096，单月70次攻击峰值，Ingram Micro供应链级影响 |
 
 ---
 

@@ -111,6 +111,9 @@ categories: ["漏洞分析"]
 | **容器与编排平台** | **runc / containerd / Docker Engine / Kubernetes**（CVE-2024-21626 / CVE-2023-5528 等） | 7+ |
 | **身份与密钥管理** | **Keycloak / HashiCorp Vault**（OAuth2 认证绕过 / Shamir 密钥绕过 / OIDC 绕过） | 6+ |
 | **数据库系统** | **MySQL / PostgreSQL / Redis / MongoDB**（Lua 沙箱逃逸 / 权限提升 / 缓冲区溢出） | 7+ |
+| **消息队列与流处理平台** | **Apache ActiveMQ / RabbitMQ / Apache Kafka / Apache RocketMQ**（OpenWire 反序列化 / 默认凭据 / JMX RCE） | 6+ |
+| **监控与可观测性平台** | **Grafana / Prometheus / ELK Stack / Apache Superset / Nagios**（XSS / 路径穿越 / 默认密钥 RCE） | 7+ |
+| **API 网关与服务网格** | **Kong / Apache APISIX / Spring Cloud Gateway / Istio / Envoy**（认证绕过 / 默认密钥 / serverless RCE） | 7+ |
 
 以下产品线已有**单篇 CVE 分析文章**：
 
