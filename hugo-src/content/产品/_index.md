@@ -9,6 +9,24 @@ weight = 30
 
 <div class="x7-promo-strip">
   <div>
+    <span class="x7-promo-kicker">iOS App · Coming Soon</span>
+    <h2>灵感工坊</h2>
+    <p>让手机成为灵感的第一入口。快速记录 → AI 共创 → 结构化输出，一站式灵感管理引擎。面向创作者与产品经理的 iOS 原生应用。</p>
+    <div class="x7-promo-actions">
+      <a class="x7-promo-button x7-promo-button-primary" href="/产品/灵感工坊/">查看产品详情</a>
+    </div>
+  </div>
+  <div class="x7-promo-visual">
+    <div class="x7-promo-grid">
+      <img src="/images/products/灵感工坊/appicon.png" alt="灵感工坊 App Icon" style="border-radius: 20px; object-fit: cover;" loading="eager" decoding="async">
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=iOS%20app%20inspiration%20capture%20interface%2C%20clean%20minimalist%20UI%2C%20quick%20input%20with%20microphone%20camera%20buttons%2C%20modern%20mobile%20design%2C%20light%20theme&image_size=landscape_16_9" alt="灵感工坊界面预览 1" loading="lazy" decoding="async">
+      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=iOS%20AI%20chat%20conversation%20interface%2C%20streaming%20typewriter%20effect%2C%20bubble%20messages%2C%20sparkle%20icons%2C%20modern%20mobile%20UI%2C%20light%20theme&image_size=landscape_16_9" alt="灵感工坊界面预览 2" loading="lazy" decoding="async">
+    </div>
+  </div>
+</div>
+
+<div class="x7-promo-strip">
+  <div>
     <span class="x7-promo-kicker">New Open Source</span>
     <h2>Dark Directory Hugo Theme</h2>
     <p>把本站的暗色目录风格、知识库层级、产品展示能力整理成了可复用的开源主题扩展层。它适合个人官网、技术博客、文档站和产品宣传页共存的场景。</p>
