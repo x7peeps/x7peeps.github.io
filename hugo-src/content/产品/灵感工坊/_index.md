@@ -13,7 +13,7 @@ weight = 30
 
 灵感工坊是一款面向创作者与产品经理的 iOS 原生应用。它把碎片化的灵感捕获、AI 深度共创和结构化输出串联成一条完整的工作流，让每一个灵光一闪都能被快速捕获、系统打磨、最终落地。
 
-**下载地址：** 敬请期待（开发中）
+**下载地址：** [App Store](https://apps.apple.com/app/灵感工坊/)（即将上线）
 
 **技术栈：**
 
@@ -36,10 +36,12 @@ weight = 30
 
 ### 界面预览
 
-<div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 30px; margin-bottom: 30px;">
-  <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=iOS%20app%20screenshot%2C%20inspiration%20capture%20interface%2C%20clean%20minimalist%20UI%2C%20quick%20input%20text%20field%20with%20microphone%20camera%20photo%20buttons%2C%20modern%20mobile%20design%2C%20light%20theme&image_size=portrait_4_3" alt="灵感捕获界面" style="max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-  <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=iOS%20app%20screenshot%2C%20AI%20chat%20conversation%20interface%2C%20streaming%20typewriter%20effect%2C%20bubble%20messages%2C%20sparkle%20icons%2C%20modern%20mobile%20UI%2C%20light%20theme" alt="AI 共创对话界面" style="max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-  <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=iOS%20app%20screenshot%2C%20structured%20workbench%20interface%2C%20framework%20grid%20cards%2C%20section%20analysis%20results%2C%20modern%20mobile%20UI%2C%20light%20theme" alt="灵感工作台界面" style="max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+<div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 30px; margin-bottom: 30px;">
+  <img src="/images/products/灵感工坊/01_capture.png" alt="灵感捕获界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="/images/products/灵感工坊/02_chat.png" alt="AI 共创对话界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="/images/products/灵感工坊/03_workbench.png" alt="灵感工作台界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="/images/products/灵感工坊/04_library.png" alt="灵感库界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="/images/products/灵感工坊/05_community.png" alt="社区界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
 </div>
 
 ### 工作流程
@@ -79,24 +81,117 @@ WorkBuddy/
 
 ## 隐私政策
 
+**隐私政策独立页面**：[https://x7peeps.com/产品/灵感工坊/privacy/](/产品/灵感工坊/privacy/)
+
 **生效日期：2026-07-01**
 
-灵感工坊重视你的隐私。我们采用本地优先的存储策略，结合云端加密同步，确保你的灵感数据安全可控。
+**最近更新：2026-07-02**
 
-### 数据存储
-你创建的灵感数据默认保存在设备本地，通过 Core Data 管理。启用 iCloud 同步后，数据会在同一 Apple ID 的设备间自动同步。
+---
 
-### 云端同步
-如果你启用了 Supabase 账户，灵感数据将加密同步至云端，用于社区分享功能。开发者不会主动读取或使用你的灵感内容。
+灵感工坊（以下简称"本应用"）由 x7peeps（以下简称"开发者"或"我们"）开发。我们重视你的隐私，本隐私政策说明本应用如何处理和保护你的信息。
 
-### AI 服务
-AI 共创对话通过加密连接调用第三方 AI 服务（OpenAI / Claude / 通义千问）。对话内容仅用于生成回复，不会被用于模型训练。
+---
 
-### 社区共享
-灵感的社区共享为完全自愿。你可以自主选择将灵感授权共享至社区，未授权的灵感将始终保留在你的设备和私有账户中。
+### 一、我们收集哪些数据
 
-### 数据收集
-当前版本不包含第三方分析 SDK、广告 SDK 或跨 App/网站追踪功能。我们不收集任何个人身份信息。
+#### 1.1 灵感数据（本地存储）
 
-### 联系方式
-如需隐私支持，请通过 App Store 页面提供的开发者联系方式联系。
+你在使用本应用过程中创建的所有灵感内容（包括文字、语音、图片等）**默认仅保存在你的设备本地**，通过 Core Data 管理。开发者不会主动访问、收集或上传这些数据。
+
+#### 1.2 云端同步数据（可选）
+
+如果你注册并启用了 Supabase 账户以使用社区分享功能，以下数据将加密同步至云端：
+
+- 你**主动选择共享**的灵感内容
+- 你的账户基本信息（邮箱/用户名）
+- 社区互动数据（如排行榜积分）
+
+**未授权共享的灵感始终保留在你的设备和私有账户中，不会被上传至公共社区。**
+
+#### 1.3 AI 服务交互数据
+
+使用 AI 共创对话功能时，你的对话内容会通过加密连接发送至第三方 AI 服务提供商：
+
+- OpenAI
+- Anthropic (Claude)
+- 通义千问
+
+对话内容**仅用于生成当次回复**，开发者不会将其用于模型训练或其他用途。各 AI 服务提供商的隐私政策请参阅其官方文档。
+
+#### 1.4 不收集的数据
+
+本应用**不收集**以下信息：
+
+- 个人身份信息（姓名、电话号码等）
+- 设备位置信息
+- 通讯录或日历数据
+- 当前版本不包含任何第三方分析 SDK、广告 SDK
+- 不进行跨 App 或网站追踪
+
+---
+
+### 二、我们如何使用数据
+
+| 数据类型 | 使用目的 |
+|---------|---------|
+| 本地灵感数据 | 仅供你在本应用内查看、编辑、导出 |
+| 云端同步数据 | 实现跨设备同步及社区分享功能 |
+| AI 对话内容 | 仅用于生成 AI 回复，不做二次利用 |
+| 账户信息 | 仅用于身份认证和社区功能 |
+
+---
+
+### 三、数据存储与安全
+
+- **本地优先**：灵感数据默认存储在设备本地，不依赖网络。
+- **加密传输**：所有云端通信均通过 HTTPS 加密。
+- **iCloud 同步**：如果你启用了 iCloud 同步，数据将通过 Apple 的 iCloud 服务在你的设备间同步，受 Apple 隐私政策保护。
+- **社区共享自愿原则**：灵感的社区共享完全由你自主决定，你可以随时取消共享。
+
+---
+
+### 四、数据保留与删除
+
+- 你可以随时在应用内删除灵感数据，删除后数据将从设备和云端同步移除。
+- 如果你注销 Supabase 账户，云端存储的共享数据将被清除。
+- 本地数据在卸载应用后自动清除。
+
+---
+
+### 五、第三方服务
+
+本应用使用以下第三方服务：
+
+| 服务 | 用途 | 隐私政策 |
+|------|------|---------|
+| Supabase | 账户认证、云端同步、社区功能 | https://supabase.com/privacy |
+| OpenAI | AI 对话 | https://openai.com/privacy |
+| Anthropic | AI 对话 (Claude) | https://www.anthropic.com/privacy |
+| 通义千问 | AI 对话 | https://www.aliyun.com/product/tongyi |
+| Apple iCloud | 数据同步 | https://www.apple.com/legal/privacy/ |
+
+---
+
+### 六、未成年人保护
+
+本应用不面向 13 周岁以下的儿童。我们不会故意收集儿童的个人信息。
+
+---
+
+### 七、隐私政策更新
+
+我们可能会不时更新本隐私政策。更新后的政策将在本页面发布，生效日期会在页面顶部标注。建议你定期查阅本政策。
+
+---
+
+### 八、如何联系开发者
+
+如你对本隐私政策有任何疑问、建议或投诉，请通过以下方式联系我们：
+
+- **邮箱**：[xtpeeps@gmail.com](mailto:xtpeeps@gmail.com)
+- **官网**：[https://x7peeps.com](https://x7peeps.com)
+
+---
+
+*本隐私政策最终解释权归灵感工坊开发者所有。*

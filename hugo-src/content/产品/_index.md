@@ -19,8 +19,8 @@ weight = 30
   <div class="x7-promo-visual">
     <div class="x7-promo-grid">
       <img src="/images/products/灵感工坊/appicon.png" alt="灵感工坊 App Icon" style="border-radius: 20px; object-fit: cover;" loading="eager" decoding="async">
-      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=iOS%20app%20inspiration%20capture%20interface%2C%20clean%20minimalist%20UI%2C%20quick%20input%20with%20microphone%20camera%20buttons%2C%20modern%20mobile%20design%2C%20light%20theme&image_size=landscape_16_9" alt="灵感工坊界面预览 1" loading="lazy" decoding="async">
-      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=iOS%20AI%20chat%20conversation%20interface%2C%20streaming%20typewriter%20effect%2C%20bubble%20messages%2C%20sparkle%20icons%2C%20modern%20mobile%20UI%2C%20light%20theme&image_size=landscape_16_9" alt="灵感工坊界面预览 2" loading="lazy" decoding="async">
+      <img src="/images/products/灵感工坊/01_capture.png" alt="灵感工坊灵感捕获界面" style="border-radius: 12px;" loading="lazy" decoding="async">
+      <img src="/images/products/灵感工坊/02_chat.png" alt="灵感工坊AI对话界面" style="border-radius: 12px;" loading="lazy" decoding="async">
     </div>
   </div>
 </div>
