@@ -69,14 +69,8 @@ disable = true
   disableXML = false
   minifyOutput = true
 
-[outputFormats]
-  [outputFormats.heatmap]
-    mediaType = "application/json"
-    baseName = "heatmap"
-    isPlainText = true
-
 [outputs]
-  home = ["html", "json", "heatmap"]
+  home = ["html", "json"]
 
 [markup.tableOfContents]
   endLevel = 4

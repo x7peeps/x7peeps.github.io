@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-07-05，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-07-06，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -127,6 +127,9 @@ categories: ["漏洞分析"]
 | **视频监控与物理安全** | **Hikvision / Dahua / Axis / Milestone / Genetec**（命令注入 / 认证绕过 / 反序列化 RCE / 硬编码密钥） | 10+ |
 | **终端管理与 MDM** | **SCCM / Jamf Pro / Workspace ONE / MobileIron**（认证绕过 / 反序列化 RCE / 命令注入 / 路径遍历） | 8+ |
 | **身份认证与SSO平台** | **Okta / Auth0 / Ping Identity**（JWT 算法混淆 / 会话劫持 / 认证绕过 / MFA 绕过 / SSRF / XXE） | 10+ |
+| **邮件安全网关与反垃圾邮件** | **Barracuda ESG / Proofpoint PPS / FortiMail / Cisco SEG**（tar命令注入 / eval注入 / 栈缓冲区溢出 / 路径遍历） | 10 |
+| **LDAP 目录服务与身份存储** | **OpenLDAP / 389 Directory Server / FreeIPA / Windows LDAP**（LDAPBleed UAF RCE / 属性解引用绕过 / PKI Admin Cert绕过） | 11 |
+| **虚拟化与超融合平台** | **Proxmox VE / Nutanix / Xen/XCP-ng / QEMU**（沙箱逃逸 / 命令注入 / VM→Dom0提权 / VNC缓冲区溢出） | 10 |
 
 以下产品线已有**单篇 CVE 分析文章**：
 

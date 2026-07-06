@@ -1,0 +1,35 @@
+{{- $allPages := where site.RegularPages "Type" "ne" "home" -}}
+{{- $now := now -}}
+{{- $start := $now.AddDate -1 0 0 -}}
+{{- $dateMap := dict -}}
+{{- range $allPages -}}
+  {{- $d := .Date.Format "2006-01-02" -}}
+  {{- $count := 0 -}}
+  {{- if isset $dateMap $d -}}
+    {{- $count = index $dateMap $d -}}
+  {{- end -}}
+  {{- $dateMap = merge $dateMap (dict $d (add $count 1)) -}}
+{{- end -}}
+{{- $days := slice -}}
+{{- $cur := $start -}}
+{{- range $i := seq 371 -}}
+  {{- $d := $cur.Format "2006-01-02" -}}
+  {{- $count := 0 -}}
+  {{- if isset $dateMap $d -}}
+    {{- $count = index $dateMap $d -}}
+  {{- end -}}
+  {{- $days = $days | append (dict "date" $d "count" $count) -}}
+  {{- $cur = $cur.AddDate 0 0 1 -}}
+{{- end -}}
+<script>window.__heatmapDays={{ $days | jsonify }};</script>
+<article class="home">
+  <header class="headline">
+    {{- partial "content-header.html" . }}
+  </header>
+{{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
+
+{{ partial "article-content.html" . }}
+  <footer class="footline">
+    {{- partial "content-footer.html" . }}
+  </footer>
+</article>
