@@ -1424,6 +1424,87 @@ article.default > h1:first-of-type:has(~ h1) {
 }
 
 /* ==========================================================================
+   Homepage Heatmap (GitHub-style)
+   ========================================================================== */
+
+.x7-heatmap {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.x7-heatmap-row {
+  display: flex;
+  gap: 3px;
+}
+
+.x7-heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: default;
+  position: relative;
+}
+
+.x7-heatmap-cell:hover {
+  transform: scale(1.4);
+  box-shadow: 0 0 8px rgba(255,255,255,0.1);
+  z-index: 1;
+}
+
+.x7-heatmap-cell[data-level="1"] { background: rgba(98,185,255,0.15); }
+.x7-heatmap-cell[data-level="2"] { background: rgba(98,185,255,0.35); }
+.x7-heatmap-cell[data-level="3"] { background: rgba(98,185,255,0.6); }
+.x7-heatmap-cell[data-level="4"] { background: rgba(98,185,255,0.85); }
+
+.x7-heatmap-cell[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background: rgba(20,20,20,0.95);
+  color: #fff;
+  font-size: 11px;
+  line-height: 1.4;
+  white-space: nowrap;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 10;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.x7-heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  opacity: 0.4;
+  margin-top: 4px;
+}
+
+.x7-heatmap-legend-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 48rem) {
+  .x7-heatmap-cell {
+    width: 9px;
+    height: 9px;
+  }
+  .x7-heatmap-row {
+    gap: 2px;
+  }
+}
+
+/* ==========================================================================
    Homepage Infinite Scroll Feed
    ========================================================================== */
 
@@ -1512,13 +1593,32 @@ article.default > h1:first-of-type:has(~ h1) {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: .3rem;
+  gap: .25rem;
+}
+
+.x7-article-meta {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .78rem;
+}
+
+.x7-article-category {
+  display: inline-block;
+  padding: .1em .5em;
+  border-radius: 3px;
+  background: rgba(98,185,255,.12);
+  color: var(--x7-accent, #62b9ff);
+  font-weight: 500;
+  white-space: nowrap;
+  line-height: 1.5;
 }
 
 .x7-article-date {
   font-size: .78rem;
   opacity: .45;
   font-variant-numeric: tabular-nums;
+  margin-left: auto;
 }
 
 .x7-article-title {
@@ -1541,6 +1641,29 @@ article.default > h1:first-of-type:has(~ h1) {
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0;
+}
+
+.x7-article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  margin-top: .2rem;
+}
+
+.x7-article-tag {
+  display: inline-block;
+  padding: .08em .45em;
+  border-radius: 2px;
+  font-size: .72rem;
+  line-height: 1.5;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  opacity: .6;
+  transition: opacity .15s;
+}
+
+.x7-article:hover .x7-article-tag {
+  opacity: .8;
 }
 
 .x7-feed-sentinel {

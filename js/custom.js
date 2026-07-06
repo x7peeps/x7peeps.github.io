@@ -252,3 +252,201 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Homepage infinite scroll article feed
+(() => {
+  const feed = document.getElementById("x7-feed");
+  if (!feed) return;
+
+  const list = feed.querySelector(".x7-feed-list");
+  const sentinel = feed.querySelector(".x7-feed-sentinel");
+  const countEl = feed.querySelector(".x7-feed-count");
+  let page = 1;
+  let loading = false;
+  let done = false;
+  let total = 0;
+
+  const esc = (s) => {
+    const d = document.createElement("div");
+    d.textContent = s;
+    return d.innerHTML;
+  };
+
+  function createCard(a, i) {
+    const el = document.createElement("a");
+    el.href = a.url;
+    el.className = "x7-article";
+    el.style.animationDelay = i * 40 + "ms";
+    let h = "";
+    if (a.thumb) {
+      h += '<div class="x7-article-thumb"><img src="' + esc(a.thumb) + '" alt="" loading="lazy" decoding="async"></div>';
+    }
+    h += '<div class="x7-article-body">';
+    h += '<div class="x7-article-meta">';
+    h += '<span class="x7-article-category">' + esc(a.category || a.section) + "</span>";
+    h += '<span class="x7-article-date">' + esc(a.date) + "</span>";
+    h += "</div>";
+    h += '<div class="x7-article-title">' + esc(a.title) + "</div>";
+    if (a.summary) {
+      h += '<p class="x7-article-summary">' + esc(a.summary) + "</p>";
+    }
+    if (a.tags && a.tags.length) {
+      h += '<div class="x7-article-tags">';
+      a.tags.slice(0, 4).forEach(function(t) {
+        h += '<span class="x7-article-tag">' + esc(t) + "</span>";
+      });
+      h += "</div>";
+    }
+    h += "</div>";
+    el.innerHTML = h;
+    return el;
+  }
+
+  function showLoading() {
+    const el = document.createElement("div");
+    el.className = "x7-feed-loading";
+    el.id = "x7-loading";
+    el.innerHTML = "<span>加载中...</span>";
+    feed.appendChild(el);
+  }
+
+  function hideLoading() {
+    const el = document.getElementById("x7-loading");
+    if (el) el.remove();
+  }
+
+  function showEnd() {
+    const el = document.createElement("div");
+    el.className = "x7-feed-end";
+    el.textContent = "— 已展示全部文章 —";
+    feed.appendChild(el);
+  }
+
+  async function loadPage() {
+    if (loading || done) return;
+    loading = true;
+    showLoading();
+    try {
+      const url = page === 1 ? "/index.json" : "/page/" + page + "/index.json";
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error(resp.status);
+      const data = await resp.json();
+      hideLoading();
+      if (data.totalPages) total = data.totalPages;
+      const frag = document.createDocumentFragment();
+      data.pages.forEach((a, i) => frag.appendChild(createCard(a, i)));
+      list.appendChild(frag);
+      if (countEl && total) countEl.textContent = "共 " + total + " 篇";
+      page++;
+      if (!data.hasNext) {
+        done = true;
+        observer.disconnect();
+        showEnd();
+      }
+    } catch (e) {
+      hideLoading();
+      const el = document.createElement("div");
+      el.className = "x7-feed-loading";
+      el.textContent = "加载失败，请刷新重试";
+      feed.appendChild(el);
+    }
+    loading = false;
+  }
+
+  const scrollRoot = document.getElementById("R-body-inner") || null;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) loadPage();
+    },
+    { root: scrollRoot, rootMargin: "300px" }
+  );
+  observer.observe(sentinel);
+})();
+
+// Homepage GitHub-style heatmap
+(() => {
+  const container = document.getElementById("x7-heatmap");
+  if (!container) return;
+
+  const WEEKS = 53;
+  const DAYS = 7;
+
+  fetch("/heatmap.json")
+    .then((r) => {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then((data) => {
+      const days = data.days || [];
+      if (!days.length) return;
+
+      const dateMap = {};
+      let maxCount = 0;
+      days.forEach((d) => {
+        dateMap[d.date] = d.count;
+        if (d.count > maxCount) maxCount = d.count;
+      });
+
+      const lastDate = new Date(days[days.length - 1].date + "T00:00:00");
+      const lastDow = lastDate.getDay();
+
+      const totalCells = WEEKS * DAYS;
+      const padded = [];
+      for (let i = 0; i < totalCells; i++) {
+        padded.push(null);
+      }
+
+      let idx = days.length - 1;
+      for (let w = WEEKS - 1; w >= 0; w--) {
+        for (let d = DAYS - 1; d >= 0; d--) {
+          const pos = w * DAYS + d;
+          if (idx >= 0) {
+            padded[pos] = days[idx];
+            idx--;
+          }
+        }
+      }
+
+      const frag = document.createDocumentFragment();
+
+      for (let d = 0; d < DAYS; d++) {
+        const row = document.createElement("div");
+        row.className = "x7-heatmap-row";
+        for (let w = 0; w < WEEKS; w++) {
+          const cell = document.createElement("div");
+          cell.className = "x7-heatmap-cell";
+          const dayData = padded[w * DAYS + d];
+          if (dayData) {
+            const count = dayData.count;
+            let level = 0;
+            if (maxCount > 0 && count > 0) {
+              const ratio = count / maxCount;
+              if (ratio <= 0.25) level = 1;
+              else if (ratio <= 0.5) level = 2;
+              else if (ratio <= 0.75) level = 3;
+              else level = 4;
+            }
+            if (level > 0) cell.setAttribute("data-level", level);
+            const label = count > 0 ? count + " 篇文章" : "无更新";
+            cell.setAttribute("data-tip", dayData.date + " " + label);
+          } else {
+            cell.style.visibility = "hidden";
+          }
+          row.appendChild(cell);
+        }
+        frag.appendChild(row);
+      }
+
+      const legend = document.createElement("div");
+      legend.className = "x7-heatmap-legend";
+      legend.innerHTML = "少 <div class=\"x7-heatmap-legend-cell\"></div>" +
+        "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.15)\"></div>" +
+        "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.35)\"></div>" +
+        "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.6)\"></div>" +
+        "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.85)\"></div> 多";
+
+      container.appendChild(frag);
+      container.appendChild(legend);
+    })
+    .catch(() => {});
+})();
