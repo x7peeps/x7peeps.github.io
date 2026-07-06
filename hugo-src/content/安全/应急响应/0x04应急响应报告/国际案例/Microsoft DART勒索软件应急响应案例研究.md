@@ -1,0 +1,87 @@
+---
+title: "Microsoft DART勒索软件应急响应案例研究"
+date: 2026-06-20T14:00:00+08:00
+draft: false
+weight: 1
+description: "微软检测与响应团队（DART）公开的一起真实勒索软件事件完整调查报告，按MITRE ATT&CK战术逐步还原攻击链。"
+categories: ["应急响应", "国际案例"]
+tags: ["勒索软件", "Microsoft DART", "MITRE ATT&CK", "RDP暴破", "Mimikatz"]
+source: "https://github.com/MicrosoftDocs/security/blob/main/security-docs/ransomware/dart-ransomware-case-study.md"
+---
+
+## 事件概述
+
+本案例描述了微软检测与响应团队（DART）调查一起真实勒索软件事件的完整过程。该案例详细记录了攻击者从初始入侵到最终部署勒索软件的完整攻击链，按MITRE ATT&CK战术进行分类分析。
+
+## 攻击路径分析
+
+### 初始入侵
+
+勒索软件活动利用已知漏洞进行初始入口，通常使用钓鱼邮件或弱点在周长防御如设备上启用了远程桌面服务暴露在Internet上。
+
+对于此事件，DART能够找到一个设备有TCP端口3389为RDP暴露在互联网上。这允许威胁参与者执行暴力身份验证攻击并获得初始立足点。
+
+Defender for Endpoint使用威胁情报确定有大量来自已知暴力破解源的登录，并在Microsoft Defender门户中显示它们。
+
+### 侦察
+
+一旦初始访问成功，就开始环境枚举和设备发现。这些活动允许威胁参与者识别有关组织内部网络的信息，并针对关键系统，如域控制器、备份服务器、数据库和云资源。在枚举和设备发现之后，威胁参与者执行类似的活动，以识别易受攻击的用户帐户、组、权限和软件。
+
+威胁参与者利用Advanced IP Scanner（一个IP地址扫描工具）来枚举环境中使用的IP地址，并执行随后的端口扫描。通过扫描开放端口，威胁参与者发现可以从最初 compromised 的设备访问的设备。
+
+此活动被Defender for Endpoint检测到，并被用作进一步调查的妥协指标（IoC）。
+
+### 凭据窃取
+
+获得初始访问权限后，威胁参与者使用Mimikatz密码检索工具和搜索包含"password"的文件来转储密码哈希。这些操作使威胁参与者能够使用合法凭据访问其他系统。在许多情况下，威胁参与者使用这些帐户创建其他帐户，以在初始 compromised 帐户被识别和补救后保持持久性。
+
+### 横向移动
+
+跨终点的移动可以在不同组织之间变化，但威胁参与者通常利用已经存在于设备上的不同种类的远程管理软件。通过利用IT部门在日常活动中常用的远程访问方法，威胁参与者可以在很长一段时间内躲过Detection。
+
+使用Microsoft Defender for Identity，DART能够绘制出威胁参与者在设备之间的路径，显示使用的帐户和访问的帐户。
+
+### 防御规避
+
+为了避免被Detection，威胁参与者使用防御规避技术来避免Identification并在整个攻击周期中实现其目标。这些技术包括禁用或篡改防病毒产品、卸载或禁用安全产品或功能、修改防火墙规则以及使用混淆技术来隐藏入侵的工件。
+
+此事件的威胁参与者使用PowerShell禁用Windows 11和Windows 10设备上Microsoft Defender的实时保护，以及用于打开TCP端口3389并允许RDP连接的本地网络工具。这些更改降低了环境中Detection和警报对恶意活动的机会，因为他们修改了Detection和警报恶意活动的系统服务。
+
+然而，Defender for Endpoint无法从本地设备禁用，并能够检测到此活动。
+
+### 持久化
+
+持久化技术包括威胁参与者为了在安全人员努力重新控制compromised系统后保持一致访问系统的行动。
+
+此事件的威胁参与者使用Sticky Keys hack，因为它允许在Windows操作系统内部 без аутентификации执行二进制文件。然后他们使用此功能执行Command Prompt并执行进一步攻击。
+
+### 影响
+
+威胁参与者通常使用环境中已经存在的应用程序或功能来执行勒索软件加密。无论执行方法论如何，不同的勒索软件框架在部署后往往具有共同的行为模式：
+
+- 混淆威胁参与者行动
+- 建立持久性
+- 禁用Windows错误恢复和自动修复
+- 停止服务列表
+- 终止进程列表
+- 删除阴影副本和备份
+- 加密文件，可能指定自定义排除项
+- 创建勒索便笺
+
+威胁参与者为此事件利用PsExec远程启动交互式PowerShell脚本从各种远程共享。此攻击方法随机化分发点，并使最终阶段的勒索软件攻击期间的补救更加困难。
+
+## 防护建议
+
+- 禁用或限制RDP端口暴露在Internet上
+- 实施多因素认证（MFA）
+- 定期更新和补丁管理系统
+- 部署端点检测和响应（EDR）解决方案
+- 实施网络分段
+- 定期备份重要数据并离线存储
+- 对员工进行安全意识培训
+
+## 参考资源
+
+- Microsoft DART勒索软件方法最佳实践：https://github.com/MicrosoftDocs/security/blob/main/security/operations/incident-response-playbook-dart-ransomware-approach
+- 2021 Microsoft Digital Defense Report（见第10-19页）
+- Ransomware: A pervasive and ongoing threat

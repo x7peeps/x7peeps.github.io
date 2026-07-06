@@ -33,6 +33,6 @@
 ## 主题去重检查
 - [x] Palo Alto PAN-OS 主题未在现有文章中出现
 - [x] Cisco IOS/ASA/FTD 主题未在现有文章中出现
-- [ ] Ivanti Connect Secure 主题未在现有文章中出现
-- [ ] VMware vSphere/ESXi 主题未在现有文章中出现
-- [ ] Citrix NetScaler ADC/Gateway 主题未在现有文章中出现
+- [x] Ivanti Connect Secure 主题未在现有文章中出现
+- [x] VMware vSphere/ESXi 主题未在现有文章中出现
+- [x] Citrix NetScaler ADC/Gateway 主题未在现有文章中出现

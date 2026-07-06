@@ -21,19 +21,19 @@
   - [x] SubTask 3.4: Hugo 构建验证
   - [x] SubTask 3.5: Git commit --only 提交单文件并推送
 
-- [ ] Task 4: 编写第 33 篇文章 — VMware vSphere/ESXi
-  - [ ] SubTask 4.1: Grep 检查是否已存在相关文章
-  - [ ] SubTask 4.2: Task 子代理研究 VMware 攻击面 (CVE-2021-21972, CVE-2021-22005, CVE-2022-22954, CVE-2024-37085 等)
-  - [ ] SubTask 4.3: Write 写入 `VMware_vSphere_ESXi_vCenter_虚拟化平台管理面打点与CVE漏洞链利用技术.md` (weight 120)
-  - [ ] SubTask 4.4: Hugo 构建验证
-  - [ ] SubTask 4.5: Git commit --only 提交单文件并推送
+- [x] Task 4: 编写第 33 篇文章 — VMware vSphere/ESXi
+  - [x] SubTask 4.1: Grep 检查是否已存在相关文章
+  - [x] SubTask 4.2: Task 子代理研究 VMware 攻击面 (CVE-2021-21972, CVE-2021-22005, CVE-2022-22954, CVE-2024-37085 等)
+  - [x] SubTask 4.3: Write 写入 `VMware_vSphere_ESXi_vCenter_虚拟化平台管理面打点与CVE漏洞链利用技术.md` (weight 120)
+  - [x] SubTask 4.4: Hugo 构建验证
+  - [x] SubTask 4.5: Git commit --only 提交单文件并推送
 
-- [ ] Task 5: 编写第 34 篇文章 — Citrix NetScaler ADC/Gateway
-  - [ ] SubTask 5.1: Grep 检查是否已存在相关文章
-  - [ ] SubTask 5.2: Task 子代理研究 Citrix 攻击面 (CVE-2023-3519, CVE-2023-4966 Citrix Bleed, CVE-2024-6235 等)
-  - [ ] SubTask 5.3: Write 写入 `Citrix_NetScaler_ADC_Gateway_SSLVPN_缓冲区泄露_认证绕过_CVE漏洞链利用技术.md` (weight 121)
-  - [ ] SubTask 5.4: Hugo 构建验证
-  - [ ] SubTask 5.5: Git commit --only 提交单文件并推送
+- [x] Task 5: 编写第 34 篇文章 — Citrix NetScaler ADC/Gateway
+  - [x] SubTask 5.1: Grep 检查是否已存在相关文章
+  - [x] SubTask 5.2: Task 子代理研究 Citrix 攻击面 (CVE-2023-3519, CVE-2023-4966 Citrix Bleed, CVE-2024-6235 等)
+  - [x] SubTask 5.3: Write 写入 `Citrix_NetScaler_ADC_Gateway_SSLVPN_缓冲区泄露_认证绕过_CVE漏洞链利用技术.md` (weight 121)
+  - [x] SubTask 5.4: Hugo 构建验证
+  - [x] SubTask 5.5: Git commit --only 提交单文件并推送
 
 # Task Dependencies
 - Task 2 依赖 Task 1 (顺序执行，避免 Git 冲突)

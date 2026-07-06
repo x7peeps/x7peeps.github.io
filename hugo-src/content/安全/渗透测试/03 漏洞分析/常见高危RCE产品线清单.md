@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-06-24，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-07-05，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -114,6 +114,19 @@ categories: ["漏洞分析"]
 | **消息队列与流处理平台** | **Apache ActiveMQ / RabbitMQ / Apache Kafka / Apache RocketMQ**（OpenWire 反序列化 / 默认凭据 / JMX RCE） | 6+ |
 | **监控与可观测性平台** | **Grafana / Prometheus / ELK Stack / Apache Superset / Nagios**（XSS / 路径穿越 / 默认密钥 RCE） | 7+ |
 | **API 网关与服务网格** | **Kong / Apache APISIX / Spring Cloud Gateway / Istio / Envoy**（认证绕过 / 默认密钥 / serverless RCE） | 7+ |
+| **云原生存储与配置中心** | **MinIO / etcd / Consul / Nacos**（信息泄露→管理员接管 / 未授权访问 / exec RCE / 认证绕过） | 8+ |
+| **网络代理与负载均衡** | **Nginx / HAProxy / Traefik**（HTTP/2 Rapid Reset / 请求走私 / 路径穿越 / 命令注入） | 6+ |
+| **版本控制与代码托管** | **Gitea / Gogs**（路径穿越 / 认证绕过 / 密码重置 / 未授权访问） | 6+ |
+| **低代码与无代码平台** | **Appsmith / NocoDB / ToolJet**（认证绕过 / JS 沙箱逃逸 RCE / 未授权访问） | 7+ |
+| **工作流与自动化引擎** | **Apache Airflow / n8n / Camunda**（SSRF→RCE / 认证绕过 / VM2 沙箱逃逸 / Groovy RCE） | 6+ |
+| **日志与 SIEM 平台** | **Graylog / Wazuh / Security Onion**（MongoDB 注入 / Pipeline RCE / 命令注入 RCE） | 7+ |
+| **网络基础设施** | **BIND 9 / Kea DHCP / Net-SNMP / FRRouting**（DNS 缓存投毒 / DHCP DoS / SNMP 缓冲区溢出 / BGP 路由劫持） | 9+ |
+| **备份与灾难恢复** | **Veeam / Commvault / Veritas NetBackup / Acronis / Rubrik / Dell PowerProtect**（硬编码凭据 / 命令注入 / 认证绕过） | 8+ |
+| **打印与成像设备** | **Xerox / HP / Brother / Konica Minolta**（缓冲区溢出 RCE / 认证绕过 / LDAP Pass-Back） | 9+ |
+| **无线网络基础设施** | **Cisco WLC / Aruba AOS / Ruckus / Ubiquiti UniFi**（命令注入 / 认证绕过 / 硬编码 JWT / 路径遍历 RCE） | 12+ |
+| **视频监控与物理安全** | **Hikvision / Dahua / Axis / Milestone / Genetec**（命令注入 / 认证绕过 / 反序列化 RCE / 硬编码密钥） | 10+ |
+| **终端管理与 MDM** | **SCCM / Jamf Pro / Workspace ONE / MobileIron**（认证绕过 / 反序列化 RCE / 命令注入 / 路径遍历） | 8+ |
+| **身份认证与SSO平台** | **Okta / Auth0 / Ping Identity**（JWT 算法混淆 / 会话劫持 / 认证绕过 / MFA 绕过 / SSRF / XXE） | 10+ |
 
 以下产品线已有**单篇 CVE 分析文章**：
 

@@ -524,7 +524,7 @@ main#R-body-inner.home .flex-block-wrapper {
 
 main#R-body-inner.home {
   padding: 0 !important;
-  overflow-y: hidden !important;
+  overflow-y: auto !important;
 }
 
 /* Hide the default Hugo H1 title ("竹林 - BAMBOO GROVE") on the home page so our Hero section takes full focus */
@@ -555,7 +555,7 @@ main#R-body-inner.home article > h1:first-of-type {
   text-align: center;
   padding: 15vh 1.5rem;
   position: relative;
-  overflow: visible; /* Let elements break out if needed */
+  overflow: visible;
   background: transparent;
   border-bottom: none;
   margin-bottom: 0;
@@ -563,7 +563,7 @@ main#R-body-inner.home article > h1:first-of-type {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
+  min-height: 100vh;
 }
 
 /* Base grid pattern - Global level */
@@ -598,6 +598,9 @@ body::after {
   background: radial-gradient(800px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(98,185,255,0.08), transparent 50%);
   pointer-events: none;
   z-index: 0;
+  will-change: background;
+  contain: strict;
+  transform: translateZ(0);
 }
 
 .x7-hero-content {
@@ -1417,5 +1420,182 @@ article.default > h1:first-of-type:has(~ h1) {
 
   .x7-promo-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ==========================================================================
+   Homepage Infinite Scroll Feed
+   ========================================================================== */
+
+.x7-home-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.x7-feed {
+  padding: 1rem 0 3rem;
+}
+
+.x7-feed-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 0 0 1.5rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.x7-feed-title {
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .85;
+  margin: 0;
+}
+
+.x7-feed-count {
+  font-size: .82rem;
+  opacity: .5;
+  margin-left: auto;
+}
+
+.x7-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.x7-article {
+  display: flex;
+  gap: 1rem;
+  padding: .85rem 1rem;
+  border-radius: .75rem;
+  border: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.015);
+  text-decoration: none;
+  transition: border-color .18s ease, background-color .18s ease, transform .18s ease;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: x7-fade-in .35s ease forwards;
+}
+
+.x7-article:hover {
+  text-decoration: none;
+  border-color: rgba(255,255,255,.18);
+  background: rgba(255,255,255,.035);
+  transform: translateY(-1px);
+}
+
+@keyframes x7-fade-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.x7-article-thumb {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  border-radius: .5rem;
+  overflow: hidden;
+  background: rgba(255,255,255,.04);
+}
+
+.x7-article-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.x7-article-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.x7-article-date {
+  font-size: .78rem;
+  opacity: .45;
+  font-variant-numeric: tabular-nums;
+}
+
+.x7-article-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -.005em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.x7-article-summary {
+  font-size: .85rem;
+  line-height: 1.5;
+  opacity: .55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+}
+
+.x7-feed-sentinel {
+  height: 1px;
+  margin-top: .5rem;
+}
+
+.x7-feed-loading {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: .88rem;
+  opacity: .4;
+}
+
+.x7-feed-loading span {
+  display: inline-block;
+  animation: x7-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes x7-pulse {
+  0%, 100% { opacity: .3; }
+  50% { opacity: .7; }
+}
+
+.x7-feed-end {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: .82rem;
+  opacity: .3;
+}
+
+@media screen and (max-width: 48rem) {
+  .x7-home-hero {
+    padding: 4rem 1rem 4rem 1rem;
+  }
+  .x7-article-thumb {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 56px;
+  }
+  .x7-article {
+    gap: .75rem;
+    padding: .75rem .85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .x7-btn,
+  .x7-project,
+  .x7-article {
+    transition: none;
+  }
+  .x7-article {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }

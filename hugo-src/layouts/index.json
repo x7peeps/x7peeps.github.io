@@ -1,0 +1,33 @@
+{{- $allPages := where site.RegularPages "Type" "ne" "home" -}}
+{{- $paginator := .Paginate $allPages 20 -}}
+{
+  "pages": [
+    {{- range $i, $p := $paginator.Pages -}}
+      {{- if $i }},{{ end -}}
+      {{- $thumb := "" -}}
+      {{- $htmlImgs := findRE "<img[^>]*src=\"([^\"]+)\"" $p.Content 1 -}}
+      {{- if $htmlImgs -}}
+        {{- $thumb = replaceRE "<img[^>]*src=\"([^\"]+)\".*" "$1" (index $htmlImgs 0) -}}
+        {{- $thumb = replaceRE "([?#].*)$" "" $thumb -}}
+      {{- else -}}
+        {{- $mdImgs := findRE "!\\[[^\\]]*\\]\\(([^)]+)" $p.RawContent 1 -}}
+        {{- if $mdImgs -}}
+          {{- $thumb = replaceRE "!\\[[^\\]]*\\]\\(([^)]+).*" "$1" (index $mdImgs 0) -}}
+          {{- $thumb = replaceRE "([?#].*)$" "" $thumb -}}
+        {{- end -}}
+      {{- end -}}
+      {
+        "title": {{ $p.Title | jsonify }},
+        "url": {{ $p.RelPermalink | jsonify }},
+        "date": {{ $p.Date.Format "2006-01-02" | jsonify }},
+        "summary": {{ ($p.Plain | truncate 120) | jsonify }}
+        {{- if $thumb -}}
+        ,"thumb": {{ $thumb | jsonify }}
+        {{- end -}}
+      }
+    {{- end }}
+  ],
+  "currentPage": {{ $paginator.PageNumber }},
+  "totalPages": {{ $paginator.TotalPages }},
+  "hasNext": {{ $paginator.HasNext }}
+}

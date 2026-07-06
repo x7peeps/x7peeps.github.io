@@ -15,4 +15,12 @@ description: "安全研究 / 工具开发 / 取证与攻防知识库。把复杂
       <p class="x7-hero-mission">把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。</p>
     </div>
   </header>
+  <section class="x7-feed" id="x7-feed">
+    <div class="x7-feed-header">
+      <h2 class="x7-feed-title">最近更新</h2>
+      <span class="x7-feed-count"></span>
+    </div>
+    <div class="x7-feed-list"></div>
+    <div class="x7-feed-sentinel"></div>
+  </section>
 </div>
