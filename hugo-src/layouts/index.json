@@ -22,7 +22,7 @@
         "date": {{ $p.Date.Format "2006-01-02" | jsonify }},
         "summary": {{ ($p.Plain | truncate 120) | jsonify }},
         "section": {{ $p.Section | jsonify }},
-        "category": {{ $p.Section | jsonify }}
+        "category": {{ index $p.Params.categories 0 | default $p.Section | jsonify }}
         {{- if $thumb -}}
         ,"thumb": {{ $thumb | jsonify }}
         {{- end -}}
