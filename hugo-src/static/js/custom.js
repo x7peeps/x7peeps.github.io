@@ -367,6 +367,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
 // Homepage GitHub-style heatmap
 document.addEventListener("DOMContentLoaded", function() {
+  if (document.getElementById("x7-heatmap")) return;
+
   var raw = window.__heatmapDays;
   if (!raw) return;
 
@@ -374,11 +376,12 @@ document.addEventListener("DOMContentLoaded", function() {
   try { days = typeof raw === "string" ? JSON.parse(raw) : raw; } catch (e) { return; }
   if (!days || !days.length) return;
 
-  const WEEKS = 53;
-  const DAYS = 7;
+  var heroTitle = document.querySelector(".x7-hero-title");
+  if (!heroTitle) return;
 
-  const heroContent = document.querySelector(".x7-hero-content");
-  if (!heroContent) return;
+  var WEEKS = 26;
+  var DAYS = 7;
+  var insertTarget = document.querySelector(".x7-hero-mission") || heroTitle;
 
   const container = document.createElement("div");
   container.className = "x7-heatmap";
@@ -436,5 +439,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
   container.appendChild(frag);
   container.appendChild(legend);
-  heroContent.appendChild(container);
+  insertTarget.parentNode.insertBefore(container, insertTarget.nextSibling);
 });
