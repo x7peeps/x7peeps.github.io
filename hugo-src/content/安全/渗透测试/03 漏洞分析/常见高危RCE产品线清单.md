@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-07-06，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-07-08，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -130,6 +130,9 @@ categories: ["漏洞分析"]
 | **邮件安全网关与反垃圾邮件** | **Barracuda ESG / Proofpoint PPS / FortiMail / Cisco SEG**（tar命令注入 / eval注入 / 栈缓冲区溢出 / 路径遍历） | 10 |
 | **LDAP 目录服务与身份存储** | **OpenLDAP / 389 Directory Server / FreeIPA / Windows LDAP**（LDAPBleed UAF RCE / 属性解引用绕过 / PKI Admin Cert绕过） | 11 |
 | **虚拟化与超融合平台** | **Proxmox VE / Nutanix / Xen/XCP-ng / QEMU**（沙箱逃逸 / 命令注入 / VM→Dom0提权 / VNC缓冲区溢出） | 10 |
+| **NAS与网络存储设备** | **QNAP QTS/QuTS hero / Synology DSM/SRM / Western Digital My Cloud**（认证绕过 / 命令注入 / 路径遍历 RCE / 勒索软件利用链） | 10+ |
+| **家用与SMB路由器** | **Netgear / TP-Link / D-Link**（认证绕过 / 命令注入 / 缓冲区溢出 / 僵尸网络利用） | 10+ |
+| **智能家居与楼宇控制平台** | **Crestron / Hubitat Elevation / Tuya/Sonoff**（认证绕过 / 默认凭据 / MQTT协议缺陷 / 固件签名绕过） | 12+ |
 
 以下产品线已有**单篇 CVE 分析文章**：
 
