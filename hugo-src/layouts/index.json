@@ -1,4 +1,4 @@
-{{- $allPages := where site.RegularPages "Type" "ne" "home" -}}
+{{- $allPages := (where site.RegularPages "Type" "ne" "home").ByDate.Reverse -}}
 {{- $paginator := .Paginate $allPages 20 -}}
 {
   "pages": [
@@ -16,13 +16,14 @@
           {{- $thumb = replaceRE "([?#].*)$" "" $thumb -}}
         {{- end -}}
       {{- end -}}
+      {{- $cat := index $p.Params.categories 0 | default (index (split $p.File.Path "/") 1) -}}
       {
         "title": {{ $p.Title | jsonify }},
         "url": {{ $p.RelPermalink | jsonify }},
         "date": {{ $p.Date.Format "2006-01-02" | jsonify }},
         "summary": {{ ($p.Plain | truncate 120) | jsonify }},
         "section": {{ $p.Section | jsonify }},
-        "category": {{ index $p.Params.categories 0 | default $p.Section | jsonify }}
+        "category": {{ $cat | jsonify }}
         {{- if $thumb -}}
         ,"thumb": {{ $thumb | jsonify }}
         {{- end -}}
