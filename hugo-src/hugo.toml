@@ -6,6 +6,7 @@ hasCJKLanguage = true
 disablePathToLower = true
 preserveTaxonomyNames = true
 enableRobotsTXT = true
+enableGitInfo = true
 
 [markup]
   [markup.goldmark]
@@ -35,6 +36,7 @@ hideAuthorDate = false
 
 [frontmatter]
 date = ["date", ":fileModTime", ":default"]
+lastmod = [":git", "lastmod", "date", ":fileModTime", ":default"]
 
 hideAuthorName = true
 hideAuthorEmail = true

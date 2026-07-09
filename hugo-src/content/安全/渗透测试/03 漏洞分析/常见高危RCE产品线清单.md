@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-07-08，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-07-09，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -133,6 +133,9 @@ categories: ["漏洞分析"]
 | **NAS与网络存储设备** | **QNAP QTS/QuTS hero / Synology DSM/SRM / Western Digital My Cloud**（认证绕过 / 命令注入 / 路径遍历 RCE / 勒索软件利用链） | 10+ |
 | **家用与SMB路由器** | **Netgear / TP-Link / D-Link**（认证绕过 / 命令注入 / 缓冲区溢出 / 僵尸网络利用） | 10+ |
 | **智能家居与楼宇控制平台** | **Crestron / Hubitat Elevation / Tuya/Sonoff**（认证绕过 / 默认凭据 / MQTT协议缺陷 / 固件签名绕过） | 12+ |
+| **浏览器与文档处理软件** | **LibreOffice / OpenOffice / Mozilla Firefox / Thunderbird**（宏执行绕过 / UAF沙箱逃逸 / JIT类型混淆 / libwebp堆溢出） | 17+ |
+| **企业VPN与远程接入平台** | **OpenVPN / WireGuard / Citrix NetScaler ADC/Gateway**（缓冲区溢出 / 认证绕过 / 会话劫持 / 未授权RCE） | 17 |
+| **网络监控与管理平台** | **Nagios XI/Core / Cacti / ManageEngine OpManager**（SQL注入RCE / 命令注入 / 认证绕过 / 反序列化） | 19 |
 
 以下产品线已有**单篇 CVE 分析文章**：
 

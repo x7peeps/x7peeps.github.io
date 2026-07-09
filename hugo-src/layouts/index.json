@@ -1,4 +1,4 @@
-{{- $allPages := (where site.RegularPages "Type" "ne" "home").ByDate.Reverse -}}
+{{- $allPages := (where site.RegularPages "Type" "ne" "home").ByLastmod.Reverse -}}
 {{- $paginator := .Paginate $allPages 20 -}}
 {
   "pages": [
@@ -20,7 +20,7 @@
       {
         "title": {{ $p.Title | jsonify }},
         "url": {{ $p.RelPermalink | jsonify }},
-        "date": {{ $p.Date.Format "2006-01-02" | jsonify }},
+        "date": {{ $p.Lastmod.Format "2006-01-02" | jsonify }},
         "summary": {{ ($p.Plain | truncate 120) | jsonify }},
         "section": {{ $p.Section | jsonify }},
         "category": {{ $cat | jsonify }}
