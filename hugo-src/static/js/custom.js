@@ -277,11 +277,7 @@ window.addEventListener('DOMContentLoaded', function() {
     el.href = a.url;
     el.className = "x7-article";
     el.style.animationDelay = i * 40 + "ms";
-    let h = "";
-    if (a.thumb) {
-      h += '<div class="x7-article-thumb"><img src="' + esc(a.thumb) + '" alt="" loading="lazy" decoding="async"></div>';
-    }
-    h += '<div class="x7-article-body">';
+    let h = '<div class="x7-article-body">';
     h += '<div class="x7-article-title-row">';
     h += '<span class="x7-article-title">' + esc(a.title) + "</span>";
     h += '<span class="x7-article-category">' + esc(a.category || a.section) + "</span>";

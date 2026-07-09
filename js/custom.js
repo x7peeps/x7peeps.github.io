@@ -277,26 +277,24 @@ window.addEventListener('DOMContentLoaded', function() {
     el.href = a.url;
     el.className = "x7-article";
     el.style.animationDelay = i * 40 + "ms";
-    let h = "";
-    if (a.thumb) {
-      h += '<div class="x7-article-thumb"><img src="' + esc(a.thumb) + '" alt="" loading="lazy" decoding="async"></div>';
-    }
-    h += '<div class="x7-article-body">';
-    h += '<div class="x7-article-meta">';
+    let h = '<div class="x7-article-body">';
+    h += '<div class="x7-article-title-row">';
+    h += '<span class="x7-article-title">' + esc(a.title) + "</span>";
     h += '<span class="x7-article-category">' + esc(a.category || a.section) + "</span>";
-    h += '<span class="x7-article-date">' + esc(a.date) + "</span>";
     h += "</div>";
-    h += '<div class="x7-article-title">' + esc(a.title) + "</div>";
     if (a.summary) {
       h += '<p class="x7-article-summary">' + esc(a.summary) + "</p>";
     }
+    h += '<div class="x7-article-meta-row">';
     if (a.tags && a.tags.length) {
-      h += '<div class="x7-article-tags">';
+      h += '<span class="x7-article-tags">';
       a.tags.slice(0, 4).forEach(function(t) {
         h += '<span class="x7-article-tag">' + esc(t) + "</span>";
       });
-      h += "</div>";
+      h += "</span>";
     }
+    h += '<span class="x7-article-date">' + esc(a.date) + "</span>";
+    h += "</div>";
     h += "</div>";
     el.innerHTML = h;
     return el;
@@ -364,89 +362,78 @@ window.addEventListener('DOMContentLoaded', function() {
 })();
 
 // Homepage GitHub-style heatmap
-(() => {
-  const container = document.getElementById("x7-heatmap");
-  if (!container) return;
+document.addEventListener("DOMContentLoaded", function() {
+  if (document.getElementById("x7-heatmap")) return;
 
-  const WEEKS = 53;
-  const DAYS = 7;
+  var raw = window.__heatmapDays;
+  if (!raw) return;
 
-  fetch("/heatmap.json")
-    .then((r) => {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    })
-    .then((data) => {
-      const days = data.days || [];
-      if (!days.length) return;
+  var days;
+  try { days = typeof raw === "string" ? JSON.parse(raw) : raw; } catch (e) { return; }
+  if (!days || !days.length) return;
 
-      const dateMap = {};
-      let maxCount = 0;
-      days.forEach((d) => {
-        dateMap[d.date] = d.count;
-        if (d.count > maxCount) maxCount = d.count;
-      });
+  var heroTitle = document.querySelector(".x7-hero-title");
+  if (!heroTitle) return;
 
-      const lastDate = new Date(days[days.length - 1].date + "T00:00:00");
-      const lastDow = lastDate.getDay();
+  var WEEKS = 26;
+  var DAYS = 7;
+  var insertTarget = document.querySelector(".x7-hero-mission") || heroTitle;
 
-      const totalCells = WEEKS * DAYS;
-      const padded = [];
-      for (let i = 0; i < totalCells; i++) {
-        padded.push(null);
-      }
+  const container = document.createElement("div");
+  container.className = "x7-heatmap";
+  container.id = "x7-heatmap";
 
-      let idx = days.length - 1;
-      for (let w = WEEKS - 1; w >= 0; w--) {
-        for (let d = DAYS - 1; d >= 0; d--) {
-          const pos = w * DAYS + d;
-          if (idx >= 0) {
-            padded[pos] = days[idx];
-            idx--;
-          }
+  let maxCount = 0;
+  days.forEach((d) => { if (d.count > maxCount) maxCount = d.count; });
+
+  const totalCells = WEEKS * DAYS;
+  const padded = new Array(totalCells).fill(null);
+  let idx = days.length - 1;
+  for (let w = WEEKS - 1; w >= 0; w--) {
+    for (let d = DAYS - 1; d >= 0; d--) {
+      const pos = w * DAYS + d;
+      if (idx >= 0) { padded[pos] = days[idx]; idx--; }
+    }
+  }
+
+  const frag = document.createDocumentFragment();
+  for (let d = 0; d < DAYS; d++) {
+    const row = document.createElement("div");
+    row.className = "x7-heatmap-row";
+    for (let w = 0; w < WEEKS; w++) {
+      const cell = document.createElement("div");
+      cell.className = "x7-heatmap-cell";
+      const dayData = padded[w * DAYS + d];
+      if (dayData) {
+        const count = dayData.count;
+        let level = 0;
+        if (maxCount > 0 && count > 0) {
+          const ratio = count / maxCount;
+          if (ratio <= 0.25) level = 1;
+          else if (ratio <= 0.5) level = 2;
+          else if (ratio <= 0.75) level = 3;
+          else level = 4;
         }
+        if (level > 0) cell.setAttribute("data-level", level);
+        const label = count > 0 ? count + " 篇文章" : "无更新";
+        cell.setAttribute("data-tip", dayData.date + " " + label);
+      } else {
+        cell.style.visibility = "hidden";
       }
+      row.appendChild(cell);
+    }
+    frag.appendChild(row);
+  }
 
-      const frag = document.createDocumentFragment();
+  const legend = document.createElement("div");
+  legend.className = "x7-heatmap-legend";
+  legend.innerHTML = "少 <div class=\"x7-heatmap-legend-cell\"></div>" +
+    "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.15)\"></div>" +
+    "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.35)\"></div>" +
+    "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.6)\"></div>" +
+    "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.85)\"></div> 多";
 
-      for (let d = 0; d < DAYS; d++) {
-        const row = document.createElement("div");
-        row.className = "x7-heatmap-row";
-        for (let w = 0; w < WEEKS; w++) {
-          const cell = document.createElement("div");
-          cell.className = "x7-heatmap-cell";
-          const dayData = padded[w * DAYS + d];
-          if (dayData) {
-            const count = dayData.count;
-            let level = 0;
-            if (maxCount > 0 && count > 0) {
-              const ratio = count / maxCount;
-              if (ratio <= 0.25) level = 1;
-              else if (ratio <= 0.5) level = 2;
-              else if (ratio <= 0.75) level = 3;
-              else level = 4;
-            }
-            if (level > 0) cell.setAttribute("data-level", level);
-            const label = count > 0 ? count + " 篇文章" : "无更新";
-            cell.setAttribute("data-tip", dayData.date + " " + label);
-          } else {
-            cell.style.visibility = "hidden";
-          }
-          row.appendChild(cell);
-        }
-        frag.appendChild(row);
-      }
-
-      const legend = document.createElement("div");
-      legend.className = "x7-heatmap-legend";
-      legend.innerHTML = "少 <div class=\"x7-heatmap-legend-cell\"></div>" +
-        "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.15)\"></div>" +
-        "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.35)\"></div>" +
-        "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.6)\"></div>" +
-        "<div class=\"x7-heatmap-legend-cell\" style=\"background:rgba(98,185,255,0.85)\"></div> 多";
-
-      container.appendChild(frag);
-      container.appendChild(legend);
-    })
-    .catch(() => {});
-})();
+  container.appendChild(frag);
+  container.appendChild(legend);
+  insertTarget.parentNode.insertBefore(container, insertTarget.nextSibling);
+});
