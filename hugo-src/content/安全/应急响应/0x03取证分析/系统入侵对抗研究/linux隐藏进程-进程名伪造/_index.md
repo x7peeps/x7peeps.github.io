@@ -1,7 +1,7 @@
 ---
 title: "linux隐藏进程-进程名伪造"
-date: 2020-02-20T23:31:00+08:00
-tags: 红蓝对抗,CobaltStrike
+date: 2026-03-07T00:00:00+08:00
+tags: [红蓝对抗, CobaltStrike]
 ---
 
 > 分子实验室 https://molecule-labs.com/

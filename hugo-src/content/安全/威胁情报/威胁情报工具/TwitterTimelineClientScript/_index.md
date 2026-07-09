@@ -1,7 +1,7 @@
 ---
 title: TwitterTimelineClientScript
-date: 2022-06-28T12:03:49+08:00
-tags: python,twitterapi
+date: 2024-07-16T00:00:00+08:00
+tags: [python, twitterapi]
 ---
 
 # TwitterTimelineClientScript

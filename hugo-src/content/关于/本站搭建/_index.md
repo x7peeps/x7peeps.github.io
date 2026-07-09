@@ -3,7 +3,7 @@ title: "本站搭建"
 menu: 
   main: 
     parent: "关于"
-tags: hugo
+tags: [hugo]
 ---
 
 # 本站搭建

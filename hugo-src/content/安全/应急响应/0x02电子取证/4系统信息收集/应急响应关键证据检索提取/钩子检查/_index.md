@@ -1,7 +1,7 @@
 ---
 title: 钩子检查
 tag: 关键证据检索提取;
-date: 2021-09-23T10:34:00+08:00
+date: 2025-06-14T00:00:00+08:00
 ---
 Hook分为应用层（Ring3）Hook和内核层（Ring0）Hook，应用层Hook适用于x86和x64，而内核层Hook一般仅在x86平台适用，因为从Windows Vista的64版本开始引入的Patch Guard技术极大地限制了Windows x64内核挂钩的使用。
 

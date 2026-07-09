@@ -1,7 +1,7 @@
 ---
 title: CS X86 payload分析混淆加密
-date: 2020-02-20T23:31:00+08:00
-tags: 红蓝对抗,CobaltStrike
+date: 2025-07-19T00:00:00+08:00
+tags: [红蓝对抗, CobaltStrike]
 ---
 # Cobalt Strike – Bypassing Windows Defender with Obfuscation
 ![](20191217220720.png)

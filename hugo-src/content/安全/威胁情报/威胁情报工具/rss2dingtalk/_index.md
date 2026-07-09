@@ -1,7 +1,7 @@
 ---
 title: rss2dingtalk
-date: 2022-03-24T12:03:49+08:00
-tags: python,爬虫
+date: 2026-01-01T00:00:00+08:00
+tags: [python, 爬虫]
 ---
 
 

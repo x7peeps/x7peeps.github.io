@@ -1,6 +1,6 @@
 ---
 title: "ChatGPT微信机器人搭建"
-date: 2023-08-05T20:00:00+08:00
+date: 2025-05-06T00:00:00+08:00
 draft: false
 weight: 5
 description: "使用chatgpt-on-wechat项目搭建对接微信的ChatGPT问答机器人。"

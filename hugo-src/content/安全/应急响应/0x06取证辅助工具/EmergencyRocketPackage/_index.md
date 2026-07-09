@@ -1,7 +1,7 @@
 ---
 title: EmergencyRocketPackage
-date: 2022-03-24T12:03:49+08:00
-tags: 应急响应
+date: 2025-10-11T00:00:00+08:00
+tags: [应急响应]
 ---
 
 # EmergencyRocketPackage

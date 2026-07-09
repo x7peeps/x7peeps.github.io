@@ -1657,6 +1657,7 @@ article.default > h1:first-of-type:has(~ h1) {
   display: flex;
   align-items: center;
   gap: .5rem;
+  justify-content: space-between;
 }
 
 .x7-article-meta-row .x7-article-tags {
@@ -1666,6 +1667,7 @@ article.default > h1:first-of-type:has(~ h1) {
 
 .x7-article-meta-row .x7-article-date {
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .x7-article-tags {

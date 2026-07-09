@@ -1,6 +1,6 @@
 ---
 title: "Claude注册与配置"
-date: 2023-08-05T21:00:00+08:00
+date: 2025-05-05T00:00:00+08:00
 draft: false
 weight: 5
 description: "通过Slack注册和使用Claude的详细步骤。"

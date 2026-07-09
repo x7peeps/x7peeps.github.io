@@ -1,7 +1,7 @@
 ---
 title: HEDnsExtractor
 date: 2023-08-08
-tags: HEDnsExtractor,pentest
+tags: [HEDnsExtractor, pentest]
 menu: 
   main: 
     parent: "信息收集工具"

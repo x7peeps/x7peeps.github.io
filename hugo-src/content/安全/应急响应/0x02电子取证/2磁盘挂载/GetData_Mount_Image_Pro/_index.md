@@ -1,6 +1,6 @@
 ---
 title: GetData Mount Image Pro
-date: 2021-03-13T20:46:25+08:00
+date: 2025-11-03T00:00:00+08:00
 menu: 
   main: 
     parent: "2磁盘挂载"

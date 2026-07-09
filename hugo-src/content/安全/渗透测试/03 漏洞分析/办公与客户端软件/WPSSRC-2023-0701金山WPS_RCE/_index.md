@@ -1,7 +1,7 @@
 ---
 title: WPSSRC-2023-0701金山WPS_RCE
 tabs: wps,rce,漏洞复现
-date: 2020-04-07T23:55:00+08:00
+date: 2024-03-26T00:00:00+08:00
 menu: 
   main: 
     parent: "03 漏洞分析"
