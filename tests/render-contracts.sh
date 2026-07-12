@@ -53,6 +53,9 @@ if [[ "$contract_phase" == "digital-nocturne" ]]; then
   test -f "$output_dir/index.json"
   test -f "$source_dir/static/js/x7/search-core.js"
   test -f "$source_dir/static/js/x7/search-dialog.js"
+  test -f "$source_dir/static/js/x7/constellation.js"
+  test -f "$output_dir/js/x7/constellation.js"
+  grep -q 'import("./constellation.js")' "$source_dir/static/js/x7/bootstrap.js"
   node - "$search_index" "$homepage" "$output_dir" <<'NODE'
 const fs = require("node:fs");
 const path = require("node:path");
