@@ -39,6 +39,15 @@
   .x7-chapter-progress-text { margin: .35rem 0 .8rem; color: var(--x7-muted); font-size: .72rem; }
   .x7-chapter-trigger { display: none; }
   .x7-chapter-trigger__progress { font-size: .62rem; }
+
+  .x7-related { max-width: var(--x7-prose); margin: 3rem auto 1rem; padding-top: 1.5rem; border-top: 1px solid var(--x7-border); }
+  .x7-related[hidden] { display: none; }
+  .x7-related h2 { margin: .35rem 0 1rem; }
+  .x7-related__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin: 0; padding: 0; list-style: none; }
+  .x7-related__grid a { display: flex; min-height: 100%; box-sizing: border-box; flex-direction: column; gap: .55rem; padding: 1rem; border: 1px solid var(--x7-border); border-radius: .45rem; background: var(--x7-panel); color: var(--x7-paper); }
+  .x7-related__grid a:hover { border-color: var(--x7-ion); }
+  .x7-related__title { font-weight: 650; line-height: 1.4; }
+  .x7-related__meta { color: var(--x7-muted); font-size: .75rem; }
 }
 
 @media screen and (max-width: 68rem) {
@@ -85,6 +94,10 @@
     color: var(--x7-paper);
     font-size: 1.5rem;
   }
+}
+
+@media screen and (max-width: 42rem) {
+  .x7-related__grid { grid-template-columns: 1fr; }
 }
 
 @media screen and (prefers-reduced-motion: reduce) {

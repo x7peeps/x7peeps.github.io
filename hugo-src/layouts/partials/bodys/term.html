@@ -1,0 +1,30 @@
+{{- if eq .Data.Plural "tags" -}}
+<article class="x7-taxonomy x7-taxonomy-results" data-x7-taxonomy-results>
+  <header class="x7-taxonomy__header">
+    <p class="x7-system-label">TAG / {{ .Data.Term }}</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ len .Pages }} 篇文章，按最近更新排序。</p>
+  </header>
+  <ol class="x7-taxonomy-results__list">
+    {{- range .Pages.ByLastmod.Reverse }}
+    <li>
+      <article class="x7-taxonomy-result" data-x7-taxonomy-result>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <p class="x7-taxonomy-result__meta">
+          <span data-x7-result-section>{{ .Section | default "知识库" }}</span>
+          <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+        </p>
+      </article>
+    </li>
+    {{- end }}
+  </ol>
+</article>
+{{- else -}}
+<article>
+  <header class="headline"></header>
+  {{- $title := partial "title.gotmpl" (dict "page" .) }}
+  <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
+  {{ partial "shortcodes/term.html" (dict "page" . "term" .) }}
+  <footer class="footline"></footer>
+</article>
+{{- end -}}

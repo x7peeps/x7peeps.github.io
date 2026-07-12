@@ -20,6 +20,7 @@
     </div>
     {{ partial "x7/chapter-radar.html" . }}
   </div>
+  {{ partial "x7/related-content.html" . }}
   {{- with .GetTerms "categories" }}
   <footer class="footline x7-article__footer">{{ partial "term-list.html" (dict "page" $ "taxonomy" "categories" "icon" "layer-group") }}</footer>
   {{- end }}

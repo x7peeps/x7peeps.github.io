@@ -1,0 +1,29 @@
+{{- if and (eq .Data.Plural "tags") (eq .Kind "term") -}}
+  {{- partial "bodys/term.html" . -}}
+{{- else if eq .Data.Plural "tags" -}}
+<article class="x7-taxonomy x7-tag-index" data-x7-tag-index>
+  <header class="x7-taxonomy__header">
+    <p class="x7-system-label">KNOWLEDGE INDEX</p>
+    <h1>{{ .Title }}</h1>
+    <p>按主题探索知识库。</p>
+  </header>
+  <ul class="x7-tag-index__grid">
+    {{- range .Data.Terms.Alphabetical }}
+    <li>
+      <a href="{{ .Page.RelPermalink }}">
+        <span>{{ .Page.LinkTitle }}</span>
+        <span class="x7-tag-index__count" data-x7-tag-count>{{ .Count }}</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</article>
+{{- else -}}
+<article>
+  <header class="headline"></header>
+  {{- $title := partial "title.gotmpl" (dict "page" .) }}
+  <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
+  {{ partial "shortcodes/taxonomy.html" (dict "page" . "taxonomy" .) }}
+  <footer class="footline"></footer>
+</article>
+{{- end -}}

@@ -28,3 +28,17 @@
   white-space: nowrap;
   border: 0;
 }
+
+@media screen {
+  .x7-taxonomy { width: min(100%, var(--x7-prose)); margin-inline: auto; }
+  .x7-taxonomy__header { margin-bottom: 1.75rem; padding-bottom: 1rem; border-bottom: 1px solid var(--x7-border); }
+  .x7-taxonomy__header h1 { margin: .35rem 0; }
+  .x7-taxonomy__header p:last-child { color: var(--x7-muted); }
+  .x7-tag-index__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .65rem; margin: 0; padding: 0; list-style: none; }
+  .x7-tag-index__grid a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .75rem .9rem; border: 1px solid var(--x7-border); border-radius: .4rem; background: var(--x7-panel); }
+  .x7-tag-index__count { min-width: 1.8rem; border-radius: 999px; padding: .1rem .4rem; background: var(--x7-steel); color: var(--x7-muted); text-align: center; font-size: .72rem; }
+  .x7-taxonomy-results__list { margin: 0; padding: 0; list-style: none; }
+  .x7-taxonomy-result { padding: 1rem 0; border-bottom: 1px solid var(--x7-border); }
+  .x7-taxonomy-result h2 { margin: 0 0 .55rem; font-size: 1.1rem; }
+  .x7-taxonomy-result__meta { display: flex; gap: .75rem; margin: 0; color: var(--x7-muted); font-size: .76rem; }
+}

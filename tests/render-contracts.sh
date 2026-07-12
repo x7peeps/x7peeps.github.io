@@ -85,6 +85,54 @@ const headings = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)]
   .map((match) => match[1].replace(/<[^>]+>/g, "").trim());
 if (!headings.includes("1. 介绍")) process.exit(1);
 NODE
+
+  tags_index="$output_dir/tags/index.html"
+  test -f "$tags_index"
+  grep -q 'data-x7-tag-index' "$tags_index"
+
+  tagged_article="$output_dir/安全/渗透测试/04-渗透攻击/PostgreSQL_COPY_lo_import_dblink_PL_Python_RCE_文件读写与提权利用技术/index.html"
+  tagless_article="$article"
+  test -f "$tagged_article"
+  test -f "$tagless_article"
+
+  node - "$output_dir" "$tags_index" "$tagged_article" "$tagless_article" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+
+const [root, tagIndexPath, taggedPath, taglessPath] = process.argv.slice(2);
+const read = file => fs.readFileSync(file, "utf8");
+const index = read(tagIndexPath);
+if (!/<h1\b[^>]*>[^<]+<\/h1>/.test(index)) process.exit(1);
+const terms = [...index.matchAll(/<a\b[^>]*href=([^\s>]+)[^>]*><span>[^<]*<\/span>\s*<span\b[^>]*data-x7-tag-count[^>]*>(\d+)<\/span>/g)];
+if (!terms.length || terms.some(([, href, count]) => !href.startsWith("/tags/") || Number(count) < 1)) process.exit(1);
+
+const termHref = terms.find(([, , count]) => Number(count) > 1)?.[1] ?? terms[0][1];
+const termFile = path.join(root, decodeURI(termHref.replace(/^\//, "")), "index.html");
+if (!fs.existsSync(termFile)) process.exit(1);
+const term = read(termFile);
+if (!/data-x7-taxonomy-results/.test(term) || !/<h1\b[^>]*>[^<]+<\/h1>/.test(term)) process.exit(1);
+if (!term.includes("data-x7-taxonomy-result") || !term.includes("data-x7-result-section")) process.exit(1);
+const dates = [...term.matchAll(/<time\b[^>]*datetime=([^\s>]+)[^>]*>/g)].map(([, date]) => Date.parse(date));
+if (!dates.length) process.exit(1);
+if (dates.some(Number.isNaN) || dates.some((date, i) => i && date > dates[i - 1])) process.exit(1);
+
+const tagged = { file: taggedPath, html: read(taggedPath) };
+const tagless = { file: taglessPath, html: read(taglessPath) };
+if (![tagged, tagless].every(article => article.html.includes("data-x7-article-shell"))) process.exit(1);
+if ([...tagged.html.matchAll(/<nav\b[^>]*class=x7-tag-chips\b/g)].length !== 1) process.exit(1);
+if ([...tagless.html.matchAll(/<nav\b[^>]*class=x7-tag-chips\b/g)].length) process.exit(1);
+for (const article of [tagged, tagless]) {
+  const hookStart = article.html.indexOf("<section", article.html.indexOf("data-x7-related-content") - 200);
+  const hookEnd = article.html.indexOf("</section>", hookStart);
+  const hook = hookStart >= 0 && hookEnd >= 0 ? article.html.slice(hookStart, hookEnd + 10) : "";
+  if (!hook) process.exit(1);
+  const links = [...hook.matchAll(/<a\b[^>]*data-x7-related-link[^>]*href=([^\s>]+)/g)].map(match => match[1]);
+  const current = article.html.match(/<body\b[^>]*data-origin=([^\s>]+)/)?.[1];
+  if (!current) process.exit(1);
+  if (links.length > 4 || new Set(links).size !== links.length || links.includes(current)) process.exit(1);
+  if (!links.length && /<h2\b|<ul\b/.test(hook)) process.exit(1);
+}
+NODE
 elif [[ "$contract_phase" != "baseline" ]]; then
   echo "Unknown X7_RENDER_CONTRACT_PHASE: $contract_phase" >&2
   exit 2

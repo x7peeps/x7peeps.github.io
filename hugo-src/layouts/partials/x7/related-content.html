@@ -1,0 +1,36 @@
+{{- $current := . -}}
+{{- $currentTags := .Params.tags | default (slice) -}}
+{{- $ranked := slice -}}
+{{- if $currentTags -}}
+  {{- range site.RegularPages -}}
+    {{- if ne .RelPermalink $current.RelPermalink -}}
+      {{- $shared := len (intersect $currentTags (.Params.tags | default (slice))) -}}
+      {{- if gt $shared 0 -}}
+        {{- $sharedRank := sub 999 $shared -}}
+        {{- $sectionRank := 1 -}}
+        {{- if eq .Section $current.Section }}{{ $sectionRank = 0 }}{{ end -}}
+        {{- $timeRank := sub 9999999999 .Lastmod.Unix -}}
+        {{- $key := printf "%03d-%d-%010d-%s" $sharedRank $sectionRank $timeRank .RelPermalink -}}
+        {{- $ranked = $ranked | append (dict "key" $key "page" .) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $ranked = sort $ranked "key" "asc" -}}
+<section class="x7-related{{ if not $ranked }} x7-related--empty{{ end }}" data-x7-related-content{{ if not $ranked }} hidden{{ end }}>
+  {{- if $ranked }}
+  <p class="x7-system-label">RELATED SIGNALS</p>
+  <h2>继续探索</h2>
+  <ul class="x7-related__grid">
+    {{- range first 4 $ranked }}
+    {{- $page := .page }}
+    <li>
+      <a data-x7-related-link href="{{ $page.RelPermalink }}">
+        <span class="x7-related__title">{{ $page.LinkTitle }}</span>
+        <span class="x7-related__meta">{{ $page.Section | default "知识库" }} · {{ $page.Lastmod.Format "2006-01-02" }}</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+  {{- end }}
+</section>
