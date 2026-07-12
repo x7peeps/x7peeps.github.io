@@ -133,6 +133,28 @@ for (const article of [tagged, tagless]) {
   if (!links.length && /<h2\b|<ul\b/.test(hook)) process.exit(1);
 }
 NODE
+
+  categories_index="$output_dir/categories/index.html"
+  test -f "$categories_index"
+  node - "$output_dir" "$categories_index" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+const [root, indexPath] = process.argv.slice(2);
+const index = fs.readFileSync(indexPath, "utf8");
+const main = index.slice(index.indexOf("<main"), index.indexOf("</main>"));
+const termLinks = [...main.matchAll(/href=(\/categories\/[^\s>]+\/index\.html)/g)].map(match => match[1]);
+if (!termLinks.length || !main.includes("children-type-group")) process.exit(1);
+
+const termHref = termLinks[0];
+const termPath = path.join(root, decodeURI(termHref.slice(1)));
+const term = fs.readFileSync(termPath, "utf8");
+const termMain = term.slice(term.indexOf("<main"), term.indexOf("</main>"));
+const pageLinks = [...termMain.matchAll(/href=(\/[^\s>]+\/index\.html)/g)]
+  .map(match => match[1])
+  .filter(href => !href.startsWith("/categories/"));
+if (!pageLinks.length || !termMain.includes("children-type-group") || !termMain.includes("<li><p><a")) process.exit(1);
+if ([...termMain.matchAll(/href=\/categories\//g)].length) process.exit(1);
+NODE
 elif [[ "$contract_phase" != "baseline" ]]; then
   echo "Unknown X7_RENDER_CONTRACT_PHASE: $contract_phase" >&2
   exit 2

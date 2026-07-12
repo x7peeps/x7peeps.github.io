@@ -23,7 +23,11 @@
   <header class="headline"></header>
   {{- $title := partial "title.gotmpl" (dict "page" .) }}
   <h1 id="{{ $title | plainify | anchorize }}">{{ $title }}</h1>
+  {{- if eq .Kind "term" }}
+  {{ partial "shortcodes/term.html" (dict "page" . "term" .) }}
+  {{- else }}
   {{ partial "shortcodes/taxonomy.html" (dict "page" . "taxonomy" .) }}
+  {{- end }}
   <footer class="footline"></footer>
 </article>
 {{- end -}}
