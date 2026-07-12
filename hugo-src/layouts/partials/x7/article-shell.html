@@ -1,12 +1,5 @@
 <article class="x7-article-shell" data-x7-article-shell>
-  {{- $content := printf "%s" .Content -}}
-  {{- $leadingH1Pattern := `(?s)^\s*(<h1\b[^>]*>(.*?)</h1>)` -}}
-  {{- with findRESubmatch $leadingH1Pattern $content 1 -}}
-    {{- $firstH1 := index . 0 -}}
-    {{- if eq (trim ((index $firstH1 2) | plainify | htmlUnescape) " \t\r\n") (trim ($.Title | plainify | htmlUnescape) " \t\r\n") -}}
-      {{- $content = replaceRE $leadingH1Pattern "" $content 1 -}}
-    {{- end -}}
-  {{- end -}}
+  {{- $content := partial "x7/content-without-title-h1.html" (dict "page" . "content" .Content) -}}
   <header class="x7-article__header">
     <p class="x7-system-label">ARTICLE{{ with .Section }} / {{ . }}{{ end }}</p>
     {{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}

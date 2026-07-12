@@ -1,0 +1,12 @@
+{{- $page := .page -}}
+{{- $content := printf "%s" .content -}}
+{{- $leadingH1Pattern := `(?s)^\s*(<h1\b[^>]*>(.*?)</h1>)` -}}
+{{- with findRESubmatch $leadingH1Pattern $content 1 -}}
+  {{- $firstH1 := index . 0 -}}
+  {{- $heading := trim ((index $firstH1 2) | plainify | htmlUnescape) " \t\r\n" -}}
+  {{- $title := trim ($page.Title | plainify | htmlUnescape) " \t\r\n" -}}
+  {{- if eq $heading $title -}}
+    {{- $content = replaceRE $leadingH1Pattern "" $content 1 -}}
+  {{- end -}}
+{{- end -}}
+{{- return $content -}}

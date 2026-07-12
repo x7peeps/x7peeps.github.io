@@ -91,14 +91,29 @@ NODE
   trap 'rm -rf "$subpath_output"' EXIT
   subpath_render_output="$(hugo --source "$source_dir" --destination "$subpath_output" --baseURL "https://render.invalid/docs/" --minify 2>&1)"
   ! grep -q "UNSUPPORTED usage of 'search' output format" <<<"$subpath_render_output"
-  node - "$subpath_output/index.html" "$subpath_output/search.json" <<'NODE'
+  node - "$subpath_output/index.html" "$subpath_output/search.json" "$subpath_output" <<'NODE'
 const fs = require("node:fs");
-const [homepagePath, searchPath] = process.argv.slice(2);
+const path = require("node:path");
+const [homepagePath, searchPath, outputDir] = process.argv.slice(2);
 const homepage = fs.readFileSync(homepagePath, "utf8");
 const endpointMatch = homepage.match(/\bdata-search-url=(?:"([^"]+)"|'([^']+)'|([^\s>]+))/);
 const endpoint = endpointMatch?.[1] ?? endpointMatch?.[2] ?? endpointMatch?.[3];
 if (endpoint !== "/docs/search.json" || !fs.existsSync(searchPath)) process.exit(1);
 JSON.parse(fs.readFileSync(searchPath, "utf8"));
+
+const domainFiles = fs.readdirSync(outputDir, { withFileTypes: true })
+  .filter(entry => entry.isDirectory())
+  .map(entry => path.join(outputDir, entry.name, "index.html"))
+  .filter(file => fs.existsSync(file) && fs.readFileSync(file, "utf8").includes("data-x7-domain-child"));
+if (!domainFiles.length) process.exit(1);
+const domain = fs.readFileSync(domainFiles[0], "utf8");
+const hrefs = [...domain.matchAll(/<a\b[^>]*\bdata-x7-domain-(?:child|update|tag)\b[^>]*\bhref=([^\s>]+)/g)].map(match => match[1]);
+if (!hrefs.length || hrefs.some(href => !href.startsWith("/docs/"))) process.exit(1);
+for (const href of hrefs) {
+  const pathname = decodeURI(new URL(href, "https://render.invalid").pathname.replace(/^\/docs\//, ""));
+  const target = path.join(outputDir, pathname);
+  if (!fs.existsSync(target) && !fs.existsSync(path.join(target, "index.html"))) process.exit(1);
+}
 NODE
 
   ! grep -q 'createElement("a")' "$source_dir/static/js/x7/search-dialog.js"
@@ -238,6 +253,23 @@ const readSection = section => {
   if (!fs.existsSync(file)) process.exit(1);
   return fs.readFileSync(file, "utf8");
 };
+
+const walkHtml = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+  const file = path.join(directory, entry.name);
+  return entry.isDirectory() ? walkHtml(file) : entry.name === "index.html" ? [file] : [];
+});
+for (const file of walkHtml(outputDir)) {
+  const html = fs.readFileSync(file, "utf8");
+  if (!html.includes("data-x7-domain-landing")) continue;
+  if ([...html.matchAll(/<h1\b/g)].length !== 1) process.exit(1);
+}
+
+const aboutFixture = path.join(outputDir, "关于", "本站搭建", "index.html");
+if (!fs.existsSync(aboutFixture)) process.exit(1);
+const aboutHtml = fs.readFileSync(aboutFixture, "utf8");
+if (!aboutHtml.includes("data-x7-domain-landing") || [...aboutHtml.matchAll(/<h1\b/g)].length !== 1) process.exit(1);
+const aboutIds = [...aboutHtml.matchAll(/\bid=([^\s>]+)/g)].map(match => match[1]);
+if (aboutIds.length !== new Set(aboutIds).size) process.exit(1);
 
 for (const section of topSections) {
   const html = readSection(section);

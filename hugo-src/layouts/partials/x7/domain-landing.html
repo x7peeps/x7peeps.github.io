@@ -2,6 +2,14 @@
 {{- $latest := first 8 (sort (sort $pages "RelPermalink" "asc") "Lastmod" "desc") -}}
 {{- $introSource := replaceRE `(?s)\{\{<\s*article_cards\s*>\}\}` "" .RawContent -}}
 {{- $intro := trim $introSource " \t\r\n" -}}
+{{- $introContent := "" -}}
+{{- with $intro -}}
+  {{- $renderedIntro := $.RenderString . -}}
+  {{- $introContent = partial "x7/content-without-title-h1.html" (dict "page" $ "content" $renderedIntro) -}}
+  {{- /* A domain landing owns the document H1; preserve other authored headings as H2. */ -}}
+  {{- $introContent = replaceRE `<h1(\b[^>]*)>` `<h2$1>` $introContent -}}
+  {{- $introContent = replaceRE `</h1>` `</h2>` $introContent -}}
+{{- end -}}
 {{- $tagData := slice -}}
 {{- $tagCounts := newScratch -}}
 {{- $tagPages := newScratch -}}
@@ -23,7 +31,7 @@
     <p class="x7-system-label">KNOWLEDGE DOMAIN / {{ .Title }}</p>
     <h1>{{ .Title }}</h1>
     {{- with .Description }}<p class="x7-domain-landing__description">{{ . }}</p>{{ end -}}
-    {{- with $intro }}<div class="x7-domain-landing__intro">{{ $.RenderString . }}</div>{{ end -}}
+    {{- with $introContent }}<div class="x7-domain-landing__intro">{{ . | safeHTML }}</div>{{ end -}}
     <button class="x7-domain-landing__search" type="button" data-x7-search-open aria-label="打开全站搜索">搜索知识库</button>
   </header>
 
