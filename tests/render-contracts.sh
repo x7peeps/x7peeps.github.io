@@ -51,9 +51,10 @@ if [[ "$contract_phase" == "digital-nocturne" ]]; then
   test -f "$output_dir/index.json"
   test -f "$source_dir/static/js/x7/search-core.js"
   test -f "$source_dir/static/js/x7/search-dialog.js"
-  node - "$search_index" "$homepage" <<'NODE'
+  node - "$search_index" "$homepage" "$output_dir" <<'NODE'
 const fs = require("node:fs");
-const [indexPath, homepagePath] = process.argv.slice(2);
+const path = require("node:path");
+const [indexPath, homepagePath, outputDir] = process.argv.slice(2);
 const documents = JSON.parse(fs.readFileSync(indexPath, "utf8"));
 const homepage = fs.readFileSync(homepagePath, "utf8");
 const count = pattern => [...homepage.matchAll(pattern)].length;
@@ -70,7 +71,24 @@ for (const document of documents) {
   if ([...document.summary].length > 190 || Number.isNaN(Date.parse(document.updated))) process.exit(1);
 }
 if (count(/\bdata-x7-search-open\b/g) !== 1 || count(/\bdata-x7-search-dialog\b/g) !== 1) process.exit(1);
-if (count(/\bdata-search-url=\/search\.json\b/g) !== 1) process.exit(1);
+const endpointMatch = homepage.match(/\bdata-search-url=(?:"([^"]+)"|'([^']+)'|([^\s>]+))/);
+const endpoint = endpointMatch?.[1] ?? endpointMatch?.[2] ?? endpointMatch?.[3];
+if (!endpoint || !new URL(endpoint, "https://render.invalid").pathname.endsWith("/search.json")) process.exit(1);
+const emittedFile = path.join(outputDir, path.basename(new URL(endpoint, "https://render.invalid").pathname));
+if (!fs.existsSync(emittedFile) || fs.realpathSync(emittedFile) !== fs.realpathSync(indexPath)) process.exit(1);
+NODE
+
+  subpath_output="$(mktemp -d)"
+  trap 'rm -rf "$subpath_output"' EXIT
+  hugo --source "$source_dir" --destination "$subpath_output" --baseURL "https://render.invalid/docs/" --minify >/dev/null
+  node - "$subpath_output/index.html" "$subpath_output/search.json" <<'NODE'
+const fs = require("node:fs");
+const [homepagePath, searchPath] = process.argv.slice(2);
+const homepage = fs.readFileSync(homepagePath, "utf8");
+const endpointMatch = homepage.match(/\bdata-search-url=(?:"([^"]+)"|'([^']+)'|([^\s>]+))/);
+const endpoint = endpointMatch?.[1] ?? endpointMatch?.[2] ?? endpointMatch?.[3];
+if (endpoint !== "/docs/search.json" || !fs.existsSync(searchPath)) process.exit(1);
+JSON.parse(fs.readFileSync(searchPath, "utf8"));
 NODE
 
   related_partial="$source_dir/layouts/partials/x7/related-content.html"

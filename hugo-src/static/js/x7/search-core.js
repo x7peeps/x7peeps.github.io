@@ -71,7 +71,17 @@ export function searchDocuments(documents, query, options = {}) {
         summary: normalizeSearchText(document?.summary),
       };
       const scores = tokens.map(token => tokenScore(fields, token));
-      return { document, index, score: scores.every(Boolean) ? scores.reduce((sum, score) => sum + score, 0) : 0 };
+      if (!scores.every(Boolean)) return { document, index, score: 0 };
+      const wholeTitleTier = fields.title === normalizedQuery
+        ? 3
+        : fields.title.startsWith(normalizedQuery)
+          ? 2
+          : fields.title.includes(normalizedQuery) ? 1 : 0;
+      return {
+        document,
+        index,
+        score: wholeTitleTier * 1000 + scores.reduce((sum, score) => sum + score, 0),
+      };
     })
     .filter(({ score }) => score > 0)
     .sort(tieBreak)

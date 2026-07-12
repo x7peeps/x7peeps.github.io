@@ -31,6 +31,14 @@ test("requires every whitespace-delimited token somewhere in a document", () => 
   assert.deepEqual(searchDocuments(docs, "TLS protocol").map(({ url }) => url), ["/tls-internals/"]);
 });
 
+test("ranks a whole-query exact title above newer token-distributed title matches", () => {
+  const competing = [
+    { title: "foo xx bar", url: "/partial/", updated: "2026-01-01" },
+    { title: "foo bar", url: "/exact/", updated: "2025-01-01" },
+  ];
+  assert.deepEqual(searchDocuments(competing, "foo bar").map(({ url }) => url), ["/exact/", "/partial/"]);
+});
+
 test("applies an exact normalized section filter", () => {
   const mixed = [...docs, { title: "TLS", url: "/other/", section: "Networking", updated: "2026-01-01" }];
   assert.deepEqual(searchDocuments(mixed, "tls", { section: "security" }).map(({ url }) => url), [
