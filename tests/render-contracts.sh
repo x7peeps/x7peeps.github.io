@@ -46,6 +46,33 @@ for (const asset of ["/js/custom.js", "/js/x7/bootstrap.js"]) {
 NODE
 
 if [[ "$contract_phase" == "digital-nocturne" ]]; then
+  search_index="$output_dir/search.json"
+  test -f "$search_index"
+  test -f "$output_dir/index.json"
+  test -f "$source_dir/static/js/x7/search-core.js"
+  test -f "$source_dir/static/js/x7/search-dialog.js"
+  node - "$search_index" "$homepage" <<'NODE'
+const fs = require("node:fs");
+const [indexPath, homepagePath] = process.argv.slice(2);
+const documents = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+const homepage = fs.readFileSync(homepagePath, "utf8");
+const count = pattern => [...homepage.matchAll(pattern)].length;
+if (!Array.isArray(documents) || documents.length < 100 || documents.length > 5000) process.exit(1);
+if (new Set(documents.map(document => document.url)).size !== documents.length) process.exit(1);
+for (const document of documents) {
+  if (!document || typeof document !== "object") process.exit(1);
+  for (const field of ["title", "url", "section", "summary", "updated"]) {
+    if (typeof document[field] !== "string") process.exit(1);
+  }
+  if (!Array.isArray(document.tags) || document.tags.some(tag => typeof tag !== "string")) process.exit(1);
+  if (!document.url.startsWith("/") || document.url === "/" || document.url.includes("404")) process.exit(1);
+  // Hugo truncates Unicode code points; JS length counts astral characters as two code units.
+  if ([...document.summary].length > 190 || Number.isNaN(Date.parse(document.updated))) process.exit(1);
+}
+if (count(/\bdata-x7-search-open\b/g) !== 1 || count(/\bdata-x7-search-dialog\b/g) !== 1) process.exit(1);
+if (count(/\bdata-search-url=\/search\.json\b/g) !== 1) process.exit(1);
+NODE
+
   related_partial="$source_dir/layouts/partials/x7/related-content.html"
   related_index_partial="$source_dir/layouts/partials/x7/related-index.html"
   test -f "$related_index_partial"

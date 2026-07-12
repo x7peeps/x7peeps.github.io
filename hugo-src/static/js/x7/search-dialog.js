@@ -1,0 +1,175 @@
+import { searchDocuments } from "./search-core.js";
+
+const RECENTS_KEY = "x7.search.recentUrls";
+const MAX_RESULTS = 12;
+
+function readRecents() {
+  try {
+    const value = JSON.parse(localStorage.getItem(RECENTS_KEY) ?? "[]");
+    return Array.isArray(value) ? value.filter(item => typeof item === "string").slice(0, MAX_RESULTS) : [];
+  } catch {
+    return [];
+  }
+}
+
+function rememberUrl(url) {
+  if (!url) return;
+  try {
+    const recents = [url, ...readRecents().filter(item => item !== url)].slice(0, MAX_RESULTS);
+    localStorage.setItem(RECENTS_KEY, JSON.stringify(recents));
+  } catch {
+    // Search remains useful when storage is unavailable.
+  }
+}
+
+function setPreview(dialog, document) {
+  dialog.querySelector("[data-x7-preview-title]").textContent = document?.title || "选择结果以预览";
+  dialog.querySelector("[data-x7-preview-section]").textContent = document?.section ? `章节 · ${document.section}` : "";
+  dialog.querySelector("[data-x7-preview-summary]").textContent = document?.summary || "";
+  const tags = Array.isArray(document?.tags) ? document.tags.filter(tag => typeof tag === "string") : [];
+  dialog.querySelector("[data-x7-preview-tags]").textContent = tags.length ? `标签 · ${tags.join(" · ")}` : "";
+}
+
+export function initSearchDialog() {
+  const dialog = document.querySelector("[data-x7-search-dialog]");
+  const openButton = document.querySelector("[data-x7-search-open]");
+  if (!dialog || !openButton || dialog.dataset.x7Initialized === "true") return () => {};
+  dialog.dataset.x7Initialized = "true";
+
+  const input = dialog.querySelector("[data-x7-search-input]");
+  const closeButton = dialog.querySelector("[data-x7-search-close]");
+  const resultsList = dialog.querySelector("[data-x7-search-results]");
+  const status = dialog.querySelector("[data-x7-search-status]");
+  const endpoint = dialog.dataset.searchUrl;
+  const controller = new AbortController();
+  let documents = null;
+  let loadPromise = null;
+  let currentResults = [];
+  let activeIndex = -1;
+  let renderTimer = 0;
+  let opener = null;
+
+  const setActive = (nextIndex, focus = false) => {
+    const links = [...resultsList.querySelectorAll("[role=option]")];
+    if (!links.length) {
+      activeIndex = -1;
+      input.removeAttribute("aria-activedescendant");
+      setPreview(dialog, null);
+      return;
+    }
+    activeIndex = (nextIndex + links.length) % links.length;
+    links.forEach((link, index) => link.setAttribute("aria-selected", String(index === activeIndex)));
+    input.setAttribute("aria-activedescendant", links[activeIndex].id);
+    setPreview(dialog, currentResults[activeIndex]);
+    if (focus) links[activeIndex].focus();
+  };
+
+  const render = () => {
+    currentResults = searchDocuments(documents, input.value, { recentUrls: readRecents(), limit: MAX_RESULTS });
+    resultsList.replaceChildren();
+    currentResults.forEach((document, index) => {
+      const li = resultsList.ownerDocument.createElement("li");
+      const link = resultsList.ownerDocument.createElement("a");
+      link.id = `x7-search-result-${index}`;
+      link.href = typeof document.url === "string" ? document.url : "";
+      link.role = "option";
+      link.setAttribute("aria-selected", "false");
+      const title = resultsList.ownerDocument.createElement("strong");
+      title.textContent = document.title || document.url || "未命名页面";
+      const meta = resultsList.ownerDocument.createElement("span");
+      meta.textContent = [document.section, document.summary].filter(Boolean).join(" · ");
+      link.append(title, meta);
+      link.addEventListener("pointermove", () => setActive(index));
+      link.addEventListener("focus", () => setActive(index));
+      link.addEventListener("click", () => rememberUrl(document.url));
+      li.append(link);
+      resultsList.append(li);
+    });
+    status.textContent = input.value.trim()
+      ? currentResults.length ? `${currentResults.length} 个结果` : "没有匹配结果，请尝试知识树。"
+      : currentResults.length ? "最近访问与最新内容" : "暂无可搜索内容。";
+    setActive(currentResults.length ? 0 : -1);
+  };
+
+  const scheduleRender = () => {
+    clearTimeout(renderTimer);
+    renderTimer = window.setTimeout(render, 80);
+  };
+
+  const load = () => {
+    if (loadPromise) return loadPromise;
+    status.textContent = "正在加载索引…";
+    loadPromise = fetch(endpoint, { signal: controller.signal, credentials: "same-origin" })
+      .then(response => {
+        if (!response.ok) throw new Error(`Search index ${response.status}`);
+        return response.json();
+      })
+      .then(value => {
+        if (!Array.isArray(value)) throw new TypeError("Search index must be an array");
+        documents = value;
+        render();
+      })
+      .catch(error => {
+        if (error.name === "AbortError") return;
+        status.textContent = "搜索暂时不可用，请使用左侧知识树浏览。";
+        resultsList.replaceChildren();
+        setPreview(dialog, null);
+      });
+    return loadPromise;
+  };
+
+  const open = trigger => {
+    if (dialog.open) return;
+    opener = trigger instanceof HTMLElement ? trigger : document.activeElement;
+    dialog.showModal();
+    input.focus();
+    load();
+  };
+
+  const onShortcut = event => {
+    if ((event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === "k") {
+      event.preventDefault();
+      open(event.currentTarget === openButton ? openButton : document.activeElement);
+    }
+  };
+  const onDialogKeydown = event => {
+    if (event.target !== input && event.target.getAttribute?.("role") !== "option") return;
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      setActive(activeIndex + (event.key === "ArrowDown" ? 1 : -1), true);
+    } else if (event.key === "Enter" && activeIndex >= 0) {
+      event.preventDefault();
+      const result = currentResults[activeIndex];
+      rememberUrl(result?.url);
+      resultsList.querySelectorAll("[role=option]")[activeIndex]?.click();
+    }
+  };
+  const onClose = () => {
+    input.removeAttribute("aria-activedescendant");
+    opener?.focus?.();
+    opener = null;
+  };
+  const onOpenClick = () => open(openButton);
+  const onCloseClick = () => dialog.close();
+
+  openButton.addEventListener("click", onOpenClick);
+  document.addEventListener("keydown", onShortcut);
+  input.addEventListener("input", scheduleRender);
+  dialog.addEventListener("keydown", onDialogKeydown);
+  closeButton.addEventListener("click", onCloseClick);
+  dialog.addEventListener("close", onClose);
+
+  const cleanup = () => {
+    clearTimeout(renderTimer);
+    controller.abort();
+    openButton.removeEventListener("click", onOpenClick);
+    document.removeEventListener("keydown", onShortcut);
+    input.removeEventListener("input", scheduleRender);
+    dialog.removeEventListener("keydown", onDialogKeydown);
+    closeButton.removeEventListener("click", onCloseClick);
+    dialog.removeEventListener("close", onClose);
+    delete dialog.dataset.x7Initialized;
+  };
+  window.addEventListener("pagehide", cleanup, { once: true });
+  return cleanup;
+}

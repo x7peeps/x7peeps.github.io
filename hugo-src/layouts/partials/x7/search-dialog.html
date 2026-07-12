@@ -1,0 +1,29 @@
+<button class="x7-search-open" type="button" data-x7-search-open aria-haspopup="dialog">
+  <span aria-hidden="true">⌕</span>
+  <span>搜索</span>
+  <kbd>⌘/Ctrl K</kbd>
+</button>
+<dialog class="x7-search-dialog" data-x7-search-dialog data-search-url="{{ "search.json" | relURL }}" aria-labelledby="x7-search-title">
+  <div class="x7-search-dialog__shell">
+    <header class="x7-search-dialog__header">
+      <div>
+        <p class="x7-system-label">Command search</p>
+        <h2 id="x7-search-title">搜索知识库</h2>
+      </div>
+      <button class="x7-search-close" type="button" data-x7-search-close aria-label="关闭搜索">×</button>
+    </header>
+    <label class="x7-visually-hidden" for="x7-search-input">输入关键词</label>
+    <input id="x7-search-input" class="x7-search-input" type="search" autocomplete="off" placeholder="标题、标签、章节或摘要…" data-x7-search-input aria-controls="x7-search-results" aria-autocomplete="list">
+    <p class="x7-search-status" data-x7-search-status aria-live="polite">输入关键词，或浏览最近内容。</p>
+    <div class="x7-search-dialog__body">
+      <ol id="x7-search-results" class="x7-search-results" data-x7-search-results role="listbox" aria-label="搜索结果"></ol>
+      <aside class="x7-search-preview" data-x7-search-preview aria-label="结果预览" aria-live="polite">
+        <p class="x7-system-label">Quick preview</p>
+        <h3 data-x7-preview-title>选择结果以预览</h3>
+        <p data-x7-preview-section></p>
+        <p data-x7-preview-summary></p>
+        <p data-x7-preview-tags></p>
+      </aside>
+    </div>
+  </div>
+</dialog>
