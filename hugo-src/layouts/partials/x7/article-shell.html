@@ -1,0 +1,16 @@
+<article class="x7-article" data-x7-article-shell>
+  <header class="x7-article__header">
+    <p class="x7-system-label">ARTICLE{{ with .Section }} / {{ . }}{{ end }}</p>
+    {{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
+    {{ partial "x7/article-meta.html" . }}
+    {{ partial "x7/tag-chips.html" . }}
+  </header>
+  <div class="x7-article__layout">
+    <div class="x7-article__prose" data-x7-article-content>
+      {{ partial "content-lead.html" . | safeHTML }}
+      {{ .Content }}
+    </div>
+    {{ partial "x7/chapter-radar.html" . }}
+  </div>
+  <footer class="footline x7-article__footer">{{ partial "content-footer.html" . }}</footer>
+</article>

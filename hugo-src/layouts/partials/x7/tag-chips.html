@@ -1,0 +1,5 @@
+{{- with .GetTerms "tags" -}}
+<nav class="x7-tag-chips" aria-label="Tags">
+  {{- range . }}<a href="{{ .RelPermalink }}" rel="tag">{{ .LinkTitle }}</a>{{ end -}}
+</nav>
+{{- end -}}

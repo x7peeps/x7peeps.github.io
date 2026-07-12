@@ -1,0 +1,11 @@
+{{- if gt (len .Fragments.Headings) 0 -}}
+<button class="x7-chapter-trigger" type="button" aria-controls="x7-chapter-radar" aria-expanded="false" data-x7-chapter-trigger>
+  <span aria-hidden="true">¶</span><span class="x7-visually-hidden">Open chapters</span>
+</button>
+<aside id="x7-chapter-radar" class="x7-chapter-radar" aria-label="On this page" data-x7-chapter-radar>
+  <p class="x7-system-label">CHAPTERS</p>
+  <div class="x7-chapter-progress" aria-hidden="true"><span data-x7-progress-bar></span></div>
+  <p class="x7-chapter-progress-text" data-x7-progress-text>0% read</p>
+  <div class="x7-chapter-list" data-x7-chapter-list>{{ .TableOfContents }}</div>
+</aside>
+{{- end -}}
