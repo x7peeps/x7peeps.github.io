@@ -52,6 +52,7 @@ if [[ "$contract_phase" == "digital-nocturne" ]]; then
   grep -q 'data-x7-article-content' "$article"
   grep -q 'data-x7-chapter-radar' "$article"
   grep -q 'data-x7-chapter-list' "$article"
+  grep -q 'data-x7-chapter-close' "$article"
   grep -q 'data-x7-mobile-progress' "$article"
   grep -q 'data-x7-knowledge-tree' "$article"
 

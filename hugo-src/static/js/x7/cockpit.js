@@ -44,6 +44,14 @@ export function activeHeadingIndex(orderedTopPositions, offset) {
   return active;
 }
 
+export function nextFocusIndex(currentIndex, itemCount, backwards = false) {
+  if (!Number.isInteger(itemCount) || itemCount <= 0) return -1;
+  if (!Number.isInteger(currentIndex) || currentIndex < 0 || currentIndex >= itemCount) {
+    return backwards ? itemCount - 1 : 0;
+  }
+  return (currentIndex + (backwards ? -1 : 1) + itemCount) % itemCount;
+}
+
 export function resolveScrollTarget(documentLike, windowLike) {
   const bodyInner = documentLike.querySelector("#R-body-inner");
   if (bodyInner) return { eventTarget: bodyInner, scrollElement: bodyInner };
@@ -138,11 +146,23 @@ export function initCockpit() {
   if (!article) return () => {};
   const radar = shell.querySelector("[data-x7-chapter-radar]");
   const trigger = shell.querySelector("[data-x7-chapter-trigger]");
+  const closeButton = shell.querySelector("[data-x7-chapter-close]");
   const tocLinks = Array.from(shell.querySelectorAll("[data-x7-chapter-list] a[href*='#']"));
   const headings = Array.from(article?.querySelectorAll("h2[id], h3[id]") ?? []);
   const progressBar = shell.querySelector("[data-x7-progress-bar]");
   const progressTexts = Array.from(shell.querySelectorAll("[data-x7-progress-text], [data-x7-mobile-progress]"));
-  const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+  const reducedMotionMedia = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+  const narrowMedia = window.matchMedia?.("(max-width: 68rem)");
+  const prefersReducedMotion = reducedMotionMedia?.matches ?? false;
+  const originalRadarState = radar ? {
+    ariaHidden: radar.getAttribute("aria-hidden"),
+    inert: radar.hasAttribute("inert"),
+    open: radar.getAttribute("data-x7-open"),
+    tabindex: radar.getAttribute("tabindex"),
+  } : null;
+  const originalTriggerExpanded = trigger?.getAttribute("aria-expanded") ?? null;
+  const originalCurrent = new Map(tocLinks.map((link) => [link, link.getAttribute("aria-current")]));
+  const fallbackTabindex = new Map();
   let frame = 0;
 
   const absoluteHeadingTops = () => headings.map((heading) => {
@@ -180,21 +200,63 @@ export function initCockpit() {
   listen(window, "resize", scheduleUpdate, { passive: true });
   scheduleUpdate();
 
-  const isNarrow = () => window.matchMedia?.("(max-width: 68rem)")?.matches ?? false;
+  const isNarrow = () => narrowMedia?.matches ?? false;
+  const restoreFallbackTabindex = () => {
+    fallbackTabindex.forEach((value, element) => value === null ? element.removeAttribute("tabindex") : element.setAttribute("tabindex", value));
+    fallbackTabindex.clear();
+  };
+  const setRailUnavailable = (unavailable) => {
+    if (!radar) return;
+    if (unavailable) {
+      radar.setAttribute("inert", "");
+      radar.setAttribute("aria-hidden", "true");
+      if (!("inert" in radar)) {
+        radar.querySelectorAll("a[href], button, input, select, textarea, [tabindex]").forEach((element) => {
+          if (!fallbackTabindex.has(element)) fallbackTabindex.set(element, element.getAttribute("tabindex"));
+          element.setAttribute("tabindex", "-1");
+        });
+      }
+    } else {
+      radar.removeAttribute("inert");
+      radar.removeAttribute("aria-hidden");
+      restoreFallbackTabindex();
+    }
+  };
   const closeRadar = (restoreFocus = true) => {
     if (!radar || !trigger) return;
     radar.removeAttribute("data-x7-open");
     trigger.setAttribute("aria-expanded", "false");
+    setRailUnavailable(isNarrow());
     if (restoreFocus) trigger.focus();
   };
   const openRadar = () => {
     if (!radar || !trigger) return;
     radar.setAttribute("data-x7-open", "true");
     trigger.setAttribute("aria-expanded", "true");
-    (tocLinks[0] || radar).focus();
+    setRailUnavailable(false);
+    (closeButton || tocLinks[0] || radar).focus();
   };
   if (radar && !radar.hasAttribute("tabindex")) radar.tabIndex = -1;
   listen(trigger, "click", () => trigger.getAttribute("aria-expanded") === "true" ? closeRadar() : openRadar());
+  listen(closeButton, "click", () => closeRadar());
+  const syncResponsiveRail = () => {
+    if (!radar || !trigger) return;
+    if (isNarrow()) {
+      setRailUnavailable(trigger.getAttribute("aria-expanded") !== "true");
+    } else {
+      radar.removeAttribute("data-x7-open");
+      trigger.setAttribute("aria-expanded", "false");
+      setRailUnavailable(false);
+    }
+  };
+  if (narrowMedia?.addEventListener) {
+    narrowMedia.addEventListener("change", syncResponsiveRail);
+    addCleanup(() => narrowMedia.removeEventListener("change", syncResponsiveRail));
+  } else if (narrowMedia?.addListener) {
+    narrowMedia.addListener(syncResponsiveRail);
+    addCleanup(() => narrowMedia.removeListener(syncResponsiveRail));
+  }
+  syncResponsiveRail();
 
   tocLinks.forEach((link) => listen(link, "click", (event) => {
     const targetId = decodeFragment(link.hash || link.getAttribute("href")?.split("#").pop());
@@ -212,6 +274,16 @@ export function initCockpit() {
   }));
 
   const shortcutHandler = (event) => {
+    if (event.key === "Tab" && isNarrow() && trigger?.getAttribute("aria-expanded") === "true" && radar) {
+      const focusables = Array.from(radar.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])"))
+        .filter((element) => !element.hidden && element.getAttribute("aria-hidden") !== "true");
+      const next = nextFocusIndex(focusables.indexOf(document.activeElement), focusables.length, event.shiftKey);
+      if (next >= 0) {
+        event.preventDefault();
+        focusables[next].focus();
+      }
+      return;
+    }
     if (isTypingTarget(event.target)) return;
     if (event.key === "Escape" && trigger?.getAttribute("aria-expanded") === "true") {
       event.preventDefault();
@@ -244,6 +316,15 @@ export function initCockpit() {
   const cleanup = initializedShells.register(shell, () => {
     cleanups.splice(0).forEach((fn) => fn());
     if (frame) window.cancelAnimationFrame(frame);
+    originalCurrent.forEach((value, link) => value === null ? link.removeAttribute("aria-current") : link.setAttribute("aria-current", value));
+    restoreFallbackTabindex();
+    if (radar && originalRadarState) {
+      originalRadarState.ariaHidden === null ? radar.removeAttribute("aria-hidden") : radar.setAttribute("aria-hidden", originalRadarState.ariaHidden);
+      originalRadarState.inert ? radar.setAttribute("inert", "") : radar.removeAttribute("inert");
+      originalRadarState.open === null ? radar.removeAttribute("data-x7-open") : radar.setAttribute("data-x7-open", originalRadarState.open);
+      originalRadarState.tabindex === null ? radar.removeAttribute("tabindex") : radar.setAttribute("tabindex", originalRadarState.tabindex);
+    }
+    if (trigger) originalTriggerExpanded === null ? trigger.removeAttribute("aria-expanded") : trigger.setAttribute("aria-expanded", originalTriggerExpanded);
   });
   return cleanup;
 }

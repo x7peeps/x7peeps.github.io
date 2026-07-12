@@ -5,6 +5,7 @@ import {
   activeHeadingIndex,
   createInitializationRegistry,
   matchesTreeQuery,
+  nextFocusIndex,
   readingProgress,
   resolveScrollTarget,
 } from "../hugo-src/static/js/x7/cockpit.js";
@@ -88,4 +89,17 @@ test("initialization registry cleanup is idempotent and stale-safe", () => {
   secondCleanup();
   assert.equal(secondDisposals, 1);
   assert.equal(registry.get(shell), undefined);
+});
+
+test("nextFocusIndex wraps forward and backward within the drawer", () => {
+  assert.equal(nextFocusIndex(0, 3, false), 1);
+  assert.equal(nextFocusIndex(2, 3, false), 0);
+  assert.equal(nextFocusIndex(0, 3, true), 2);
+  assert.equal(nextFocusIndex(1, 3, true), 0);
+});
+
+test("nextFocusIndex safely handles missing or unknown focus positions", () => {
+  assert.equal(nextFocusIndex(-1, 3, false), 0);
+  assert.equal(nextFocusIndex(-1, 3, true), 2);
+  assert.equal(nextFocusIndex(0, 0, false), -1);
 });

@@ -29,6 +29,7 @@
   .x7-tag-chips a { border: 1px solid var(--x7-border); border-radius: 999px; padding: .2rem .65rem; color: var(--x7-ion); font-size: .78rem; }
 
   .x7-chapter-radar { position: sticky; top: 5rem; max-height: calc(100vh - 7rem); overflow-y: auto; padding-left: 1rem; border-left: 1px solid var(--x7-border); }
+  .x7-chapter-close { display: none; }
   .x7-chapter-list nav > ul { padding-left: 0; }
   .x7-chapter-list ul { list-style: none; padding-left: .8rem; }
   .x7-chapter-list a { display: block; padding: .3rem 0; color: var(--x7-muted); font-size: .8rem; line-height: 1.35; }
@@ -73,4 +74,19 @@
     transition: transform .25s var(--x7-ease);
   }
   .x7-chapter-radar:is(.active, [data-x7-open="true"]) { transform: none; }
+  .x7-chapter-close {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    min-height: 44px;
+    margin: -.5rem -.5rem .25rem auto;
+    border: 0;
+    background: transparent;
+    color: var(--x7-paper);
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .x7-chapter-radar { transition: none; }
 }
