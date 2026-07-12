@@ -3,6 +3,34 @@ import { searchDocuments } from "./search-core.js";
 const RECENTS_KEY = "x7.search.recentUrls";
 const MAX_RESULTS = 12;
 
+export function nextActiveIndex(current, count, direction) {
+  if (!count) return -1;
+  return (current + direction + count) % count;
+}
+
+export function createSearchIndexLoader(fetchImpl, endpoint, options = {}) {
+  let promise = null;
+  return {
+    load() {
+      if (promise) return promise;
+      promise = fetchImpl(endpoint, options)
+        .then(response => {
+          if (!response.ok) throw new Error(`Search index ${response.status}`);
+          return response.json();
+        })
+        .then(value => {
+          if (!Array.isArray(value)) throw new TypeError("Search index must be an array");
+          return value;
+        })
+        .catch(error => {
+          promise = null;
+          throw error;
+        });
+      return promise;
+    },
+  };
+}
+
 function readRecents() {
   try {
     const value = JSON.parse(localStorage.getItem(RECENTS_KEY) ?? "[]");
@@ -30,7 +58,7 @@ function setPreview(dialog, document) {
   dialog.querySelector("[data-x7-preview-tags]").textContent = tags.length ? `标签 · ${tags.join(" · ")}` : "";
 }
 
-export function initSearchDialog() {
+export function initSearchDialog({ navigate = url => window.location.assign(url) } = {}) {
   const dialog = document.querySelector("[data-x7-search-dialog]");
   const openButton = document.querySelector("[data-x7-search-open]");
   if (!dialog || !openButton || dialog.dataset.x7Initialized === "true") return () => {};
@@ -43,25 +71,32 @@ export function initSearchDialog() {
   const endpoint = dialog.dataset.searchUrl;
   const controller = new AbortController();
   let documents = null;
-  let loadPromise = null;
+  const loader = createSearchIndexLoader(fetch, endpoint, { signal: controller.signal, credentials: "same-origin" });
   let currentResults = [];
   let activeIndex = -1;
   let renderTimer = 0;
   let opener = null;
 
-  const setActive = (nextIndex, focus = false) => {
-    const links = [...resultsList.querySelectorAll("[role=option]")];
-    if (!links.length) {
+  const setActive = (nextIndex, reveal = false) => {
+    const options = [...resultsList.querySelectorAll(":scope > [role=option]")];
+    if (!options.length || nextIndex < 0) {
       activeIndex = -1;
       input.removeAttribute("aria-activedescendant");
       setPreview(dialog, null);
       return;
     }
-    activeIndex = (nextIndex + links.length) % links.length;
-    links.forEach((link, index) => link.setAttribute("aria-selected", String(index === activeIndex)));
-    input.setAttribute("aria-activedescendant", links[activeIndex].id);
+    activeIndex = nextIndex;
+    options.forEach((option, index) => option.setAttribute("aria-selected", String(index === activeIndex)));
+    input.setAttribute("aria-activedescendant", options[activeIndex].id);
     setPreview(dialog, currentResults[activeIndex]);
-    if (focus) links[activeIndex].focus();
+    if (reveal) options[activeIndex].scrollIntoView({ block: "nearest" });
+  };
+
+  const goToResult = index => {
+    const result = currentResults[index];
+    if (!result?.url) return;
+    rememberUrl(result.url);
+    navigate(result.url);
   };
 
   const render = () => {
@@ -69,20 +104,18 @@ export function initSearchDialog() {
     resultsList.replaceChildren();
     currentResults.forEach((document, index) => {
       const li = resultsList.ownerDocument.createElement("li");
-      const link = resultsList.ownerDocument.createElement("a");
-      link.id = `x7-search-result-${index}`;
-      link.href = typeof document.url === "string" ? document.url : "";
-      link.role = "option";
-      link.setAttribute("aria-selected", "false");
+      li.id = `x7-search-result-${index}`;
+      li.role = "option";
+      li.tabIndex = -1;
+      li.dataset.url = typeof document.url === "string" ? document.url : "";
+      li.setAttribute("aria-selected", "false");
       const title = resultsList.ownerDocument.createElement("strong");
       title.textContent = document.title || document.url || "未命名页面";
       const meta = resultsList.ownerDocument.createElement("span");
       meta.textContent = [document.section, document.summary].filter(Boolean).join(" · ");
-      link.append(title, meta);
-      link.addEventListener("pointermove", () => setActive(index));
-      link.addEventListener("focus", () => setActive(index));
-      link.addEventListener("click", () => rememberUrl(document.url));
-      li.append(link);
+      li.append(title, meta);
+      li.addEventListener("pointermove", () => setActive(index));
+      li.addEventListener("click", () => goToResult(index));
       resultsList.append(li);
     });
     status.textContent = input.value.trim()
@@ -97,15 +130,9 @@ export function initSearchDialog() {
   };
 
   const load = () => {
-    if (loadPromise) return loadPromise;
     status.textContent = "正在加载索引…";
-    loadPromise = fetch(endpoint, { signal: controller.signal, credentials: "same-origin" })
-      .then(response => {
-        if (!response.ok) throw new Error(`Search index ${response.status}`);
-        return response.json();
-      })
+    return loader.load()
       .then(value => {
-        if (!Array.isArray(value)) throw new TypeError("Search index must be an array");
         documents = value;
         render();
       })
@@ -122,6 +149,7 @@ export function initSearchDialog() {
     if (dialog.open) return;
     opener = trigger instanceof HTMLElement ? trigger : document.activeElement;
     dialog.showModal();
+    input.setAttribute("aria-expanded", "true");
     input.focus();
     load();
   };
@@ -133,18 +161,17 @@ export function initSearchDialog() {
     }
   };
   const onDialogKeydown = event => {
-    if (event.target !== input && event.target.getAttribute?.("role") !== "option") return;
+    if (event.target !== input) return;
     if (event.key === "ArrowDown" || event.key === "ArrowUp") {
       event.preventDefault();
-      setActive(activeIndex + (event.key === "ArrowDown" ? 1 : -1), true);
+      setActive(nextActiveIndex(activeIndex, currentResults.length, event.key === "ArrowDown" ? 1 : -1), true);
     } else if (event.key === "Enter" && activeIndex >= 0) {
       event.preventDefault();
-      const result = currentResults[activeIndex];
-      rememberUrl(result?.url);
-      resultsList.querySelectorAll("[role=option]")[activeIndex]?.click();
+      goToResult(activeIndex);
     }
   };
   const onClose = () => {
+    input.setAttribute("aria-expanded", "false");
     input.removeAttribute("aria-activedescendant");
     opener?.focus?.();
     opener = null;

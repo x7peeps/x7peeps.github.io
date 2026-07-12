@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { normalizeSearchText, searchDocuments } from "../hugo-src/static/js/x7/search-core.js";
+import { createSearchIndexLoader, nextActiveIndex } from "../hugo-src/static/js/x7/search-dialog.js";
 
 const docs = [
   { title: "TLS", url: "/tls/", section: "Security", summary: "Transport security", tags: ["crypto"], updated: "2025-01-01" },
@@ -71,4 +72,23 @@ test("handles null fields and inputs without mutating source documents", () => {
   assert.deepEqual(searchDocuments(source, "needle"), source);
   assert.deepEqual(source, snapshot);
   assert.deepEqual(searchDocuments(null, "needle"), []);
+});
+
+test("nextActiveIndex wraps without moving physical focus", () => {
+  assert.equal(nextActiveIndex(-1, 3, 1), 0);
+  assert.equal(nextActiveIndex(2, 3, 1), 0);
+  assert.equal(nextActiveIndex(0, 3, -1), 2);
+  assert.equal(nextActiveIndex(0, 0, 1), -1);
+});
+
+test("search index loader retries after a failed fetch", async () => {
+  let attempts = 0;
+  const loader = createSearchIndexLoader(async () => {
+    attempts += 1;
+    if (attempts === 1) throw new Error("offline");
+    return { ok: true, json: async () => [{ title: "Recovered" }] };
+  }, "/search.json");
+  await assert.rejects(loader.load(), /offline/);
+  assert.deepEqual(await loader.load(), [{ title: "Recovered" }]);
+  assert.equal(attempts, 2);
 });

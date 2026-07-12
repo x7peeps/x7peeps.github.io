@@ -86,7 +86,7 @@ enableReadingDensity = true
   disableXML = false
   minifyOutput = true
 
-[outputFormats.Search]
+[outputFormats.X7Search]
   baseName = "search"
   mediaType = "application/json"
   isPlainText = true
@@ -94,7 +94,7 @@ enableReadingDensity = true
   noUgly = true
 
 [outputs]
-  home = ["html", "json", "Search"]
+  home = ["html", "json", "X7Search"]
 
 [markup.tableOfContents]
   endLevel = 4

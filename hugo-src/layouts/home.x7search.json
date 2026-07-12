@@ -1,0 +1,37 @@
+[
+{{- range $index, $page := site.RegularPages.ByLastmod.Reverse -}}
+  {{- if $index }},{{ end }}
+  {{- $tags := slice -}}
+  {{- range ($page.Params.tags | default (slice)) -}}
+    {{- $tags = $tags | append (printf "%v" .) -}}
+  {{- end -}}
+  {{- $summary := $page.Plain | plainify -}}
+  {{- $summary = printf "%s" (htmlUnescape (htmlUnescape (htmlUnescape $summary))) -}}
+  {{- range seq 3 -}}
+    {{- $summary = replace $summary "&amp;" "&" -}}
+  {{- end -}}
+  {{- $summary = replace $summary "&lt;" "<" -}}
+  {{- $summary = replace $summary "&gt;" ">" -}}
+  {{- $summary = replace $summary "&quot;" "\"" -}}
+  {{- $summary = replace $summary "&#34;" "\"" -}}
+  {{- $summary = replace $summary "&#39;" "'" -}}
+  {{- $summary = replaceRE "\\s+" " " $summary | strings.TrimSpace | truncate 180 -}}
+  {{- /* truncate is HTML-aware and re-escapes visible punctuation; normalize its result once more. */ -}}
+  {{- range seq 3 -}}
+    {{- $summary = replace $summary "&amp;" "&" -}}
+  {{- end -}}
+  {{- $summary = replace $summary "&lt;" "<" -}}
+  {{- $summary = replace $summary "&gt;" ">" -}}
+  {{- $summary = replace $summary "&quot;" "\"" -}}
+  {{- $summary = replace $summary "&#34;" "\"" -}}
+  {{- $summary = replace $summary "&#39;" "'" -}}
+  {{- dict
+    "title" $page.Title
+    "url" $page.RelPermalink
+    "section" $page.Section
+    "summary" $summary
+    "tags" $tags
+    "updated" ($page.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+    | jsonify -}}
+{{- end }}
+]
