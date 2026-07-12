@@ -16,7 +16,6 @@
   .x7-article__header > h1 { margin-top: .35rem; }
   .x7-article__layout { display: grid; grid-template-columns: minmax(0, var(--x7-prose)) var(--x7-rail-right); gap: 3rem; align-items: start; justify-content: center; }
   .x7-article__prose { min-width: 0; max-width: var(--x7-prose); }
-  .x7-article__prose h1 { display: none; }
   .x7-article__prose :is(pre, table, figure) { max-width: min(calc(100vw - var(--x7-rail-left) - 3rem), calc(var(--x7-prose) + 10rem)); }
   .x7-article__prose :is(pre, table) { overflow-x: auto; }
   .x7-article__prose :is(img, video, iframe) { max-width: 100%; }

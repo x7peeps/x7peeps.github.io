@@ -1,4 +1,12 @@
 <article class="x7-article" data-x7-article-shell>
+  {{- $content := printf "%s" .Content -}}
+  {{- $leadingH1Pattern := `(?s)^\s*(<h1\b[^>]*>(.*?)</h1>)` -}}
+  {{- with findRESubmatch $leadingH1Pattern $content 1 -}}
+    {{- $firstH1 := index . 0 -}}
+    {{- if eq (trim ((index $firstH1 2) | plainify | htmlUnescape) " \t\r\n") (trim ($.Title | plainify | htmlUnescape) " \t\r\n") -}}
+      {{- $content = replaceRE $leadingH1Pattern "" $content 1 -}}
+    {{- end -}}
+  {{- end -}}
   <header class="x7-article__header">
     <p class="x7-system-label">ARTICLE{{ with .Section }} / {{ . }}{{ end }}</p>
     {{ partial "heading-pre.html" . }}{{ partial "heading.html" . }}{{ partial "heading-post.html" . }}
@@ -8,9 +16,11 @@
   <div class="x7-article__layout">
     <div class="x7-article__prose" data-x7-article-content>
       {{ partial "content-lead.html" . | safeHTML }}
-      {{ .Content }}
+      {{ $content | safeHTML }}
     </div>
     {{ partial "x7/chapter-radar.html" . }}
   </div>
-  <footer class="footline x7-article__footer">{{ partial "content-footer.html" . }}</footer>
+  {{- with .GetTerms "categories" }}
+  <footer class="footline x7-article__footer">{{ partial "term-list.html" (dict "page" $ "taxonomy" "categories" "icon" "layer-group") }}</footer>
+  {{- end }}
 </article>

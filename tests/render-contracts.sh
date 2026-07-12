@@ -46,37 +46,39 @@ for (const asset of ["/js/custom.js", "/js/x7/bootstrap.js"]) {
 NODE
 
 if [[ "$contract_phase" == "digital-nocturne" ]]; then
-  article="$(node - "$output_dir" "$source_dir" < <(hugo list all --source "$source_dir" 2>/dev/null) <<'NODE'
-const fs = require("node:fs");
-const path = require("node:path");
-const output = process.argv[2];
-const source = process.argv[3];
-const rows = fs.readFileSync(0, "utf8").trim().split("\n");
-const headers = rows.shift().split(",");
-const kind = headers.indexOf("kind");
-const permalink = headers.indexOf("permalink");
-const sourcePath = headers.indexOf("path");
-
-for (const row of rows) {
-  const columns = row.split(",");
-  if (columns[kind] !== "page") continue;
-  const markdown = path.join(source, columns[sourcePath].replace(/^content\//, "content/"));
-  if (!fs.existsSync(markdown) || !/^#{2,4}\s+\S/m.test(fs.readFileSync(markdown, "utf8"))) continue;
-  const pathname = decodeURIComponent(new URL(columns[permalink]).pathname).replace(/^\/+/, "");
-  const candidate = path.join(output, pathname, "index.html");
-  if (fs.existsSync(candidate)) {
-    process.stdout.write(candidate);
-    break;
-  }
-}
-NODE
-)"
-  test -n "$article"
+  article="$output_dir/安全/安全基础/密码学基础/1-散列与认证/单向散列与HMAC机制底层解剖/index.html"
+  test -f "$article"
   grep -q 'data-x7-article-shell' "$article"
   grep -q 'data-x7-article-content' "$article"
   grep -q 'data-x7-chapter-radar' "$article"
   grep -q 'data-x7-chapter-list' "$article"
   grep -q 'data-x7-knowledge-tree' "$article"
+
+  duplicate_article="$article"
+  test -f "$duplicate_article"
+  node - "$duplicate_article" <<'NODE'
+const fs = require("node:fs");
+const html = fs.readFileSync(process.argv[2], "utf8");
+const count = (pattern) => [...html.matchAll(pattern)].length;
+const headings = [...html.matchAll(/<h1\b([^>]*)>([\s\S]*?)<\/h1>/g)];
+const title = "单向散列与HMAC：底层逻辑、碰撞漏洞与长度扩展攻击";
+const plain = (value) => value.replace(/<[^>]+>/g, "").replaceAll("&amp;", "&").trim();
+if (headings.length !== 1 || plain(headings[0][2]) !== title) process.exit(1);
+if (count(/\bid=([^\s>]+)/g) !== new Set([...html.matchAll(/\bid=([^\s>]+)/g)].map((match) => match[1])).size) process.exit(1);
+if (count(/\bdata-x7-article-content\b/g) !== 1) process.exit(1);
+if (count(/\bdata-x7-updated\b/g) !== 1) process.exit(1);
+if (count(/\bclass=x7-tag-chips\b/g) > 1) process.exit(1);
+NODE
+
+  distinct_h1_article="$output_dir/安全/安全基础/操作系统/Windows/Powershell/ms-gpsb_window核心协议-安全扩展协议/index.html"
+  test -f "$distinct_h1_article"
+  node - "$distinct_h1_article" <<'NODE'
+const fs = require("node:fs");
+const html = fs.readFileSync(process.argv[2], "utf8");
+const headings = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)]
+  .map((match) => match[1].replace(/<[^>]+>/g, "").trim());
+if (!headings.includes("1. 介绍")) process.exit(1);
+NODE
 elif [[ "$contract_phase" != "baseline" ]]; then
   echo "Unknown X7_RENDER_CONTRACT_PHASE: $contract_phase" >&2
   exit 2

@@ -1,5 +1,5 @@
 <dl class="x7-article-meta" aria-label="Article details">
-  <div><dt>Updated</dt><dd><time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006-01-02" }}</time></dd></div>
+  <div data-x7-updated><dt>Updated</dt><dd><time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006-01-02" }}</time></dd></div>
   <div><dt>Reading time</dt><dd>{{ .ReadingTime }} min</dd></div>
   {{ with .Params.difficulty }}<div><dt>Difficulty</dt><dd>{{ . }}</dd></div>{{ end }}
 </dl>
