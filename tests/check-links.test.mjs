@@ -1,13 +1,17 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import test from 'node:test';
+import test, { after } from 'node:test';
 
 import { assessBaseline, checkLinks } from './check-links.mjs';
 
+const fixtureRoots = [];
+after(async () => Promise.all(fixtureRoots.map((root) => rm(root, { recursive: true, force: true }))));
+
 async function fixture(files) {
   const root = await mkdtemp(path.join(os.tmpdir(), 'x7-links-'));
+  fixtureRoots.push(root);
   for (const [name, contents] of Object.entries(files)) {
     const filename = path.join(root, name);
     await mkdir(path.dirname(filename), { recursive: true });
@@ -37,6 +41,30 @@ test('ignores URLs with arbitrary valid URI schemes and protocol-relative URLs',
       'custom+scheme.value-1:payload',
       '//cdn.example.com/asset.js',
     ].map((url) => `<a href="${url}">external</a>`).join(''),
+  });
+
+  assert.deepEqual(await checkLinks(root), []);
+});
+
+test('does not accept a directory without an index document', async () => {
+  const root = await fixture({ 'index.html': '<a href="/empty/">empty</a>', 'empty/.keep': '' });
+
+  assert.equal((await checkLinks(root)).length, 1);
+});
+
+test('ignores references in comments and raw-content elements', async () => {
+  const root = await fixture({
+    'index.html': '<!-- <a href="missing-comment"> --><script>"<a href=missing-script>"</script><style><a href=missing-style></style><template><a href="missing-template"></template>',
+  });
+
+  assert.deepEqual(await checkLinks(root), []);
+});
+
+test('decodes HTML entities in URL attributes before resolving paths', async () => {
+  const root = await fixture({
+    'index.html': '<a href="asset&amp;name.html?x=1&amp;y=2">named</a><a href="numeric&#38;name.html">numeric</a>',
+    'asset&name.html': '',
+    'numeric&name.html': '',
   });
 
   assert.deepEqual(await checkLinks(root), []);

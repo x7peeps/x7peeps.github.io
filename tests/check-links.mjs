@@ -8,10 +8,19 @@ async function siteEntries(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   const nested = await Promise.all(entries.map(async (entry) => {
     const filename = path.join(directory, entry.name);
-    if (entry.isDirectory()) return [filename, ...(await siteEntries(filename))];
+    if (entry.isDirectory()) return siteEntries(filename);
     return entry.isFile() ? [filename] : [];
   }));
   return nested.flat();
+}
+
+function decodeHtmlEntities(value) {
+  const named = { amp: '&', quot: '"', apos: "'" };
+  return value.replace(/&(?:#(\d+)|#x([\da-f]+)|(amp|quot|apos));/gi, (entity, decimal, hex, name) => {
+    if (decimal) return String.fromCodePoint(Number.parseInt(decimal, 10));
+    if (hex) return String.fromCodePoint(Number.parseInt(hex, 16));
+    return named[name.toLowerCase()] ?? entity;
+  });
 }
 
 export async function checkLinks(rootDirectory) {
@@ -21,13 +30,15 @@ export async function checkLinks(rootDirectory) {
   const existing = new Set(entries);
 
   for (const sourceFile of entries.filter((filename) => filename.endsWith('.html'))) {
-    const html = await readFile(sourceFile, 'utf8');
+    const html = (await readFile(sourceFile, 'utf8'))
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, '');
     const references = [...html.matchAll(/<[^>]+>/g)].flatMap(([tag]) =>
       [...tag.matchAll(/\b(?:href|src)\s*=\s*(?:(["'])(.*?)\1|([^\s>]+))/gi)],
     );
 
     for (const match of references) {
-      const raw = (match[2] ?? match[3] ?? '').trim();
+      const raw = decodeHtmlEntities((match[2] ?? match[3] ?? '').trim());
       if (!raw || ignored.test(raw)) continue;
 
       const pathname = raw.split(/[?#]/, 1)[0];
