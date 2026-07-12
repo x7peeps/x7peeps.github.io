@@ -221,6 +221,57 @@ const pageLinks = [...termMain.matchAll(/href=(\/[^\s>]+\/index\.html)/g)]
 if (!pageLinks.length || !termMain.includes("children-type-group") || !termMain.includes("<li><p><a")) process.exit(1);
 if ([...termMain.matchAll(/href=\/categories\//g)].length) process.exit(1);
 NODE
+
+  node - "$source_dir/content" "$output_dir" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+
+const [contentDir, outputDir] = process.argv.slice(2);
+const topSections = fs.readdirSync(contentDir, { withFileTypes: true })
+  .filter(entry => entry.isDirectory() && fs.existsSync(path.join(contentDir, entry.name, "_index.md")))
+  .map(entry => entry.name)
+  .sort((a, b) => a.localeCompare(b, "zh-CN"));
+if (!topSections.length) process.exit(1);
+
+const readSection = section => {
+  const file = path.join(outputDir, section, "index.html");
+  if (!fs.existsSync(file)) process.exit(1);
+  return fs.readFileSync(file, "utf8");
+};
+
+for (const section of topSections) {
+  const html = readSection(section);
+  if (!html.includes("data-x7-domain-landing")) process.exit(1);
+  if ([...html.matchAll(/<h1\b/g)].length !== 1) process.exit(1);
+  if (!html.includes(`KNOWLEDGE DOMAIN / ${section}`)) process.exit(1);
+  if ([...html.matchAll(/\bdata-x7-search-open\b/g)].length < 2) process.exit(1);
+}
+
+const candidate = topSections
+  .map(name => ({ name, html: readSection(name) }))
+  .find(section => section.html.includes("data-x7-domain-child"));
+if (!candidate) process.exit(1);
+
+const childLinks = [...candidate.html.matchAll(/<a\b[^>]*data-x7-domain-child[^>]*href=([^\s>]+)/g)];
+const childUrls = childLinks.map(([, href]) => href);
+if (!childUrls.length || new Set(childUrls).size !== childUrls.length) process.exit(1);
+if (childLinks.some(([tag]) => !/data-x7-article-count=\d+/.test(tag))) process.exit(1);
+
+const latest = [...candidate.html.matchAll(/<a\b[^>]*data-x7-domain-update[^>]*href=([^\s>]+)[^>]*>[\s\S]*?<time\b[^>]*datetime=([^\s>]+)/g)]
+  .map(([, href, datetime]) => ({ href, time: Date.parse(datetime) }));
+if (!latest.length || latest.length > 8 || latest.some(item => Number.isNaN(item.time))) process.exit(1);
+if (latest.some((item, index) => index && (item.time > latest[index - 1].time ||
+    (item.time === latest[index - 1].time && item.href.localeCompare(latest[index - 1].href) < 0)))) process.exit(1);
+
+const tags = [...candidate.html.matchAll(/<a\b[^>]*data-x7-domain-tag[^>]*href=(\/tags\/[^\s>]+)[^>]*data-x7-tag-count=(\d+)/g)];
+if (tags.length > 12 || new Set(tags.map(([, href]) => href)).size !== tags.length) process.exit(1);
+if (tags.some(([, , count]) => Number(count) < 1)) process.exit(1);
+
+for (const taxonomy of ["tags", "categories"]) {
+  const html = fs.readFileSync(path.join(outputDir, taxonomy, "index.html"), "utf8");
+  if (html.includes("data-x7-domain-landing")) process.exit(1);
+}
+NODE
 elif [[ "$contract_phase" != "baseline" ]]; then
   echo "Unknown X7_RENDER_CONTRACT_PHASE: $contract_phase" >&2
   exit 2

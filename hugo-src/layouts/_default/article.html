@@ -1,5 +1,7 @@
 {{- $isCockpit := and (eq (.Store.Get "relearnOutputFormat") "html") (eq .Kind "page") (not (.Store.Get "relearnIsNested")) -}}
-{{- if $isCockpit -}}
+{{- if and (eq (.Store.Get "relearnOutputFormat") "html") (eq .Kind "section") -}}
+  {{- partial "x7/domain-landing.html" . -}}
+{{- else if $isCockpit -}}
   {{- partial "x7/article-shell.html" . -}}
 {{- else -}}
 <article class="default">

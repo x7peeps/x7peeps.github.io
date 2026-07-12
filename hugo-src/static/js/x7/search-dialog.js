@@ -60,8 +60,8 @@ function setPreview(dialog, document) {
 
 export function initSearchDialog({ navigate = url => window.location.assign(url) } = {}) {
   const dialog = document.querySelector("[data-x7-search-dialog]");
-  const openButton = document.querySelector("[data-x7-search-open]");
-  if (!dialog || !openButton || dialog.dataset.x7Initialized === "true") return () => {};
+  const openButtons = [...document.querySelectorAll("[data-x7-search-open]")];
+  if (!dialog || !openButtons.length || dialog.dataset.x7Initialized === "true") return () => {};
   dialog.dataset.x7Initialized = "true";
 
   const input = dialog.querySelector("[data-x7-search-input]");
@@ -157,7 +157,7 @@ export function initSearchDialog({ navigate = url => window.location.assign(url)
   const onShortcut = event => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === "k") {
       event.preventDefault();
-      open(event.currentTarget === openButton ? openButton : document.activeElement);
+      open(document.activeElement);
     }
   };
   const onDialogKeydown = event => {
@@ -176,10 +176,10 @@ export function initSearchDialog({ navigate = url => window.location.assign(url)
     opener?.focus?.();
     opener = null;
   };
-  const onOpenClick = () => open(openButton);
+  const onOpenClick = event => open(event.currentTarget);
   const onCloseClick = () => dialog.close();
 
-  openButton.addEventListener("click", onOpenClick);
+  openButtons.forEach(button => button.addEventListener("click", onOpenClick));
   document.addEventListener("keydown", onShortcut);
   input.addEventListener("input", scheduleRender);
   dialog.addEventListener("keydown", onDialogKeydown);
@@ -189,7 +189,7 @@ export function initSearchDialog({ navigate = url => window.location.assign(url)
   const cleanup = () => {
     clearTimeout(renderTimer);
     controller.abort();
-    openButton.removeEventListener("click", onOpenClick);
+    openButtons.forEach(button => button.removeEventListener("click", onOpenClick));
     document.removeEventListener("keydown", onShortcut);
     input.removeEventListener("input", scheduleRender);
     dialog.removeEventListener("keydown", onDialogKeydown);

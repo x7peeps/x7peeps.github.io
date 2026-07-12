@@ -1,0 +1,99 @@
+{{- $pages := .RegularPagesRecursive -}}
+{{- $latest := first 8 (sort (sort $pages "RelPermalink" "asc") "Lastmod" "desc") -}}
+{{- $introSource := replaceRE `(?s)\{\{<\s*article_cards\s*>\}\}` "" .RawContent -}}
+{{- $intro := trim $introSource " \t\r\n" -}}
+{{- $tagData := slice -}}
+{{- $tagCounts := newScratch -}}
+{{- $tagPages := newScratch -}}
+{{- range $pages -}}
+  {{- range .GetTerms "tags" -}}
+    {{- $key := .RelPermalink -}}
+    {{- $tagCounts.Add $key 1 -}}
+    {{- $tagPages.Set $key . -}}
+  {{- end -}}
+{{- end -}}
+{{- range $key, $count := $tagCounts.Values -}}
+  {{- $term := $tagPages.Get $key -}}
+  {{- $tagData = $tagData | append (dict "count" $count "key" (lower $term.LinkTitle) "page" $term) -}}
+{{- end -}}
+{{- $tagData = first 12 (sort (sort $tagData "key" "asc") "count" "desc") -}}
+
+<article class="x7-domain-landing" data-x7-domain-landing>
+  <header class="x7-domain-landing__hero">
+    <p class="x7-system-label">KNOWLEDGE DOMAIN / {{ .Title }}</p>
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<p class="x7-domain-landing__description">{{ . }}</p>{{ end -}}
+    {{- with $intro }}<div class="x7-domain-landing__intro">{{ $.RenderString . }}</div>{{ end -}}
+    <button class="x7-domain-landing__search" type="button" data-x7-search-open aria-label="打开全站搜索">搜索知识库</button>
+  </header>
+
+  {{- if .Sections }}
+  <section class="x7-domain-block" aria-labelledby="x7-domain-map">
+    <header class="x7-domain-block__header">
+      <p class="x7-system-label">FRAMEWORK MAP</p>
+      <h2 id="x7-domain-map">知识框架</h2>
+    </header>
+    <nav aria-label="{{ .Title }}知识框架">
+      <ul class="x7-domain-grid">
+        {{- range .Sections.ByWeight }}
+        <li>
+          <a class="x7-domain-card" data-x7-domain-child data-x7-article-count="{{ len .RegularPagesRecursive }}" href="{{ .RelPermalink }}">
+            <span>{{ .LinkTitle }}</span>
+            <small>{{ len .RegularPagesRecursive }} 篇文章</small>
+          </a>
+        </li>
+        {{- end }}
+      </ul>
+    </nav>
+  </section>
+  {{- else if $pages }}
+  <section class="x7-domain-block" aria-labelledby="x7-domain-map">
+    <header class="x7-domain-block__header">
+      <p class="x7-system-label">FRAMEWORK MAP</p>
+      <h2 id="x7-domain-map">内容索引</h2>
+    </header>
+    <nav aria-label="{{ .Title }}内容索引">
+      <ul class="x7-domain-grid">
+        {{- range $pages.ByTitle }}<li><a class="x7-domain-card" data-x7-domain-page href="{{ .RelPermalink }}"><span>{{ .LinkTitle }}</span></a></li>{{ end -}}
+      </ul>
+    </nav>
+  </section>
+  {{- end }}
+
+  {{- with $latest }}
+  <section class="x7-domain-block" aria-labelledby="x7-domain-latest">
+    <header class="x7-domain-block__header">
+      <p class="x7-system-label">LATEST SIGNALS</p>
+      <h2 id="x7-domain-latest">最近更新</h2>
+    </header>
+    <ol class="x7-domain-updates">
+      {{- range . }}
+      <li>
+        <a data-x7-domain-update href="{{ .RelPermalink }}">
+          <span class="x7-domain-update__title">{{ .LinkTitle }}</span>
+          <span class="x7-domain-update__meta">
+            <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+            {{- with .CurrentSection }}<span>{{ .LinkTitle }}</span>{{ end -}}
+          </span>
+        </a>
+        {{ partial "x7/tag-chips.html" . }}
+      </li>
+      {{- end }}
+    </ol>
+  </section>
+  {{- end }}
+
+  {{- with $tagData }}
+  <section class="x7-domain-block" aria-labelledby="x7-domain-tags">
+    <header class="x7-domain-block__header">
+      <p class="x7-system-label">DOMAIN TAGS</p>
+      <h2 id="x7-domain-tags">领域标签</h2>
+    </header>
+    <nav aria-label="{{ $.Title }}领域标签">
+      <ul class="x7-domain-tags">
+        {{- range . }}<li><a data-x7-domain-tag href="{{ .page.RelPermalink }}" data-x7-tag-count="{{ .count }}"><span>{{ .page.LinkTitle }}</span><small>{{ .count }}</small></a></li>{{ end -}}
+      </ul>
+    </nav>
+  </section>
+  {{- end }}
+</article>
