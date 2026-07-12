@@ -46,6 +46,12 @@ for (const asset of ["/js/custom.js", "/js/x7/bootstrap.js"]) {
 NODE
 
 if [[ "$contract_phase" == "digital-nocturne" ]]; then
+  related_partial="$source_dir/layouts/partials/x7/related-content.html"
+  related_index_partial="$source_dir/layouts/partials/x7/related-index.html"
+  test -f "$related_index_partial"
+  ! grep -Eq 'range[[:space:]]+site\.RegularPages' "$related_partial"
+  grep -q 'partialCached "x7/related-index.html"' "$related_partial"
+
   article="$output_dir/安全/安全基础/密码学基础/1-散列与认证/单向散列与HMAC机制底层解剖/index.html"
   test -f "$article"
   grep -q 'data-x7-article-shell' "$article"
@@ -131,6 +137,7 @@ for (const article of [tagged, tagless]) {
   if (!current) process.exit(1);
   if (links.length > 4 || new Set(links).size !== links.length || links.includes(current)) process.exit(1);
   if (!links.length && /<h2\b|<ul\b/.test(hook)) process.exit(1);
+  if (article === tagged && !/<a\b[^>]*data-x7-related-link[^>]*data-x7-shared-tags=3[^>]*data-x7-same-section=true/.test(hook)) process.exit(1);
 }
 NODE
 

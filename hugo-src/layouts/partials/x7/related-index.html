@@ -1,0 +1,12 @@
+{{- $index := dict -}}
+{{- range site.RegularPages -}}
+  {{- $page := . -}}
+  {{- range (.Params.tags | default (slice)) -}}
+    {{- $tag := lower (trim (printf "%v" .) " \t\r\n") -}}
+    {{- if $tag -}}
+      {{- $bucket := index $index $tag | default (slice) -}}
+      {{- $index = merge (dict $tag ($bucket | append $page)) $index -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $index -}}
