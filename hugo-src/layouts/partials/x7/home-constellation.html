@@ -1,0 +1,103 @@
+{{- $nodes := partialCached "x7/constellation-data.json" . "home-constellation-data" -}}
+{{- $eligible := slice -}}
+{{- range where site.RegularPages "Section" "ne" "关于" -}}
+  {{- $url := lower .RelPermalink -}}
+  {{- if and (ne .Type "home") (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) -}}
+    {{- $eligible = $eligible | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $featured := where $eligible "Params.featured" true -}}
+{{- $featured = first 4 $featured.ByWeight -}}
+{{- $recent := sort $eligible "RelPermalink" "asc" -}}
+{{- $recent = sort $recent "Lastmod" "desc" -}}
+{{- if eq (len $featured) 0 -}}
+  {{- $picked := slice -}}
+  {{- $sections := newScratch -}}
+  {{- range $recent -}}
+    {{- if and (lt (len $picked) 4) (not ($sections.Get .Section)) -}}
+      {{- $picked = $picked | append . -}}
+      {{- $sections.Set .Section true -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if lt (len $picked) 4 -}}
+    {{- range $recent -}}
+      {{- if and (lt (len $picked) 4) (not (in $picked .)) -}}
+        {{- $picked = $picked | append . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $featured = $picked -}}
+{{- end -}}
+{{- $latest := first 8 $recent -}}
+
+<article class="x7-constellation-home" data-x7-home>
+  <header class="x7-ch-hero">
+    <div class="x7-ch-hero__copy">
+      <p class="x7-ch-eyebrow">SECURITY RESEARCHER / BUILDER</p>
+      <h1>复杂世界的知识坐标</h1>
+      <p class="x7-ch-mission">{{ .Description }}</p>
+      <div class="x7-ch-actions" aria-label="首页快捷入口">
+        <a class="x7-ch-button x7-ch-button--primary" href="#knowledge-map">探索知识地图</a>
+        <a class="x7-ch-button" href="#featured-work">查看代表成果</a>
+      </div>
+    </div>
+    <div class="x7-ch-visual" aria-hidden="true">
+      <canvas data-x7-constellation hidden></canvas>
+      <div class="x7-ch-fallback" data-x7-constellation-fallback>
+        {{- range $index, $node := $nodes -}}
+          <span style="--x7-node-index: {{ $index }}"></span>
+        {{- end -}}
+      </div>
+    </div>
+  </header>
+
+  <nav class="x7-ch-domains" id="knowledge-map" aria-labelledby="x7-ch-domains-title">
+    <div class="x7-ch-section-heading">
+      <p>KNOWLEDGE MAP</p>
+      <h2 id="x7-ch-domains-title">知识域</h2>
+    </div>
+    <div class="x7-ch-domain-grid">
+      {{- range $nodes -}}
+        <a class="x7-ch-domain-card" href="{{ .url }}" data-x7-domain-link data-node-id="{{ .id }}" data-node-title="{{ .title }}" data-article-count="{{ .count }}">
+          <span class="x7-ch-domain-card__title">{{ .title }}</span>
+          <span class="x7-ch-domain-card__meta">{{ .count }} 篇文章 <span aria-hidden="true">↗</span></span>
+        </a>
+      {{- end -}}
+    </div>
+  </nav>
+  <script type="application/json" data-x7-constellation-data>{{ $nodes | jsonify | safeJS }}</script>
+
+  <section class="x7-ch-featured" id="featured-work" aria-labelledby="x7-ch-featured-title">
+    <div class="x7-ch-section-heading">
+      <p>SELECTED WORK</p>
+      <h2 id="x7-ch-featured-title">代表成果</h2>
+    </div>
+    <div class="x7-ch-featured-grid">
+      {{- range $featured -}}
+        <article class="x7-ch-work-card">
+          <div class="x7-ch-work-card__meta"><span>{{ .Section }}</span><time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006.01.02" }}</time></div>
+          <h3><a href="{{ .RelPermalink }}" data-x7-featured-link>{{ .Title }}</a></h3>
+          {{- with .Params.tags -}}<ul class="x7-ch-tags" aria-label="标签">{{ range first 3 . }}<li>{{ . }}</li>{{ end }}</ul>{{- end -}}
+        </article>
+      {{- end -}}
+    </div>
+  </section>
+
+  <section class="x7-ch-latest" aria-labelledby="x7-ch-latest-title">
+    <div class="x7-ch-section-heading">
+      <p>LATEST SIGNALS</p>
+      <h2 id="x7-ch-latest-title">最近信号</h2>
+    </div>
+    <ol class="x7-ch-latest-list">
+      {{- range $latest -}}
+        <li>
+          <a href="{{ .RelPermalink }}" data-x7-latest-link data-updated="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+            <span class="x7-ch-latest-list__date"><time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006.01.02" }}</time><span>{{ .Section }}</span></span>
+            <span class="x7-ch-latest-list__body"><strong>{{ .Title }}</strong>{{ with .Plain }}<span>{{ . | truncate 100 }}</span>{{ end }}</span>
+            <span class="x7-ch-latest-list__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      {{- end -}}
+    </ol>
+  </section>
+</article>

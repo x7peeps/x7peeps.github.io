@@ -311,6 +311,69 @@ NODE
   ! grep -q '\.RegularPagesRecursive' "$domain_landing_partial"
   grep -q 'partialCached "x7/domain-data.html"' "$domain_landing_partial"
   test "$(grep -o '\.RegularPagesRecursive' "$domain_data_partial" | wc -l | tr -d ' ')" -eq 2
+
+  node - "$homepage" "$source_dir/content/_index.md" "$output_dir" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+const [homepagePath, contentPath, outputDir] = process.argv.slice(2);
+const html = fs.readFileSync(homepagePath, "utf8");
+const content = fs.readFileSync(contentPath, "utf8");
+const count = pattern => [...html.matchAll(pattern)].length;
+const attr = (tag, name) => tag.match(new RegExp(`\\b${name}=(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`))?.slice(1).find(Boolean);
+const plain = value => value.replace(/<[^>]*>/g, "").replace(/&(?:#x([0-9a-f]+)|#(\d+)|amp|lt|gt|quot);/gi, (_, hex, dec) =>
+  hex ? String.fromCodePoint(parseInt(hex, 16)) : dec ? String.fromCodePoint(Number(dec)) : ({ amp: "&", lt: "<", gt: ">", quot: '"' })[_.toLowerCase()] ?? ""
+).replace(/\s+/g, " ").trim();
+
+if (count(/\bdata-x7-home\b/g) !== 1 || count(/<h1\b/g) !== 1) process.exit(1);
+if (!html.includes("SECURITY RESEARCHER / BUILDER") || !html.includes("复杂世界的知识坐标")) process.exit(1);
+if (!/<a\b[^>]*href=#knowledge-map[^>]*>探索知识地图<\/a>/.test(html)) process.exit(1);
+if (!/<a\b[^>]*href=#featured-work[^>]*>查看代表成果<\/a>/.test(html)) process.exit(1);
+if (count(/\bdata-x7-constellation(?:\s|>)/g) !== 1 || count(/\bdata-x7-constellation-fallback(?:\s|>)/g) !== 1) process.exit(1);
+if (!/<nav\b[^>]*id=knowledge-map\b/.test(html) || !/<section\b[^>]*id=featured-work\b/.test(html)) process.exit(1);
+if (html.includes("window.__heatmapDays") || /\b(?:id=x7-feed|class=x7-feed(?:\s|>))/.test(html)) process.exit(1);
+
+const nodeLinks = [...html.matchAll(/<a\b[^>]*\bdata-x7-domain-link\b[^>]*>/g)].map(match => ({
+  id: attr(match[0], "data-node-id"),
+  url: attr(match[0], "href"),
+  count: Number(attr(match[0], "data-article-count")),
+  title: attr(match[0], "data-node-title"),
+}));
+if (!nodeLinks.length || nodeLinks.some(node => !node.id || !node.url || !node.title || !Number.isInteger(node.count))) process.exit(1);
+if (new Set(nodeLinks.map(node => node.id)).size !== nodeLinks.length) process.exit(1);
+const dataMatch = html.match(/<script\b[^>]*type=application\/json[^>]*data-x7-constellation-data[^>]*>([\s\S]*?)<\/script>/);
+if (!dataMatch) process.exit(1);
+const nodes = JSON.parse(dataMatch[1]);
+if (!Array.isArray(nodes) || nodes.length !== nodeLinks.length || new Set(nodes.map(node => node.id)).size !== nodes.length) process.exit(1);
+for (const node of nodes) {
+  if (Object.keys(node).sort().join(",") !== "count,id,title,url") process.exit(1);
+  const link = nodeLinks.find(candidate => candidate.id === node.id);
+  if (!link || link.title !== node.title || link.url !== node.url || link.count !== node.count) process.exit(1);
+  const target = path.join(outputDir, decodeURI(node.url.replace(/^\//, "")));
+  if (!fs.existsSync(target) && !fs.existsSync(path.join(target, "index.html"))) process.exit(1);
+}
+
+const featured = [...html.matchAll(/<a\b[^>]*\bdata-x7-featured-link\b[^>]*>/g)].map(match => attr(match[0], "href"));
+if (featured.length < 1 || featured.length > 4 || new Set(featured).size !== featured.length) process.exit(1);
+const latest = [...html.matchAll(/<a\b[^>]*\bdata-x7-latest-link\b[^>]*>/g)].map(match => ({ href: attr(match[0], "href"), updated: attr(match[0], "data-updated") }));
+if (!latest.length || latest.length > 8 || new Set(latest.map(item => item.href)).size !== latest.length) process.exit(1);
+const timestamps = latest.map(item => Date.parse(item.updated));
+if (timestamps.some(Number.isNaN) || timestamps.some((date, i) => i && date > timestamps[i - 1])) process.exit(1);
+for (const { href } of [...featured.map(href => ({ href })), ...latest]) {
+  if (!href?.startsWith("/")) process.exit(1);
+  const target = path.join(outputDir, decodeURI(href.slice(1)));
+  if (!fs.existsSync(target) && !fs.existsSync(path.join(target, "index.html"))) process.exit(1);
+}
+if (/<div\b/i.test(content.replace(/^---[\s\S]*?---/, ""))) process.exit(1);
+NODE
+
+  node - "$subpath_output/index.html" <<'NODE'
+const fs = require("node:fs");
+const html = fs.readFileSync(process.argv[2], "utf8");
+const hrefs = [...html.matchAll(/<a\b[^>]*(?:data-x7-domain-link|data-x7-featured-link|data-x7-latest-link)[^>]*\bhref=([^\s>]+)/g)].map(match => match[1]);
+const json = JSON.parse(html.match(/<script\b[^>]*data-x7-constellation-data[^>]*>([\s\S]*?)<\/script>/)?.[1] ?? "null");
+if (!hrefs.length || hrefs.some(href => !href.startsWith("/docs/"))) process.exit(1);
+if (!Array.isArray(json) || json.some(node => !node.url.startsWith("/docs/"))) process.exit(1);
+NODE
 elif [[ "$contract_phase" != "baseline" ]]; then
   echo "Unknown X7_RENDER_CONTRACT_PHASE: $contract_phase" >&2
   exit 2

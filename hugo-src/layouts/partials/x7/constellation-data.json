@@ -1,0 +1,12 @@
+{{- $nodes := slice -}}
+{{- range site.Sections.ByWeight -}}
+  {{- if ne .Section "关于" -}}
+    {{- $nodes = $nodes | append (dict
+      "id" (printf "domain-%s" (.Section | urlize))
+      "title" .Title
+      "url" .RelPermalink
+      "count" (len .RegularPagesRecursive)
+    ) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $nodes -}}
