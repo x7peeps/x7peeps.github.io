@@ -11,7 +11,7 @@
     color: var(--x7-paper);
   }
 
-  .x7-article { width: min(100%, calc(var(--x7-prose) + var(--x7-rail-right) + 4rem)); margin-inline: auto; }
+  .x7-article-shell { width: min(100%, calc(var(--x7-prose) + var(--x7-rail-right) + 4rem)); margin-inline: auto; }
   .x7-article__header { max-width: var(--x7-prose); margin-inline: auto; padding-bottom: 1.25rem; border-bottom: 1px solid var(--x7-border); }
   .x7-article__header > h1 { margin-top: .35rem; }
   .x7-article__layout { display: grid; grid-template-columns: minmax(0, var(--x7-prose)) var(--x7-rail-right); gap: 3rem; align-items: start; justify-content: center; }

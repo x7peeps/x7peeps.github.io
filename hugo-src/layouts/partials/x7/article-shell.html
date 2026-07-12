@@ -1,4 +1,4 @@
-<article class="x7-article" data-x7-article-shell>
+<article class="x7-article-shell" data-x7-article-shell>
   {{- $content := printf "%s" .Content -}}
   {{- $leadingH1Pattern := `(?s)^\s*(<h1\b[^>]*>(.*?)</h1>)` -}}
   {{- with findRESubmatch $leadingH1Pattern $content 1 -}}
