@@ -118,16 +118,22 @@ for (const href of hrefs) {
   if (!fs.existsSync(target) && !fs.existsSync(path.join(target, "index.html"))) process.exit(1);
 }
 
-const tagRoot = path.join(outputDir, "tags");
-const tagTerm = fs.readdirSync(tagRoot, { withFileTypes: true })
-  .filter(entry => entry.isDirectory())
-  .map(entry => path.join(tagRoot, entry.name, "index.html"))
-  .find(file => fs.existsSync(file));
-if (!tagTerm) process.exit(1);
-const tagHtml = fs.readFileSync(tagTerm, "utf8");
-const compactNav = tagHtml.match(/<nav\b[^>]*data-x7-compact-taxonomy-nav[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? "";
-const compactHrefs = [...compactNav.matchAll(/<a\b[^>]*href=([^\s>]+)/g)].map(match => match[1]);
-if (!compactHrefs.length || compactHrefs.some(href => !href.startsWith("/docs/"))) process.exit(1);
+for (const taxonomy of ["tags", "categories"]) {
+  const taxonomyRoot = path.join(outputDir, taxonomy);
+  const taxonomyIndex = fs.readFileSync(path.join(taxonomyRoot, "index.html"), "utf8");
+  const current = [...taxonomyIndex.matchAll(/\baria-current=page\b/g)];
+  if (current.length !== 1 || !new RegExp(`href=/docs/${taxonomy}/[^>]*aria-current=page`).test(taxonomyIndex)) process.exit(1);
+  const termFile = fs.readdirSync(taxonomyRoot, { withFileTypes: true })
+    .filter(entry => entry.isDirectory())
+    .map(entry => path.join(taxonomyRoot, entry.name, "index.html"))
+    .find(file => fs.existsSync(file));
+  if (!termFile) process.exit(1);
+  const termHtml = fs.readFileSync(termFile, "utf8");
+  const compactNav = termHtml.match(/<nav\b[^>]*data-x7-compact-taxonomy-nav[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? "";
+  const compactHrefs = [...compactNav.matchAll(/<a\b[^>]*href=([^\s>]+)/g)].map(match => match[1]);
+  if (!compactNav.includes("data-x7-taxonomy-family-active") || /\baria-current=page\b/.test(compactNav)) process.exit(1);
+  if (!compactHrefs.length || compactHrefs.some(href => !href.startsWith("/docs/"))) process.exit(1);
+}
 NODE
 
   ! grep -q 'createElement("a")' "$source_dir/static/js/x7/search-dialog.js"
@@ -197,6 +203,7 @@ const [root, tagIndexPath, taggedPath, taglessPath] = process.argv.slice(2);
 const read = file => fs.readFileSync(file, "utf8");
 const index = read(tagIndexPath);
 if (!/<h1\b[^>]*>[^<]+<\/h1>/.test(index)) process.exit(1);
+if ([...index.matchAll(/\baria-current=page\b/g)].length !== 1 || !/<a\b[^>]*href=\/tags\/[^>]*aria-current=page/.test(index)) process.exit(1);
 const terms = [...index.matchAll(/<a\b[^>]*href=([^\s>]+)[^>]*><span>[^<]*<\/span>\s*<span\b[^>]*data-x7-tag-count[^>]*>(\d+)<\/span>/g)];
 if (!terms.length || terms.some(([, href, count]) => !href.startsWith("/tags/") || Number(count) < 1)) process.exit(1);
 
@@ -206,8 +213,9 @@ if (!fs.existsSync(termFile)) process.exit(1);
 const term = read(termFile);
 if (!/data-x7-taxonomy-results/.test(term) || !/<h1\b[^>]*>[^<]+<\/h1>/.test(term)) process.exit(1);
 if (!term.includes("data-x7-compact-taxonomy-nav") || term.includes("data-x7-knowledge-tree")) process.exit(1);
-if (Buffer.byteLength(term) >= 120_000) process.exit(1);
 const compactNav = term.match(/<nav\b[^>]*data-x7-compact-taxonomy-nav[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? "";
+if (Buffer.byteLength(term) >= 120_000) process.exit(1);
+if (!compactNav.includes("data-x7-taxonomy-family-active") || /\baria-current=page\b/.test(compactNav)) process.exit(1);
 const compactLinks = [...compactNav.matchAll(/<a\b[^>]*href=([^\s>]+)/g)].map(([, href]) => href);
 if (compactLinks.length < 3 || compactLinks.some(href => !href.startsWith("/"))) process.exit(1);
 for (const href of compactLinks) {
@@ -245,6 +253,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const [root, indexPath] = process.argv.slice(2);
 const index = fs.readFileSync(indexPath, "utf8");
+if ([...index.matchAll(/\baria-current=page\b/g)].length !== 1 || !/<a\b[^>]*href=\/categories\/[^>]*aria-current=page/.test(index)) process.exit(1);
 const main = index.slice(index.indexOf("<main"), index.indexOf("</main>"));
 const termLinks = [...main.matchAll(/href=(\/categories\/[^\s>]+\/index\.html)/g)].map(match => match[1]);
 if (!termLinks.length || !main.includes("children-type-group")) process.exit(1);
@@ -255,6 +264,8 @@ const term = fs.readFileSync(termPath, "utf8");
 const termMain = term.slice(term.indexOf("<main"), term.indexOf("</main>"));
 if (!term.includes("data-x7-compact-taxonomy-nav") || term.includes("data-x7-knowledge-tree")) process.exit(1);
 if (Buffer.byteLength(term) >= 120_000) process.exit(1);
+const compactNav = term.match(/<nav\b[^>]*data-x7-compact-taxonomy-nav[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? "";
+if (!compactNav.includes("data-x7-taxonomy-family-active") || /\baria-current=page\b/.test(compactNav)) process.exit(1);
 const pageLinks = [...termMain.matchAll(/href=(\/[^\s>]+\/index\.html)/g)]
   .map(match => match[1])
   .filter(href => !href.startsWith("/categories/"));

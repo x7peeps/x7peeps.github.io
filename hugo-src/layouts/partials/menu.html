@@ -18,7 +18,9 @@
             {{- range slice "tags" "categories" }}
               {{- $taxonomy := . }}
               {{- with site.GetPage (printf "/%s" $taxonomy) }}
-              <li{{ if eq $taxonomy $currentNode.Data.Plural }} class="active"{{ end }}><a class="padding" href="{{ .RelPermalink }}"{{ if eq $taxonomy $currentNode.Data.Plural }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a></li>
+                {{- $isFamily := eq $taxonomy $currentNode.Data.Plural }}
+                {{- $isCurrent := and $isFamily (eq $currentNode.Kind "taxonomy") }}
+              <li{{ if $isFamily }} class="active" data-x7-taxonomy-family-active{{ end }}><a class="padding" href="{{ .RelPermalink }}"{{ if $isCurrent }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a></li>
               {{- end }}
             {{- end }}
           </ul>

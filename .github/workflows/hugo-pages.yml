@@ -37,6 +37,8 @@ jobs:
       - uses: actions/configure-pages@v5
 
       - name: Verify release
+        env:
+          X7_VERIFY_BASE: ${{ github.event.before }}
         run: npm run verify
 
       - name: Build production site

@@ -3,14 +3,14 @@
 ## Automated gate
 
 - `node --check hugo-src/static/js/custom.js`: exit 0.
-- `npm run verify`: exit 0. Its unit phase passed 47 tests with 0 failures; root and `/docs/` render contracts passed; the 89-entry legacy link baseline had no `NEW:` or `STALE:` delta; the clean production build and `git diff --check` passed.
-- The clean production build produced 4,595 pages, 18 paginator pages, 999 non-page files, and 51 static files with Hugo 0.161.1 in 19,429 ms.
+- `X7_VERIFY_BASE=8dfce203e2e682badc61931899bc820d4096f66c npm run verify`: exit 0. Its unit phase passed 48 tests with 0 failures; root and `/docs/` render contracts passed; the 89-entry legacy link baseline had no `NEW:` or `STALE:` delta; the clean production build passed; and `git diff --check 8dfce203e2e682badc61931899bc820d4096f66c..HEAD` checked the complete committed branch range.
+- The clean production build produced 4,595 pages, 18 paginator pages, 999 non-page files, and 51 static files with Hugo 0.161.1 in 20,578 ms.
 
 The production build emitted only known upstream/environment warnings: Relearn module GitInfo mapping in the worktree and Hugo deprecations for `LanguageCode`, `LanguageDirection`, `.Site.Sites`/`.Page.Sites`, and `.Site.Languages`. There were no X7 warnings or errors.
 
 Generated contracts parse `search.json`; reject missing/duplicate X7 CSS and module assets, empty `href`/`src`, legacy feed/heatmap hooks, article constellation hooks, malformed search ownership, duplicate H1/IDs, empty related headings, and broken root/subpath X7 URLs. They exercise the homepage, every generated domain landing, article fixtures, tags/categories, search dialog/listbox ownership, labeled controls, an initially inert chapter drawer, and reduced-motion JS behavior. All four X7 stylesheets contain `prefers-reduced-motion` rules, while unit tests cover reduced-motion animation disabling and lifecycle restoration.
 
-Taxonomy and term pages now use a compact sidebar boundary. It preserves the Relearn aside/header, logo, global search, footer, top-level domain links, Tags/Categories links, accessible label, and current taxonomy state, but deliberately omits the recursive knowledge tree and its filter. Regular articles and sections retain the full `data-x7-knowledge-tree`. The representative minified tag term `tags/监控安全/index.html` is 11,960 bytes against the 120,000-byte contract.
+Taxonomy and term pages now use a compact sidebar boundary. It preserves the Relearn aside/header, logo, global search, footer, top-level domain links, Tags/Categories links, accessible label, and current taxonomy family state, but deliberately omits the recursive knowledge tree and its filter. Taxonomy roots alone use `aria-current="page"`; term pages retain a visual/data family-active marker without falsely identifying the taxonomy root as the current page. Regular articles and sections retain the full `data-x7-knowledge-tree`. The representative minified tag term `tags/监控安全/index.html` is 11,960 bytes against the 120,000-byte contract.
 
 The legacy global pointer spotlight and perspective grid were intentionally removed: Digital Nocturne supplies a scoped background and motion system, so keeping the global effects would duplicate rendering work and visual treatment.
 
@@ -41,7 +41,7 @@ Results (gzip bytes):
 | js/x7/search-dialog.js | 2,596 |
 | **All new X7 CSS/JS** | **18,513** |
 
-The constellation runtime is 2,497 gzip bytes, below the 120 KB gate. The clean production artifact is **754,783,426 bytes across 5,694 files**, below the enforced 1,000,000,000-byte release ceiling. `tests/verify-release.sh` calculates exact file bytes in a temporary clean build and fails at or above that ceiling.
+The constellation runtime is 2,497 gzip bytes, below the 120 KB gate. The clean production artifact is **754,806,069 bytes across 5,694 files**, below the enforced 1,000,000,000-byte release ceiling. `tests/verify-release.sh` calculates exact file bytes in a temporary clean build and fails at or above that ceiling.
 
 ## Manual QA handoff
 

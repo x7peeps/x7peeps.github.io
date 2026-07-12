@@ -8,7 +8,7 @@ npm test
 npm run test:render
 npm run test:links
 hugo --minify --source hugo-src --destination "$release_dir"
-git diff --check
+bash tests/check-release-whitespace.sh
 
 node - "$release_dir" <<'NODE'
 const fs = require("node:fs");
