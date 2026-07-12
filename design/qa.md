@@ -10,6 +10,7 @@ source: final review requirements for Digital Nocturne; repository templates, CS
 - Domain landing: cards and latest-title link color source rules.
 - Standard and compact sidebars: X7 command search plus full-tree-only knowledge filter.
 - Root and `/docs/` subpath render contracts.
+- Browser recheck at 1440×900 and 390×844 for home/domain/tag/article states.
 
 ## PASS / fixed findings
 
@@ -20,11 +21,13 @@ source: final review requirements for Digital Nocturne; repository templates, CS
 - FIXED: domain cards and latest-title links now use an explicit readable foreground rather than the transparent legacy primary color.
 - FIXED: Relearn's legacy search dependency UI was removed from compact and full sidebars; compact pages retain only the command dialog input, while full pages also retain the knowledge-tree filter.
 - FIXED: unreachable search-loader code was removed.
+- PASS: desktop and mobile checks have no horizontal overflow; the mobile chapter drawer exposes its links, updates `aria-expanded`, and moves focus to the close control.
+- PASS: taxonomy filtering updates the polite result count and hides the owning list items, keeping the visual and assistive-technology list counts aligned.
 
 ## Accessibility caveat
 
-Automated/source checks cover semantic labels, no-JS availability, focus styling, target sizing, hidden-state behavior, and input counts. A manual screen-reader and keyboard pass in the target browsers is still required; automated checks do not establish full WCAG conformance.
+Automated/source checks cover semantic labels, no-JS availability, focus styling, target sizing, hidden-state behavior, and input counts. Browser checks cover responsive layout, live filtering, and drawer focus behavior. A manual screen-reader pass is still recommended; these checks do not establish full WCAG conformance.
 
 ## Verdict
 
-NOT READY — implementation and render contracts pass, but browser visual/assistive-technology recheck is pending. Mark READY only after that browser QA passes.
+READY — implementation, release contracts, responsive browser checks, and critical keyboard/focus interactions pass. Manual screen-reader validation remains a recommended post-merge check.
