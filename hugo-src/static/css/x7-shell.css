@@ -1,11 +1,13 @@
-html {
-  color-scheme: dark;
-  background: var(--x7-void);
-}
+@media screen {
+  html#R-html {
+    color-scheme: dark;
+    background: var(--x7-void);
+  }
 
-body {
-  background: var(--x7-void);
-  color: var(--x7-paper);
+  html#R-html body {
+    background: var(--x7-void);
+    color: var(--x7-paper);
+  }
 }
 
 .x7-system-label {

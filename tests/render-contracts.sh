@@ -20,6 +20,31 @@ for asset in \
 done
 grep -q 'type=module src=/js/x7/bootstrap.js' "$homepage"
 
+node - "$homepage" <<'NODE'
+const fs = require("node:fs");
+const homepage = fs.readFileSync(process.argv[2], "utf8");
+const headEnd = homepage.indexOf("</head>");
+const bodyStart = homepage.indexOf("<body");
+
+if (headEnd === -1 || bodyStart === -1 || headEnd > bodyStart) process.exit(1);
+
+for (const asset of [
+  "/css/custom.css",
+  "/css/x7-tokens.css",
+  "/css/x7-shell.css",
+  "/css/x7-reading.css",
+  "/css/x7-home.css",
+]) {
+  const first = homepage.indexOf(asset);
+  if (first === -1 || first > headEnd || first !== homepage.lastIndexOf(asset)) process.exit(1);
+}
+
+for (const asset of ["/js/custom.js", "/js/x7/bootstrap.js"]) {
+  const first = homepage.indexOf(asset);
+  if (first < bodyStart || first !== homepage.lastIndexOf(asset)) process.exit(1);
+}
+NODE
+
 if [[ "$contract_phase" == "digital-nocturne" ]]; then
   grep -q 'data-x7-home' "$homepage"
 
