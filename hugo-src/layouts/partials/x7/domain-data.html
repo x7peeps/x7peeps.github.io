@@ -1,0 +1,23 @@
+{{- $pages := .RegularPagesRecursive -}}
+{{- $children := slice -}}
+{{- range .Sections.ByWeight -}}
+  {{- $childPages := .RegularPagesRecursive -}}
+  {{- $children = $children | append (dict "page" . "count" (len $childPages)) -}}
+{{- end -}}
+{{- $latest := first 8 (sort (sort $pages "RelPermalink" "asc") "Lastmod" "desc") -}}
+{{- $tagData := slice -}}
+{{- $tagCounts := newScratch -}}
+{{- $tagPages := newScratch -}}
+{{- range $pages -}}
+  {{- range .GetTerms "tags" -}}
+    {{- $key := .RelPermalink -}}
+    {{- $tagCounts.Add $key 1 -}}
+    {{- $tagPages.Set $key . -}}
+  {{- end -}}
+{{- end -}}
+{{- range $key, $count := $tagCounts.Values -}}
+  {{- $term := $tagPages.Get $key -}}
+  {{- $tagData = $tagData | append (dict "count" $count "key" (lower $term.LinkTitle) "page" $term) -}}
+{{- end -}}
+{{- $tags := first 12 (sort (sort $tagData "key" "asc") "count" "desc") -}}
+{{- return (dict "pages" $pages "children" $children "latest" $latest "tags" $tags) -}}

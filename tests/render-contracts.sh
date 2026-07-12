@@ -304,6 +304,13 @@ for (const taxonomy of ["tags", "categories"]) {
   if (html.includes("data-x7-domain-landing")) process.exit(1);
 }
 NODE
+
+  domain_landing_partial="$source_dir/layouts/partials/x7/domain-landing.html"
+  domain_data_partial="$source_dir/layouts/partials/x7/domain-data.html"
+  test -f "$domain_data_partial"
+  ! grep -q '\.RegularPagesRecursive' "$domain_landing_partial"
+  grep -q 'partialCached "x7/domain-data.html"' "$domain_landing_partial"
+  test "$(grep -o '\.RegularPagesRecursive' "$domain_data_partial" | wc -l | tr -d ' ')" -eq 2
 elif [[ "$contract_phase" != "baseline" ]]; then
   echo "Unknown X7_RENDER_CONTRACT_PHASE: $contract_phase" >&2
   exit 2
