@@ -36,14 +36,8 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
-      - name: Test
-        run: npm test
-
-      - name: Validate render contracts
-        run: npm run test:render
-
-      - name: Validate local links
-        run: npm run test:links
+      - name: Verify release
+        run: npm run verify
 
       - name: Build production site
         env:

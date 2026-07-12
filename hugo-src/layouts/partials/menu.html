@@ -1,6 +1,34 @@
     {{- $showvisitedlinks := site.Params.showVisitedLinks }}
+    {{- $currentNode := . }}
+    {{- $isCompactTaxonomy := or (eq .Kind "taxonomy") (eq .Kind "term") }}
+    {{- if $isCompactTaxonomy }}
+    <aside id="R-sidebar" class="default-animation" data-x7-compact-taxonomy-sidebar>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-header-topbar" class="default-animation"></div>
+        <div id="R-header-wrapper" class="default-animation">
+          {{- partial "logo.html" . }}
+          {{- partial "x7/search-dialog.html" . }}
+          {{- partial "dependencies.html" (dict "page" . "location" "search") }}
+        </div>
+        <nav class="R-sidebarmenu R-shortcutmenu-main default-animation" aria-label="Knowledge domains and taxonomies" data-x7-compact-taxonomy-nav>
+          <ul class="enlarge morespace collapsible-menu">
+            {{- range site.Sections.ByTitle }}
+            <li><a class="padding" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+            {{- end }}
+            {{- range slice "tags" "categories" }}
+              {{- $taxonomy := . }}
+              {{- with site.GetPage (printf "/%s" $taxonomy) }}
+              <li{{ if eq $taxonomy $currentNode.Data.Plural }} class="active"{{ end }}><a class="padding" href="{{ .RelPermalink }}"{{ if eq $taxonomy $currentNode.Data.Plural }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a></li>
+              {{- end }}
+            {{- end }}
+          </ul>
+        </nav>
+        <div id="R-footer-margin" class="default-animation"></div>
+        <div id="R-footer" class="default-animation">{{ partial "menu-footer.html" . }}</div>
+      </div>
+    </aside>
+    {{- else }}
     <aside id="R-sidebar" class="default-animation" data-x7-knowledge-tree>
-      {{- $currentNode := . }}
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-header-topbar" class="default-animation"></div>
         <div id="R-header-wrapper" class="default-animation">
@@ -33,6 +61,7 @@
 <div id="R-footer" class="default-animation">{{ partial "menu-footer.html" . }}</div>
       </div>
     </aside>
+    {{- end }}
 
 {{- define "partials/inline/menu" }}
   {{- $currentNode := .currentnode }}

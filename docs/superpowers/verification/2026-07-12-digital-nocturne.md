@@ -3,14 +3,16 @@
 ## Automated gate
 
 - `node --check hugo-src/static/js/custom.js`: exit 0.
-- `npm test`: exit 0; 47 tests passed, 0 failed.
-- `npm run test:render`: exit 0; root and `/docs/` subpath contracts passed. The root build produced 4,595 pages, 18 paginator pages, 999 non-page files, and 51 static files with Hugo 0.161.1.
-- `npm run test:links`: exit 0. The checker reported the existing 89 entries in `tests/link-baseline.txt` and no `NEW:` or `STALE:` lines. New broken links fail because `assessBaseline` rejects any current entry not in that checked-in baseline; baseline drift in either direction also fails.
-- `hugo --minify --source hugo-src --destination public-release`: exit 0; 4,595 pages, 18 paginator pages, 999 non-page files, and 51 static files in 28,469 ms.
+- `npm run verify`: exit 0. Its unit phase passed 47 tests with 0 failures; root and `/docs/` render contracts passed; the 89-entry legacy link baseline had no `NEW:` or `STALE:` delta; the clean production build and `git diff --check` passed.
+- The clean production build produced 4,595 pages, 18 paginator pages, 999 non-page files, and 51 static files with Hugo 0.161.1 in 19,429 ms.
 
 The production build emitted only known upstream/environment warnings: Relearn module GitInfo mapping in the worktree and Hugo deprecations for `LanguageCode`, `LanguageDirection`, `.Site.Sites`/`.Page.Sites`, and `.Site.Languages`. There were no X7 warnings or errors.
 
 Generated contracts parse `search.json`; reject missing/duplicate X7 CSS and module assets, empty `href`/`src`, legacy feed/heatmap hooks, article constellation hooks, malformed search ownership, duplicate H1/IDs, empty related headings, and broken root/subpath X7 URLs. They exercise the homepage, every generated domain landing, article fixtures, tags/categories, search dialog/listbox ownership, labeled controls, an initially inert chapter drawer, and reduced-motion JS behavior. All four X7 stylesheets contain `prefers-reduced-motion` rules, while unit tests cover reduced-motion animation disabling and lifecycle restoration.
+
+Taxonomy and term pages now use a compact sidebar boundary. It preserves the Relearn aside/header, logo, global search, footer, top-level domain links, Tags/Categories links, accessible label, and current taxonomy state, but deliberately omits the recursive knowledge tree and its filter. Regular articles and sections retain the full `data-x7-knowledge-tree`. The representative minified tag term `tags/监控安全/index.html` is 11,960 bytes against the 120,000-byte contract.
+
+The legacy global pointer spotlight and perspective grid were intentionally removed: Digital Nocturne supplies a scoped background and motion system, so keeping the global effects would duplicate rendering work and visual treatment.
 
 ## Asset and site measurements
 
@@ -39,11 +41,11 @@ Results (gzip bytes):
 | js/x7/search-dialog.js | 2,596 |
 | **All new X7 CSS/JS** | **18,513** |
 
-The constellation runtime is 2,497 gzip bytes, below the 120 KB gate. The complete generated site is 1,661,841,408 bytes (`du`: 1.5G) across 5,694 files. This exceeds the implementation plan's desired 1 GB comfort threshold and remains a deployment-size risk; this release-gate task intentionally does not alter legacy content or large files.
+The constellation runtime is 2,497 gzip bytes, below the 120 KB gate. The clean production artifact is **754,783,426 bytes across 5,694 files**, below the enforced 1,000,000,000-byte release ceiling. `tests/verify-release.sh` calculates exact file bytes in a temporary clean build and fails at or above that ceiling.
 
 ## Manual QA handoff
 
-Browser QA was not claimed here. The measured `hugo-src/public-release` output was removed because it is generated and must not be committed. Rebuild it with the production command above, then serve it with `python3 -m http.server 4173 --directory hugo-src/public-release`. Representative routes are:
+Browser QA remains pending and was not claimed here. Build a local artifact with `hugo --minify --source hugo-src --destination public-release`, then serve it with `python3 -m http.server 4173 --directory hugo-src/public-release`. Representative routes are:
 
 - `http://localhost:4173/`
 - `http://localhost:4173/安全/`
