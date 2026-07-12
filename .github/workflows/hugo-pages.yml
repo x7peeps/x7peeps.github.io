@@ -30,18 +30,27 @@ jobs:
 
       - uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "latest"
+          hugo-version: "0.161.1"
           extended: true
 
       - uses: actions/configure-pages@v5
 
-      - name: Build
+      - name: Test
+        run: npm test
+
+      - name: Validate render contracts
+        run: npm run test:render
+
+      - name: Validate local links
+        run: npm run test:links
+
+      - name: Build production site
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: hugo --minify --source hugo-src --destination public
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: hugo-src/public
 
