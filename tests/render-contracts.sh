@@ -79,6 +79,7 @@ for (const document of documents) {
 }
 const commandControl = documents.find(document => document.title.includes("影子流量：高级代理隧道与C2隐蔽通信编排"));
 if (!commandControl?.summary.includes("Command & Control")) process.exit(1);
+if (!documents.some(document => document.title.includes("Prompt 攻防：注入攻击手法与防御架构"))) process.exit(1);
 if (!documents.some(document => document.summary.includes('"'))) process.exit(1);
 if (count(/\bdata-x7-search-open\b/g) !== 1 || count(/\bdata-x7-search-dialog\b/g) !== 1) process.exit(1);
 if (!/<input\b[^>]*\brole=combobox\b[^>]*\baria-controls=x7-search-results\b[^>]*\baria-expanded=false\b/.test(homepage)) process.exit(1);
@@ -362,7 +363,7 @@ NODE
   test -f "$domain_data_partial"
   ! grep -q '\.RegularPagesRecursive' "$domain_landing_partial"
   grep -q 'partialCached "x7/domain-data.html"' "$domain_landing_partial"
-  test "$(grep -o '\.RegularPagesRecursive' "$domain_data_partial" | wc -l | tr -d ' ')" -eq 2
+  test "$(grep -o 'partial "x7/knowledge-pages.html"' "$domain_data_partial" | wc -l | tr -d ' ')" -eq 2
 
   node - "$homepage" "$source_dir/content/_index.md" "$output_dir" <<'NODE'
 const fs = require("node:fs");
@@ -391,6 +392,13 @@ const nodeLinks = [...html.matchAll(/<a\b[^>]*\bdata-x7-domain-link\b[^>]*>/g)].
   title: attr(match[0], "data-node-title"),
 }));
 if (!nodeLinks.length || nodeLinks.some(node => !node.id || !node.url || !node.title || !Number.isInteger(node.count))) process.exit(1);
+for (const title of ["AI", "阅读", "无人机"]) {
+  const node = nodeLinks.find(candidate => candidate.title === title);
+  if (!node || node.count < 1) {
+    console.error(`content-bearing section bundle was not counted for ${title}`);
+    process.exit(1);
+  }
+}
 if (new Set(nodeLinks.map(node => node.id)).size !== nodeLinks.length) process.exit(1);
 const dataMatch = html.match(/<script\b[^>]*type=application\/json[^>]*data-x7-constellation-data[^>]*>([\s\S]*?)<\/script>/);
 if (!dataMatch) process.exit(1);

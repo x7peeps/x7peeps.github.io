@@ -1,9 +1,12 @@
 {{- $nodes := partialCached "x7/constellation-data.json" . "home-constellation-data" -}}
 {{- $eligible := slice -}}
-{{- range where site.RegularPages "Section" "ne" "关于" -}}
+{{- range site.Sections -}}
+  {{- $domainPages := partial "x7/knowledge-pages.html" . -}}
+  {{- range $domainPages -}}
   {{- $url := lower .RelPermalink -}}
   {{- if and (ne .Type "home") (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) -}}
     {{- $eligible = $eligible | append . -}}
+  {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- $featured := where $eligible "Params.featured" true -}}

@@ -1,7 +1,7 @@
-{{- $pages := .RegularPagesRecursive -}}
+{{- $pages := partial "x7/knowledge-pages.html" . -}}
 {{- $children := slice -}}
 {{- range .Sections.ByWeight -}}
-  {{- $childPages := .RegularPagesRecursive -}}
+  {{- $childPages := partial "x7/knowledge-pages.html" . -}}
   {{- $children = $children | append (dict "page" . "count" (len $childPages)) -}}
 {{- end -}}
 {{- $latest := first 8 (sort (sort $pages "RelPermalink" "asc") "Lastmod" "desc") -}}

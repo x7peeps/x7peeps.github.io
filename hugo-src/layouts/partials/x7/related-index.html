@@ -1,7 +1,18 @@
 {{- $index := dict -}}
-{{- range site.RegularPages -}}
+{{- $pages := slice -}}
+{{- range site.Sections -}}
+  {{- $domainPages := partial "x7/knowledge-pages.html" . -}}
+  {{- range $domainPages -}}
+    {{- $pages = $pages | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- range $pages -}}
   {{- $page := . -}}
-  {{- range (.Params.tags | default (slice)) -}}
+  {{- $rawTags := .Params.tags | default (slice) -}}
+  {{- if not (reflect.IsSlice $rawTags) -}}
+    {{- $rawTags = split (printf "%v" $rawTags) "," -}}
+  {{- end -}}
+  {{- range $rawTags -}}
     {{- $tag := lower (trim (printf "%v" .) " \t\r\n") -}}
     {{- if $tag -}}
       {{- $bucket := index $index $tag | default (slice) -}}

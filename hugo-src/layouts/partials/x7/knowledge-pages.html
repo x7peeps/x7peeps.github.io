@@ -1,0 +1,12 @@
+{{- $pages := .RegularPages -}}
+{{- range .Sections -}}
+  {{- $sectionPages := partial "x7/knowledge-pages.html" . -}}
+  {{- range $sectionPages -}}
+    {{- $pages = $pages | append . -}}
+  {{- end -}}
+  {{- $body := replaceRE `(?s)\{\{<\s*article_cards\s*>\}\}` "" .RawContent -}}
+  {{- if trim $body " \t\r\n" -}}
+    {{- $pages = $pages | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- return $pages -}}

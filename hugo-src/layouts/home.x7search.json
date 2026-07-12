@@ -1,8 +1,20 @@
+{{- $documents := slice -}}
+{{- range site.Sections -}}
+  {{- $domainPages := partial "x7/knowledge-pages.html" . -}}
+  {{- range $domainPages -}}
+    {{- $documents = $documents | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $documents = sort $documents "Lastmod" "desc" -}}
 [
-{{- range $index, $page := site.RegularPages.ByLastmod.Reverse -}}
+{{- range $index, $page := $documents -}}
   {{- if $index }},{{ end }}
   {{- $tags := slice -}}
-  {{- range ($page.Params.tags | default (slice)) -}}
+  {{- $rawTags := $page.Params.tags | default (slice) -}}
+  {{- if not (reflect.IsSlice $rawTags) -}}
+    {{- $rawTags = split (printf "%v" $rawTags) "," -}}
+  {{- end -}}
+  {{- range $rawTags -}}
     {{- $tags = $tags | append (printf "%v" .) -}}
   {{- end -}}
   {{- $summary := $page.Plain | plainify -}}
