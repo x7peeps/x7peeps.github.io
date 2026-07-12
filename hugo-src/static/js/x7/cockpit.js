@@ -1,4 +1,24 @@
-const initializedShells = new WeakMap();
+export function createInitializationRegistry() {
+  const entries = new WeakMap();
+  return {
+    get(key) {
+      return entries.get(key);
+    },
+    register(key, dispose) {
+      let disposed = false;
+      const cleanup = () => {
+        if (disposed) return;
+        disposed = true;
+        dispose();
+        if (entries.get(key) === cleanup) entries.delete(key);
+      };
+      entries.set(key, cleanup);
+      return cleanup;
+    },
+  };
+}
+
+const initializedShells = createInitializationRegistry();
 
 const normalized = (value) => String(value ?? "").normalize("NFKC").trim().toLocaleLowerCase();
 
@@ -22,6 +42,15 @@ export function activeHeadingIndex(orderedTopPositions, offset) {
     if (Number.isFinite(orderedTopPositions[index]) && orderedTopPositions[index] <= boundary) active = index;
   }
   return active;
+}
+
+export function resolveScrollTarget(documentLike, windowLike) {
+  const bodyInner = documentLike.querySelector("#R-body-inner");
+  if (bodyInner) return { eventTarget: bodyInner, scrollElement: bodyInner };
+  return {
+    eventTarget: windowLike,
+    scrollElement: documentLike.scrollingElement || documentLike.documentElement,
+  };
 }
 
 function decodeFragment(value) {
@@ -91,7 +120,8 @@ export function initCockpit() {
   if (typeof document === "undefined" || typeof window === "undefined") return () => {};
   const shell = document.querySelector("[data-x7-article-shell]");
   if (!shell) return () => {};
-  if (initializedShells.has(shell)) return initializedShells.get(shell);
+  const existingCleanup = initializedShells.get(shell);
+  if (existingCleanup) return existingCleanup;
 
   const cleanups = [];
   const addCleanup = (cleanup) => cleanups.push(cleanup);
@@ -100,11 +130,10 @@ export function initCockpit() {
     if (target) addCleanup(() => target.removeEventListener(event, handler, options));
   };
 
-  const bodyInner = document.querySelector("#R-body-inner");
-  const usesBodyInner = Boolean(bodyInner && bodyInner.scrollHeight > bodyInner.clientHeight);
+  const { eventTarget: scrollTarget, scrollElement: progressSource } = resolveScrollTarget(document, window);
+  const bodyInner = scrollTarget === progressSource && scrollTarget !== window ? scrollTarget : null;
+  const usesBodyInner = Boolean(bodyInner);
   const scrollingElement = document.scrollingElement || document.documentElement;
-  const scrollTarget = usesBodyInner ? bodyInner : window;
-  const progressSource = usesBodyInner ? bodyInner : scrollingElement;
   const article = shell.querySelector("[data-x7-article-content]");
   if (!article) return () => {};
   const radar = shell.querySelector("[data-x7-chapter-radar]");
@@ -212,11 +241,9 @@ export function initCockpit() {
   listen(document, "keydown", shortcutHandler);
   installTreeFilter(addCleanup);
 
-  const cleanup = () => {
+  const cleanup = initializedShells.register(shell, () => {
     cleanups.splice(0).forEach((fn) => fn());
     if (frame) window.cancelAnimationFrame(frame);
-    initializedShells.delete(shell);
-  };
-  initializedShells.set(shell, cleanup);
+  });
   return cleanup;
 }
