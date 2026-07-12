@@ -36,15 +36,41 @@ export function mapSemanticCenters(linkRects, navRect, canvasWidth, canvasHeight
   const height = finite(canvasHeight, 0);
   if (width < padding * 2 || height < padding * 2) return [];
   const used = new Set();
+  const total = linkRects.length;
   return linkRects.map((rect, index) => {
     if (!rect || ![rect.left, rect.top, rect.width, rect.height].every(Number.isFinite)) return null;
     const nx = (rect.left + rect.width / 2 - navRect.left) / navRect.width;
     const ny = (rect.top + rect.height / 2 - navRect.top) / navRect.height;
     let x = Math.round(padding + Math.min(1, Math.max(0, nx)) * (width - padding * 2));
     let y = Math.round(padding + Math.min(1, Math.max(0, ny)) * (height - padding * 2));
-    while (used.has(`${x}:${y}`)) {
-      x = Math.min(width - padding, Math.max(padding, x + ((index % 2) ? -1 : 1) * (index + 1)));
-      y = Math.min(height - padding, Math.max(padding, y + index + 1));
+    if (used.has(`${x}:${y}`)) {
+      const spanX = width - padding * 2;
+      const spanY = height - padding * 2;
+      const attempts = Math.max(8, total * 4);
+      let found = false;
+      for (let attempt = 1; attempt <= attempts; attempt += 1) {
+        const ring = Math.ceil(attempt / 8);
+        const direction = (attempt - 1) % 8;
+        const dx = [1, 1, 0, -1, -1, -1, 0, 1][direction];
+        const dy = [0, 1, 1, 1, 0, -1, -1, -1][direction];
+        const candidateX = Math.min(width - padding, Math.max(padding, x + dx * ring));
+        const candidateY = Math.min(height - padding, Math.max(padding, y + dy * ring));
+        if (!used.has(`${candidateX}:${candidateY}`)) {
+          x = candidateX; y = candidateY; found = true; break;
+        }
+      }
+      if (!found) {
+        // There are total + 1 distinct diagonal fractions and fewer than total
+        // occupied points, so this bounded search always has a free candidate.
+        for (let attempt = 1; attempt <= total + 1; attempt += 1) {
+          const fraction = ((index + attempt) % (total + 1) + 1) / (total + 2);
+          const candidateX = padding + spanX * fraction;
+          const candidateY = padding + spanY * fraction;
+          if (!used.has(`${candidateX}:${candidateY}`)) {
+            x = candidateX; y = candidateY; break;
+          }
+        }
+      }
     }
     used.add(`${x}:${y}`);
     return { id: rect.id, x, y };

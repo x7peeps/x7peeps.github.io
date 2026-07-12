@@ -45,6 +45,24 @@ test("semantic center mapping separates exact overlaps", () => {
   assert.equal(new Set(mapped.map(({ x, y }) => `${x}:${y}`)).size, 6);
 });
 
+test("collision resolution terminates at every boundary and in tiny safe canvases", { timeout: 500 }, () => {
+  for (const [left, top] of [[0, 0], [40, 0], [0, 40], [40, 40]]) {
+    const rects = Array.from({ length: 4 }, (_, index) => ({ id: String(index), left, top, width: 0, height: 0 }));
+    const mapped = mapSemanticCenters(rects, { left: 0, top: 0, width: 40, height: 40 }, 49, 49, 24);
+    assert.equal(mapped.length, 4);
+    assert.equal(new Set(mapped.map(({ x, y }) => `${x}:${y}`)).size, 4);
+    assert.ok(mapped.every(({ x, y }) => Number.isFinite(x) && Number.isFinite(y) && x >= 24 && x <= 25 && y >= 24 && y <= 25));
+  }
+});
+
+test("collision resolution terminates for 32 identical bottom-right cards", { timeout: 500 }, () => {
+  const rects = Array.from({ length: 32 }, (_, index) => ({ id: String(index), left: 40, top: 40, width: 0, height: 0 }));
+  const mapped = mapSemanticCenters(rects, { left: 0, top: 0, width: 40, height: 40 }, 49, 49, 24);
+  assert.equal(mapped.length, 32);
+  assert.equal(new Set(mapped.map(({ x, y }) => `${x}:${y}`)).size, 32);
+  assert.ok(mapped.every(({ x, y }) => Number.isFinite(x) && Number.isFinite(y)));
+});
+
 test("quality tiers are bounded and tolerate non-finite input", () => {
   assert.deepEqual(qualityFor({ width: 390, deviceMemory: 4 }), { animated: true, particles: 40, blur: 2, dprCap: 1.5 });
   assert.deepEqual(qualityFor({ width: 1600, deviceMemory: 2 }), { animated: true, particles: 40, blur: 2, dprCap: 1.5 });
