@@ -1,6 +1,6 @@
 # X7PEEPS Digital Nocturne Knowledge System — Design Specification
 
-Date: 2026-07-12  
+Date: 2026-07-12
 Status: approved for implementation planning
 
 ## 1. Objective
