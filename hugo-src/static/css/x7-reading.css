@@ -53,7 +53,7 @@
 @media screen and (max-width: 68rem) {
   .x7-article__layout { display: block; }
   .x7-article__prose :is(pre, table, figure) { max-width: 100%; }
-  .x7-chapter-trigger {
+  .x7-article-shell[data-x7-cockpit-enhanced] .x7-chapter-trigger {
     position: fixed;
     z-index: 8;
     right: 1rem;
@@ -67,7 +67,7 @@
     background: var(--x7-panel);
     color: var(--x7-ion);
   }
-  .x7-chapter-radar {
+  .x7-article-shell[data-x7-cockpit-enhanced] .x7-chapter-radar {
     position: fixed;
     z-index: 7;
     top: var(--INTERNAL-MAIN-TOPBAR-HEIGHT, 3.5rem);
@@ -82,8 +82,8 @@
     transform: translateX(100%);
     transition: transform .25s var(--x7-ease);
   }
-  .x7-chapter-radar:is(.active, [data-x7-open="true"]) { transform: none; }
-  .x7-chapter-close {
+  .x7-article-shell[data-x7-cockpit-enhanced] .x7-chapter-radar:is(.active, [data-x7-open="true"]) { transform: none; }
+  .x7-article-shell[data-x7-cockpit-enhanced] .x7-chapter-close {
     display: grid;
     place-items: center;
     width: 44px;

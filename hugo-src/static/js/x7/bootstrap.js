@@ -12,6 +12,10 @@ if (document.querySelector("[data-x7-constellation]")) {
   jobs.push(import("./constellation.js").then((module) => module.initConstellation()));
 }
 
+if (document.querySelector("[data-x7-taxonomy-filters]")) {
+  jobs.push(import("./taxonomy-filter.js").then((module) => module.initTaxonomyFilters()));
+}
+
 Promise.allSettled(jobs).then((results) => {
   for (const result of results) {
     if (result.status === "rejected") {

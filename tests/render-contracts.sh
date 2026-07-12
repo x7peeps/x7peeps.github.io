@@ -155,6 +155,12 @@ NODE
   grep -q 'data-x7-chapter-close' "$article"
   grep -q 'data-x7-mobile-progress' "$article"
   grep -q 'data-x7-knowledge-tree' "$article"
+  node - "$article" <<'NODE'
+const fs = require("node:fs");
+const html = fs.readFileSync(process.argv[2], "utf8");
+const radar = html.match(/<aside\b[^>]*data-x7-chapter-radar[^>]*>/)?.[0] ?? "";
+if (!radar || /\baria-hidden\b|\binert\b/.test(radar)) process.exit(1);
+NODE
 
   duplicate_article="$article"
   test -f "$duplicate_article"
@@ -223,6 +229,9 @@ for (const href of compactLinks) {
   if (!fs.existsSync(target) && !fs.existsSync(path.join(target, "index.html"))) process.exit(1);
 }
 if (!term.includes("data-x7-taxonomy-result") || !term.includes("data-x7-result-section")) process.exit(1);
+if (!term.includes("data-x7-taxonomy-filters") || !term.includes("data-x7-taxonomy-status")) process.exit(1);
+const resultTags = [...term.matchAll(/<article\b[^>]*data-x7-taxonomy-result[^>]*>/g)];
+if (!resultTags.length || resultTags.some(([tag]) => !/data-x7-result-section=/.test(tag) || !/data-x7-result-year=/.test(tag) || !/data-x7-result-type=/.test(tag) || /\bhidden\b/.test(tag))) process.exit(1);
 const dates = [...term.matchAll(/<time\b[^>]*datetime=([^\s>]+)[^>]*>/g)].map(([, date]) => Date.parse(date));
 if (!dates.length) process.exit(1);
 if (dates.some(Number.isNaN) || dates.some((date, i) => i && date > dates[i - 1])) process.exit(1);
@@ -452,6 +461,9 @@ for (const file of files) {
   if (!/<script\b[^>]*(?:type=module[^>]*src=\/js\/x7\/bootstrap\.js|src=\/js\/x7\/bootstrap\.js[^>]*type=module)/.test(html)) process.exit(1);
   const isHome = file === path.join(root, "index.html");
   const isArticle = html.includes("data-x7-article-shell");
+  const inputCount = count(html, /<input\b/g);
+  const isCompactTaxonomy = html.includes("data-x7-compact-taxonomy-sidebar");
+  if (!is404 && inputCount !== (isCompactTaxonomy ? 1 : 2)) process.exit(1);
   if (isArticle && html.includes("data-x7-constellation")) process.exit(1);
   if (!isHome && /\b(?:id=x7-feed|class=x7-feed(?:\s|>))|window\.__heatmapDays/.test(html)) process.exit(1);
 }

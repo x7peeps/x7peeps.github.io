@@ -41,6 +41,14 @@
   .x7-taxonomy-result { padding: 1rem 0; border-bottom: 1px solid var(--x7-border); }
   .x7-taxonomy-result h2 { margin: 0 0 .55rem; font-size: 1.1rem; }
   .x7-taxonomy-result__meta { display: flex; gap: .75rem; margin: 0; color: var(--x7-muted); font-size: .76rem; }
+  .x7-taxonomy-filters { display: grid; grid-template-columns: repeat(3, minmax(9rem, 1fr)) auto; gap: .75rem; align-items: end; margin: 0 0 1rem; }
+  .x7-taxonomy-filter { display: grid; gap: .35rem; color: var(--x7-muted); font-size: .78rem; }
+  .x7-taxonomy-filter[hidden] { display: none; }
+  .x7-taxonomy-filter select,
+  .x7-taxonomy-reset { box-sizing: border-box; min-height: 44px; border: 1px solid var(--x7-border); border-radius: .4rem; padding: .55rem .7rem; background: var(--x7-panel); color: var(--x7-paper); font: inherit; }
+  .x7-taxonomy-reset:focus-visible,
+  .x7-taxonomy-filter select:focus-visible { outline: 3px solid var(--x7-ion); outline-offset: 2px; }
+  .x7-taxonomy-status { min-height: 1.4rem; color: var(--x7-muted); font-size: .8rem; }
 
   .x7-domain-landing { width: min(100%, 76rem); margin-inline: auto; overflow-wrap: anywhere; }
   .x7-domain-landing__hero { position: relative; padding: clamp(1.25rem, 3vw, 2.5rem); border: 1px solid var(--x7-border); border-radius: .75rem; background: linear-gradient(135deg, var(--x7-panel), color-mix(in srgb, var(--x7-ion) 7%, var(--x7-void))); box-shadow: 0 1rem 3rem rgb(0 0 0 / .16); overflow: hidden; }
@@ -58,7 +66,9 @@
   .x7-domain-updates,
   .x7-domain-tags { margin: 0; padding: 0; list-style: none; }
   .x7-domain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: .75rem; }
-  .x7-domain-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 7.5rem; padding: 1rem; border: 1px solid var(--x7-border); border-radius: .55rem; background: var(--x7-panel); }
+  .x7-domain-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 7.5rem; padding: 1rem; border: 1px solid var(--x7-border); border-radius: .55rem; background: var(--x7-panel); color: var(--x7-paper); }
+  .x7-domain-updates > li > a,
+  .x7-domain-update__title { color: var(--x7-paper); }
   .x7-domain-card span { font-size: 1.05rem; font-weight: 650; }
   .x7-domain-card small { color: var(--x7-muted); }
   .x7-domain-updates { border-top: 1px solid var(--x7-border); }
@@ -111,6 +121,7 @@
 }
 
 @media screen and (max-width: 48rem) {
+  .x7-taxonomy-filters { grid-template-columns: 1fr; }
   .x7-search-dialog__body { grid-template-columns: 1fr; }
   .x7-search-preview { border-top: 1px solid var(--x7-border); border-left: 0; }
   .x7-search-open kbd { display: none; }

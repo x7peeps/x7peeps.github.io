@@ -164,6 +164,7 @@ export function initCockpit() {
   const originalCurrent = new Map(tocLinks.map((link) => [link, link.getAttribute("aria-current")]));
   const fallbackTabindex = new Map();
   let frame = 0;
+  shell.setAttribute("data-x7-cockpit-enhanced", "");
 
   const absoluteHeadingTops = () => headings.map((heading) => {
     if (usesBodyInner) return heading.getBoundingClientRect().top - bodyInner.getBoundingClientRect().top + bodyInner.scrollTop;
@@ -315,6 +316,7 @@ export function initCockpit() {
 
   const cleanup = initializedShells.register(shell, () => {
     cleanups.splice(0).forEach((fn) => fn());
+    shell.removeAttribute("data-x7-cockpit-enhanced");
     if (frame) window.cancelAnimationFrame(frame);
     originalCurrent.forEach((value, link) => value === null ? link.removeAttribute("aria-current") : link.setAttribute("aria-current", value));
     restoreFallbackTabindex();

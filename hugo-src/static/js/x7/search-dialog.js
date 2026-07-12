@@ -142,7 +142,6 @@ export function initSearchDialog({ navigate = url => window.location.assign(url)
         resultsList.replaceChildren();
         setPreview(dialog, null);
       });
-    return loadPromise;
   };
 
   const open = trigger => {

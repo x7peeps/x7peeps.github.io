@@ -5,10 +5,46 @@
     <h1>{{ .Title }}</h1>
     <p>{{ len .Pages }} 篇文章，按最近更新排序。</p>
   </header>
+  {{- $sections := slice -}}
+  {{- $years := slice -}}
+  {{- $types := slice -}}
+  {{- range .Pages -}}
+    {{- $sections = $sections | append (.Section | default "知识库") -}}
+    {{- $years = $years | append (.Lastmod.Format "2006") -}}
+    {{- $types = $types | append (.Type | default "page") -}}
+  {{- end -}}
+  {{- $sections = $sections | uniq | sort -}}
+  {{- $years = $years | uniq | sort | collections.Reverse -}}
+  {{- $types = $types | uniq | sort -}}
+  <form class="x7-taxonomy-filters" data-x7-taxonomy-filters>
+    <label class="x7-taxonomy-filter"{{ if lt (len $sections) 2 }} hidden{{ end }}>
+      <span>领域</span>
+      <select name="section" data-x7-taxonomy-filter="section"{{ if lt (len $sections) 2 }} disabled{{ end }}>
+        <option value="">全部领域</option>
+        {{- range $sections }}<option value="{{ . }}">{{ . }}</option>{{ end }}
+      </select>
+    </label>
+    <label class="x7-taxonomy-filter"{{ if lt (len $years) 2 }} hidden{{ end }}>
+      <span>年份</span>
+      <select name="year" data-x7-taxonomy-filter="year"{{ if lt (len $years) 2 }} disabled{{ end }}>
+        <option value="">全部年份</option>
+        {{- range $years }}<option value="{{ . }}">{{ . }}</option>{{ end }}
+      </select>
+    </label>
+    <label class="x7-taxonomy-filter"{{ if lt (len $types) 2 }} hidden{{ end }}>
+      <span>内容类型</span>
+      <select name="type" data-x7-taxonomy-filter="type"{{ if lt (len $types) 2 }} disabled{{ end }}>
+        <option value="">全部类型</option>
+        {{- range $types }}<option value="{{ . }}">{{ . }}</option>{{ end }}
+      </select>
+    </label>
+    <button class="x7-taxonomy-reset" type="reset" data-x7-taxonomy-reset>重置筛选</button>
+  </form>
+  <p class="x7-taxonomy-status" role="status" aria-live="polite" data-x7-taxonomy-status>{{ len .Pages }} 篇文章</p>
   <ol class="x7-taxonomy-results__list">
     {{- range .Pages.ByLastmod.Reverse }}
     <li>
-      <article class="x7-taxonomy-result" data-x7-taxonomy-result>
+      <article class="x7-taxonomy-result" data-x7-taxonomy-result data-x7-result-section="{{ .Section | default "知识库" }}" data-x7-result-year="{{ .Lastmod.Format "2006" }}" data-x7-result-type="{{ .Type | default "page" }}">
         <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
         <p class="x7-taxonomy-result__meta">
           <span data-x7-result-section>{{ .Section | default "知识库" }}</span>
