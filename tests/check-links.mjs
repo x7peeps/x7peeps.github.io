@@ -2,7 +2,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ignored = /^(?:https?:|mailto:|tel:|data:|javascript:|#|\?|\/\/)/i;
+const ignored = /^(?:[A-Za-z][A-Za-z0-9+.-]*:|#|\?|\/\/)/;
 
 async function siteEntries(directory) {
   const entries = await readdir(directory, { withFileTypes: true });

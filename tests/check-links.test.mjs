@@ -27,6 +27,21 @@ test('accepts direct, directory-index, and extensionless HTML targets', async ()
   assert.deepEqual(await checkLinks(root), []);
 });
 
+test('ignores URLs with arbitrary valid URI schemes and protocol-relative URLs', async () => {
+  const root = await fixture({
+    'index.html': [
+      'ftp://example.com/file',
+      'file:///tmp/file',
+      'blob:https://example.com/id',
+      'webcal://example.com/calendar',
+      'custom+scheme.value-1:payload',
+      '//cdn.example.com/asset.js',
+    ].map((url) => `<a href="${url}">external</a>`).join(''),
+  });
+
+  assert.deepEqual(await checkLinks(root), []);
+});
+
 test('reports missing and malformed local URLs without throwing', async () => {
   const root = await fixture({
     'index.html': '<img src="missing.png"><a href="/%E0%A4%A">bad</a>',
