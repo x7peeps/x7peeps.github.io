@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   createAmbientParticles,
   createQualityDowngrader,
+  mapSemanticCenters,
   placeNodes,
   qualityFor,
 } from "../hugo-src/static/js/x7/constellation-core.js";
@@ -14,6 +15,34 @@ test("reduced motion and save-data disable animation", () => {
       animated: false, particles: 0, blur: 0, dprCap: 1,
     });
   }
+});
+
+test("semantic card centers preserve grid topology in canvas safe bounds", () => {
+  for (const columns of [2, 3]) {
+    for (const count of [3, 5, 6]) {
+      const rects = Array.from({ length: count }, (_, index) => {
+        const column = index % columns;
+        const row = Math.floor(index / columns);
+        return { id: String(index), left: 100 + column * 180, top: 500 + row * 100, width: 140, height: 70 };
+      });
+      const mapped = mapSemanticCenters(rects, { left: 90, top: 490, width: columns * 180, height: Math.ceil(count / columns) * 100 }, 600, 300, 24);
+      assert.equal(mapped.length, count);
+      assert.equal(new Set(mapped.map(({ x, y }) => `${x}:${y}`)).size, count);
+      assert.ok(mapped.every(({ x, y }) => x >= 24 && x <= 576 && y >= 24 && y <= 276));
+      if (count > columns) assert.ok(mapped[columns].y > mapped[0].y);
+      if (columns > 1) assert.ok(mapped[1].x > mapped[0].x);
+    }
+  }
+});
+
+test("semantic center mapping rejects unusable geometry", () => {
+  assert.deepEqual(mapSemanticCenters([{ id: "a", left: 0, top: 0, width: 1, height: 1 }], { left: 0, top: 0, width: 0, height: 0 }, 300, 200), []);
+});
+
+test("semantic center mapping separates exact overlaps", () => {
+  const rects = Array.from({ length: 6 }, (_, index) => ({ id: String(index), left: 10, top: 10, width: 20, height: 20 }));
+  const mapped = mapSemanticCenters(rects, { left: 0, top: 0, width: 40, height: 40 }, 160, 120, 24);
+  assert.equal(new Set(mapped.map(({ x, y }) => `${x}:${y}`)).size, 6);
 });
 
 test("quality tiers are bounded and tolerate non-finite input", () => {

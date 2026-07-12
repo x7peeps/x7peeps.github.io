@@ -17,12 +17,13 @@ function environment({ json = "[]", context = {} } = {}) {
   const listeners = new Map();
   let requests = 0;
   let cancelled = 0;
+  const frames = [];
   const canvas = {
     hidden: true, width: 0, height: 0, style: {}, dataset: {},
     getContext: () => context,
     getBoundingClientRect: () => ({ width: 500, height: 240, left: 0, top: 0 }),
   };
-  const fallback = { style: {} };
+  const fallback = { style: {}, dataset: {} };
   const hero = { addEventListener() {}, removeEventListener() {}, getBoundingClientRect: canvas.getBoundingClientRect };
   const data = { textContent: json };
   const document = {
@@ -42,10 +43,10 @@ function environment({ json = "[]", context = {} } = {}) {
     env: {
       document, navigator: { deviceMemory: 8, connection: { saveData: false } }, innerWidth: 1200, devicePixelRatio: 2,
       matchMedia: () => ({ matches: false }), getComputedStyle: () => ({ getPropertyValue: () => "" }),
-      requestAnimationFrame: () => ++requests, cancelAnimationFrame: () => { cancelled += 1; },
+      requestAnimationFrame: (fn) => { requests += 1; frames.push(fn); return requests; }, cancelAnimationFrame: () => { cancelled += 1; },
       addEventListener() {}, removeEventListener() {},
     }, canvas, fallback,
-    requests: () => requests, cancelled: () => cancelled, listeners,
+    requests: () => requests, cancelled: () => cancelled, listeners, runFrame: (time = 16) => frames.shift()?.(time),
   };
 }
 
@@ -59,11 +60,17 @@ test("invalid graph and missing canvas context remain inert", () => {
 });
 
 test("initialization is idempotent and cleanup cancels the only animation loop", () => {
-  const context = new Proxy({}, { get: (target, key) => target[key] || (() => {}) });
+  const context = new Proxy({ createRadialGradient: () => ({ addColorStop() {} }) }, { get: (target, key) => target[key] || (() => {}) });
   const setup = environment({ json: '[{"id":"a","title":"A","url":"/a/","count":1}]', context });
   const first = initConstellation(setup.env);
   const second = initConstellation(setup.env);
   assert.equal(setup.requests(), 1);
+  assert.equal(setup.canvas.hidden, false);
+  assert.equal(setup.canvas.dataset.state, "preparing");
+  assert.equal(setup.canvas.dataset.x7Enhanced, undefined);
+  setup.runFrame();
+  assert.equal(setup.canvas.dataset.state, "enhanced");
+  assert.equal(setup.fallback.dataset.state, "enhanced");
   first();
   assert.equal(setup.cancelled(), 1);
   second();
@@ -73,4 +80,7 @@ test("initialization is idempotent and cleanup cancels the only animation loop",
 test("canvas is a non-interactive visual layer", async () => {
   const css = await readFile(new URL("../hugo-src/static/css/x7-home.css", import.meta.url), "utf8");
   assert.match(css, /\.x7-ch-visual canvas\s*\{[^}]*position:\s*absolute[^}]*pointer-events:\s*none/s);
+  assert.match(css, /canvas\[data-state="preparing"\][^{]*\{[^}]*opacity:\s*0/s);
+  assert.match(css, /canvas\[data-state="enhanced"\][^{]*\{[^}]*opacity:\s*1/s);
+  assert.match(css, /transition:\s*opacity\s+\.35s/);
 });

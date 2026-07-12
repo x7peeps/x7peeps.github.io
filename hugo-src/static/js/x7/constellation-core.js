@@ -29,6 +29,28 @@ export function placeNodes(nodes, width, height, padding = 24) {
   });
 }
 
+export function mapSemanticCenters(linkRects, navRect, canvasWidth, canvasHeight, padding = 24) {
+  if (!Array.isArray(linkRects) || !linkRects.length || !navRect ||
+      !Number.isFinite(navRect.width) || !Number.isFinite(navRect.height) || navRect.width <= 0 || navRect.height <= 0) return [];
+  const width = finite(canvasWidth, 0);
+  const height = finite(canvasHeight, 0);
+  if (width < padding * 2 || height < padding * 2) return [];
+  const used = new Set();
+  return linkRects.map((rect, index) => {
+    if (!rect || ![rect.left, rect.top, rect.width, rect.height].every(Number.isFinite)) return null;
+    const nx = (rect.left + rect.width / 2 - navRect.left) / navRect.width;
+    const ny = (rect.top + rect.height / 2 - navRect.top) / navRect.height;
+    let x = Math.round(padding + Math.min(1, Math.max(0, nx)) * (width - padding * 2));
+    let y = Math.round(padding + Math.min(1, Math.max(0, ny)) * (height - padding * 2));
+    while (used.has(`${x}:${y}`)) {
+      x = Math.min(width - padding, Math.max(padding, x + ((index % 2) ? -1 : 1) * (index + 1)));
+      y = Math.min(height - padding, Math.max(padding, y + index + 1));
+    }
+    used.add(`${x}:${y}`);
+    return { id: rect.id, x, y };
+  }).filter(Boolean);
+}
+
 function seededRandom(seed) {
   let state = (finite(seed, 1) >>> 0) || 1;
   return () => {
