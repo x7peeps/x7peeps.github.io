@@ -11,6 +11,15 @@ hugo --source "$source_dir" --destination public-test --minify
 homepage="$output_dir/index.html"
 test -f "$homepage"
 
+for asset in \
+  /css/x7-tokens.css \
+  /css/x7-shell.css \
+  /css/x7-reading.css \
+  /css/x7-home.css; do
+  grep -q "href=$asset" "$homepage"
+done
+grep -q 'type=module src=/js/x7/bootstrap.js' "$homepage"
+
 if [[ "$contract_phase" == "digital-nocturne" ]]; then
   grep -q 'data-x7-home' "$homepage"
 

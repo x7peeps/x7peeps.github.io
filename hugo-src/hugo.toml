@@ -25,7 +25,6 @@ path = "github.com/McShelby/hugo-theme-relearn"
 
 [params]
 ordersectionsby = "weight"
-disableSearch = true
 alwaysopen = false
 collapsibleMenu = true
 showVisitedLinks = true
@@ -61,6 +60,18 @@ name = "x7peeps"
 
 [params.search]
 disable = true
+
+  [params.search.index]
+  disable = true
+
+  [params.search.page]
+  disable = true
+
+[params.x7]
+constellationDesktopParticles = 120
+constellationMobileParticles = 40
+enableConstellation = true
+enableReadingDensity = true
 
 [minify]
   disableHTML = false

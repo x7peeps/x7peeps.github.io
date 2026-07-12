@@ -1,0 +1,32 @@
+:root {
+  --x7-void: #020305;
+  --x7-carbon: #070a0f;
+  --x7-panel: #0b1017;
+  --x7-steel: #172332;
+  --x7-ion: #75c7ff;
+  --x7-paper: #eef5fb;
+  --x7-muted: #98a6b7;
+  --x7-warning: #ffb86b;
+  --x7-border: rgb(117 199 255 / 14%);
+  --x7-focus: 0 0 0 3px rgb(117 199 255 / 35%);
+  --x7-prose: 76ch;
+  --x7-rail-left: 17rem;
+  --x7-rail-right: 14rem;
+  --x7-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+:focus-visible {
+  outline: 2px solid var(--x7-ion);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
