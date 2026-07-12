@@ -5,6 +5,8 @@ import {
   createAmbientParticles,
   createQualityDowngrader,
   mapSemanticCenters,
+  pointerInCanvas,
+  snapshotRect,
   placeNodes,
   qualityFor,
 } from "../hugo-src/static/js/x7/constellation-core.js";
@@ -15,6 +17,20 @@ test("reduced motion and save-data disable animation", () => {
       animated: false, particles: 0, blur: 0, dprCap: 1,
     });
   }
+});
+
+test("geometry snapshots prototype-backed DOMRects explicitly", () => {
+  const rect = Object.create({}, {
+    left: { get: () => 10 }, top: { get: () => 20 }, width: { get: () => 100 }, height: { get: () => 50 },
+  });
+  assert.deepEqual(snapshotRect(rect, "a"), { id: "a", left: 10, top: 20, width: 100, height: 50 });
+  assert.equal(mapSemanticCenters([snapshotRect(rect, "a")], snapshotRect(rect), 300, 200).length, 1);
+});
+
+test("pointer coordinates are canvas-relative and reject outside points", () => {
+  const canvas = { left: 200, top: 100, width: 300, height: 200 };
+  assert.deepEqual(pointerInCanvas({ clientX: 250, clientY: 140 }, canvas), { x: 50, y: 40 });
+  assert.equal(pointerInCanvas({ clientX: 150, clientY: 140 }, canvas), null);
 });
 
 test("semantic card centers preserve grid topology in canvas safe bounds", () => {

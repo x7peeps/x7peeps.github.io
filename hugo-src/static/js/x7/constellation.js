@@ -1,4 +1,4 @@
-import { createAmbientParticles, createQualityDowngrader, mapSemanticCenters, placeNodes, qualityFor } from "./constellation-core.js";
+import { createAmbientParticles, createQualityDowngrader, mapSemanticCenters, placeNodes, pointerInCanvas, qualityFor, snapshotRect } from "./constellation-core.js";
 
 const instances = new WeakMap();
 const NOOP = () => {};
@@ -25,10 +25,10 @@ export function initConstellation(env = globalThis) {
   if (active) return active.cleanup;
 
   const graph = parseGraph(data);
-  const reducedMotion = !!env.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-  const saveData = !!env.navigator?.connection?.saveData;
-  const base = qualityFor({ width: env.innerWidth, reducedMotion, saveData, deviceMemory: env.navigator?.deviceMemory });
-  if (!graph || !base.animated) return NOOP;
+  const motionQuery = env.matchMedia?.("(prefers-reduced-motion: reduce)");
+  const connection = env.navigator?.connection;
+  const base = qualityFor({ width: env.innerWidth, deviceMemory: env.navigator?.deviceMemory });
+  if (!graph) return NOOP;
   const context = canvas.getContext?.("2d", { alpha: true });
   if (!context) return NOOP;
 
@@ -55,15 +55,15 @@ export function initConstellation(env = globalThis) {
   };
 
   function layout() {
-    const rect = canvas.getBoundingClientRect();
+    const rect = snapshotRect(canvas.getBoundingClientRect());
     width = Math.max(1, Number.isFinite(rect.width) ? rect.width : 1);
     height = Math.max(1, Number.isFinite(rect.height) ? rect.height : 1);
     const dpr = Math.min(Number.isFinite(env.devicePixelRatio) ? Math.max(1, env.devicePixelRatio) : 1, base.dprCap);
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     context.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const navRect = domainGrid?.getBoundingClientRect?.();
-    const mapped = mapSemanticCenters(links.map((link) => ({ id: link.dataset?.nodeId, ...link.getBoundingClientRect?.() })), navRect, width, height);
+    const navRect = snapshotRect(domainGrid?.getBoundingClientRect?.());
+    const mapped = mapSemanticCenters(links.map((link) => snapshotRect(link.getBoundingClientRect?.(), link.dataset?.nodeId)), navRect, width, height);
     const centers = new Map(mapped.map((node) => [node.id, node]));
     const fallbackNodes = placeNodes(graph, width, height);
     nodes = fallbackNodes.map((node) => ({ ...node, ...(centers.get(node.id) || {}) }));
@@ -105,7 +105,7 @@ export function initConstellation(env = globalThis) {
   }
 
   function start() {
-    if (destroyed || running || doc.hidden || !intersecting) return;
+    if (destroyed || running || doc.hidden || !intersecting || preferencesDisabled()) return;
     running = true; lastTime = undefined;
     frameId = env.requestAnimationFrame(draw);
   }
@@ -116,8 +116,7 @@ export function initConstellation(env = globalThis) {
   }
   function onVisibility() { if (doc.hidden) stop(); else start(); }
   function onPointer(event) {
-    const rect = hero.getBoundingClientRect();
-    pointer = { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    pointer = pointerInCanvas(event, snapshotRect(canvas.getBoundingClientRect()));
   }
   function clearPointer() { pointer = null; }
   function scheduleLayout() {
@@ -125,10 +124,20 @@ export function initConstellation(env = globalThis) {
     resizeId = env.requestAnimationFrame(() => { resizeId = 0; layout(); });
   }
 
-  canvas.hidden = false;
-  canvas.dataset.state = "preparing";
-  if (fallback) fallback.dataset.state = "preparing";
-  layout();
+  function preferencesDisabled() { return !!motionQuery?.matches || !!connection?.saveData; }
+  function deactivate() {
+    stop(); pointer = null; canvas.hidden = true;
+    delete canvas.dataset.x7Enhanced; delete canvas.dataset.state;
+    if (fallback) delete fallback.dataset.state;
+  }
+  function applyPreferences() {
+    if (destroyed) return;
+    if (preferencesDisabled()) { deactivate(); return; }
+    canvas.hidden = false; canvas.dataset.state = "preparing";
+    if (fallback) fallback.dataset.state = "preparing";
+    layout(); start();
+  }
+
   doc.addEventListener("visibilitychange", onVisibility);
   hero.addEventListener("pointermove", onPointer, { passive: true });
   hero.addEventListener("pointerleave", clearPointer, { passive: true });
@@ -139,6 +148,8 @@ export function initConstellation(env = globalThis) {
     if (intersecting) start(); else stop();
   }) : null;
   intersectionObserver?.observe(hero);
+  motionQuery?.addEventListener?.("change", applyPreferences);
+  connection?.addEventListener?.("change", applyPreferences);
 
   const cleanup = () => {
     if (destroyed) return;
@@ -148,12 +159,14 @@ export function initConstellation(env = globalThis) {
     hero.removeEventListener("pointermove", onPointer);
     hero.removeEventListener("pointerleave", clearPointer);
     resizeObserver?.disconnect(); intersectionObserver?.disconnect();
+    motionQuery?.removeEventListener?.("change", applyPreferences);
+    connection?.removeEventListener?.("change", applyPreferences);
     if (!resizeObserver) env.removeEventListener?.("resize", scheduleLayout);
     canvas.hidden = true; delete canvas.dataset.x7Enhanced; delete canvas.dataset.state;
     if (fallback) delete fallback.dataset.state;
     instances.delete(canvas);
   };
   instances.set(canvas, { cleanup });
-  start();
+  applyPreferences();
   return cleanup;
 }

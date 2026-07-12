@@ -1,5 +1,17 @@
 const finite = (value, fallback) => Number.isFinite(value) ? value : fallback;
 
+export function snapshotRect(rect, id) {
+  if (!rect) return null;
+  return { ...(id === undefined ? {} : { id }), left: rect.left, top: rect.top, width: rect.width, height: rect.height };
+}
+
+export function pointerInCanvas(event, rect) {
+  if (!event || !rect || ![event.clientX, event.clientY, rect.left, rect.top, rect.width, rect.height].every(Number.isFinite)) return null;
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  return x >= 0 && y >= 0 && x <= rect.width && y <= rect.height ? { x, y } : null;
+}
+
 export function qualityFor(options = {}) {
   if (options.reducedMotion || options.saveData) {
     return { animated: false, particles: 0, blur: 0, dprCap: 1 };
