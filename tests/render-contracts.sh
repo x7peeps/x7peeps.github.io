@@ -388,6 +388,42 @@ for (const href of hrefs) {
   if (!fs.existsSync(target) && !fs.existsSync(path.join(target, "index.html"))) process.exit(1);
 }
 NODE
+
+  node - "$output_dir" <<'NODE'
+const fs = require("node:fs");
+const path = require("node:path");
+const root = process.argv[2];
+const walk = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+  const file = path.join(directory, entry.name);
+  return entry.isDirectory() ? walk(file) : entry.name.endsWith(".html") ? [file] : [];
+});
+const files = walk(root);
+if (!files.length) process.exit(1);
+const count = (html, pattern) => [...html.matchAll(pattern)].length;
+const assets = [
+  /\/css\/custom\.css(?:\?[^\s>"']*)?/g,
+  /\/css\/x7-tokens\.css(?:\?[^\s>"']*)?/g,
+  /\/css\/x7-shell\.css(?:\?[^\s>"']*)?/g,
+  /\/css\/x7-reading\.css(?:\?[^\s>"']*)?/g,
+  /\/css\/x7-home\.css(?:\?[^\s>"']*)?/g,
+  /\/js\/custom\.js(?:\?[^\s>"']*)?/g,
+  /\/js\/x7\/bootstrap\.js(?:\?[^\s>"']*)?/g,
+];
+for (const file of files) {
+  const html = fs.readFileSync(file, "utf8");
+  if (/\b(?:href|src)=(?:""|'')/.test(html)) process.exit(1);
+  if (assets.some(asset => count(html, asset) !== 1)) process.exit(1);
+  if (count(html, /\bdata-x7-search-dialog\b/g) !== 1) process.exit(1);
+  if (!/<script\b[^>]*(?:type=module[^>]*src=\/js\/x7\/bootstrap\.js|src=\/js\/x7\/bootstrap\.js[^>]*type=module)/.test(html)) process.exit(1);
+  const isHome = file === path.join(root, "index.html");
+  const isArticle = html.includes("data-x7-article-shell");
+  if (isArticle && html.includes("data-x7-constellation")) process.exit(1);
+  if (!isHome && /\b(?:id=x7-feed|class=x7-feed(?:\s|>))|window\.__heatmapDays/.test(html)) process.exit(1);
+}
+NODE
+
+  ! grep -Eq 'x7-feed|__heatmapDays|x7-heatmap|x7-hero-(?:title|mission)' "$source_dir/static/js/custom.js"
+  ! grep -Eq '\.x7-(?:home-container|home-hero|hero-content|hero-title|hero-subtitle|hero-mission|heatmap|feed)|sidebar-inline-toc' "$source_dir/static/css/custom.css"
 elif [[ "$contract_phase" != "baseline" ]]; then
   echo "Unknown X7_RENDER_CONTRACT_PHASE: $contract_phase" >&2
   exit 2

@@ -4,6 +4,7 @@
   "scripts": {
     "test": "node --test tests/*.test.mjs",
     "test:render": "bash tests/render-contracts.sh",
-    "test:links": "node tests/check-links.mjs hugo-src/public-test"
+    "test:links": "node tests/check-links.mjs hugo-src/public-test",
+    "verify": "npm test && npm run test:render && npm run test:links"
   }
 }
