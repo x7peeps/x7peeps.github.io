@@ -368,11 +368,22 @@ NODE
 
   node - "$subpath_output/index.html" <<'NODE'
 const fs = require("node:fs");
+const path = require("node:path");
 const html = fs.readFileSync(process.argv[2], "utf8");
-const hrefs = [...html.matchAll(/<a\b[^>]*(?:data-x7-domain-link|data-x7-featured-link|data-x7-latest-link)[^>]*\bhref=([^\s>]+)/g)].map(match => match[1]);
+const outputDir = path.dirname(process.argv[2]);
+const attr = (tag, name) => tag.match(new RegExp(`\\b${name}=(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`))?.slice(1).find(Boolean);
+const hrefs = [...html.matchAll(/<a\b[^>]*>/g)]
+  .map(match => match[0])
+  .filter(tag => /\b(?:data-x7-domain-link|data-x7-featured-link|data-x7-latest-link)(?:\s|>)/.test(tag))
+  .map(tag => attr(tag, "href"));
 const json = JSON.parse(html.match(/<script\b[^>]*data-x7-constellation-data[^>]*>([\s\S]*?)<\/script>/)?.[1] ?? "null");
 if (!hrefs.length || hrefs.some(href => !href.startsWith("/docs/"))) process.exit(1);
 if (!Array.isArray(json) || json.some(node => !node.url.startsWith("/docs/"))) process.exit(1);
+for (const href of hrefs) {
+  const pathname = decodeURI(new URL(href, "https://render.invalid").pathname.replace(/^\/docs\//, ""));
+  const target = path.join(outputDir, pathname);
+  if (!fs.existsSync(target) && !fs.existsSync(path.join(target, "index.html"))) process.exit(1);
+}
 NODE
 elif [[ "$contract_phase" != "baseline" ]]; then
   echo "Unknown X7_RENDER_CONTRACT_PHASE: $contract_phase" >&2
