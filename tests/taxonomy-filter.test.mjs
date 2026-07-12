@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { matchesTaxonomyFilters, normalizeFilterValue } from "../hugo-src/static/js/x7/taxonomy-filter.js";
+import { getTaxonomyResultContainer, matchesTaxonomyFilters, normalizeFilterValue } from "../hugo-src/static/js/x7/taxonomy-filter.js";
 
 test("normalizeFilterValue trims, case-folds, and normalizes Unicode", () => {
   assert.equal(normalizeFilterValue("  ＡＧＥＮＴ "), "agent");
@@ -19,4 +19,12 @@ test("matchesTaxonomyFilters requires every selected dimension", () => {
 test("matchesTaxonomyFilters treats blank dimensions as wildcards", () => {
   assert.equal(matchesTaxonomyFilters({ section: "AI", year: "2026", type: "posts" }, {}), true);
   assert.equal(matchesTaxonomyFilters({}, { section: "", year: "", type: "" }), true);
+});
+
+test("getTaxonomyResultContainer targets the owning list item with a safe fallback", () => {
+  const listItem = { hidden: false };
+  const article = { closest: (selector) => selector === "li" ? listItem : null };
+  assert.equal(getTaxonomyResultContainer(article), listItem);
+  const orphan = { closest: () => null };
+  assert.equal(getTaxonomyResultContainer(orphan), orphan);
 });

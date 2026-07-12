@@ -207,6 +207,12 @@ const path = require("node:path");
 
 const [root, tagIndexPath, taggedPath, taglessPath] = process.argv.slice(2);
 const read = file => fs.readFileSync(file, "utf8");
+const requireContract = (condition, message) => {
+  if (!condition) {
+    console.error(`Tag render contract failed: ${message}`);
+    process.exit(1);
+  }
+};
 const index = read(tagIndexPath);
 if (!/<h1\b[^>]*>[^<]+<\/h1>/.test(index)) process.exit(1);
 if ([...index.matchAll(/\baria-current=page\b/g)].length !== 1 || !/<a\b[^>]*href=\/tags\/[^>]*aria-current=page/.test(index)) process.exit(1);
@@ -230,8 +236,9 @@ for (const href of compactLinks) {
 }
 if (!term.includes("data-x7-taxonomy-result") || !term.includes("data-x7-result-section")) process.exit(1);
 if (!term.includes("data-x7-taxonomy-filters") || !term.includes("data-x7-taxonomy-status")) process.exit(1);
-const resultTags = [...term.matchAll(/<article\b[^>]*data-x7-taxonomy-result[^>]*>/g)];
-if (!resultTags.length || resultTags.some(([tag]) => !/data-x7-result-section=/.test(tag) || !/data-x7-result-year=/.test(tag) || !/data-x7-result-type=/.test(tag) || /\bhidden\b/.test(tag))) process.exit(1);
+const resultTags = [...term.matchAll(/<article\b[^>]*data-x7-taxonomy-result(?:\s|>)[^>]*>/g)];
+requireContract(resultTags.length > 0, "no result item opening tags found");
+requireContract(!resultTags.some(([tag]) => !/data-x7-result-section=/.test(tag) || !/data-x7-result-year=/.test(tag) || !/data-x7-result-type=/.test(tag) || /\bhidden\b/.test(tag)), "result item metadata is incomplete or server markup is hidden");
 const dates = [...term.matchAll(/<time\b[^>]*datetime=([^\s>]+)[^>]*>/g)].map(([, date]) => Date.parse(date));
 if (!dates.length) process.exit(1);
 if (dates.some(Number.isNaN) || dates.some((date, i) => i && date > dates[i - 1])) process.exit(1);
@@ -461,9 +468,13 @@ for (const file of files) {
   if (!/<script\b[^>]*(?:type=module[^>]*src=\/js\/x7\/bootstrap\.js|src=\/js\/x7\/bootstrap\.js[^>]*type=module)/.test(html)) process.exit(1);
   const isHome = file === path.join(root, "index.html");
   const isArticle = html.includes("data-x7-article-shell");
-  const inputCount = count(html, /<input\b/g);
+  const inputCount = count(html, /<input\b[^>]*\bdata-x7-(?:search-input|tree-filter)\b/g);
   const isCompactTaxonomy = html.includes("data-x7-compact-taxonomy-sidebar");
-  if (!is404 && inputCount !== (isCompactTaxonomy ? 1 : 2)) process.exit(1);
+  const expectedInputCount = isCompactTaxonomy ? 1 : 2;
+  if (!is404 && inputCount !== expectedInputCount) {
+    console.error(`Search input contract failed: ${path.relative(root, file)} has ${inputCount}, expected ${expectedInputCount} (${isCompactTaxonomy ? "compact taxonomy" : "standard"})`);
+    process.exit(1);
+  }
   if (isArticle && html.includes("data-x7-constellation")) process.exit(1);
   if (!isHome && /\b(?:id=x7-feed|class=x7-feed(?:\s|>))|window\.__heatmapDays/.test(html)) process.exit(1);
 }

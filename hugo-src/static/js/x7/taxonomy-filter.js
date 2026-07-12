@@ -12,6 +12,10 @@ export function matchesTaxonomyFilters(item = {}, filters = {}) {
   });
 }
 
+export function getTaxonomyResultContainer(item) {
+  return item?.closest?.("li") ?? item;
+}
+
 export function initTaxonomyFilters(root = document) {
   const form = root.querySelector("[data-x7-taxonomy-filters]");
   if (!form) return () => {};
@@ -20,23 +24,24 @@ export function initTaxonomyFilters(root = document) {
 
   const resultsRoot = form.closest("[data-x7-taxonomy-results]");
   const items = [...(resultsRoot?.querySelectorAll("[data-x7-taxonomy-result]") ?? [])];
+  const containers = items.map(getTaxonomyResultContainer);
   const status = resultsRoot?.querySelector("[data-x7-taxonomy-status]");
   const controls = Object.fromEntries(["section", "year", "type"].map((dimension) => [
     dimension,
     form.querySelector(`[data-x7-taxonomy-filter="${dimension}"]`),
   ]));
-  const originalHidden = new Map(items.map((item) => [item, item.hidden]));
+  const originalHidden = new Map(containers.map((container) => [container, container.hidden]));
 
   const apply = () => {
     const filters = Object.fromEntries(Object.entries(controls).map(([key, control]) => [key, control?.value ?? ""]));
     let visible = 0;
-    items.forEach((item) => {
+    items.forEach((item, index) => {
       const matches = matchesTaxonomyFilters({
         section: item.dataset.x7ResultSection,
         year: item.dataset.x7ResultYear,
         type: item.dataset.x7ResultType,
       }, filters);
-      item.hidden = !matches;
+      containers[index].hidden = !matches;
       if (matches) visible += 1;
     });
     if (status) status.textContent = `${visible} 篇文章`;
@@ -52,7 +57,7 @@ export function initTaxonomyFilters(root = document) {
     disposed = true;
     form.removeEventListener("change", apply);
     form.removeEventListener("reset", reset);
-    items.forEach((item) => { item.hidden = originalHidden.get(item); });
+    containers.forEach((container) => { container.hidden = originalHidden.get(container); });
     if (status) status.textContent = `${items.length} 篇文章`;
     initialized.delete(form);
   };
