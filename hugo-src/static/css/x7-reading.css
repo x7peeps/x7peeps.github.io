@@ -37,6 +37,7 @@
   .x7-chapter-progress span { display: block; width: 0; height: 100%; background: var(--x7-ion); }
   .x7-chapter-progress-text { margin: .35rem 0 .8rem; color: var(--x7-muted); font-size: .72rem; }
   .x7-chapter-trigger { display: none; }
+  .x7-chapter-trigger__progress { font-size: .62rem; }
 }
 
 @media screen and (max-width: 68rem) {
@@ -49,8 +50,8 @@
     bottom: 1rem;
     display: grid;
     place-items: center;
-    width: 44px;
-    height: 44px;
+    width: 58px;
+    height: 58px;
     border: 1px solid var(--x7-border);
     border-radius: 50%;
     background: var(--x7-panel);
