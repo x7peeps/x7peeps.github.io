@@ -1,103 +1,89 @@
-{{- $nodes := partialCached "x7/constellation-data.json" . "home-constellation-data" -}}
-{{- $eligible := slice -}}
-{{- range site.Sections -}}
-  {{- $domainPages := partial "x7/knowledge-pages.html" . -}}
-  {{- range $domainPages -}}
+{{- $pages := where site.RegularPages "Type" "ne" "home" -}}
+{{- $filtered := slice -}}
+{{- range $pages -}}
   {{- $url := lower .RelPermalink -}}
-  {{- if and (ne .Type "home") (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) -}}
-    {{- $eligible = $eligible | append . -}}
-  {{- end -}}
+  {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) -}}
+    {{- $filtered = $filtered | append . -}}
   {{- end -}}
 {{- end -}}
-{{- $featured := where $eligible "Params.featured" true -}}
-{{- $featured = first 4 $featured.ByWeight -}}
-{{- $recent := sort $eligible "RelPermalink" "asc" -}}
-{{- $recent = sort $recent "Lastmod" "desc" -}}
-{{- if eq (len $featured) 0 -}}
-  {{- $picked := slice -}}
-  {{- $sections := newScratch -}}
-  {{- range $recent -}}
-    {{- if and (lt (len $picked) 4) (not ($sections.Get .Section)) -}}
-      {{- $picked = $picked | append . -}}
-      {{- $sections.Set .Section true -}}
-    {{- end -}}
-  {{- end -}}
-  {{- if lt (len $picked) 4 -}}
-    {{- range $recent -}}
-      {{- if and (lt (len $picked) 4) (not (in $picked .)) -}}
-        {{- $picked = $picked | append . -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-  {{- $featured = $picked -}}
+{{- $byPath := sort $filtered "RelPermalink" "asc" -}}
+{{- $recent := first 18 (sort $byPath "Lastmod" "desc") -}}
+{{- $now := now -}}
+{{- $start := $now.AddDate -1 0 0 -}}
+{{- $dateMap := dict -}}
+{{- range $filtered -}}
+  {{- $d := .Lastmod.Format "2006-01-02" -}}
+  {{- $count := 0 -}}
+  {{- if isset $dateMap $d -}}{{- $count = index $dateMap $d -}}{{- end -}}
+  {{- $dateMap = merge $dateMap (dict $d (add $count 1)) -}}
 {{- end -}}
-{{- $latest := first 8 $recent -}}
+{{- $days := slice -}}
+{{- $cur := $start -}}
+{{- range $i := seq 371 -}}
+  {{- $d := $cur.Format "2006-01-02" -}}
+  {{- $count := 0 -}}
+  {{- if isset $dateMap $d -}}{{- $count = index $dateMap $d -}}{{- end -}}
+  {{- $days = $days | append (dict "date" $d "count" $count) -}}
+  {{- $cur = $cur.AddDate 0 0 1 -}}
+{{- end -}}
 
-<article class="x7-constellation-home" data-x7-home>
-  <header class="x7-ch-hero">
-    <div class="x7-ch-hero__copy">
-      <p class="x7-ch-eyebrow">SECURITY RESEARCHER / BUILDER</p>
-      <h1>复杂世界的知识坐标</h1>
-      <p class="x7-ch-mission">{{ .Description }}</p>
-      <div class="x7-ch-actions" aria-label="首页快捷入口">
-        <a class="x7-ch-button x7-ch-button--primary" href="#knowledge-map">探索知识地图</a>
-        <a class="x7-ch-button" href="#featured-work">查看代表成果</a>
-      </div>
-    </div>
-    <div class="x7-ch-visual" aria-hidden="true">
-      <canvas data-x7-constellation hidden></canvas>
-      <div class="x7-ch-fallback" data-x7-constellation-fallback>
-        {{- range $index, $node := $nodes -}}
-          <span style="--x7-node-index: {{ $index }}"></span>
-        {{- end -}}
-      </div>
+<article class="x7-constellation-home x7-home-cinematic" data-x7-home>
+  <script>
+    window.__heatmapDays = {{ $days | jsonify | safeJS }};
+  </script>
+
+  <header class="x7-home-hero" aria-labelledby="x7-home-title">
+    <div class="x7-home-atmosphere" aria-hidden="true"></div>
+    <div class="x7-home-identity">
+      <img class="x7-home-avatar" src="{{ "images/head.png" | relURL }}" alt="x7peeps avatar">
+      <p class="x7-home-kicker">SECURITY RESEARCH / TOOLCHAIN / FORENSICS</p>
+      <h1 id="x7-home-title" class="x7-hero-title">X7PEEPS</h1>
+      <p class="x7-hero-subtitle">安全研究 / 工具开发 / 取证与攻防知识库</p>
+      <p class="x7-hero-mission">把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。</p>
+
+      <section class="x7-heatmap-panel" aria-labelledby="x7-heatmap-title">
+        <div class="x7-heatmap-panel__header">
+          <div>
+            <p class="x7-heatmap-label">LAST 12 MONTHS</p>
+            <h2 id="x7-heatmap-title">知识沉淀热力图</h2>
+          </div>
+          <p class="x7-heatmap-total">{{ len $filtered }} 篇文章</p>
+        </div>
+        <div class="x7-heatmap" id="x7-heatmap" aria-label="近一年文章更新热力图"></div>
+        <div class="x7-heatmap-legend" aria-hidden="true">
+          <span>少</span><i></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i><span>多</span>
+        </div>
+      </section>
     </div>
   </header>
 
-  <nav class="x7-ch-domains" id="knowledge-map" aria-labelledby="x7-ch-domains-title">
-    <div class="x7-ch-section-heading">
-      <p>KNOWLEDGE MAP</p>
-      <h2 id="x7-ch-domains-title">知识域</h2>
+  <section class="x7-feed" id="recent-updates" aria-labelledby="x7-feed-title">
+    <div class="x7-feed-header">
+      <div>
+        <p class="x7-feed-kicker">RECENT UPDATES</p>
+        <h2 id="x7-feed-title">最近更新</h2>
+      </div>
+      <p class="x7-feed-count">共 {{ len $filtered }} 篇</p>
     </div>
-    <div class="x7-ch-domain-grid">
-      {{- range $nodes -}}
-        <a class="x7-ch-domain-card" href="{{ .url }}" data-x7-domain-link data-node-id="{{ .id }}" data-node-title="{{ .title }}" data-article-count="{{ .count }}">
-          <span class="x7-ch-domain-card__title">{{ .title }}</span>
-          <span class="x7-ch-domain-card__meta">{{ .count }} 篇文章 <span aria-hidden="true">↗</span></span>
-        </a>
-      {{- end -}}
-    </div>
-  </nav>
-  <script type="application/json" data-x7-constellation-data>{{ $nodes | jsonify | safeJS }}</script>
-
-  <section class="x7-ch-featured" id="featured-work" aria-labelledby="x7-ch-featured-title">
-    <div class="x7-ch-section-heading">
-      <p>SELECTED WORK</p>
-      <h2 id="x7-ch-featured-title">代表成果</h2>
-    </div>
-    <div class="x7-ch-featured-grid">
-      {{- range $featured -}}
-        <article class="x7-ch-work-card">
-          <div class="x7-ch-work-card__meta"><span>{{ .Section }}</span><time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006.01.02" }}</time></div>
-          <h3><a href="{{ .RelPermalink }}" data-x7-featured-link>{{ .Title }}</a></h3>
-          {{- with .Params.tags -}}<ul class="x7-ch-tags" aria-label="标签">{{ range first 3 . }}<li>{{ . }}</li>{{ end }}</ul>{{- end -}}
-        </article>
-      {{- end -}}
-    </div>
-  </section>
-
-  <section class="x7-ch-latest" aria-labelledby="x7-ch-latest-title">
-    <div class="x7-ch-section-heading">
-      <p>LATEST SIGNALS</p>
-      <h2 id="x7-ch-latest-title">最近信号</h2>
-    </div>
-    <ol class="x7-ch-latest-list">
-      {{- range $latest -}}
+    <ol class="x7-feed-list">
+      {{- range $recent -}}
+        {{- $cat := .Section -}}
+        {{- with .Params.categories -}}{{- $cat = index . 0 -}}{{- end -}}
         <li>
-          <a href="{{ .RelPermalink }}" data-x7-latest-link data-updated="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
-            <span class="x7-ch-latest-list__date"><time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006.01.02" }}</time><span>{{ .Section }}</span></span>
-            <span class="x7-ch-latest-list__body"><strong>{{ .Title }}</strong>{{ with .Plain }}<span>{{ . | truncate 100 }}</span>{{ end }}</span>
-            <span class="x7-ch-latest-list__arrow" aria-hidden="true">↗</span>
+          <a class="x7-article" href="{{ .RelPermalink }}" data-x7-latest-link data-updated="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+            <span class="x7-article-date"><time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006.01.02" }}</time></span>
+            <span class="x7-article-body">
+              <span class="x7-article-title-row">
+                <strong class="x7-article-title">{{ .Title }}</strong>
+                <span class="x7-article-category">{{ $cat }}</span>
+              </span>
+              {{- with .Plain }}<span class="x7-article-summary">{{ . | truncate 120 }}</span>{{- end -}}
+              {{- with .Params.tags -}}
+                <span class="x7-article-tags" aria-label="标签">
+                  {{- range first 4 . -}}<span class="x7-article-tag">{{ . }}</span>{{- end -}}
+                </span>
+              {{- end -}}
+            </span>
           </a>
         </li>
       {{- end -}}

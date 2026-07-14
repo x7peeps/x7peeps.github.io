@@ -464,6 +464,8 @@ article.home table{
   align-items: center;
   gap: .55rem;
   text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .x7-logo:hover{
@@ -497,6 +499,8 @@ article.home table{
   display: block;
   object-fit: cover;
   border: 1px solid var(--x7-border);
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 @media (prefers-reduced-motion: reduce){
