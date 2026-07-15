@@ -112,20 +112,20 @@ def check_vulnerability(target, port=102):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(10)
         sock.connect((target, port))
-        
+
         sock.send(build_s7comm_connect())
         resp = sock.recv(1024)
         if not resp:
             sock.close()
             return False
-        
+
         sock.send(build_s7comm_setup())
         resp = sock.recv(1024)
-        
+
         if len(resp) > 0 and resp[0] == 0x03:
             sock.close()
             return True
-        
+
         sock.close()
         return False
     except Exception as e:
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print(f"Usage: {sys.argv[0]} <target>")
         sys.exit(1)
-    
+
     target = sys.argv[1]
     result = check_vulnerability(target)
     print(f"[{'+' if result else '-'}] {target} - CVE-2020-15782 S7-1500 内存保护绕过")
@@ -306,17 +306,17 @@ def check(target, port=4840):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(5)
         sock.connect((target, port))
-        
+
         hello = b'\x00' * 1024
         sock.send(hello)
-        
+
         try:
             resp = sock.recv(256)
             if len(resp) == 0:
                 return True
         except socket.timeout:
             return True
-        
+
         sock.close()
         return False
     except Exception:
@@ -403,14 +403,14 @@ def check_modbus(target, port=502):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(5)
         sock.connect((target, port))
-        
+
         mbap = struct.pack('>HHHBB', 0x0001, 0x0000, 0x0006, 0x01, 0x03)
         payload = mbap + struct.pack('>HH', 0x0000, 0x0001)
         sock.send(payload)
-        
+
         resp = sock.recv(1024)
         sock.close()
-        
+
         if len(resp) >= 9 and resp[7] == 0x03:
             exc_code = resp[8] if len(resp) > 8 else None
             if exc_code is None or exc_code == 0x00:
@@ -484,15 +484,15 @@ def check(target, port=502):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(5)
         sock.connect((target, port))
-        
+
         # 功能码 43 (Read Device Identification)
         mbap = b'\x00\x01\x00\x00\x00\x06\x01\x2b'
         payload = mbap + b'\x0e\x01\x00'
         sock.send(payload)
-        
+
         resp = sock.recv(1024)
         sock.close()
-        
+
         if len(resp) > 9 and resp[7] == 0x2b:
             return True
         return False
@@ -679,14 +679,14 @@ def check(target, port=44818):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(5)
         sock.connect((target, port))
-        
+
         # Ethernet/IP List Identity request
         encaps = struct.pack('<HHIIQ', 0x0063, 24, 0x00000000, 0x00000000, 0)
         sock.send(encaps)
-        
+
         resp = sock.recv(1024)
         sock.close()
-        
+
         if len(resp) >= 24:
             cmd = struct.unpack('<H', resp[0:2])[0]
             if cmd == 0x0063:
@@ -758,12 +758,12 @@ def check(target, port=44818):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(5)
         sock.connect((target, port))
-        
+
         encaps = struct.pack('<HHIIQ', 0x0063, 24, 0, 0, 0)
         sock.send(encaps)
         resp = sock.recv(1024)
         sock.close()
-        
+
         return len(resp) >= 24
     except Exception:
         return False
@@ -838,12 +838,12 @@ def check(target, port=44818):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(5)
         sock.connect((target, port))
-        
+
         encaps = struct.pack('<HHIIQ', 0x0063, 24, 0, 0, 0)
         sock.send(encaps)
         resp = sock.recv(2048)
         sock.close()
-        
+
         if len(resp) >= 24:
             return True
         return False

@@ -114,35 +114,35 @@ def detect_openssh_version(target, port=22, timeout=5):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
         sock.connect((target, port))
-        
+
         banner = sock.recv(1024).decode('utf-8', errors='ignore').strip()
         sock.close()
-        
+
         print(f"[*] SSH Banner: {banner}")
-        
+
         if "OpenSSH" not in banner:
             print("[*] 目标不是 OpenSSH 服务器")
             return banner, False
-        
+
         version_str = banner.split("OpenSSH_")[1].split("p")[0]
         parts = version_str.split(".")
         major, minor = int(parts[0]), int(parts[1])
-        
+
         vulnerable = False
         if major == 8 and minor >= 5:
             vulnerable = True
         elif major == 9 and minor <= 7:
             vulnerable = True
-        
+
         if vulnerable:
             print(f"[!] 目标可能受 CVE-2024-6387 (regreSSHion) 影响!")
             print(f"    OpenSSH {version_str} 在 8.5p1 - 9.7p1 受影响范围")
             print(f"    需要 glibc-based Linux + 32位架构才能完整利用")
         else:
             print(f"[*] OpenSSH {version_str} 不在受影响范围内")
-        
+
         return banner, vulnerable
-        
+
     except socket.timeout:
         print(f"[!] 连接超时")
         return None, False
@@ -156,21 +156,21 @@ def detect_openssh_version(target, port=22, timeout=5):
 def test_login_grace_race(target, port=22, attempts=3):
     """测试 LoginGraceTime 竞态条件窗口（仅检测，不利用）"""
     print(f"\n[*] 测试 LoginGraceTime 竞态窗口 ({attempts} 次)...")
-    
+
     for i in range(attempts):
         try:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.settimeout(2)
             sock.connect((target, port))
-            
+
             sock.send(b"SSH-2.0-TestClient\r\n")
             time.sleep(0.001)
             sock.close()
-            
+
             print(f"    [{i+1}/{attempts}] 连接并快速关闭")
         except:
             print(f"    [{i+1}/{attempts}] 连接异常")
-    
+
     print("[*] 竞态测试完成，检查服务端日志确认是否存在异常")
 
 if __name__ == "__main__":
@@ -178,12 +178,12 @@ if __name__ == "__main__":
         print(f"用法: {sys.argv[0]} <target> [port]")
         print(f"示例: {sys.argv[0]} 192.168.1.100 22")
         sys.exit(1)
-    
+
     target = sys.argv[1]
     port = int(sys.argv[2]) if len(sys.argv) > 2 else 22
-    
+
     banner, vulnerable = detect_openssh_version(target, port)
-    
+
     if vulnerable:
         test_login_grace_race(target, port)
 ```
@@ -218,7 +218,7 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:
@@ -306,17 +306,17 @@ def detect_terrapin_vulnerability(target, port=22):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(10)
         sock.connect((target, port))
-        
+
         banner = sock.recv(1024).decode('utf-8', errors='ignore').strip()
         print(f"[*] SSH Banner: {banner}")
-        
+
         if "OpenSSH" in banner:
             version = banner.split("OpenSSH_")[1]
             print(f"[*] OpenSSH 版本: {version}")
-            
+
             major = int(version.split(".")[0])
             minor = int(version.split("p")[0].split(".")[-1])
-            
+
             if major < 9 or (major == 9 and minor < 6):
                 print("[!] 可能受 CVE-2023-48795 (Terrapin) 影响")
                 print("[!] 检查是否支持 Strict Key Exchange:")
@@ -324,10 +324,10 @@ def detect_terrapin_vulnerability(target, port=22):
                 print("[!] 建议禁用 chacha20-poly1305 和 -etm MAC 作为临时缓解")
             else:
                 print("[*] 版本较新，但建议确认 kex-strict 支持")
-        
+
         sock.close()
         return banner
-        
+
     except Exception as e:
         print(f"[!] 检测失败: {e}")
         return None
@@ -337,7 +337,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(f"用法: {sys.argv[0]} <target> [port]")
         sys.exit(1)
-    
+
     target = sys.argv[1]
     port = int(sys.argv[2]) if len(sys.argv) > 2 else 22
     detect_terrapin_vulnerability(target, port)
@@ -370,13 +370,13 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers-condition: and
     matchers:
       - type: word
         words:
           - "OpenSSH"
-      
+
       - type: word
         negative: true
         words:
@@ -434,26 +434,26 @@ def check_agent_forwarding_risk():
     """检测 CVE-2023-38408 相关的 ssh-agent 配置风险"""
     print("[*] CVE-2023-38408 - ssh-agent 远程代码执行风险检测")
     print("=" * 55)
-    
+
     # 检测 OpenSSH 版本
     try:
         result = subprocess.run(['ssh', '-V'], capture_output=True, text=True)
         version = result.stderr.strip()
         print(f"[*] OpenSSH 版本: {version}")
-        
+
         if "OpenSSH" in version:
             ver_str = version.split("_")[1]
             parts = ver_str.split("p")[0].split(".")
             major, minor = int(parts[0]), int(parts[1])
             patch = int(ver_str.split("p")[1]) if "p" in ver_str else 0
-            
+
             if major < 9 or (major == 9 and minor < 3) or (major == 9 and minor == 3 and patch < 2):
                 print("[!] 版本受 CVE-2023-38408 影响!")
             else:
                 print("[*] 版本已修复")
     except FileNotFoundError:
         print("[!] 未找到 ssh 命令")
-    
+
     # 检测 Agent Forwarding 配置
     print("\n[*] 检查 Agent Forwarding 配置...")
     ssh_config = os.path.expanduser("~/.ssh/config")
@@ -463,12 +463,12 @@ def check_agent_forwarding_risk():
             if "ForwardAgent yes" in content.lower():
                 print("[!] ~/.ssh/config 中启用了 ForwardAgent!")
                 print("    建议：仅在必要时启用，且避免转发到不受信任的主机")
-    
+
     # 检测环境变量
     auth_sock = os.environ.get('SSH_AUTH_SOCK', '')
     if auth_sock:
         print(f"[*] SSH_AUTH_SOCK: {auth_sock}")
-    
+
     print("\n[*] 缓解建议:")
     print("    1. 升级到 OpenSSH 9.3p2 或更高版本")
     print("    2. 启动 ssh-agent 时使用空 PKCS#11 允许列表: ssh-agent -P ''")
@@ -505,7 +505,7 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:
@@ -565,16 +565,16 @@ def check_proxycommand_injection_risk():
     """检测 ProxyCommand 命令注入风险"""
     print("[*] CVE-2023-51385 - OS 命令注入风险检测")
     print("=" * 50)
-    
+
     configs = [
         '/etc/ssh/ssh_config',
         os.path.expanduser('~/.ssh/config')
     ]
-    
+
     for config_path in configs:
         if not os.path.exists(config_path):
             continue
-        
+
         print(f"\n[*] 检查 {config_path}...")
         with open(config_path, 'r') as f:
             for line_no, line in enumerate(f, 1):
@@ -585,7 +585,7 @@ def check_proxycommand_injection_risk():
                     if '%h' in line or '%u' in line:
                         print(f"  [!] 行 {line_no}: {line}")
                         print("      含有 %h/%u 转换令牌，需检查主机名是否来自可信来源")
-    
+
     print("\n[*] 缓解建议:")
     print("    1. 升级到 OpenSSH 9.6p1 或更高版本")
     print("    2. 确保 ProxyCommand 中引用的主机名来自可信来源")
@@ -621,15 +621,15 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:
           - "OpenSSH"
         negative: false
-    
+
     matchers-condition: and
-    
+
     extractors:
       - type: regex
         regex:
@@ -678,7 +678,7 @@ def check_verifyhostkeydns_risk():
     """检测 CVE-2025-26465 MitM 认证绕过风险"""
     print("[*] CVE-2025-26465 - VerifyHostKeyDNS MitM 绕过检测")
     print("=" * 55)
-    
+
     try:
         result = subprocess.run(['ssh', '-V'], capture_output=True, text=True)
         version = result.stderr.strip()
@@ -686,10 +686,10 @@ def check_verifyhostkeydns_risk():
     except:
         print("[!] 无法获取 SSH 版本")
         return
-    
+
     configs = ['/etc/ssh/ssh_config', os.path.expanduser('~/.ssh/config')]
     vulnerable = False
-    
+
     for config_path in configs:
         if not os.path.exists(config_path):
             continue
@@ -701,7 +701,7 @@ def check_verifyhostkeydns_risk():
                 if 'VerifyHostKeyDNS' in line and ('yes' in line.lower() or 'ask' in line.lower()):
                     print(f"[!] {config_path} 中启用 VerifyHostKeyDNS: {line}")
                     vulnerable = True
-    
+
     if not vulnerable:
         print("[*] VerifyHostKeyDNS 未启用（默认 no），风险较低")
     else:
@@ -738,7 +738,7 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:
@@ -793,28 +793,28 @@ def test_ping_flood_dos(target, port=22, packet_count=100):
     print(f"[*] CVE-2025-26466 - 预认证 DoS 检测")
     print(f"[*] 目标: {target}:{port}")
     print(f"[!] 注意: 仅发送 {packet_count} 个测试包")
-    
+
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(5)
         sock.connect((target, port))
-        
+
         banner = sock.recv(1024)
         print(f"[*] Banner: {banner.decode('utf-8', errors='ignore').strip()}")
-        
+
         sock.send(b"SSH-2.0-TestClient\r\n")
-        
+
         for i in range(packet_count):
             try:
                 pingo = b'\x00' * 32
                 sock.send(pingo)
             except:
                 break
-        
+
         print(f"[*] 发送了 {i+1} 个测试消息")
         print("[*] 检查目标内存使用情况以确认是否存在内存增长")
         sock.close()
-        
+
     except Exception as e:
         print(f"[!] 检测出错: {e}")
 
@@ -855,7 +855,7 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:
@@ -913,22 +913,22 @@ def check_openssh_client_version():
     """检测 OpenSSH 客户端版本是否受 CVE-2026-60002 影响"""
     print("[*] CVE-2026-60002 - OpenSSH 客户端 UAF 检测")
     print("=" * 50)
-    
+
     try:
         result = subprocess.run(['ssh', '-V'], capture_output=True, text=True)
         version = result.stderr.strip()
         print(f"[*] SSH 客户端: {version}")
-        
+
         if "OpenSSH" in version:
             ver_str = version.split("_")[1]
             parts = ver_str.split("p")
             ver_num = parts[0]
             ver_parts = ver_num.split(".")
-            
+
             if len(ver_parts) >= 2:
                 major = int(ver_parts[0])
                 minor = int(ver_parts[1])
-                
+
                 if major < 10 or (major == 10 and minor == 0):
                     print("[!] 客户端受 CVE-2026-60002 影响!")
                     print("    此漏洞为客户端侧 UAF，恶意服务器可在密钥重交换时触发")
@@ -937,7 +937,7 @@ def check_openssh_client_version():
                     print("[*] 客户端版本已修复")
     except FileNotFoundError:
         print("[!] 未找到 ssh 命令")
-    
+
     print("\n[*] 高风险场景:")
     print("    - 跳板机/堡垒机的出站 SSH 连接")
     print("    - CI/CD 管道中通过 SSH 拉取代码或部署")
@@ -973,7 +973,7 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:
@@ -1016,14 +1016,14 @@ grep -n "AuthorizedKeysCommand\|AuthorizedPrincipalsCommand\|AuthorizedKeysComma
 def check_authorizedkeyscommand_risk():
     """检测 CVE-2021-41617 权限提升风险"""
     print("[*] CVE-2021-41617 - AuthorizedKeysCommand 权限提升检测")
-    
+
     try:
         with open('/etc/ssh/sshd_config', 'r') as f:
             config = f.read()
-        
+
         has_akc = 'AuthorizedKeysCommand' in config
         has_apc = 'AuthorizedPrincipalsCommand' in config
-        
+
         if has_akc or has_apc:
             print("[!] 检测到 AuthorizedKeysCommand/PrincipalsCommand 配置")
             print("    确认是否使用了对应的 User 指令以非 root 运行")
@@ -1105,19 +1105,19 @@ import stat
 def check_agent_socket_permissions():
     """检测 CVE-2021-28041 相关的 agent socket 权限风险"""
     print("[*] CVE-2021-28041 - ssh-agent Double Free 风险检测")
-    
+
     auth_sock = os.environ.get('SSH_AUTH_SOCK', '')
     if not auth_sock:
         print("[*] 未设置 SSH_AUTH_SOCK，ssh-agent 未运行")
         return
-    
+
     print(f"[*] SSH_AUTH_SOCK: {auth_sock}")
-    
+
     if os.path.exists(auth_sock):
         stat_info = os.stat(auth_sock)
         mode = stat.S_IMODE(stat_info.st_mode)
         print(f"[*] Socket 权限: {oct(mode)}")
-        
+
         if mode & stat.S_IWOTH:
             print("[!] Socket 对其他用户可写！存在高风险")
         elif mode & stat.S_IROTH:
@@ -1157,7 +1157,7 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:
@@ -1241,7 +1241,7 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:
@@ -1299,10 +1299,10 @@ def check_dropbear_version():
     """检测 Dropbear 版本和 CVE-2025-14282 风险"""
     print("[*] CVE-2025-14282 - Dropbear Unix Socket 提权检测")
     print("=" * 55)
-    
+
     try:
         result = subprocess.run(
-            ['strings', '/usr/sbin/dropbear'], 
+            ['strings', '/usr/sbin/dropbear'],
             capture_output=True, text=True, timeout=5
         )
         for line in result.stdout.split('\n'):
@@ -1313,12 +1313,12 @@ def check_dropbear_version():
                 break
     except:
         print("[!] 无法检测 Dropbear 版本")
-    
+
     print("\n[*] 受影响的典型设备:")
     print("    - OpenWRT 路由器（默认使用 Dropbear）")
     print("    - IoT 设备和 NAS")
     print("    - 嵌入式 Linux 系统")
-    
+
     print("\n[*] 缓解措施:")
     print("    1. 升级到 Dropbear 2025.89 或更高版本")
     print("    2. 临时禁用: dropbear -j（同时禁用 TCP 转发）")
@@ -1354,7 +1354,7 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:
@@ -1401,10 +1401,10 @@ def check_dbclient_injection_risk():
     """检测 CVE-2025-47203 dbclient 命令注入风险"""
     print("[*] CVE-2025-47203 - Dropbear dbclient 命令注入检测")
     print("=" * 55)
-    
+
     import os
     import subprocess
-    
+
     # 检查系统是否安装了 Dropbear 的 dbclient
     try:
         result = subprocess.run(['which', 'dbclient'], capture_output=True, text=True)
@@ -1415,7 +1415,7 @@ def check_dbclient_injection_risk():
             print("[*] 未检测到 dbclient")
     except:
         print("[*] 无法检测 dbclient")
-    
+
     print("\n[*] 此漏洞影响使用 dbclient 的脚本和自动化工具")
     print("[*] 缓解措施:")
     print("    1. 升级到 Dropbear 2025.88 或更高版本")
@@ -1452,7 +1452,7 @@ tcp:
     host:
       - "{{Hostname}}"
     port: 22
-    
+
     matchers:
       - type: word
         words:

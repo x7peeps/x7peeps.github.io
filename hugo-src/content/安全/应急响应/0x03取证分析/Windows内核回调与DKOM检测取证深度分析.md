@@ -294,17 +294,17 @@ from volatility3.framework.layers import intel
 def enumerate_callbacks(context, config):
     layer_name = context.config['Intel32e.layer_name']
     kernel_symbol_space = context.config['Intel32e.symbol_files']
-    
+
     ntoskrnl = context.modules[kernel_symbol_space]
-    
+
     psp_create_process_notify_routine = ntoskrnl.get_symbol("nt!PspCreateProcessNotifyRoutine")
     psp_create_process_notify_routine_count = ntoskrnl.get_symbol("nt!PspCreateProcessNotifyRoutineCount")
-    
+
     layer = context.layers[layer_name]
-    
+
     count = layer.read(psp_create_process_notify_routine.address, 4)
     count_value = int.from_bytes(count, byteorder='little')
-    
+
     callbacks = []
     for i in range(count_value):
         entry_addr = psp_create_process_notify_routine.address + (i * 8)
@@ -312,7 +312,7 @@ def enumerate_callbacks(context, config):
         callback_addr = int.from_bytes(entry_data, byteorder='little')
         callback_addr &= ~0xF
         callbacks.append(callback_addr)
-    
+
     return callbacks
 ```
 
@@ -397,24 +397,24 @@ from volatility3.plugins.windows import pslist, psscan
 def detect_dkom(context, config):
     pslist_plugin = pslist.PsList(context, config)
     psscan_plugin = psscan.PsScan(context, config)
-    
+
     pslist_pids = set()
     for proc in pslist_plugin.list_processes():
         pslist_pids.add(proc.UniqueProcessId)
-    
+
     psscan_pids = set()
     for proc in psscan_plugin.list_processes():
         psscan_pids.add(proc.UniqueProcessId)
-    
+
     hidden_pids = psscan_pids - pslist_pids
-    
+
     if hidden_pids:
         print(f"[DKOM ALERT] Hidden PIDs detected: {hidden_pids}")
         for pid in hidden_pids:
             for proc in psscan_plugin.list_processes():
                 if proc.UniqueProcessId == pid:
                     print(f"  PID: {pid}, Name: {proc.ImageFileName}, CreateTime: {proc.CreateTime}")
-    
+
     return hidden_pids
 ```
 
@@ -690,13 +690,13 @@ from volatility3.framework.symbols import intel
 def enumerate_minifilters(context, config):
     layer_name = config['Intel32e.layer_name']
     ntoskrnl = context.modules['ntkrnlmp.pdb']
-    
+
     flt_globals_addr = ntoskrnl.get_symbol("nt!FltMgrGlobals")
-    
+
     layer = context.layers[layer_name]
-    
+
     flt_globals = layer.read(flt_globals_addr, 0x100)
-    
+
     print("[*] Enumerating Minifilter instances from memory...")
     print("[*] Use 'fltmc instances' for user-space enumeration comparison")
 ```
@@ -734,7 +734,7 @@ Windows内核的Object Manager维护了一个层次化的命名空间（Object N
 ```
 
 ```windbg
-!obj \GLOBAL?? 
+!obj \GLOBAL??
 ```
 
 ```powershell
@@ -819,17 +819,17 @@ from volatility3.plugins.windows import pslist, tokens
 def detect_token_tampering(context, config):
     pslist_plugin = pslist.PsList(context, config)
     tokens_plugin = tokens.Tokens(context, config)
-    
+
     token_refs = {}
     for proc in pslist_plugin.list_processes():
         token = proc.Token
         token_addr = token.vol.offset
-        
+
         if token_addr in token_refs:
             token_refs[token_addr].append(proc.UniqueProcessId)
         else:
             token_refs[token_addr] = [proc.UniqueProcessId]
-    
+
     suspicious = {}
     for token_addr, pids in token_refs.items():
         if len(pids) > 1:
@@ -844,7 +844,7 @@ def detect_token_tampering(context, config):
                 "user": str(token_obj.User),
                 "elevation": token_obj.Elevation
             }
-    
+
     return suspicious
 ```
 
@@ -1159,17 +1159,17 @@ echo "[*] Output directory: $OUTPUT_DIR"
 
 collect_driver_info() {
     echo "[*] Collecting driver information..."
-    
+
     powershell.exe -Command "driverquery /v /fo csv" > "$OUTPUT_DIR/drivers.csv"
-    
+
     powershell.exe -Command "
-        Get-WmiObject Win32_SystemDriver | 
+        Get-WmiObject Win32_SystemDriver |
         Select-Object Name, DisplayName, PathName, State, StartMode, ServiceType |
         ConvertTo-Csv -NoTypeInformation
     " > "$OUTPUT_DIR/system_drivers.csv"
-    
+
     powershell.exe -Command "
-        Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services' | 
+        Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services' |
         ForEach-Object {
             \$props = Get-ItemProperty \$_.PSPath -ErrorAction SilentlyContinue
             if (\$props.Type -eq 1) {
@@ -1182,23 +1182,23 @@ collect_driver_info() {
             }
         } | ConvertTo-Csv -NoTypeInformation
     " > "$OUTPUT_DIR/driver_services.csv"
-    
+
     echo "[+] Driver information collected"
 }
 
 collect_minifilter_info() {
     echo "[*] Collecting Minifilter information..."
-    
+
     powershell.exe -Command "fltmc instances" > "$OUTPUT_DIR/minifilter_instances.txt"
     powershell.exe -Command "fltmc filters" > "$OUTPUT_DIR/minifilter_filters.txt"
     powershell.exe -Command "fltmc volumes" > "$OUTPUT_DIR/minifilter_volumes.txt"
-    
+
     echo "[+] Minifilter information collected"
 }
 
 collect_signature_audit() {
     echo "[*] Auditing driver signatures..."
-    
+
     powershell.exe -Command "
         \$drivers = driverquery /fo csv | ConvertFrom-Csv
         foreach (\$d in \$drivers) {
@@ -1214,61 +1214,61 @@ collect_signature_audit() {
             }
         } | ConvertTo-Csv -NoTypeInformation
     " > "$OUTPUT_DIR/signature_audit.csv"
-    
+
     echo "[+] Signature audit completed"
 }
 
 collect_event_logs() {
     echo "[*] Collecting kernel-related event logs..."
-    
+
     powershell.exe -Command "
         Get-WinEvent -LogName 'Microsoft-Windows-Sysmon/Operational' -MaxEvents 500 -ErrorAction SilentlyContinue |
         Where-Object { \$_.Id -in @(6, 7, 22) } |
         Select-Object TimeCreated, Id, LevelDisplayName, Message |
         Format-List
     " > "$OUTPUT_DIR/sysmon_events.txt"
-    
+
     powershell.exe -Command "
         Get-WinEvent -LogName 'Microsoft-Windows-CodeIntegrity/Operational' -MaxEvents 200 -ErrorAction SilentlyContinue |
         Select-Object TimeCreated, Id, Message |
         Format-List
     " > "$OUTPUT_DIR/codeintegrity_events.txt"
-    
+
     powershell.exe -Command "
         Get-WinEvent -LogName System -MaxEvents 1000 -ErrorAction SilentlyContinue |
         Where-Object { \$_.Id -eq 7045 } |
         Select-Object TimeCreated, Message |
         Format-List
     " > "$OUTPUT_DIR/service_install_events.txt"
-    
+
     echo "[+] Event logs collected"
 }
 
 collect_bcdedit_info() {
     echo "[*] Checking boot configuration..."
-    
+
     powershell.exe -Command "bcdedit /enum all" > "$OUTPUT_DIR/bcdedit_all.txt"
     powershell.exe -Command "bcdedit /enum {current}" > "$OUTPUT_DIR/bcdedit_current.txt"
-    
+
     echo "[+] Boot configuration collected"
 }
 
 compare_driver_sources() {
     echo "[*] Comparing driver sources for DKOM detection..."
-    
+
     powershell.exe -Command "
         \$loaded = (driverquery /fo csv | ConvertFrom-Csv).'Module Name' | Sort-Object
         \$services = Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services' |
             Where-Object { (Get-ItemProperty \$_.PSPath -ErrorAction SilentlyContinue).Type -eq 1 } |
             ForEach-Object { \$_.PSChildName -replace '\.sys\$','' } | Sort-Object
-        
+
         Write-Host '=== Loaded but not in services ==='
         \$loaded | Where-Object { \$_ -notin \$services }
-        
+
         Write-Host '=== In services but not loaded ==='
         \$services | Where-Object { \$_ -notin \$loaded }
     " > "$OUTPUT_DIR/driver_comparison.txt"
-    
+
     echo "[+] Driver source comparison completed"
 }
 
@@ -1279,7 +1279,7 @@ main() {
     collect_event_logs
     collect_bcdedit_info
     compare_driver_sources
-    
+
     echo "[*] Packing results..."
     tar -czf "${OUTPUT_DIR}.tar.gz" "$OUTPUT_DIR"
     echo "[+] Results packaged: ${OUTPUT_DIR}.tar.gz"
@@ -1298,7 +1298,7 @@ import json
 from datetime import datetime
 
 class KernelCallbackAnalyzer:
-    
+
     CALLBACK_TYPES = {
         "PspCreateProcessNotifyRoutine": "Process Creation",
         "PspCreateThreadNotifyRoutine": "Thread Creation",
@@ -1307,7 +1307,7 @@ class KernelCallbackAnalyzer:
         "ObpCallbackListHead": "Object Operation",
         "FsNotificationListHead": "Filesystem Registration"
     }
-    
+
     KNOWN_DRIVERS = {
         "ntoskrnl.exe": "Windows Kernel",
         "hal.dll": "Hardware Abstraction Layer",
@@ -1317,22 +1317,22 @@ class KernelCallbackAnalyzer:
         "wdboot.sys": "Windows Defender Boot",
         "WdFilter.sys": "Windows Defender Filter",
     }
-    
+
     def __init__(self, memory_dump_path):
         self.memory_dump_path = memory_dump_path
         self.findings = []
         self.timestamps = []
-    
+
     def analyze_callback_registry(self, callback_table, callback_count, callback_type):
         print(f"[*] Analyzing {callback_type} ({callback_count} registered callbacks)...")
-        
+
         results = {
             "type": callback_type,
             "count": callback_count,
             "callbacks": [],
             "anomalies": []
         }
-        
+
         for i in range(callback_count):
             entry_addr = callback_table + (i * 8)
             raw_data = self.read_memory(entry_addr, 8)
@@ -1343,13 +1343,13 @@ class KernelCallbackAnalyzer:
                     "severity": "HIGH"
                 })
                 continue
-            
+
             callback_addr = struct.unpack("<Q", raw_data)[0]
             callback_addr &= ~0xF
-            
+
             module_name = self.resolve_module(callback_addr)
             is_known = module_name in self.KNOWN_DRIVERS
-            
+
             callback_info = {
                 "index": i,
                 "address": hex(callback_addr),
@@ -1357,7 +1357,7 @@ class KernelCallbackAnalyzer:
                 "known": is_known
             }
             results["callbacks"].append(callback_info)
-            
+
             if not is_known:
                 results["anomalies"].append({
                     "address": hex(callback_addr),
@@ -1365,9 +1365,9 @@ class KernelCallbackAnalyzer:
                     "severity": "HIGH",
                     "detail": f"Callback points to unknown module at {hex(callback_addr)}"
                 })
-        
+
         return results
-    
+
     def read_memory(self, address, size):
         try:
             with open(self.memory_dump_path, 'rb') as f:
@@ -1375,7 +1375,7 @@ class KernelCallbackAnalyzer:
                 return f.read(size)
         except (IOError, OSError):
             return None
-    
+
     def resolve_module(self, address):
         module_bases = {
             0xfffff80000000000: "ntoskrnl.exe",
@@ -1386,7 +1386,7 @@ class KernelCallbackAnalyzer:
             if base <= address < base + 0x01000000:
                 return name
         return "UNKNOWN"
-    
+
     def generate_report(self):
         report = {
             "analysis_time": datetime.now().isoformat(),
@@ -1404,7 +1404,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(f"Usage: {sys.argv[0]} <memory_dump_path>")
         sys.exit(1)
-    
+
     analyzer = KernelCallbackAnalyzer(sys.argv[1])
     print(f"[*] Memory dump: {sys.argv[1]}")
     print(f"[*] Use WinDbg or Volatility 3 to extract callback addresses first")

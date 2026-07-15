@@ -659,25 +659,25 @@ if [ -d "$EXTENSIONS_DIR" ]; then
     find "$EXTENSIONS_DIR" -maxdepth 1 -mindepth 1 -type d | while read ext_dir; do
         ext_name=$(basename "$ext_dir")
         pkg_json="$ext_dir/package.json"
-        
+
         if [ -f "$pkg_json" ]; then
             publisher=$(python3 -c "import json; d=json.load(open('$pkg_json')); print(d.get('publisher','unknown'))" 2>/dev/null)
             version=$(python3 -c "import json; d=json.load(open('$pkg_json')); print(d.get('version','unknown'))" 2>/dev/null)
             desc=$(python3 -c "import json; d=json.load(open('$pkg_json')); print(d.get('description','')[:80])" 2>/dev/null)
-            
+
             echo "  Extension: $ext_name (v$version) by $publisher"
             echo "    Description: $desc"
-            
+
             js_files=$(find "$ext_dir" -name "*.js" -not -path "*/node_modules/*" 2>/dev/null | wc -l)
             total_size=$(du -sh "$ext_dir" 2>/dev/null | cut -f1)
             echo "    JS files: $js_files | Size: $total_size"
-            
+
             suspicious=$(grep -rl "child_process\|execSync\|spawn\|eval(" "$ext_dir/dist/" "$ext_dir/out/" "$ext_dir/lib/" 2>/dev/null | wc -l)
             if [ "$suspicious" -gt 0 ]; then
                 echo "    [!] SUSPICIOUS: $suspicious files with exec/eval patterns"
                 grep -rl "child_process\|execSync\|spawn\|eval(" "$ext_dir/dist/" "$ext_dir/out/" "$ext_dir/lib/" 2>/dev/null | head -5
             fi
-            
+
             network=$(grep -rl "fetch\|axios\|http\.request\|https\.request\|XMLHttpRequest\|net\.connect" "$ext_dir/dist/" "$ext_dir/out/" "$ext_dir/lib/" 2>/dev/null | wc -l)
             if [ "$network" -gt 0 ]; then
                 echo "    [i] Network activity: $network files with HTTP requests"
@@ -727,19 +727,19 @@ def analyze_extension_supply_chain(ext_dir):
         'dependency_audit': [],
         'integrity_checks': []
     }
-    
+
     pkg_path = os.path.join(ext_dir, 'package.json')
     if os.path.exists(pkg_path):
         with open(pkg_path) as f:
             pkg = json.load(f)
-        
+
         deps = pkg.get('dependencies', {})
         dev_deps = pkg.get('devDependencies', {})
         all_deps = {**deps, **dev_deps}
-        
+
         report['total_dependencies'] = len(all_deps)
         report['dependency_details'] = []
-        
+
         for dep_name, dep_version in all_deps.items():
             dep_info = {
                 'name': dep_name,
@@ -756,7 +756,7 @@ def analyze_extension_supply_chain(ext_dir):
             else:
                 dep_info['risk_level'] = 'low'
             report['dependency_details'].append(dep_info)
-    
+
     ext_js = os.path.join(ext_dir, 'extension.js')
     if os.path.exists(ext_js):
         with open(ext_js, 'r', errors='ignore') as f:
@@ -770,14 +770,14 @@ def analyze_extension_supply_chain(ext_dir):
             'avg_line_length': len(content) / max(content.count('\n'), 1)
         }
         report['integrity_checks'] = integrity_checks
-        
+
         if integrity_checks['has_obfuscated_code']:
             report['supply_chain_risks'].append({
                 'type': 'code_obfuscation',
                 'severity': 'high',
                 'detail': 'Multiple eval/Function/atob calls detected in main extension file'
             })
-    
+
     return report
 
 if __name__ == '__main__':
@@ -887,14 +887,14 @@ class AIGeneratedCodeDetector:
             'if not ', ' raise ValueError(', ' from dataclasses import',
         ]),
     }
-    
+
     def analyze_file(self, file_path):
         try:
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 code = f.read()
         except Exception:
             return None
-        
+
         indicators = {}
         score = 0
         for name, detector in self.AI_INDICATOR_PATTERNS.items():
@@ -905,11 +905,11 @@ class AIGeneratedCodeDetector:
                     score += 1
             except Exception:
                 indicators[name] = False
-        
+
         lines = code.split('\n')
         avg_line_length = sum(len(l) for l in lines) / max(len(lines), 1)
         comment_ratio = sum(1 for l in lines if l.strip().startswith('#')) / max(len(lines), 1)
-        
+
         return {
             'file': file_path,
             'ai_score': score,
@@ -924,7 +924,7 @@ class AIGeneratedCodeDetector:
                 'code_hash': hashlib.md5(code.encode()).hexdigest()
             }
         }
-    
+
     def batch_analyze(self, directory, extensions=('.py', '.js', '.ts')):
         results = []
         for root, dirs, files in __import__('os').walk(directory):
@@ -1294,7 +1294,7 @@ class DevToolchainSecurityAuditor:
         '\u200e': 'LTRM', '\u200f': 'RTLM', '\ufeff': 'BOM',
         '\u2028': 'LS', '\u2029': 'PS', '\u2060': 'WJ',
     }
-    
+
     PI_PATTERNS = [
         r'(?i)ignore\s+(all\s+)?previous\s+instructions',
         r'(?i)override\s+(your\s+)?safety\s+guidelines',
@@ -1303,11 +1303,11 @@ class DevToolchainSecurityAuditor:
         r'(?i)new\s+system\s+(message|prompt)\s*[:=]',
         r'(?i)do\s+not\s+follow\s+(the\s+)?(previous|existing)',
     ]
-    
+
     def __init__(self, target_dir):
         self.target_dir = Path(target_dir)
         self.findings = []
-    
+
     def scan_zero_width(self):
         results = []
         code_exts = {'.py', '.js', '.ts', '.jsx', '.tsx', '.java', '.go', '.rs', '.rb'}
@@ -1329,7 +1329,7 @@ class DevToolchainSecurityAuditor:
                 except Exception:
                     pass
         return results
-    
+
     def scan_prompt_injection(self):
         results = []
         code_exts = {'.py', '.js', '.ts', '.jsx', '.tsx', '.java', '.go', '.rs', '.md', '.txt'}
@@ -1352,7 +1352,7 @@ class DevToolchainSecurityAuditor:
                 except Exception:
                     pass
         return results
-    
+
     def scan_sensitive_secrets(self):
         results = []
         secret_patterns = [
@@ -1383,7 +1383,7 @@ class DevToolchainSecurityAuditor:
                 except Exception:
                     pass
         return results
-    
+
     def scan_ide_extensions(self):
         results = []
         vscode_ext = Path.home() / '.vscode' / 'extensions'
@@ -1424,7 +1424,7 @@ class DevToolchainSecurityAuditor:
             except Exception:
                 continue
         return results
-    
+
     def run_full_audit(self):
         print(f"Starting full security audit of: {self.target_dir}")
         print(f"Audit time: {datetime.utcnow().isoformat()}Z")
