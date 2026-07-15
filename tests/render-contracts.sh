@@ -374,6 +374,8 @@ const html = fs.readFileSync(homepagePath, "utf8");
 const content = fs.readFileSync(contentPath, "utf8");
 const count = pattern => [...html.matchAll(pattern)].length;
 const attr = (tag, name) => tag.match(new RegExp(`\\b${name}=(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`))?.slice(1).find(Boolean);
+const classCount = token => [...html.matchAll(/\bclass=(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g)]
+  .filter(match => (match[1] ?? match[2] ?? match[3] ?? "").split(/\s+/).includes(token)).length;
 const fail = message => {
   console.error(`Homepage render contract failed: ${message}`);
   process.exit(1);
@@ -413,7 +415,7 @@ if (new Set(latest.map(item => item.href)).size !== latest.length) fail("latest 
 const timestamps = latest.map(item => Date.parse(item.updated));
 if (timestamps.some(Number.isNaN)) fail(`latest links contain invalid dates: ${latest.map(item => item.updated).join(", ")}`);
 if (timestamps.some((date, i) => i && date > timestamps[i - 1])) fail("latest links are not sorted newest-first");
-if (count(/\bclass=x7-article-tag\b/g) < 1) fail("latest feed has no article tags");
+if (classCount("x7-article-tag") < 1) fail("latest feed has no article tags");
 for (const { href } of latest) {
   if (!href?.startsWith("/")) fail(`latest href is not root-relative: ${href}`);
   const target = path.join(outputDir, decodeURI(href.slice(1)));
