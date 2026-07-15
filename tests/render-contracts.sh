@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+trap 'status=$?; echo "render contract failed at line $LINENO (status $status)" >&2' ERR
 
 source_dir="hugo-src"
 output_dir="$source_dir/public-test"
