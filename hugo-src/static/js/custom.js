@@ -1,5 +1,7 @@
 // Override the theme's scrollToPositions function to prevent sidebar from jumping around on refresh
 window.addEventListener('DOMContentLoaded', function() {
+    initX7PageTransitions();
+
     // Make the logo scroll with the sidebar instead of staying fixed at the top
     const headerWrapper = document.getElementById('R-header-wrapper');
     const contentWrapper = document.getElementById('R-content-wrapper');
@@ -46,24 +48,24 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Restore sidebar scroll position
-    const sidebarMenu = document.querySelector('.R-sidebarmenu.R-shortcutmenu-main');
-    if (sidebarMenu) {
+    // Restore sidebar tree scroll position.
+    const sidebarScrollSurface = document.querySelector('.R-sidebarmenu.R-shortcutmenu-main') || document.querySelector('#R-sidebar #R-content-wrapper');
+    if (sidebarScrollSurface) {
         const scrollPos = sessionStorage.getItem('sidebar_scroll_pos');
         if (scrollPos) {
             // Use setTimeout to ensure DOM is fully rendered and other scripts have run
             setTimeout(() => {
-                sidebarMenu.scrollTop = parseInt(scrollPos, 10);
+                sidebarScrollSurface.scrollTop = parseInt(scrollPos, 10);
             }, 10);
         }
 
         // Save scroll position
-        sidebarMenu.addEventListener('scroll', function() {
-            sessionStorage.setItem('sidebar_scroll_pos', sidebarMenu.scrollTop);
+        sidebarScrollSurface.addEventListener('scroll', function() {
+            sessionStorage.setItem('sidebar_scroll_pos', sidebarScrollSurface.scrollTop);
         });
         
         // Also listen to wheel events in case perfect-scrollbar is interfering
-        sidebarMenu.addEventListener('wheel', function(e) {
+        sidebarScrollSurface.addEventListener('wheel', function(e) {
             // Let the native scroll handle it
         }, { passive: true });
 
@@ -101,3 +103,46 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+function initX7PageTransitions() {
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !document.body) return;
+
+    document.body.classList.add('x7-page-enter');
+    window.setTimeout(() => {
+        document.body.classList.remove('x7-page-enter');
+    }, 700);
+
+    document.addEventListener('click', function(event) {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        const link = event.target.closest && event.target.closest('a[href]');
+        if (!link) return;
+        if (link.target && link.target !== '_self') return;
+        if (link.hasAttribute('download')) return;
+
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+
+        let url;
+        try {
+            url = new URL(href, window.location.href);
+        } catch {
+            return;
+        }
+
+        if (url.origin !== window.location.origin) return;
+        if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return;
+
+        event.preventDefault();
+        document.body.classList.remove('x7-page-enter');
+        document.body.classList.add('x7-page-exit');
+        window.setTimeout(() => {
+            window.location.href = url.href;
+        }, 260);
+    }, true);
+
+    window.addEventListener('pageshow', function() {
+        document.body.classList.remove('x7-page-exit');
+    });
+}

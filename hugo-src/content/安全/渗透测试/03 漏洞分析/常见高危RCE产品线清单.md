@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-07-09，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-07-14，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -136,6 +136,18 @@ categories: ["漏洞分析"]
 | **浏览器与文档处理软件** | **LibreOffice / OpenOffice / Mozilla Firefox / Thunderbird**（宏执行绕过 / UAF沙箱逃逸 / JIT类型混淆 / libwebp堆溢出） | 17+ |
 | **企业VPN与远程接入平台** | **OpenVPN / WireGuard / Citrix NetScaler ADC/Gateway**（缓冲区溢出 / 认证绕过 / 会话劫持 / 未授权RCE） | 17 |
 | **网络监控与管理平台** | **Nagios XI/Core / Cacti / ManageEngine OpManager**（SQL注入RCE / 命令注入 / 认证绕过 / 反序列化） | 19 |
+| **开源邮件传输与存储** | **Exim / Postfix / Dovecot**（Dead.Letter RCE / 堆溢出 / SMTP Smuggling / NUL字节RCE / SQL注入） | 17+ |
+| **SSH与远程终端访问安全** | **OpenSSH / Dropbear**（regreSSHion竞态RCE / Terrapin前缀截断 / ssh-agent RCE / Unix Socket提权） | 15 |
+| **RADIUS与网络认证安全** | **FreeRADIUS / Samba / RADIUS协议**（Blast-RADIUS MD5碰撞 / Netlogon NTLM Relay / Kerberos PAC溢出 / DCE/RPC DoS） | 12 |
+| **工控与SCADA安全平台** | **Siemens SIMATIC S7 / Schneider Modicon / Rockwell Allen-Bradley /ABB AC500/Cylon ASPECT**（内存保护绕过 / Modbus认证捕获重放 / CIP越界写入 / Shell命令注入） | 15 |
+| **企业办公文档处理套件** | **Microsoft Outlook / Office / Adobe Acrobat / Foxit Reader**（Moniker Link零点击RCE / Preview Pane UAF / Prototype Pollution / JS沙箱逃逸） | 14 |
+| **企业特权访问管理** | **CyberArk / BeyondTrust / Delinea / KeePass**（RCE / 认证绕过 / SSTI / DLL劫持 / 密码内存恢复） | 15 |
+| **AI/ML开发与推理平台** | **JupyterHub / MLflow / Ray / TorchServe / Kubeflow / TensorFlow / Hugging Face**（认证绕过RCE / Pickle反序列化 / Dashboard未授权RCE / 路径穿越 / SSRF / 供应链攻击） | 13 |
+| **区块链与去中心化基础设施** | **Geth / Bitcoin Core / IPFS-Kubo / Hyperledger Fabric / Parity / Erigon**（MEV签名绕过 / RPC DoS / Gateway路径穿越 / Chaincode ACL绕过 / 多签钱包自毁 / P2P协议DoS） | 14 |
+| **开源即时通讯与协作平台** | **Rocket.Chat / Mattermost / Element-Matrix / Zulip / Mastodon**（SSRF→RCE / 认证绕过 / SAML伪造 / 存储型XSS / XXE / 联邦协议滥用 / 管理API提权） | 12 |
+| **大数据搜索与分析平台** | **Apache Solr / Elasticsearch / OpenSearch**（Velocity模板RCE / JMX反序列化 / Groovy脚本注入 / 目录遍历 / 认证绕过） | 20 |
+| **数据集成与流处理平台** | **Apache NiFi / Apache Flink / Apache Spark**（H2连接字符串RCE / REST API未授权 / 目录遍历 / Shell命令注入 / 反序列化） | 17 |
+| **开源CMS与门户平台** | **Drupal / Joomla / Liferay Portal**（Drupalgeddon Pre-Auth RCE / JSON反序列化 / SSTI / SQL注入 / API未授权访问） | 19 |
 
 以下产品线已有**单篇 CVE 分析文章**：
 

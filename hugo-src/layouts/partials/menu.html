@@ -36,10 +36,6 @@
           {{- partial "logo.html" . }}
           {{- partial "x7/search-dialog.html" . }}
         </div>
-        <div class="x7-tree-filter">
-          <label class="x7-visually-hidden" for="x7-tree-filter">Filter knowledge tree</label>
-          <input id="x7-tree-filter" type="search" placeholder="Filter knowledge tree" autocomplete="off" data-x7-tree-filter>
-        </div>
         <div id="R-homelinks" class="default-animation{{ if not site.Params.disableLandingPageButton }} homelinks{{ end }}">
           {{- $menuconfigs := .Params.sidebarheadermenus | default site.Params.sidebarheadermenus }}
           {{- if or (eq (printf "%T" $menuconfigs) "string") (eq (printf "%T" $menuconfigs) "<nil>") }}

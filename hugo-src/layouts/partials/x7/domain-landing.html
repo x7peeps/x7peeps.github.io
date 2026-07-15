@@ -1,23 +1,11 @@
 {{- $variant := printf "%s:%s" .Language.Lang .Path -}}
 {{- $data := partialCached "x7/domain-data.html" . $variant -}}
-{{- $introSource := replaceRE `(?s)\{\{<\s*article_cards\s*>\}\}` "" .RawContent -}}
-{{- $intro := trim $introSource " \t\r\n" -}}
-{{- $introContent := "" -}}
-{{- with $intro -}}
-  {{- $renderedIntro := $.RenderString . -}}
-  {{- $introContent = partial "x7/content-without-title-h1.html" (dict "page" $ "content" $renderedIntro) -}}
-  {{- /* A domain landing owns the document H1; preserve other authored headings as H2. */ -}}
-  {{- $introContent = replaceRE `<h1(\b[^>]*)>` `<h2$1>` $introContent -}}
-  {{- $introContent = replaceRE `</h1>` `</h2>` $introContent -}}
-{{- end -}}
 
 <article class="x7-domain-landing" data-x7-domain-landing>
   <header class="x7-domain-landing__hero">
     <p class="x7-system-label">KNOWLEDGE DOMAIN / {{ .Title }}</p>
     <h1>{{ .Title }}</h1>
     {{- with .Description }}<p class="x7-domain-landing__description">{{ . }}</p>{{ end -}}
-    {{- with $introContent }}<div class="x7-domain-landing__intro">{{ . | safeHTML }}</div>{{ end -}}
-    <button class="x7-domain-landing__search" type="button" data-x7-search-open aria-label="打开全站搜索">搜索知识库</button>
   </header>
 
   {{- with $data.children }}
@@ -36,18 +24,6 @@
           </a>
         </li>
         {{- end }}
-      </ul>
-    </nav>
-  </section>
-  {{- else with $data.pages }}
-  <section class="x7-domain-block" aria-labelledby="x7-domain-map">
-    <header class="x7-domain-block__header">
-      <p class="x7-system-label">FRAMEWORK MAP</p>
-      <h2 id="x7-domain-map">内容索引</h2>
-    </header>
-    <nav aria-label="{{ $.Title }}内容索引">
-      <ul class="x7-domain-grid">
-        {{- range .ByTitle }}<li><a class="x7-domain-card" data-x7-domain-page href="{{ .RelPermalink }}"><span>{{ .LinkTitle }}</span></a></li>{{ end -}}
       </ul>
     </nav>
   </section>

@@ -1,6 +1,10 @@
 {{- $current := . -}}
 {{- $currentTags := slice -}}
-{{- range (.Params.tags | default (slice)) -}}
+{{- $rawCurrentTags := .Params.tags | default (slice) -}}
+{{- if not (reflect.IsSlice $rawCurrentTags) -}}
+  {{- $rawCurrentTags = split (printf "%v" $rawCurrentTags) "," -}}
+{{- end -}}
+{{- range $rawCurrentTags -}}
   {{- $tag := lower (trim (printf "%v" .) " \t\r\n") -}}
   {{- if $tag }}{{ $currentTags = $currentTags | append $tag }}{{ end -}}
 {{- end -}}
@@ -19,7 +23,11 @@
 {{- if $currentTags -}}
   {{- range $candidates -}}
       {{- $candidateTags := slice -}}
-      {{- range (.Params.tags | default (slice)) -}}
+      {{- $rawCandidateTags := .Params.tags | default (slice) -}}
+      {{- if not (reflect.IsSlice $rawCandidateTags) -}}
+        {{- $rawCandidateTags = split (printf "%v" $rawCandidateTags) "," -}}
+      {{- end -}}
+      {{- range $rawCandidateTags -}}
         {{- $tag := lower (trim (printf "%v" .) " \t\r\n") -}}
         {{- if $tag }}{{ $candidateTags = $candidateTags | append $tag }}{{ end -}}
       {{- end -}}

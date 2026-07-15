@@ -1,6 +1,9 @@
 export function initHome() {
   const heatmap = document.getElementById("x7-heatmap");
-  if (!heatmap || heatmap.children.length > 0) return;
+  if (!heatmap) return;
+
+  initHomeMotion();
+  if (heatmap.children.length > 0) return;
 
   let days = window.__heatmapDays;
   if (typeof days === "string") {
@@ -53,4 +56,173 @@ export function initHome() {
   });
 
   heatmap.appendChild(frag);
+}
+
+function initHomeMotion() {
+  const home = document.querySelector("[data-x7-home]");
+  if (!home || home.dataset.motionReady === "true") return;
+  home.dataset.motionReady = "true";
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) {
+    home.dataset.motion = "reduced";
+    return;
+  }
+
+  home.dataset.motion = "enhanced";
+  initParticleField(home);
+  initScrollCinematography(home);
+  initRevealSequence(home);
+}
+
+function initParticleField(home) {
+  const hero = home.querySelector(".x7-home-hero");
+  if (!hero) return;
+
+  const canvas = document.createElement("canvas");
+  canvas.className = "x7-home-particles";
+  canvas.setAttribute("aria-hidden", "true");
+  hero.prepend(canvas);
+
+  const ctx = canvas.getContext("2d", { alpha: true });
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+  let pointerX = 0;
+  let pointerY = 0;
+  let frame = 0;
+  let particles = [];
+
+  const resize = () => {
+    const rect = hero.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = Math.max(1, Math.floor(rect.width));
+    height = Math.max(1, Math.floor(rect.height));
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const targetCount = Math.min(92, Math.max(42, Math.round(width / 16)));
+    particles = Array.from({ length: targetCount }, (_, index) => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      z: Math.random() * 0.8 + 0.2,
+      r: Math.random() * 1.15 + 0.35,
+      drift: (Math.random() - 0.5) * 0.18,
+      phase: Math.random() * Math.PI * 2 + index
+    }));
+  };
+
+  const draw = (time) => {
+    frame = window.requestAnimationFrame(draw);
+    ctx.clearRect(0, 0, width, height);
+
+    const progress = Number(home.style.getPropertyValue("--x7-home-scroll-progress")) || 0;
+    const camera = 1 + progress * 0.42;
+    const cx = width * 0.5 + pointerX * 12;
+    const cy = height * 0.44 + pointerY * 8;
+
+    ctx.globalCompositeOperation = "lighter";
+    for (const p of particles) {
+      p.x += p.drift + pointerX * p.z * 0.04;
+      p.y += (0.045 + p.z * 0.075) * camera;
+
+      if (p.x < -12) p.x = width + 12;
+      if (p.x > width + 12) p.x = -12;
+      if (p.y > height + 14) p.y = -14;
+
+      const pulse = 0.55 + Math.sin(time * 0.0012 + p.phase) * 0.45;
+      const dx = (p.x - cx) * progress * 0.035;
+      const dy = (p.y - cy) * progress * 0.05;
+      const alpha = (0.03 + p.z * 0.075) * pulse * (1 - progress * 0.45);
+      const radius = p.r * (1 + progress * 0.9);
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(116, 235, 255, ${alpha})`;
+      ctx.arc(p.x + dx, p.y + dy, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  };
+
+  hero.addEventListener("pointermove", (event) => {
+    const rect = hero.getBoundingClientRect();
+    pointerX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+    pointerY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+  }, { passive: true });
+
+  hero.addEventListener("pointerleave", () => {
+    pointerX = 0;
+    pointerY = 0;
+  }, { passive: true });
+
+  const observer = new ResizeObserver(resize);
+  observer.observe(hero);
+  resize();
+  frame = window.requestAnimationFrame(draw);
+
+  window.addEventListener("pagehide", () => {
+    if (frame) window.cancelAnimationFrame(frame);
+    observer.disconnect();
+  }, { once: true });
+}
+
+function initScrollCinematography(home) {
+  const hero = home.querySelector(".x7-home-hero");
+  if (!hero) return;
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const rect = hero.getBoundingClientRect();
+    const range = Math.max(1, rect.height * 0.82);
+    const progress = Math.min(1, Math.max(0, -rect.top / range));
+    home.style.setProperty("--x7-home-scroll-progress", progress.toFixed(4));
+  };
+
+  const request = () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  };
+
+  update();
+  window.addEventListener("scroll", request, { passive: true });
+  window.addEventListener("resize", request, { passive: true });
+}
+
+function initRevealSequence(home) {
+  const revealTargets = [
+    ".x7-home-avatar",
+    ".x7-home-kicker",
+    ".x7-hero-title",
+    ".x7-hero-subtitle",
+    ".x7-hero-mission",
+    ".x7-heatmap-panel",
+    ".x7-feed-header",
+    ".x7-feed-list > li"
+  ];
+
+  const nodes = home.querySelectorAll(revealTargets.join(","));
+  nodes.forEach((node, index) => {
+    node.classList.add("x7-reveal");
+    node.style.setProperty("--x7-reveal-order", String(Math.min(index, 18)));
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  }, {
+    rootMargin: "0px 0px -10% 0px",
+    threshold: 0.08
+  });
+
+  nodes.forEach((node) => observer.observe(node));
 }

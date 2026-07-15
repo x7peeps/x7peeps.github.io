@@ -46,6 +46,69 @@ body{
   background: #000000 !important;
 }
 
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+}
+
+body::before {
+  background:
+    radial-gradient(720px circle at 50% 46%, transparent, rgba(0,0,0,.72) 68%, #000 100%),
+    linear-gradient(90deg, transparent, rgba(98,185,255,.12), transparent),
+    #000;
+  transform: scaleX(.08);
+  transform-origin: 50% 50%;
+}
+
+body::after {
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 7px),
+    linear-gradient(180deg, transparent, rgba(98,185,255,.08), transparent);
+  mix-blend-mode: screen;
+  transform: translateY(-12%);
+}
+
+body.x7-page-enter::before {
+  animation: x7-page-enter-mask .58s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+body.x7-page-enter::after {
+  animation: x7-page-enter-scan .58s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+body.x7-page-exit::before {
+  animation: x7-page-exit-mask .42s cubic-bezier(.7, 0, .84, 0) both;
+}
+
+body.x7-page-exit::after {
+  animation: x7-page-exit-scan .42s cubic-bezier(.7, 0, .84, 0) both;
+}
+
+@keyframes x7-page-enter-mask {
+  0% { opacity: 1; transform: scaleX(1); filter: blur(0); }
+  100% { opacity: 0; transform: scaleX(.08); filter: blur(14px); }
+}
+
+@keyframes x7-page-enter-scan {
+  0% { opacity: .42; transform: translateY(-10%); }
+  100% { opacity: 0; transform: translateY(18%); }
+}
+
+@keyframes x7-page-exit-mask {
+  0% { opacity: 0; transform: scaleX(.08); filter: blur(14px); }
+  100% { opacity: 1; transform: scaleX(1); filter: blur(0); }
+}
+
+@keyframes x7-page-exit-scan {
+  0% { opacity: 0; transform: translateY(-18%); }
+  100% { opacity: .42; transform: translateY(10%); }
+}
+
 main#R-body-inner .flex-block-wrapper{
   max-width: 62rem;
 }
@@ -62,7 +125,7 @@ nav#R-topbar{
 }
 
 nav#R-topbar .topbar-breadcrumbs{
-  opacity: .9;
+  display: none !important;
 }
 
 /* Fix breadcrumb text visibility affected by global primary color removal */
@@ -134,11 +197,80 @@ aside#R-sidebar {
   min-width: var(--INTERNAL-MENU-L-width) !important;
 }
 
-/* Allow sidebar to scroll natively and horizontally if needed */
+#R-sidebar #R-content-wrapper {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain !important;
+  overscroll-behavior-x: none !important;
+  scrollbar-width: none !important;
+  touch-action: pan-y !important;
+}
+
+#R-sidebar #R-content-wrapper::-webkit-scrollbar {
+  display: none !important;
+}
+
+body.x7-page-enter aside#R-sidebar {
+  animation: x7-sidebar-enter .74s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+body.x7-page-enter #R-header-wrapper,
+body.x7-page-enter #R-search-by,
+body.x7-page-enter .x7-search-open,
+body.x7-page-enter .R-sidebarmenu.R-shortcutmenu-main > ul > li {
+  animation: x7-sidebar-item-enter .68s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+body.x7-page-enter #R-header-wrapper { animation-delay: 90ms; }
+body.x7-page-enter #R-search-by,
+body.x7-page-enter .x7-search-open { animation-delay: 150ms; }
+body.x7-page-enter .R-sidebarmenu.R-shortcutmenu-main > ul > li:nth-child(1) { animation-delay: 210ms; }
+body.x7-page-enter .R-sidebarmenu.R-shortcutmenu-main > ul > li:nth-child(2) { animation-delay: 245ms; }
+body.x7-page-enter .R-sidebarmenu.R-shortcutmenu-main > ul > li:nth-child(3) { animation-delay: 280ms; }
+body.x7-page-enter .R-sidebarmenu.R-shortcutmenu-main > ul > li:nth-child(4) { animation-delay: 315ms; }
+body.x7-page-enter .R-sidebarmenu.R-shortcutmenu-main > ul > li:nth-child(5) { animation-delay: 350ms; }
+body.x7-page-enter .R-sidebarmenu.R-shortcutmenu-main > ul > li:nth-child(6) { animation-delay: 385ms; }
+body.x7-page-enter .R-sidebarmenu.R-shortcutmenu-main > ul > li:nth-child(7) { animation-delay: 420ms; }
+body.x7-page-enter .R-sidebarmenu.R-shortcutmenu-main > ul > li:nth-child(n+8) { animation-delay: 455ms; }
+
+@keyframes x7-sidebar-enter {
+  0% {
+    opacity: 0;
+    transform: translate3d(-1.4rem, 0, 0);
+    filter: blur(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+@keyframes x7-sidebar-item-enter {
+  0% {
+    opacity: 0;
+    transform: translate3d(-.8rem, .35rem, 0);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+/* Keep tree scrolling reliable while locking horizontal drift */
 .R-sidebarmenu {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
   overflow-y: auto !important;
-  overflow-x: auto !important;
-  max-height: calc(100vh - 120px) !important; /* leave space for header */
+  overscroll-behavior: contain !important;
+  overscroll-behavior-x: none !important;
+  touch-action: pan-y !important;
+  max-height: calc(100vh - 9.8rem) !important;
 }
 
 /* Hide native scrollbars but keep functionality */
@@ -224,6 +356,8 @@ aside#R-sidebar {
 .R-sidebarmenu ul.collapsible-menu {
   /* Allow content to overflow horizontally without cropping, and stretch to fit the longest item */
   min-width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
   /* Removed width: max-content */
 }
 
@@ -242,6 +376,9 @@ aside#R-sidebar {
   flex-wrap: wrap !important;
   align-items: flex-start !important; /* Change from center to flex-start to prevent vertical centering issues */
   min-height: 28px !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
 }
 
 .R-sidebarmenu ul.collapsible-menu > li > ul {
@@ -338,6 +475,10 @@ aside#R-sidebar {
 .R-sidebarmenu ul.collapsible-menu li > ul.collapsible-menu {
   margin-left: 16px !important;
   padding-left: 0 !important;
+  width: calc(100% - 16px) !important;
+  min-width: 0 !important;
+  max-width: calc(100% - 16px) !important;
+  box-sizing: border-box !important;
   border-left: 1px solid rgba(255,255,255,0.06) !important;
 }
 
@@ -506,6 +647,11 @@ article.home table{
 @media (prefers-reduced-motion: reduce){
   *{
     scroll-behavior: auto !important;
+  }
+
+  body::before,
+  body::after {
+    display: none !important;
   }
 }
 

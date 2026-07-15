@@ -320,7 +320,7 @@ for (const file of walkHtml(outputDir)) {
 const aboutFixture = path.join(outputDir, "关于", "本站搭建", "index.html");
 if (!fs.existsSync(aboutFixture)) process.exit(1);
 const aboutHtml = fs.readFileSync(aboutFixture, "utf8");
-if (!aboutHtml.includes("data-x7-domain-landing") || [...aboutHtml.matchAll(/<h1\b/g)].length !== 1) process.exit(1);
+if (!aboutHtml.includes("data-x7-article-shell") || aboutHtml.includes("data-x7-domain-landing") || [...aboutHtml.matchAll(/<h1\b/g)].length !== 1) process.exit(1);
 const aboutIds = [...aboutHtml.matchAll(/\bid=([^\s>]+)/g)].map(match => match[1]);
 if (aboutIds.length !== new Set(aboutIds).size) process.exit(1);
 
@@ -329,7 +329,7 @@ for (const section of topSections) {
   if (!html.includes("data-x7-domain-landing")) process.exit(1);
   if ([...html.matchAll(/<h1\b/g)].length !== 1) process.exit(1);
   if (!html.includes(`KNOWLEDGE DOMAIN / ${section}`)) process.exit(1);
-  if ([...html.matchAll(/\bdata-x7-search-open\b/g)].length < 2) process.exit(1);
+  if ([...html.matchAll(/\bdata-x7-search-open\b/g)].length < 1) process.exit(1);
 }
 
 const candidate = topSections
@@ -458,11 +458,14 @@ for (const file of files) {
   if (!/<script\b[^>]*(?:type=module[^>]*src=\/js\/x7\/bootstrap\.js|src=\/js\/x7\/bootstrap\.js[^>]*type=module)/.test(html)) process.exit(1);
   const isHome = file === path.join(root, "index.html");
   const isArticle = html.includes("data-x7-article-shell");
-  const inputCount = count(html, /<input\b[^>]*\bdata-x7-(?:search-input|tree-filter)\b/g);
-  const isCompactTaxonomy = html.includes("data-x7-compact-taxonomy-sidebar");
-  const expectedInputCount = isCompactTaxonomy ? 1 : 2;
-  if (!is404 && inputCount !== expectedInputCount) {
-    console.error(`Search input contract failed: ${path.relative(root, file)} has ${inputCount}, expected ${expectedInputCount} (${isCompactTaxonomy ? "compact taxonomy" : "standard"})`);
+  const searchInputCount = count(html, /<input\b[^>]*\bdata-x7-search-input\b/g);
+  const treeFilterCount = count(html, /<input\b[^>]*\bdata-x7-tree-filter\b/g);
+  if (treeFilterCount !== 0) {
+    console.error(`Tree filter contract failed: ${path.relative(root, file)} still renders ${treeFilterCount} tree filter input(s)`);
+    process.exit(1);
+  }
+  if (!is404 && searchInputCount !== 1) {
+    console.error(`Search input contract failed: ${path.relative(root, file)} has ${searchInputCount}, expected 1`);
     process.exit(1);
   }
   if (isArticle && html.includes("data-x7-constellation")) process.exit(1);

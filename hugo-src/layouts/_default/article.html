@@ -1,5 +1,11 @@
-{{- $isCockpit := and (eq (.Store.Get "relearnOutputFormat") "html") (eq .Kind "page") (not (.Store.Get "relearnIsNested")) -}}
-{{- if and (eq (.Store.Get "relearnOutputFormat") "html") (eq .Kind "section") -}}
+{{- $isHtml := eq (.Store.Get "relearnOutputFormat") "html" -}}
+{{- $isDomainSection := false -}}
+{{- if and $isHtml (eq .Kind "section") -}}
+  {{- $domainData := partial "x7/domain-data.html" . -}}
+  {{- $isDomainSection = or (gt (len $domainData.children) 0) (gt (len $domainData.pages) 0) -}}
+{{- end -}}
+{{- $isCockpit := and $isHtml (or (eq .Kind "page") (and (eq .Kind "section") (not $isDomainSection))) (not (.Store.Get "relearnIsNested")) -}}
+{{- if $isDomainSection -}}
   {{- partial "x7/domain-landing.html" . -}}
 {{- else if $isCockpit -}}
   {{- partial "x7/article-shell.html" . -}}
