@@ -374,40 +374,52 @@ const html = fs.readFileSync(homepagePath, "utf8");
 const content = fs.readFileSync(contentPath, "utf8");
 const count = pattern => [...html.matchAll(pattern)].length;
 const attr = (tag, name) => tag.match(new RegExp(`\\b${name}=(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`))?.slice(1).find(Boolean);
+const fail = message => {
+  console.error(`Homepage render contract failed: ${message}`);
+  process.exit(1);
+};
 
-if (count(/\bdata-x7-home\b/g) !== 1 || count(/<h1\b/g) !== 1) process.exit(1);
+if (count(/\bdata-x7-home\b/g) !== 1) fail(`expected exactly one data-x7-home marker, got ${count(/\bdata-x7-home\b/g)}`);
+if (count(/<h1\b/g) !== 1) fail(`expected exactly one h1, got ${count(/<h1\b/g)}`);
 for (const required of ["X7PEEPS", "安全研究 / 工具开发 / 取证与攻防知识库", "把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。", "知识沉淀热力图", "最近更新"]) {
-  if (!html.includes(required)) process.exit(1);
+  if (!html.includes(required)) fail(`missing required homepage text: ${required}`);
 }
 for (const removed of ["探索知识地图", "代表成果", "KNOWLEDGE MAP", "SELECTED WORK"]) {
-  if (html.includes(removed)) process.exit(1);
+  if (html.includes(removed)) fail(`removed homepage concept is still present: ${removed}`);
 }
-if (count(/\bdata-x7-constellation(?:\s|>)/g) !== 0 || count(/\bdata-x7-constellation-fallback(?:\s|>)/g) !== 0) process.exit(1);
-if (/<nav\b[^>]*id=knowledge-map\b/.test(html) || /<section\b[^>]*id=featured-work\b/.test(html)) process.exit(1);
-if (!html.includes("window.__heatmapDays") || !/\bid=x7-heatmap\b/.test(html) || !/\bclass=x7-feed(?:\s|>)/.test(html)) process.exit(1);
+if (count(/\bdata-x7-constellation(?:\s|>)/g) !== 0) fail("legacy constellation marker is still present");
+if (count(/\bdata-x7-constellation-fallback(?:\s|>)/g) !== 0) fail("legacy constellation fallback marker is still present");
+if (/<nav\b[^>]*id=knowledge-map\b/.test(html)) fail("legacy knowledge-map nav is still present");
+if (/<section\b[^>]*id=featured-work\b/.test(html)) fail("legacy featured-work section is still present");
+if (!html.includes("window.__heatmapDays")) fail("missing heatmap data script");
+if (!/\bid=x7-heatmap\b/.test(html)) fail("missing heatmap element");
+if (!/\bclass=x7-feed(?:\s|>)/.test(html)) fail("missing latest feed element");
 
 const script = html.match(/window\.__heatmapDays=([\s\S]*?)<\/script>/)?.[1];
-if (!script) process.exit(1);
+if (!script) fail("could not parse heatmap data script");
 const vm = require("node:vm");
 const context = { window: {} };
 vm.createContext(context);
 vm.runInContext(`window.__heatmapDays=${script.replace(/;?\s*$/, "")}`, context);
 const days = context.window.__heatmapDays;
-if (!Array.isArray(days) || days.length !== 371) process.exit(1);
+if (!Array.isArray(days)) fail("heatmap data is not an array");
+if (days.length !== 371) fail(`expected 371 heatmap days, got ${days.length}`);
 const totalUpdates = days.reduce((sum, day) => sum + (Number(day.count) || 0), 0);
-if (totalUpdates < 1 || days.every(day => Number(day.count) === 0)) process.exit(1);
+if (totalUpdates < 1 || days.every(day => Number(day.count) === 0)) fail(`heatmap has no updates; total=${totalUpdates}`);
 
 const latest = [...html.matchAll(/<a\b[^>]*\bdata-x7-latest-link\b[^>]*>/g)].map(match => ({ href: attr(match[0], "href"), updated: attr(match[0], "data-updated") }));
-if (latest.length < 8 || latest.length > 18 || new Set(latest.map(item => item.href)).size !== latest.length) process.exit(1);
+if (latest.length < 8 || latest.length > 18) fail(`expected 8-18 latest links, got ${latest.length}`);
+if (new Set(latest.map(item => item.href)).size !== latest.length) fail("latest links contain duplicate hrefs");
 const timestamps = latest.map(item => Date.parse(item.updated));
-if (timestamps.some(Number.isNaN) || timestamps.some((date, i) => i && date > timestamps[i - 1])) process.exit(1);
-if (count(/\bclass=x7-article-tag\b/g) < 1) process.exit(1);
+if (timestamps.some(Number.isNaN)) fail(`latest links contain invalid dates: ${latest.map(item => item.updated).join(", ")}`);
+if (timestamps.some((date, i) => i && date > timestamps[i - 1])) fail("latest links are not sorted newest-first");
+if (count(/\bclass=x7-article-tag\b/g) < 1) fail("latest feed has no article tags");
 for (const { href } of latest) {
-  if (!href?.startsWith("/")) process.exit(1);
+  if (!href?.startsWith("/")) fail(`latest href is not root-relative: ${href}`);
   const target = path.join(outputDir, decodeURI(href.slice(1)));
-  if (!fs.existsSync(target) && !fs.existsSync(path.join(target, "index.html"))) process.exit(1);
+  if (!fs.existsSync(target) && !fs.existsSync(path.join(target, "index.html"))) fail(`latest href target is missing: ${href}`);
 }
-if (/<div\b/i.test(content.replace(/^---[\s\S]*?---/, ""))) process.exit(1);
+if (/<div\b/i.test(content.replace(/^---[\s\S]*?---/, ""))) fail("homepage content markdown still contains raw div markup");
 NODE
 
   node - "$subpath_output/index.html" <<'NODE'
