@@ -103,7 +103,7 @@ nav#R-topbar .topbar-button a{
 
 aside#R-sidebar{
   border-right: none !important;
-  overflow-y: auto !important;
+  overflow-y: hidden !important;
   overflow-x: hidden !important;
   overscroll-behavior: contain !important;
   scrollbar-width: none !important;
@@ -150,7 +150,7 @@ aside#R-sidebar {
   /* Add mask to fade out the right edge smoothly */
   -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
   mask-image: linear-gradient(to right, rgba(0,0,0,1) 92%, rgba(0,0,0,0) 100%);
-  /* Remove layout overrides so trackpad scroll works with perfect-scrollbar */
+  /* Keep the shell fixed; the inner content wrapper is the native scroll surface. */
   width: var(--INTERNAL-MENU-L-width) !important;
   max-width: var(--INTERNAL-MENU-L-width) !important;
   min-width: var(--INTERNAL-MENU-L-width) !important;
@@ -161,24 +161,90 @@ aside#R-sidebar::-webkit-scrollbar {
 }
 
 #R-sidebar #R-content-wrapper {
-  min-height: 100vh !important;
-  height: auto !important;
-  max-height: none !important;
-  overflow-y: visible !important;
+  min-height: 0 !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
   overflow-x: hidden !important;
-  overscroll-behavior: auto !important;
+  overscroll-behavior-y: contain !important;
   overscroll-behavior-x: none !important;
   scrollbar-width: none !important;
   touch-action: pan-y !important;
   scroll-behavior: auto !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 
 #R-sidebar #R-content-wrapper::-webkit-scrollbar {
   display: none !important;
 }
 
+html.x7-navigation-prime #R-sidebar.default-animation {
+  animation: x7-navigation-materialize .56s cubic-bezier(.16, 1, .3, 1) both !important;
+}
+
+html.x7-navigation-prime #R-sidebar #R-content-wrapper {
+  animation: x7-navigation-content-materialize .72s cubic-bezier(.16, 1, .3, 1) both !important;
+}
+
+html.x7-navigation-prime #R-sidebar::after {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(98, 185, 255, .18) 38%, rgba(255, 255, 255, .10) 50%, transparent 68%),
+    radial-gradient(circle at 12% 16%, rgba(98, 185, 255, .12), transparent 28%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translateX(-110%);
+  animation: x7-navigation-scan .82s cubic-bezier(.16, 1, .3, 1) .08s both !important;
+  content: "";
+}
+
+@keyframes x7-navigation-materialize {
+  from {
+    opacity: .18;
+    transform: translate3d(-10px, 0, 0);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: none;
+  }
+}
+
+@keyframes x7-navigation-content-materialize {
+  from {
+    opacity: 0;
+    transform: translate3d(-6px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes x7-navigation-scan {
+  0% {
+    opacity: 0;
+    transform: translateX(-110%);
+  }
+  28% {
+    opacity: .55;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(110%);
+  }
+}
+
 /* Keep sidebar scrolling reliable while locking horizontal drift.
-   Only aside#R-sidebar scrolls; wrappers, menus, and rows never become local scroll surfaces. */
+   Only #R-sidebar #R-content-wrapper scrolls; menus and rows never become local scroll surfaces. */
 .R-sidebarmenu {
   width: 100% !important;
   max-width: 100% !important;
@@ -309,12 +375,18 @@ aside#R-sidebar::-webkit-scrollbar {
   margin: 1px 8px !important;
   border-radius: 4px !important;
   display: flex !important; /* Change to flex to prevent wrapping */
-  align-items: center !important;
+  align-items: flex-start !important;
   flex: 1 1 auto !important;
+  min-height: 28px !important;
+  height: auto !important;
+  max-height: none !important;
   width: calc(100% - 16px) !important; /* Account for margins */
+  max-width: calc(100% - 16px) !important;
   /* Removed min-width: max-content to prevent horizontal dragging */
   white-space: normal !important; /* Allow text to wrap cleanly */
   word-break: break-word !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
   color: var(--x7-muted) !important;
   font-size: 0.9rem !important;
   line-height: 1.4 !important;

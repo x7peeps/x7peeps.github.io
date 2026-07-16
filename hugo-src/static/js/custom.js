@@ -49,7 +49,7 @@ window.addEventListener('DOMContentLoaded', function() {
     initX7SidebarTreeNavigation();
 
     // Restore sidebar tree scroll position.
-    const sidebarScrollSurface = document.querySelector('#R-sidebar');
+    const sidebarScrollSurface = document.querySelector('#R-sidebar #R-content-wrapper');
     if (sidebarScrollSurface) {
         const scrollPos = sessionStorage.getItem('sidebar_scroll_pos');
         if (scrollPos) {

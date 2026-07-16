@@ -3,3 +3,50 @@
 <link rel="stylesheet" href="{{ "css/x7-shell.css" | relURL }}">
 <link rel="stylesheet" href="{{ "css/x7-reading.css" | relURL }}">
 <link rel="stylesheet" href="{{ "css/x7-home.css" | relURL }}">
+<script>
+(() => {
+  const navigationPrimeKey = `${window.relearn?.absBaseUri || location.origin}/x7-navigation-prime`;
+  try {
+    const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReducedMotion && !sessionStorage.getItem(navigationPrimeKey)) {
+      document.documentElement.classList.add("x7-navigation-prime");
+      sessionStorage.setItem(navigationPrimeKey, "1");
+    }
+  } catch {
+    document.documentElement.classList.add("x7-navigation-prime");
+  }
+
+  let NativePerfectScrollbar;
+  const isSidebarScrollSurface = (target) => {
+    if (target === "#R-content-wrapper") return true;
+    if (typeof target !== "string") return target && target.id === "R-content-wrapper" && target.closest && target.closest("#R-sidebar");
+    return false;
+  };
+  const noopSidebarScrollbar = {
+    update() {},
+    destroy() {},
+    scrollbarY: { focus() {}, blur() {} },
+    scrollbarX: { focus() {}, blur() {} }
+  };
+  const wrapPerfectScrollbar = (PerfectScrollbar) => {
+    if (PerfectScrollbar && PerfectScrollbar.__x7SidebarNativeScrollWrapped) return PerfectScrollbar;
+    const X7PerfectScrollbar = function(target, options) {
+      if (isSidebarScrollSurface(target)) return noopSidebarScrollbar;
+      return new PerfectScrollbar(target, options);
+    };
+    X7PerfectScrollbar.prototype = PerfectScrollbar.prototype;
+    Object.setPrototypeOf(X7PerfectScrollbar, PerfectScrollbar);
+    Object.defineProperty(X7PerfectScrollbar, "__x7SidebarNativeScrollWrapped", { value: true });
+    return X7PerfectScrollbar;
+  };
+  Object.defineProperty(window, "PerfectScrollbar", {
+    configurable: true,
+    get() {
+      return NativePerfectScrollbar;
+    },
+    set(value) {
+      NativePerfectScrollbar = wrapPerfectScrollbar(value);
+    }
+  });
+})();
+</script>
