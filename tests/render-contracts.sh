@@ -30,6 +30,22 @@ grep -Fq "function markHomeEntryComplete" "$source_dir/static/js/x7/home.js"
 grep -Fq "x7-home-entry-prime" "$source_dir/static/js/x7/home.js"
 grep -Fq "x7-home-entry-complete" "$source_dir/static/js/x7/home.js"
 
+node - "$source_dir/static/css/x7-home.css" <<'NODE'
+const fs = require("node:fs");
+const css = fs.readFileSync(process.argv[2], "utf8");
+const sidebarPrimeRule = css.match(/html\.x7-home-entry-prime\s+#R-sidebar\s*\{([^}]*)\}/)?.[1];
+
+if (!sidebarPrimeRule) {
+  console.error("Homepage entry contract failed: missing prime sidebar rule");
+  process.exit(1);
+}
+
+if (/\bpointer-events\s*:\s*none\b/.test(sidebarPrimeRule)) {
+  console.error("Homepage entry contract failed: prime sidebar rule must remain interactive after CSS-only animation");
+  process.exit(1);
+}
+NODE
+
 node - "$homepage" <<'NODE'
 const fs = require("node:fs");
 const homepage = fs.readFileSync(process.argv[2], "utf8");

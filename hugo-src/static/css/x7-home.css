@@ -617,7 +617,6 @@ html.x7-home-entry-prime body {
 html.x7-home-entry-prime #R-sidebar {
   opacity: 0;
   transform: translate3d(-1.15rem, 0, 0);
-  pointer-events: none;
   animation: x7-home-entry-sidebar .72s cubic-bezier(.16, 1, .3, 1) 1.48s both !important;
 }
 
