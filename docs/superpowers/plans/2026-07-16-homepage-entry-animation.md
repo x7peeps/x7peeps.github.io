@@ -60,7 +60,6 @@ Add these checks near the existing custom-header checks in `tests/render-contrac
   grep -Fq "x7-home-entry-prime" "$source_dir/layouts/partials/custom-header.html"
   grep -Fq "x7-home-entry-complete" "$source_dir/layouts/partials/custom-header.html"
   grep -Fq "x7-home-entry-reduced" "$source_dir/layouts/partials/custom-header.html"
-  grep -Fq "x7-home-entry-complete" "$source_dir/static/js/x7/home.js"
 ```
 
 - [ ] **Step 2: Run the contract to verify it fails**
@@ -384,6 +383,7 @@ Add these checks to `tests/render-contracts.sh`:
 ```bash
   grep -Fq "function markHomeEntryComplete" "$source_dir/static/js/x7/home.js"
   grep -Fq "x7-home-entry-prime" "$source_dir/static/js/x7/home.js"
+  grep -Fq "x7-home-entry-complete" "$source_dir/static/js/x7/home.js"
 ```
 
 - [ ] **Step 2: Run targeted check to verify failure**
@@ -592,4 +592,3 @@ Type/name consistency:
 
 - `x7-home-entry-prime`, `x7-home-entry-complete`, and `x7-home-entry-reduced` are consistently used in the head script, CSS, JS, and contracts.
 - `markHomeEntryComplete()` is defined and called in `initHomeMotion()`.
-
