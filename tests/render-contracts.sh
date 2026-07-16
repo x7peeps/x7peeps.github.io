@@ -499,6 +499,8 @@ NODE
   grep -Fq "x7-home-entry-prime" "$source_dir/layouts/partials/custom-header.html"
   grep -Fq "x7-home-entry-complete" "$source_dir/layouts/partials/custom-header.html"
   grep -Fq "x7-home-entry-reduced" "$source_dir/layouts/partials/custom-header.html"
+  grep -Fq 'const isHomeEntryPath = relearnPath === "/index.html" || relearnPath === "/";' "$source_dir/layouts/partials/custom-header.html"
+  ! grep -Fq '/\/index\.html$/' "$source_dir/layouts/partials/custom-header.html"
   grep -Fq "x7-navigation-prime" "$source_dir/static/css/custom.css"
   grep -Fq "target === \"#R-content-wrapper\"" "$source_dir/layouts/partials/custom-header.html"
   ! grep -Fq "addEventListener('wheel'" "$source_dir/static/js/custom.js"

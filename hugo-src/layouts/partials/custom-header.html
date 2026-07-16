@@ -7,7 +7,7 @@
 (() => {
   const homeEntryKey = `${window.relearn?.absBaseUri || location.origin}/x7-home-entry-complete`;
   const relearnPath = window.relearn?.path || location.pathname;
-  const isHomeEntryPath = relearnPath === "/index.html" || relearnPath === "/" || /\/index\.html$/.test(relearnPath);
+  const isHomeEntryPath = relearnPath === "/index.html" || relearnPath === "/";
   const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (isHomeEntryPath) {
