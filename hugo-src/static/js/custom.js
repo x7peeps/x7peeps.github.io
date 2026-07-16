@@ -1,7 +1,5 @@
 // Override the theme's scrollToPositions function to prevent sidebar from jumping around on refresh
 window.addEventListener('DOMContentLoaded', function() {
-    initX7PageTransitions();
-
     // Make the logo scroll with the sidebar instead of staying fixed at the top
     const headerWrapper = document.getElementById('R-header-wrapper');
     const contentWrapper = document.getElementById('R-content-wrapper');
@@ -48,8 +46,10 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    initX7SidebarTreeNavigation();
+
     // Restore sidebar tree scroll position.
-    const sidebarScrollSurface = document.querySelector('.R-sidebarmenu.R-shortcutmenu-main') || document.querySelector('#R-sidebar #R-content-wrapper');
+    const sidebarScrollSurface = document.querySelector('#R-sidebar');
     if (sidebarScrollSurface) {
         const scrollPos = sessionStorage.getItem('sidebar_scroll_pos');
         if (scrollPos) {
@@ -64,11 +64,6 @@ window.addEventListener('DOMContentLoaded', function() {
             sessionStorage.setItem('sidebar_scroll_pos', sidebarScrollSurface.scrollTop);
         });
         
-        // Also listen to wheel events in case perfect-scrollbar is interfering
-        sidebarScrollSurface.addEventListener('wheel', function(e) {
-            // Let the native scroll handle it
-        }, { passive: true });
-
     }
 
     // Allow clicking empty space in the mobile sidebar to close it
@@ -104,45 +99,42 @@ window.addEventListener('DOMContentLoaded', function() {
 
 });
 
-function initX7PageTransitions() {
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion || !document.body) return;
+function initX7SidebarTreeNavigation() {
+    const sidebar = document.querySelector('#R-sidebar');
+    if (!sidebar) return;
 
-    document.body.classList.add('x7-page-enter');
-    window.setTimeout(() => {
-        document.body.classList.remove('x7-page-enter');
-    }, 700);
+    const normalizePath = (url) => {
+        const pathname = url.pathname.replace(/\/index\.html$/, '/');
+        return pathname.length > 1 ? pathname.replace(/\/$/, '') : pathname;
+    };
 
-    document.addEventListener('click', function(event) {
+    sidebar.addEventListener('click', function(event) {
         if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
         const link = event.target.closest && event.target.closest('a[href]');
-        if (!link) return;
-        if (link.target && link.target !== '_self') return;
-        if (link.hasAttribute('download')) return;
-
-        const href = link.getAttribute('href');
-        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+        if (!link || !sidebar.contains(link)) return;
 
         let url;
         try {
-            url = new URL(href, window.location.href);
+            url = new URL(link.getAttribute('href'), window.location.href);
         } catch {
             return;
         }
-
         if (url.origin !== window.location.origin) return;
-        if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return;
+
+        const currentUrl = new URL(window.location.href);
+        const isCurrentPage = normalizePath(url) === normalizePath(currentUrl) && url.search === currentUrl.search;
+        if (isCurrentPage) {
+            event.preventDefault();
+            return;
+        }
+
+        const item = link.closest('li');
+        const toggle = item?.querySelector(':scope > input[type="checkbox"]');
+        if (!toggle) return;
 
         event.preventDefault();
-        document.body.classList.remove('x7-page-enter');
-        document.body.classList.add('x7-page-exit');
-        window.setTimeout(() => {
-            window.location.href = url.href;
-        }, 260);
+        toggle.checked = !toggle.checked;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
     }, true);
-
-    window.addEventListener('pageshow', function() {
-        document.body.classList.remove('x7-page-exit');
-    });
 }

@@ -489,6 +489,23 @@ for (const file of files) {
 NODE
 
   ! grep -Eq 'x7-feed|__heatmapDays|x7-heatmap|x7-hero-(?:title|mission)' "$source_dir/static/js/custom.js"
+  grep -Fq "initX7SidebarTreeNavigation" "$source_dir/static/js/custom.js"
+  grep -Fq "sidebar.contains(link)" "$source_dir/static/js/custom.js"
+  grep -Fq "querySelector(':scope > input[type=\"checkbox\"]')" "$source_dir/static/js/custom.js"
+  grep -Fq "document.querySelector('#R-sidebar')" "$source_dir/static/js/custom.js"
+  ! grep -Fq "addEventListener('wheel'" "$source_dir/static/js/custom.js"
+  grep -Fq "#R-sidebar #R-content-wrapper" "$source_dir/static/css/custom.css"
+  grep -Fq "overflow-y: auto !important;" "$source_dir/static/css/custom.css"
+  grep -Fq "overflow-y: visible !important;" "$source_dir/static/css/custom.css"
+  grep -Fq "Only aside#R-sidebar scrolls" "$source_dir/static/css/custom.css"
+  ! grep -Fq "initX7PageTransitions" "$source_dir/static/js/custom.js"
+  ! grep -Fq "x7-page-enter" "$source_dir/static/js/custom.js"
+  ! grep -Fq "x7-page-exit" "$source_dir/static/js/custom.js"
+  ! grep -Fq "x7-page-enter" "$source_dir/static/css/custom.css"
+  ! grep -Fq "x7-page-exit" "$source_dir/static/css/custom.css"
+  ! grep -Fq "x7-sidebar-enter" "$source_dir/static/css/custom.css"
+  grep -Fq "#R-body.default-animation" "$source_dir/static/css/custom.css"
+  ! grep -Fq "body.x7-page-enter aside#R-sidebar" "$source_dir/static/css/custom.css"
   ! grep -Eq '\.x7-(?:home-container|home-hero|hero-content|hero-title|hero-subtitle|hero-mission|heatmap|feed)|sidebar-inline-toc' "$source_dir/static/css/custom.css"
 elif [[ "$contract_phase" != "baseline" ]]; then
   echo "Unknown X7_RENDER_CONTRACT_PHASE: $contract_phase" >&2
