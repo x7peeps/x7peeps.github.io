@@ -22,6 +22,10 @@ for asset in \
   grep -q "href=$asset" "$homepage"
 done
 grep -q 'type=module src=/js/x7/bootstrap.js' "$homepage"
+grep -Fq "x7-home-stage-blackout" "$source_dir/static/css/x7-home.css"
+grep -Fq "x7-home-logo-center" "$source_dir/static/css/x7-home.css"
+grep -Fq "x7-home-entry-sidebar" "$source_dir/static/css/x7-home.css"
+grep -Fq "prefers-reduced-motion: reduce" "$source_dir/static/css/x7-home.css"
 
 node - "$homepage" <<'NODE'
 const fs = require("node:fs");
