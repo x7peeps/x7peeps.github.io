@@ -19,6 +19,8 @@
   .x7-article__prose :is(pre, table, figure) { max-width: min(calc(100vw - var(--x7-rail-left) - 3rem), calc(var(--x7-prose) + 10rem)); }
   .x7-article__prose :is(pre, table) { overflow-x: auto; }
   .x7-article__prose :is(img, video, iframe) { max-width: 100%; }
+  .x7-article__prose a:not(.x7-theme-button):not(.btn) { color: var(--x7-ion) !important; }
+  .x7-article__prose a:not(.x7-theme-button):not(.btn):hover { color: var(--x7-paper) !important; }
   .x7-article__footer { max-width: var(--x7-prose); margin-inline: auto; }
 
   .x7-article-meta { display: flex; flex-wrap: wrap; gap: .65rem 1.25rem; margin: 1rem 0; color: var(--x7-muted); font-size: .82rem; }
