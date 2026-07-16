@@ -6,6 +6,20 @@ source_dir="hugo-src"
 output_dir="$source_dir/public-test"
 contract_phase="${X7_RENDER_CONTRACT_PHASE:-digital-nocturne}"
 
+node - "$source_dir/hugo.toml" <<'NODE'
+const fs = require("node:fs");
+const config = fs.readFileSync(process.argv[2], "utf8");
+const values = config.match(/^lastmod\s*=\s*\[([^\]]+)\]/m)?.[1]
+  .split(",")
+  .map(value => value.trim().replace(/^["']|["']$/g, ""));
+if (!values) process.exit(1);
+for (const required of ["lastmod", "date", ":git"]) {
+  if (!values.includes(required)) process.exit(1);
+}
+if (!(values.indexOf("lastmod") < values.indexOf("date") &&
+      values.indexOf("date") < values.indexOf(":git"))) process.exit(1);
+NODE
+
 rm -rf "$output_dir"
 render_output="$(hugo --source "$source_dir" --destination public-test --minify 2>&1)"
 printf '%s\n' "$render_output"
