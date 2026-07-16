@@ -40,8 +40,18 @@ if (!sidebarPrimeRule) {
   process.exit(1);
 }
 
-if (/\bpointer-events\s*:\s*none\b/.test(sidebarPrimeRule)) {
-  console.error("Homepage entry contract failed: prime sidebar rule must remain interactive after CSS-only animation");
+if (!/\bpointer-events\s*:\s*none\b/.test(sidebarPrimeRule) || !/\bvisibility\s*:\s*hidden\b/.test(sidebarPrimeRule)) {
+  console.error("Homepage entry contract failed: prime sidebar rule must suppress hidden sidebar interaction");
+  process.exit(1);
+}
+
+const sidebarKeyframes = css.match(/@keyframes\s+x7-home-entry-sidebar\s*\{([\s\S]*?)\n\}/)?.[1];
+if (
+  !sidebarKeyframes ||
+  !/\bvisibility\s*:\s*visible\b/.test(sidebarKeyframes) ||
+  !/\bpointer-events\s*:\s*auto\b/.test(sidebarKeyframes)
+) {
+  console.error("Homepage entry contract failed: sidebar keyframes must restore CSS-only interaction fallback");
   process.exit(1);
 }
 NODE

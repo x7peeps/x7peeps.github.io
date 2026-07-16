@@ -616,6 +616,8 @@ html.x7-home-entry-prime body {
 
 html.x7-home-entry-prime #R-sidebar {
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transform: translate3d(-1.15rem, 0, 0);
   animation: x7-home-entry-sidebar .72s cubic-bezier(.16, 1, .3, 1) 1.48s both !important;
 }
@@ -653,7 +655,9 @@ html.x7-home-entry-prime .x7-feed {
 html.x7-home-entry-complete #R-sidebar,
 html.x7-home-entry-reduced #R-sidebar {
   opacity: 1;
+  visibility: visible;
   transform: none;
+  filter: none;
   pointer-events: auto;
 }
 
@@ -738,13 +742,21 @@ html.x7-home-entry-reduced #R-sidebar {
 }
 
 @keyframes x7-home-entry-sidebar {
-  from {
+  0% {
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transform: translate3d(-1.15rem, 0, 0);
     filter: blur(7px);
   }
-  to {
+  99% {
+    visibility: hidden;
+    pointer-events: none;
+  }
+  100% {
     opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
     transform: translate3d(0, 0, 0);
     filter: none;
   }
@@ -789,5 +801,10 @@ html.x7-home-entry-reduced #R-sidebar {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
+  }
+
+  html.x7-home-entry-prime #R-sidebar {
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 }
