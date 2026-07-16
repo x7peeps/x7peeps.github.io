@@ -66,6 +66,7 @@ function initHomeMotion() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) {
     home.dataset.motion = "reduced";
+    markHomeEntryComplete();
     return;
   }
 
@@ -73,6 +74,28 @@ function initHomeMotion() {
   initParticleField(home);
   initScrollCinematography(home);
   initRevealSequence(home);
+  markHomeEntryComplete();
+}
+
+function markHomeEntryComplete() {
+  const root = document.documentElement;
+  if (!root.classList.contains("x7-home-entry-prime")) {
+    root.classList.add("x7-home-entry-complete");
+    return;
+  }
+
+  const key = `${window.relearn?.absBaseUri || location.origin}/x7-home-entry-complete`;
+  const finish = () => {
+    root.classList.remove("x7-home-entry-prime");
+    root.classList.add("x7-home-entry-complete");
+    try {
+      sessionStorage.setItem(key, "1");
+    } catch {
+      // If storage is unavailable, still leave the visual state complete.
+    }
+  };
+
+  window.setTimeout(finish, 2350);
 }
 
 function initParticleField(home) {

@@ -26,6 +26,9 @@ grep -Fq "x7-home-stage-blackout" "$source_dir/static/css/x7-home.css"
 grep -Fq "x7-home-logo-center" "$source_dir/static/css/x7-home.css"
 grep -Fq "x7-home-entry-sidebar" "$source_dir/static/css/x7-home.css"
 grep -Fq "prefers-reduced-motion: reduce" "$source_dir/static/css/x7-home.css"
+grep -Fq "function markHomeEntryComplete" "$source_dir/static/js/x7/home.js"
+grep -Fq "x7-home-entry-prime" "$source_dir/static/js/x7/home.js"
+grep -Fq "x7-home-entry-complete" "$source_dir/static/js/x7/home.js"
 
 node - "$homepage" <<'NODE'
 const fs = require("node:fs");
