@@ -43,6 +43,25 @@ grep -Fq "prefers-reduced-motion: reduce" "$source_dir/static/css/x7-home.css"
 grep -Fq "function markHomeEntryComplete" "$source_dir/static/js/x7/home.js"
 grep -Fq "x7-home-entry-prime" "$source_dir/static/js/x7/home.js"
 grep -Fq "x7-home-entry-complete" "$source_dir/static/js/x7/home.js"
+grep -Fq "const HOME_ENTRY_DESKTOP_DURATION = 2200;" "$source_dir/static/js/x7/home.js"
+grep -Fq "const HOME_ENTRY_MOBILE_DURATION = 1850;" "$source_dir/static/js/x7/home.js"
+grep -Fq "const PARTICLE_FOCUS_DESKTOP_DURATION = 1100;" "$source_dir/static/js/x7/home.js"
+grep -Fq 'canvas.dataset.entryPhase = entryActive ? "focus" : "ambient";' "$source_dir/static/js/x7/home.js"
+grep -Fq 'canvas.dataset.entryPhase = "ambient";' "$source_dir/static/js/x7/home.js"
+
+node - "$source_dir/static/js/x7/home.js" <<'NODE'
+const fs = require("node:fs");
+const js = fs.readFileSync(process.argv[2], "utf8");
+const canvasCreations = js.match(/document\.createElement\("canvas"\)/g) || [];
+if (canvasCreations.length !== 1) process.exit(1);
+for (const required of [
+  "function getHomeEntryDuration()",
+  "function getParticleFocusDuration()",
+  "const focusEnvelope = Math.sin(Math.PI * entryProgress);",
+]) {
+  if (!js.includes(required)) process.exit(1);
+}
+NODE
 
 node - "$source_dir/static/css/x7-home.css" <<'NODE'
 const fs = require("node:fs");

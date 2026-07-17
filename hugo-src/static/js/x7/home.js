@@ -1,3 +1,21 @@
+const HOME_ENTRY_DESKTOP_DURATION = 2200;
+const HOME_ENTRY_MOBILE_DURATION = 1850;
+const PARTICLE_FOCUS_DESKTOP_DURATION = 1100;
+const PARTICLE_FOCUS_MOBILE_DURATION = 820;
+const MOBILE_HOME_QUERY = "(max-width: 52rem)";
+
+function getHomeEntryDuration() {
+  return window.matchMedia(MOBILE_HOME_QUERY).matches
+    ? HOME_ENTRY_MOBILE_DURATION
+    : HOME_ENTRY_DESKTOP_DURATION;
+}
+
+function getParticleFocusDuration() {
+  return window.matchMedia(MOBILE_HOME_QUERY).matches
+    ? PARTICLE_FOCUS_MOBILE_DURATION
+    : PARTICLE_FOCUS_DESKTOP_DURATION;
+}
+
 export function initHome() {
   const heatmap = document.getElementById("x7-heatmap");
   if (!heatmap) return;
@@ -95,7 +113,7 @@ function markHomeEntryComplete() {
     }
   };
 
-  window.setTimeout(finish, 2350);
+  window.setTimeout(finish, getHomeEntryDuration() + 150);
 }
 
 function initParticleField(home) {
@@ -109,6 +127,11 @@ function initParticleField(home) {
 
   const ctx = canvas.getContext("2d", { alpha: true });
   if (!ctx) return;
+
+  const entryActive = document.documentElement.classList.contains("x7-home-entry-prime");
+  const entryStartedAt = performance.now();
+  const entryDuration = getParticleFocusDuration();
+  canvas.dataset.entryPhase = entryActive ? "focus" : "ambient";
 
   let width = 0;
   let height = 0;
@@ -136,7 +159,9 @@ function initParticleField(home) {
       z: Math.random() * 0.8 + 0.2,
       r: Math.random() * 1.15 + 0.35,
       drift: (Math.random() - 0.5) * 0.18,
-      phase: Math.random() * Math.PI * 2 + index
+      phase: Math.random() * Math.PI * 2 + index,
+      focusAngle: (index / targetCount) * Math.PI * 2 + Math.random() * 0.35,
+      focusRadius: 28 + Math.random() * Math.min(96, width * 0.09),
     }));
   };
 
@@ -148,6 +173,13 @@ function initParticleField(home) {
     const camera = 1 + progress * 0.42;
     const cx = width * 0.5 + pointerX * 12;
     const cy = height * 0.44 + pointerY * 8;
+    const entryProgress = entryActive
+      ? Math.min(1, Math.max(0, (time - entryStartedAt) / entryDuration))
+      : 1;
+    const focusEnvelope = Math.sin(Math.PI * entryProgress);
+    if (entryActive && entryProgress >= 1 && canvas.dataset.entryPhase !== "ambient") {
+      canvas.dataset.entryPhase = "ambient";
+    }
 
     ctx.globalCompositeOperation = "lighter";
     for (const p of particles) {
@@ -163,10 +195,16 @@ function initParticleField(home) {
       const dy = (p.y - cy) * progress * 0.05;
       const alpha = (0.03 + p.z * 0.075) * pulse * (1 - progress * 0.45);
       const radius = p.r * (1 + progress * 0.9);
+      const focusX = cx + Math.cos(p.focusAngle + time * 0.00018) * p.focusRadius;
+      const focusY = cy + Math.sin(p.focusAngle + time * 0.00014) * p.focusRadius * 0.55;
+      const focusStrength = focusEnvelope * (0.58 + p.z * 0.18);
+      const drawX = p.x + dx + (focusX - p.x) * focusStrength;
+      const drawY = p.y + dy + (focusY - p.y) * focusStrength;
+      const entryGlow = 1 + focusEnvelope * 0.5;
 
       ctx.beginPath();
-      ctx.fillStyle = `rgba(116, 235, 255, ${alpha})`;
-      ctx.arc(p.x + dx, p.y + dy, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(116, 235, 255, ${alpha * entryGlow})`;
+      ctx.arc(drawX, drawY, radius * entryGlow, 0, Math.PI * 2);
       ctx.fill();
     }
   };
