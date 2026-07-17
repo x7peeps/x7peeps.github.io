@@ -766,8 +766,12 @@ html.x7-home-entry-reduced #R-sidebar {
     transform: translate3d(-.72rem, 0, 0);
     filter: blur(4px);
   }
+  2% {
+    visibility: visible;
+    pointer-events: none;
+  }
   99% {
-    visibility: hidden;
+    visibility: visible;
     pointer-events: none;
   }
   100% {

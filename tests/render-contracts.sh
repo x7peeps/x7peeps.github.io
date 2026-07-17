@@ -56,15 +56,81 @@ if (canvasCreations.length !== 1) process.exit(1);
 for (const required of [
   "function getHomeEntryDuration()",
   "function getParticleFocusDuration()",
-  "const focusEnvelope = Math.sin(Math.PI * entryProgress);",
   "function markHomeEntryComplete(immediate = false)",
   "window.setTimeout(finish, getHomeEntryDuration());",
+  "let entryFocusOffsetX = 0;",
+  "entryFocusOffsetX = window.innerWidth / 2 - (rect.left + width / 2);",
+  "const isFocusing = entryActive && entryProgress < 1;",
+  "const focusEnvelope = isFocusing ? Math.sin(Math.PI * entryProgress) : 0;",
+  "window.addEventListener(\"pagehide\", stopParticleField);",
+  "window.addEventListener(\"pageshow\", (event) => {",
+  "if (event.persisted) startParticleField();",
 ]) {
-  if (!js.includes(required)) process.exit(1);
+  if (!js.includes(required)) {
+    console.error(`Homepage entry contract failed: missing ${required}`);
+    process.exit(1);
+  }
 }
 if (js.includes("getHomeEntryDuration() +")) process.exit(1);
 if (!/if \(reduceMotion\) \{[\s\S]*?markHomeEntryComplete\(true\);[\s\S]*?return;[\s\S]*?\}/.test(js)) process.exit(1);
 if (!/if \(immediate\) \{\s*finish\(\);\s*return;\s*\}/.test(js)) process.exit(1);
+
+const entryCompletion = js.match(/function markHomeEntryComplete\(immediate = false\) \{([\s\S]*?)\n\}\n\nfunction initParticleField/)?.[1] || "";
+const storageWrite = entryCompletion.indexOf('sessionStorage.setItem(key, "1");');
+const finishDeclaration = entryCompletion.indexOf("const finish = () => {");
+if (storageWrite === -1 || finishDeclaration === -1 || storageWrite > finishDeclaration) {
+  console.error("Homepage entry contract failed: prime eligibility must be stored before delayed finish");
+  process.exit(1);
+}
+if (!/try \{\s*sessionStorage\.setItem\(key, "1"\);\s*\} catch \{/.test(entryCompletion)) {
+  console.error("Homepage entry contract failed: immediate session write must remain storage-safe");
+  process.exit(1);
+}
+
+const resizeBody = js.match(/const resize = \(\) => \{([\s\S]*?)\n  \};/)?.[1] || "";
+const drawBody = js.match(/const draw = \(time\) => \{([\s\S]*?)\n  \};/)?.[1] || "";
+if (!resizeBody.includes("entryFocusOffsetX = window.innerWidth / 2 - (rect.left + width / 2);")) {
+  console.error("Homepage entry contract failed: resize must align particle focus with the viewport center");
+  process.exit(1);
+}
+if (drawBody.includes("getBoundingClientRect")) {
+  console.error("Homepage entry contract failed: draw loop must not read layout");
+  process.exit(1);
+}
+if (!/if \(isFocusing\) \{[\s\S]*?Math\.cos\([\s\S]*?Math\.sin\(/.test(drawBody)) {
+  console.error("Homepage entry contract failed: focus trigonometry must stay inside the focusing branch");
+  process.exit(1);
+}
+const focusingBranch = drawBody.indexOf("if (isFocusing) {");
+for (const focusCalculation of ["const focusX =", "const focusY ="]) {
+  const index = drawBody.indexOf(focusCalculation);
+  if (index === -1 || index < focusingBranch) {
+    console.error(`Homepage entry contract failed: ${focusCalculation} must be skipped in ambient mode`);
+    process.exit(1);
+  }
+}
+if (!drawBody.includes("const focusX = cx + entryFocusOffsetX +")) {
+  console.error("Homepage entry contract failed: focus target must consume entryFocusOffsetX");
+  process.exit(1);
+}
+if (/pagehide[\s\S]{0,160}once\s*:\s*true/.test(js)) {
+  console.error("Homepage entry contract failed: pagehide cleanup must survive repeated BFCache cycles");
+  process.exit(1);
+}
+const stopBody = js.match(/const stopParticleField = \(\) => \{([\s\S]*?)\n  \};/)?.[1] || "";
+const startBody = js.match(/const startParticleField = \(\) => \{([\s\S]*?)\n  \};/)?.[1] || "";
+for (const required of ["window.cancelAnimationFrame(frame);", "frame = 0;", "observer.disconnect();"]) {
+  if (!stopBody.includes(required)) {
+    console.error(`Homepage entry contract failed: pagehide stop is missing ${required}`);
+    process.exit(1);
+  }
+}
+for (const required of ["observer.observe(hero);", "resize();", "frame = window.requestAnimationFrame(draw);"]) {
+  if (!startBody.includes(required)) {
+    console.error(`Homepage entry contract failed: BFCache restore is missing ${required}`);
+    process.exit(1);
+  }
+}
 NODE
 
 node - "$source_dir/static/css/x7-home.css" <<'NODE'
@@ -73,6 +139,42 @@ const css = fs.readFileSync(process.argv[2], "utf8");
 const sidebarPrimeRule = css.match(/html\.x7-home-entry-prime\s+#R-sidebar\s*\{([^}]*)\}/)?.[1];
 const primeRootRule = css.match(/html\.x7-home-entry-prime\s*\{([^}]*)\}/)?.[1] || "";
 const entryCenterVariable = "--x7-home-entry-center-x";
+
+function findForbiddenFullscreenPrimeRules(source) {
+  const violations = [];
+  const rulePattern = /([^{}]+)\{([^{}]*)\}/g;
+  for (const match of source.matchAll(rulePattern)) {
+    const declarations = match[2];
+    if (!/\b(?:opacity|animation(?:-[\w-]+)?)\s*:/i.test(declarations)) continue;
+    for (const rawSelector of match[1].split(",")) {
+      const selector = rawSelector.trim();
+      const primeRoot = selector.match(/^html\.x7-home-entry-prime[^\s>+~]*/)?.[0] || "";
+      const remainder = selector.slice(primeRoot.length);
+      const targetsPrimeRoot = Boolean(primeRoot) && remainder === "";
+      const targetsFullscreenDescendant = Boolean(primeRoot) && /^(?:\s+|\s*>\s*)(?:body|#R-body|#R-body-inner)(?:[^\s>+~]*)$/.test(remainder);
+      if (targetsPrimeRoot || targetsFullscreenDescendant) violations.push(selector);
+    }
+  }
+  return violations;
+}
+
+const fullscreenViolations = findForbiddenFullscreenPrimeRules(css);
+if (fullscreenViolations.length) {
+  console.error(`Homepage entry contract failed: full-screen prime animation/opacity on ${fullscreenViolations.join(", ")}`);
+  process.exit(1);
+}
+for (const fixture of [
+  "html.x7-home-entry-prime { animation: arbitrary-name 1s both; }",
+  "html.x7-home-entry-prime body { animation-name: completely-unrelated; }",
+  "html.x7-home-entry-prime > body { animation-delay: 1ms; }",
+  "html.x7-home-entry-prime #R-body { opacity: .5; }",
+  "html.x7-home-entry-prime #R-body-inner { animation-duration: 1s; }",
+]) {
+  if (findForbiddenFullscreenPrimeRules(fixture).length !== 1) {
+    console.error("Homepage entry contract failed: full-screen rule audit does not cover every target/property");
+    process.exit(1);
+  }
+}
 
 for (const keyframe of [
   "x7-home-logo-breathe",
@@ -83,12 +185,6 @@ for (const keyframe of [
   "x7-home-entry-sidebar",
 ]) {
   if (!css.includes(`@keyframes ${keyframe}`)) process.exit(1);
-}
-
-for (const selector of ["body", "#R-body", "#R-body-inner"]) {
-  const escaped = selector.replace(/[.*+?^$\{\}()|[\]\\]/g, "\\$&");
-  const rule = css.match(new RegExp(`html\\.x7-home-entry-prime\\s+${escaped}\\s*\\{([^}]*)\\}`))?.[1] || "";
-  if (/\bopacity\s*:|\banimation\s*:[^;]*(?:flash|fade)/i.test(rule)) process.exit(1);
 }
 
 if (!primeRootRule.includes(`${entryCenterVariable}: calc(var(--INTERNAL-MENU-L-width) / -2);`)) {
@@ -125,13 +221,34 @@ if (!/\bpointer-events\s*:\s*none\b/.test(sidebarPrimeRule) || !/\bvisibility\s*
   process.exit(1);
 }
 
-const sidebarKeyframes = css.match(/@keyframes\s+x7-home-entry-sidebar\s*\{([\s\S]*?)\n\}/)?.[1];
-if (
-  !sidebarKeyframes ||
-  !/\bvisibility\s*:\s*visible\b/.test(sidebarKeyframes) ||
-  !/\bpointer-events\s*:\s*auto\b/.test(sidebarKeyframes)
-) {
-  console.error("Homepage entry contract failed: sidebar keyframes must restore CSS-only interaction fallback");
+const sidebarKeyframes = css.match(/@keyframes\s+x7-home-entry-sidebar\s*\{([\s\S]*?)\n\}/)?.[1] || "";
+const sidebarFrames = [...sidebarKeyframes.matchAll(/(?:^|\n)\s*([^{}]+)\{([^{}]*)\}/g)].map(([, selectors, declarations]) => ({
+  selectors: selectors.split(",").map(selector => selector.trim()),
+  declarations,
+}));
+const frameAt = percentage => sidebarFrames.find(frame => frame.selectors.includes(`${percentage}%`));
+const startFrame = frameAt(0);
+const interactionGuardFrame = frameAt(99);
+const finalFrame = frameAt(100);
+const earlyVisibleFrame = sidebarFrames.find(frame => frame.selectors.some(selector => {
+  const percentage = Number.parseFloat(selector);
+  return Number.isFinite(percentage) && percentage > 0 && percentage <= 20;
+}) && /\bvisibility\s*:\s*visible\b/.test(frame.declarations));
+
+if (!startFrame || !/\bopacity\s*:\s*0\b/.test(startFrame.declarations) || !/\bpointer-events\s*:\s*none\b/.test(startFrame.declarations)) {
+  console.error("Homepage entry contract failed: sidebar 0% frame must remain visually and interactively hidden");
+  process.exit(1);
+}
+if (!earlyVisibleFrame || !/\bpointer-events\s*:\s*none\b/.test(earlyVisibleFrame.declarations)) {
+  console.error("Homepage entry contract failed: sidebar must become visibility:visible near animation start while non-interactive");
+  process.exit(1);
+}
+if (!interactionGuardFrame || !/\bvisibility\s*:\s*visible\b/.test(interactionGuardFrame.declarations) || !/\bpointer-events\s*:\s*none\b/.test(interactionGuardFrame.declarations)) {
+  console.error("Homepage entry contract failed: sidebar must remain visible but non-interactive through the 99% frame");
+  process.exit(1);
+}
+if (!finalFrame || !/\bopacity\s*:\s*1\b/.test(finalFrame.declarations) || !/\bvisibility\s*:\s*visible\b/.test(finalFrame.declarations) || !/\bpointer-events\s*:\s*auto\b/.test(finalFrame.declarations)) {
+  console.error("Homepage entry contract failed: sidebar 100% frame must explicitly restore visibility and interaction");
   process.exit(1);
 }
 NODE

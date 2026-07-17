@@ -103,14 +103,15 @@ function markHomeEntryComplete(immediate = false) {
   }
 
   const key = `${window.relearn?.absBaseUri || location.origin}/x7-home-entry-complete`;
+  try {
+    sessionStorage.setItem(key, "1");
+  } catch {
+    // If storage is unavailable, still consume the visual state safely.
+  }
+
   const finish = () => {
     root.classList.remove("x7-home-entry-prime");
     root.classList.add("x7-home-entry-complete");
-    try {
-      sessionStorage.setItem(key, "1");
-    } catch {
-      // If storage is unavailable, still leave the visual state complete.
-    }
   };
 
   if (immediate) {
@@ -141,6 +142,7 @@ function initParticleField(home) {
   let width = 0;
   let height = 0;
   let dpr = 1;
+  let entryFocusOffsetX = 0;
   let pointerX = 0;
   let pointerY = 0;
   let frame = 0;
@@ -151,6 +153,7 @@ function initParticleField(home) {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     width = Math.max(1, Math.floor(rect.width));
     height = Math.max(1, Math.floor(rect.height));
+    entryFocusOffsetX = window.innerWidth / 2 - (rect.left + width / 2);
     canvas.width = Math.floor(width * dpr);
     canvas.height = Math.floor(height * dpr);
     canvas.style.width = `${width}px`;
@@ -181,8 +184,9 @@ function initParticleField(home) {
     const entryProgress = entryActive
       ? Math.min(1, Math.max(0, (time - entryStartedAt) / entryDuration))
       : 1;
-    const focusEnvelope = Math.sin(Math.PI * entryProgress);
-    if (entryActive && entryProgress >= 1 && canvas.dataset.entryPhase !== "ambient") {
+    const isFocusing = entryActive && entryProgress < 1;
+    const focusEnvelope = isFocusing ? Math.sin(Math.PI * entryProgress) : 0;
+    if (!isFocusing && entryActive && canvas.dataset.entryPhase !== "ambient") {
       canvas.dataset.entryPhase = "ambient";
     }
 
@@ -200,12 +204,18 @@ function initParticleField(home) {
       const dy = (p.y - cy) * progress * 0.05;
       const alpha = (0.03 + p.z * 0.075) * pulse * (1 - progress * 0.45);
       const radius = p.r * (1 + progress * 0.9);
-      const focusX = cx + Math.cos(p.focusAngle + time * 0.00018) * p.focusRadius;
-      const focusY = cy + Math.sin(p.focusAngle + time * 0.00014) * p.focusRadius * 0.55;
-      const focusStrength = focusEnvelope * (0.58 + p.z * 0.18);
-      const drawX = p.x + dx + (focusX - p.x) * focusStrength;
-      const drawY = p.y + dy + (focusY - p.y) * focusStrength;
-      const entryGlow = 1 + focusEnvelope * 0.5;
+      let drawX = p.x + dx;
+      let drawY = p.y + dy;
+      let entryGlow = 1;
+
+      if (isFocusing) {
+        const focusX = cx + entryFocusOffsetX + Math.cos(p.focusAngle + time * 0.00018) * p.focusRadius;
+        const focusY = cy + Math.sin(p.focusAngle + time * 0.00014) * p.focusRadius * 0.55;
+        const focusStrength = focusEnvelope * (0.58 + p.z * 0.18);
+        drawX += (focusX - p.x) * focusStrength;
+        drawY += (focusY - p.y) * focusStrength;
+        entryGlow += focusEnvelope * 0.5;
+      }
 
       ctx.beginPath();
       ctx.fillStyle = `rgba(116, 235, 255, ${alpha * entryGlow})`;
@@ -226,14 +236,23 @@ function initParticleField(home) {
   }, { passive: true });
 
   const observer = new ResizeObserver(resize);
-  observer.observe(hero);
-  resize();
-  frame = window.requestAnimationFrame(draw);
-
-  window.addEventListener("pagehide", () => {
+  const stopParticleField = () => {
     if (frame) window.cancelAnimationFrame(frame);
+    frame = 0;
     observer.disconnect();
-  }, { once: true });
+  };
+  const startParticleField = () => {
+    if (frame) return;
+    observer.observe(hero);
+    resize();
+    frame = window.requestAnimationFrame(draw);
+  };
+
+  startParticleField();
+  window.addEventListener("pagehide", stopParticleField);
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) startParticleField();
+  });
 }
 
 function initScrollCinematography(home) {
