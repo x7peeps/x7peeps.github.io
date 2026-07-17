@@ -37,7 +37,6 @@ for asset in \
 done
 grep -q 'type=module src=/js/x7/bootstrap.js' "$homepage"
 grep -Fq "x7-home-stage-blackout" "$source_dir/static/css/x7-home.css"
-grep -Fq "x7-home-logo-center" "$source_dir/static/css/x7-home.css"
 grep -Fq "x7-home-entry-sidebar" "$source_dir/static/css/x7-home.css"
 grep -Fq "prefers-reduced-motion: reduce" "$source_dir/static/css/x7-home.css"
 grep -Fq "function markHomeEntryComplete" "$source_dir/static/js/x7/home.js"
@@ -72,6 +71,23 @@ node - "$source_dir/static/css/x7-home.css" <<'NODE'
 const fs = require("node:fs");
 const css = fs.readFileSync(process.argv[2], "utf8");
 const sidebarPrimeRule = css.match(/html\.x7-home-entry-prime\s+#R-sidebar\s*\{([^}]*)\}/)?.[1];
+
+for (const keyframe of [
+  "x7-home-logo-breathe",
+  "x7-home-halo-bloom",
+  "x7-home-camera-settle",
+  "x7-home-heatmap-ignite",
+  "x7-home-feed-rise",
+  "x7-home-entry-sidebar",
+]) {
+  if (!css.includes(`@keyframes ${keyframe}`)) process.exit(1);
+}
+
+for (const selector of ["body", "#R-body", "#R-body-inner"]) {
+  const escaped = selector.replace(/[.*+?^$\{\}()|[\]\\]/g, "\\$&");
+  const rule = css.match(new RegExp(`html\\.x7-home-entry-prime\\s+${escaped}\\s*\\{([^}]*)\\}`))?.[1] || "";
+  if (/\bopacity\s*:|\banimation\s*:[^;]*(?:flash|fade)/i.test(rule)) process.exit(1);
+}
 
 if (!sidebarPrimeRule) {
   console.error("Homepage entry contract failed: missing prime sidebar rule");

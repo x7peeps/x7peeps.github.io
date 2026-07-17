@@ -618,38 +618,51 @@ html.x7-home-entry-prime #R-sidebar {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translate3d(-1.15rem, 0, 0);
-  animation: x7-home-entry-sidebar .72s cubic-bezier(.16, 1, .3, 1) 1.48s both !important;
+  transform: translate3d(-.72rem, 0, 0);
+  animation: x7-home-entry-sidebar .58s cubic-bezier(.16, 1, .3, 1) 1.62s both !important;
 }
 
 html.x7-home-entry-prime .x7-constellation-home::before {
-  animation: x7-home-camera-settle 2.15s cubic-bezier(.16, 1, .3, 1) both;
+  animation: x7-home-camera-settle 1.78s cubic-bezier(.16, 1, .3, 1) both;
 }
 
 html.x7-home-entry-prime .x7-home-hero::before {
-  opacity: .34;
-  animation: x7-home-stage-blackout 2.2s cubic-bezier(.16, 1, .3, 1) both;
+  opacity: .28;
+  animation: x7-home-stage-blackout 1.95s cubic-bezier(.16, 1, .3, 1) both;
 }
 
 html.x7-home-entry-prime .x7-home-avatar {
   position: relative;
   z-index: 6;
-  animation: x7-home-logo-center 1.85s cubic-bezier(.16, 1, .3, 1) both;
+  animation: x7-home-logo-breathe 1.45s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+html.x7-home-entry-prime .x7-home-identity::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: .7rem;
+  left: 50%;
+  width: clamp(4.8rem, 8vw, 7.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: x7-home-halo-bloom 1.12s cubic-bezier(.16, 1, .3, 1) .18s both;
 }
 
 html.x7-home-entry-prime .x7-home-kicker,
 html.x7-home-entry-prime .x7-hero-title,
 html.x7-home-entry-prime .x7-hero-subtitle,
 html.x7-home-entry-prime .x7-hero-mission {
-  animation: x7-home-copy-reveal .88s cubic-bezier(.16, 1, .3, 1) .82s both;
+  animation: x7-home-copy-reveal .72s cubic-bezier(.16, 1, .3, 1) .76s both;
 }
 
 html.x7-home-entry-prime .x7-heatmap-panel {
-  animation: x7-home-heatmap-ignite .94s cubic-bezier(.16, 1, .3, 1) 1.12s both;
+  animation: x7-home-heatmap-ignite .82s cubic-bezier(.16, 1, .3, 1) 1.08s both;
 }
 
 html.x7-home-entry-prime .x7-feed {
-  animation: x7-home-feed-rise .72s cubic-bezier(.16, 1, .3, 1) 1.42s both;
+  animation: x7-home-feed-rise .64s cubic-bezier(.16, 1, .3, 1) 1.42s both;
 }
 
 html.x7-home-entry-complete #R-sidebar,
@@ -673,26 +686,17 @@ html.x7-home-entry-reduced #R-sidebar {
   }
 }
 
-@keyframes x7-home-logo-center {
-  0% {
-    transform: translate3d(0, 18vh, 0) scale(1.18);
-    opacity: 0;
-    filter: blur(10px) saturate(.85);
-    box-shadow: 0 0 0 .9rem rgb(255 255 255 / 2%), 0 0 5rem rgb(98 232 255 / 0%);
-  }
-  24% {
-    opacity: 1;
-    filter: blur(0) saturate(1);
-  }
-  58% {
-    transform: translate3d(0, 18vh, 0) scale(1.18);
-    box-shadow: 0 0 0 .9rem rgb(255 255 255 / 3%), 0 0 5rem rgb(98 232 255 / 18%);
-  }
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 1;
-    filter: none;
-  }
+@keyframes x7-home-logo-breathe {
+  0% { transform: translate3d(0, 18vh, 0) scale(.94); opacity: 0; filter: blur(8px) saturate(.78); }
+  30% { transform: translate3d(0, 18vh, 0) scale(1.06); opacity: 1; filter: blur(0) saturate(1); }
+  62% { transform: translate3d(0, 18vh, 0) scale(1.025); opacity: 1; filter: none; }
+  100% { transform: translate3d(0, 0, 0) scale(1); opacity: 1; filter: none; }
+}
+
+@keyframes x7-home-halo-bloom {
+  0% { transform: translate3d(-50%, 18vh, 0) scale(.72); opacity: 0; box-shadow: 0 0 0 0 rgb(98 232 255 / 0%); }
+  46% { opacity: .7; box-shadow: 0 0 0 1.1rem rgb(255 255 255 / 2.5%), 0 0 4.8rem rgb(98 232 255 / 13%); }
+  100% { transform: translate3d(-50%, 0, 0) scale(1.34); opacity: 0; box-shadow: 0 0 0 1.8rem rgb(98 232 255 / 0%); }
 }
 
 @keyframes x7-home-camera-settle {
@@ -746,8 +750,8 @@ html.x7-home-entry-reduced #R-sidebar {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translate3d(-1.15rem, 0, 0);
-    filter: blur(7px);
+    transform: translate3d(-.72rem, 0, 0);
+    filter: blur(4px);
   }
   99% {
     visibility: hidden;
@@ -762,6 +766,14 @@ html.x7-home-entry-reduced #R-sidebar {
   }
 }
 
+@media (max-width: 52rem) {
+  html.x7-home-entry-prime .x7-home-particles { opacity: .56; }
+  html.x7-home-entry-prime .x7-home-avatar { animation-duration: 1.18s; }
+  html.x7-home-entry-prime .x7-home-identity::before { animation-duration: .9s; }
+  html.x7-home-entry-prime .x7-home-feed { animation-delay: 1.16s; }
+  html.x7-home-entry-prime #R-sidebar { animation-delay: 1.28s !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .x7-constellation-home *,
   .x7-constellation-home *::before,
@@ -772,6 +784,10 @@ html.x7-home-entry-reduced #R-sidebar {
   }
 
   .x7-home-particles {
+    display: none !important;
+  }
+
+  html.x7-home-entry-prime .x7-home-identity::before {
     display: none !important;
   }
 
