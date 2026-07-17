@@ -58,9 +58,14 @@ for (const required of [
   "function getHomeEntryDuration()",
   "function getParticleFocusDuration()",
   "const focusEnvelope = Math.sin(Math.PI * entryProgress);",
+  "function markHomeEntryComplete(immediate = false)",
+  "window.setTimeout(finish, getHomeEntryDuration());",
 ]) {
   if (!js.includes(required)) process.exit(1);
 }
+if (js.includes("getHomeEntryDuration() +")) process.exit(1);
+if (!/if \(reduceMotion\) \{[\s\S]*?markHomeEntryComplete\(true\);[\s\S]*?return;[\s\S]*?\}/.test(js)) process.exit(1);
+if (!/if \(immediate\) \{\s*finish\(\);\s*return;\s*\}/.test(js)) process.exit(1);
 NODE
 
 node - "$source_dir/static/css/x7-home.css" <<'NODE'

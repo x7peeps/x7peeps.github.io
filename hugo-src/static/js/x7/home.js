@@ -84,7 +84,7 @@ function initHomeMotion() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) {
     home.dataset.motion = "reduced";
-    markHomeEntryComplete();
+    markHomeEntryComplete(true);
     return;
   }
 
@@ -95,7 +95,7 @@ function initHomeMotion() {
   markHomeEntryComplete();
 }
 
-function markHomeEntryComplete() {
+function markHomeEntryComplete(immediate = false) {
   const root = document.documentElement;
   if (!root.classList.contains("x7-home-entry-prime")) {
     root.classList.add("x7-home-entry-complete");
@@ -113,7 +113,12 @@ function markHomeEntryComplete() {
     }
   };
 
-  window.setTimeout(finish, getHomeEntryDuration() + 150);
+  if (immediate) {
+    finish();
+    return;
+  }
+
+  window.setTimeout(finish, getHomeEntryDuration());
 }
 
 function initParticleField(home) {
