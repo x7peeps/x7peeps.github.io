@@ -5,15 +5,33 @@
 <link rel="stylesheet" href="{{ "css/x7-home.css" | relURL }}">
 <script>
 (() => {
+  const homeEntryKey = `${window.relearn?.absBaseUri || location.origin}/x7-home-entry-complete`;
+  const relearnPath = window.relearn?.path || location.pathname;
+  const isHomeEntryPath = relearnPath === "/index.html" || relearnPath === "/";
+  const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (isHomeEntryPath) {
+    try {
+      if (prefersReducedMotion) {
+        document.documentElement.classList.add("x7-home-entry-reduced", "x7-home-entry-complete");
+      } else if (sessionStorage.getItem(homeEntryKey)) {
+        document.documentElement.classList.add("x7-home-entry-complete");
+      } else {
+        document.documentElement.classList.add("x7-home-entry-prime");
+      }
+    } catch {
+      document.documentElement.classList.add("x7-home-entry-prime");
+    }
+  }
+
   const navigationPrimeKey = `${window.relearn?.absBaseUri || location.origin}/x7-navigation-prime`;
   try {
-    const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!prefersReducedMotion && !sessionStorage.getItem(navigationPrimeKey)) {
+    if (!isHomeEntryPath && !prefersReducedMotion && !sessionStorage.getItem(navigationPrimeKey)) {
       document.documentElement.classList.add("x7-navigation-prime");
       sessionStorage.setItem(navigationPrimeKey, "1");
     }
   } catch {
-    document.documentElement.classList.add("x7-navigation-prime");
+    if (!isHomeEntryPath) document.documentElement.classList.add("x7-navigation-prime");
   }
 
   let NativePerfectScrollbar;

@@ -36,6 +36,39 @@ for asset in \
   grep -q "href=$asset" "$homepage"
 done
 grep -q 'type=module src=/js/x7/bootstrap.js' "$homepage"
+grep -Fq "x7-home-stage-blackout" "$source_dir/static/css/x7-home.css"
+grep -Fq "x7-home-logo-center" "$source_dir/static/css/x7-home.css"
+grep -Fq "x7-home-entry-sidebar" "$source_dir/static/css/x7-home.css"
+grep -Fq "prefers-reduced-motion: reduce" "$source_dir/static/css/x7-home.css"
+grep -Fq "function markHomeEntryComplete" "$source_dir/static/js/x7/home.js"
+grep -Fq "x7-home-entry-prime" "$source_dir/static/js/x7/home.js"
+grep -Fq "x7-home-entry-complete" "$source_dir/static/js/x7/home.js"
+
+node - "$source_dir/static/css/x7-home.css" <<'NODE'
+const fs = require("node:fs");
+const css = fs.readFileSync(process.argv[2], "utf8");
+const sidebarPrimeRule = css.match(/html\.x7-home-entry-prime\s+#R-sidebar\s*\{([^}]*)\}/)?.[1];
+
+if (!sidebarPrimeRule) {
+  console.error("Homepage entry contract failed: missing prime sidebar rule");
+  process.exit(1);
+}
+
+if (!/\bpointer-events\s*:\s*none\b/.test(sidebarPrimeRule) || !/\bvisibility\s*:\s*hidden\b/.test(sidebarPrimeRule)) {
+  console.error("Homepage entry contract failed: prime sidebar rule must suppress hidden sidebar interaction");
+  process.exit(1);
+}
+
+const sidebarKeyframes = css.match(/@keyframes\s+x7-home-entry-sidebar\s*\{([\s\S]*?)\n\}/)?.[1];
+if (
+  !sidebarKeyframes ||
+  !/\bvisibility\s*:\s*visible\b/.test(sidebarKeyframes) ||
+  !/\bpointer-events\s*:\s*auto\b/.test(sidebarKeyframes)
+) {
+  console.error("Homepage entry contract failed: sidebar keyframes must restore CSS-only interaction fallback");
+  process.exit(1);
+}
+NODE
 
 node - "$homepage" <<'NODE'
 const fs = require("node:fs");
@@ -510,6 +543,11 @@ NODE
   grep -Fq "document.querySelector('#R-sidebar #R-content-wrapper')" "$source_dir/static/js/custom.js"
   grep -Fq "__x7SidebarNativeScrollWrapped" "$source_dir/layouts/partials/custom-header.html"
   grep -Fq "x7-navigation-prime" "$source_dir/layouts/partials/custom-header.html"
+  grep -Fq "x7-home-entry-prime" "$source_dir/layouts/partials/custom-header.html"
+  grep -Fq "x7-home-entry-complete" "$source_dir/layouts/partials/custom-header.html"
+  grep -Fq "x7-home-entry-reduced" "$source_dir/layouts/partials/custom-header.html"
+  grep -Fq 'const isHomeEntryPath = relearnPath === "/index.html" || relearnPath === "/";' "$source_dir/layouts/partials/custom-header.html"
+  ! grep -Fq '/\/index\.html$/' "$source_dir/layouts/partials/custom-header.html"
   grep -Fq "x7-navigation-prime" "$source_dir/static/css/custom.css"
   grep -Fq "target === \"#R-content-wrapper\"" "$source_dir/layouts/partials/custom-header.html"
   ! grep -Fq "addEventListener('wheel'" "$source_dir/static/js/custom.js"
