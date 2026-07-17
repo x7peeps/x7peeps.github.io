@@ -607,7 +607,20 @@ main#R-body-inner article.x7-constellation-home .x7-hero-title {
 }
 
 html.x7-home-entry-prime {
+  --x7-home-entry-center-x: calc(var(--INTERNAL-MENU-L-width) / -2);
   background: #000;
+}
+
+@media (max-width: 59.999rem) {
+  html.x7-home-entry-prime {
+    --x7-home-entry-center-x: calc(var(--INTERNAL-MENU-M-width) / -2);
+  }
+}
+
+@media (max-width: 47.999rem) {
+  html.x7-home-entry-prime {
+    --x7-home-entry-center-x: 0;
+  }
 }
 
 html.x7-home-entry-prime body {
@@ -687,15 +700,15 @@ html.x7-home-entry-reduced #R-sidebar {
 }
 
 @keyframes x7-home-logo-breathe {
-  0% { transform: translate3d(0, 18vh, 0) scale(.94); opacity: 0; filter: blur(8px) saturate(.78); }
-  30% { transform: translate3d(0, 18vh, 0) scale(1.06); opacity: 1; filter: blur(0) saturate(1); }
-  62% { transform: translate3d(0, 18vh, 0) scale(1.025); opacity: 1; filter: none; }
+  0% { transform: translate3d(var(--x7-home-entry-center-x), 18vh, 0) scale(.94); opacity: 0; filter: blur(8px) saturate(.78); }
+  30% { transform: translate3d(var(--x7-home-entry-center-x), 18vh, 0) scale(1.06); opacity: 1; filter: blur(0) saturate(1); }
+  62% { transform: translate3d(var(--x7-home-entry-center-x), 18vh, 0) scale(1.025); opacity: 1; filter: none; }
   100% { transform: translate3d(0, 0, 0) scale(1); opacity: 1; filter: none; }
 }
 
 @keyframes x7-home-halo-bloom {
-  0% { transform: translate3d(-50%, 18vh, 0) scale(.72); opacity: 0; box-shadow: 0 0 0 0 rgb(98 232 255 / 0%); }
-  46% { opacity: .7; box-shadow: 0 0 0 1.1rem rgb(255 255 255 / 2.5%), 0 0 4.8rem rgb(98 232 255 / 13%); }
+  0% { transform: translate3d(calc(-50% + var(--x7-home-entry-center-x)), 18vh, 0) scale(.72); opacity: 0; box-shadow: 0 0 0 0 rgb(98 232 255 / 0%); }
+  46% { transform: translate3d(calc(-50% + var(--x7-home-entry-center-x)), 18vh, 0) scale(1); opacity: .7; box-shadow: 0 0 0 1.1rem rgb(255 255 255 / 2.5%), 0 0 4.8rem rgb(98 232 255 / 13%); }
   100% { transform: translate3d(-50%, 0, 0) scale(1.34); opacity: 0; box-shadow: 0 0 0 1.8rem rgb(98 232 255 / 0%); }
 }
 

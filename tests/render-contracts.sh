@@ -71,6 +71,8 @@ node - "$source_dir/static/css/x7-home.css" <<'NODE'
 const fs = require("node:fs");
 const css = fs.readFileSync(process.argv[2], "utf8");
 const sidebarPrimeRule = css.match(/html\.x7-home-entry-prime\s+#R-sidebar\s*\{([^}]*)\}/)?.[1];
+const primeRootRule = css.match(/html\.x7-home-entry-prime\s*\{([^}]*)\}/)?.[1] || "";
+const entryCenterVariable = "--x7-home-entry-center-x";
 
 for (const keyframe of [
   "x7-home-logo-breathe",
@@ -87,6 +89,30 @@ for (const selector of ["body", "#R-body", "#R-body-inner"]) {
   const escaped = selector.replace(/[.*+?^$\{\}()|[\]\\]/g, "\\$&");
   const rule = css.match(new RegExp(`html\\.x7-home-entry-prime\\s+${escaped}\\s*\\{([^}]*)\\}`))?.[1] || "";
   if (/\bopacity\s*:|\banimation\s*:[^;]*(?:flash|fade)/i.test(rule)) process.exit(1);
+}
+
+if (!primeRootRule.includes(`${entryCenterVariable}: calc(var(--INTERNAL-MENU-L-width) / -2);`)) {
+  console.error("Homepage entry contract failed: desktop prime state must compensate for the large sidebar width");
+  process.exit(1);
+}
+
+for (const [breakpoint, value] of [
+  ["59\\.999rem", "calc\\(var\\(--INTERNAL-MENU-M-width\\) / -2\\)"],
+  ["47\\.999rem", "0"],
+]) {
+  const override = new RegExp(`@media \\(max-width: ${breakpoint}\\) \\{\\s*html\\.x7-home-entry-prime \\{[^}]*${entryCenterVariable}: ${value};`);
+  if (!override.test(css)) {
+    console.error(`Homepage entry contract failed: missing ${breakpoint.replace("\\", "")} center offset override`);
+    process.exit(1);
+  }
+}
+
+for (const keyframe of ["x7-home-logo-breathe", "x7-home-halo-bloom"]) {
+  const body = css.match(new RegExp(`@keyframes\\s+${keyframe}\\s*\\{([\\s\\S]*?)\\n\\}`))?.[1] || "";
+  if (!body.includes(`var(${entryCenterVariable})`)) {
+    console.error(`Homepage entry contract failed: ${keyframe} must consume ${entryCenterVariable}`);
+    process.exit(1);
+  }
 }
 
 if (!sidebarPrimeRule) {
