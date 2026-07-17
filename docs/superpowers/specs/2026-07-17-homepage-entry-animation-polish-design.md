@@ -1,104 +1,104 @@
-# X7PEEPS Homepage Entry Animation Polish Design
+# X7PEEPS 首页入场动画优化设计
 
-Date: 2026-07-17
+日期：2026-07-17
 
-## Status
+## 状态
 
-Approved direction: **B — camera breathing with particle focus**.
+已选择方向：**B — 镜头呼吸 + 粒子聚焦**。
 
-This specification refines the existing homepage entry animation. It does not replace the homepage layout or the knowledge-navigation model defined in the 2026-07-16 entry-animation design.
+本规格用于优化现有的首页入场动画，不替换当前首页布局，也不改变 2026-07-16 入场动画设计中确定的知识导航模式。
 
-## Goal
+## 目标
 
-Make the homepage opening feel more cinematic, spatial, and premium while remaining quiet enough for a dense knowledge site. The animation should establish the panda logo as the visual anchor, then reveal the existing homepage and knowledge tree without producing a full-screen flash or delaying reading.
+让首页开场更具电影感、空间感和高级感，同时保持知识型网站应有的克制。动画先建立熊猫 Logo 的视觉焦点，再自然显现现有首页与知识树；不得产生整屏闪烁，也不能延迟用户阅读。
 
-## Experience Sequence
+## 动画时间轴
 
-1. **Dark stillness — 0–180ms**
-   - The homepage begins on a stable near-black stage.
-   - The sidebar is visually hidden but the document structure is already present.
-   - No full-page opacity animation is applied to the body or root layout.
+1. **黑场静息 — 0–180ms**
+   - 首页从稳定的近黑色场景开始。
+   - 左侧栏暂时不可见，但页面结构已经存在于文档中。
+   - 不对 `body` 或根布局应用整页透明度动画。
 
-2. **Logo breath — 180–760ms**
-   - The centered panda logo resolves from soft focus to sharp focus.
-   - Scale changes remain small and use a slow deceleration curve.
-   - A restrained halo expands once and fades; it must not pulse repeatedly.
+2. **Logo 呼吸 — 180–760ms**
+   - 居中的熊猫 Logo 从轻微虚化逐渐变得清晰。
+   - 缩放幅度保持克制，使用柔和减速曲线。
+   - Logo 周围只扩散一次低亮度光环，不能持续脉冲。
 
-3. **Particle focus — 360–1100ms**
-   - A limited set of existing canvas particles drifts toward the logo's focal area.
-   - Particles decelerate before reaching the center and never form an explosion.
-   - The effect communicates depth and camera focus rather than a loading state.
+3. **粒子聚焦 — 360–1100ms**
+   - 少量现有 Canvas 粒子向 Logo 周围的焦点区域缓慢汇聚。
+   - 粒子抵达中心前逐渐减速，不形成爆炸效果。
+   - 粒子用于表达空间深度和镜头聚焦，不能让人误认为页面正在加载。
 
-4. **Camera reconstruction — 720–1450ms**
-   - The virtual camera lightly pushes forward while the logo settles into the existing hero composition.
-   - Background grid and ambient light move at lower amplitude than the logo, creating subtle parallax.
-   - Title, subtitle, and mission copy appear in hierarchy without changing their final positions.
+4. **镜头重构 — 720–1450ms**
+   - 虚拟镜头轻微推进，同时 Logo 回到现有首页首屏构图中的位置。
+   - 背景网格和环境光以更小幅度移动，形成细微视差。
+   - 标题、副标题和介绍文案按信息层级出现，但最终位置不发生改变。
 
-5. **Knowledge system online — 1180–1880ms**
-   - The heatmap illuminates from its center with low-contrast cyan and amber accents.
-   - Recent updates rise into view with a short opacity/translate transition.
-   - The left sidebar appears last through a quiet fade and slight horizontal settle, not a drawer slide.
+5. **知识系统上线 — 1180–1880ms**
+   - 热力图从中心开始低调点亮，使用低对比度青色与少量琥珀色。
+   - “最近更新”区域通过短距离上移和透明度变化进入画面。
+   - 左侧栏最后出现，只使用轻微淡入与水平归位，不表现成抽屉滑出。
 
-6. **Stable reading state — by 2200ms**
-   - All temporary entry-state classes are removed.
-   - Scrolling, search, sidebar tree interaction, and links are fully available.
-   - No animation continues that competes with reading.
+6. **稳定阅读状态 — 2200ms 内**
+   - 所有临时入场状态类都被移除。
+   - 页面滚动、搜索、知识树交互和链接全部恢复可用。
+   - 不保留会持续干扰阅读的动画。
 
-## Visual Rules
+## 视觉规则
 
-- Preserve the current black background and hidden component boundaries.
-- Use cyan only for focus and depth; retain amber as a sparse heatmap/brand accent.
-- Keep particle count low and particle brightness below the logo and title hierarchy.
-- Avoid white flashes, neon floods, scan-line wipes, large blur fields, and rapid scale changes.
-- Do not animate the whole page opacity, sidebar rows, or article content shell.
+- 保持当前黑色背景，让组件边界继续融入暗色环境。
+- 青色只用于表达焦点和空间深度；琥珀色仅作为少量热力图或品牌强调色。
+- 粒子数量与亮度都必须低于 Logo 和标题的视觉层级。
+- 禁止白色闪屏、霓虹铺满、扫描线扫屏、大面积模糊和快速缩放。
+- 不对整页、侧栏条目或文章正文容器应用统一透明度动画。
 
-## Architecture
+## 技术结构
 
-### Entry state controller
+### 入场状态控制器
 
-The existing homepage motion controller remains the single owner of entry state. It exposes three visual states through root classes: primed, complete, and reduced-motion. A timeout remains as a fail-safe so the sidebar and homepage cannot stay hidden if an animation event is missed.
+继续由现有首页动画控制器统一管理状态。根节点保留“准备入场”“动画完成”和“减少动态效果”三个视觉状态。超时机制作为兜底，确保即使动画事件丢失，首页和左侧栏也不会一直隐藏。
 
-### Particle choreography
+### 粒子编排
 
-The existing canvas particle field gains a short entry phase driven by elapsed time. During that phase, particles interpolate toward a soft focal region around the logo. After the phase ends, the same particles transition into the existing ambient drift. No second canvas, WebGL dependency, or additional animation library is introduced.
+现有 Canvas 粒子场增加一个由经过时间驱动的短暂入场阶段。该阶段中，粒子向 Logo 周围的柔性焦点区域插值移动；阶段结束后，同一批粒子平滑切换为现有的环境漂浮状态。不增加第二个 Canvas，不引入 WebGL 或新的动画依赖。
 
-### CSS composition
+### CSS 动画组合
 
-CSS keyframes control logo breath, halo, hero reconstruction, heatmap illumination, feed reveal, and sidebar reveal. Only `transform`, `opacity`, and low-cost filter changes are used. Final layout dimensions remain unchanged throughout the sequence.
+CSS 关键帧分别控制 Logo 呼吸、光环、首屏重构、热力图点亮、最近更新显现和侧栏出现。优先使用 `transform`、`opacity` 以及低成本的滤镜变化。整个过程中不改变最终布局尺寸。
 
-## Data and State Flow
+## 状态流转
 
-1. The early header script detects the homepage before first paint and adds the primed class.
-2. The homepage module reads the entry state and reduced-motion preference.
-3. CSS begins the deterministic visual timeline; canvas receives the same start timestamp for particle choreography.
-4. Completion removes the primed state and restores all interactions.
-5. Session state prevents the full sequence from replaying during article navigation or a return to the homepage in the same tab.
+1. 头部早期脚本在首次绘制前识别首页，并加入“准备入场”状态。
+2. 首页模块读取当前入场状态与系统的减少动态效果设置。
+3. CSS 启动确定性的视觉时间轴；Canvas 使用相同的开始时间编排粒子。
+4. 动画结束后移除准备状态，恢复全部交互。
+5. 会话状态阻止完整开场在文章切换或同一标签页返回首页时重复播放。
 
-## Failure and Fallback Behavior
+## 失败与降级处理
 
-- If JavaScript fails, CSS fallback timing restores the sidebar and normal homepage state.
-- If canvas is unavailable, the CSS-only logo and camera sequence still completes.
-- If the tab is backgrounded during entry, completion state wins immediately when the timeout fires; the animation does not restart.
-- With `prefers-reduced-motion: reduce`, the final homepage appears immediately with particles static or disabled.
-- On mobile or constrained viewports, particle convergence and parallax amplitude are reduced, and total duration is shortened.
+- JavaScript 失效时，由 CSS 兜底时间轴恢复左侧栏和正常首页状态。
+- Canvas 不可用时，纯 CSS 的 Logo 与镜头动画仍可完整结束。
+- 入场期间标签页进入后台时，超时完成状态拥有最高优先级，页面恢复后不重新播放。
+- 系统启用 `prefers-reduced-motion: reduce` 时，直接展示最终首页，粒子保持静止或关闭。
+- 手机或受限视口中降低粒子汇聚与视差幅度，并缩短总时长。
 
-## Scope Boundaries
+## 范围边界
 
-- No changes to homepage information architecture, copy, heatmap data, or recent-update ordering.
-- No changes to article-page transitions.
-- No animation replay when selecting a knowledge-tree article.
-- No changes to sidebar scrolling mechanics, row sizing, or tree expansion behavior.
-- No new visual dependency or heavy rendering engine.
+- 不改变首页信息结构、文案、热力图数据或最近更新顺序。
+- 不改变文章页面的切换方式。
+- 用户在知识树中选择文章时，不重播首页入场动画。
+- 不改变侧栏滚动机制、条目高度或知识树展开行为。
+- 不增加新的视觉依赖或重型渲染引擎。
 
-## Verification
+## 验证标准
 
-Automated contracts should verify:
+自动化检查需要确认：
 
-- the entry applies only to the homepage;
-- reduced-motion restores the stable state immediately;
-- the sidebar regains visibility and pointer interaction in both normal and fallback completion paths;
-- no body/root full-screen opacity transition is introduced;
-- particle entry mode hands off to ambient mode;
-- article navigation does not activate homepage entry classes.
+- 入场动画只作用于首页；
+- 减少动态效果模式会立即恢复稳定状态；
+- 正常完成和兜底完成后，侧栏都能恢复可见并接受交互；
+- 没有引入 `body` 或根布局的整屏透明度过渡；
+- 粒子入场阶段能够正常切换到环境漂浮阶段；
+- 文章导航不会激活首页入场状态。
 
-Manual QA should cover desktop and mobile first load, hard refresh, return from an article, background-tab recovery, trackpad sidebar scrolling, keyboard access, and reduced-motion mode. The final composition must match the current homepage after the animation completes.
+人工验收需要覆盖：桌面端和移动端首次进入、强制刷新、从文章返回首页、后台标签页恢复、触摸板滚动侧栏、键盘访问以及减少动态效果模式。动画结束后的最终构图必须与当前首页保持一致。
