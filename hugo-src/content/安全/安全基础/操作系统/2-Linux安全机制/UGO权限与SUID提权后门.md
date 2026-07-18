@@ -1,4 +1,5 @@
 ---
+date: 2024-02-12T05:58:23+08:00
 title: "Linux权限体系：UGO模型、特殊权限(SUID/SGID)与提权后门"
 weight: 10
 ---

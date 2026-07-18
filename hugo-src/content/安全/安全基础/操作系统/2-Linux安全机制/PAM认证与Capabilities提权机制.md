@@ -1,4 +1,5 @@
 ---
+date: 2025-05-18T06:30:37+08:00
 title: "Linux进阶权限：PAM认证框架与Capabilities提权机制"
 weight: 20
 ---

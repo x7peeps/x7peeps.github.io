@@ -1,4 +1,5 @@
 ---
+date: 2026-05-04T07:10:39+08:00
 title: "Windows UAC机制原理与Bypass提权基础"
 weight: 30
 ---

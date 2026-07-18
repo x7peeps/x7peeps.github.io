@@ -1,4 +1,5 @@
 ---
+date: 2025-02-10T05:00:15+08:00
 title: "Shadow Credentials(msDS-KeyCredentialLink)攻击与检测分析"
 weight: 20
 ---

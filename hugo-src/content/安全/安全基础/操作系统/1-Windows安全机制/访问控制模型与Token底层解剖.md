@@ -1,4 +1,5 @@
 ---
+date: 2024-07-06T19:55:22+08:00
 title: "Windows 访问控制模型：SID、Token 与 DACL/SACL 深度解剖"
 weight: 10
 ---
