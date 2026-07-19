@@ -5,7 +5,7 @@ description: "x7peeps.com 安全漏洞分析专题文章全流程写作（选题
 
 # 个人主页 - 漏洞分析专题文章全流程写作
 
-为 x7peeps.com 安全知识库提供从选题规划、漏洞调研、文章撰写到 Hugo 构建验证的完整漏洞分析专题文章生产流水线。已积累 9 批次、38 个产品线、260+ CVE 的实战经验。
+为 x7peeps.com 安全知识库提供从选题规划、漏洞调研、文章撰写到 Hugo 构建验证的完整漏洞分析专题文章生产流水线。已积累 10 批次、59 个产品线、300+ CVE 的实战经验。
 
 ## 站点基本信息
 
@@ -83,6 +83,35 @@ description: "x7peeps.com 安全漏洞分析专题文章全流程写作（选题
 1. 更新 `常见高危RCE产品线清单.md`，新增本批次覆盖的产品线
 2. 运行 `cd hugo-src && hugo --gc --minify` 验证构建通过
 3. 确认页面数合理增长
+
+### Phase 5: Git 自动提交与推送
+
+构建验证通过后，**必须自动执行 git 提交和推送**：
+
+1. **暂存本批次所有变更文件**：
+   ```bash
+   git add "hugo-src/content/安全/渗透测试/03 漏洞分析/[新目录]/"
+   git add "hugo-src/content/安全/渗透测试/03 漏洞分析/常见高危RCE产品线清单.md"
+   ```
+2. **提交**（commit message 格式统一）：
+   ```bash
+   git commit -m "feat: 新增漏洞分析专题 Batch N — [方向A] / [方向B] / [方向C]"
+   ```
+   commit message 规则：
+   - 使用 `feat:` 前缀（conventional commits）
+   - 注明批次号（Batch N）
+   - 列出本批次覆盖的 3 个产品方向
+3. **推送**：
+   ```bash
+   git push origin main
+   ```
+   如果推送失败（如远程有新提交），先 `git pull --rebase origin main` 再重试推送
+4. **验证**：确认 `git log --oneline -1` 显示最新提交
+
+**注意**：
+- 只暂存本批次相关的文件，不要 `git add .` 提交无关文件
+- 如果构建产物（`public/` 目录）在 `.gitignore` 中则忽略，否则也一并提交
+- 推送完成后向用户报告：提交哈希、提交信息、推送状态
 
 ---
 
@@ -338,9 +367,9 @@ Return all findings in Chinese.
 
 ---
 
-## 已覆盖产品线清单（截至 Batch 9）
+## 已覆盖产品线清单（截至 Batch 10）
 
-### 已完成家族专题的 38 个产品线
+### 已完成家族专题的产品线
 
 | 批次 | 分类 | 产品线 |
 |------|------|--------|
@@ -358,6 +387,9 @@ Return all findings in Chinese.
 | 9 | 无线网络基础设施 | Cisco WLC, Aruba AOS, Ruckus, Ubiquiti UniFi |
 | 9 | 视频监控与物理安全 | Hikvision, Dahua, Axis, Milestone, Genetec |
 | 9 | 终端管理与 MDM | SCCM, Jamf Pro, Workspace ONE, MobileIron |
+| 10 | 边缘计算与Serverless平台 | Cloudflare Workers, Deno, Vercel Edge Runtime, AWS Lambda@Edge, Fastly Compute |
+| 10 | 邮件客户端与MUA软件 | Thunderbird, Mutt, NeoMutt, Claws Mail, Sylpheed |
+| 10 | 项目跟踪与工单系统 | Redmine, MantisBT, Gitea, YouTrack, Bugzilla |
 
 ### 待覆盖方向（供后续批次参考）
 

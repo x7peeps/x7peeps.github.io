@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-07-14，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-07-18，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -148,6 +148,18 @@ categories: ["漏洞分析"]
 | **大数据搜索与分析平台** | **Apache Solr / Elasticsearch / OpenSearch**（Velocity模板RCE / JMX反序列化 / Groovy脚本注入 / 目录遍历 / 认证绕过） | 20 |
 | **数据集成与流处理平台** | **Apache NiFi / Apache Flink / Apache Spark**（H2连接字符串RCE / REST API未授权 / 目录遍历 / Shell命令注入 / 反序列化） | 17 |
 | **开源CMS与门户平台** | **Drupal / Joomla / Liferay Portal**（Drupalgeddon Pre-Auth RCE / JSON反序列化 / SSTI / SQL注入 / API未授权访问） | 19 |
+| **容器安全与运行时防护平台** | **Trivy / Falco / Clair / Grype / Snyk Container / BuildKit / runc / CRI-O**（供应链攻击 / 容器逃逸 / 镜像绕过 / 命令注入 / 配置缺陷利用） | 20+ |
+| **企业邮件安全网关** | **Barracuda ESG / Proofpoint PPS / Cisco SEG / FortiMail / Mimecast**（tar命令注入 / Perl eval注入 / 未授权RCE / 认证绕过 / 供应链攻击） | 22 |
+| **DevSecOps与供应链安全平台** | **SonarQube / Harbor / JFrog Artifactory / Snyk / GitLab Registry**（默认凭证RCE / LDAP投毒 / 反序列化 / 权限提升 / 认证绕过） | 24 |
+| **WAF与反向代理安全** | **ModSecurity / Imperva SecureSphere / AWS WAF / Akamai Kona**（WAF绕过 / 远程代码执行 / 认证绕过 / 配置缺陷利用） | 8 |
+| **企业在线会议与统一通信平台** | **Zoom / Cisco Webex / Mitel MiVoice / Avaya Aura / Audiocodes SBC / FreePBX**（命令注入RCE / 反序列化 / 路径穿越 / 认证绕过 / SQL注入） | 11 |
+| **基础设施即代码与自动化运维平台** | **SaltStack / Ansible AWX / HashiCorp Terraform / Puppet Enterprise / Chef Infra**（API认证绕过RCE / 目录遍历 / YAML反序列化 / 供应链投毒） | 14 |
+| **企业数据库** | **Oracle Database / Microsoft SQL Server**（TNS Listener协议劫持 / OJVM未授权RCE / SSRS反序列化 / OLE DB堆溢出 / SQL Agent提权） | 8 |
+| **Web服务器** | **Apache HTTPD / Microsoft IIS / HTTP.sys**（路径穿越RCE / mod_proxy SSRF / HTTP请求走私 / WebSocket UAF / ProxyLogon/Shell/NotShell） | 21 |
+| **云计算基础设施** | **OpenStack Keystone / Nova / Ironic / Swift / Horizon**（认证绕过 / 授权绕过 / 权限提升链 / IPMI命令注入 / SSRF） | 9 |
+| **边缘计算与Serverless平台** | **Cloudflare Workers / Deno / Vercel Edge Runtime / AWS Lambda@Edge / Fastly Compute**（V8沙箱逃逸 / SSRF→RCE / 供应链投毒 / 权限绕过 / KV数据隔离绕过） | 14+ |
+| **邮件客户端与MUA软件** | **Thunderbird / Mutt / NeoMutt / Claws Mail / Sylpheed**（UAF RCE / CSS沙箱逃逸 / IMAP缓冲区溢出 / 栈溢出 / 加密泄露） | 12 |
+| **项目跟踪与工单系统** | **Redmine / MantisBT / Gitea / YouTrack / Bugzilla**（SSTI→RCE / SQL注入 / 认证绕过 / 任意文件读取 / 密码重置接管） | 17 |
 
 以下产品线已有**单篇 CVE 分析文章**：
 
