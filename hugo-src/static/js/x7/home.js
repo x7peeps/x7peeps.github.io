@@ -42,7 +42,8 @@ export function initHome() {
   const startOffset = new Date(cells[0]?.date || Date.now()).getDay();
   const padded = Array.from({ length: startOffset }, () => null).concat(cells);
   const weekCount = Math.ceil(padded.length / 7);
-  heatmap.style.gridTemplateColumns = `repeat(${weekCount}, var(--x7-heatmap-cell-size))`;
+  heatmap.style.setProperty("--x7-heatmap-week-count", String(weekCount));
+  heatmap.style.aspectRatio = `${weekCount} / 7`;
 
   const levelFor = (count) => {
     if (!max || !count) return 0;

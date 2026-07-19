@@ -34,6 +34,7 @@ collapsibleMenu = true
 showVisitedLinks = true
 disableLandingPageButton = true
 disableShortcutsTitle = true
+disableToc = true
 themeVariant = "relearn-dark"
 hideAuthorDate = false
 

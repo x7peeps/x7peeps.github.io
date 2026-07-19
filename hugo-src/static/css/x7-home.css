@@ -1,6 +1,7 @@
 .x7-constellation-home {
-  --x7-heatmap-cell-size: clamp(.19rem, 1.02vw, .58rem);
-  --x7-heatmap-gap: clamp(.055rem, .24vw, .22rem);
+  --x7-heatmap-cell-size: clamp(.28rem, .8vw, .5rem);
+  --x7-heatmap-gap: clamp(1px, .18vw, 3px);
+  --x7-heatmap-week-count: 54;
   --x7-home-scroll-progress: 0;
   --x7-home-bg: #000102;
   --x7-home-panel: rgb(3 5 8 / 44%);
@@ -11,6 +12,7 @@
   --x7-home-cyan: #62e8ff;
   --x7-home-green: #73ffb6;
   --x7-home-amber: #ffc76a;
+  --x7-home-avatar-size: clamp(4.8rem, 8vw, 7.5rem);
   position: relative;
   isolation: isolate;
   min-height: 100svh;
@@ -181,8 +183,8 @@
 }
 
 .x7-home-avatar {
-  width: clamp(4.8rem, 8vw, 7.5rem);
-  height: clamp(4.8rem, 8vw, 7.5rem);
+  width: var(--x7-home-avatar-size);
+  height: var(--x7-home-avatar-size);
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid rgb(255 255 255 / 10%);
@@ -250,18 +252,16 @@ main#R-body-inner article.x7-constellation-home .x7-hero-title {
   min-width: 0;
   margin-top: clamp(2rem, 5vw, 4rem);
   padding: clamp(.95rem, 2.2vw, 1.35rem) clamp(.95rem, 2.8vw, 1.75rem);
-  border: 1px solid rgb(98 232 255 / 5%);
-  border-inline-color: transparent;
-  border-radius: .18rem;
+  border: 0;
+  border-block: 1px solid rgb(190 218 255 / 8%);
+  border-inline: 0;
+  border-radius: 0;
   background:
-    radial-gradient(640px circle at 72% 42%, rgb(98 232 255 / 4.5%), transparent 58%),
-    linear-gradient(90deg, transparent, rgb(98 232 255 / 3%) 16%, rgb(255 255 255 / 1%) 50%, rgb(115 255 182 / 2.5%) 84%, transparent),
-    linear-gradient(180deg, transparent, rgb(255 255 255 / 1.5%) 48%, transparent);
+    radial-gradient(680px circle at 72% 42%, rgb(98 232 255 / 2.8%), transparent 62%),
+    linear-gradient(90deg, transparent, rgb(0 2 3 / 72%) 9%, rgb(0 2 3 / 88%) 50%, rgb(0 2 3 / 72%) 91%, transparent);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 4%),
-    inset 0 -1px 0 rgb(98 232 255 / 4%),
-    0 2rem 7rem rgb(0 0 0 / 18%);
-  backdrop-filter: blur(4px);
+    inset 0 1px 0 rgb(255 255 255 / 2%),
+    inset 0 -1px 0 rgb(98 232 255 / 3%);
   position: relative;
   overflow: hidden;
 }
@@ -271,25 +271,12 @@ main#R-body-inner article.x7-constellation-home .x7-hero-title {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: .32;
+  opacity: .18;
   background:
-    linear-gradient(105deg, transparent 0 42%, rgb(98 232 255 / 5%) 49%, transparent 58%),
-    repeating-linear-gradient(90deg, rgb(255 255 255 / 2%) 0 1px, transparent 1px 3rem);
-  transform: translateX(calc(-46% + (var(--x7-home-scroll-progress) * 30%)));
+    linear-gradient(105deg, transparent 0 42%, rgb(98 232 255 / 3%) 49%, transparent 58%),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 1.5%) 0 1px, transparent 1px 3rem);
+  transform: translateX(calc(-32% + (var(--x7-home-scroll-progress) * 20%)));
   mix-blend-mode: screen;
-  mask-image: linear-gradient(90deg, transparent, black 16%, black 84%, transparent);
-}
-
-.x7-heatmap-panel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  background:
-    linear-gradient(90deg, rgb(0 1 2 / 88%), transparent 16% 84%, rgb(0 1 2 / 88%)),
-    linear-gradient(180deg, rgb(0 1 2 / 34%), transparent 36%, rgb(0 1 2 / 46%));
-}
 }
 
 .x7-heatmap-panel__header {
@@ -322,40 +309,42 @@ main#R-body-inner article.x7-constellation-home .x7-hero-title {
 }
 
 .x7-heatmap {
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: var(--x7-heatmap-cell-size);
-  grid-template-rows: repeat(7, var(--x7-heatmap-cell-size));
+  grid-template-columns: repeat(var(--x7-heatmap-week-count), minmax(0, 1fr));
+  grid-template-rows: repeat(7, minmax(0, 1fr));
   gap: var(--x7-heatmap-gap);
-  justify-content: center;
-  overflow: hidden;
+  aspect-ratio: 54 / 7;
   touch-action: pan-y;
-  padding: .25rem 0 .6rem;
+  margin: .25rem 0 .6rem;
   position: relative;
   z-index: 1;
-  opacity: .78;
-  mask-image: linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
+  opacity: 1;
 }
 
 .x7-heatmap-cell {
-  width: var(--x7-heatmap-cell-size);
-  height: var(--x7-heatmap-cell-size);
-  border: 1px solid rgb(255 255 255 / 3.5%);
-  border-radius: 2px;
-  background: rgb(255 255 255 / 2.4%);
-  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 30%);
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgb(190 218 255 / 15%);
+  border-radius: 1px;
+  background: rgb(190 218 255 / 7%);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 22%);
   user-select: none;
   transform: translateZ(0);
   transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease;
 }
 
-.x7-heatmap-cell[data-level="1"] { background: rgb(98 232 255 / 12%); }
-.x7-heatmap-cell[data-level="2"] { background: rgb(98 232 255 / 22%); }
-.x7-heatmap-cell[data-level="3"] { background: rgb(96 212 190 / 34%); }
+.x7-heatmap-cell[data-level="1"] { background: rgb(98 232 255 / 30%); border-color: rgb(98 232 255 / 36%); }
+.x7-heatmap-cell[data-level="2"] { background: rgb(98 232 255 / 48%); border-color: rgb(98 232 255 / 54%); }
+.x7-heatmap-cell[data-level="3"] { background: rgb(96 212 190 / 66%); border-color: rgb(96 212 190 / 68%); }
 .x7-heatmap-cell[data-level="4"] {
-  background: rgb(126 226 190 / 58%);
-  box-shadow: 0 0 .55rem rgb(126 226 190 / 14%);
+  background: rgb(126 226 190 / 88%);
+  border-color: rgb(209 255 234 / 82%);
+  box-shadow: 0 0 .55rem rgb(126 226 190 / 26%);
 }
 
 .x7-heatmap-legend {
@@ -374,14 +363,14 @@ main#R-body-inner article.x7-constellation-home .x7-hero-title {
   width: var(--x7-heatmap-cell-size);
   height: var(--x7-heatmap-cell-size);
   border-radius: 2px;
-  background: rgb(255 255 255 / 3.5%);
-  border: 1px solid rgb(255 255 255 / 5%);
+  background: rgb(190 218 255 / 7%);
+  border: 1px solid rgb(190 218 255 / 15%);
 }
 
-.x7-heatmap-legend i[data-level="1"] { background: rgb(98 232 255 / 12%); }
-.x7-heatmap-legend i[data-level="2"] { background: rgb(98 232 255 / 22%); }
-.x7-heatmap-legend i[data-level="3"] { background: rgb(96 212 190 / 34%); }
-.x7-heatmap-legend i[data-level="4"] { background: rgb(126 226 190 / 58%); }
+.x7-heatmap-legend i[data-level="1"] { background: rgb(98 232 255 / 30%); }
+.x7-heatmap-legend i[data-level="2"] { background: rgb(98 232 255 / 48%); }
+.x7-heatmap-legend i[data-level="3"] { background: rgb(96 212 190 / 66%); }
+.x7-heatmap-legend i[data-level="4"] { background: rgb(126 226 190 / 88%); }
 
 .x7-feed {
   width: min(100%, 76rem);
@@ -608,6 +597,10 @@ main#R-body-inner article.x7-constellation-home .x7-hero-title {
 
 html.x7-home-entry-prime {
   --x7-home-entry-center-x: calc(var(--INTERNAL-MENU-L-width) / -2);
+  --x7-home-entry-copy-delay: 1.08s;
+  --x7-home-entry-heatmap-delay: 1.30s;
+  --x7-home-entry-feed-delay: 1.55s;
+  --x7-home-entry-sidebar-delay: 1.50s;
   background: #000;
 }
 
@@ -632,7 +625,7 @@ html.x7-home-entry-prime #R-sidebar {
   visibility: hidden;
   pointer-events: none;
   transform: translate3d(-.72rem, 0, 0);
-  animation: x7-home-entry-sidebar .58s cubic-bezier(.16, 1, .3, 1) 1.62s both !important;
+  animation: x7-home-entry-sidebar .58s cubic-bezier(.16, 1, .3, 1) var(--x7-home-entry-sidebar-delay) both !important;
 }
 
 html.x7-home-entry-prime .x7-constellation-home::before {
@@ -654,9 +647,9 @@ html.x7-home-entry-prime .x7-home-identity::before {
   content: "";
   position: absolute;
   z-index: 1;
-  top: .7rem;
+  top: 0;
   left: 50%;
-  width: clamp(4.8rem, 8vw, 7.5rem);
+  width: var(--x7-home-avatar-size);
   aspect-ratio: 1;
   border-radius: 50%;
   pointer-events: none;
@@ -667,15 +660,15 @@ html.x7-home-entry-prime .x7-home-kicker,
 html.x7-home-entry-prime .x7-hero-title,
 html.x7-home-entry-prime .x7-hero-subtitle,
 html.x7-home-entry-prime .x7-hero-mission {
-  animation: x7-home-copy-reveal .72s cubic-bezier(.16, 1, .3, 1) .76s both;
+  animation: x7-home-copy-reveal .72s cubic-bezier(.16, 1, .3, 1) var(--x7-home-entry-copy-delay) both;
 }
 
 html.x7-home-entry-prime .x7-heatmap-panel {
-  animation: x7-home-heatmap-ignite .82s cubic-bezier(.16, 1, .3, 1) 1.08s both;
+  animation: x7-home-heatmap-ignite .82s cubic-bezier(.16, 1, .3, 1) var(--x7-home-entry-heatmap-delay) both;
 }
 
 html.x7-home-entry-prime .x7-feed {
-  animation: x7-home-feed-rise .64s cubic-bezier(.16, 1, .3, 1) 1.42s both;
+  animation: x7-home-feed-rise .64s cubic-bezier(.16, 1, .3, 1) var(--x7-home-entry-feed-delay) both;
 }
 
 html.x7-home-entry-complete #R-sidebar,
@@ -784,11 +777,16 @@ html.x7-home-entry-reduced #R-sidebar {
 }
 
 @media (max-width: 52rem) {
+  html.x7-home-entry-prime {
+    --x7-home-entry-copy-delay: .88s;
+    --x7-home-entry-heatmap-delay: 1.05s;
+    --x7-home-entry-feed-delay: 1.22s;
+    --x7-home-entry-sidebar-delay: 1.20s;
+  }
+
   html.x7-home-entry-prime .x7-home-particles { opacity: .56; }
   html.x7-home-entry-prime .x7-home-avatar { animation-duration: 1.18s; }
   html.x7-home-entry-prime .x7-home-identity::before { animation-duration: .9s; }
-  html.x7-home-entry-prime .x7-home-feed { animation-delay: 1.16s; }
-  html.x7-home-entry-prime #R-sidebar { animation-delay: 1.28s !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {

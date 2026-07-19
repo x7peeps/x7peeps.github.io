@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ "css/x7-home.css" | relURL }}">
 <script>
 (() => {
-  const homeEntryKey = `${window.relearn?.absBaseUri || location.origin}/x7-home-entry-complete`;
+  const homeEntryKey = `${window.relearn?.absBaseUri || location.origin}/x7-home-entry-complete-v3`;
   const relearnPath = window.relearn?.path || location.pathname;
   const isHomeEntryPath = relearnPath === "/index.html" || relearnPath === "/";
   const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;

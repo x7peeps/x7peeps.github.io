@@ -39,6 +39,7 @@ grep -q 'type=module src=/js/x7/bootstrap.js' "$homepage"
 grep -Fq "x7-home-stage-blackout" "$source_dir/static/css/x7-home.css"
 grep -Fq "x7-home-entry-sidebar" "$source_dir/static/css/x7-home.css"
 grep -Fq "prefers-reduced-motion: reduce" "$source_dir/static/css/x7-home.css"
+grep -Fq "x7-home-entry-complete-v3" "$source_dir/layouts/partials/custom-header.html"
 grep -Fq "function markHomeEntryComplete" "$source_dir/static/js/x7/home.js"
 grep -Fq "x7-home-entry-prime" "$source_dir/static/js/x7/home.js"
 grep -Fq "x7-home-entry-complete" "$source_dir/static/js/x7/home.js"
@@ -139,6 +140,13 @@ const css = fs.readFileSync(process.argv[2], "utf8");
 const sidebarPrimeRule = css.match(/html\.x7-home-entry-prime\s+#R-sidebar\s*\{([^}]*)\}/)?.[1];
 const primeRootRule = css.match(/html\.x7-home-entry-prime\s*\{([^}]*)\}/)?.[1] || "";
 const entryCenterVariable = "--x7-home-entry-center-x";
+const avatarSizeVariable = "--x7-home-avatar-size";
+const entryTimingVariables = [
+  "--x7-home-entry-copy-delay",
+  "--x7-home-entry-heatmap-delay",
+  "--x7-home-entry-feed-delay",
+  "--x7-home-entry-sidebar-delay",
+];
 
 function findForbiddenFullscreenPrimeRules(source) {
   const violations = [];
@@ -192,6 +200,42 @@ if (!primeRootRule.includes(`${entryCenterVariable}: calc(var(--INTERNAL-MENU-L-
   process.exit(1);
 }
 
+const entryTimings = Object.fromEntries(entryTimingVariables.map((variable) => {
+  const value = primeRootRule.match(new RegExp(`${variable}:\\s*([\\d.]+)s;`))?.[1];
+  return [variable, Number(value)];
+}));
+if (Object.values(entryTimings).some((value) => !Number.isFinite(value))) {
+  console.error("Homepage entry contract failed: the entry timeline must expose named timing variables");
+  process.exit(1);
+}
+const logoReturnDuration = 1.45;
+if (!(entryTimings["--x7-home-entry-copy-delay"] >= logoReturnDuration * .7 && entryTimings["--x7-home-entry-copy-delay"] < logoReturnDuration)) {
+  console.error("Homepage entry contract failed: copy must wait until the logo is near its final position");
+  process.exit(1);
+}
+if (!(entryTimings["--x7-home-entry-heatmap-delay"] > entryTimings["--x7-home-entry-copy-delay"] && entryTimings["--x7-home-entry-heatmap-delay"] < logoReturnDuration)) {
+  console.error("Homepage entry contract failed: heatmap must follow copy before the logo finishes settling");
+  process.exit(1);
+}
+for (const variable of ["--x7-home-entry-feed-delay", "--x7-home-entry-sidebar-delay"]) {
+  if (entryTimings[variable] < logoReturnDuration) {
+    console.error(`Homepage entry contract failed: ${variable} must wait for the logo to settle`);
+    process.exit(1);
+  }
+}
+for (const [animation, variable] of [
+  ["x7-home-copy-reveal", "--x7-home-entry-copy-delay"],
+  ["x7-home-heatmap-ignite", "--x7-home-entry-heatmap-delay"],
+  ["x7-home-feed-rise", "--x7-home-entry-feed-delay"],
+  ["x7-home-entry-sidebar", "--x7-home-entry-sidebar-delay"],
+]) {
+  const timingBinding = new RegExp(`animation:\\s*${animation}\\b[^;]*var\\(${variable}\\)`);
+  if (!timingBinding.test(css)) {
+    console.error(`Homepage entry contract failed: ${animation} must consume ${variable}`);
+    process.exit(1);
+  }
+}
+
 for (const [breakpoint, value] of [
   ["59\\.999rem", "calc\\(var\\(--INTERNAL-MENU-M-width\\) / -2\\)"],
   ["47\\.999rem", "0"],
@@ -209,6 +253,21 @@ for (const keyframe of ["x7-home-logo-breathe", "x7-home-halo-bloom"]) {
     console.error(`Homepage entry contract failed: ${keyframe} must consume ${entryCenterVariable}`);
     process.exit(1);
   }
+}
+
+const avatarRule = css.match(/\.x7-home-avatar\s*\{([^}]*)\}/)?.[1] || "";
+const haloRule = css.match(/html\.x7-home-entry-prime\s+\.x7-home-identity::before\s*\{([^}]*)\}/)?.[1] || "";
+if (!css.includes(`${avatarSizeVariable}: clamp(4.8rem, 8vw, 7.5rem);`)) {
+  console.error("Homepage entry contract failed: logo and halo must share one size variable");
+  process.exit(1);
+}
+if (!avatarRule.includes(`width: var(${avatarSizeVariable});`) || !avatarRule.includes(`height: var(${avatarSizeVariable});`)) {
+  console.error("Homepage entry contract failed: logo must consume the shared halo size");
+  process.exit(1);
+}
+if (!haloRule.includes("top: 0;") || !haloRule.includes(`width: var(${avatarSizeVariable});`)) {
+  console.error("Homepage entry contract failed: halo must be anchored to the logo origin");
+  process.exit(1);
 }
 
 if (!sidebarPrimeRule) {
@@ -382,17 +441,11 @@ NODE
   test -f "$article"
   grep -q 'data-x7-article-shell' "$article"
   grep -q 'data-x7-article-content' "$article"
-  grep -q 'data-x7-chapter-radar' "$article"
-  grep -q 'data-x7-chapter-list' "$article"
-  grep -q 'data-x7-chapter-close' "$article"
-  grep -q 'data-x7-mobile-progress' "$article"
+  ! grep -q 'data-x7-chapter-' "$article"
+  ! grep -q 'data-x7-mobile-progress' "$article"
   grep -q 'data-x7-knowledge-tree' "$article"
-  node - "$article" <<'NODE'
-const fs = require("node:fs");
-const html = fs.readFileSync(process.argv[2], "utf8");
-const radar = html.match(/<aside\b[^>]*data-x7-chapter-radar[^>]*>/)?.[0] ?? "";
-if (!radar || /\baria-hidden\b|\binert\b/.test(radar)) process.exit(1);
-NODE
+  ! grep -q 'topbar-button-toc' "$article"
+  grep -q 'topbar-button-sidebar' "$article"
 
   duplicate_article="$article"
   test -f "$duplicate_article"
