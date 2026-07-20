@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-07-18，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-07-20，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -160,6 +160,9 @@ categories: ["漏洞分析"]
 | **边缘计算与Serverless平台** | **Cloudflare Workers / Deno / Vercel Edge Runtime / AWS Lambda@Edge / Fastly Compute**（V8沙箱逃逸 / SSRF→RCE / 供应链投毒 / 权限绕过 / KV数据隔离绕过） | 14+ |
 | **邮件客户端与MUA软件** | **Thunderbird / Mutt / NeoMutt / Claws Mail / Sylpheed**（UAF RCE / CSS沙箱逃逸 / IMAP缓冲区溢出 / 栈溢出 / 加密泄露） | 12 |
 | **项目跟踪与工单系统** | **Redmine / MantisBT / Gitea / YouTrack / Bugzilla**（SSTI→RCE / SQL注入 / 认证绕过 / 任意文件读取 / 密码重置接管） | 17 |
+| **地理空间信息平台** | **GeoServer / ESRI ArcGIS Server**（OGC XPath注入RCE / OGC Filter SQL注入 / Jiffle代码注入 / 目录遍历→管理员接管 / 未限制文件上传 / 未授权API / 硬编码凭据） | 12 |
+| **在线教育与学习管理系统** | **Moodle / Open edX / Chamilo / Canvas LMS**（Twig SSTI RCE / 计算题RCE / Pickle反序列化 / 认证绕过RCE / 路径穿越RCE / 文件上传RCE） | 10 |
+| **SOAR与威胁情报平台** | **TheHive / MISP / OpenCTI / Cortex / Shuffle**（认证绕过 / SSRF→RCE / SQL注入 / 命令注入 / GraphQL授权绕过 / 文件上传RCE / Jinja2 SSTI→RCE） | 13 |
 
 以下产品线已有**单篇 CVE 分析文章**：
 
