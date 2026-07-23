@@ -34,6 +34,24 @@
 
   <header class="x7-home-hero" aria-labelledby="x7-home-title">
     <div class="x7-home-atmosphere" aria-hidden="true"></div>
+    <div
+      class="x7-avatar-entry"
+      data-x7-avatar-entry
+      data-model-url="{{ "models/x7-avatar-entry.glb" | relURL }}"
+      data-reference-url="{{ "images/x7-avatar-reference.png" | relURL }}"
+      aria-hidden="true">
+      <div class="x7-avatar-entry__stage"></div>
+      <div class="x7-avatar-entry__loading">INITIALIZING AVATAR</div>
+      <div class="x7-avatar-entry__tags" aria-hidden="true">
+        <span data-tag="security">Security Research</span>
+        <span data-tag="forensics">Forensics</span>
+        <span data-tag="toolchain">Toolchain</span>
+        <span data-tag="ai">AI</span>
+        <span data-tag="uav">UAV</span>
+        <span data-tag="writing">Writing</span>
+      </div>
+      <button class="x7-avatar-entry__skip" type="button" aria-label="跳过 3D 入场">Skip</button>
+    </div>
     <div class="x7-home-identity">
       <img class="x7-home-avatar" src="{{ "images/head.png" | relURL }}" alt="x7peeps avatar">
       <p class="x7-home-kicker">SECURITY RESEARCH / TOOLCHAIN / FORENSICS</p>

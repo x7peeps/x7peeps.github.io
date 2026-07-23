@@ -789,6 +789,112 @@ html.x7-home-entry-reduced #R-sidebar {
   html.x7-home-entry-prime .x7-home-identity::before { animation-duration: .9s; }
 }
 
+.x7-avatar-entry {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 680ms ease, visibility 680ms ease;
+}
+
+.x7-avatar-entry::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  background:
+    radial-gradient(circle at 50% 46%, rgb(90 220 255 / 16%), transparent 26rem),
+    linear-gradient(90deg, transparent, rgb(120 245 255 / 8%), transparent);
+  opacity: .82;
+  transform: perspective(900px) rotateX(58deg) translateY(10%);
+}
+
+.x7-avatar-entry__stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.x7-avatar-entry__stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.x7-avatar-entry__loading {
+  position: absolute;
+  z-index: 3;
+  bottom: clamp(2rem, 7vh, 5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(124 236 255 / 72%);
+  font-size: .72rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+
+.x7-avatar-entry[data-state="running"] .x7-avatar-entry__loading,
+.x7-avatar-entry[data-state="complete"] .x7-avatar-entry__loading,
+.x7-avatar-entry[data-state="failed"] .x7-avatar-entry__loading {
+  opacity: 0;
+}
+
+.x7-avatar-entry__tags {
+  position: absolute;
+  z-index: 2;
+  inset: 17% 13%;
+  pointer-events: none;
+}
+
+.x7-avatar-entry__tags span {
+  position: absolute;
+  color: rgb(230 250 255 / 86%);
+  font-size: clamp(.62rem, .72vw, .78rem);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgb(82 223 255 / 42%);
+  opacity: .72;
+}
+
+.x7-avatar-entry__tags [data-tag="security"] { top: 12%; left: 21%; }
+.x7-avatar-entry__tags [data-tag="forensics"] { top: 24%; right: 18%; }
+.x7-avatar-entry__tags [data-tag="toolchain"] { bottom: 28%; left: 16%; }
+.x7-avatar-entry__tags [data-tag="ai"] { top: 48%; right: 23%; }
+.x7-avatar-entry__tags [data-tag="uav"] { bottom: 18%; right: 28%; }
+.x7-avatar-entry__tags [data-tag="writing"] { top: 62%; left: 28%; }
+
+.x7-avatar-entry__skip {
+  position: absolute;
+  z-index: 4;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  color: rgb(214 244 255 / 74%);
+  background: rgb(0 0 0 / 28%);
+  border: 1px solid rgb(132 226 255 / 22%);
+  border-radius: 999px;
+  padding: .45rem .7rem;
+  font: inherit;
+  font-size: .72rem;
+  cursor: pointer;
+}
+
+.x7-avatar-entry-complete .x7-avatar-entry,
+.x7-avatar-entry-failed .x7-avatar-entry {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 63.99rem), (prefers-reduced-motion: reduce) {
+  .x7-avatar-entry {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .x7-constellation-home *,
   .x7-constellation-home *::before,

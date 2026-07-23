@@ -4,6 +4,7 @@ import test from "node:test";
 
 const cssPath = new URL("../hugo-src/static/css/x7-home.css", import.meta.url);
 const scriptPath = new URL("../hugo-src/static/js/x7/home.js", import.meta.url);
+const homePartialPath = new URL("../hugo-src/layouts/partials/x7/home-constellation.html", import.meta.url);
 
 test("heatmap reserves a visible square for every day in its generated week grid", async () => {
   const [css, script] = await Promise.all([
@@ -31,4 +32,17 @@ test("heatmap panel remains a dark field instead of a translucent blue card", as
   assert.match(panelRule, /rgb\(0 2 3 \/ 72%\)/);
   assert.doesNotMatch(panelRule, /backdrop-filter/);
   assert.equal([...css].reduce((depth, char) => depth + (char === "{" ? 1 : char === "}" ? -1 : 0), 0), 0);
+});
+
+test("avatar entry does not replace heatmap or recent update rendering", async () => {
+  const [html, script] = await Promise.all([
+    readFile(homePartialPath, "utf8"),
+    readFile(scriptPath, "utf8"),
+  ]);
+
+  assert.match(html, /id="x7-heatmap"/);
+  assert.match(html, /id="recent-updates"/);
+  assert.match(html, /data-x7-latest-link/);
+  assert.match(script, /window\.__heatmapDays/);
+  assert.match(script, /heatmap\.appendChild\(frag\)/);
 });

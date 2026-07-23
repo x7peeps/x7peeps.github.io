@@ -90,6 +90,11 @@ function initHomeMotion() {
   }
 
   home.dataset.motion = "enhanced";
+  import("./home-avatar-entry.js")
+    .then((module) => module.initAvatarEntry(home))
+    .catch((error) => {
+      console.warn("X7 avatar entry unavailable", error);
+    });
   initParticleField(home);
   initScrollCinematography(home);
   initRevealSequence(home);
