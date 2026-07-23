@@ -90,7 +90,7 @@ categories: ["漏洞分析"]
 
 ## 0x04 当前已覆盖情况
 
-截至 2026-07-20，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
+截至 2026-07-23，以下产品线已完成**家族专题文章**（单文件完整展示 + 完整 PoC 代码）：
 
 | 产品线 | 专题文章 | 覆盖 CVE 数 |
 |--------|----------|------------|
@@ -163,6 +163,9 @@ categories: ["漏洞分析"]
 | **地理空间信息平台** | **GeoServer / ESRI ArcGIS Server**（OGC XPath注入RCE / OGC Filter SQL注入 / Jiffle代码注入 / 目录遍历→管理员接管 / 未限制文件上传 / 未授权API / 硬编码凭据） | 12 |
 | **在线教育与学习管理系统** | **Moodle / Open edX / Chamilo / Canvas LMS**（Twig SSTI RCE / 计算题RCE / Pickle反序列化 / 认证绕过RCE / 路径穿越RCE / 文件上传RCE） | 10 |
 | **SOAR与威胁情报平台** | **TheHive / MISP / OpenCTI / Cortex / Shuffle**（认证绕过 / SSRF→RCE / SQL注入 / 命令注入 / GraphQL授权绕过 / 文件上传RCE / Jinja2 SSTI→RCE） | 13 |
+| **DNS安全与DDI基础设施** | **Microsoft Windows DNS / Infoblox NIOS/NetMRI / Cisco Catalyst Center / PowerDNS**（SIGRed堆溢出RCE / Grid未授权访问 / 命令注入 / DNSSEC绕过 / DoS） | 12 |
+| **证书颁发机构与PKI平台** | **EJBCA / Step-CA / Microsoft AD CS / Dogtag PKI / Bouncy Castle / HashiCorp Vault PKI**（ACME认证绕过 / ESC1-ESC8域接管链 / 证书验证绕过 / SSRF） | 12 |
+| **API安全网关与防护平台** | **Apache APISIX / Kong / Tyk / Google Apigee / F5 NGINX / Azure API Management**（batch-requests RCE / Dashboard未授权 / SQL注入 / HTTP/2 Rapid Reset / UAF RCE / 跨租户接管） | 12 |
 
 以下产品线已有**单篇 CVE 分析文章**：
 
