@@ -7,9 +7,14 @@
   {{- end -}}
 {{- end -}}
 {{- $byPath := sort $filtered "RelPermalink" "asc" -}}
-{{- $recent := first 18 (sort $byPath "Lastmod" "desc") -}}
-{{- $now := now -}}
-{{- $start := $now.AddDate -1 0 0 -}}
+{{- $byLastmod := sort $byPath "Lastmod" "desc" -}}
+{{- $recent := first 18 $byLastmod -}}
+{{- $latestHeatmapDate := now -}}
+{{- if gt (len $byLastmod) 0 -}}
+  {{- $latestHeatmapDate = (index $byLastmod 0).Lastmod -}}
+{{- end -}}
+{{- $heatmapWindowDays := 365 -}}
+{{- $start := $latestHeatmapDate.AddDate -1 0 1 -}}
 {{- $dateMap := dict -}}
 {{- range $filtered -}}
   {{- $d := .Lastmod.Format "2006-01-02" -}}
@@ -19,7 +24,7 @@
 {{- end -}}
 {{- $days := slice -}}
 {{- $cur := $start -}}
-{{- range $i := seq 371 -}}
+{{- range $i := seq $heatmapWindowDays -}}
   {{- $d := $cur.Format "2006-01-02" -}}
   {{- $count := 0 -}}
   {{- if isset $dateMap $d -}}{{- $count = index $dateMap $d -}}{{- end -}}

@@ -688,7 +688,7 @@ vm.createContext(context);
 vm.runInContext(`window.__heatmapDays=${script.replace(/;?\s*$/, "")}`, context);
 const days = context.window.__heatmapDays;
 if (!Array.isArray(days)) fail("heatmap data is not an array");
-if (days.length !== 371) fail(`expected 371 heatmap days, got ${days.length}`);
+if (days.length !== 365) fail(`expected 365 heatmap days, got ${days.length}`);
 const totalUpdates = days.reduce((sum, day) => sum + (Number(day.count) || 0), 0);
 if (totalUpdates < 1 || days.every(day => Number(day.count) === 0)) fail(`heatmap has no updates; total=${totalUpdates}`);
 

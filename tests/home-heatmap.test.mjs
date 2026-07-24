@@ -6,6 +6,42 @@ const cssPath = new URL("../hugo-src/static/css/x7-home.css", import.meta.url);
 const scriptPath = new URL("../hugo-src/static/js/x7/home.js", import.meta.url);
 const homePartialPath = new URL("../hugo-src/layouts/partials/x7/home-constellation.html", import.meta.url);
 
+test("heatmap source signature changes when Hugo publishes a new update", async () => {
+  const { buildHeatmapSource } = await import(scriptPath);
+  const before = buildHeatmapSource([
+    { date: "2026-07-22", count: 1 },
+    { date: "2026-07-23", count: 2 },
+  ]);
+  const after = buildHeatmapSource([
+    { date: "2026-07-22", count: 1 },
+    { date: "2026-07-23", count: 3 },
+  ]);
+
+  assert.equal(before.total, 3);
+  assert.equal(after.total, 4);
+  assert.notEqual(before.signature, after.signature);
+});
+
+test("heatmap rebuilds existing cells when its Hugo data signature changes", async () => {
+  const script = await readFile(scriptPath, "utf8");
+
+  assert.doesNotMatch(script, /if \(heatmap\.children\.length > 0\) return;/);
+  assert.match(script, /heatmap\.dataset\.sourceSignature/);
+  assert.match(script, /heatmap\.replaceChildren\(\)/);
+});
+
+test("heatmap template renders exactly 365 days ending at the newest article date", async () => {
+  const html = await readFile(homePartialPath, "utf8");
+
+  assert.match(html, /\$byLastmod := sort \$byPath "Lastmod" "desc"/);
+  assert.match(html, /\$latestHeatmapDate/);
+  assert.match(html, /\$start := \$latestHeatmapDate\.AddDate -1 0 1/);
+  assert.match(html, /\$heatmapWindowDays := 365/);
+  assert.match(html, /seq \$heatmapWindowDays/);
+  assert.doesNotMatch(html, /\$now := now/);
+  assert.doesNotMatch(html, /seq 371/);
+});
+
 test("heatmap reserves a visible square for every day in its generated week grid", async () => {
   const [css, script] = await Promise.all([
     readFile(cssPath, "utf8"),

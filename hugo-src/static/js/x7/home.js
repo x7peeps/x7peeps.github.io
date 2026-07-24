@@ -16,14 +16,8 @@ function getParticleFocusDuration() {
     : PARTICLE_FOCUS_DESKTOP_DURATION;
 }
 
-export function initHome() {
-  const heatmap = document.getElementById("x7-heatmap");
-  if (!heatmap) return;
-
-  initHomeMotion();
-  if (heatmap.children.length > 0) return;
-
-  let days = window.__heatmapDays;
+export function buildHeatmapSource(input) {
+  let days = input;
   if (typeof days === "string") {
     try {
       days = JSON.parse(days);
@@ -31,14 +25,38 @@ export function initHome() {
       days = [];
     }
   }
-  if (!Array.isArray(days) || days.length === 0) return;
 
-  const total = days.reduce((sum, day) => sum + Math.max(0, Number(day.count) || 0), 0);
-  const max = days.reduce((highest, day) => Math.max(highest, Number(day.count) || 0), 0);
+  if (!Array.isArray(days)) days = [];
+  const normalizedDays = days.slice(-365).map((day) => ({
+    date: String(day?.date || ""),
+    count: Math.max(0, Number(day?.count) || 0),
+  }));
+
+  return {
+    days: normalizedDays,
+    total: normalizedDays.reduce((sum, day) => sum + day.count, 0),
+    max: normalizedDays.reduce((highest, day) => Math.max(highest, day.count), 0),
+    signature: normalizedDays.map((day) => `${day.date}:${day.count}`).join("|"),
+  };
+}
+
+export function initHome() {
+  const heatmap = document.getElementById("x7-heatmap");
+  if (!heatmap) return;
+
+  initHomeMotion();
+  const source = buildHeatmapSource(window.__heatmapDays);
+  if (source.days.length === 0) return;
+
+  const { days, total, max, signature } = source;
   const totalLabel = document.querySelector(".x7-heatmap-total");
   if (totalLabel) totalLabel.textContent = total > 0 ? `近一年 ${total} 篇更新` : "近一年暂无更新";
 
-  const cells = days.slice(-371);
+  if (heatmap.children.length > 0 && heatmap.dataset.sourceSignature === signature) return;
+  heatmap.dataset.sourceSignature = signature;
+  heatmap.replaceChildren();
+
+  const cells = days;
   const startOffset = new Date(cells[0]?.date || Date.now()).getDay();
   const padded = Array.from({ length: startOffset }, () => null).concat(cells);
   const weekCount = Math.ceil(padded.length / 7);
