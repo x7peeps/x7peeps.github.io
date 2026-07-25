@@ -17,6 +17,11 @@ test("homepage configures one persistent root scene without a hero-contained sta
   assert.doesNotMatch(html, /x7-avatar-entry__stage/);
   assert.match(homeScript, /import\("\.\/home-scene\.js"\)/);
   assert.doesNotMatch(homeScript, /home-avatar-entry\.js/);
+  assert.doesNotMatch(
+    homeScript,
+    /function initParticleField|PARTICLE_FOCUS|getParticleFocusDuration/,
+    "the obsolete hero particle runtime must be removed",
+  );
 });
 
 test("persistent scene initialization is independent from the session intro timeline", async () => {

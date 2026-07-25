@@ -1,19 +1,11 @@
 const HOME_ENTRY_DESKTOP_DURATION = 2200;
 const HOME_ENTRY_MOBILE_DURATION = 1850;
-const PARTICLE_FOCUS_DESKTOP_DURATION = 1100;
-const PARTICLE_FOCUS_MOBILE_DURATION = 820;
 const MOBILE_HOME_QUERY = "(max-width: 52rem)";
 
 function getHomeEntryDuration() {
   return window.matchMedia(MOBILE_HOME_QUERY).matches
     ? HOME_ENTRY_MOBILE_DURATION
     : HOME_ENTRY_DESKTOP_DURATION;
-}
-
-function getParticleFocusDuration() {
-  return window.matchMedia(MOBILE_HOME_QUERY).matches
-    ? PARTICLE_FOCUS_MOBILE_DURATION
-    : PARTICLE_FOCUS_DESKTOP_DURATION;
 }
 
 export function buildHeatmapSource(input) {
@@ -100,6 +92,13 @@ function initHomeMotion() {
   if (!home || home.dataset.motionReady === "true") return;
   home.dataset.motionReady = "true";
 
+  import("./home-scene.js")
+    .then((module) => module.initHomeScene(home))
+    .catch((error) => {
+      home.dataset.scene = "failed";
+      console.warn("X7 fullscreen scene unavailable", error);
+    });
+
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) {
     home.dataset.motion = "reduced";
@@ -108,12 +107,6 @@ function initHomeMotion() {
   }
 
   home.dataset.motion = "enhanced";
-  import("./home-avatar-entry.js")
-    .then((module) => module.initAvatarEntry(home))
-    .catch((error) => {
-      console.warn("X7 avatar entry unavailable", error);
-    });
-  initParticleField(home);
   initScrollCinematography(home);
   initRevealSequence(home);
   markHomeEntryComplete();
@@ -144,139 +137,6 @@ function markHomeEntryComplete(immediate = false) {
   }
 
   window.setTimeout(finish, getHomeEntryDuration());
-}
-
-function initParticleField(home) {
-  const hero = home.querySelector(".x7-home-hero");
-  if (!hero) return;
-
-  const canvas = document.createElement("canvas");
-  canvas.className = "x7-home-particles";
-  canvas.setAttribute("aria-hidden", "true");
-  hero.prepend(canvas);
-
-  const ctx = canvas.getContext("2d", { alpha: true });
-  if (!ctx) return;
-
-  const entryActive = document.documentElement.classList.contains("x7-home-entry-prime");
-  const entryStartedAt = performance.now();
-  const entryDuration = getParticleFocusDuration();
-  canvas.dataset.entryPhase = entryActive ? "focus" : "ambient";
-
-  let width = 0;
-  let height = 0;
-  let dpr = 1;
-  let entryFocusOffsetX = 0;
-  let pointerX = 0;
-  let pointerY = 0;
-  let frame = 0;
-  let particles = [];
-
-  const resize = () => {
-    const rect = hero.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = Math.max(1, Math.floor(rect.width));
-    height = Math.max(1, Math.floor(rect.height));
-    entryFocusOffsetX = window.innerWidth / 2 - (rect.left + width / 2);
-    canvas.width = Math.floor(width * dpr);
-    canvas.height = Math.floor(height * dpr);
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const targetCount = Math.min(92, Math.max(42, Math.round(width / 16)));
-    particles = Array.from({ length: targetCount }, (_, index) => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      z: Math.random() * 0.8 + 0.2,
-      r: Math.random() * 1.15 + 0.35,
-      drift: (Math.random() - 0.5) * 0.18,
-      phase: Math.random() * Math.PI * 2 + index,
-      focusAngle: (index / targetCount) * Math.PI * 2 + Math.random() * 0.35,
-      focusRadius: 28 + Math.random() * Math.min(96, width * 0.09),
-    }));
-  };
-
-  const draw = (time) => {
-    frame = window.requestAnimationFrame(draw);
-    ctx.clearRect(0, 0, width, height);
-
-    const progress = Number(home.style.getPropertyValue("--x7-home-scroll-progress")) || 0;
-    const camera = 1 + progress * 0.42;
-    const cx = width * 0.5 + pointerX * 12;
-    const cy = height * 0.44 + pointerY * 8;
-    const entryProgress = entryActive
-      ? Math.min(1, Math.max(0, (time - entryStartedAt) / entryDuration))
-      : 1;
-    const isFocusing = entryActive && entryProgress < 1;
-    const focusEnvelope = isFocusing ? Math.sin(Math.PI * entryProgress) : 0;
-    if (!isFocusing && entryActive && canvas.dataset.entryPhase !== "ambient") {
-      canvas.dataset.entryPhase = "ambient";
-    }
-
-    ctx.globalCompositeOperation = "lighter";
-    for (const p of particles) {
-      p.x += p.drift + pointerX * p.z * 0.04;
-      p.y += (0.045 + p.z * 0.075) * camera;
-
-      if (p.x < -12) p.x = width + 12;
-      if (p.x > width + 12) p.x = -12;
-      if (p.y > height + 14) p.y = -14;
-
-      const pulse = 0.55 + Math.sin(time * 0.0012 + p.phase) * 0.45;
-      const dx = (p.x - cx) * progress * 0.035;
-      const dy = (p.y - cy) * progress * 0.05;
-      const alpha = (0.03 + p.z * 0.075) * pulse * (1 - progress * 0.45);
-      const radius = p.r * (1 + progress * 0.9);
-      let drawX = p.x + dx;
-      let drawY = p.y + dy;
-      let entryGlow = 1;
-
-      if (isFocusing) {
-        const focusX = cx + entryFocusOffsetX + Math.cos(p.focusAngle + time * 0.00018) * p.focusRadius;
-        const focusY = cy + Math.sin(p.focusAngle + time * 0.00014) * p.focusRadius * 0.55;
-        const focusStrength = focusEnvelope * (0.58 + p.z * 0.18);
-        drawX += (focusX - p.x) * focusStrength;
-        drawY += (focusY - p.y) * focusStrength;
-        entryGlow += focusEnvelope * 0.5;
-      }
-
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(116, 235, 255, ${alpha * entryGlow})`;
-      ctx.arc(drawX, drawY, radius * entryGlow, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  };
-
-  hero.addEventListener("pointermove", (event) => {
-    const rect = hero.getBoundingClientRect();
-    pointerX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-    pointerY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-  }, { passive: true });
-
-  hero.addEventListener("pointerleave", () => {
-    pointerX = 0;
-    pointerY = 0;
-  }, { passive: true });
-
-  const observer = new ResizeObserver(resize);
-  const stopParticleField = () => {
-    if (frame) window.cancelAnimationFrame(frame);
-    frame = 0;
-    observer.disconnect();
-  };
-  const startParticleField = () => {
-    if (frame) return;
-    observer.observe(hero);
-    resize();
-    frame = window.requestAnimationFrame(draw);
-  };
-
-  startParticleField();
-  window.addEventListener("pagehide", stopParticleField);
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted) startParticleField();
-  });
 }
 
 function initScrollCinematography(home) {

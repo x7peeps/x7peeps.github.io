@@ -1,0 +1,559 @@
+const THREE_URL = "https://esm.sh/three@0.160.0";
+const GLTF_LOADER_URL = "https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
+const DESKTOP_QUERY = "(min-width: 64rem)";
+const REDUCE_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const LOAD_TIMEOUT_MS = 12_000;
+const disposedModels = new WeakSet();
+
+const sceneFrames = [
+  { p: 0, cameraX: 1.55, cameraY: 1.35, cameraZ: 4.55, fov: 42, modelX: 0, modelY: -0.08, modelScale: 1, opacity: 1 },
+  { p: 0.22, cameraX: 0.65, cameraY: 1.22, cameraZ: 3.75, fov: 37, modelX: 0.78, modelY: -0.06, modelScale: 0.86, opacity: 0.94 },
+  { p: 0.52, cameraX: -0.25, cameraY: 0.92, cameraZ: 3.3, fov: 34, modelX: 1.05, modelY: 0.05, modelScale: 0.72, opacity: 0.72 },
+  { p: 0.82, cameraX: 0.35, cameraY: 1.05, cameraZ: 4.6, fov: 43, modelX: 1.48, modelY: 0.12, modelScale: 0.58, opacity: 0.34 },
+  { p: 1, cameraX: 0.6, cameraY: 1.15, cameraZ: 5.1, fov: 46, modelX: 1.62, modelY: 0.16, modelScale: 0.54, opacity: 0.22 },
+];
+
+export function clampSceneProgress(value) {
+  return Math.min(1, Math.max(0, Number(value) || 0));
+}
+
+export function sceneModeFor({ desktop, reducedMotion, saveData }) {
+  if (reducedMotion) return "static";
+  if (!desktop || saveData) return "particles";
+  return "full";
+}
+
+export function sampleSceneFrame(progress) {
+  const p = clampSceneProgress(progress);
+  if (p === 0) return { ...sceneFrames[0] };
+  const foundIndex = sceneFrames.findIndex((frame) => frame.p >= p);
+  const upperIndex = foundIndex < 0 ? sceneFrames.length - 1 : foundIndex;
+  const start = sceneFrames[Math.max(0, upperIndex - 1)];
+  const end = sceneFrames[upperIndex];
+  const local = (p - start.p) / Math.max(0.0001, end.p - start.p);
+  const eased = local * local * (3 - 2 * local);
+  return Object.fromEntries(Object.keys(start).map((key) => [
+    key,
+    key === "p" ? p : start[key] + (end[key] - start[key]) * eased,
+  ]));
+}
+
+function browserDependencies(overrides = {}) {
+  const windowRef = overrides.window ?? window;
+  const documentRef = overrides.document ?? windowRef.document;
+  return {
+    AbortController: overrides.AbortController ?? windowRef.AbortController,
+    cancelAnimationFrame: overrides.cancelAnimationFrame ?? windowRef.cancelAnimationFrame.bind(windowRef),
+    clearTimeout: overrides.clearTimeout ?? windowRef.clearTimeout.bind(windowRef),
+    console: overrides.console ?? windowRef.console,
+    document: documentRef,
+    fetch: overrides.fetch ?? windowRef.fetch?.bind(windowRef),
+    importModules: overrides.importModules ?? (async () => {
+      const [THREE, { GLTFLoader }] = await Promise.all([
+        import(THREE_URL),
+        import(GLTF_LOADER_URL),
+      ]);
+      return { THREE, GLTFLoader };
+    }),
+    loadTimeoutMs: overrides.loadTimeoutMs ?? LOAD_TIMEOUT_MS,
+    matchMedia: overrides.matchMedia ?? windowRef.matchMedia.bind(windowRef),
+    navigator: overrides.navigator ?? windowRef.navigator,
+    requestAnimationFrame: overrides.requestAnimationFrame ?? windowRef.requestAnimationFrame.bind(windowRef),
+    setTimeout: overrides.setTimeout ?? windowRef.setTimeout.bind(windowRef),
+    window: windowRef,
+  };
+}
+
+function createLayer(documentRef) {
+  const layer = documentRef.createElement("div");
+  layer.className = "x7-home-scene";
+  layer.dataset.x7HomeScene = "";
+  layer.setAttribute("data-x7-home-scene", "");
+  layer.setAttribute("role", "presentation");
+
+  const visual = (tagName, className) => {
+    const element = documentRef.createElement(tagName);
+    element.className = className;
+    element.setAttribute("aria-hidden", "true");
+    return element;
+  };
+  const webgl = visual("div", "x7-home-scene__webgl");
+  const particles = visual("canvas", "x7-home-scene__particles");
+  const vignette = visual("div", "x7-home-scene__vignette");
+  const loading = visual("div", "x7-home-scene__loading");
+  loading.textContent = "正在构建场景";
+  const skip = documentRef.createElement("button");
+  skip.className = "x7-home-scene__skip";
+  skip.type = "button";
+  skip.textContent = "跳过开场";
+  skip.setAttribute("aria-label", "跳过 3D 开场动画");
+
+  layer.appendChild(webgl);
+  layer.appendChild(particles);
+  layer.appendChild(vignette);
+  layer.appendChild(loading);
+  layer.appendChild(skip);
+  return { layer, loading, particles, skip, webgl };
+}
+
+function promiseWithTimeout(promise, env, message) {
+  let timer = 0;
+  const timeout = new Promise((_, reject) => {
+    timer = env.setTimeout(() => reject(new Error(message)), env.loadTimeoutMs);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timer) env.clearTimeout(timer);
+  });
+}
+
+function disposeModel(model) {
+  if (!model || disposedModels.has(model)) return;
+  disposedModels.add(model);
+  const disposed = new Set();
+  const disposeOnce = (resource) => {
+    if (!resource?.dispose || disposed.has(resource)) return;
+    disposed.add(resource);
+    resource.dispose();
+  };
+  model.traverse?.((node) => {
+    disposeOnce(node.geometry);
+    const materials = Array.isArray(node.material) ? node.material : [node.material];
+    materials.filter(Boolean).forEach((material) => {
+      Object.values(material).forEach((value) => {
+        if (value?.isTexture) disposeOnce(value);
+      });
+      disposeOnce(material);
+    });
+  });
+}
+
+function frameModel(THREE, model) {
+  const box = new THREE.Box3().setFromObject(model);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  const largest = Math.max(size.x, size.y, size.z) || 1;
+  model.position.sub(center);
+  model.scale.setScalar(2.25 / largest);
+}
+
+function modelResourcePath(modelUrl, baseUrl) {
+  try {
+    return new URL(".", new URL(modelUrl, baseUrl)).href;
+  } catch {
+    return "";
+  }
+}
+
+export function initHomeScene(home, overrides = {}) {
+  if (!home) return null;
+  const env = browserDependencies(overrides);
+  if (env.document.querySelector("[data-x7-home-scene]")) return null;
+
+  const { layer, loading, particles, skip, webgl } = createLayer(env.document);
+  env.document.body.appendChild(layer);
+  layer.dataset.entry = "running";
+  layer.dataset.state = "particles";
+
+  const desktopPreference = env.matchMedia(DESKTOP_QUERY);
+  const reducedPreference = env.matchMedia(REDUCE_MOTION_QUERY);
+  const connection = env.navigator.connection;
+  const particleContext = particles.getContext("2d", { alpha: true });
+  const particlePoints = Array.from({ length: 64 }, (_, index) => ({
+    x: ((index * 47) % 101) / 101,
+    y: ((index * 71) % 103) / 103,
+    phase: index * 0.67,
+    radius: 0.45 + (index % 5) * 0.18,
+  }));
+
+  let activeAbortController = null;
+  let camera = null;
+  let contextListeners = null;
+  let currentMode = "particles";
+  let destroyed = false;
+  let frameId = 0;
+  let generation = 0;
+  let lastTransition = Promise.resolve();
+  let model = null;
+  let modelBasePosition = { x: 0, y: 0, z: 0 };
+  let modelBaseScale = 1;
+  let modelMaterials = [];
+  let modules = null;
+  let modulePromise = null;
+  let particleHeight = 1;
+  let particleWidth = 1;
+  let paused = false;
+  let renderedProgress = 0;
+  let renderer = null;
+  let scene = null;
+  let targetProgress = 0;
+  let warned = false;
+  let webglAvailable = false;
+
+  const warnOnce = (error) => {
+    if (warned) return;
+    warned = true;
+    env.console?.warn?.("X7 fullscreen scene fell back to particles", error);
+  };
+
+  const resizeParticles = () => {
+    particleWidth = Math.max(1, Math.floor(env.window.innerWidth || 1));
+    particleHeight = Math.max(1, Math.floor(env.window.innerHeight || 1));
+    const dpr = Math.min(env.window.devicePixelRatio || 1, 2);
+    particles.width = Math.floor(particleWidth * dpr);
+    particles.height = Math.floor(particleHeight * dpr);
+    particles.style.width = `${particleWidth}px`;
+    particles.style.height = `${particleHeight}px`;
+    particleContext?.setTransform?.(dpr, 0, 0, dpr, 0, 0);
+  };
+
+  const drawParticles = (time = 0) => {
+    if (!particleContext || currentMode === "static") return;
+    particleContext.clearRect(0, 0, particleWidth, particleHeight);
+    particleContext.globalCompositeOperation = "lighter";
+    particlePoints.forEach((point) => {
+      const x = point.x * particleWidth;
+      const y = (point.y * particleHeight + time * (0.003 + point.radius * 0.002)) % particleHeight;
+      const alpha = 0.025 + (Math.sin(time * 0.0007 + point.phase) + 1) * 0.025;
+      particleContext.beginPath();
+      particleContext.fillStyle = `rgba(116, 235, 255, ${alpha})`;
+      particleContext.arc(x, y, point.radius, 0, Math.PI * 2);
+      particleContext.fill();
+    });
+  };
+
+  const resizeRenderer = () => {
+    if (!renderer || !camera) return;
+    const rect = webgl.getBoundingClientRect();
+    const width = Math.max(1, Math.floor(rect.width));
+    const height = Math.max(1, Math.floor(rect.height));
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height, false);
+  };
+
+  const applyFrame = (frame) => {
+    if (!camera || !model) return;
+    camera.position.set(frame.cameraX, frame.cameraY, frame.cameraZ);
+    camera.fov = frame.fov;
+    camera.updateProjectionMatrix();
+    model.position.x = modelBasePosition.x + frame.modelX;
+    model.position.y = modelBasePosition.y + frame.modelY;
+    model.position.z = modelBasePosition.z;
+    model.scale.setScalar(modelBaseScale * frame.modelScale);
+    model.rotation.y = -0.16 + frame.p * 0.24;
+    const follow = 1 - frame.p * 0.75;
+    camera.lookAt(
+      modelBasePosition.x + frame.modelX * follow,
+      modelBasePosition.y + frame.modelY * follow,
+      modelBasePosition.z,
+    );
+    modelMaterials.forEach((material) => {
+      material.transparent = true;
+      material.opacity = frame.opacity;
+    });
+  };
+
+  const renderWebgl = () => {
+    if (!webglAvailable || !renderer || !scene || !camera) return;
+    if (currentMode === "full") renderedProgress += (targetProgress - renderedProgress) * 0.075;
+    const progress = currentMode === "static" ? 0.82 : renderedProgress;
+    applyFrame(sampleSceneFrame(progress));
+    renderer.render(scene, camera);
+  };
+
+  const stop = () => {
+    if (!frameId) return;
+    env.cancelAnimationFrame(frameId);
+    frameId = 0;
+  };
+  const tick = (time) => {
+    frameId = 0;
+    if (destroyed || paused || currentMode === "static") return;
+    drawParticles(time);
+    try {
+      renderWebgl();
+    } catch (error) {
+      fallbackToParticles(error);
+      return;
+    }
+    frameId = env.requestAnimationFrame(tick);
+  };
+  const start = () => {
+    if (destroyed || paused || currentMode === "static" || frameId) return;
+    frameId = env.requestAnimationFrame(tick);
+  };
+
+  const abortLoad = () => {
+    activeAbortController?.abort();
+    activeAbortController = null;
+  };
+  const disposeWebgl = () => {
+    webglAvailable = false;
+    if (contextListeners && renderer?.domElement) {
+      renderer.domElement.removeEventListener("webglcontextlost", contextListeners.lost);
+      renderer.domElement.removeEventListener("webglcontextrestored", contextListeners.restored);
+    }
+    contextListeners = null;
+    renderer?.domElement?.remove?.();
+    renderer?.dispose?.();
+    disposeModel(model);
+    renderer = null;
+    model = null;
+    modelMaterials = [];
+    camera = null;
+    scene = null;
+  };
+
+  const fallbackToParticles = (error) => {
+    if (destroyed) return;
+    abortLoad();
+    disposeWebgl();
+    currentMode = "particles";
+    layer.dataset.mode = "particles";
+    layer.dataset.state = "fallback";
+    loading.hidden = true;
+    warnOnce(error);
+    start();
+  };
+
+  const loadModules = async () => {
+    if (modules) return modules;
+    if (!modulePromise) {
+      modulePromise = promiseWithTimeout(
+        env.importModules(),
+        env,
+        "X7 scene module load timed out",
+      );
+    }
+    try {
+      modules = await modulePromise;
+      return modules;
+    } finally {
+      modulePromise = null;
+    }
+  };
+
+  const fetchAndParseModel = async (loader, token) => {
+    if (!env.fetch || !env.AbortController || typeof loader.parseAsync !== "function") {
+      return promiseWithTimeout(
+        loader.loadAsync(home.dataset.modelUrl),
+        env,
+        "X7 scene model load timed out",
+      );
+    }
+
+    const controller = new env.AbortController();
+    activeAbortController = controller;
+    let timer = 0;
+    const download = (async () => {
+      const response = await env.fetch(home.dataset.modelUrl, { signal: controller.signal });
+      if (!response?.ok) throw new Error(`X7 scene model request failed (${response?.status || "network"})`);
+      const buffer = await response.arrayBuffer();
+      return loader.parseAsync(
+        buffer,
+        modelResourcePath(home.dataset.modelUrl, env.window.location?.href),
+      );
+    })();
+    download.then((gltf) => {
+      if (controller.signal.aborted && token === generation) disposeModel(gltf.scene);
+    }).catch(() => {});
+    const timeout = new Promise((_, reject) => {
+      timer = env.setTimeout(() => {
+        controller.abort();
+        reject(new Error("X7 scene model load timed out"));
+      }, env.loadTimeoutMs);
+    });
+    try {
+      return await Promise.race([download, timeout]);
+    } finally {
+      if (timer) env.clearTimeout(timer);
+      if (activeAbortController === controller) activeAbortController = null;
+    }
+  };
+
+  const buildWebgl = async (token) => {
+    const { THREE, GLTFLoader } = await loadModules();
+    if (destroyed || token !== generation) return;
+    const loader = new GLTFLoader();
+    const gltf = await fetchAndParseModel(loader, token);
+    if (destroyed || token !== generation) {
+      disposeModel(gltf.scene);
+      return;
+    }
+
+    model = gltf.scene;
+    frameModel(THREE, model);
+    modelBaseScale = model.scale.x || 1;
+    modelBasePosition = {
+      x: model.position.x || 0,
+      y: model.position.y || 0,
+      z: model.position.z || 0,
+    };
+    modelMaterials = [];
+    model.traverse?.((node) => {
+      const materials = Array.isArray(node.material) ? node.material : [node.material];
+      modelMaterials.push(...materials.filter(Boolean));
+    });
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(env.window.devicePixelRatio || 1, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    webgl.appendChild(renderer.domElement);
+    const ambient = new THREE.HemisphereLight(0x9fdfff, 0x080a0a, 1.45);
+    const key = new THREE.DirectionalLight(0xffffff, 2);
+    const rim = new THREE.DirectionalLight(0x62f1ff, 1.05);
+    key.position.set(2.5, 3.5, 4);
+    rim.position.set(-3.5, 1.5, -2.5);
+    scene.add(ambient, key, rim, model);
+
+    const lost = (event) => {
+      event.preventDefault();
+      webglAvailable = false;
+      layer.dataset.state = "context-lost";
+    };
+    const restored = () => {
+      if (destroyed || !renderer) return;
+      webglAvailable = true;
+      layer.dataset.state = "running";
+      resume();
+    };
+    contextListeners = { lost, restored };
+    renderer.domElement.addEventListener("webglcontextlost", lost);
+    renderer.domElement.addEventListener("webglcontextrestored", restored);
+    webglAvailable = true;
+    layer.dataset.state = "running";
+    loading.hidden = true;
+    resizeRenderer();
+    renderWebgl();
+  };
+
+  const desiredMode = () => sceneModeFor({
+    desktop: desktopPreference.matches,
+    reducedMotion: reducedPreference.matches,
+    saveData: connection?.saveData === true,
+  });
+
+  const applyMode = async (token) => {
+    const nextMode = desiredMode();
+    currentMode = nextMode;
+    layer.dataset.mode = nextMode;
+    if (nextMode === "particles") {
+      abortLoad();
+      disposeWebgl();
+      loading.hidden = true;
+      layer.dataset.state = "particles";
+      start();
+      return;
+    }
+    if (nextMode === "static") stop();
+    else start();
+    if (!renderer || !model) {
+      loading.hidden = false;
+      try {
+        await buildWebgl(token);
+      } catch (error) {
+        if (!destroyed && token === generation) fallbackToParticles(error);
+        return;
+      }
+    }
+    if (destroyed || token !== generation) return;
+    if (nextMode === "static") {
+      stop();
+      renderWebgl();
+    } else {
+      start();
+    }
+  };
+
+  const scheduleMode = () => {
+    generation += 1;
+    abortLoad();
+    const token = generation;
+    lastTransition = applyMode(token);
+    return lastTransition;
+  };
+
+  const finishEntry = () => {
+    env.document.documentElement.classList.remove?.("x7-home-entry-prime");
+    env.document.documentElement.classList.add("x7-home-entry-complete");
+    layer.dataset.entry = "complete";
+  };
+  const onProgress = (event) => {
+    targetProgress = clampSceneProgress(event.detail?.progress ?? event.detail);
+  };
+  const onPageHide = (event) => {
+    if (event.persisted === false) {
+      destroy();
+      return;
+    }
+    paused = true;
+    stop();
+  };
+  function resume() {
+    paused = env.document.hidden === true;
+    if (paused) return;
+    try {
+      if (currentMode === "static") renderWebgl();
+      else start();
+    } catch (error) {
+      fallbackToParticles(error);
+    }
+  }
+  const onVisibilityChange = () => {
+    if (env.document.hidden === true) {
+      paused = true;
+      stop();
+    } else {
+      resume();
+    }
+  };
+  const onResize = () => {
+    resizeParticles();
+    resizeRenderer();
+  };
+
+  home.addEventListener("x7:scene-progress", onProgress);
+  skip.addEventListener("click", finishEntry, { once: true });
+  layer.addEventListener("wheel", finishEntry, { once: true, passive: true });
+  env.window.addEventListener("pagehide", onPageHide);
+  env.window.addEventListener("pageshow", resume);
+  env.window.addEventListener("resize", onResize, { passive: true });
+  env.document.addEventListener("visibilitychange", onVisibilityChange);
+  desktopPreference.addEventListener?.("change", scheduleMode);
+  reducedPreference.addEventListener?.("change", scheduleMode);
+  connection?.addEventListener?.("change", scheduleMode);
+
+  resizeParticles();
+  scheduleMode();
+
+  function destroy() {
+    if (destroyed) return;
+    destroyed = true;
+    generation += 1;
+    stop();
+    abortLoad();
+    disposeWebgl();
+    home.removeEventListener("x7:scene-progress", onProgress);
+    env.window.removeEventListener("pagehide", onPageHide);
+    env.window.removeEventListener("pageshow", resume);
+    env.window.removeEventListener("resize", onResize);
+    env.document.removeEventListener("visibilitychange", onVisibilityChange);
+    desktopPreference.removeEventListener?.("change", scheduleMode);
+    reducedPreference.removeEventListener?.("change", scheduleMode);
+    connection?.removeEventListener?.("change", scheduleMode);
+    layer.remove();
+  }
+
+  return {
+    destroy,
+    layer,
+    get ready() {
+      return lastTransition;
+    },
+    whenIdle() {
+      return lastTransition;
+    },
+  };
+}

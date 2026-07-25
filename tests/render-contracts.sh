@@ -45,27 +45,13 @@ grep -Fq "x7-home-entry-prime" "$source_dir/static/js/x7/home.js"
 grep -Fq "x7-home-entry-complete" "$source_dir/static/js/x7/home.js"
 grep -Fq "const HOME_ENTRY_DESKTOP_DURATION = 2200;" "$source_dir/static/js/x7/home.js"
 grep -Fq "const HOME_ENTRY_MOBILE_DURATION = 1850;" "$source_dir/static/js/x7/home.js"
-grep -Fq "const PARTICLE_FOCUS_DESKTOP_DURATION = 1100;" "$source_dir/static/js/x7/home.js"
-grep -Fq 'canvas.dataset.entryPhase = entryActive ? "focus" : "ambient";' "$source_dir/static/js/x7/home.js"
-grep -Fq 'canvas.dataset.entryPhase = "ambient";' "$source_dir/static/js/x7/home.js"
-
 node - "$source_dir/static/js/x7/home.js" <<'NODE'
 const fs = require("node:fs");
 const js = fs.readFileSync(process.argv[2], "utf8");
-const canvasCreations = js.match(/document\.createElement\("canvas"\)/g) || [];
-if (canvasCreations.length !== 1) process.exit(1);
 for (const required of [
   "function getHomeEntryDuration()",
-  "function getParticleFocusDuration()",
   "function markHomeEntryComplete(immediate = false)",
   "window.setTimeout(finish, getHomeEntryDuration());",
-  "let entryFocusOffsetX = 0;",
-  "entryFocusOffsetX = window.innerWidth / 2 - (rect.left + width / 2);",
-  "const isFocusing = entryActive && entryProgress < 1;",
-  "const focusEnvelope = isFocusing ? Math.sin(Math.PI * entryProgress) : 0;",
-  "window.addEventListener(\"pagehide\", stopParticleField);",
-  "window.addEventListener(\"pageshow\", (event) => {",
-  "if (event.persisted) startParticleField();",
 ]) {
   if (!js.includes(required)) {
     console.error(`Homepage entry contract failed: missing ${required}`);
@@ -76,7 +62,11 @@ if (js.includes("getHomeEntryDuration() +")) process.exit(1);
 if (!/if \(reduceMotion\) \{[\s\S]*?markHomeEntryComplete\(true\);[\s\S]*?return;[\s\S]*?\}/.test(js)) process.exit(1);
 if (!/if \(immediate\) \{\s*finish\(\);\s*return;\s*\}/.test(js)) process.exit(1);
 
-const entryCompletion = js.match(/function markHomeEntryComplete\(immediate = false\) \{([\s\S]*?)\n\}\n\nfunction initParticleField/)?.[1] || "";
+if (/function initParticleField|PARTICLE_FOCUS|getParticleFocusDuration/.test(js)) {
+  console.error("Homepage entry contract failed: obsolete hero particle runtime remains");
+  process.exit(1);
+}
+const entryCompletion = js.match(/function markHomeEntryComplete\(immediate = false\) \{([\s\S]*?)\n\}\n\nfunction initScrollCinematography/)?.[1] || "";
 const storageWrite = entryCompletion.indexOf('sessionStorage.setItem(key, "1");');
 const finishDeclaration = entryCompletion.indexOf("const finish = () => {");
 if (storageWrite === -1 || finishDeclaration === -1 || storageWrite > finishDeclaration) {
@@ -86,51 +76,6 @@ if (storageWrite === -1 || finishDeclaration === -1 || storageWrite > finishDecl
 if (!/try \{\s*sessionStorage\.setItem\(key, "1"\);\s*\} catch \{/.test(entryCompletion)) {
   console.error("Homepage entry contract failed: immediate session write must remain storage-safe");
   process.exit(1);
-}
-
-const resizeBody = js.match(/const resize = \(\) => \{([\s\S]*?)\n  \};/)?.[1] || "";
-const drawBody = js.match(/const draw = \(time\) => \{([\s\S]*?)\n  \};/)?.[1] || "";
-if (!resizeBody.includes("entryFocusOffsetX = window.innerWidth / 2 - (rect.left + width / 2);")) {
-  console.error("Homepage entry contract failed: resize must align particle focus with the viewport center");
-  process.exit(1);
-}
-if (drawBody.includes("getBoundingClientRect")) {
-  console.error("Homepage entry contract failed: draw loop must not read layout");
-  process.exit(1);
-}
-if (!/if \(isFocusing\) \{[\s\S]*?Math\.cos\([\s\S]*?Math\.sin\(/.test(drawBody)) {
-  console.error("Homepage entry contract failed: focus trigonometry must stay inside the focusing branch");
-  process.exit(1);
-}
-const focusingBranch = drawBody.indexOf("if (isFocusing) {");
-for (const focusCalculation of ["const focusX =", "const focusY ="]) {
-  const index = drawBody.indexOf(focusCalculation);
-  if (index === -1 || index < focusingBranch) {
-    console.error(`Homepage entry contract failed: ${focusCalculation} must be skipped in ambient mode`);
-    process.exit(1);
-  }
-}
-if (!drawBody.includes("const focusX = cx + entryFocusOffsetX +")) {
-  console.error("Homepage entry contract failed: focus target must consume entryFocusOffsetX");
-  process.exit(1);
-}
-if (/pagehide[\s\S]{0,160}once\s*:\s*true/.test(js)) {
-  console.error("Homepage entry contract failed: pagehide cleanup must survive repeated BFCache cycles");
-  process.exit(1);
-}
-const stopBody = js.match(/const stopParticleField = \(\) => \{([\s\S]*?)\n  \};/)?.[1] || "";
-const startBody = js.match(/const startParticleField = \(\) => \{([\s\S]*?)\n  \};/)?.[1] || "";
-for (const required of ["window.cancelAnimationFrame(frame);", "frame = 0;", "observer.disconnect();"]) {
-  if (!stopBody.includes(required)) {
-    console.error(`Homepage entry contract failed: pagehide stop is missing ${required}`);
-    process.exit(1);
-  }
-}
-for (const required of ["observer.observe(hero);", "resize();", "frame = window.requestAnimationFrame(draw);"]) {
-  if (!startBody.includes(required)) {
-    console.error(`Homepage entry contract failed: BFCache restore is missing ${required}`);
-    process.exit(1);
-  }
 }
 NODE
 
@@ -187,6 +132,13 @@ const sceneLayerRule = css.match(/\.x7-home-scene__webgl,\s*\.x7-home-scene__par
 for (const declaration of ["position: absolute", "inset: 0", "width: 100%", "height: 100%", "pointer-events: none"]) {
   if (!sceneLayerRule.includes(declaration)) {
     console.error(`Homepage scene contract failed: full-viewport layers are missing ${declaration}`);
+    process.exit(1);
+  }
+}
+const sceneCanvasRule = ruleBody(css, ".x7-home-scene__webgl canvas");
+for (const declaration of ["display: block", "width: 100%", "height: 100%"]) {
+  if (!sceneCanvasRule.includes(declaration)) {
+    console.error(`Homepage scene contract failed: WebGL canvas is missing ${declaration}`);
     process.exit(1);
   }
 }
