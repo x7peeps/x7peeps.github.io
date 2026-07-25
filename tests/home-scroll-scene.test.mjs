@@ -557,6 +557,58 @@ test("scene progress uses five smooth deterministic and reversible keyframes", a
   assert.ok(Math.abs(sampleSceneFrame(0.2201).cameraX - sampleSceneFrame(0.2199).cameraX) < 0.01);
 });
 
+test("scene keyframes retreat behind readable home content after the opening", async () => {
+  const { sampleSceneFrame } = await import(sceneModuleUrl.href);
+  const opening = sampleSceneFrame(0);
+  const retreat = sampleSceneFrame(0.22);
+  const readable = sampleSceneFrame(0.52);
+  const silhouette = sampleSceneFrame(0.82);
+  const ending = sampleSceneFrame(1);
+
+  assert.ok(opening.modelScale >= 0.9);
+  assert.ok(opening.opacity >= 0.9);
+
+  assert.ok(retreat.modelX >= 1.7);
+  assert.ok(retreat.modelScale <= 0.62);
+  assert.ok(retreat.opacity <= 0.58);
+  assert.ok(retreat.cameraZ >= 4.8);
+
+  assert.ok(readable.modelX >= 2.05);
+  assert.ok(readable.modelScale <= 0.42);
+  assert.ok(readable.opacity <= 0.18);
+  assert.ok(readable.cameraZ >= 5.4);
+
+  assert.ok(silhouette.modelX >= 2.3);
+  assert.ok(silhouette.modelScale <= 0.32);
+  assert.ok(silhouette.opacity <= 0.08);
+  assert.ok(ending.modelX >= 2.5);
+  assert.ok(ending.opacity <= 0.05);
+});
+
+test("scene composition exposes a significant rightward retreat in screen space", async () => {
+  const { sampleSceneFrame, sceneCompositionFor } = await import(sceneModuleUrl.href);
+  const opening = sceneCompositionFor(sampleSceneFrame(0));
+  const retreat = sceneCompositionFor(sampleSceneFrame(0.22));
+  const readable = sceneCompositionFor(sampleSceneFrame(0.52));
+
+  assert.equal(opening.normalizedHorizontalOffset, 0);
+  assert.ok(retreat.cameraLookAtX >= sampleSceneFrame(0.22).modelX * 0.06);
+  assert.ok(retreat.cameraLookAtX <= sampleSceneFrame(0.22).modelX * 0.1);
+  assert.ok(retreat.normalizedHorizontalOffset >= 0.3);
+  assert.ok(readable.normalizedHorizontalOffset > retreat.normalizedHorizontalOffset);
+});
+
+test("static scene keeps a small visible avatar without changing the full scroll curve", async () => {
+  const { sampleSceneFrame, staticSceneProgress } = await import(sceneModuleUrl.href);
+  const progress = staticSceneProgress();
+  const frame = sampleSceneFrame(progress);
+
+  assert.equal(progress, 0.34);
+  assert.ok(frame.opacity >= 0.2 && frame.opacity <= 0.4);
+  assert.ok(frame.modelScale <= 0.55);
+  assert.ok(frame.modelX >= 1.3);
+});
+
 test("scene root never aria-hides its accessible skip button", async () => {
   const { initHomeScene } = await import(sceneModuleUrl.href);
   const harness = createHarness({ desktop: false });
@@ -578,7 +630,7 @@ test("scene root never aria-hides its accessible skip button", async () => {
   controller.destroy();
 });
 
-test("sceneModeFor drives initialization and static loading owns no particle RAF", async () => {
+test("sceneModeFor drives initialization and static loading renders a visible frame without a RAF", async () => {
   const { initHomeScene } = await import(sceneModuleUrl.href);
   const particles = createHarness({ desktop: false });
   const particleController = initHomeScene(particles.home, particles.deps);
@@ -596,6 +648,9 @@ test("sceneModeFor drives initialization and static loading owns no particle RAF
   staticHarness.resolveFetch();
   await staticController.ready;
   assert.equal(staticController.layer.dataset.mode, "static");
+  assert.ok(staticHarness.model.material.opacity >= 0.2);
+  assert.ok(staticHarness.model.material.opacity <= 0.4);
+  assert.ok(staticHarness.model.position.x >= 1.3);
   assert.equal(staticHarness.rafCallbacks.size, 0);
   staticController.destroy();
 });

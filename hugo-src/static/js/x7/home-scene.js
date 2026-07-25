@@ -3,14 +3,16 @@ const GLTF_LOADER_URL = "https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFL
 const DESKTOP_QUERY = "(min-width: 64rem)";
 const REDUCE_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const LOAD_TIMEOUT_MS = 12_000;
+const STATIC_SCENE_PROGRESS = 0.34;
+const CAMERA_MODEL_FOLLOW = 0.08;
 const disposedModels = new WeakSet();
 
 const sceneFrames = [
   { p: 0, cameraX: 1.55, cameraY: 1.35, cameraZ: 4.55, fov: 42, modelX: 0, modelY: -0.08, modelScale: 1, opacity: 1 },
-  { p: 0.22, cameraX: 0.65, cameraY: 1.22, cameraZ: 3.75, fov: 37, modelX: 0.78, modelY: -0.06, modelScale: 0.86, opacity: 0.94 },
-  { p: 0.52, cameraX: -0.25, cameraY: 0.92, cameraZ: 3.3, fov: 34, modelX: 1.05, modelY: 0.05, modelScale: 0.72, opacity: 0.72 },
-  { p: 0.82, cameraX: 0.35, cameraY: 1.05, cameraZ: 4.6, fov: 43, modelX: 1.48, modelY: 0.12, modelScale: 0.58, opacity: 0.34 },
-  { p: 1, cameraX: 0.6, cameraY: 1.15, cameraZ: 5.1, fov: 46, modelX: 1.62, modelY: 0.16, modelScale: 0.54, opacity: 0.22 },
+  { p: 0.22, cameraX: 0.45, cameraY: 1.25, cameraZ: 5.1, fov: 44, modelX: 1.7, modelY: -0.04, modelScale: 0.58, opacity: 0.52 },
+  { p: 0.52, cameraX: -0.2, cameraY: 1.05, cameraZ: 5.6, fov: 46, modelX: 2.05, modelY: 0.06, modelScale: 0.38, opacity: 0.16 },
+  { p: 0.82, cameraX: 0.3, cameraY: 1.14, cameraZ: 6, fov: 48, modelX: 2.3, modelY: 0.12, modelScale: 0.3, opacity: 0.07 },
+  { p: 1, cameraX: 0.55, cameraY: 1.2, cameraZ: 6.4, fov: 50, modelX: 2.5, modelY: 0.16, modelScale: 0.26, opacity: 0.04 },
 ];
 
 export function clampSceneProgress(value) {
@@ -21,6 +23,20 @@ export function sceneModeFor({ desktop, reducedMotion, saveData }) {
   if (reducedMotion) return "static";
   if (!desktop || saveData) return "particles";
   return "full";
+}
+
+export function staticSceneProgress() {
+  return STATIC_SCENE_PROGRESS;
+}
+
+export function sceneCompositionFor(frame) {
+  const cameraLookAtX = frame.modelX * CAMERA_MODEL_FOLLOW;
+  const cameraLookAtY = frame.modelY;
+  return {
+    cameraLookAtX,
+    cameraLookAtY,
+    normalizedHorizontalOffset: (frame.modelX - cameraLookAtX) / Math.max(0.0001, frame.cameraZ),
+  };
 }
 
 export function sampleSceneFrame(progress) {
@@ -241,10 +257,10 @@ export function initHomeScene(home, overrides = {}) {
     model.position.z = modelBasePosition.z;
     model.scale.setScalar(modelBaseScale * frame.modelScale);
     model.rotation.y = -0.16 + frame.p * 0.24;
-    const follow = 1 - frame.p * 0.75;
+    const composition = sceneCompositionFor(frame);
     camera.lookAt(
-      modelBasePosition.x + frame.modelX * follow,
-      modelBasePosition.y + frame.modelY * follow,
+      modelBasePosition.x + composition.cameraLookAtX,
+      modelBasePosition.y + composition.cameraLookAtY,
       modelBasePosition.z,
     );
     modelMaterials.forEach((material) => {
@@ -256,7 +272,7 @@ export function initHomeScene(home, overrides = {}) {
   const renderWebgl = () => {
     if (!webglAvailable || !renderer || !scene || !camera) return;
     if (currentMode === "full") renderedProgress += (targetProgress - renderedProgress) * 0.075;
-    const progress = currentMode === "static" ? 0.82 : renderedProgress;
+    const progress = currentMode === "static" ? staticSceneProgress() : renderedProgress;
     applyFrame(sampleSceneFrame(progress));
     renderer.render(scene, camera);
   };
