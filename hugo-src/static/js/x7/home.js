@@ -1,6 +1,7 @@
 const HOME_ENTRY_DESKTOP_DURATION = 2200;
 const HOME_ENTRY_MOBILE_DURATION = 1850;
 const MOBILE_HOME_QUERY = "(max-width: 52rem)";
+const homeScrollControllers = new WeakMap();
 
 function getHomeEntryDuration() {
   return window.matchMedia(MOBILE_HOME_QUERY).matches
@@ -93,7 +94,11 @@ function initHomeMotion() {
   home.dataset.motionReady = "true";
 
   import("./home-scene.js")
-    .then((module) => module.initHomeScene(home))
+    .then((module) => {
+      const controller = module.initHomeScene(home);
+      replayHomeSceneProgress(home);
+      return controller;
+    })
     .catch((error) => {
       home.dataset.scene = "failed";
       console.warn("X7 fullscreen scene unavailable", error);
@@ -139,30 +144,117 @@ function markHomeEntryComplete(immediate = false) {
   window.setTimeout(finish, getHomeEntryDuration());
 }
 
-function initScrollCinematography(home) {
-  const hero = home.querySelector(".x7-home-hero");
-  if (!hero) return;
+export function homeScrollProgress({
+  scrollTop,
+  homeTop,
+  homeHeight,
+  viewportHeight,
+}) {
+  const range = Math.max(1, homeHeight - viewportHeight);
+  return Math.min(1, Math.max(0, (scrollTop - homeTop) / range));
+}
+
+export function resolveHomeScrollTarget(documentRef, windowRef) {
+  return documentRef.querySelector("#R-body-inner") || windowRef;
+}
+
+function dispatchHomeSceneProgress(home, progress, windowRef) {
+  if (home.dataset) home.dataset.sceneProgress = String(progress);
+  home.dispatchEvent(new windowRef.CustomEvent("x7:scene-progress", {
+    detail: { progress },
+  }));
+}
+
+export function replayHomeSceneProgress(home, windowRef = window) {
+  const progress = Number(home.dataset?.sceneProgress);
+  if (!Number.isFinite(progress)) return false;
+  dispatchHomeSceneProgress(home, progress, windowRef);
+  return true;
+}
+
+function initScrollCinematography(home, {
+  documentRef = document,
+  windowRef = window,
+} = {}) {
+  homeScrollControllers.get(home)?.destroy();
 
   let ticking = false;
+  let frameId = 0;
+  let destroyed = false;
+  let suspended = false;
+  const scrollTarget = resolveHomeScrollTarget(documentRef, windowRef);
   const update = () => {
+    if (destroyed || suspended) return;
     ticking = false;
-    const rect = hero.getBoundingClientRect();
-    const range = Math.max(1, rect.height * 0.82);
-    const progress = Math.min(1, Math.max(0, -rect.top / range));
-    home.style.setProperty("--x7-home-scroll-progress", progress.toFixed(4));
+    frameId = 0;
+    const homeRect = home.getBoundingClientRect();
+    const scrollTop = scrollTarget === windowRef
+      ? Number(windowRef.scrollY ?? windowRef.pageYOffset ?? 0)
+      : Number(scrollTarget.scrollTop || 0);
+    const viewportHeight = scrollTarget === windowRef
+      ? Number(windowRef.innerHeight || documentRef.documentElement?.clientHeight || 0)
+      : Number(scrollTarget.clientHeight || 0);
+    const targetTop = scrollTarget === windowRef
+      ? 0
+      : Number(scrollTarget.getBoundingClientRect().top || 0);
+    const progress = homeScrollProgress({
+      scrollTop,
+      homeTop: homeRect.top - targetTop + scrollTop,
+      homeHeight: Number(home.offsetHeight || homeRect.height || 0),
+      viewportHeight,
+    });
+    home.style.setProperty("--x7-home-scroll-progress", String(progress));
+    dispatchHomeSceneProgress(home, progress, windowRef);
   };
 
   const request = () => {
-    if (!ticking) {
+    if (!destroyed && !suspended && !ticking) {
       ticking = true;
-      window.requestAnimationFrame(update);
+      frameId = windowRef.requestAnimationFrame(update);
     }
   };
 
+  const cancelPending = () => {
+    if (frameId) windowRef.cancelAnimationFrame(frameId);
+    frameId = 0;
+    ticking = false;
+  };
+  const onPageHide = (event) => {
+    if (event.persisted === true) {
+      suspended = true;
+      cancelPending();
+      return;
+    }
+    destroy();
+  };
+  const onPageShow = (event) => {
+    if (destroyed || event.persisted !== true) return;
+    suspended = false;
+    update();
+  };
+  const destroy = () => {
+    if (destroyed) return;
+    destroyed = true;
+    scrollTarget.removeEventListener("scroll", request);
+    windowRef.removeEventListener("resize", request);
+    windowRef.removeEventListener("pagehide", onPageHide);
+    windowRef.removeEventListener("pageshow", onPageShow);
+    cancelPending();
+    if (homeScrollControllers.get(home)?.destroy === destroy) {
+      homeScrollControllers.delete(home);
+    }
+  };
+  const controller = { destroy };
+  homeScrollControllers.set(home, controller);
   update();
-  window.addEventListener("scroll", request, { passive: true });
-  window.addEventListener("resize", request, { passive: true });
+  scrollTarget.addEventListener("scroll", request, { passive: true });
+  windowRef.addEventListener("resize", request, { passive: true });
+  windowRef.addEventListener("pagehide", onPageHide);
+  windowRef.addEventListener("pageshow", onPageShow);
+  return controller;
 }
+
+export { initScrollCinematography };
 
 function initRevealSequence(home) {
   const revealTargets = [
