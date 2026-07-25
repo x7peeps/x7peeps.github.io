@@ -148,6 +148,113 @@ const entryTimingVariables = [
   "--x7-home-entry-sidebar-delay",
 ];
 
+function ruleBody(source, selector) {
+  const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return source.match(new RegExp(`${escaped}\\s*\\{([^}]*)\\}`))?.[1] ?? "";
+}
+
+function extractAtRuleBlock(source, header) {
+  const headerStart = source.indexOf(header);
+  if (headerStart < 0) return "";
+  const openingBrace = source.indexOf("{", headerStart + header.length);
+  if (openingBrace < 0 || source.slice(headerStart + header.length, openingBrace).trim() !== "") return "";
+
+  let depth = 0;
+  for (let index = openingBrace; index < source.length; index += 1) {
+    if (source[index] === "{") depth += 1;
+    if (source[index] !== "}") continue;
+    depth -= 1;
+    if (depth === 0) return source.slice(openingBrace + 1, index);
+  }
+  return "";
+}
+
+const sceneRule = ruleBody(css, ".x7-home-scene");
+for (const declaration of [
+  "position: fixed",
+  "inset: 0",
+  "width: 100vw",
+  "height: 100dvh",
+  "pointer-events: none",
+  "background: #000102",
+]) {
+  if (!sceneRule.includes(declaration)) {
+    console.error(`Homepage scene contract failed: root scene is missing ${declaration}`);
+    process.exit(1);
+  }
+}
+const sceneLayerRule = css.match(/\.x7-home-scene__webgl,\s*\.x7-home-scene__particles,\s*\.x7-home-scene__vignette\s*\{([^}]*)\}/)?.[1] ?? "";
+for (const declaration of ["position: absolute", "inset: 0", "width: 100%", "height: 100%", "pointer-events: none"]) {
+  if (!sceneLayerRule.includes(declaration)) {
+    console.error(`Homepage scene contract failed: full-viewport layers are missing ${declaration}`);
+    process.exit(1);
+  }
+}
+if (css.includes(".x7-avatar-entry")) {
+  console.error("Homepage scene contract failed: legacy avatar-entry layer rules are still present");
+  process.exit(1);
+}
+
+const mobileHeader = "@media (max-width: 63.99rem)";
+const reducedMotionHeader = "@media (prefers-reduced-motion: reduce)";
+const mobileBlock = extractAtRuleBlock(css, mobileHeader);
+const reducedMotionBlock = extractAtRuleBlock(css, reducedMotionHeader);
+const mobileWebglRule = ruleBody(mobileBlock, ".x7-home-scene__webgl");
+const reducedSceneRule = ruleBody(reducedMotionBlock, ".x7-home-scene");
+const reducedParticlesRule = ruleBody(reducedMotionBlock, ".x7-home-scene__particles");
+
+if (!mobileWebglRule.includes("display: none")) {
+  console.error("Homepage scene contract failed: mobile must hide the WebGL layer");
+  process.exit(1);
+}
+if (!reducedSceneRule.includes("animation: none !important") || !reducedParticlesRule.includes("display: none")) {
+  console.error("Homepage scene contract failed: reduced motion must disable scene animation and particles");
+  process.exit(1);
+}
+
+const globalRuleFalsePositive = `
+${mobileHeader} {
+  .unrelated-mobile-rule { display: block; }
+}
+.x7-home-scene__webgl { display: none; }
+${reducedMotionHeader} {
+  .unrelated-reduced-rule { animation: none; }
+}
+.x7-home-scene { animation: none !important; }
+.x7-home-scene__particles { display: none; }
+`;
+if (ruleBody(extractAtRuleBlock(globalRuleFalsePositive, mobileHeader), ".x7-home-scene__webgl").includes("display: none")) {
+  console.error("Homepage scene contract failed: mobile audit accepted a global WebGL fallback");
+  process.exit(1);
+}
+const falseReducedBlock = extractAtRuleBlock(globalRuleFalsePositive, reducedMotionHeader);
+if (
+  ruleBody(falseReducedBlock, ".x7-home-scene").includes("animation: none !important") ||
+  ruleBody(falseReducedBlock, ".x7-home-scene__particles").includes("display: none")
+) {
+  console.error("Homepage scene contract failed: reduced-motion audit accepted global scene rules");
+  process.exit(1);
+}
+
+const homeBodyRule = ruleBody(css, "body > #R-body:has(main#R-body-inner.home)");
+for (const declaration of ["position: relative", "z-index: 2", "background: transparent !important"]) {
+  if (!homeBodyRule.includes(declaration)) {
+    console.error(`Homepage scene contract failed: homepage body foreground is missing ${declaration}`);
+    process.exit(1);
+  }
+}
+const homeSidebarRule = ruleBody(css, "body:has(main#R-body-inner.home) > aside#R-sidebar");
+for (const declaration of [
+  "z-index: 200 !important",
+  "background: rgb(0 1 2 / 82%) !important",
+  "backdrop-filter: blur(10px) !important",
+]) {
+  if (!homeSidebarRule.includes(declaration)) {
+    console.error(`Homepage scene contract failed: homepage sidebar foreground is missing ${declaration}`);
+    process.exit(1);
+  }
+}
+
 function findForbiddenFullscreenPrimeRules(source) {
   const violations = [];
   const rulePattern = /([^{}]+)\{([^{}]*)\}/g;
@@ -665,6 +772,11 @@ const fail = message => {
 };
 
 if (count(/\bdata-x7-home\b/g) !== 1) fail(`expected exactly one data-x7-home marker, got ${count(/\bdata-x7-home\b/g)}`);
+const homeRoot = html.match(/<article\b[^>]*\bdata-x7-home\b[^>]*>/)?.[0] ?? "";
+if (attr(homeRoot, "data-model-url") !== "/models/x7-avatar-entry.glb") fail("homepage root is missing the model URL");
+if (attr(homeRoot, "data-reference-url") !== "/images/x7-avatar-reference.png") fail("homepage root is missing the reference image URL");
+if (count(/\bx7-avatar-entry__stage\b/g) !== 0) fail("legacy hero-contained avatar stage is still present");
+if (count(/\bdata-x7-avatar-entry\b/g) !== 0 || classCount("x7-avatar-entry") !== 0) fail("legacy hero-contained avatar mount is still present");
 if (count(/<h1\b/g) !== 1) fail(`expected exactly one h1, got ${count(/<h1\b/g)}`);
 for (const required of ["X7PEEPS", "安全研究 / 工具开发 / 取证与攻防知识库", "把复杂问题拆成可执行的流程，把经验沉淀成可以复用的武器库。", "知识沉淀热力图", "最近更新"]) {
   if (!html.includes(required)) fail(`missing required homepage text: ${required}`);
