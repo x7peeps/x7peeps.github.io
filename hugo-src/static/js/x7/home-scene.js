@@ -8,7 +8,7 @@ const CAMERA_MODEL_FOLLOW = 0.08;
 const disposedModels = new WeakSet();
 
 const sceneFrames = [
-  { p: 0, cameraX: 1.55, cameraY: 1.35, cameraZ: 4.55, fov: 42, modelX: 0, modelY: -0.08, modelScale: 1, opacity: 1 },
+  { p: 0, cameraX: 1.55, cameraY: 1.35, cameraZ: 4.55, fov: 42, modelX: 0, modelY: 0.16, modelScale: 1.08, opacity: 1 },
   { p: 0.22, cameraX: 0.45, cameraY: 1.25, cameraZ: 5.1, fov: 44, modelX: 1.7, modelY: -0.04, modelScale: 0.58, opacity: 0.52 },
   { p: 0.52, cameraX: -0.2, cameraY: 1.05, cameraZ: 5.6, fov: 46, modelX: 2.05, modelY: 0.06, modelScale: 0.38, opacity: 0.16 },
   { p: 0.82, cameraX: 0.3, cameraY: 1.14, cameraZ: 6, fov: 48, modelX: 2.3, modelY: 0.12, modelScale: 0.3, opacity: 0.07 },
@@ -416,13 +416,17 @@ export function initHomeScene(home, overrides = {}) {
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(Math.min(env.window.devicePixelRatio || 1, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.32;
     webgl.appendChild(renderer.domElement);
-    const ambient = new THREE.HemisphereLight(0x9fdfff, 0x080a0a, 1.45);
-    const key = new THREE.DirectionalLight(0xffffff, 2);
-    const rim = new THREE.DirectionalLight(0x62f1ff, 1.05);
+    const ambient = new THREE.HemisphereLight(0xc6f4ff, 0x090b0b, 2.1);
+    const key = new THREE.DirectionalLight(0xffffff, 3.1);
+    const rim = new THREE.DirectionalLight(0x62f1ff, 1.85);
+    const fill = new THREE.DirectionalLight(0xffd8a4, 0.95);
     key.position.set(2.5, 3.5, 4);
     rim.position.set(-3.5, 1.5, -2.5);
-    scene.add(ambient, key, rim, model);
+    fill.position.set(-2, 1.8, 3);
+    scene.add(ambient, key, rim, fill, model);
 
     const lost = (event) => {
       event.preventDefault();

@@ -22,6 +22,7 @@
 
 .x7-home-scene__webgl {
   z-index: 1;
+  filter: brightness(1.22) saturate(1.08);
 }
 
 .x7-home-scene__webgl canvas {
@@ -37,8 +38,8 @@
 .x7-home-scene__vignette {
   z-index: 3;
   background:
-    radial-gradient(circle at 66% 42%, transparent 0 24%, rgb(0 0 0 / 34%) 66%, rgb(0 0 0 / 76%) 100%),
-    linear-gradient(90deg, rgb(0 0 0 / 62%), transparent 34% 76%, rgb(0 0 0 / 22%));
+    radial-gradient(circle at 58% 42%, transparent 0 34%, rgb(0 0 0 / 18%) 66%, rgb(0 0 0 / 62%) 100%),
+    linear-gradient(90deg, rgb(0 0 0 / 54%), transparent 32% 78%, rgb(0 0 0 / 16%));
 }
 
 .x7-home-scene__loading,
@@ -200,7 +201,7 @@ body:has(main#R-body-inner.home) > aside#R-sidebar {
 
 .x7-home-hero::before {
   z-index: 0;
-  opacity: calc(.24 - (var(--x7-home-scroll-progress) * .1));
+  opacity: calc(.16 - (var(--x7-home-scroll-progress) * .06));
   background:
     linear-gradient(90deg, transparent 0 18%, rgb(255 255 255 / 4%) 19%, transparent 20% 80%, rgb(255 255 255 / 3.5%) 81%, transparent 82%),
     linear-gradient(180deg, transparent, rgb(0 0 0 / 54%));
@@ -210,7 +211,7 @@ body:has(main#R-body-inner.home) > aside#R-sidebar {
 
 .x7-home-hero::after {
   z-index: 0;
-  opacity: calc(var(--x7-home-scroll-progress) * .38);
+  opacity: calc(var(--x7-home-scroll-progress) * .24);
   background:
     radial-gradient(640px circle at 50% 38%, transparent, rgb(0 0 0 / 38%) 64%, rgb(0 0 0 / 78%)),
     linear-gradient(180deg, transparent 0 58%, rgb(0 0 0 / 78%) 92%);
@@ -223,7 +224,7 @@ body:has(main#R-body-inner.home) > aside#R-sidebar {
   pointer-events: none;
   background:
     radial-gradient(720px circle at var(--mouse-x, 58vw) var(--mouse-y, 38vh), rgb(98 232 255 / 4%), transparent 56%),
-    linear-gradient(180deg, transparent 10%, rgb(0 1 2 / 74%) 90%);
+    linear-gradient(180deg, transparent 10%, rgb(0 1 2 / 58%) 92%);
   transform:
     translate3d(0, calc(var(--x7-home-scroll-progress) * 2.5rem), 0)
     scale(calc(1 + (var(--x7-home-scroll-progress) * .06)));
