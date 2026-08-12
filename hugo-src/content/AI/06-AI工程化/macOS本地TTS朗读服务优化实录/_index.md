@@ -269,10 +269,12 @@ def alive(port):
 
 ```bash
 # 下载并执行（macOS Apple Silicon）
-curl -O https://x7peeps.com/tts/deploy_tts.sh && bash deploy_tts.sh
+curl -O https://raw.githubusercontent.com/x7peeps/hermes-tts-kit/main/deploy_tts.sh && bash deploy_tts.sh
+# 或 clone 完整套件（含守护进程/调度器/README/部署文档）
+git clone https://github.com/x7peeps/hermes-tts-kit.git
 ```
 
-脚本自动完成：创建 venv → 安装依赖（TUNA 镜像）→ 下载模型（hf-mirror）→ 提示放置参考音色 → 拉起服务并测试朗读。
+仓库：**github.com/x7peeps/hermes-tts-kit**（MIT 开源，可审查）。脚本自动完成：创建 venv → 安装依赖（TUNA 镜像）→ 下载模型（hf-mirror）→ 提示放置参考音色 → 拉起服务并测试朗读。
 
 ### A.7 验证命令
 
