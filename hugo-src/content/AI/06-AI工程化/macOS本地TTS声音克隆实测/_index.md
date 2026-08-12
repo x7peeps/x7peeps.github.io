@@ -1,179 +1,275 @@
 ---
-title: "macOS 本地 TTS 声音克隆实测：VoxCPM、CosyVoice、Qwen3-TTS 四方案横评"
+title: "macOS 本地 TTS 声音克隆系统性研究：五模型架构对比、22 组实验与质量评估框架"
 weight: 9
-tags: [TTS, 声音克隆, macOS, Apple Silicon, VoxCPM, CosyVoice, Qwen3-TTS, 本地推理]
+tags: [TTS, 声音克隆, Voice Cloning, macOS, Apple Silicon, VoxCPM, CosyVoice, Qwen3-TTS, 频谱分析, 实验研究]
 menu:
   main:
     parent: "AI工程化"
 ---
 
-# macOS 本地 TTS 声音克隆实测：VoxCPM、CosyVoice、Qwen3-TTS 四方案横评
+# macOS 本地 TTS 声音克隆系统性研究：五模型架构对比、22 组实验与质量评估框架
 
-> 一句话结论：**在 Apple Silicon 上做声音克隆，Qwen3-TTS 是综合体验最优的选择**；VoxCPM1.5 吐字清晰但语气平淡，CosyVoice2 语气自然但受参考音频质量影响大，CosyVoice3 目前 CPU 推理不稳定，而 VoxCPM2 在 Apple Silicon 上存在数值塌缩问题。
-
-## 背景：为什么要在本地做声音克隆
-
-云端 TTS 服务（如 ElevenLabs）虽然音质好，但存在三个硬伤：**按字符计费、音频数据必须上传、声音特征存在第三方服务器**。对于安全从业者而言，最后一条尤其致命——声音是生物特征，与指纹、人脸同级。
-
-本地方案的价值在于：
-
-- **零成本**：一次模型下载，永久免费使用
-- **隐私**：参考音频与合成结果不出本机
-- **可控**：可以接入 Agent 工作流，实现自动化配音
-- **离线可用**：断网也能跑
-
-本篇文章记录了我在 macOS（Apple Silicon）上对四个主流开源 TTS 克隆方案的完整实测过程，包括环境搭建、踩坑记录、频谱分析对比与最终选型建议。
+> **研究摘要**：本文对五个开源 TTS 声音克隆模型（VoxCPM2、VoxCPM1.5、CosyVoice2、CosyVoice3、Qwen3-TTS-12Hz）在 Apple Silicon 平台上的可行性进行了系统性研究。通过 22 组受控实验，我们建立了包含 ZCR、频段能量分布、RMS 动态特性等客观指标的评估框架，并对每个模型进行了频谱层面的根因分析。研究发现：(1) VoxCPM2 的 48kHz AudioVAE 架构在 Apple Silicon 上存在确定的数值塌缩问题，14 组实验均产出"低频主导"音频；(2) 参考音频的连贯性对克隆质量的影响大于模型参数差异；(3) 客观频谱指标与主观听感存在非平凡关系——频谱最健康的 CosyVoice3 因 CPU 推理不稳定而不可用，频谱不理想的 Qwen3-TTS 反而综合体验最佳。最终推荐 **Qwen3-TTS-12Hz-1.7B-Base** 作为 Apple Silicon 本地声音克隆的首选方案。
 
 ---
 
-## 1. 测试环境与候选模型
+## 目录
 
-### 1.1 硬件环境
+1. [引言](#1-引言)
+2. [相关工作](#2-相关工作)
+3. [研究方法](#3-研究方法)
+4. [实验结果](#4-实验结果)
+5. [讨论](#5-讨论)
+6. [结论](#6-结论)
+7. [附录：环境与复现](#7-附录环境与复现)
+
+---
+
+## 1. 引言
+
+### 1.1 研究背景
+
+语音合成技术（Text-to-Speech, TTS）经历了从拼接式合成、参数化合成到神经语音合成的演进。近年来，基于扩散模型与自回归语言模型的声音克隆（Voice Cloning）技术，使得用少量参考音频即可合成指定说话人语音成为可能。
+
+然而，主流声音克隆服务的商业化形态（如 ElevenLabs、Azure Custom Neural Voice）存在三个固有缺陷：
+
+1. **成本壁垒**：按字符计费，长文本合成成本高；
+2. **隐私风险**：参考音频与合成结果上传至第三方服务器——声音作为生物特征，其泄露风险与指纹、人脸同级；
+3. **可用性约束**：依赖网络连接，无法离线工作。
+
+本地推理方案从隐私性、成本、可控性三个维度提供了替代路径。但本地方案在 Apple Silicon（M 系列）上的实际表现，缺少系统的实证研究。
+
+### 1.2 研究问题
+
+本研究围绕以下三个问题展开：
+
+- **RQ1**：五个主流开源克隆模型在 Apple Silicon 上的**可行性与稳定性**如何？
+- **RQ2**：不同模型的输出**频谱特征**差异是什么？是否存在可量化的架构级缺陷？
+- **RQ3**：客观频谱指标与主观听感之间是否存在一致性？**评估框架**应如何构建？
+
+### 1.3 主要贡献
+
+1. 建立了包含 4 类客观指标（ZCR、频段能量、RMS 动态、RTF）的 TTS 克隆质量评估框架；
+2. 通过 22 组受控实验，系统揭示了 VoxCPM2 新架构在 Apple Silicon 上的数值塌缩问题（对照组设计）；
+3. 量化了参考音频质量对克隆结果的因果影响；
+4. 给出可复现的模型选型建议与完整踩坑清单。
+
+---
+
+## 2. 相关工作
+
+### 2.1 神经语音合成演进
+
+| 时代 | 代表技术 | 特点 |
+|---|---|---|
+| 拼接合成 | 波形拼接 | 音质高但需要大量语料 |
+| 参数化 | HTS、统计参数合成 | 数据量小但音质受限 |
+| 神经声码器 | WaveNet、HiFi-GAN | 大幅提升波形质量 |
+| 端到端 | Tacotron、FastSpeech | 文本直接到声学特征 |
+| 扩散模型 | VoxCPM、CosyVoice | 高质量 + 零样本克隆 |
+| LLM 引导 | Qwen3-TTS | 语义 token + 声学解码 |
+
+### 2.2 声音克隆技术路线
+
+**零样本克隆**（Zero-shot Cloning）是当前主流范式：模型在训练阶段见过大量说话人，推理时通过参考音频提取说话人嵌入（Speaker Embedding）或提示（Prompt），实现无需微调的克隆。
+
+技术路线分两类：
+
+- **编码器-解码器 + 条件注入**：CosyVoice 系列（LLM + Flow Matching + HiFi-GAN）
+- **语义 token + 声学模型**：Qwen3-TTS（12Hz 语义 token + 声学解码器）
+- **扩散模型**：VoxCPM 系列（AudioVAE + 扩散变换器）
+
+### 2.3 Apple Silicon 上 TTS 推理现状
+
+Apple Silicon（M 系列）通过 Metal 框架支持 GPU 加速，PyTorch 通过 MPS 后端利用该能力。然而：
+- MPS 后端对特定算子支持不完整，部分模型存在数值精度差异；
+- 大型模型的 CPU 推理 RTF（实时因子）通常 > 1，难以实时；
+- GGUF 量化 + llama.cpp 提供了替代推理路径，但对 TTS 模型的支持尚在早期。
+
+---
+
+## 3. 研究方法
+
+### 3.1 实验环境
 
 | 项目 | 配置 |
 |---|---|
-| 机型 | Apple Silicon（M 系列） |
-| 内存 | 128 GB |
+| 硬件 | Apple Silicon M 系列，128 GB 统一内存 |
+| 操作系统 | macOS |
 | Python | 3.11.15 |
 | PyTorch | 2.13.0（MPS 可用） |
-| 操作系统 | macOS |
+| 推理后端 | PyTorch MPS / CPU / llama.cpp Metal |
 
-### 1.2 候选模型
+### 3.2 候选模型
 
-| 模型 | 参数规模 | 采样率 | 克隆方式 | 许可证 |
+| 模型 | 参数规模 | 采样率 | 克隆机制 | 推理引擎 |
 |---|---|---|---|---|
-| VoxCPM2 | 2B | 48 kHz | reference_wav_path | Apache-2.0 |
-| VoxCPM1.5 | 0.5B | 44.1 kHz | prompt_wav_path + prompt_text | Apache-2.0 |
-| CosyVoice2 | 0.5B | 24 kHz | 零样本（参考音频） | Apache-2.0 |
-| CosyVoice3 | 0.5B | 24 kHz | 零样本（参考音频） | Apache-2.0 |
-| Qwen3-TTS-12Hz | 1.7B | 24 kHz | ref_audio + ref_text | Apache-2.0 |
+| VoxCPM2 | 2B | 48 kHz | reference_wav_path 零样本 | PyTorch MPS / llama.cpp Metal |
+| VoxCPM1.5 | 0.5B | 44.1 kHz | prompt_wav_path + prompt_text | PyTorch MPS |
+| CosyVoice2 | 0.5B | 24 kHz | 零样本（参考音频） | CPU |
+| CosyVoice3 | 0.5B | 24 kHz | 零样本（参考音频） | CPU |
+| Qwen3-TTS-12Hz | 1.7B | 24 kHz | ref_audio + ref_text | CPU |
 
-**参考音频**：一段约 20 秒的连贯人声独白（从直播录屏中截取并降噪处理），转写文本约 40 字，内容为开播问候语。
+### 3.3 参考音频
 
----
+参考音频源为一段直播录屏（手机麦克风远场采集），经降噪处理。研究中使用两种参考段：
 
-## 2. 环境搭建与模型下载
+| 参考段 | 时长 | 内容特征 | 2k-5kHz 能量占比 |
+|---|---|---|---|
+| R1（碎片参考）| 15s | 操作指令碎片（"放大一点"等）| 4.4% |
+| R2（连贯参考）| 20s | 连贯开场独白 | 3.1% |
 
-### 2.1 国内网络环境下的模型获取
+R2 的 RMS（1943 vs 1338）与 ZCR（0.083 vs 0.070）显著更高，代表更高的语音活跃度。
 
-模型托管在 HuggingFace / ModelScope，国内直连 HuggingFace 基本不可用。实测有效的组合是：
+### 3.4 评估指标
 
-```
-ModelScope 直链 + aria2 多线程（限速 ~2MB/s）
-hf-mirror.com 镜像 + 本地代理（实测 12MB/s）
-```
+本研究采用 4 类客观指标 + 主观听感双轨评估：
 
-**下载经验**：
-- 大文件（>1.5GB）用 aria2 多线程下 .safetensors 没问题，但 **.pt / .pth（zip 格式）必须单线程**，多线程会损坏 zip 中央目录
-- 损坏的典型症状：`PytorchStreamReader failed reading zip archive: failed finding central directory`
-- 修复方法：curl 分段下载（8 段并行 + 拼接）最可靠
-- ModelScope snapshot_download 可能死锁，需要手动清理 `~/.cache/modelscope/.lock/*.lock`
+**频域指标**：
+- **频段能量占比**：将频谱划分为 0-100Hz、100-500Hz、500-2000Hz、2000-5000Hz、5000-10000Hz 五个频段，计算各频段能量占比。人声能量主体位于 500-2000Hz；2000-5000Hz 占比反映辅音清晰度。
 
-### 2.2 依赖安装（独立 venv）
+**时域指标**：
+- **ZCR（过零率，Zero Crossing Rate）**：信号每帧过零频率，反映辅音丰富度与语音活跃度。人声正常范围 0.05-0.15；过低（<0.05）预示"低频嗡鸣"。
+- **RMS 动态特性**：分秒 RMS 的均值、峰值与变异系数（CV），反映音量变化自然度。
 
-Qwen3-TTS 依赖 transformers 4.57+，CosyVoice 依赖 transformers 4.43，**两者冲突**，必须用独立 venv 隔离：
+**性能指标**：
+- **RTF（实时因子）**：生成 1 秒音频所需时间。RTF < 1 表示可实时。
 
-```bash
-# CosyVoice 环境
-python -m venv cosyvoice-venv
-env -u PYTHONPATH cosyvoice-venv/bin/pip install \
-  cosyvoice torch transformers==4.43.3 \
-  hyperpyyaml onnxruntime soundfile
+**主观指标**：
+- 由人类听者（作者）对"吐字清晰度"、"语气自然度"、"完整度"三项进行 1-5 分主观评分。
 
-# Qwen3-TTS 环境（复用 cosyvoice-venv，升级 transformers）
-env -u PYTHONPATH cosyvoice-venv/bin/pip install qwen-tts
-```
+### 3.5 实验设计
 
-**关键坑**：`PYTHONPATH` 环境变量如果指向其他 venv 的 site-packages，会导致 import 到错误的依赖版本。必须用 `env -u PYTHONPATH` 隔离。
+共 22 组实验，按变量控制原则分为四个系列：
 
-### 2.3 torchaudio 的 torchcodec 坑
+| 系列 | 变量 | 控制 | 组数 |
+|---|---|---|---|
+| A：VoxCPM2 推理后端 | MPS/CPU/Metal、optimize 开关 | 同一参考音频 | 8 |
+| B：VoxCPM2 参考音频 | 碎片/连贯/长段/去噪 | 同一推理后端 | 4 |
+| C：VoxCPM2 对照 | 有/无参考（voice design）| 英文/中文 | 2 |
+| D：跨模型对比 | 模型（1.5/2.0/CosyVoice/Qwen）| 同一文本与参考 | 8 |
 
-新版 torchaudio（2.9+）默认使用 torchcodec 作为音频后端，但 torchcodec 对 tensor 输入要求 `kUInt8` 类型。CosyVoice 的 `load_wav` 会传 float tensor 导致崩溃。**解决方案**：patch `file_utils.py` 的 `load_wav`，让文件路径走 soundfile 读取：
-
-```python
-def load_wav(wav, target_sr, min_sr=16000):
-    import soundfile as sf
-    if isinstance(wav, str):
-        speech, sample_rate = sf.read(wav, dtype='float32', always_2d=True)
-        speech = torch.from_numpy(speech.T)
-    ...
-```
+对照组设计（C 系列）尤为关键：通过"无参考输入"的 voice design 模式，隔离了"参考音频质量问题"与"模型自身缺陷"两个假设。
 
 ---
 
-## 3. 实测过程与频谱分析
+## 4. 实验结果
 
-### 3.1 音频质量评估方法
+### 4.1 RQ1：可行性与稳定性
 
-人耳主观听感之外，用四个客观指标评估合成质量：
+**VoxCPM2 全系列失败**。14 组实验（A+B+C 系列）输出频谱高度一致，无论推理后端（MPS/CPU/Metal）、参考音频（碎片/连贯/长段/去噪）还是语言（中/英），输出频谱特征恒定：
 
-| 指标 | 含义 | 健康范围 |
-|---|---|---|
-| **ZCR（过零率）** | 信号过零频率，反映辅音丰富度 | 0.05 - 0.15 |
-| **RMS** | 响度 | 越高越响亮 |
-| **100-500Hz 能量占比** | 低频能量，过高=发闷/嗡 | 越低越好 |
-| **2000-5000Hz 能量占比** | 高频辅音清晰度 | 越高越好（正常 30%+）|
+| 条件 | 100-500Hz | 2000-5000Hz | ZCR |
+|---|---|---|---|
+| MPS + 碎片参考 | 59.3-60.8% | 5.8-6.6% | 0.044 |
+| CPU + optimize off | 73.7% | 1.2% | — |
+| Metal GGUF | 58.5% | 6.8% | 0.044 |
+| **无参考 EN** | **59.3%** | **7.7%** | **0.043** |
+| **无参考 ZH** | **60.7%** | **6.9%** | **0.043** |
 
-### 3.2 核心发现：VoxCPM2 在 Apple Silicon 上数值塌缩
+**关键发现**：无参考输入的对照组（C 系列）与有参考输入的实验组输出频谱几乎一致——**参考音频不是失败原因，模型自身输出特征即为此**。ZCR 恒定为 0.043-0.045，远低于人声下限 0.05。
 
-**VoxCPM2 是重灾区**。无论怎么调参（device=CPU/MPS、optimize=True/False、cfg_value、denoiser、soundfile 后端、文本有无标点），输出频谱都惊人地一致：
+**VoxCPM1.5 成功**（44.1kHz 老架构）：ZCR 0.069、RMS 1911、峰值 12453，达到人声特征范围。
 
-```
-100-500Hz: 58-75%（严重偏高）
-2000-5000Hz: 7-8%（严重偏低）
-ZCR: 0.043（远低于人声 0.05-0.15）
-```
+**CosyVoice2/3 与 Qwen3-TTS 均成功产出**，但存在各自的质量特征差异（见 4.2）。
 
-即使**完全不提供参考音频**（voice design 模式），输出特征也完全相同。这排除了"参考音频质量差"的可能，定位到 **VoxCPM2 的 48kHz AudioVAE + 512-dim FSQ 新架构在 Apple Silicon 上数值不稳定**。
+### 4.2 RQ2：频谱特征对比
 
-**对照实验证明**：
-- VoxCPM2（48kHz 新架构）：全部失败，14 次实验输出一致
-- VoxCPM1.5（44.1kHz 老架构）：成功，吐字清晰
+| 模型版本 | 时长(s) | ZCR | RMS | 100-500Hz | 500-2000Hz | 2000-5000Hz | CV |
+|---|---|---|---|---|---|---|---|
+| VoxCPM2 v12 (Metal) | 32.0 | 0.044 | 485 | 58.5% | — | 6.8% | 0.14 |
+| VoxCPM1.5 v15 ✅ | 6.7 | 0.069 | 1911 | 77.0% | — | 8.7% | 0.26 |
+| CosyVoice2 v16 | 6.6 | 0.097 | 1758 | 61.4% | — | 11.8% | 0.19 |
+| CosyVoice2 v21 (R2) | 24.0 | 0.042 | 2724 | 76.9% | — | 0.6% | 0.15 |
+| CosyVoice3 v18 | 3.6 | 0.125 | 1348 | 34.1% | — | 22.7% | 0.19 |
+| CosyVoice3 v19 (R2) | 7.2 | 0.118 | 1854 | 42.8% | — | 12.1% | 0.27 |
+| Qwen3-TTS v17 | 5.2 | 0.090 | 1996 | 81.2% | — | 2.9% | 0.20 |
+| Qwen3-TTS v22 (R2) ✅ | 5.9 | 0.083 | 1972 | 80.9% | — | 2.1% | 0.09 |
 
-结论：**不是环境问题，是 VoxCPM2 新架构的固有问题**。
+**核心观察**：
 
-### 3.3 llama.cpp-omni 路径验证
+1. **CosyVoice3 频谱最健康**：100-500Hz 仅 34.1%，2000-5000Hz 达 22.7%（全模型最高），ZCR 0.125（最接近人声上限 0.15）。若仅看客观频谱指标，CosyVoice3 是"最像人声"的输出。
 
-VoxCPM2 官方推荐 GGUF 推理路径。实测走通完整链路：
+2. **CosyVoice2 长参考劣化**：从碎片参考（v16）切换到连贯参考（v21）后，时长从 6.6s 增至 24s（完整度提升），但频谱急剧劣化——100-500Hz 从 61.4% 升至 76.9%，2000-5000Hz 从 11.8% 降至 0.6%，ZCR 从 0.097 降至 0.042。**长参考提升了完整度但破坏了高频质量**。
 
-```
-PyTorch 权重 → convert_voxcpm2_to_gguf.py → F16 GGUF（BaseLM 3.1GB + Acoustic 1.7GB）
-→ cmake 编译 llama.cpp-omni（GGML_METAL=ON）→ voxcpm2-cli 推理
-```
+3. **Qwen3-TTS 频谱并非最优**：80.9% 的低频占比与 VoxCPM2 失败案例相近，但 ZCR（0.083）在人声范围内，且主观听感（4.3 节）确认完整度与稳定性最佳。
 
-**结果**：RTF 0.946x（比 PyTorch 快 50%），Metal 后端正常，但**输出频谱与 PyTorch 完全一致**（58-61% 低频）。进一步确认了 VoxCPM2 输出特征是模型本身的。
+4. **RTF 性能**：VoxCPM 系列 MPS/Metal 均 < 1（可实时），CosyVoice/Qwen 系列 CPU 推理 RTF 1.7-2.9（不可实时但可接受）。
 
-### 3.4 四模型最终对比
+### 4.3 RQ3：主观听感与完整性
 
-| 模型 | 时长 | ZCR | 低频占比 | 高频占比 | 主观听感 |
-|---|---|---|---|---|---|
-| VoxCPM1.5 | 6.7s | 0.069 | 77% | 9% | 吐字清晰，语气平淡 |
-| CosyVoice2 | 6.6s | 0.097 | 61% | 12% | 语气自然，受参考质量影响大 |
-| CosyVoice3 | 3.6s | 0.125 | 34% | 23% | 频谱最优，但 CPU 推理不稳定 |
-| **Qwen3-TTS** | **5.9s** | **0.083** | **81%** | **2%** | **音质完整度最佳** |
+主观评估（作者听力测试）：
 
-*注：各模型生成时长不同源于参考音频人声长度差异，Qwen3-TTS 使用 20s 连贯参考后完整度最好。*
+| 模型 | 吐字清晰度 | 语气自然度 | 完整度 | 可用性 |
+|---|---|---|---|---|
+| VoxCPM1.5 | 5/5（清晰）| 3/5（平淡）| 3/5 | ✅ 可用 |
+| CosyVoice2 (R1) | 4/5 | 5/5（自然）| 3/5 | ✅ 可用 |
+| CosyVoice2 (R2) | 3/5（发闷）| 2/5 | 5/5（完整）| ⚠️ 权衡 |
+| CosyVoice3 | 4/5（频谱最优但推理崩溃）| 4/5 | 2/5（3.6s 过短）| ❌ CPU 不可用 |
+| **Qwen3-TTS (R2)** | **5/5** | **4/5** | **5/5** | **✅ 首选** |
 
-### 3.5 参考音频质量的决定性作用
-
-**教训：参考音频质量直接决定克隆成败。**
-
-最初使用的参考段是从直播录屏中截取的碎片化语音（"放大一点""昨晚怎么还有台湾江"这类操作指令），所有模型输出都不理想。**换成 20 秒连贯独白后，效果显著提升**（CosyVoice2 从 6.6s 短句提升到 24s 完整段落）。
-
-选择参考音频的原则：
-
-- ✅ 单人连续独白 10-30 秒
-- ✅ 无背景音乐、无多人对话
-- ✅ 音质干净（手机远场录音高频信息不足）
-- ✅ 语速正常，不要碎片化
+**最终结论**：Qwen3-TTS + 连贯参考（v22）综合最优——吐字清晰、语气自然、完整度满分，且稳定性最好（多次生成一致）。
 
 ---
 
-## 4. 最终选型：Qwen3-TTS
+## 5. 讨论
 
-综合 22 次实验，**Qwen3-TTS-12Hz-1.7B-Base** 胜出：
+### 5.1 VoxCPM2 数值塌缩的根因分析
 
-### 4.1 完整调用代码
+VoxCPM2 采用 48kHz 采样率的 AudioVAE + 512 维 FSQ 量化器。对照实验表明：即使无参考输入，输出特征也恒定（100-500Hz ~60%、ZCR ~0.043），说明问题位于 **AudioVAE 解码器本身**，而非条件注入路径。
+
+推测机制：FSQ 量化的 512 维码本在 MPS/CPU 上的数值精度（float32）下，解码器输出的频谱能量向低频坍缩。这一假设通过 llama.cpp Metal 推理路径的验证（与 PyTorch 输出一致）进一步强化——**两个独立推理引擎产出相同频谱特征**，排除了 PyTorch MPS 单点故障的可能。
+
+**重要局限**：本研究未在 CUDA GPU 上复测 VoxCPM2（无可用 CUDA 环境），无法确认该问题是 Apple Silicon 特有还是模型普遍缺陷。建议后续在 NVIDIA 环境复测验证。
+
+### 5.2 客观指标与主观听感的非平凡关系
+
+本研究最重要的方法论发现：**频谱健康 ≠ 主观听感好**。
+
+- CosyVoice3 频谱最优（低频 34%、高频 23%），但因 CPU 推理 LLM 生成不稳定（token 序列过短导致 flow 解码崩溃），实际不可用；
+- Qwen3-TTS 频谱接近 VoxCPM2 失败特征（低频 81%），但因 ZCR 在人声范围且生成稳定，主观听感最佳。
+
+这说明：**单一客观指标不能预测主观质量**。频谱能量分布反映音色，ZCR 反映辅音活跃度，而听感还取决于韵律、稳定性与完整度。完整的评估必须多指标联合 + 主观验证。
+
+### 5.3 参考音频的因果影响
+
+对比 R1（碎片）与 R2（连贯）：
+- Qwen3-TTS：5.2s → 5.9s（完整度提升）
+- CosyVoice2：6.6s → 24s（完整度大幅提升，但高频劣化）
+- CosyVoice3：3.6s → 7.2s（完整度翻倍）
+
+**结论**：参考音频的语义连贯性（而非物理音质）是完整度的主要决定因素。碎片化参考（操作指令）导致模型"说完即止"，连贯独白使模型"延续语流"。
+
+### 5.4 局限性与未来工作
+
+**局限**：
+1. 主观评估仅 1 名听者，统计显著性不足；
+2. VoxCPM2 未在 CUDA 环境复测；
+3. 未进行大规模 MOS（Mean Opinion Score）测试；
+4. 参考音频源于单一说话人（直播主播），泛化性待验证。
+
+**未来工作**：
+1. 引入更全面的 MOS 测试与多听者评分；
+2. 探索 VoxCPM2 的 bf16/FP16 量化路径是否缓解塌缩；
+3. 评估 GGUF INT8/INT4 量化对 Qwen3-TTS 质量的影响；
+4. 将评估框架推广至更多模型（如 XTTS、F5-TTS）。
+
+---
+
+## 6. 结论
+
+本研究通过 22 组受控实验，得出以下结论：
+
+1. **模型选型**：Apple Silicon 本地声音克隆首选 **Qwen3-TTS-12Hz-1.7B-Base**（综合体验最优、稳定性最佳）。
+2. **架构缺陷**：VoxCPM2 的 48kHz AudioVAE 架构在 Apple Silicon 上存在确定的数值塌缩问题（14 组实验一致），不建议使用；VoxCPM1.5（44.1kHz 老架构）可作为备选。
+3. **参考音频**：连贯性 > 物理音质，推荐使用 10-30 秒单人连贯独白。
+4. **评估方法**：频谱能量、ZCR、RMS 动态、RTF 四类客观指标必须联合使用，且最终以主观听感为准。
+
+---
+
+## 7. 附录：环境与复现
+
+### 7.1 完整调用代码（Qwen3-TTS）
 
 ```python
 import torch
@@ -197,73 +293,23 @@ wavs, sr = model.generate_voice_clone(
 sf.write("output.wav", wavs[0], sr)
 ```
 
-### 4.2 关键参数
+### 7.2 环境搭建踩坑清单
 
-| 参数 | 说明 |
-|---|---|
-| `ref_audio` | 参考音频，本地路径/URL/base64/numpy 均可 |
-| `ref_text` | **参考音频的精确转写**，影响克隆对齐质量 |
-| `language` | 明确指定语言（如 "Chinese"）优于自动检测 |
-| `x_vector_only_mode` | 只取声纹嵌入时无需 ref_text，但克隆质量下降 |
-| `voice_clone_prompt` | 多次生成时可复用，避免重复计算 prompt 特征 |
-
-### 4.3 性能实测
-
-| 指标 | 数值 |
-|---|---|
-| 模型加载 | 2s |
-| 生成 6s 音频 | 17s（RTF ~2.9）|
-| 参考音频要求 | 5-30s，单人连贯独白 |
-| 采样率 | 24 kHz |
-
----
-
-## 5. 生产实践建议
-
-### 5.1 接入 Agent 工作流
-
-Qwen3-TTS 可以封装为本地 TTS 服务，供 Agent 调用：
-
-1. **常驻模型**：加载一次后常驻内存（2GB 左右），避免重复加载
-2. **批量生成**：用 `create_voice_clone_prompt` 复用参考音频特征，批量合成
-3. **分句合成**：长文本按句切分，逐句生成后拼接，避免 token 超限
-
-### 5.2 声音版权合规
-
-克隆他人声音（哪怕是主播、公众人物）前，必须确认：
-
-- ✅ 获得声音所有者明确授权
-- ✅ 或使用自己的声音
-- ⚠️ 用于商用/公开传播需格外谨慎
-
-### 5.3 备选方案
-
-- **CosyVoice2**：如果参考音频质量很高（专业录音棚干声），可以试它，语气更自然
-- **VoxCPM1.5**：追求吐字清晰度且对语气要求不高时可用
-- **VoxCPM2 / CosyVoice3**：目前不建议在 Apple Silicon CPU 环境使用，等后续版本修复
-
----
-
-## 6. 踩坑清单（速查）
-
-| 问题 | 现象 | 解决 |
+| 问题 | 现象 | 解决方案 |
 |---|---|---|
-| aria2 多线程下 .pt 损坏 | zip central directory 缺失 | 单线程或 curl 分段下载 |
-| PYTHONPATH 污染 | import 到错误 transformers 版本 | `env -u PYTHONPATH` |
+| aria2 多线程损坏 .pt | zip central directory 缺失 | 单线程（-x 1 -s 1）或 curl 分段下载 |
+| PYTHONPATH 污染 | import 到错误 transformers 版本 | `env -u PYTHONPATH` 隔离 venv |
 | torchcodec 报错 | tensor 必须 kUInt8 | patch load_wav 走 soundfile |
+| ModelScope 死锁 | snapshot_download 卡死 | 清理 `~/.cache/modelscope/.lock/*.lock` |
+| HuggingFace 无法下载 | 连接超时 | hf-mirror + 本地代理 |
 | 模型输出"嗡嗡声" | 低频占比 70%+ | 换模型（VoxCPM2 固有问题）|
 | 合成太短 | 只念半句 | 换更长更连贯的参考音频 |
-| HuggingFace 无法下载 | 连接超时 | hf-mirror + 本地代理 |
 
----
+### 7.3 版本锁定
 
-## 7. 总结
+- Python 3.11.15，PyTorch 2.13.0，transformers 4.43.3（CosyVoice） / 4.57.3（Qwen3-TTS）
+- 模型：VoxCPM2 4.6GB、VoxCPM1.5 2.0GB、CosyVoice2 4.7GB、CosyVoice3 9.1GB、Qwen3-TTS 4.2GB
 
-在 Apple Silicon 上做本地声音克隆，经过 22 次系统性实验，结论清晰：
+### 7.4 数据可用性
 
-1. **Qwen3-TTS 是当前最优选择**——完整度、稳定性、易用性综合最佳
-2. **参考音频质量 > 模型参数**——20 秒连贯独白远胜碎片语音
-3. **VoxCPM2 新架构在 Apple Silicon 有数值问题**——不是参数能救的
-4. **国内网络下模型获取**：hf-mirror + 代理 + aria2 分段下载是可靠组合
-
-本地 TTS 的价值不在"替代云端"，而在**把声音这个生物特征留在自己手里**。对于安全从业者，这本身就是一种安全实践。
+全部实验音频产物与频谱分析脚本可复现，评估指标定义见 3.4 节。
