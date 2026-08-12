@@ -265,7 +265,16 @@ def alive(port):
 - 切块规则：按标点（。！？；，、）优先 + 硬上限兜底
 - 块间 150ms 静音间隔
 
-### A.5 验证命令
+### A.6 一键部署脚本
+
+```bash
+# 下载并执行（macOS Apple Silicon）
+curl -O https://x7peeps.com/tts/deploy_tts.sh && bash deploy_tts.sh
+```
+
+脚本自动完成：创建 venv → 安装依赖（TUNA 镜像）→ 下载模型（hf-mirror）→ 提示放置参考音色 → 拉起服务并测试朗读。
+
+### A.7 验证命令
 
 ```bash
 # 探活
