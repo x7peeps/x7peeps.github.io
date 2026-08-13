@@ -168,7 +168,7 @@ public class org.springframework.ServletRequestAujFilter extends java.lang.Class
 ```
 --rules update            拉取/更新特征库（18 条规则，代理支持）
 --rules list              列出规则（提交人/标题/勾选状态）
---rules select --all     全选 / --rules select --id MS-001 逐个勾选
+--rules select --all     全选 / --rules select --id JMSH-001 逐个勾选
 --rules download <repo>  下载他人特征库
 ```
 
