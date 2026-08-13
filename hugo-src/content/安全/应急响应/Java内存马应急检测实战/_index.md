@@ -68,6 +68,8 @@ menu:
 
 核心思路：**不猜"内存马长什么样"，而是检测"类做了什么不该做的事"**。
 
+![信号分级体系](/memshell-article/03-signal-system.png)
+
 ### 3.1 强信号（A 系，一锤定音）
 
 | 信号 | 检测项 | 判定 |
@@ -92,6 +94,10 @@ menu:
 
 ## 四、工具设计演进：memshell-auditor
 
+![版本演进](/memshell-article/01-version-evolution.png)
+
+![检测架构](/memshell-article/02-architecture.png)
+
 ### 4.1 v1.0：核心检测能力
 
 零依赖纯反射实现（JDK 8 编译，兼容目标 JVM 8-21+），五大审计器：
@@ -107,6 +113,8 @@ menu:
 **关键技术难点**：容器上下文定位。`WebappClassLoaderBase.getResources()` 方法反射在部分版本返回 null，最终改用 **resources 字段反射**兜底成功拿到 StandardContext（坑 2）。
 
 ### 4.2 v1.1：取证闭环
+
+![取证闭环流程](/memshell-article/05-forensics-flow.png)
 
 检出不是终点——还要能 dump、反编译、分析回连：
 
@@ -131,6 +139,8 @@ public class org.springframework.ServletRequestAujFilter extends java.lang.Class
 
 **方案**：`--gen-agent` 生成混淆取证程序——每次随机文件名/包名/类名/字符串特征：
 
+![双程序防识别架构](/memshell-article/04-dual-program.png)
+
 | | 主程序（分析端） | 取证程序（现场端） |
 |---|---|---|
 | 位置 | 分析者机器 | 目标系统现场 |
@@ -146,11 +156,15 @@ public class org.springframework.ServletRequestAujFilter extends java.lang.Class
 
 现场取证人员**不需要知道审计哪个 PID**：自动枚举所有 Java 进程 → 可疑度评分排序（Web 容器 +100 优先、可疑关键字 +60、工具/守护 -30、自身 -1000 跳过）→ 逐个审计 → 汇总 HIGH 排行。
 
+![--scan 全自动扫描终端演示](/memshell-article/07-cli-scan.png)
+
 实测 9 进程环境：自动识别 4 个高危目标（HIGH=2/1/1/1）+ 1 个正常，全程无需人工指定 PID。
 
 ### 4.5 v2.0：特征库生态 + AI 增强
 
 **特征库（类 Metasploit）**：`x7peeps/memshell-rules` 仓库，CLI 在线更新：
+
+![特征库管理终端演示](/memshell-article/09-cli-rules.png)
 ```
 --rules update            拉取/更新特征库（18 条规则，代理支持）
 --rules list              列出规则（提交人/标题/勾选状态）
@@ -182,6 +196,8 @@ public class org.springframework.ServletRequestAujFilter extends java.lang.Class
 
 **检出率 100%（7/7）**。关键发现：所有载荷类名伪装成 Spring/Log4j 框架类——**B1 类名特征检测完全失效，但 A1 磁盘无 class 强信号不受影响**。这是工具的差异化护城河。
 
+![内存马检出终端演示（dump + 反编译 + 回连）](/memshell-article/08-cli-detection.png)
+
 ### 5.3 误报控制
 
 - 磁盘类（BizFilter）→ 正常（INFO）
@@ -190,6 +206,8 @@ public class org.springframework.ServletRequestAujFilter extends java.lang.Class
 - 混淆取证程序 attach 后自身误报从 19 条清零到 0
 
 ## 六、版本管理产品设计
+
+![版本分离管理](/memshell-article/06-version-mgmt.png)
 
 ### 6.1 版本分离自动更新
 
