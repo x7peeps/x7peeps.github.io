@@ -162,7 +162,7 @@ public class org.springframework.ServletRequestAujFilter extends java.lang.Class
 
 ### 4.5 v2.0：特征库生态 + AI 增强
 
-**特征库（类 Metasploit）**：`x7peeps/memshell-rules` 仓库，CLI 在线更新：
+**特征库（类 Metasploit）**：规则已并入主仓库 `rules/` 目录（18 条，随版本发版），CLI 在线更新：
 
 ![特征库管理终端演示](/memshell-article/09-cli-rules.png)
 ```
@@ -261,7 +261,7 @@ public class org.springframework.ServletRequestAujFilter extends java.lang.Class
 
 ## 九、结语
 
-从信号分级方法论到开源工具全栈实现，本文完整呈现了 Java 内存马应急检测的实战路径。核心结论：**检测内存马的关键不是"认出它"，而是"发现异常"**——A1 磁盘无 class 强信号、行为模式组合评分、双程序防识别、众包特征反哺，构成了可对抗未知变种的完整检测体系。工具开源在 [github.com/x7peeps/memshell-auditor](https://github.com/x7peeps/memshell-auditor)，特征库在 [github.com/x7peeps/memshell-rules](https://github.com/x7peeps/memshell-rules)，欢迎社区贡献特征、共同成长。
+从信号分级方法论到开源工具全栈实现，本文完整呈现了 Java 内存马应急检测的实战路径。核心结论：**检测内存马的关键不是"认出它"，而是"发现异常"**——A1 磁盘无 class 强信号、行为模式组合评分、双程序防识别、众包特征反哺，构成了可对抗未知变种的完整检测体系。工具与特征库一体化开源在 [github.com/x7peeps/memshell-auditor](https://github.com/x7peeps/memshell-auditor)（rules/ 目录内置 18 条检测特征，随版本发版），欢迎社区贡献特征、共同成长。
 
 ## 附录：复现指南
 
