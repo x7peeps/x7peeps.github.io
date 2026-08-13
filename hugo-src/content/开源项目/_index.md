@@ -9,6 +9,23 @@ weight = 6
 
 <div class="x7-promo-strip">
   <div>
+    <span class="x7-promo-kicker">Open Source · Java Memory Shell Auditor</span>
+    <h2>memshell-auditor</h2>
+    <p>Java 内存马运行时审计 Agent：attach 到目标 JVM，检测 Filter / Servlet / Listener / Valve 与 defineClass 注入型内存马。JMG 真实载荷（冰蝎 / 哥斯拉 / 蚁剑 / Suo5）实测 7/7 检出，零依赖、纯反射、JDK 8 编译兼容 8-21+。</p>
+    <div class="x7-promo-actions">
+      <a class="x7-promo-button x7-promo-button-primary" href="/开源项目/memshell-auditor/">查看项目详情</a>
+      <a class="x7-promo-button" href="https://github.com/x7peeps/memshell-auditor" target="_blank" rel="noopener">GitHub 仓库</a>
+    </div>
+  </div>
+  <div class="x7-theme-meta-full">
+    <p><strong>定位：</strong>Web 攻防中的内存马应急检测，无文件落盘、类名伪装均可检出。</p>
+    <p><strong>信号：</strong>A1 磁盘无 class 强信号 / A3-A4 / B1-B2 辅助信号。</p>
+    <p><strong>输出：</strong>JSON + 控制台，可直接接入应急响应流程。</p>
+  </div>
+</div>
+
+<div class="x7-promo-strip">
+  <div>
     <span class="x7-promo-kicker">Open Source · Mindmap Presentation</span>
     <h2>Mindmap PPT</h2>
     <p>把文章、报告、演讲稿和笔记转换为可逐步播放的思维导图演示。二开版本加入大纲检索、稳定链接、沉浸演示、离线导出、打印交付，以及适配鼠标和 Mac 触摸板的画板镜头控制。</p>
