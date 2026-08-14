@@ -179,67 +179,18 @@ Qwen-MM-Plugins 的官方口号是"Make any agent harness multimodal-native"—�
 
 ### 4.3 实现
 
-核心是一个新函数 `_summarize_mcp_image(image_tag)`，挂在 `tools/mcp_tool.py` 的 MCP 结果处理循环里：
+核心是新增一个 `_summarize_mcp_image()` 函数，挂在 MCP 结果处理循环里 image block 分支之后。整个 patch 只有 100 行新增、零删除，备份可随时回滚。
 
-```python
-# tools/mcp_tool.py — MCP ImageContent → auxiliary vision summary
-async def _summarize_mcp_image(image_tag: str) -> str:
-    """Best-effort auxiliary-vision text summary for a MEDIA:<path> tag. Fail-open."""
-    try:
-        if not image_tag.startswith("MEDIA:"):
-            return ""
-        image_path = image_tag[len("MEDIA:"):]
-        if not image_path or not os.path.isfile(image_path):
-            return ""
+函数做的事可以拆成六步：
 
-        cached = _MCP_IMAGE_SUMMARY_CACHE.get(image_path)
-        if cached is not None:
-            return cached  # 会话防重
+1. **校验输入**：不是 `MEDIA:` 标签或文件不存在，直接返回空。
+2. **查缓存**：同一路径（内容哈希文件名）已分析过就直接复用摘要，不重复调视觉模型。
+3. **读配置门控**：没有 `auxiliary.vision` 配置 = 完全 no-op；显式关闭也直接返回。
+4. **模型对齐**：从配置里读出视觉模型名传给 `vision_analyze_tool`——这步不能省，否则辅助路由会走 `provider=auto` 报错（4.4 详述）。
+5. **调视觉模型 + 超时熔断**：把图片路径交给辅助视觉模型，`asyncio.wait_for` 包住整个调用，超时就放弃摘要。
+6. **组装输出**：成功就返回 `[图片内容摘要] + 分析文本`，失败一律返回空字符串。
 
-        cfg = load_config()
-        vision_cfg = cfg_get(cfg, "auxiliary", "vision", default={}) or {}
-        if not vision_cfg:
-            return ""  # 无辅助视觉配置 = no-op
-        if vision_cfg.get("summarize_mcp_images", True) is False:
-            return ""  # 显式关闭
-        summary_timeout = float(vision_cfg.get("mcp_summary_timeout", 20.0))
-
-        vision_model = str(
-            vision_cfg.get("model")
-            or os.getenv("AUXILIARY_VISION_MODEL", "")
-            or ""
-        ).strip() or None  # 模型对齐：复用内置 vision_analyze 的解析
-
-        result_json = await asyncio.wait_for(
-            vision_analyze_tool(image_url=image_path, user_prompt=prompt, model=vision_model),
-            timeout=summary_timeout,
-        )
-        parsed = json.loads(result_json)
-        analysis = parsed.get("analysis") or ""
-        if not parsed.get("success") or not analysis.strip():
-            return ""
-        summary = f"[图片内容摘要] {analysis.strip()}"
-        _MCP_IMAGE_SUMMARY_CACHE[image_path] = summary
-        return summary
-    except asyncio.TimeoutError:
-        return ""
-    except Exception:
-        return ""
-```
-
-挂载点只有一个地方——MCP 结果循环里 image block 分支：
-
-```python
-image_tag = _cache_mcp_image_block(block)
-if image_tag:
-    parts.append(image_tag)
-    summary = await _summarize_mcp_image(image_tag)  # 桥接
-    if summary:
-        parts.append(summary)
-    continue
-```
-
-整个 patch 只有 100 行新增，零删除。备份在 `/tmp/mcp_tool.py.bak-p02-*`，`git checkout -- tools/mcp_tool.py` 即可回滚。
+挂载点的改动只有三行：图片落盘拿到 `MEDIA:` 标签后，追加一次摘要调用，有摘要就拼进结果文本，然后继续原来的循环。`MEDIA:` 标签本身完全不动。
 
 ### 4.4 踩坑实录：模型路由解析
 
