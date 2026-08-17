@@ -794,13 +794,13 @@ const files = walk(root);
 if (!files.length) process.exit(1);
 const count = (html, pattern) => [...html.matchAll(pattern)].length;
 const assets = [
-  /\bhref=\/css\/custom\.css(?:\?[^\s>"']*)?/g,
-  /\bhref=\/css\/x7-tokens\.css(?:\?[^\s>"']*)?/g,
-  /\bhref=\/css\/x7-shell\.css(?:\?[^\s>"']*)?/g,
-  /\bhref=\/css\/x7-reading\.css(?:\?[^\s>"']*)?/g,
-  /\bhref=\/css\/x7-home\.css(?:\?[^\s>"']*)?/g,
-  /\bsrc=\/js\/custom\.js(?:\?[^\s>"']*)?/g,
-  /\bsrc=\/js\/x7\/bootstrap\.js(?:\?[^\s>"']*)?/g,
+  /\bhref="?\/css\/custom\.css(?:\?[^\s>"']*)?/g,
+  /\bhref="?\/css\/x7-tokens\.css(?:\?[^\s>"']*)?/g,
+  /\bhref="?\/css\/x7-shell\.css(?:\?[^\s>"']*)?/g,
+  /\bhref="?\/css\/x7-reading\.css(?:\?[^\s>"']*)?/g,
+  /\bhref="?\/css\/x7-home\.css(?:\?[^\s>"']*)?/g,
+  /\bsrc="?\/js\/custom\.js(?:\?[^\s>"']*)?/g,
+  /\bsrc="?\/js\/x7\/bootstrap\.js(?:\?[^\s>"']*)?/g,
 ];
 for (const file of files) {
   const html = fs.readFileSync(file, "utf8");
