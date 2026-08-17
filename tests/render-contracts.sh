@@ -717,7 +717,7 @@ const fail = message => {
 
 if (count(/\bdata-x7-home\b/g) !== 1) fail(`expected exactly one data-x7-home marker, got ${count(/\bdata-x7-home\b/g)}`);
 const homeRoot = html.match(/<article\b[^>]*\bdata-x7-home\b[^>]*>/)?.[0] ?? "";
-if (attr(homeRoot, "data-model-url") !== "/models/x7-avatar-entry.glb") fail("homepage root is missing the model URL");
+if (attr(homeRoot, "data-scene-object") !== "security-core") fail("homepage root is missing the scene object");
 if (attr(homeRoot, "data-reference-url") !== "/images/x7-avatar-reference.png") fail("homepage root is missing the reference image URL");
 if (count(/\bx7-avatar-entry__stage\b/g) !== 0) fail("legacy hero-contained avatar stage is still present");
 if (count(/\bdata-x7-avatar-entry\b/g) !== 0 || classCount("x7-avatar-entry") !== 0) fail("legacy hero-contained avatar mount is still present");
