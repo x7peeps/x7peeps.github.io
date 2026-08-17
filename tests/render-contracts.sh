@@ -809,7 +809,7 @@ for (const file of files) {
   if (assets.some(asset => count(html, asset) !== 1)) process.exit(1);
   const is404 = file === path.join(root, "404.html");
   if (count(html, /\bdata-x7-search-dialog\b/g) !== (is404 ? 0 : 1)) process.exit(1);
-  if (!/<script\b[^>]*(?:type=module[^>]*src=\/js\/x7\/bootstrap\.js|src=\/js\/x7\/bootstrap\.js[^>]*type=module)/.test(html)) process.exit(1);
+  if (!/<script\b[^>]*(?:type=module[^>]*src="?\/js\/x7\/bootstrap\.js|src="?\/js\/x7\/bootstrap\.js[^>]*type=module)/.test(html)) process.exit(1);
   const isHome = file === path.join(root, "index.html");
   const isArticle = html.includes("data-x7-article-shell");
   const searchInputCount = count(html, /<input\b[^>]*\bdata-x7-search-input\b/g);
