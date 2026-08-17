@@ -93,17 +93,6 @@ function initHomeMotion() {
   if (!home || home.dataset.motionReady === "true") return;
   home.dataset.motionReady = "true";
 
-  import("./home-scene.js")
-    .then((module) => {
-      const controller = module.initHomeScene(home);
-      replayHomeSceneProgress(home);
-      return controller;
-    })
-    .catch((error) => {
-      home.dataset.scene = "failed";
-      console.warn("X7 fullscreen scene unavailable", error);
-    });
-
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduceMotion) {
     home.dataset.motion = "reduced";

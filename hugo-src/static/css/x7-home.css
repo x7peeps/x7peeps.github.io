@@ -1,76 +1,3 @@
-.x7-home-scene {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  width: 100vw;
-  height: 100dvh;
-  overflow: hidden;
-  pointer-events: none;
-  background: #000102;
-  contain: strict;
-}
-
-.x7-home-scene__webgl,
-.x7-home-scene__particles,
-.x7-home-scene__vignette {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.x7-home-scene__webgl {
-  z-index: 1;
-  filter: brightness(1.22) saturate(1.08);
-}
-
-.x7-home-scene__webgl canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.x7-home-scene__particles {
-  z-index: 2;
-}
-
-.x7-home-scene__vignette {
-  z-index: 3;
-  background:
-    radial-gradient(circle at 58% 42%, transparent 0 34%, rgb(0 0 0 / 18%) 66%, rgb(0 0 0 / 62%) 100%),
-    linear-gradient(90deg, rgb(0 0 0 / 54%), transparent 32% 78%, rgb(0 0 0 / 16%));
-}
-
-.x7-home-scene__loading,
-.x7-home-scene__skip {
-  position: fixed;
-  z-index: 4;
-  right: clamp(1rem, 3vw, 2rem);
-  color: rgb(225 246 255 / 72%);
-  font: 650 .68rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: .12em;
-}
-
-.x7-home-scene__loading {
-  bottom: clamp(1rem, 3vw, 2rem);
-}
-
-.x7-home-scene__skip {
-  top: clamp(1rem, 3vw, 2rem);
-  padding: .5rem .75rem;
-  border: 1px solid rgb(190 218 255 / 16%);
-  border-radius: 999rem;
-  background: rgb(0 2 3 / 64%);
-  pointer-events: auto;
-  cursor: pointer;
-}
-
-.x7-home-scene[data-entry="complete"] .x7-home-scene__skip,
-html.x7-home-entry-complete .x7-home-scene__skip {
-  display: none;
-}
-
 body > #R-body:has(main#R-body-inner.home) {
   position: relative;
   z-index: 2;
@@ -149,19 +76,6 @@ body:has(main#R-body-inner.home) > aside#R-sidebar {
     perspective(900px)
     rotateX(calc(58deg - (var(--x7-home-scroll-progress) * 8deg)))
     translateY(calc(-8rem + (var(--x7-home-scroll-progress) * 5rem)));
-}
-
-.x7-home-particles {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  opacity: .88;
-  pointer-events: none;
-  filter: saturate(.9);
-  mask-image:
-    radial-gradient(circle at 50% 44%, black 0 38%, rgb(0 0 0 / 76%) 52%, transparent 82%);
 }
 
 .x7-ch-visual canvas {
@@ -655,10 +569,6 @@ main#R-body-inner article.x7-constellation-home .x7-hero-title {
     justify-content: start;
   }
 
-  .x7-home-particles {
-    opacity: .62;
-  }
-
   .x7-article {
     grid-template-columns: 1fr;
     gap: .45rem;
@@ -874,30 +784,17 @@ html.x7-home-entry-reduced #R-sidebar {
     --x7-home-entry-sidebar-delay: 1.20s;
   }
 
-  html.x7-home-entry-prime .x7-home-particles { opacity: .56; }
   html.x7-home-entry-prime .x7-home-avatar { animation-duration: 1.18s; }
   html.x7-home-entry-prime .x7-home-identity::before { animation-duration: .9s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .x7-home-scene {
-    animation: none !important;
-  }
-
-  .x7-home-scene__particles {
-    display: none;
-  }
-
   .x7-constellation-home *,
   .x7-constellation-home *::before,
   .x7-constellation-home *::after {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
-  }
-
-  .x7-home-particles {
-    display: none !important;
   }
 
   html.x7-home-entry-prime .x7-home-identity::before {

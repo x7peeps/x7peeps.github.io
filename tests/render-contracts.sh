@@ -115,32 +115,17 @@ function extractAtRuleBlock(source, header) {
 }
 
 const sceneRule = ruleBody(css, ".x7-home-scene");
-for (const declaration of [
-  "position: fixed",
-  "inset: 0",
-  "width: 100vw",
-  "height: 100dvh",
-  "pointer-events: none",
-  "background: #000102",
-]) {
-  if (!sceneRule.includes(declaration)) {
-    console.error(`Homepage scene contract failed: root scene is missing ${declaration}`);
-    process.exit(1);
-  }
+if (sceneRule) {
+  console.error("Homepage scene contract failed: 3d scene rules must be removed from the homepage css");
+  process.exit(1);
 }
-const sceneLayerRule = css.match(/\.x7-home-scene__webgl,\s*\.x7-home-scene__particles,\s*\.x7-home-scene__vignette\s*\{([^}]*)\}/)?.[1] ?? "";
-for (const declaration of ["position: absolute", "inset: 0", "width: 100%", "height: 100%", "pointer-events: none"]) {
-  if (!sceneLayerRule.includes(declaration)) {
-    console.error(`Homepage scene contract failed: full-viewport layers are missing ${declaration}`);
-    process.exit(1);
-  }
+if (css.includes(".x7-home-scene__webgl") || css.includes(".x7-home-scene__particles") || css.includes(".x7-home-scene__vignette")) {
+  console.error("Homepage scene contract failed: full-viewport 3d layers must be removed");
+  process.exit(1);
 }
-const sceneCanvasRule = ruleBody(css, ".x7-home-scene__webgl canvas");
-for (const declaration of ["display: block", "width: 100%", "height: 100%"]) {
-  if (!sceneCanvasRule.includes(declaration)) {
-    console.error(`Homepage scene contract failed: WebGL canvas is missing ${declaration}`);
-    process.exit(1);
-  }
+if (css.includes(".x7-home-particles")) {
+  console.error("Homepage scene contract failed: hero particle field must be removed");
+  process.exit(1);
 }
 if (css.includes(".x7-avatar-entry")) {
   console.error("Homepage scene contract failed: legacy avatar-entry layer rules are still present");
@@ -151,32 +136,8 @@ const reducedMotionHeader = "@media (prefers-reduced-motion: reduce)";
 const reducedMotionBlock = extractAtRuleBlock(css, reducedMotionHeader);
 const reducedSceneRule = ruleBody(reducedMotionBlock, ".x7-home-scene");
 const reducedParticlesRule = ruleBody(reducedMotionBlock, ".x7-home-scene__particles");
-
-if (/\.x7-home-scene__webgl\s*\{[^}]*display\s*:\s*none\b/.test(css)) {
-  console.error("Homepage scene contract failed: CSS must not directly hide the WebGL layer");
-  process.exit(1);
-}
-if (!reducedSceneRule.includes("animation: none !important") || !reducedParticlesRule.includes("display: none")) {
-  console.error("Homepage scene contract failed: reduced motion must disable scene animation and particles");
-  process.exit(1);
-}
-
-const globalRuleFalsePositive = `
-@media (max-width: 63.99rem) {
-  .unrelated-mobile-rule { display: block; }
-}
-${reducedMotionHeader} {
-  .unrelated-reduced-rule { animation: none; }
-}
-.x7-home-scene { animation: none !important; }
-.x7-home-scene__particles { display: none; }
-`;
-const falseReducedBlock = extractAtRuleBlock(globalRuleFalsePositive, reducedMotionHeader);
-if (
-  ruleBody(falseReducedBlock, ".x7-home-scene").includes("animation: none !important") ||
-  ruleBody(falseReducedBlock, ".x7-home-scene__particles").includes("display: none")
-) {
-  console.error("Homepage scene contract failed: reduced-motion audit accepted global scene rules");
+if (reducedSceneRule || reducedParticlesRule) {
+  console.error("Homepage scene contract failed: reduced-motion block must not reference the removed 3d scene");
   process.exit(1);
 }
 
@@ -719,8 +680,9 @@ const fail = message => {
 
 if (count(/\bdata-x7-home\b/g) !== 1) fail(`expected exactly one data-x7-home marker, got ${count(/\bdata-x7-home\b/g)}`);
 const homeRoot = html.match(/<article\b[^>]*\bdata-x7-home\b[^>]*>/)?.[0] ?? "";
-if (attr(homeRoot, "data-scene-object") !== "security-core") fail("homepage root is missing the scene object");
-if (attr(homeRoot, "data-reference-url") !== "/images/x7-avatar-reference.png") fail("homepage root is missing the reference image URL");
+if (attr(homeRoot, "data-scene-object") !== undefined) fail("homepage root must not carry a scene object");
+if (attr(homeRoot, "data-model-url") !== undefined) fail("homepage root must not carry a model url");
+if (attr(homeRoot, "data-reference-url") !== undefined) fail("homepage root must not carry a reference image URL");
 if (count(/\bx7-avatar-entry__stage\b/g) !== 0) fail("legacy hero-contained avatar stage is still present");
 if (count(/\bdata-x7-avatar-entry\b/g) !== 0 || classCount("x7-avatar-entry") !== 0) fail("legacy hero-contained avatar mount is still present");
 if (count(/<h1\b/g) !== 1) fail(`expected exactly one h1, got ${count(/<h1\b/g)}`);
