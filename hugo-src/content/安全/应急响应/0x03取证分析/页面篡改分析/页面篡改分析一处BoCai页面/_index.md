@@ -101,7 +101,7 @@ if (!isM || (!isBDAPP && !isBDBrowser)){
 ```
 可知该脚本在执行的过程中进行UA判断，并通过判断指定来自百度的手机端和电脑端用户进行跳转并引导到BoCai网站``http://www.450378.com/?a=592088``。
 
-![c0f95801f90bfe452e46e1ba0c1d83ac](c0f95801f90bfe452e46e1ba0c1d83ac.png)
+![c0f95801f90bfe452e46e1ba0c1d83ac](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析一处BoCai页面/c0f95801f90bfe452e46e1ba0c1d83ac.jpg)
 最终将导致百度UA进来的用户引导到BoCai网站。
 
 #### IOCs

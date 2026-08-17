@@ -25,7 +25,7 @@ Qwen-MM-Plugins 是阿里官方的多模态能力插件框架：把读图、读�
 3. **准确率从"会认错"变"全对"**。同一个视觉模型，直答会把贵州茅台认成"苏州公用"、把毛利率当成每股收益；经文本主模型推理后全部正确。
 4. **代价是延迟**。本地视觉模型单图分析实测 5-104 秒：日常截图/图表 5-37 秒，超大密集表格（2000×2800）104 秒；更极端的输入延迟还会更高，本文未测到绝对上限。
 
-![核心结论配图](/qwen-mm-plugins-hermes-实测/07-summary-cover.png)
+![核心结论配图](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/qwen-mm-plugins-hermes-实测/07-summary-cover.png)
 
 *图：接入前后对比——左侧是看不到文件的纯文本 AI，右侧是接入后能"看见"截图、K 线、视频、文档的 AI*
 
@@ -57,7 +57,7 @@ Qwen-MM-Plugins 是阿里官方的多模态能力插件框架：把读图、读�
 
 一句话：**Hermes 原本「能做但费劲」——AI 得想起来、手动调视觉模型、看一张图要等半分钟；加了 Qwen-MM-Plugins 变成「自动、全类型、标准流程」**。注意这里的"看"都是指**视觉模型把内容翻译成文字、文本主模型读取文字**，主模型本身永远不接触像素。它的价值不在"看得更准"（那是视觉模型的事），而在"把看图从手动操作变成自动能力，并把范围从单张图片扩展到所有文件类型"。
 
-![协作逻辑图](/qwen-mm-plugins-hermes-实测/06-logic.png)
+![协作逻辑图](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/qwen-mm-plugins-hermes-实测/06-logic.png)
 
 *图：三个角色的协作逻辑——左边是加了 Qwen-MM-Plugins 的完整链路（自动、全文件类型），右边是不加的现状（手动、只看图）。*
 
@@ -198,7 +198,7 @@ Qwen-MM-Plugins 的官方口号是"Make any agent harness multimodal-native"—�
 
 ### 4.2 设计约束
 
-![桥接架构](/qwen-mm-plugins-hermes-实测/01-architecture.png)
+![桥接架构](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/qwen-mm-plugins-hermes-实测/01-architecture.png)
 
 *图 2：Qwen-MM-Plugins × Hermes 多模态链路（P0.2 桥接后）——双轨输出：MEDIA tag（渲染）+ 文本摘要（推理）*
 
@@ -266,7 +266,7 @@ Qwen-MM-Plugins 的官方口号是"Make any agent harness multimodal-native"—�
 
 ### 5.2 测试素材
 
-![测试素材总览](/qwen-mm-plugins-hermes-实测/00-test-materials.png)
+![测试素材总览](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/qwen-mm-plugins-hermes-实测/00-test-materials.png)
 
 *图 1：9 类测试素材——网页截图、K线图、财务OCR、代码报错、聊天记录、视频帧、财报表格、验证码、手写纪要*
 
@@ -327,7 +327,7 @@ Qwen-MM-Plugins 的官方口号是"Make any agent harness multimodal-native"—�
 
 ### 6.2 信息增益
 
-![信息增益图](/qwen-mm-plugins-hermes-实测/02-info-gain.png)
+![信息增益图](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/qwen-mm-plugins-hermes-实测/02-info-gain.png)
 
 *图 3：信息增益——桥接后文本模型可读内容提升 18-27 倍*
 
@@ -405,7 +405,7 @@ Qwen-MM-Plugins 的官方口号是"Make any agent harness multimodal-native"—�
 
 ## 七、推理质量对比：从"无法回答"到"直接回答"
 
-![桥接前后对比](/qwen-mm-plugins-hermes-实测/05-before-after.png)
+![桥接前后对比](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/qwen-mm-plugins-hermes-实测/05-before-after.png)
 
 *图 6：同一个 MCP 工具、同一个主模型，只差一个桥接*
 
@@ -461,7 +461,7 @@ Qwen-MM-Plugins 的官方口号是"Make any agent harness multimodal-native"—�
 
 ### 7.4 汇总
 
-![推理能力跨越](/qwen-mm-plugins-hermes-实测/03-reasoning-gain.png)
+![推理能力跨越](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/qwen-mm-plugins-hermes-实测/03-reasoning-gain.png)
 
 *图 4：推理能力跨越——同一模型 3/3 场景 0% → 100%*
 
@@ -488,7 +488,7 @@ Qwen-MM-Plugins 的官方口号是"Make any agent harness multimodal-native"—�
 
 ### 8.2 延迟：当前最大的成本
 
-![延迟成本](/qwen-mm-plugins-hermes-实测/04-latency.png)
+![延迟成本](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/qwen-mm-plugins-hermes-实测/04-latency.png)
 
 *图 5：桥接延迟成本——Mage-VL-8bit 本地推理，大图最慢*
 

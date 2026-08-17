@@ -19,7 +19,7 @@ menu:
 
 GetData Mount Image Pro是来自国外的一款功能强大的镜像文件虚拟工具，可帮助用户将.e01、.s01、.raw、.dd、.iso等镜像文件虚拟成硬盘分区，通俗将就是把一个iso这类的文件虚拟成你电脑你的一个盘符，如g:盘，既方便了文件管理，同时，还可帮助用户在安装系统时，直接利用虚拟的磁盘分区执行系统的安装操作，从而免去了需要U盘或者光驱的安装方式。
 
-![image.png](1616562792706-e32e4f42-14a9-43a7-9aa5-fe3fa2d473c3.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616562792706-e32e4f42-14a9-43a7-9aa5-fe3fa2d473c3.png)
 
 
 
@@ -170,7 +170,7 @@ Mount Image Pro提供不同的挂载方式：
 2. 激活产品
 3. 挂载镜像：
 
-1. 1. 选择File > Mount Image File 选择需要挂载的镜像![image.png](1616596134776-6ce8f56f-e28a-4a2a-81c8-fab169132a94.png)
+1. 1. 选择File > Mount Image File 选择需要挂载的镜像![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616596134776-6ce8f56f-e28a-4a2a-81c8-fab169132a94.png)
    2. 在工具栏中的按钮，点击Mount > Add Image导航栏将会打开一个对话框选择所需的镜像。该镜像将会被添加到已选择磁盘窗口。选择完毕，点击mount挂载。
 
 1. 在mount（挂载）窗口，选择作为磁盘挂载或者作为文件系统挂载
@@ -281,7 +281,7 @@ Mount Image Pro中的RAID设置将通过以下知识来帮助成功:
 
 \1. 单击此按钮可将设备添加到当前案例。
 
-\2. 在设备选择窗口中，单击![image.png](1616604921138-8fbb6825-0d45-4f42-b4de-9b8c0fd972b7.png)按钮。这开启了突袭配置窗口。
+\2. 在设备选择窗口中，单击![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616604921138-8fbb6825-0d45-4f42-b4de-9b8c0fd972b7.png)按钮。这开启了突袭配置窗口。
 
 
 
@@ -289,7 +289,7 @@ Mount Image Pro中的RAID设置将通过以下知识来帮助成功:
 
 输入RAID配置信息:
 
-![image.png](1616676967160-bd7ba649-73d1-43c9-b21c-5d20f8e5051d.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616676967160-bd7ba649-73d1-43c9-b21c-5d20f8e5051d.png)
 
 并按照说明添加和测试RAID:
 
@@ -335,9 +335,9 @@ Mount Image Pro中的RAID设置将通过以下知识来帮助成功:
 
 \1. 设置RAID类型为“software”。
 
-\2. 确认软件RAID![image.png](1616677823854-1278daf0-2eca-414b-bcb6-4e457c1cfdfa.png)是否有效。一个有效的软件RAID将显示为绿色添加驱动器(或取证镜像)上的标记:
+\2. 确认软件RAID![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616677823854-1278daf0-2eca-414b-bcb6-4e457c1cfdfa.png)是否有效。一个有效的软件RAID将显示为绿色添加驱动器(或取证镜像)上的标记:
 
-![image.png](1616677838515-212d923a-7360-4692-b80b-df1debcbfc61.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616677838515-212d923a-7360-4692-b80b-df1debcbfc61.png)
 
 
 
@@ -345,7 +345,7 @@ Mount Image Pro中的RAID设置将通过以下知识来帮助成功:
 
 识别出正确的RAID布局后，单击OK将配置的RAID驱动器添加到设备选择窗口。
 
-![image.png](1616678097625-f6092faa-99da-4480-80ac-cb241f5f5b94.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616678097625-f6092faa-99da-4480-80ac-cb241f5f5b94.png)
 
 选择需要添加的RAID盘，单击“OK”，将其添加到案例中。
 
@@ -359,9 +359,9 @@ Mount Image Pro中的RAID设置将通过以下知识来帮助成功:
 
 Mount image Pro能够通过UDP协议挂载远程设备。挂载网络硬盘的步骤：
 
-1. 在远程计算机上运行GetDataNetworkServer.exe(该文件位于挂载映像中专业安装文件夹)。出现如下画面;![image.png](1616678338507-a896e7e9-58cb-40c3-8d9c-b9a67bc6e334.png)
+1. 在远程计算机上运行GetDataNetworkServer.exe(该文件位于挂载映像中专业安装文件夹)。出现如下画面;![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616678338507-a896e7e9-58cb-40c3-8d9c-b9a67bc6e334.png)
 2. 服务器进入“等待”模式来连接Mount Image Pro。注意:可能需要在远程计算机上配置防火墙设置以启用remote访问GetData UDP网络服务器。
-3. 在“设备选择”窗口中，单击“网络”按钮以打开远程服务器连接设置窗口:![image.png](1616678431795-7e9dde2e-3b63-46d5-adb8-e6e054ff146d.png)
+3. 在“设备选择”窗口中，单击“网络”按钮以打开远程服务器连接设置窗口:![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616678431795-7e9dde2e-3b63-46d5-adb8-e6e054ff146d.png)
 
 **服务器IP地址:**
 
@@ -371,7 +371,7 @@ Mount image Pro能够通过UDP协议挂载远程设备。挂载网络硬盘的�
 
 请确保端口号与GetData使用相同的端口号UDP网络服务器。
 
-1. 单击“连接”按钮，可以查看远程计算机上可用的物理和逻辑设备。选择需要的设备，单击“确定”。所选设备现在应该出现在网络下部分设备选择窗口，如下图所示:![image.png](1616678532622-e838a689-56ae-479e-9ef0-dae3de01b3aa.png)
+1. 单击“连接”按钮，可以查看远程计算机上可用的物理和逻辑设备。选择需要的设备，单击“确定”。所选设备现在应该出现在网络下部分设备选择窗口，如下图所示:![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616678532622-e838a689-56ae-479e-9ef0-dae3de01b3aa.png)
 
 选择网络设备，单击Mount按钮。
 
@@ -391,7 +391,7 @@ Mount image Pro能够通过UDP协议挂载远程设备。挂载网络硬盘的�
 
 ##### MIP HELP
 
-![image.png](1616679275944-f50994f8-7336-4d43-8154-4608599bbfd2.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/GetData_Mount_Image_Pro/1616679275944-f50994f8-7336-4d43-8154-4608599bbfd2.png)
 
 ##### 1. START
 

@@ -64,7 +64,7 @@ FEX Imager是通过运行FEX Imager启动的。在程序安装文件夹中，或
 
 当FEX Imageris运行时，就会看到Sourcewindow:
 
-![image.png](1615819970210-31359346-357b-41f4-aeac-85fc2776a96e-20210316003551836.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615819970210-31359346-357b-41f4-aeac-85fc2776a96e-20210316003551836.png)
 
 来源指的是要获取的数据。来源可以是:
 
@@ -80,7 +80,7 @@ FEX Imager是通过运行FEX Imager启动的。在程序安装文件夹中，或
 
 要选择源代码，请单击“选择”按钮，并从下拉菜单中选择所需的选项:
 
-![image.png](1615820047158-2b0e388b-ee5a-441a-a12e-3181a0d55568-20210316003551825.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615820047158-2b0e388b-ee5a-441a-a12e-3181a0d55568-20210316003551825.png)
 
 #### 物理和逻辑盘
 
@@ -88,7 +88,7 @@ FEX Imager是通过运行FEX Imager启动的。在程序安装文件夹中，或
 
 注意:如果物理驱动器没有显示在这个窗口，这通常是因为FEX Imager没有使用管理员身份启动，它没有足够的权限访问物理驱动器。重新启动FEX Imager，右键单击桌面图标，并选择以管理员身份运行从下拉菜单。
 
-![image.png](1615821164808-9cf6920b-81a2-4a07-978d-3790db4f9792-20210316003551857.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615821164808-9cf6920b-81a2-4a07-978d-3790db4f9792-20210316003551857.png)
 
 设备选择窗口包含以下信息:
 
@@ -107,7 +107,7 @@ FEX Imager拥有使用UDP协议检查远程设备跨网络的能力
 
 要是用远程设备需要，在接收端开启UDP服务，并有必要部署GetData UDP网络服务。它可以在FEX Imagerinstallation文件夹GetDataNetworkServer.exe中找到。部署了GetData UDP网络服务器后，运行命令，显示如下界面:
 
-![image.png](1615822727048-7c99ba18-0284-4ff0-892e-d26f6a092aa4-20210316003551825.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615822727048-7c99ba18-0284-4ff0-892e-d26f6a092aa4-20210316003551825.png)
 
 服务器IP:运行网络服务器的计算机的IP地址。重要的是:在排除故障时，使用CMD行“IPCONFIG”重复检查IP地址。命令以确保正确的机器地址。
 
@@ -163,7 +163,7 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\GDStreamService\UDPPort(DWO
 
 select>Remote:
 
-![image.png](1615823091186-443b7d6f-d5ec-4097-a771-c33ee79ef0de-20210316003551820.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615823091186-443b7d6f-d5ec-4097-a771-c33ee79ef0de-20210316003551820.png)
 
 **“服务器IP地址”:**  在“服务器IP地址”中输入远程计算机的IP地址GetData UDP网络服务器字段。
 
@@ -177,11 +177,11 @@ select>Remote:
 
 **速度测试:**  “速度测试”页签测试指定设备的网络连接速度。在Connect选项卡中，选择所需的设备，然后更改为速度测试选项卡。单击Start启动测试。
 
-![image.png](1615823247963-e4548cb3-3782-460a-9ecd-9696c0f53f1d-20210316003552160.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615823247963-e4548cb3-3782-460a-9ecd-9696c0f53f1d-20210316003552160.png)
 
 在Connect选项卡中选择所需的设备后，单击ok按钮连接到远程设备设备。选择的设备现在应该出现在设备选择的网络部分窗口，如下图7所示:
 
-![image.png](1615823285013-8243d761-6fcc-4b2e-82b9-9b69b0525981-20210316003551891.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615823285013-8243d761-6fcc-4b2e-82b9-9b69b0525981-20210316003551891.png)
 
 选择ok即可。
 
@@ -189,11 +189,11 @@ select>Remote:
 
 在特定情况下，调查人员可能需要从设备获取一系列扇区。在这个在源文件底部的扇区范围字段中输入的扇区名称、扇区起始和结束信息选择窗口。
 
-![image.png](1615823323659-d89249eb-68c9-434f-a9e2-3175f18d3c32-20210316003551853.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615823323659-d89249eb-68c9-434f-a9e2-3175f18d3c32-20210316003551853.png)
 
 当源设备被选中时，源选择窗口将填充设备信息:
 
-![image.png](1615823343278-5c9b05cb-2234-475c-9da9-7fed74437065-20210316003551902.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615823343278-5c9b05cb-2234-475c-9da9-7fed74437065-20210316003551902.png)
 
 
 
@@ -205,7 +205,7 @@ select>Remote:
 
 当用户只想为设备计算哈希值时(例如，验证现有电子取证镜像文件的哈希值)。
 
-![image.png](1615823476660-2a6cde48-ce28-43c1-8ae4-4badf4d841a1-20210316003552271.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615823476660-2a6cde48-ce28-43c1-8ae4-4badf4d841a1-20210316003552271.png)
 
 ##### 目的地
 
@@ -217,7 +217,7 @@ select>Remote:
 
 如图所示，图像目标屏幕是图像文件的参数所在设置，包括类型、压缩、名称、位置等。
 
-![image.png](1615823540730-ba273f58-fe84-475c-934a-dc3ba3247c81-20210316003552015.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615823540730-ba273f58-fe84-475c-934a-dc3ba3247c81-20210316003552015.png)
 
 #### 镜像类型
 
@@ -237,7 +237,7 @@ EnCase®E01证据文件格式由Guidance Software Inc.创建。它被广泛接�
 
 如下所示:
 
-![image.png](1615823715994-85404a84-dfd4-443f-836e-75bfd88e0e08-20210316003552109.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615823715994-85404a84-dfd4-443f-836e-75bfd88e0e08-20210316003552109.png)
 
 > CRC [循环冗余校验](https://baike.baidu.com/item/循环冗余校验/3219009)（Cyclic Redundancy Check， CRC）是一种根据网络数据包或计算机文件等数据产生简短固定位数校验码的一种信道编码技术，主要用来检测或校验数据传输或者保存后可能出现的错误。
 
@@ -313,7 +313,7 @@ EnCase®。E01文件，详细信息字段的值被写入镜像文件头。DD不�
 
 进度屏幕显示源信息(正在获取的驱动器)和目标信息(正在写入法医图像文件的位置)。进度信息，包括运行时间，显示剩余时间和传输速度。进度窗口如下图12所示:
 
-![image.png](1615824620621-7b5b87fd-5886-4552-9afb-f89bc5b69672-20210316003552263.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615824620621-7b5b87fd-5886-4552-9afb-f89bc5b69672-20210316003552263.png)
 
 进度窗口的下半部分提供了关于获取过程的摘要信息，包括散列信息。
 
@@ -323,7 +323,7 @@ EnCase®。E01文件，详细信息字段的值被写入镜像文件头。DD不�
 
 **验证[哈希类型]哈希:**法医镜像文件中的数据的哈希值。
 
-![image.png](1615824699890-0e6d8cce-e654-4a4b-88d2-ba1b97cbb495-20210316003552030.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1615824699890-0e6d8cce-e654-4a4b-88d2-ba1b97cbb495-20210316003552030.png)
 
 注意，如果选择了DD镜像格式，那么散列值就不会存储在DD镜像文件中。
 

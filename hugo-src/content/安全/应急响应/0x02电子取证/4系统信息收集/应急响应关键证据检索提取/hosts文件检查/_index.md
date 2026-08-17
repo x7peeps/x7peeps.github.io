@@ -23,9 +23,9 @@ dir C:\Windows\System32\drivers\etc\hosts /t:W |find "hosts"
 dir C:\Windows\System32\drivers\etc\hosts /t:A |find "hosts"
 ```
 
-![img](1629268639723-b0c21025-5af1-44d5-b486-a666699857af.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/hosts文件检查/1629268639723-b0c21025-5af1-44d5-b486-a666699857af.png)
 
-![img](1629268653332-ae1dd85b-986d-4d6a-8a29-888729624c2a.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/hosts文件检查/1629268653332-ae1dd85b-986d-4d6a-8a29-888729624c2a.png)
 
 
 
@@ -38,4 +38,4 @@ cat /etc/hosts
 stat /etc/hosts
 ```
 
-![img](1629268566878-d598fa98-8876-4a93-a713-9e2080a9ed42.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/hosts文件检查/1629268566878-d598fa98-8876-4a93-a713-9e2080a9ed42.png)

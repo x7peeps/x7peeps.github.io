@@ -13,7 +13,7 @@ menu:
 
 推荐使用ufs explorer professional recovery.( https://www.ufsexplorer.com/ufs-explorer-professional-recovery.php) 实测好用。
 
-![image.png](1615787742995-5e729fab-10a6-4914-bf2f-7f0ecb9cf9c3.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/UFS explorer professional recovery(win:mac:linux)/1615787742995-5e729fab-10a6-4914-bf2f-7f0ecb9cf9c3.png)
 
 ## 自述
 
@@ -160,18 +160,18 @@ https://www.ufsexplorer.com/solutions/recover-deleted-files.php
 此通用方法将帮助您轻松执行该过程并恢复意外删除的文件：
 
 1. 将UFS资源管理器下载并安装到磁盘上，而不要保留要恢复的一个已删除文件。确保程序的下载版本与将在其上运行的操作系统平台相对应。
-   ![image](1617606894957-c788f735-ab42-4299-bc4b-f78b1577f302.png)
+   ![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/UFS explorer professional recovery(win:mac:linux)/1617606894957-c788f735-ab42-4299-bc4b-f78b1577f302.png)
 2. 如果需要，请运行该应用程序并在设置表中调整软件设置。
-   ![image](1617606894732-09097031-bbf6-4c92-b911-228d7301bb16.png)
+   ![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/UFS explorer professional recovery(win:mac:linux)/1617606894732-09097031-bbf6-4c92-b911-228d7301bb16.png)
 3. 连接包含您需要取回的已删除数据的存储设备。您可以选择对您的设备类型有效的任何直接连接类型。
 4. 在UFS Explorer的左窗格中的已连接存储列表中选择有问题的设备或逻辑卷，然后使用相应的按钮或存储上下文菜单选项对其进行扫描以查找丢失的数据。
-   ![image](1617606894922-80fd51dc-6e47-4f14-98bb-96381200a8e6.png)
+   ![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/UFS explorer professional recovery(win:mac:linux)/1617606894922-80fd51dc-6e47-4f14-98bb-96381200a8e6.png)
 5. 设置所需的扫描参数。如果您希望更快地完成该过程，则可以禁用InelliRAW。按下“开始扫描”按钮，然后等待结果。
-   ![image](1617606894937-79e4524c-6400-4f8c-9fff-f31017c75fbc.png)
+   ![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/UFS explorer professional recovery(win:mac:linux)/1617606894937-79e4524c-6400-4f8c-9fff-f31017c75fbc.png)
 6. 浏览该程序找到的文件，然后选择要恢复的文件。您可以按名称，日期，类型对它们进行排序，使用快速和高级搜索选项，也可以在内部查看器中预览它们。
-   ![image](1617606894937-10ada807-2a0a-46b0-a866-88d778636683.png)
+   ![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/UFS explorer professional recovery(win:mac:linux)/1617606894937-10ada807-2a0a-46b0-a866-88d778636683.png)
 7. 将所选文件保存到备用驱动器，外部存储器或网络位置。目标存储必须不同于从中恢复已删除数据的磁盘。
-   ![image](1617606895011-afae5beb-0564-4921-a395-73eba16dafcd.png)
+   ![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/UFS explorer professional recovery(win:mac:linux)/1617606895011-afae5beb-0564-4921-a395-73eba16dafcd.png)
 
 其他详细信息将取决于您使用的操作系统，设备的类型，或者在某些情况下取决于已删除文件的格式，这些信息在相应的文章中提供。
 

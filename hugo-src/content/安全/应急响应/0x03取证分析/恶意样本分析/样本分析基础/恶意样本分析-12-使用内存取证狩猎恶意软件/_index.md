@@ -9,7 +9,7 @@ updated: 2022-11-10T22:25:00+08:00
 在前一章中，我们研究了不同的Volatility插件，它们有助于从内存映像中提取有价值的信息。在本章中，我们将继续我们的内存取证之旅，我们将看到更多的插件，这些插件将帮助你从被高级恶意软件感染的内存映像中提取取证痕迹，这些恶意软件使用了隐身和隐藏技术。在下一节中，我们将重点介绍使用内存取证来检测代码注入技术。下一节将讨论在第8章“代码注入和挂钩”中已经涉及到的一些概念，所以强烈建议在阅读下一节之前阅读这一章。
 ### 1. 检测代码注入
 回想一下第8章的代码注入和挂钩，代码注入是一种将恶意代码(如EXE、DLL或shellcode)注入合法进程内存并在合法进程的上下文中执行恶意代码的技术。为了向远程进程注入代码，恶意程序通常会分配一个具有读、写和执行权限的内存(PAGE_EXECUTE_READWRITE)，然后将代码注入到远程进程分配的内存中。要检测注入远程进程的代码，可以根据内存保护和内存内容查找可疑的内存范围。一个引人注目的问题是，什么是可疑的内存范围以及如何获得有关进程内存范围的信息?如果你回想一下前一章(在使用ldrmodules检测隐藏DLL部分)，Windows在内核空间中维护一个名为虚拟地址描述符(VADs)的二叉树结构，每个VAD节点描述进程内存中一个几乎连续的内存区域。如果进程内存区域包含一个内存映射文件(如可执行文件、DLL等)，那么其中一个VAD节点存储有关其基址、文件路径和内存保护的信息。下面的描述不是VAD的准确表示，但它应该有助于您理解这个概念。在下面的截图中，内核空间中的一个VAD节点描述了关于进程可执行文件(explorer.exe)加载位置、它的完整路径和内存保护的信息。类似地，其他VAD节点将描述进程内存范围，包括那些包含映射的可执行映像(如DLL)的进程。这意味着VAD可以用来确定每个相邻进程内存范围的内存保护，它还可以给出包含内存映射镜像文件(如可执行文件或DLL)的内存区域的信息:
-![](16536618692094.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536618692094.jpg)
 
 ### 1.1 通过采用信息
 要从内存映像中获取VAD信息，可以使用vadinfo Volatility插件。下面以vadinfo为例，使用进程ID (pid 2180)显示explorer.exe进程的内存区域。在下面的输出中，内核内存中地址为0x8724d718的第一个VAD节点描述了进程内存中的内存范围0x00db0000-0x0102ffff及其内存保护PAGE_EXECUTE_WRITECOPY。由于第一个节点描述的是一个包含内存映射的可执行映像(explorer.exe)的内存范围，因此它还提供了磁盘上的完整路径。第二个节点0x8723fb50描述了0x004b0000-0x004effff的内存范围，它不包含任何内存映射文件。类似地，地址0x8723fb78的第三个节点显示进程内存范围的信息0x77690,000-0x777cbfff，其中包含ntdll.dll及其内存保护:
@@ -56,7 +56,7 @@ Current context: explorer.exe @ 0x86eb4780, pid=1608, ppid=1572 DTB=0x1eb1a340
 0x03120000 4d 5a 90 00 03 00 00 00 04 00 00 00 ff ff 00 00 MZ.............. 0x03120010 b8 00 00 00 00 00 00 00 40 00 00 00 00 00 00 00 ........@....... 0x03120020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................ 0x03120030 00 00 00 00 00 00 00 00 00 00 00 00 d8 00 00 00 ................ 0x03120040 0e 1f ba 0e 00 b4 09 cd 21 b8 01 4c cd 21 54 68 ........!..L.!Th 0x03120050 69 73 20 70 72 6f 67 72 61 6d 20 63 61 6e 6e 6f is.program.canno 0x03120060 74 20 62 65 20 72 75 6e 20 69 6e 20 44 4f 53 20 t.be.run.in.DOS. 0x03120070 6d 6f 64 65 2e 0d 0d 0a 24 00 00 00 00 00 00 00 mode....$.......
 ```
 
-![](16536619802309.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536619802309.jpg)
 
 
 有时，显示内存区域的内容可能不足以识别恶意代码。当shell代码被注入时尤其如此，在这种情况下，您需要反汇编内容。例如，如果您使用db命令转储地址0x03110000(上面vadinfo输出的第二个条目)的内容，您将看到以下十六进制转储。从输出来看，很难判断这是否是恶意代码:
@@ -65,11 +65,11 @@ Current context: explorer.exe @ 0x86eb4780, pid=1608, ppid=1572 DTB=0x1eb1a340
 0x03110000 64 a1 18 00 00 00 c3 55 8b ec 83 ec 54 83 65 fc d......U....T.e. 0x03110010 00 64 a1 30 00 00 00 8b 40 0c 8b 40 1c 8b 40 08 .d.0....@..@..@. 0x03110020 68 34 05 74 78 50 e8 83 00 00 00 59 59 89 45 f0 h4.txP.....YY.E. 0x03110030 85 c0 74 75 8d 45 ac 89 45 f4 8b 55 f4 c7 02 6b ..tu.E..E..U...k 0x03110040 00 65 00 83 c2 04 c7 02 72 00 6e 00 83 c2 04 c7 .e......r.n.....
 ```
 
-![](16536619936510.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536619936510.jpg)
 
 如果您怀疑内存区域包含shell代码，可以使用dis命令
 在volshell中，在给定地址反汇编代码。从下面代码中显示的反汇编输出中，您可以看出shell代码已经注入到这个内存区域，因为它包含有效的CPU指令。为了验证内存区域是否包含任何恶意代码，您需要进一步分析它，以确定上下文。这是因为注入的代码看起来也类似于合法代码:
-![](16536620221920.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536620221920.jpg)
 
 ### 1.3 转储进程内存区域
 在确定进程内存中注入的代码(PE文件或shellcode)之后，您可能希望将其转储到磁盘以进行进一步分析(用于提取字符串、执行YARA扫描或进行反汇编)。要转储由VAD节点描述的内存区域，可以使用vaddump插件。例如，如果希望转储地址为0x03110000的包含shell代码的内存区域，可以提供-b(——base)选项，后跟基址，如下所示。如果你没有指定-b(——base)选项，插件会将所有内存区域转储到单独的文件中:
@@ -85,8 +85,8 @@ Pid Process Start End Result
 
 ### 1.4 使用malfind检测注入的代码
 到目前为止，我们已经了解了如何使用vadinfo手动识别可疑的内存区域。您还了解了如何使用vaddump转储一个内存区域。还有另一个名为malfind的Volatility插件，它根据内存内容和前面介绍的VAD特征自动识别可疑内存区域。在下面的示例中，当针对感染了SpyEye的内存映像运行malfind时，它会自动识别可疑的内存区域(包含PE文件和shellcode)。除此之外，它还显示十六进制转储和从基地址开始的反汇编。如果不指定-p(——pid)选项，malfind将识别系统上运行的所有进程的可疑内存范围:
-![](16536628274650.jpg)
-![](16536628371294.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536628274650.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536628371294.jpg)
 
 
 ```
@@ -130,7 +130,7 @@ Flags: CommitCharge: 1, MemCommit: 1, PrivateMemory: 1, Protection: 6
 - 然后进程A将挂起的线程的起始地址更改为注入的可执行文件的入口点的地址，并恢复正常进程挂起的线程。因此，合法进程现在开始执行恶意代码。
 
 Stuxnet就是这样一种恶意软件，它使用上述步骤执行伪进程注入。具体来说，Stuxnet在挂起模式下创建合法的lasss.exe进程。因此，lasss.exe通过PAGE_EXECUTE_WRITECOPY(WCX)保护加载到内存中。此时(在空化之前)，PEB和VAD都包含关于lasss.exe的内存保护、基址和完整路径的相同元数据信息。然后，Stuxnet将合法的进程可执行文件(lasss.exe)挖空，并在之前加载lasss.exe的同一区域内，用PAGE_EXECUTE_READWRITE (RWX)保护分配一个新的内存，然后在分配的内存中注入恶意的可执行文件并恢复挂起的线程。由于掏空了进程可执行文件，导致VAD和PEB之间的进程路径信息存在差异，即PEB中的进程路径仍然包含lasss.exe的完整路径，而VAD不显示完整路径。此外，在空化之前(WCX)和空化之后(RWX)存在内存保护差异。下面的图表可以帮助你可视化空心化之前发生了什么，以及空心化过程后在PEB和VAD中产生的差异:
-![](16536632166781.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536632166781.jpg)
 
 > 使用内存取证技术对震网病毒进行了完整的分析，Michael Hale Ligh在下面的博客文章中写道:http://mnin.blogspot.in/2011/06/examining-stuxnets-footprint-in-memory.html。
 
@@ -186,7 +186,7 @@ Process: lsass.exe Pid: 1732 Address: 0x1000000 Vad Tag: Vad Protection: PAGE_EX
 - 然后，它将挂起的线程的起始地址更改为注入的可执行文件的入口点的地址，并恢复线程。
 
 下面的截图显示了空化前后的差异。具体来说，空化后的PEB认为svchost.exe在0x00400000处加载。之前表示svchost.exe(加载在0x1000000)的VAD节点不再存在，因为当恶意软件掏空svchost.exe进程可执行文件时，VAD树中删除了该节点的条目:
-![](16536634460195.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536634460195.jpg)
 
 要检测伪进程的这种变化，可以遵循相同的方法。根据伪进程的执行方式，结果会有所不同。进程列表显示了svchost.exe进程的多个实例，这是正常的。除了最后一个svchost.exe (pid 1824)之外，所有svchost.exe进程都有一个父进程services.exe (pid 696)。在一个干净的系统中，所有svchos.exe进程都是由services.exe启动的。当您查看svchost.exe (pid 1824)的父进程时，您可以看到它的父进程已经终止。根据进程信息，可以看出最后一个svchost.exe (pid 1824)是可疑的:
 ```
@@ -215,10 +215,10 @@ C:\WINDOWS\system32\ntdll.dll
 C:\WINDOWS\system32\kernel32.dll
 
 ```
-![](16536634998862.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536634998862.jpg)
 
 另一方面，ldrmodules插件(依赖于内核中的VAD)并没有显示svchost.exe的任何条目，如下图所示:
-![](16536635208561.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536635208561.jpg)
 
 malfind显示在0x00400000地址存在一个PE文件，其中存在一个可疑的PAGE_EXECUTE_READWRITE内存保护，这表明这个可执行文件被注入了，并且没有正常加载:
 
@@ -234,7 +234,7 @@ Vad Tag: VadS Protection: PAGE_EXECUTE_READWRITE
    [REMOVED]
    
 ```
-![](16536635483963.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536635483963.jpg)
 
 > 攻击者使用不同的空心工艺注射来绕过、偏转和转移司法分析。关于这些规避技术如何工作以及如何使用自定义Volatility性插件检测它们的详细信息，请观看作者的黑帽演讲:“恶意软件作者不想让你知道的东西-规避伪进程注入”(https://youtu.be/9L9I1T5QDg4)。或者，您可以阅读作者的博客文章在以下链接:https://cysinfo.com/detecting-deception-hollow-techniques/
 
@@ -268,7 +268,7 @@ PUSH ESI
 PUSH 0x38
 LEA EAX, [EBP-0x38]
 ```
-![](16536637393946.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536637393946.jpg)
 
 ### 4. 内核模式rootkit
 恶意程序(如rootkit)可以加载内核驱动程序以内核模式运行代码。一旦它在内核空间中运行，它就可以访问内部操作系统代码，并可以监视系统事件，通过修改内部数据结构、钩子函数和修改调用表来逃避检测。内核模式驱动程序的扩展名通常是.sys，它驻留在%windir%\system32\drivers中。一个内核驱动通常是通过创建一个内核驱动服务类型的服务来加载的(如第7章，恶意软件的功能和持久性，在服务部分)。
@@ -294,7 +294,7 @@ Offset(V) Name Base Size File
 0x86e36388 srv2.sys 0xa46e1000 0x4f000 \SystemRoot\System32\DRIVERS\srv2.sys 0x86ed6d68 srv.sys 0xa4730000 0x51000 \SystemRoot\System32\DRIVERS\srv.sys 0x86fe8f90 spsys.sys 0xa4781000 0x6a000 \SystemRoot\system32\drivers\spsys.sys 0x861ca0d0 lanmandrv.sys 0xa47eb000 0x2000 \??\C:\Windows\System32\lanmandrv.sys
 \SystemRoot\system32\kdcom.dll
 ```
-![](16536638370800.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536638370800.jpg)
 
 由于浏览双链接列表容易受到DKOM攻击(在第10章，使用内存取证查找恶意软件，4.2.1节直接内核对象操作(DKOM)中描述)，通过解除链接可以从列表中隐藏内核驱动程序。为了克服这个问题，您可以使用另一个名为modscan的插件。modscan插件依赖于池标签扫描方法(在第10章，使用内存取证来捕获恶意软件，4.2.2理解池标签扫描)。换句话说，它扫描物理地址空间，寻找与内核模块相关的池标记(MmLd)。通过池标签扫描，可以检测到未链接的模块和之前加载的模块。modscan插件以它们在物理地址空间中被找到的顺序显示内核模块，而不是基于它们被加载的顺序。下面以Necurs rootkit为例，modscan插件显示的恶意内核驱动程序(2683608180e436a1.sys)的名称完全由十六进制字符组成:
 ```
@@ -315,8 +315,8 @@ Offset(P)          Name                 Base       Size   File
 0x000000001e089170 2683608180e436a1.sys 0x851ab000 0xd000 \SystemRoot\System32\Drivers\2683608180e436a1.sys 0x000000001e0da478 usbccgp.sys 0x9700b000 0x17000 \SystemRoot\system32\DRIVERS\usbccgp.sys
 
 ```
-![](16536638717525.jpg)
-![](16536638794882.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536638717525.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536638794882.jpg)
 当您运行模块插件针对感染Necurs rootkit的内存映像时，它不会显示恶意驱动程序(2683608180e436a1.sys):
 ```
 $ python vol.py -f necurs.vmem --profile=Win7SP1x86 modules | grep 2683608180e436a1
@@ -328,7 +328,7 @@ Name StartAddress EndAddress Time
 ----------------- ------------ ---------- ------------------- dump_dumpfve.sys 0x00880bb000 0x880cc000 2016-05-11 12:15:08 dump_LSI_SAS.sys 0x00880a3000 0x880bb000 2016-05-11 12:15:08 dump_storport.sys 0x0088099000 0x880a3000 2016-05-11 12:15:08 parport.sys 0x0094151000 0x94169000 2016-05-11 12:15:09 2b9fb.sys 0x00a47eb000 0xa47fe000 2018-05-21 10:57:52
 
 ```
-![](16536639287412.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536639287412.jpg)
 ```
 $ python vol.py -f necurs.vmem --profile=Win7SP1x86 modules | grep -i 2b9fb.sys
 $ python vol.py -f necurs.vmem --profile=Win7SP1x86 modscan | grep -i 2b9fb.sys
@@ -344,7 +344,7 @@ Offset(P) Start Size Service Key Name Driver Name ------------------ -------- --
    0x000000001e155668 0x851ab000 0xd000 2683608180e436a1 26836...36a1
    \Driver\2683608180e436a1
 ```
-![](16536639956864.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536639956864.jpg)
 
 要列出使用内核调试器(Windbg)的内核模块，请如下所示使用lm k命令。对于详细输出，可以使用lm kv命令:
 ```
@@ -373,7 +373,7 @@ Module Base Module Name Result
 在讨论driverscan插件时，我提到过driverscan从DRIVER_OBJECT结构中获取模块信息。你想知道DRIVER_OBJECT结构是?这一点很快就会清楚。在本节中，您将了解用户模式和内核模式组件之间的交互、设备驱动程序的角色以及它与I/O管理器的交互。通常，一个rootkit由一个用户模式组件(EXE或DLL)和一个内核模式组件(设备驱动程序)组成。rootkit的用户模式组件使用特定的机制与内核模式组件通信。从取证的角度来看，必须了解这些通信的工作方式以及所涉及的组件。本节将帮助您理解通信机制，并为接下来的主题奠定基础。
 
 让我们试着理解当用户模式应用程序执行输入/输出(I/O)操作时发生了什么，以及在高级别上如何处理它。在讨论在第8章API调用流时,代码注入和连接(在Windows API调用流部分),我使用一个用户模式应用程序的示例使用WriteFile () API执行写操作,而最终调用NtWriteFile()系统服务程序在内核中执行(ntoskrnl.exe),然后将请求定向到I/O管理器，然后I/O管理器请求设备驱动程序执行I/O操作。在这里，我将再次详细讨论这个主题，重点是内核空间组件(主要是设备驱动程序和I/O管理器)。下面的图表说明了写请求的流程(其他类型的I/O请求，如read类似;它们只是使用了不同的api):
-![](16536641187898.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536641187898.jpg)
 以下几点讨论了设备驱动程序和I/O管理器在高级别上的角色:
 1. 设备驱动程序通常创建一个或多个设备，并指定它可以为该设备处理什么类型的操作(打开、读取和写入)。它还指定处理这些操作的例程的地址。这些例程称为分派例程或IRP处理程序。
 2. 在创建设备之后，驱动程序会发布该设备，以便用户模式应用程序可以访问它。
@@ -444,20 +444,20 @@ kd> dt nt!_DEVICE_OBJECT 86aa2750
 
 ```
 从前面的输出中，您可以看到DEVICE_OBJECT包含一个指向驱动对象的DriverObject字段。换句话说，关联的驱动程序可以从设备对象中确定。这就是当I/O管理器接收到特定设备的I/O请求时，它可以确定相关驱动程序的方式。这个概念可以通过以下图表来可视化:
-![](16536643306755.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536643306755.jpg)
 
 您可以使用GUI工具，如DeviceTree (http://www.osronline.com/article.cfm?article=97)查看驱动程序创建的设备。下面是一个工具的屏幕截图，显示了Null设备创建的Null.sys驱动:
-![](16536643509739.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536643509739.jpg)
 
 当一个驱动程序创建一个设备时，设备对象被放置在Windows对象管理器命名空间的\device目录中。要查看对象管理器的名称空间信息，可以使用WinObj工具(https://docs.microsoft.com/en-us/sysinternals/downloads/WinObj)。下面的截图显示了Null创建的设备Null.sys在\Device目录下。你也可以看到其他驱动程序创建的设备:
 
-![](16536643870741.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536643870741.jpg)
 
 运行在用户模式下的应用程序无法访问在\device目录下创建的设备。换句话说，如果用户模式应用程序想要在设备上执行I/O操作，它不能通过传递设备的名称(如\device\Null)作为CreateFile函数的参数直接打开设备句柄。CreateFile函数不仅仅用于创建或打开文件，它还可以用于打开设备的句柄。如果用户模式应用程序不能访问设备，那么它如何执行I/O操作?为了让用户模式应用程序可以访问设备，驱动程序需要发布设备。这是通过创建到设备的符号链接来完成的。驱动程序可以使用内核API IoCreateSymbolicLink来创建符号链接。当为一个设备(如\device\Null)创建一个符号链接时，您可以在\GLOBAL??对象管理器名称空间中的目录，也可以使用WinObj工具。在下面的截图中，您可以看到NUL是通过null.sys驱动的名为为\Device\Null设备创建的符号链接。
-![](16536644093393.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536644093393.jpg)
 
 符号链接也被称为MS-DOS设备名。用户模式应用程序可以简单地使用符号链接的名称(MS-DOS设备名)来使用约定打开设备句柄 \\.\<symboliclink name>。例如，要打开\Device\Null的句柄，用户模式应用程序必须只传递\\.\NUL作为CreateFile函数的第一个参数(lpFilename)，它返回设备的文件句柄。具体地说，对象管理器目录GLOBAL中的任何符号链接。可以使用CreateFile函数打开。如下图所示，C:卷只是一个到\Device\HarddiskVolume1的符号链接。在Windows操作系统中，I/O操作是在虚拟文件上进行的。换句话说，设备、目录、管道和文件都被视为虚拟文件(可以使用CreateFile函数打开):
-![](16536644257412.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536644257412.jpg)
 此时，您知道驱动程序在其初始化过程中创建设备，并使用符号链接将其发布给用户应用程序使用。现在，问题是，驱动程序如何告诉I/O管理器它支持设备的什么类型的操作(打开、读、写，等等)?在初始化期间，驱动程序通常做的另一件事是用DRIVER_OBJECT结构中分派例程的地址更新Major函数表(分派例程数组)。通过查看主要函数表，您可以了解驱动程序支持的操作类型(打开、读取、写入等)，以及与特定操作关联的调度例程的地址。主函数表是一个包含28个函数指针的数组;索引值0到27表示一个特定的操作。例如，索引值0对应于主函数代码IRP_MJ_CREATE，索引值3对应于主函数代码IRP_MJ_READ，以此类推。换句话说，如果应用程序想打开一个文件或设备对象的句柄，请求将被发送到I/O管理器，然后使用将IRP_MJ_CREATE主函数代码作为主函数表的索引，以查找将处理此请求的调度例程的地址。与读取操作相同，使用IRP_MJ_READ作为索引来确定分派例程的地址。
 
 以下!drvobj命令显示由null.sys驱动程序填充的分派例程数组。驱动程序不支持的操作指向ntoskrnl.exe (nt)中的IopInvalidDeviceRequest。根据这个信息，你可以判断为null.sys仅支持IRP_MJ_CREATE (open)、IRP_MJ_CLOSE (close)、IRP_MJ_READ (read)、IRP_MJ_WRITE (write)、IRP_MJ_QUERY_INFORMATION(查询信息)、IRP_MJ_LOCK_CONTROL(锁控制)操作。执行任何支持的操作的任何请求都将被分派到适当的分派例程。例如，当用户应用程序执行写操作时，对设备的写请求将被分配到MajorFunction[IRP_MJ_WRITE]函数，该函数恰好位于null.sys驱动的卸载程序中的8bce107c地址。在nul.Sys的情况下，所有受支持的操作都分派给同一个操作地址,8bce107c。通常情况下，情况并非如此;你会看到不同的例程地址用于处理不同的操作:
@@ -515,10 +515,10 @@ Dispatch routines:
 82ac5fbe nt!IopInvalidDeviceRequest
 82ac5fbe nt!IopInvalidDeviceRequest
 ```
-![](16536644721936.jpg)
-![](16536644849181.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536644721936.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536644849181.jpg)
 您还可以在DeviceTree工具中查看支持的操作，如下截图所示:
-![](16536645054488.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536645054488.jpg)
 此时，您知道驱动程序创建了设备，将其发布给用户应用程序使用，并且它还更新调度例程数组(主函数表)，告诉I/O管理器它支持什么操作。现在，让我们看看I/O管理器的角色是什么，并理解如何将从用户应用程序接收的I/O请求分派给驱动程序。
 #### 6.2 I/O管理器的角色
 当I/O请求到达I/O管理器时，I/O管理器会定位驱动程序并创建一个IRP (I/O请求包)，这是一个包含描述I/O请求信息的数据结构。对于读、写等操作，由I/O管理器创建的IRP还在内核内存中包含一个缓冲区，驱动程序使用它来存储从设备读取的数据或将写入设备的数据。然后，由I/O管理器创建的IRP被传递给正确的驱动程序的调度例程。驱动程序接收到IRP, IRP包含描述操作(打开、读或写)的主要函数代码(IRP_MJ_XXX)。在开始I/O操作之前，驱动程序执行检查以确保一切正常(例如，为读或写操作提供的缓冲区足够大)，然后启动I/O操作。如果需要在硬件设备上执行I/O操作，驱动程序通常会经过HAL例程。在完成它的工作之后，驱动程序将IRP返回给I/O管理器，要么让它知道所请求的I/O操作已经完成，要么因为它必须被传递给另一个驱动程序，以便在驱动程序堆栈中进行进一步的处理。如果任务完成，I/O管理器将释放IRP，或者将IRP传递给设备堆栈中的下一个驱动程序来完成IRP。任务完成后，I/O管理器将状态和数据返回给用户模式应用程序。
@@ -527,28 +527,28 @@ Dispatch routines:
 
 #### 6.3 与设备驱动程序通信
 现在，让我们回顾一下用户模式组件和内核模式组件之间的交互。我们会回到null.sys的例子驱动程序从用户模式触发对其设备(\device\Null)的写操作，并监视IRP发送到Null.sys的系统驱动程序。为了监视发送给驱动程序的IRP包，我们可以使用IrpTracker工具(https://www.osronline.com/article.cfm?article=199)。要以管理员身份监视IrpTracker的启动，单击File | Select Driver并输入驱动程序的名称(在本例中为null)，如下面的截图所示，然后选择OK按钮:
-![](16536645923465.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536645923465.jpg)
 
 现在，要触发I/O操作，可以打开命令提示符并键入以下命令。这将把字符串"hello"写入空设备。如前所述，符号链接名称是用户模式应用程序(如cmd.exe)可以使用的名称;这就是我指定设备符号链接名称(NUL)来写入内容的原因:
 ```
 C:\>echo "hello" > NUL
 ```
 设备被视为一个虚拟文件，在写入设备之前，设备的句柄将使用CreateFile()(一个用于创建/打开文件或设备的API)打开。CreateFile() API最终将调用ntoskrnl.exe中的NtCreateFile()，它将请求发送给I/O管理器。I/O管理器根据符号链接名称找到与设备相关联的驱动程序，并调用与IRP_MJ_CREATE主函数代码相对应的调度例程。打开设备句柄后，使用WriteFile()执行写操作，它将调用NtWriteFile。这个请求将由I/O管理器分派到与IRP_MJ_WRITE主函数代码相对应的驱动程序例程。下面的截图显示了对IRP_MJ_CREATE和IRP_MJ_WRITE对应的驱动调度例程的调用和它们的完成状态:
-![](16536646855405.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536646855405.jpg)
 
 此时，您应该了解执行I/O操作的用户模式代码如何与内核模式驱动程序通信。Windows支持另一种机制，它允许用户模式代码直接与内核模式设备驱动程序通信。这是使用称为DeviceIoControl的通用API(由kernel32.dll导出)完成的。这个API接受设备的句柄作为参数之一。它接受的另一个参数是控制代码，称为IOCTL (I/O控制)代码，它是一个32位整数值。每个控制代码标识要执行的特定操作以及执行该操作的设备类型。用户态应用程序可以打开设备句柄(使用CreateFile)，调用DeviceIoControl，并通过Windows操作系统提供的标准控制代码，对设备进行直接的输入输出操作，如硬盘驱动器、磁带驱动器、光盘驱动器等。另外，一个设备驱动程序(一个rootkit驱动程序)可以定义它自己的特定于设备的控制代码，rootkit的用户模式组件可以使用这些代码通过DeviceIoControl API与驱动程序通信。当用户模式组件通过传递IOCTL代码来调用DeviceIoControl时，它会在ntdll.dll中调用NtDeviceIoControlFile，它会将线程转换到内核模式，并在Windows执行程序ntoskrnl.exe中调用系统服务例程NtDeviceIoControlFile。Windows执行程序调用I/O管理器，I/O管理器构建一个包含IOCTL代码的IRP包，然后将其路由到由IRP_MJ_DEVICE_CONTROL标识的内核调度例程。下面的图表说明了用户模式代码和内核模式驱动程序之间通信的概念:
-![](16536647044682.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536647044682.jpg)
 
 #### 6.4 I/O请求分层驱动
 到目前为止，您已经了解了I/O请求是如何由单个驱动程序控制的简单设备处理的。I/O请求可以经过多层驱动程序;分层驱动程序的I/O处理也以同样的方式进行。下面的截图展示了一个I/O请求如何在到达基于硬件的设备之前通过分层驱动程序的例子:
-![](16536647326395.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536647326395.jpg)
 
 通过一个示例可以更好地理解这个概念，所以让我们触发一个写操作使用以下命令到c:\abc.txt。当执行该命令时，netstat将打开abc.txt的句柄并写入:
 ```
 C:\Windows\system32>netstat -an -t 60 > C:\abc.txt
 ```
 这里要注意的一点是文件名(C:\abc.txt)还包括文件所在设备的名称，即卷C:是符号链接的名称HarddiskVolume1(你可以使用WinObj工具验证它，如前所述)。这意味着写操作将被路由到与设备\device\HarddiskVolume1相关联的驱动程序。当netstat.exe打开abc.txt时，I/O管理器创建一个文件对象(FILE_OBJECT结构)，并在返回netstat.exe句柄之前，将指向设备对象的指针存储在文件对象中。下面这张来自ProcessHacker工具的截图显示了已被netstat.exe打开的C:\abc.txt的句柄。对象地址0x85f78ce8表示文件对象:
-![](16536650447139.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536650447139.jpg)
 
 可以使用对象地址检查文件对象(FILE_OBJECT)，如下所示。从输出中，可以看到FileName字段包含文件名称，DeviceObject字段包含指向设备对象(DEVICE_OBJECT)的指针:
 ```
@@ -583,7 +583,7 @@ kd> !devstack 0x868e7e20
 > 868e7e20 \Driver\volmgr 868e7ed8 HarddiskVolume1
 ```
 要查看设备树，可以使用GUI工具DeviceTree(我们在前面提到过)。该工具将驱动程序显示在树的外缘，它们的设备缩进了一级。附件中的设备是进一步的打算，如下截图所示。你可以将下面的截图与前面的!devstack的输出进行比较，以了解如何解释这些信息:
-![](16536651346176.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536651346176.jpg)
 
 理解这种分层的方法是很重要的，因为有时候，一个新手驱动可以插入或附加在目标设备的堆栈下面或上面来接收IRP。使用这种技术，rootkit驱动程序可以在将IRP传递给合法驱动程序之前记录或修改它。例如，键盘记录器可以通过插入位于键盘函数驱动程序之上的恶意驱动程序来记录击键。
 ### 7. 显示设备树
@@ -598,7 +598,7 @@ DRV 0xbf2e0bd8 \Driver\volmgr
 ---| DEV 0x868e7e20 HarddiskVolume1 FILE_DEVICE_DISK
 ------| ATT 0x868e7b28 - \Driver\fvevol FILE_DEVICE_DISK ---------| ATT 0x868e78c0 - \Driver\rdyboost FILE_DEVICE_DISK ------------| ATT 0x85707658 - \Driver\volsnap FILE_DEVICE_DISK [REMOVED]
 ```
-![](16536651772114.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536651772114.jpg)
 
 为了帮助您理解devicetree插件在司法调查中的使用，让我们来看看一个恶意软件，它创建自己的设备来存储恶意二进制文件。在下面的ZeroAccess rootkit示例中，我使用了cmdline插件，它显示进程命令行参数。这在确定进程的完整路径时很有用(您也可以使用dlllist插件)。从输出中可以看到最后一个svchost.exe进程在可疑的命名空间中运行:
 ```
@@ -651,13 +651,13 @@ DriverStartIo: 0x0
 14 IRP_MJ_DEVICE_CONTROL
 15 IRP_MJ_INTERNAL_DEVICE_CONTROL 0xfffff80002a5865c ntoskrnl.exe [REMOVED]
 ```
-![](16536653003646.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536653003646.jpg)
 
 ### 8. 检测内核空间挂钩
 当讨论钩子技术时(在第8章，代码注入和钩子)在钩子技术一节中，我们看到了一些恶意程序如何修改调用表(IAT钩子)和一些修改API函数(内联钩子)来控制程序的执行路径，并将其重新路由到恶意代码。目标是阻止对API的调用，监视传递给API的输入参数，或过滤从API返回的输出参数。在第8章，代码注入和hook，主要关注用户空间中的hook技术。如果攻击者设法安装内核驱动程序，在内核空间中也可能有类似的功能。与在用户空间中挂接相比，在内核空间中挂接是一种更强大的方法，因为内核组件在整个系统的操作中扮演着非常重要的角色。它允许攻击者以较高的权限执行代码，使他们能够隐藏恶意组件的存在、绕过安全软件或拦截执行路径。在本节中，我们将了解内核空间中的不同挂钩技术，以及如何使用内存取证来检测这些技术。
 #### 8.1 检测SSDT挂钩
 内核空间中的系统服务描述符表(SSDT)包含内核执行程序(ntoskrnl.exe、ntkrnlpa.exe等)导出的系统服务例程(内核函数)的指针。当应用程序调用WriteFile()、ReadFile()或CreateProcess()等API时，它会调用ntdll.dll中的存根，它会将线程切换到内核模式。在内核模式下运行的线程会查询SSDT以确定要调用的内核函数的地址。下面的截图用一个WriteFile()的例子说明了这个概念(这个概念和其他api类似):
-![](16536653442382.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536653442382.jpg)
 
 
 通常，ntoskrnl.exe导出核心内核API函数，例如NtReadFile()， NtWrite()File，等等。在x86平台中，指向这些内核函数的指针直接存储在SSDT中，而在x64平台上，SSDT不包含指针。相反，它存储一个经过编码的整数，该整数被解码以确定内核函数的地址。无论实现是什么，概念都是相同的，并且要咨询SSDT来确定特定内核函数的地址。Windows7 x86平台下的WinDbg命令会显示SSDT的内容。表中的条目包含指向ntoskrnl.exe (nt)实现的函数的指针。条目的顺序和数量因操作系统版本而异:
@@ -688,7 +688,7 @@ $ python vol.py -f win7_x86.vmem --profile=Win7SP1x86 ssdt Volatility Foundation
      Entry 0x1002: 0x96a272c1 (NtGdiAddFontResourceW) owned by win32k.sys
      Entry 0x1003: 0x96bcff67 (NtGdiAddRemoteFontToDC) owned by win32k.sys
 ```
-![](16536653901545.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536653901545.jpg)
 要检测SSDT挂钩，可以在SSDT表中查找不指向ntoskrnl.exe或win32k.sys中的地址的条目。以下代码是一个示例
 Mader rootkit，它钩住各种与注册表相关的函数，并将它们指向恶意驱动程序core.sys。在这个阶段，您可以确定核心的基址。Sys使用模块、modscan或驱动程序，然后使用moddump插件将其转储到磁盘上进行进一步分析:
 ```
@@ -725,7 +725,7 @@ $ python vol.py -f win7.vmem --profile=Win7SP1x86 idt Volatility Foundation Vola
 0 C2 0x8 0x8288eea4 ntoskrnl.exe .text 
 0 C3 0x8 0x8288eeae ntoskrnl.exe .text
 ```
-![](16536654655910.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536654655910.jpg)
 
 下面的输出显示钩住的条目。可以看到IDT中的0xC3条目指向UNKNOWN模块中的一个地址。换句话说，被钩入的条目位于ntoskrnl.exe模块的范围之外:
 ```
@@ -745,15 +745,15 @@ $ python vol.py -f turla1.vmem --profile=Win7SP1x86 idt Volatility Foundation Vo
 0 C2 0x8 0x8288eea4 ntoskrnl.exe .text 
 0 C3 0x8 0x85b422b0 UNKNOWN
 ```
-![](16536654952428.jpg)
-![](16536655016561.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536654952428.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536655016561.jpg)
 
 > 关于Uroburos rootkit的详细分析，并了解rootkit用于触发挂钩中断处理程序的技术，请参阅以下博客文章:https://www.gdatasoftware.com/blog/2014/06/23953-analysis-of-uroburos-using-windbg。
 
 #### 8.3 识别内联内核钩子
 攻击者可以使用jmp指令修改现有内核驱动程序中的一个或多个内核函数，从而将执行流重定向到恶意代码，而不是替换SSDT中的指针(这使其易于识别)。正如本章前面提到的，你可以使用apihooks插件来检测内核空间中的内联挂接。通过指定-P参数，你可以告诉apihooks插件只扫描内核空间中的钩子。在下面这个TDL3 rootkit的例子中，apihook检测内核函数IofCallDriver和IofCompleteRequest中的钩子。被钩子连接的API函数被重定向到名称未知的恶意模块中的0xb878dfb2和0xb878e6bb地址(可能是因为它通过解除KLDR_DATA_TABLE_ENTRY结构的链接来隐藏):
-![](16536655850773.jpg)
-![](16536656103360.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536655850773.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536656103360.jpg)
 
 ```
 $ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 apihooks -P Volatility Foundation Volatility Framework 2.6 ************************************************************************ Hook mode: Kernelmode
@@ -785,10 +785,10 @@ $ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 modscan | grep -i 0xb878 Vola
 ```
 #### 8.4 检测IRP函数钩子
 rootkit可以修改主函数表(调度例程数组)中的条目，以指向恶意模块中的例程，而不是与内核API函数挂钩。例如，rootkit可以通过覆盖驱动主函数表中IRP_MJ_WRITE对应的地址来检查写入磁盘或网络的数据缓冲区。下面的图表说明了这个概念:
-![](16536659609189.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536659609189.jpg)
 
 通常，IRP处理程序在它们自己的模块中运行驱动程序点。例如，与null的IRP_MJ_WRITE相关联的例程。Sys指向一个空地址。然而，有时一个驱动程序会将处理函数转发给另一个驱动程序。下面是磁盘驱动程序转发处理程序函数到CLASSPNP.SYS的示例(存储类设备驱动):
-![](16536659800070.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536659800070.jpg)
 ```
 $ python vol.py -f win7_clean.vmem --profile=Win7SP1x64 driverirp -r disk Volatility Foundation Volatility Framework 2.6 --------------------------------------------------
 DriverName: Disk
@@ -824,7 +824,7 @@ DriverStartIo: 0x0
 0xbabe2bde Unknown
 0xbabe2bde Unknown
 ```
-![](16536660449223.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536660449223.jpg)
 modscan的以下输出显示了与ZeroAccess相关的恶意驱动程序(具有一个可疑的名称)和它在内存中加载的base地址(可以用来将驱动程序转储到磁盘):
 ```
 
@@ -868,8 +868,8 @@ As discussed so far, detecting standard hooking techniques is fairly straightfor
 0x828ee437 ntoskrnl.exe
 0x880ee040 Null.SYS
 ```
-![](16536661693974.jpg)
-![](16536661779079.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536661693974.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536661779079.jpg)
 
 > 关于Gapz Bootkit所使用的隐形技术的详细信息，请阅读白皮书(https://www.welivesecurity.com/wp-content/uploads/2013/04/Gapz-Bootkit-whitepaper.pdf)题为“注意Gapz:有史以来分析过的最复杂的Bootkit”，由Eugene Rodionov和Aleksandr Matrosov撰写。
 
@@ -902,7 +902,7 @@ Module Base
 ----------------- ------
  core.sys         OK: driver.f66e9000.sys
 ```
-![](16536663256897.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536663256897.jpg)
 在下面的例子中，TDL3 rootkit安装进程回调和镜像加载回调通知。这允许rootkit监控进程事件，并在可执行映像(EXE、DLL或内核模块)映射到内存时获得通知。条目中的模块名称设置为UNKNOWN;这告诉你，回调例程存在于一个未知模块中，如果rootkit驱动程序试图通过解除KLDR_DATA_TABLE_ENTRY结构的链接来隐藏，或者如果一个rootkit正在运行一个孤儿线程(一个隐藏或从内核模块分离的线程)，就会发生这种情况。在这种情况下，UNKNOWN条目让你很容易发现可疑条目:
 ```
 $ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 callbacks Volatility Foundation Volatility Framework 2.6
@@ -918,7 +918,7 @@ GenericKernelCallback 0xb878e8e9 UNKNOWN PsSetLoadImageNotifyRoutine 0xb878f108 
 Ndis miniport
 
 ```
-![](16536663590321.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536663590321.jpg)
 即使模块名是UNKNOWN，根据回调例程地址，我们可以推断恶意模块应该位于地址为0xb878的内存区域的某个地方。从模块插件的输出中，您可以看到模块本身已经解除了链接，但是modscan插件能够检测到加载在0xb878c000且大小为0x11000的内核模块。显然，所有回调例程地址都在这个模块的范围内。现在已经知道了内核模块的base地址，你可以使用moddump插件来转储它，以便进一步分析:
 ```
 $ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 modules | grep -i 0xb878 Volatility Foundation Volatility Framework 2.6
@@ -930,12 +930,12 @@ $ python vol.py -f tdl3.vmem --profile=WinXPSP3x86 modscan | grep -i 0xb878 Vola
 
 要列出内核计时器，可以使用timersVolatility插件。需要注意的一点是，计时器本身并不是恶意的;这是Windows的功能，所以在一个干净的系统上，你会看到一些合法的驱动程序安装了计时器。与回调函数一样，可能需要进一步分析来识别恶意模块。由于大多数rootkit试图隐藏它们的驱动程序，因此，会创建明显的工件，可以帮助您快速识别恶意模块。在下面的例子中，ZeroAccess rootkit安装了一个6000毫秒的计时器。当这段时间过去时，将调用UNKNOWN模块中地址0x814f9db0的例程。Module列中的UNKNOWN告诉我们模块可能是隐藏的，但是例程地址指向恶意代码存在的内存范围:
 
-![](16536666999673.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536666999673.jpg)
 ```
 $ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 timers
 ```
 除了计时器，ZeroAccess还安装回调来监视注册表操作。同样，回调例程地址指向相同的内存范围(从0x814f开始):
-![](16536667213847.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536667213847.jpg)
 
 ```
 $ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 callbacks
@@ -950,9 +950,9 @@ $ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 driverscan | grep -i 0x81
 ```
 $ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 driverscan
 ```
-![](16536667653357.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536667653357.jpg)
 通过清空基地地址，rootkit使得司法分析人员很难确定内核模块的起始地址，这也阻止了我们转储恶意模块。我们仍然知道恶意代码的所在位置(以0x814f开头的地址)。一个引人注目的问题是，我们如何使用这些信息来确定基址?一种方法是取其中一个地址并减去一定数量的字节(反向)，直到找到MZ签名，但这种方法的问题是不容易确定要减去多少字节。最快的方法是使用yarascan插件，这个插件允许你在内存中扫描一个模式(字符串，十六进制字节，或正则表达式)。因为我们试图找到位于内核内存中以地址0x814f开始的模块，所以我们可以使用带有-K的yarascan(它只扫描内核内存)来寻找MZ签名。从输出中，可以看到地址为0x814f1b80的可执行文件。您可以将此指定为使用moddump插件将恶意模块转储到磁盘的基本地址。转储模块的大小大约为53.2 KB，即十六进制的0xd000字节。换句话说，模块从地址0x814f1b80开始，到地址0x814feb80结束。所有回调地址都在这个模块的地址范围内:
-![](16536667906606.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536667906606.jpg)
 ```
 $ python vol.py -f zaccess1.vmem --profile=WinXPSP3x86 yarascan -K -Y "MZ" | grep -i 0x814f
 Volatility Foundation Volatility Framework 2.6
@@ -967,7 +967,7 @@ $ ls -al
 ```
 为了确认转储的模块是恶意的，将其提交给VirusTotal。反病毒软件供应商的结果证实，它是ZeroAccess Rootkit(也被称为Sirefef):
 
-![](16536668404388.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-12-使用内存取证狩猎恶意软件/16536668404388.jpg)
 
 ### 总结
 恶意软件的作者使用各种先进的技术来安装他们的内核驱动程序，并绕过Windows安全机制。一旦安装了内核驱动程序，它就可以修改系统组件或第三方驱动程序来绕过、转移和转移司法分析。在本章中，你看了一些最常见的rootkit技术，我们看到了如何使用内存取证来检测这样的技术。内存取证是一种强大的技术，使用它作为恶意软件分析工作的一部分将极大地帮助您了解攻击者的战术。恶意软件的作者经常想出新的方法来隐藏他们的恶意组件，所以仅仅知道如何使用这些工具是不够的;理解底层概念对于识别攻击者绕过取证工具的努力是很重要的。

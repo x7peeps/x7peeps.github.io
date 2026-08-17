@@ -16,7 +16,7 @@ date: 2024-07-04T00:00:00+08:00
 net share
 ```
 
-![img](1629366061373-e8f8b978-fd2c-44f8-8bd3-2191a37a9615.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629366061373-e8f8b978-fd2c-44f8-8bd3-2191a37a9615.png)
 
 通过命令看到所有盘符都是默认共享 IPC$空连接尤为不安全,所以我们要关闭默认共享
 
@@ -26,9 +26,9 @@ net share
 net share 共享名 /del
 ```
 
-![img](1629366166448-e721b597-5665-40a6-9909-a0bb56fd7a17.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629366166448-e721b597-5665-40a6-9909-a0bb56fd7a17.png)
 
-![img](1629366154438-3778777b-09db-4b7b-aca4-0492a8ee2ac0.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629366154438-3778777b-09db-4b7b-aca4-0492a8ee2ac0.png)
 
 
 
@@ -43,7 +43,7 @@ IPC$                OK
 Users   C:\Users    OK
 ```
 
-![img](1629792573042-627cac79-a3e0-4c86-83f9-c63276228ca2.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629792573042-627cac79-a3e0-4c86-83f9-c63276228ca2.png)
 
 
 
@@ -53,7 +53,7 @@ Users   C:\Users    OK
 get-wmiobject -class Win32_share
 ```
 
-![img](1629794183717-5bd7c5c3-ca51-4c8c-8197-dc80632faa91.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629794183717-5bd7c5c3-ca51-4c8c-8197-dc80632faa91.png)
 
 ## 注册表查询
 
@@ -303,7 +303,7 @@ windows
 
 在功能处
 
-![img](1629883883752-64dbeee3-8c14-43a2-9d80-af126e4bf5a6.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629883883752-64dbeee3-8c14-43a2-9d80-af126e4bf5a6.png)
 
 #### 连接共享
 
@@ -311,9 +311,9 @@ windows
 mount \\10.211.55.14\mnt\linuxshare k:\
 ```
 
-![img](1629884333106-52b37215-d9d2-4b83-99ad-12c2ecbd1dc1.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629884333106-52b37215-d9d2-4b83-99ad-12c2ecbd1dc1.png)
 
-![img](1629884385532-e30ec65e-efd9-4917-9361-9ebe781e6c85.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629884385532-e30ec65e-efd9-4917-9361-9ebe781e6c85.png)
 
 
 
@@ -325,7 +325,7 @@ mount \\10.211.55.14\mnt\linuxshare k:\
 showmount -e 
 ```
 
-![img](1629883160869-6f0330a1-66d1-4dc2-833c-1b72b0c254a4.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629883160869-6f0330a1-66d1-4dc2-833c-1b72b0c254a4.png)
 
 
 
@@ -420,7 +420,7 @@ windows
 pkgmgr /iu:"TFTP"
 ```
 
-![img](1629949849926-23b185fc-b0a9-4ed3-be9d-02140f468909.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629949849926-23b185fc-b0a9-4ed3-be9d-02140f468909.png)
 
 #### 连接tftp
 
@@ -437,7 +437,7 @@ tftp 10.211.55.14 get testftp.txt
 
 
 [
-](https://developer.aliyun.com/article/459761)![img](1629953187715-8194096c-6106-44b8-84b8-8e9975ae1b52.png)
+](https://developer.aliyun.com/article/459761)![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629953187715-8194096c-6106-44b8-84b8-8e9975ae1b52.png)
 
 [
 ](https://developer.aliyun.com/article/459761)linux下连接下载文件
@@ -447,7 +447,7 @@ tftp 127.0.0.1
 tftp> get testftp.txt	
 ```
 
-![img](1629953389532-5f46c47c-df50-42c7-9f05-aa6840a50824.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629953389532-5f46c47c-df50-42c7-9f05-aa6840a50824.png)
 
 
 
@@ -535,13 +535,13 @@ security=share
 
 为了测试在home下创建sambashare目录匹配配置中的path内容，用于作为sambashare的目录，并创建sambasharetest.txt文件作为测试文件
 
-![img](1629957114490-621a3804-cb6c-447d-9411-1ba17c74d865.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629957114490-621a3804-cb6c-447d-9411-1ba17c74d865.png)
 
 
 
 windows下文件资源管理器中\\10.211.55.14\sambashare即可
 
-![img](1629958756343-a0d3c7b8-4177-47d9-8cfe-545a951c28ea.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统共享检查/1629958756343-a0d3c7b8-4177-47d9-8cfe-545a951c28ea.png)
 
 
 

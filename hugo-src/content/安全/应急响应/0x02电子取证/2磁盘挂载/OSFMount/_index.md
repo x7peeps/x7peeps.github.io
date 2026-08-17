@@ -28,7 +28,7 @@ OSFMount支持以.iso格式挂载CD的映像，当经常使用特定的CD并且�
 
 # 特性
 
-![image.png](1616723284189-4dcf8f89-6aeb-4360-8890-4beef59bf29a.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/OSFMount/1616723284189-4dcf8f89-6aeb-4360-8890-4beef59bf29a.png)
 
 - 支持的高级取证格式的版本是AFFv3与zlib压缩支持。不支持加密和签名。
 
@@ -73,23 +73,23 @@ RAM: 1GB(挂载大磁盘映像时，RAM越多越好)
 
 ## 使用OSFMount挂载镜像
 
-![image.png](1616724747311-876d9d63-a6f2-4014-ba53-332f8d872514.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/OSFMount/1616724747311-876d9d63-a6f2-4014-ba53-332f8d872514.png)
 
 点击mount now
 
-![image.png](1616723778628-5c0d28fd-dc4e-4a49-95f1-6deaf6ab24c2.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/OSFMount/1616723778628-5c0d28fd-dc4e-4a49-95f1-6deaf6ab24c2.png)
 
 选择镜像挂载
 
-![image.png](1616723817274-1cea19ed-a21d-4f1b-a729-848443544330.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/OSFMount/1616723817274-1cea19ed-a21d-4f1b-a729-848443544330.png)
 
 这里选择选择readonly
 
-![image.png](1616723827278-21f22357-cd87-4556-9efb-cc02a5e110a3.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/OSFMount/1616723827278-21f22357-cd87-4556-9efb-cc02a5e110a3.png)
 
 点击mount即可
 
-![image-20210326135334373](image-20210326135334373.png)
+![image-20210326135334373](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/2磁盘挂载/OSFMount/image-20210326135334373.png)
 
 
 

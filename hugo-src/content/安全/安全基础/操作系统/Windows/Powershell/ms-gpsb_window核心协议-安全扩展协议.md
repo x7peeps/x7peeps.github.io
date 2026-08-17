@@ -263,7 +263,7 @@ client-side extension 客户端扩展GUID（CSE GUID）：一种GUID，它使组
 
 此协议依赖于[MS-GPOL]中指定的组策略：核心协议。它还依赖于[MS-SMB]中指定的SMB协议，用于在客户端和GP服务器之间传输组策略设置和指令。
 
-![img](ms-gpsb_window%E6%A0%B8%E5%BF%83%E5%8D%8F%E8%AE%AE-%E5%AE%89%E5%85%A8%E6%89%A9%E5%B1%95%E5%8D%8F%E8%AE%AE/1632624315434-1c76b526-9916-432a-a096-c0f790733b12.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/安全基础/操作系统/Windows/Powershell/ms-gpsb_window核心协议-安全扩展协议/1632624315434-1c76b526-9916-432a-a096-c0f790733b12.png)
 
 ## 1.5 先决条件
 

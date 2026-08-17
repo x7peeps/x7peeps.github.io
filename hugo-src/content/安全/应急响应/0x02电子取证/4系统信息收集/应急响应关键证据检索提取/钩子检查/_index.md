@@ -27,7 +27,7 @@ HOOK和注入技术经常被恶意代码使用,利用HOOK和注入技术,恶意�
 
 
 
-![img](1630370936018-1ef1db28-59e4-417b-b4f3-0a1c97416056.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630370936018-1ef1db28-59e4-417b-b4f3-0a1c97416056.png)
 
 
 
@@ -35,7 +35,7 @@ HOOK和注入技术经常被恶意代码使用,利用HOOK和注入技术,恶意�
 
 Hook分为应用层（Ring3）Hook和内核层（Ring0）Hook，应用层Hook适用于x86和x64，而内核层Hook一般仅在x86平台适用，因为从Windows Vista的64版本开始引入的Patch Guard技术极大地限制了Windows x64内核挂钩的使用。
 
-![img](1630370993942-d4d7b03b-4c97-41b7-bcbb-281db7f09462.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630370993942-d4d7b03b-4c97-41b7-bcbb-281db7f09462.png)
 
 
 
@@ -52,7 +52,7 @@ Hook分为应用层（Ring3）Hook和内核层（Ring0）Hook，应用层Hook适
 
 
 
-![img](1630372761522-30d8bbb3-f28f-4189-a034-aad92a234ebd.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630372761522-30d8bbb3-f28f-4189-a034-aad92a234ebd.png)
 
 
 
@@ -76,7 +76,7 @@ hInstance, //钩子函数所在DLL的Handle
 
 该API在简单高效的同时也有一个弊端，就是它只能监视较少的消息，如：击键消息、鼠标移动消息、窗口消息。想要对系统更全面的进行Hook就要使用以下介绍的两种Hook方法。
 
-![img](1630373389940-2cb3978f-abb6-48ac-938c-cf15b8f400c2.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630373389940-2cb3978f-abb6-48ac-938c-cf15b8f400c2.png)
 
 ### 调试hook
 
@@ -87,20 +87,20 @@ hInstance, //钩子函数所在DLL的Handle
 
 
 
-![img](1630373216238-e8e058c1-a840-4160-beb8-ab7c466e3b60.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630373216238-e8e058c1-a840-4160-beb8-ab7c466e3b60.png)
 
 
 
 若进程被另一个进程调试了（如OllyDbg），异常事件的处理工作将移交给调试者，比如进程发生了除0错误，OllyDbg将接收到这个异常事件并对进行相应处理。
 PS：调试器无处理或不关心的调试事件最终由OS处理。
 
-![img](1630373277311-aed1c131-cac7-4831-bf5e-daa099b231c6.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630373277311-aed1c131-cac7-4831-bf5e-daa099b231c6.png)
 
 
 
 所以，调试Hook的核心思路就是将API的第一个字节修改为0xCC（INT 3），当API被调用时，由于触发了异常，控制权就被转交给调试器。
 
-![img](1630373376338-ae8dc475-461a-4519-93e3-d2ac55b8334e.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630373376338-ae8dc475-461a-4519-93e3-d2ac55b8334e.png)
 
 ### 注入hook
 
@@ -144,11 +144,11 @@ IAT Hook顾名思义就是通过修改IAT里的函数地址对API进行Hook。
 
 右图是被Hook后的状态，IAT中的SetWinowTextW()的地址已被修改为0x10001000，calc.exe执行call SetWindowTextW（dword ptr[01001110]）实质变成了执行call 0x10001000（也就是恶意代码的起始地址），这时候就可以做我们想做的操作了。
 
-![img](1630389423589-0592c628-5e5a-435a-8200-a49bd8cace57.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630389423589-0592c628-5e5a-435a-8200-a49bd8cace57.png)
 
-![img](1630389415072-72cfd5f9-03f4-4ea3-a148-c3200dc48b75.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630389415072-72cfd5f9-03f4-4ea3-a148-c3200dc48b75.jpg)
 
-![img](1630387359349-b702bcd9-ff80-42a7-a658-0191af6f2914.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630387359349-b702bcd9-ff80-42a7-a658-0191af6f2914.png)
 
 #### inline hook**（ring3 windows api型）**
 
@@ -171,7 +171,7 @@ Inline Hook的目标是系统函数，如下，左图是Hook之前的状态，pr
 
 ](https://blog.csdn.net/m0_37552052/article/details/81453591)
 
-![img](1630388382684-f2f09760-bf4b-4473-ad75-4a4d5ba3e7fa.png)![img](1630388374024-7a7a810a-dd3f-456a-915a-fbc9ccfeff4d.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630388382684-f2f09760-bf4b-4473-ad75-4a4d5ba3e7fa.png)![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630388374024-7a7a810a-dd3f-456a-915a-fbc9ccfeff4d.jpg)
 
 
 
@@ -179,7 +179,7 @@ Inline Hook的目标是系统函数，如下，左图是Hook之前的状态，pr
 
 
 
-![img](1630390213625-6cef08f7-7419-4a82-8543-7b50d0953e16.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630390213625-6cef08f7-7419-4a82-8543-7b50d0953e16.png)
 
 
 
@@ -201,9 +201,9 @@ Inline Hook的目标是系统函数，如下，左图是Hook之前的状态，pr
 
 MOV EDI,EDI用于将EDI的值再次复制给EDI，这没有什么实际意义。也就是说，API起始代码的MOV指令（2个字节）与其上方的5个NOP指令（5个字节）合起来共7个字节的指令没有任何意义。所以我们就可以通过修改这7个字节来实现Hook操作。这种方法因为可以在进程处于运行状态时临时更改进程内存中的库文件，所以微软也常用这种方法来打“热补丁”。
 
-![img](1630390957955-1f2796dd-b0d0-4496-a77f-cdb1930705ff.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630390957955-1f2796dd-b0d0-4496-a77f-cdb1930705ff.png)
 
-![img](1630390964538-9337fd4f-5cbe-42fd-bf3e-c204e97296af.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630390964538-9337fd4f-5cbe-42fd-bf3e-c204e97296af.png)
 
 
 如下，将前7个字节改成：
@@ -212,11 +212,11 @@ JMP SHORT 0x7C802366
 
 这样，当API被调用时，首先执行了JMP SHORT 0x7C802366，便跳到了JMP 10001000处执行，最后跳到了恶意代码的起始处0x10001000。
 
-![img](1630391175904-9aaac93c-00f3-4b22-8fa0-e7fc0f9d235b.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630391175904-9aaac93c-00f3-4b22-8fa0-e7fc0f9d235b.png)
 
 在5字节代码修改技术中“脱钩”是为了“调用原函数”，而使用“热补丁”技术钩取API时，在API代码遭到修改的状态下也能正常调用原API（从[API起始地址+2]地址开始，仍然能正常调用原API，且执行的动作也完全一样）。
 
-![img](1630391506338-56882061-0a4d-4a94-a5c3-2a625b15484d.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630391506338-56882061-0a4d-4a94-a5c3-2a625b15484d.png)
 
 
 
@@ -234,26 +234,26 @@ SSDT Hook属于内核层Hook，也是最底层的Hook。由于用户层的API最
 
 内核通过SSDT（System Service Descriptor Table）系统服务描述符表调用各种内核函数，SSDT就是一个函数表，只要得到一个索引值，就能根据这个索引值在该表中得到想要的函数地址。
 
-![img](1630391643827-c76c4f6b-ea01-4106-9514-f5696a748d45.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630391643827-c76c4f6b-ea01-4106-9514-f5696a748d45.png)
 
 下图0x80563520处就是ntoskrnl对应的服务描述符表结构SSDT。那么第一个32位的0x804e58a0则是SSDT Base，即SSDT的首地址。
 
-![img](1630391803874-71421813-3305-4a49-a310-ef131202991a.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630391803874-71421813-3305-4a49-a310-ef131202991a.png)
 
 通过对这些地址反汇编，就能得到相应的函数，下图中0x80591bfb是SSDT表中的第一个函数NtAcceptConnectPort的地址。
 
-![img](1630391944227-8521e9e7-b83f-4ed1-b4cf-f11a86b9df5f.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630391944227-8521e9e7-b83f-4ed1-b4cf-f11a86b9df5f.jpg)
 
 我们接下来试着寻找NtQuerySystemInformation的地址，首先反汇编ZwQuerySystemInformation，得知它要寻找SSDT中索引号为0xAD的地址。
 
-![img](1630391977999-6ee9b13e-cbc8-4413-b91f-d35927244493.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630391977999-6ee9b13e-cbc8-4413-b91f-d35927244493.png)
 
 从上面我们可以知道，NtQuerySystemInformation的索引号为0xAD，那么我们就可以算出NtQuerySystemInformation的地址：
 0x80591bfb + 0xAD = 0x8056ff1
 
 
 
-![img](1630392009096-718df055-7c62-42cd-a22d-3005c98147ae.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630392009096-718df055-7c62-42cd-a22d-3005c98147ae.png)
 
 ssdt hook代码实现
 
@@ -276,7 +276,7 @@ ssdt hook代码实现
 [
 ](https://blog.csdn.net/m0_37552052/article/details/81453591)
 
-![img](1630392486304-0fd72ce1-cdb2-47af-90bd-a325c7e7f18d.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1630392486304-0fd72ce1-cdb2-47af-90bd-a325c7e7f18d.png)
 
 
 
@@ -332,7 +332,7 @@ https://baike.baidu.com/item/IAT/20444498?fr=aladdin
 
 - 可以通过用恶意函数地址覆盖目标函数的地址来挂钩 IAT 中指定的函数指针，并可选择执行最初预期的函数
 
-![img](1631776930445-25836f4c-eebf-4958-b1f2-e8d26c8fc571.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631776930445-25836f4c-eebf-4958-b1f2-e8d26c8fc571.png)
 
 #### Hook前
 
@@ -341,7 +341,7 @@ https://baike.baidu.com/item/IAT/20444498?fr=aladdin
 
 - 代码执行跳转到第 2 步中解析的 地址，其中显示（绿框）的合法代码所在kernel32!MessageBoxAMessageBoxA
 
-![img](1631777179862-78657643-56e1-4682-851f-84ad8a00ba9e.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631777179862-78657643-56e1-4682-851f-84ad8a00ba9e.png)
 
 #### Hook之后
 
@@ -358,23 +358,23 @@ https://baike.baidu.com/item/IAT/20444498?fr=aladdin
 
 二进制文件在内存中的基址位置为0x000007FF6BFD50000	
 
-![img](1631890292495-3c38db2f-2153-4dbb-a86a-2a6bdbf4db2f.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631890292495-3c38db2f-2153-4dbb-a86a-2a6bdbf4db2f.png)
 
 
 
 在IAT操作之前，指向：MessageBoxA地址 0x00007ff6bfd663f2 （IAT地址）
 
-![img](1631890456783-1f594eb4-d181-40ad-9208-09b63d311b64.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631890456783-1f594eb4-d181-40ad-9208-09b63d311b64.png)
 
 我们通过查询IAT内存地址即可知道实际MessageBoxA地址0x000007FF6BFD771D8。
 
-![img](1631890735313-6af57ca9-faf3-4c44-938d-8cce9f857d7b.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631890735313-6af57ca9-faf3-4c44-938d-8cce9f857d7b.png)
 
 
 
 除此之外，我们还可以通过通过CPP查询到的偏移地址也可以推出MessageBoxA的实际地址=基址+偏移地址=0x000007FF6BFD50000+0x000000000000271D8=0x000007FF6BFD771D8
 
-![img](1631890405538-549f9a51-7203-424c-bfa0-367d35cb4fd6.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631890405538-549f9a51-7203-424c-bfa0-367d35cb4fd6.png)
 
 
 
@@ -455,27 +455,27 @@ int main()
 
 1.hook执行之前
 
-![img](1631892184182-a4ff6e73-268e-4033-8127-5aaaa380b927.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631892184182-a4ff6e73-268e-4033-8127-5aaaa380b927.png)
 
 
 
 此时Trunk指针指向MessageBoxA的实际地址
 
-![img](1631892332599-e6cd0748-96aa-4627-ab0e-41a9a83aec7a.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631892332599-e6cd0748-96aa-4627-ab0e-41a9a83aec7a.png)
 
-![img](1631892989433-4afebe91-2863-4875-8679-03f510b42808.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631892989433-4afebe91-2863-4875-8679-03f510b42808.png)
 
 2.执行后指针指向hookedMessageBox，这里由于指针在满足hookedMessageBox之后仍然会继续轮询一段IAT，因此会发现程序执行完这个指针最后并不是正好处于HookedMessageBox位置，这里可以参考下图，抓取到的满足逻辑的时刻。
 
-![img](1631894663731-00c7343a-9604-4740-895c-bc52fc183263.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631894663731-00c7343a-9604-4740-895c-bc52fc183263.png)
 
 3.之后执行hookedMessageBox。
 
-![img](1631893132603-a3d15c42-bc85-4367-aaef-d914d4fe04ca.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631893132603-a3d15c42-bc85-4367-aaef-d914d4fe04ca.png)
 
 4.最后hook结束
 
-![img](1631894901712-5bd13dc3-feab-4a61-94ad-61d51a218557.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1631894901712-5bd13dc3-feab-4a61-94ad-61d51a218557.png)
 
 
 
@@ -511,9 +511,9 @@ https://tech-zealots.com/malware-analysis/journey-towards-import-address-table-o
 
 ### IAThook检测
 
-![img](1632277085276-f8d57d7f-a975-4151-bc2b-3ff65c57da3b.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1632277085276-f8d57d7f-a975-4151-bc2b-3ff65c57da3b.png)
 
-![img](1632277165409-3633655f-b3a4-4517-965a-430c6b05a09e.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1632277165409-3633655f-b3a4-4517-965a-430c6b05a09e.png)
 
 通过查看详情，可以看到钩子源MessageBoxA，目标已经挂在了HookedMessageBox上。
 
@@ -521,25 +521,25 @@ https://tech-zealots.com/malware-analysis/journey-towards-import-address-table-o
 
 
 
-![img](1632277331969-07c2b1a0-a160-4b99-af7e-f5299053e444.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1632277331969-07c2b1a0-a160-4b99-af7e-f5299053e444.png)
 
 找到程序内存IAT双击进入程序内存位置。
 
-![img](1632278128151-c68fb2d6-1bba-4345-a407-d29c4fa7d8fb.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1632278128151-c68fb2d6-1bba-4345-a407-d29c4fa7d8fb.png)
 
 通过反汇编分析hook程序功能。
 
-![img](1632278102282-6b1e7ab4-3520-421b-bbef-e699cb107df5.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1632278102282-6b1e7ab4-3520-421b-bbef-e699cb107df5.png)
 
 
 
 这里因为无法直接复制汇编，手工反汇编，因此需要借助dbg进行进一步分析，这里测试环境下我们选择重新VS运行不调试执行Ctrl+F5，然后附加dbg中，目标地址这次有所变化。
 
-![img](1632280420809-8f35ca63-4644-4b89-9a7a-9f1a1300242b.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1632280420809-8f35ca63-4644-4b89-9a7a-9f1a1300242b.png)
 
 通过定位到内存中目标地址的内存情况。
 
-![img](1632280464863-9262229f-57db-46c7-8529-8064783dd218.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1632280464863-9262229f-57db-46c7-8529-8064783dd218.png)
 
 ```
 mov qword ptr ss:[rsp+8],rbx
@@ -579,7 +579,7 @@ sub rsp,50
 
 这里另外一种方式通过，火绒剑的dump功能将钩子程序dump专项分析。
 
-![img](1632283687742-49c8889c-2149-44af-80ee-d01e76b5bd42.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/钩子检查/1632283687742-49c8889c-2149-44af-80ee-d01e76b5bd42.png)
 
 
 

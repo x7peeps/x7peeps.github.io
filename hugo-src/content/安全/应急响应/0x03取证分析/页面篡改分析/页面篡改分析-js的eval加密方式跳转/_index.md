@@ -5,7 +5,7 @@ tags: [红蓝对抗, 页面篡改]
 ---
 ### Referer触发后端直接返回跳转
 一般菠菜采用引用JS或者写入源码的JS静态加载固定加载的方式触发加载博彩页面，而近期发现了更为隐蔽的加载方式，仅通过referer检测判断来源，符合则直接返回跳转，不符合来源则不触发博彩页面。
-![](b37c1415f565751e36f5ad01813dd603.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-js的eval加密方式跳转/b37c1415f565751e36f5ad01813dd603.png)
 <!--more-->
 
 引用外部脚本：http://aobo.jswpk.com/aobo.js  这里为了方便分析调整了下代码布局。

@@ -25,15 +25,15 @@ R-studio network官网https://www.r-studio.com/
 
 这里使用的是parallels虚拟机环境，对win10虚拟机进行的文件恢复扫描。
 
-![img](1634052765109-fca2ed37-fbef-4bc6-9ba8-4bd5fb518642.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1634052765109-fca2ed37-fbef-4bc6-9ba8-4bd5fb518642.png)
 
 可以看到扫描结束，整个60G扫描用了2分钟。
 
-![img](1634053100986-eb5836ee-3996-4799-995f-4da00e5a4bc1.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1634053100986-eb5836ee-3996-4799-995f-4da00e5a4bc1.png)
 
 查看发现的文件，基本上和DS、360数据恢复类似的操作，根据需要选择恢复即可，恢复机会代表一定的准确性，可以尝试恢复想恢复的文件。
 
-![img](1634053088329-ce13c8ec-76ea-44d8-84b6-98c4fd8ed7bd.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1634053088329-ce13c8ec-76ea-44d8-84b6-98c4fd8ed7bd.png)
 
 
 
@@ -41,11 +41,11 @@ R-studio network官网https://www.r-studio.com/
 
 最后这里尝试使用破解版的远程恢复功能，这里有个前情，下面的软件介绍里也可以看到，正版软件原则是带有agent放在被恢复主机中的，agent部署需要序列号，但是我们下载的破解版没有agent，但是看到有等待从远程计算机链接的功能。那么我们有没有可能host和远程主机都打开RSTUDIO，host选择指定IP连接，远程主机选择监听，实现host到远程主机的连接？
 
-![img](1634053633949-cba38927-9b22-4853-b2a4-cd4d46452f28.png)![img](1634054087085-b804a85d-08a0-4791-b6ea-aa6f42737d2e.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1634053633949-cba38927-9b22-4853-b2a4-cd4d46452f28.png)![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1634054087085-b804a85d-08a0-4791-b6ea-aa6f42737d2e.png)
 
 测试发现未成功，所以这个远程恢复功能还有待发掘。
 
-![img](1634053115837-1012ab84-0f80-458e-92ca-5a5948ace5bf.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1634053115837-1012ab84-0f80-458e-92ca-5a5948ace5bf.jpg)
 
 # 软件介绍
 
@@ -123,14 +123,14 @@ R-Studio Network 许可包在公司或企业环境中最为有用。首先，企
 以下是如何部署 R-Studio 网络许可证的两个示例：
 
 示例 1. 公司网络中的服务器和计算机。
-![img](1633932707662-e5de0868-85d2-4a29-8359-50e04225e9ea.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932707662-e5de0868-85d2-4a29-8359-50e04225e9ea.png)
 
 例如，R-Studio 安装在系统管理员工作站上。R-Studio Agent 预装在最关键的服务器上；R-Studio Agent Portable 可用于其余计算机。当发生数据丢失时，R-Studio 会立即连接到必要的计算机，并开始数据恢复过程。无需安装程序、重新启动计算机等。因此，覆盖丢失数据的风险最小。
 
 在[“如何使用R-Studio的网络包”](https://www.r-studio.com/RStudio_Network_Package.shtml)。文章更详细地描述了 R-Studio 如何在企业网络中工作。
 
 例 2. 从难以访问的计算机进行网络数据恢复（常规和紧急恢复）
-![img](1633932707637-532e72b6-22f1-4d79-a3de-0c9f8ec6b551.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932707637-532e72b6-22f1-4d79-a3de-0c9f8ec6b551.png)
 
 在某些情况下，由于无法轻松物理访问硬件，或者计算机可能处于服务状态，因此无法移除计算机的硬盘驱动器PC外壳密封且用户无法访问的协议。R-Studio Agent Portable 可以在目标机器上运行和注册，并且 R-Studio 可以连接到计算机以远程恢复数据，而无需物理访问其硬件。
 
@@ -160,7 +160,7 @@ R-Studio Network 许可包在公司或企业环境中最为有用。首先，企
 
 在远程计算机上安装并运行 R-Studio Agent。当 R-Studio Agent 启动时，其图标会出现在系统托盘中：
 
-![img](1633932707707-0e08b84e-a53b-4db3-b325-f9211b16544d.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932707707-0e08b84e-a53b-4db3-b325-f9211b16544d.png)
 
 当 R-Studio Agent 启动时，它首先要求您输入注册号。您可以输入它或单击演示按钮继续。如果您选择演示模式，您可以稍后从安装了 R-Studio 的计算机上输入注册号。
 
@@ -169,10 +169,10 @@ R-Studio Network 许可包在公司或企业环境中最为有用。首先，企
 配置 R-Studio Agent/R-Studio Agent Portable
 如果您使用 R-Studio Agent 或 R-Studio Agent Portable：
 右键单击 R-Studio Agent 系统托盘图标并选择配置。输入此 R-Studio Agent 的密码和安装 R-Studio 的计算机的 IP 地址：
-![img](1633932707621-0610e7b3-767e-4c4d-8751-6948af70a494.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932707621-0610e7b3-767e-4c4d-8751-6948af70a494.png)
 
 然后 R-Studio Agent 显示其主面板：
-![img](1633932707623-9d45d089-0093-4146-aa6b-292c7dd65a17.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932707623-9d45d089-0093-4146-aa6b-292c7dd65a17.png)
 
 配置 R-Studio Agent Emergency：
 如果您使用 R-Studio Agent Emergency，您可能需要输入 IP 地址和网络掩码。
@@ -181,30 +181,30 @@ R-Studio Network 许可包在公司或企业环境中最为有用。首先，企
 ### 2. 通过网络在 R-Studio 和 R-Studio Agent 之间建立连接。
 
 在 R-Studio 主面板上，单击连接到远程按钮。选择网络上运行 R-Studio Agent 的计算机：
-![img](1633932708242-de89ba4c-2c4e-46a3-83d1-8777c3206ec3.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932708242-de89ba4c-2c4e-46a3-83d1-8777c3206ec3.png)
 
 如果您要连接到 R-Studio Agent Emergency，您必须在计算机字段中输入该计算机的 IP 地址，将密码字段留空。如果远程计算机上的 R-Studio Agent 在演示模式下运行，则会出现一个对话框，要求您输入 R-Studio Agent 的注册码。您可以输入注册码以访问完整的数据恢复功能集，或单击演示按钮以继续在演示模式下运行 R-Studio Agent。在此模式下，R-Studio 可以执行除实际数据恢复外的任何操作（文件枚举和预览、磁盘扫描等）；恢复的文件无法保存到磁盘。
 
 当 R-Studio 和 R-Studio Agent 连接时，远程计算机的驱动器和磁盘出现在 R-Studio 驱动器面板上：
-![img](1633932708269-79b3059e-826a-4542-afd5-6a5ef0581d4a.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932708269-79b3059e-826a-4542-afd5-6a5ef0581d4a.png)
 
 注意：如果您将 R-Studio 连接到 R-Studio Agent Emergency，驱动器面板将有不同的外观：
-![img](1633932708533-ed06629a-ff19-42fe-9daf-d8e7d9dd9791.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932708533-ed06629a-ff19-42fe-9daf-d8e7d9dd9791.png)
 
 ### 3. 从远程计算机恢复数据，就像在该计算机上安装了 R-Studio 一样。
 
 从 R-Studio 计算机，您可以执行所有硬盘恢复操作，例如文件枚举和文件恢复：
-![img](1633932708568-b99f4f1b-6694-4cf3-b0b6-e8a210107f36.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932708568-b99f4f1b-6694-4cf3-b0b6-e8a210107f36.png)
 
 当“恢复”对话框出现时，您可以选择是要将恢复的文件保存在本地还是远程计算机上。通常，您不应将恢复的数据保存到正在从中恢复数据的同一个磁盘上。将新数据写入磁盘可能会在文件恢复之前覆盖文件。但是，如果您有另一个连接到远程计算机的健康磁盘（例如，外部 USB 硬盘驱动器），则将恢复的文件保存到该磁盘会非常有用。将恢复的文件保存到远程计算机上的磁盘可以使您不必通过网络传输大型文件集。它还有助于保护个人信息，因为数据永远不必离开用户的计算机。
 
 预览文件以估计文件恢复机会：
-![img](1633932708597-c13fac96-2d36-47ce-baac-dfa06915cf7c.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932708597-c13fac96-2d36-47ce-baac-dfa06915cf7c.png)
 
 扫描远程计算机上的磁盘：
-![img](1633932709555-fd420e54-01f3-4abf-ad01-43806bf9b451.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932709555-fd420e54-01f3-4abf-ad01-43806bf9b451.png)
 
 查看/编辑对象，在灾难恢复的情况下，例如：
-![img](1633932709772-7a46f252-1293-4c6e-b65c-3c4190c176cf.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/R-studio network(win)/1633932709772-7a46f252-1293-4c6e-b65c-3c4190c176cf.png)
 
 要与远程计算机断开连接，请在“驱动器”面板上选择远程计算机，然后单击“删除”按钮。

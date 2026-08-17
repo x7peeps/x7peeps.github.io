@@ -220,7 +220,7 @@ http://decalage.info/rtf_tricks
 rtf格式判断：
 文档内容：“{\ rtvpn”。通常，RTF文件应以“{\ rtfN”开头，其中N标识RTF文档的主要版本；
 
-![](1567757683851.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-2-基础静态分析/1567757683851.png)
 
 
 ###### shellcode 混淆

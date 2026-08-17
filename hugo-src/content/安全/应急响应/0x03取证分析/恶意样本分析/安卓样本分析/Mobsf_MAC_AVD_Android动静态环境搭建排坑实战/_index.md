@@ -143,7 +143,7 @@ menu:
  
 
  这里使用的是Android Emulator AVD，安卓8.0+86x64+api版
- ![img](1634823207695-debd38ae-eaff-459f-90f8-1cc5102d8b7c.png)
+ ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823207695-debd38ae-eaff-459f-90f8-1cc5102d8b7c.png)
 
  
 
@@ -217,11 +217,11 @@ menu:
 
  
 
- ![img](1634823229967-7cf55641-8579-418d-b8fa-002a2fffce19.png)
+ ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823229967-7cf55641-8579-418d-b8fa-002a2fffce19.png)
 
  
 
- ![img](1634823318651-eea892d1-d0ad-4a42-ac61-6d3071c4773f.png)
+ ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823318651-eea892d1-d0ad-4a42-ac61-6d3071c4773f.png)
 
  
 
@@ -268,31 +268,31 @@ menu:
 
  1.  进入动态分析
     点击dynamic进入动态分析界面
-    ![img](1634823386739-3558672a-ec61-4d17-9cdc-74c5eab32365.png)
+    ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823386739-3558672a-ec61-4d17-9cdc-74c5eab32365.png)
     同时check终端，一切正常
-    ![img](1634823399872-74cc26e0-08f7-49ab-8030-20f66173e9ef.png) 
+    ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823399872-74cc26e0-08f7-49ab-8030-20f66173e9ef.png) 
  2.  配置完成
-    ![img](1634823421124-d0fe9671-6e41-43a8-9189-c73db9538c4c.png) 
+    ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823421124-d0fe9671-6e41-43a8-9189-c73db9538c4c.png) 
 
  1.  在开始动态分析之前，开启frida-server，由于每次进入动态分析界面，mobsf会自动重启adb环境，因此这里需要重新载入前面配置好的frida-server镜像。或者手动进入adb shell启动frida-server即可。
-     ![img](1634823438856-c0fbb289-5147-4062-8986-071eeaf5a649.png)
+     ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823438856-c0fbb289-5147-4062-8986-071eeaf5a649.png)
  2.  点击start instrumentation 即可动态分析 
 
  
 
- ![img](1634823453625-6bd62d8e-efbd-4dde-bf3b-922a7e0725ef.png)
+ ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823453625-6bd62d8e-efbd-4dde-bf3b-922a7e0725ef.png)
 
  
 
- ![img](1634823464687-0ecf5aed-9abc-4e54-9f2b-f7e71d077b57.png)
+ ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823464687-0ecf5aed-9abc-4e54-9f2b-f7e71d077b57.png)
 
  
 
  检测正常、导出功能正常
 
- ![img](1634823477785-a9fa84a2-0e0b-440e-ada3-3b7e542ffa32.png)
+ ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823477785-a9fa84a2-0e0b-440e-ada3-3b7e542ffa32.png)
 
- ![img](1634823487722-ad787d91-573a-45a0-810c-76793804d4d0.png)
+ ![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/安卓样本分析/Mobsf_MAC_AVD_Android动静态环境搭建排坑实战/1634823487722-ad787d91-573a-45a0-810c-76793804d4d0.png)
 
  
 

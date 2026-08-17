@@ -78,7 +78,7 @@ shims填充程序是什么，为什么他们在系统中？
  </EXE>
 ```
  ### 应用程序兼容性工具包
- ![](16677991087465.jpg)
+ ![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/真正的垫片黑幕/16677991087465.jpg)
 
 ### SDB部署
 . sdbinst.exe向操作系统注册SDB文件 
@@ -243,13 +243,13 @@ shims填充程序是什么，为什么他们在系统中？
 < Multi-kilobyte shellcode downloader >
 ```
 #### 补丁详情总结
-![](16678019103266.jpg)
-![](16678019207562.jpg)
-![](16678019853351.jpg)
-![](16678019965996.jpg)
-![](16678020063577.jpg)
-![](16678020251870.jpg)
-![](16678020332961.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/真正的垫片黑幕/16678019103266.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/真正的垫片黑幕/16678019207562.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/真正的垫片黑幕/16678019853351.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/真正的垫片黑幕/16678019965996.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/真正的垫片黑幕/16678020063577.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/真正的垫片黑幕/16678020251870.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/真正的垫片黑幕/16678020332961.jpg)
 #### 分析
 . MS基础设施的持久性和注入！ 
 . 不透明格式外壳代码的外部存储 
@@ -267,7 +267,7 @@ shims填充程序是什么，为什么他们在系统中？
            -   apphelp.dll公开了大约254个用于操作垫片的导出 
            -   这对法医分析没有帮助！ 
         
-![](16678039078686.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/真正的垫片黑幕/16678039078686.jpg)
 
 #### SDB文件格式2
    . 所以，我们对它进行了逆向工程 

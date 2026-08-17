@@ -326,7 +326,7 @@ y：标识已知在内部使用加密的文件类型，允许在Attr中标记这
 
 
 
-![image.png](1617365574504-468ad296-ed88-41b5-ab53-141738a90616-20210424192610973.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365574504-468ad296-ed88-41b5-ab53-141738a90616-20210424192610973.png)
 
 
 
@@ -340,7 +340,7 @@ y：标识已知在内部使用加密的文件类型，允许在Attr中标记这
 
 
 
-![image.png](1617365605070-f9e12cbc-7583-4b8f-b993-0224c1aceab3-20210424192609073.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365605070-f9e12cbc-7583-4b8f-b993-0224c1aceab3-20210424192609073.png)
 
 创建文件
 
@@ -348,7 +348,7 @@ y：标识已知在内部使用加密的文件类型，允许在Attr中标记这
 
 在winhex找到该文件位置，查看目录项的信息。
 
-![image.png](1617365613573-e56b2e4d-898e-4b4a-87ba-ea858635c9d6-20210424192612758.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365613573-e56b2e4d-898e-4b4a-87ba-ea858635c9d6-20210424192612758.png)
 
 文件目录项
 
@@ -358,7 +358,7 @@ y：标识已知在内部使用加密的文件类型，允许在Attr中标记这
 
 
 
-![image.png](1617365619676-ed7370ea-0417-484e-bd9a-150c7883025f-20210424192608882.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365619676-ed7370ea-0417-484e-bd9a-150c7883025f-20210424192608882.png)
 
 fat1（正常）
 
@@ -372,7 +372,7 @@ fat1（正常）
 
 
 
-![image.png](1617365622731-eb9977bc-ee12-4243-a1f9-5f48ca6a765a-20210424192609422.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365622731-eb9977bc-ee12-4243-a1f9-5f48ca6a765a-20210424192609422.png)
 
 删除文件
 
@@ -381,9 +381,9 @@ fat1（正常）
 找到文件目录项，修改对应第一位信息，并由目录项簇号信息及文件大小计算出首簇号为10，簇数为15。
 
 
-![image.png](1617365639055-6bfcadce-12eb-40d7-8eb5-0e0f6d57deb5-20210424192611710.png)![image.png](1617365639667-f479b777-436b-4407-8322-761d25108b5f-20210424192610213.png)![image.png](1617365639822-16bb90c9-d325-4c03-b255-3ed08bacfcd1-20210424192611537.png)![image.png](1617365639956-eba75652-3f0e-4bad-a230-39ca45a9bc4a-20210424192613374.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365639055-6bfcadce-12eb-40d7-8eb5-0e0f6d57deb5-20210424192611710.png)![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365639667-f479b777-436b-4407-8322-761d25108b5f-20210424192610213.png)![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365639822-16bb90c9-d325-4c03-b255-3ed08bacfcd1-20210424192611537.png)![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365639956-eba75652-3f0e-4bad-a230-39ca45a9bc4a-20210424192613374.png)
 
-![image.png](1617365641328-0602c20a-efa4-46f6-812b-dd0b7727c303-20210424192610792.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365641328-0602c20a-efa4-46f6-812b-dd0b7727c303-20210424192610792.png)
 
 修改第一位
 
@@ -391,7 +391,7 @@ fat1（正常）
 
 分别将FAT1和FAT2的信息进行修改，从10号开始填补簇链到15个簇被填满，其中最后一个以FFFFFF0F结尾。
 
-![image.png](1617365648903-f827c808-032c-4db3-acce-d68e74ae11eb-20210424192611380.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365648903-f827c808-032c-4db3-acce-d68e74ae11eb-20210424192611380.png)
 
 fat1（恢复）
 
@@ -401,7 +401,7 @@ fat1（恢复）
 
 
 
-![image.png](1617365657274-201e51f7-de06-4723-aa35-8e2a06c26f85-20210424192611814.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365657274-201e51f7-de06-4723-aa35-8e2a06c26f85-20210424192611814.png)
 
 恢复成功
 
@@ -417,7 +417,7 @@ fat1（恢复）
 
 
 
-![image.png](1617365666720-04b7b4f5-aa35-4cf3-956a-761e671008ca-20210424192611801.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365666720-04b7b4f5-aa35-4cf3-956a-761e671008ca-20210424192611801.png)
 
 创建文件.png
 
@@ -427,17 +427,17 @@ fat1（恢复）
 
 
 
-![image.png](1617365670799-e5f7f77d-a033-479e-b36f-e3d14b891374-20210424192613977.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365670799-e5f7f77d-a033-479e-b36f-e3d14b891374-20210424192613977.png)
 
 
 
 查找文件名test的位置（MFT文件名是unicode形式），找到对应的MFT。
 
-![image.png](1617365676342-f2cf8e52-1f2d-4510-b711-fadb64e7296a-20210424192612894.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365676342-f2cf8e52-1f2d-4510-b711-fadb64e7296a-20210424192612894.png)
 
 查找.png
 
-![image.png](1617365681290-a6bf53a8-6028-4926-9806-9c23177b905c-20210424192613048.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365681290-a6bf53a8-6028-4926-9806-9c23177b905c-20210424192613048.png)
 
 文件MFT.png
 
@@ -449,7 +449,7 @@ fat1（恢复）
 
 
 
-![image.png](1617365687725-31189727-ebd7-4816-9e3d-72a7e230d623-20210424192612284.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365687725-31189727-ebd7-4816-9e3d-72a7e230d623-20210424192612284.png)
 
 文件属性.png
 
@@ -459,11 +459,11 @@ fat1（恢复）
 
 
 
-![image.png](1617365693211-6377284e-7eca-4c02-95e3-50f2936b2e69-20210424192613018.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365693211-6377284e-7eca-4c02-95e3-50f2936b2e69-20210424192613018.png)
 
 转到扇区1.png
 
-![image.png](1617365697411-35b6b18a-183a-4572-bf0f-e51b7e1494ef-20210424192614549.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365697411-35b6b18a-183a-4572-bf0f-e51b7e1494ef-20210424192614549.png)
 
 转到扇区2.png
 
@@ -473,11 +473,11 @@ fat1（恢复）
 
 
 
-![image.png](1617365703854-b8d2122a-0387-454c-a6a2-cad3b73f2d7b-20210424192613644.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365703854-b8d2122a-0387-454c-a6a2-cad3b73f2d7b-20210424192613644.png)
 
 选中数据区域.png
 
-![image.png](1617365709145-deb6be3c-0d4c-4bfd-8fbd-9b14e37705fa-20210424192613107.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365709145-deb6be3c-0d4c-4bfd-8fbd-9b14e37705fa-20210424192613107.png)
 
 转到终止点.png
 
@@ -487,7 +487,7 @@ fat1（恢复）
 
 
 
-![image.png](1617365714604-f096360e-1758-4c60-9ec1-22363058d4a5-20210424192613949.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365714604-f096360e-1758-4c60-9ec1-22363058d4a5-20210424192613949.png)
 
 生成文件.png
 
@@ -497,7 +497,7 @@ fat1（恢复）
 
 
 
-![image.png](1617365720167-6d038493-b061-4e05-9c9f-9fedd289992d-20210424192613348.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/WinHEX(win)/1617365720167-6d038493-b061-4e05-9c9f-9fedd289992d-20210424192613348.png)
 
 恢复成功.png
 

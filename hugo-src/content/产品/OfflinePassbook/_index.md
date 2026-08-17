@@ -6,7 +6,7 @@ weight = 10
 ## 项目介绍
 
 <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-  <img src="/images/products/offlinepassbook/appicon.png" alt="OfflinePassbook Icon" style="width: 120px; height: 120px; border-radius: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/offlinepassbook/appicon.png" alt="OfflinePassbook Icon" style="width: 120px; height: 120px; border-radius: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
   <div>
     <h3 style="margin: 0 0 10px 0;">本地优先的加密密码本</h3>
     <p style="margin: 0; color: var(--x7-muted);">基于 SwiftUI 构建，专为 Apple 生态打造的极致安全体验。</p>
@@ -32,9 +32,9 @@ OfflinePassbook 是一个本地优先、端上加密、可走 iCloud Documents �
 ### 界面预览
 
 <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 30px; margin-bottom: 30px;">
-  <img src="/images/products/offlinepassbook/01.png" alt="界面预览 1" style="max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-  <img src="/images/products/offlinepassbook/02.png" alt="界面预览 2" style="max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-  <img src="/images/products/offlinepassbook/03.png" alt="界面预览 3" style="max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/offlinepassbook/01.png" alt="界面预览 1" style="max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/offlinepassbook/02.png" alt="界面预览 2" style="max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/offlinepassbook/03.png" alt="界面预览 3" style="max-width: 250px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
 </div>
 
 

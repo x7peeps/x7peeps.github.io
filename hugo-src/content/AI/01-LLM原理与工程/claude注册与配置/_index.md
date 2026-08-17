@@ -17,17 +17,17 @@ claude免费，平替chatgpt
 1. 进入https://www.anthropic.com/product
 2. 滚动到页面底部，点击Product News，“Claude in Slack”。这里最新claude2，https://www.anthropic.com/index/claude-2。
 3. 点击“Add to Slack”
-   ![](16912499777852.jpg)
+   ![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/01-LLM原理与工程/claude注册与配置/16912499777852.jpg)
 
 1. 会进入Slack官网，https://slack.com/apps/A04KGS7N9A8-claude?tab=more_info 在这个页面上点击“登录并安装”
 2. 这里需要先注册一个Slack账号，可以直接使用Apple ID登录，或者用邮件注册一个（可以用hotmail或者outlook，亲测sina邮箱不行）。
-   ![](16912500017043.jpg)
-   ![](16912501489722.jpg)
+   ![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/01-LLM原理与工程/claude注册与配置/16912500017043.jpg)
+   ![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/01-LLM原理与工程/claude注册与配置/16912501489722.jpg)
 1. 遇到了无法Authorization hasn’t been set up for this app, so you won’t be able to install it.
    申请加入白名单
    https://www.anthropic.com/earlyaccess
-   ![](16912503735150.jpg)
-   ![](16912504066414.jpg)
+   ![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/01-LLM原理与工程/claude注册与配置/16912503735150.jpg)
+   ![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/01-LLM原理与工程/claude注册与配置/16912504066414.jpg)
     申请成功就可以添加到工作区
 2. 注册成功登录后，需要创建新工作区
 3. 输入团队名称、你的名字及团队成员后，就可以进入工作区，胜利就在眼前。

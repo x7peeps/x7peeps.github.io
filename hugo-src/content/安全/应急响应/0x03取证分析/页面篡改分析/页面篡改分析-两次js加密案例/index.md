@@ -7,7 +7,7 @@ parent: "0x03取证分析"
 
 本次案例在日常工作中发现，2次的js加密案例，分享分析过程。
 
-![image-20210601124004491](image-20210601124004491.png)
+![image-20210601124004491](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-两次js加密案例/image-20210601124004491.jpg)
 
 ### 案例分析
 

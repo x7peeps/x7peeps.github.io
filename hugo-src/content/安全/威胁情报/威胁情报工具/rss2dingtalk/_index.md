@@ -15,7 +15,7 @@ rss2dingtalk是一个简单的用于同步rss订阅资讯到钉钉群机器人�
 ### Usage 
 1. pip3 install -r requirements.txt；
 2. 打开rss.py, 将钉钉机器人的自定义webhook以及seccode填写到rss.py中；
-![](16481038399312.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/威胁情报/威胁情报工具/rss2dingtalk/16481038399312.jpg)
 
 3. 维护rss.db，将需要订阅的rss资源填写到rss表项中即可；
 

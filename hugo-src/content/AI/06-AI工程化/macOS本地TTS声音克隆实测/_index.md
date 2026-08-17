@@ -102,19 +102,19 @@ Apple Silicon（M 系列）统一内存架构让大模型推理成为可能—�
 
 ### 4.2 波形与频谱对比
 
-![三模型波形与频谱对比](./assets/fig1_waveform_spectrum.png)
+![三模型波形与频谱对比](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/macOS本地TTS声音克隆实测/./assets/fig1_waveform_spectrum.png)
 
 上图从左到右：波形、频谱。三个模型都成功合成了同一句话，但频谱特征差异明显。
 
 ### 4.3 频段能量分布
 
-![三模型5频段能量分布对比](./assets/fig2_band_energy.png)
+![三模型5频段能量分布对比](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/macOS本地TTS声音克隆实测/./assets/fig2_band_energy.png)
 
 **解读**：人声能量主体应在 500-2000Hz。VoxCPM1.5 和 Qwen3-TTS 在 100-500Hz 占比偏高（77%/81%），CosyVoice2 相对均衡（61%）。但注意——**频谱占比高不等于听感差**，需要结合主观听感判断。
 
 ### 4.4 ZCR 与清晰度
 
-![三模型ZCR与辅音清晰度对比](./assets/fig3_zcr_clarity.png)
+![三模型ZCR与辅音清晰度对比](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/macOS本地TTS声音克隆实测/./assets/fig3_zcr_clarity.png)
 
 **解读**：ZCR 反映辅音活跃度，人声正常范围 0.05-0.15。三者都在正常范围内（0.069/0.097/0.083），其中 CosyVoice2 最高（辅音最活跃），VoxCPM1.5 最低。
 

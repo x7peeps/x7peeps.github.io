@@ -18,9 +18,9 @@ weight = 30
   </div>
   <div class="x7-promo-visual">
     <div class="x7-promo-grid">
-      <img src="/images/products/灵感工坊/appicon.png" alt="灵感工坊 App Icon" style="border-radius: 20px; object-fit: cover;" loading="eager" decoding="async">
-      <img src="/images/products/灵感工坊/01_capture.png" alt="灵感工坊灵感捕获界面" style="border-radius: 12px;" loading="lazy" decoding="async">
-      <img src="/images/products/灵感工坊/02_chat.png" alt="灵感工坊AI对话界面" style="border-radius: 12px;" loading="lazy" decoding="async">
+      <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/灵感工坊/appicon.png" alt="灵感工坊 App Icon" style="border-radius: 20px; object-fit: cover;" loading="eager" decoding="async">
+      <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/灵感工坊/01_capture.png" alt="灵感工坊灵感捕获界面" style="border-radius: 12px;" loading="lazy" decoding="async">
+      <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/灵感工坊/02_chat.png" alt="灵感工坊AI对话界面" style="border-radius: 12px;" loading="lazy" decoding="async">
     </div>
   </div>
 </div>

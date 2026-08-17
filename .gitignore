@@ -1,5 +1,14 @@
 .DS_Store
 public/
+public_test/
+public-test/
+hugo-public/
 open-source/
 .worktrees/
 .superpowers/
+hugo-src/public/
+hugo-src/public_test/
+hugo-src/public-test/
+hugo-src/hugo-public/
+hugo-src/hugo-src/
+hugo-src/resources/

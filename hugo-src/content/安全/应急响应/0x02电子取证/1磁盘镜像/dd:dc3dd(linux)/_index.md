@@ -20,7 +20,7 @@ dd镜像取证
 
 of=/mnt/udisk/Forensic/dd/sda 
 
-![image](1616135817230-06eb7d84-3b79-492f-b50a-c8949914aeeb.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/dd:dc3dd(linux)/1616135817230-06eb7d84-3b79-492f-b50a-c8949914aeeb.png)
 
 dd速度非常慢，且在备份过程中没有任何进度提示，直接放弃换用增强版dd------dc3dd。
 
@@ -48,11 +48,11 @@ dc3dd if=/dev/sda
 
 of=/mnt/udisk/Forensic/dd/sda 
 
-![image](1616135817256-129475d5-0273-4dde-9c8d-3f9e798dd80a.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/dd:dc3dd(linux)/1616135817256-129475d5-0273-4dde-9c8d-3f9e798dd80a.png)
 
 最终D盘分区镜像大小5.81GB。
 
-![image](1616135817299-e3554a18-bfe8-4f49-a17a-71a1e2cbed27.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/dd:dc3dd(linux)/1616135817299-e3554a18-bfe8-4f49-a17a-71a1e2cbed27.png)
 
 
 

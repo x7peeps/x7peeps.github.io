@@ -29,7 +29,7 @@ https://github.com/zhayujie/chatgpt-on-wechat
    windows注意：在执行的时候要使用git bash类linux的命令行防止unicode报错
 8. ffmpeg安装
 http://ffmpeg.org/
-![](16912457094462.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/09-实战项目架构/chatgpt微信机器人搭建/16912457094462.jpg)
 配置
 https://zhuanlan.zhihu.com/p/118362010
 1. 运行python3 app.py

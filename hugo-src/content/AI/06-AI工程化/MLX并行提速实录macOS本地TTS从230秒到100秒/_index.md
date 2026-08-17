@@ -94,7 +94,7 @@ dalu_tts.py --engine mlx
 
 ### 3.2 速度对比
 
-![四方案速度对比](assets/perf_compare_mlx.png)
+![四方案速度对比](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/MLX并行提速实录macOS本地TTS从230秒到100秒/assets/perf_compare_mlx.png)
 
 | 方案 | 822字 | 短文本 | RTF | 内存 | 模型加载 |
 |---|---|---|---|---|---|
@@ -110,13 +110,13 @@ dalu_tts.py --engine mlx
 
 ### 3.3 RTF 演进
 
-![RTF 演进](assets/rtf_evolution_mlx.png)
+![RTF 演进](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/MLX并行提速实录macOS本地TTS从230秒到100秒/assets/rtf_evolution_mlx.png)
 
 从 2.17（初始）→ 1.57（线程调优）→ 1.25（4 进程并行）→ 1.88（MLX 单进程，走弯路）→ **0.53（MLX 4 进程并行）**。注意 MLX 单进程 RTF 1.88 反而比 PyTorch 并行 1.25 差——**数据决策避免了一厢情愿**。
 
 ### 3.4 并发稳定性
 
-![并发稳定性](assets/mlx_concurrency.png)
+![并发稳定性](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/MLX并行提速实录macOS本地TTS从230秒到100秒/assets/mlx_concurrency.png)
 
 并发 3 连发（各约 30 字）全部成功：9.4s / 11.1s / 11.7s，无雪崩无排队退化。每个请求独立 spawn 4 个 MLX worker（峰值 12 进程 / 24-36GB），结束后自动释放。
 
@@ -130,7 +130,7 @@ MLX 模型加载 **1-2s**（vs PyTorch 7-11s）——由于 MLX 8bit 量化权�
 
 ### 4.1 ZCR（过零率）
 
-![ZCR 质量对比](assets/zcr_quality_mlx.png)
+![ZCR 质量对比](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/MLX并行提速实录macOS本地TTS从230秒到100秒/assets/zcr_quality_mlx.png)
 
 | 版本 | ZCR | 判定 |
 |---|---|---|

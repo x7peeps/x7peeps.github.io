@@ -145,9 +145,9 @@ See the manpage for more details.
 vi /etc/anacrontab
 ```
 
-![image.png](1627353463930-e27a63d8-8171-43df-b6e3-88cac160674e.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/计划任务检查/计划任务检查/1627353463930-e27a63d8-8171-43df-b6e3-88cac160674e.png)
 
-![image.png](1627353573588-3aa2fb99-6540-47b0-b880-1d2d92b7f388.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/计划任务检查/计划任务检查/1627353573588-3aa2fb99-6540-47b0-b880-1d2d92b7f388.png)
 
 
 
@@ -206,16 +206,16 @@ vi /etc/anacrontab
 
 powershell输入：Get-ScheduledTask
 
-![image.png](1627291795935-95c9cd85-ad56-434e-aa01-22e50b2e5cf9.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/计划任务检查/计划任务检查/1627291795935-95c9cd85-ad56-434e-aa01-22e50b2e5cf9.png)
 
 ## schtasks
 
 cmd下schtasks
 
-![image.png](1627295354089-8c11cc29-2252-42c7-8a05-33ee3721a023.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/计划任务检查/计划任务检查/1627295354089-8c11cc29-2252-42c7-8a05-33ee3721a023.png)
 
 ## 任务计划程序
 
 计算机管理》系统工具》任务计划程序
 
-![image.png](1627293390017-4a1e84b9-b40d-4d5c-aac2-2720d551ed09.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/计划任务检查/计划任务检查/1627293390017-4a1e84b9-b40d-4d5c-aac2-2720d551ed09.png)

@@ -257,7 +257,7 @@ C:\Program Files (x86)\Windows Kits\8.1\Debuggers\x64>livekd -w
 ```
 livekd -w命令自动启动Windbg，加载符号，并向您显示准备接受命令的kd>提示符，如下面的截图所示。要探索数据结构(例如_EPROCESS)，您将在命令提示符(kd>旁边)中输入适当的命令:
 
-![](16535545681820.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16535545681820.jpg)
 
 
 现在，回到我们对_EPROCESS结构的讨论，为了探索_EPROCESS结构，我们将使用Display Type命令(dt)。dt命令可用于研究表示变量、结构或联合的符号。在下面的输出中，使用dt命令显示nt模块(内核执行者的名称)中定义的_EPROCESS结构。EPROCESS结构由多个字段组成，存储进程的各种元数据。这是64位Windows 7系统的样子(一些字段已经被删除，以保持它小):
@@ -348,7 +348,7 @@ kd> dt nt!_LIST_ENTRY
 ```
 Flink和Blink一起创建一个进程对象链;可以将其可视化如下:
 
-![](16536584607616.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536584607616.jpg)
 
 需要注意的一点是，Flink和Blink并不指向_EPROCESS结构体的开始。Flink指向下一个_EPROCESS结构的_LIST_ENTRY结构的开始(第一个字节)，Blink指向前一个_EPROCESS结构的_LIST_ENTRY结构的第一个字节。这很重要的原因是,一旦你找到的_EPROCESS结构过程中,你可以向前走双向链表(使用Flink)或向后(Blink),然后减去偏移值到达_EPROCESS结构下的开始或之前的流程。为了帮助你理解这意味着什么，让我们看看sms.exe的_EPROCESS结构中的字段Flink和Blink的值:
 
@@ -394,7 +394,7 @@ Offset(V) Name PID PPID Thds Hnds Wow64 Start
 psscan是Volatility的另一个插件，它列出了系统上运行的进程。与pslist不同，psscan不会遍历_EPROCESS对象的双链接列表。相反，它扫描物理内存，寻找进程对象的签名。换句话说，与pslist插件相比，psscan使用了不同的方法来列出进程。你可能会想，当psscan插件可以做同样的事情时，psscan插件有什么用?答案在于psscan使用的技术。由于它使用的方法，它可以检测终止的进程和隐藏的进程。攻击者可以隐藏进程，以防止司法分析人员在实时司法过程中发现恶意进程。现在的问题是，攻击者如何隐藏进程?要理解这一点，您需要了解一种称为DKOM(直接内核对象操作)的攻击技术。
 ##### 4.2.1 直接内核对象操作(DKOM)
 DKOM是一种涉及修改内核数据结构的技术。使用DKOM，可以隐藏进程或驱动程序。为了隐藏进程，攻击者可以找到他/她想要隐藏的恶意进程的_EPROCESS结构，并修改ActiveProcessLinks字段。特别是，前一个_EPROCESS块的Flink被设置为指向下一个_EPROCESS块的Flink，而下一个_EPROCESS块的Blink被设置为指向前一个_EPROCESS块的Flink。结果，与恶意程序进程相关的_EPROCESS块从双向链接列表中被解除链接(如下所示):
-![](16536586262740.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536586262740.jpg)
 
 通过解除进程的链接，攻击者可以对活动的取证工具隐藏恶意进程，这些取证工具依赖于遍历双链接列表来枚举活动进程。正如您可能已经猜到的，这种技术还隐藏了pslist插件的恶意进程(它也依赖于遍历双链接列表)。以下是感染了prolaco rootkit的系统的pslist和psscan输出，该系统执行DKOM来隐藏进程。为了简单起见，下面的输出中删除了一些条目。当你比较pslist和psscan的输出时，你会注意到psscan输出中有一个额外的进程，名为nvid.exe (pid 1700)，它在pslist中不存在:
 
@@ -412,13 +412,13 @@ Offset(P) Name PID PPID PDB Time created ------------------ ------------ ---- --
 ```
 ##### 4.2.2 了解池标签扫描
 如果您还记得，我以前将进程、文件、线程等系统资源称为对象(或执行对象)。执行对象称为对象管理器的内核组件管理。每个执行对象都有一个与之相关联的结构(例如进程对象的_EPROCESS)。执行对象结构前面有一个_OBJECT_HEADER结构，它包含关于对象类型和一些引用计数器的信息。然后在_OBJECT_HEADER前面加上零个或多个可选头。换句话说，你可以把对象看作是执行对象结构、对象头和可选头的组合，如下图所示:
-![](16536587867466.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536587867466.jpg)
 
 要存储对象，需要内存，而这些内存是由Windows内存管理器从内核池中分配的。内核池是一段内存，可以划分为更小的块，用于存储对象等数据。池分为分页池(其内容可以交换到磁盘)和非分页池(其内容永久驻留在内存中)。对象(如进程和线程)保存在内核中的一个非分页池中，这意味着它们将始终驻留在物理内存中。
 
 当Windows内核接收到创建对象的请求时(可能是由于CreateProcess或CreateFile等进程的API调用)，内存会从分页池或非分页池(取决于对象类型)分配给对象。通过在对象前加上_POOL_HEADER结构来标记这个分配，因此在内存中，每个对象都有一个可预测的结构，类似于下面截图中显示的结构。_POOL_HEADER结构包括一个名为PoolTag的字段，该字段包含一个四字节标记(称为池标记)。这个池标记可以用来标识一个对象。对于进程对象，标记是Proc，对于文件对象，标记是File，依此类推。_POOL_HEADER结构还包含告诉分配大小和内存类型(分页或非分页池)的字段，它描述:
 
-![](16536588138936.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536588138936.jpg)
 
 你可以认为所有驻留在内核内存的非分页池中的进程对象(最终映射到物理内存)都被标记为一个标记，Proc正是这个标记被挥发的psscan用作识别进程对象的起点。特别是，它扫描物理内存中的Proc标记，以识别与进程对象关联的池标记分配，并通过使用更健壮的签名和启发式进一步确认它。一旦psscan找到进程对象，它就从它的_EPROCESS结构中提取必要的信息。psscan重复这个过程，直到找到所有的进程对象。事实上，许多Volatility插件依赖池标签扫描来识别和提取内存图像中的信息。
 
@@ -443,15 +443,15 @@ Name Pid PPid Thds Hnds Time ------------------------ ---- ----- ---- ---- -----
 $ python vol.py -f infected.vmem --profile=Win7SP1x86 psscan --output=dot - -output-file=infected.dot
 ```
 打开感染。XDot的dot文件显示了前面讨论的进程之间的关系:
-![](16536589917612.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536589917612.jpg)
 
 #### 4.4 使用psxview列出进程
 在前面，您看到了如何操纵进程列表来隐藏进程;您还了解了psscan如何使用池标记扫描来检测隐藏的进程。事实证明，_POOL_HEADER (psscan所依赖的)只用于调试目的，它不会影响操作系统的稳定性。这意味着攻击者可以安装内核驱动程序在内核空间中运行，并修改池标记或_POOL_HEADER中的任何其他字段。通过修改池标记，攻击者可以阻止依赖池标记扫描的插件正常工作。换句话说，通过修改池标记，可以对psscan隐藏进程。为了克服这个问题，psxview插件依赖于从不同的来源提取进程信息。它以7种不同的方式列举了这个过程。通过比较不同来源的输出，可以检测出恶意软件造成的差异。在下面的截图中，psxview使用7种不同的技术枚举了进程。每个进程的信息显示为一行，它使用的技术显示为包含True或False的列。特定列下的False值表示没有使用相应的方法找到进程。在接下来的输出，psxview使用除pslist方法外的所有方法检测隐藏进程nvid.exe (pid 1700):
-![](16536590829564.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536590829564.jpg)
 
 在前面的屏幕截图中，您将注意到一些进程的值为假。例如，cmd.exe进程不存在于除psscan方法之外的任何方法中。你可能认为cmd.exe是隐藏的，但这不是真的;你看到False的原因是cmd.exe被终止了(你可以从ExitTime列告诉它)。结果，所有其他技术都无法在psscan能够找到它的地方找到它，因为池标记扫描可以检测终止的进程。换句话说，列中的False值并不一定意味着对该方法隐藏进程;它也可能意味着它是预期的(取决于该方法获取流程信息的方式和来源)。要知道它是否是预期的，可以使用下面的-r(——apply-rules)选项。在下面的截图中，请注意False值是如何被替换为Okay的。ok表示False，但这是预期的行为。在使用-R(——apply-rules)运行psxview插件后，如果你仍然看到一个False值(例如在下面的截图中pid为1700的nvid.exe)，那么这是一个强烈的迹象，表明该方法隐藏了进程:
 
-![](16536590996068.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536590996068.jpg)
 
 ### 5. 列出进程句柄
 在调查过程中，一旦锁定了一个恶意进程，您可能想知道进程正在访问哪些对象(例如进程、文件、注册表项等等)。这将给您一个与恶意软件相关的组件的想法和洞察他们的操作，例如，一个键盘记录器可能正在访问一个日志文件来记录捕获的击键，或者恶意软件可能有一个打开的句柄到配置文件。
@@ -462,12 +462,12 @@ $ python vol.py -f infected.vmem --profile=Win7SP1x86 psscan --output=dot - -out
 
 在活动的系统上，您可以使用process Hacker工具检查特定进程访问的内核对象。为此，以管理员身份启动Process Hacker，右键单击任何进程，然后选择Handles选项卡。下面的截图显示了csrs.exe进程的进程句柄.exe是一个合法的操作系统进程，它在每个进程和线程的创建过程中发挥作用。由于这个原因，你会看到css.exe打开了系统上运行的大部分进程(除了它自己和它的父进程)的句柄。在下面的截图中，第三列是句柄值，第四列是内核内存中对象的地址。例如，第一个进程wininit.exe位于内核内存中的地址0x8705c410(它的_EPROCESS结构的地址)，表示该对象的句柄值为0x60:
 
-![](16536603586688.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536603586688.jpg)
 
 > psxview插件使用的一种方法依赖于遍历csrs.exe进程的句柄表来识别进程对象。如果有多个csrs.exe实例，psxview解析所有csrs.exe实例的句柄表，列出正在运行的进程，除了csrs.exe进程及其父进程(sms.exe和系统进程)。
 
 从内存映像中，您可以获得一个进程使用handles插件访问的所有内核对象的列表。下面的截图显示了pid为356的进程的句柄。如果你运行不带-p选项的handles插件，它将显示所有进程的句柄信息:
-![](16536603880157.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536603880157.jpg)
 您还可以使用-t选项过滤特定对象类型(File、Key、Process、Mutant等等)的结果。在下面的例子中，对感染了Xtreme RAT病毒的内存映像运行了handles插件。handles插件用于列出恶意进程打开的互斥锁(pid 1772)。从下面的输出中，您可以看到Xtreme RAT创建了一个名为oZ694XMhk6yxgbTA0的互斥锁，以标记它在系统中的存在。像Xtreme RAT创建的互斥锁可以作为一个很好的基于主机的指示器，用于基于主机的监控:
 ```
 $ python vol.py -f xrat.vmem --profile=Win7SP1x86 handles -p 1772 -t Mutant 
@@ -524,7 +524,7 @@ C:\Windows\system32\USER32.dll
 data\acdsystems\acdsee\imageik.ddf
 0x71200000 0x32000 0x3 C:\Windows\system32\WINMM.dll
 ```
-![](16536607165339.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536607165339.jpg)
 
 dlllist插件从一个名为进程环境块(PEB)的结构中获取所加载模块的信息。如果你回想一下第8章，代码注入和挂钩，当谈到进程内存组件时，我提到过PEB结构驻留在进程内存中(在用户空间中)。PEB包含关于可执行进程在何处加载的元数据信息、它在磁盘上的完整路径以及关于加载的模块(可执行和dll)的信息。dlllist插件查找每个进程的PEB结构并获取上述信息。那么问题来了，如何找到PEB的结构?_EPROCESS结构有一个名为Peb的字段，该字段包含指向Peb的指针。这意味着一旦插件找到_EPROCESS结构，它就可以找到PEB。需要记住的一点是，_EPROCESS驻留在内核内存(内核空间)中，而PEB驻留在进程内存(用户空间)中。
 
@@ -569,13 +569,13 @@ Ldr.Initialized: Yes Ldr.InInitializationOrderModuleList: 00531f98 . 03d3b558 Ld
 换句话说，所有三个PEB列表都包含关于已加载模块的信息，比如基址、大小、与模块关联的完整路径，等等。要记住的重要一点是，InInitializationOrderModuleList将不包含关于进程可执行文件的信息，因为与dll相比，可执行文件的初始化是不同的。
 
 为了帮助您更好地理解，下面的图表以Explorer.exe为例(该概念也类似于其他进程)。当Explorer.exe被执行时，它的进程可执行文件被加载到进程内存中的某个地址(比方说0xb0000)，带有PAGE_EXECUTE_WRITECOPY (WCX)保护。相关的dll也被加载到进程内存中。进程内存还包括PEB结构，它包含了explorer.exe在内存中的加载位置(基址)的元数据信息。PEB中的Ldr结构维持着三个双链表;每个元素都是一个结构(类型为_LDR_DATA_TABLE_ENTRY)，它包含关于加载模块的信息(基址、完整路径等)。dlllist插件依赖于遍历InLoadOrderModuleList来获取模块的信息:
-![](16536608287647.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536608287647.jpg)
 
 
 从这三个PEB列表中获取模块信息的问题是，它们容易受到DKOM攻击。所有三个PEB列表都驻留在用户空间中，这意味着攻击者可以将恶意DLL加载到进程的地址空间中，并可以从一个或所有PEB列表中断开恶意DLL的链接，以隐藏依赖于遍历这些列表的工具。为了克服这个问题，我们可以使用另一个名为ldrmodules的插件。
 #### 6.1 使用ldrmodule检测隐藏的DLL
 ldrmodules插件将来自三个PEB列表(在进程内存中)的模块信息与来自内核内存中称为VADs(虚拟地址描述符)的数据结构的信息进行比较。内存管理器使用vad跟踪进程内存中保留(或空闲)的虚拟地址。VAD是一种二叉树结构，它存储关于进程内存中几乎连续的内存区域的信息。对于每个进程，内存管理器维护一组VAD，每个VAD节点描述一个几乎连续的内存区域。如果进程内存区域包含一个内存映射文件(如可执行文件、DLL)，那么VAD节点存储有关其基址、文件路径和内存保护的信息。下面的示例应该有助于您理解这个概念。在下面的截图中，内核空间中的一个VAD节点描述了关于进程可执行文件(explorer.exe)加载位置、它的完整路径和内存保护的信息。类似地，其他VAD节点将描述进程的内存范围，包括那些包含映射的可执行映像，如dll:
-![](16536608969268.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536608969268.jpg)
 
 为了获得模块的信息，ldrmodules插件枚举所有包含映射可执行镜像的VAD节点，并将结果与三个PEB列表进行比较，以确定是否存在差异。下面是感染了TDSS rootkit(我们在前面看到的)的内存映像进程的模块列表。你可以看到ldrmodules插件能够识别一个名为TDSSoiqh.dll的恶意DLL，它隐藏了所有三个PEB列表(InLoad, InInit和InMem)。svchost.exe的InInit值设置为False，但其是可执行的，如前所述:
 ```
@@ -661,7 +661,7 @@ XX.XXX.92.121:80   880
 有时，您可能希望获得有关打开的套接字及其相关进程的信息。在vista之前的系统上，你可以通过socket和sockscan插件获取开放端口的信息。socket插件打印打开的socket列表，sockscan插件使用池标记扫描方法。因此，它可以检测已经关闭的端口。
 
 在Vista和以后的系统(如Windows 7)，你可以使用netscan插件来显示网络连接和套接字。netscan插件使用池标记扫描方法，类似于sockscan和connscan插件。在下面的例子中，内存映像被Darkcomet RAT病毒感染，netscan插件在81端口上显示C2通信，该通信已被恶意进程dmt.exe (pid 3768)造成:
-![](16536612304261.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-11-使用内存取证狩猎恶意软件/16536612304261.jpg)
 
 ### 9. 检查注册表
 从取证的角度来看，注册表可以提供关于恶意软件上下文的有价值的信息。在第7章“恶意软件功能和持久性”中讨论持久性方法时，您看到了恶意程序如何在注册表中添加条目以在重新启动时存活下来。除了持久性之外，恶意软件还使用注册表来存储配置数据、加密密钥等。要打印注册表键、子键及其值，可以使用printkey插件，通过使用-K(——key)参数提供所需的注册表键路径。在下面的例子中，一个感染了Xtreme Rat病毒的内存映像中，它在Run注册表项中添加了恶意的可执行文件C:\Windows\InstallDir\system.exe。因此，恶意的可执行文件将在每次系统启动时被执行:

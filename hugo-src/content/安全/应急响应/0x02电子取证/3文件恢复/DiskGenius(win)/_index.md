@@ -44,7 +44,7 @@ https://www.diskgenius.cn/help/
 
 要开始恢复文件，首先选择丢失文件所在的分区，然后点击工具栏“恢复文件”按钮，或点击 主菜单“工具”中的“已删除或格式化后的文件恢复”菜单项，以打开文件恢复对话框。如下图：
 
-![image.png](1616749592550-8610aa31-591a-4bf1-b2c3-600692a97931.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749592550-8610aa31-591a-4bf1-b2c3-600692a97931.png)
 
 由于格式化后的文件恢复与文件正常删除后的恢复过程不同，我们将这两种情况分别处理。下 面是具体的操作方法：
 
@@ -58,37 +58,37 @@ https://www.diskgenius.cn/help/
 
 点击“开始”按钮以开始搜索过程：
 
-![image.png](1616749629848-630e75bb-ceba-4337-9872-a66b995cd528.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749629848-630e75bb-ceba-4337-9872-a66b995cd528.png)
 
 搜索完成后，恢复文件对话框自动关闭。程序主界面将显示搜索到的文件，每个丢失的文件或 文件夹前面都有一个复选框，左侧的文件夹层次图中的条目也加上了复选框。见下图。
 
-![image.png](1616749649914-853ed660-4a77-4f75-b23e-537dd2cce3e5.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749649914-853ed660-4a77-4f75-b23e-537dd2cce3e5.png)
 
 对于不能确定归属的文件及文件夹，程序将它们统一放到一个叫做“孤立的文件”的内存文件 夹中。如果在原位置找不到要恢复的文件，可以尝试在“孤立的文件”文件夹中查找文件。恢复后 查找文件时不要忘了这个文件夹，很可能要恢复的重要文件就在这里。
 
-![image.png](1616749664186-a1efd7a9-d5e6-438b-b664-91504ad2a2ea.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749664186-a1efd7a9-d5e6-438b-b664-91504ad2a2ea.png)
 
 在恢复文件的状态下，文件列表中的“属性”栏将给已删除文件增加两个标记“D”和“X”。 “D”表示这是一个已删除的文件。“X”表示这个文件的数据可能已被部分或全部覆盖，文件数据 完全恢复的可能性较小。
 
-![image.png](1616749679527-87dccee2-e1f5-48f2-a373-afd441acfe81.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749679527-87dccee2-e1f5-48f2-a373-afd441acfe81.png)
 
 在扫描完成的界面中，会出现“红色删除标志”与“绿色删除标志”。“红色删除标志”表示 文件或文件夹是被删除的，“绿色删除标志”表示文件夹中含有删除的文件或文件夹。如下图所示：
 
-![image.png](1616749690328-7a6ea683-c724-4303-9b09-478877907c5c.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749690328-7a6ea683-c724-4303-9b09-478877907c5c.png)
 
 为方便用户识别搜索到的文件，软件默认情况下也会显示未被删除的正常文件，只是正常文件 没有复选框，不可选择。
 
 要恢复搜索到的文件，请通过复选框选择要恢复的文件。然后在文件列表中点击鼠标右键，或 打开“文件”主菜单，选择“复制到指定文件夹”菜单项。
 
-![image.png](1616749710825-87c8e0c6-c485-43a1-be37-9f2ea91b0aba.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749710825-87c8e0c6-c485-43a1-be37-9f2ea91b0aba.png)
 
 接下来选择存放恢复后文件的文件夹，点击“选择文件夹”按钮，程序会将当前选择的文件复 制到指定的文件夹中。为防止复制操作对正在恢复的分区造成二次破坏，本软件不允许将文件恢复 到原分区。
 
-![image.png](1616749724808-977e36c7-67a7-4c7a-918d-c1024c57fdcb.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749724808-977e36c7-67a7-4c7a-918d-c1024c57fdcb.png)
 
 点击“完成”按钮，关闭文件复制对话框，程序自动清除已复制的文件的选择状态。以准备选 择其它文件。
 
-![image.png](1616749735329-2ff57089-25d3-4987-9022-c1eedc43b6b0.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749735329-2ff57089-25d3-4987-9022-c1eedc43b6b0.png)
 
 当所有要恢复的文件都复制出来后。可以通过“分区 - 重新加载当前分区”菜单项释放当前 分区在内存中的暂存数据，并从磁盘加载当前分区，显示分区的当前状态。
 
@@ -122,20 +122,20 @@ https://www.diskgenius.cn/help/
 
 1. 扫描结束后，点击“工具”菜单，然后选择“保存文件恢复进度”选项。
 
-![image.png](1616749884969-bcd09b13-5b47-4c81-8e32-c9eb07503d20.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749884969-bcd09b13-5b47-4c81-8e32-c9eb07503d20.png)
 
 1. 选择保存路径并为文件命名，然后点击“保存”按钮。
    提醒：扫描进度文件的扩展名是“.dgrp”，软件自动保存的进度文件是存放在软件所在的文
-   件中。![image.png](1616749908292-56155ab4-958a-427d-8224-c2cf41b54d26.png)
+   件中。![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749908292-56155ab4-958a-427d-8224-c2cf41b54d26.png)
 
 ### 二、加载恢复进度
 
 
 
 1. 选中之前扫描并保存过恢复进度的分区，然后点击“恢复文件”按钮。
-2. 在恢复文件窗口上点击“加载扫描进度”按钮。![image.png](1616749928929-84fc583a-a869-48a7-8d1f-3092a7dedf8f.png)
-3. 选中自己保存的扫描进度文件，然后点击“打开”按钮。![image.png](1616749951009-6726f057-ad81-4054-9311-0f91d71a2443.png)
-4. 点击文件恢复窗口上的“开始”按钮，软件开始加载之前的扫描进度。![image.png](1616749969289-909a96df-c6d2-4c9a-bbbe-914ff7650a96.png)
+2. 在恢复文件窗口上点击“加载扫描进度”按钮。![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749928929-84fc583a-a869-48a7-8d1f-3092a7dedf8f.png)
+3. 选中自己保存的扫描进度文件，然后点击“打开”按钮。![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749951009-6726f057-ad81-4054-9311-0f91d71a2443.png)
+4. 点击文件恢复窗口上的“开始”按钮，软件开始加载之前的扫描进度。![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616749969289-909a96df-c6d2-4c9a-bbbe-914ff7650a96.png)
 
 
 
@@ -149,11 +149,11 @@ DiskGenius 有两种按指定文件类型恢复文件的方式，在误删除或
 
 1. 使用按指定文件类型恢复模式恢复文件，从主菜单中选择 "工具" - "恢复指定类型的文件"
 
-![image.png](1616750094659-902306e0-c847-45b9-b9db-ac3969dc852d.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616750094659-902306e0-c847-45b9-b9db-ac3969dc852d.png)
 
 1. 在接下来的弹出窗口中，用户可以对恢复模式的一些参数进行设置。比如可以只恢复空闲簇，适用于误删除、或分区被部分覆盖等情况。
 
-![image.png](1616750132631-3d13bcda-20b3-454a-ae26-a7746b48aa0b.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616750132631-3d13bcda-20b3-454a-ae26-a7746b48aa0b.png)
 
-1. 点击"选择文件类型"按钮，可以设置本次搜索的特定文件类型，默认是搜索所有的文件类型，可以设置为只搜索一部分文件类型。![image.png](1616750158256-bd9614b8-1b5c-405d-96d6-377b5b793ce1.png)
+1. 点击"选择文件类型"按钮，可以设置本次搜索的特定文件类型，默认是搜索所有的文件类型，可以设置为只搜索一部分文件类型。![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/3文件恢复/DiskGenius(win)/1616750158256-bd9614b8-1b5c-405d-96d6-377b5b793ce1.png)
 2. 搜索完毕后，被搜索到的文件按文件类型分类，每种文件类型有一个或多个以该文件类型 名命名的文件夹，每个文件夹中的文件数最大为 1000。 用这种模式搜索出来的文件，其文件名会丢失，DiskGenius 是按顺序号为这些文件命名的， 要想判断这里面有没有您需要的文件，您可以通过文件大小等方面，结合文件预览功能，逐一打开 预览来判断。

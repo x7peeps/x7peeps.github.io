@@ -264,7 +264,7 @@ parallels@ubuntu:~/Documents$ ./changepressname
 
 ps查询可以看到我们已经修改进程名
 
-![image.png](1623677841324-2ed15d1e-01df-4406-b5e9-40ed56ddbd33.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-进程名伪造/1623677841324-2ed15d1e-01df-4406-b5e9-40ed56ddbd33.png)
 
 这里攻击的角度，我们就可以集成，并通过指定我们攻击进程进行隐藏。
 
@@ -276,7 +276,7 @@ ps查询可以看到我们已经修改进程名
 
 1. 可以看到ll /proc/PID/exe，可以通过对比ps结果名与exe对应进程名审计到异常
 
-![image.png](1623677852664-5be46575-b005-4f6e-a9c9-16d3e8c4619c.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-进程名伪造/1623677852664-5be46575-b005-4f6e-a9c9-16d3e8c4619c.png)
 
 2. 另外一个就是pstree查询，可以看到执行的程序名与ps查询结果无法对应也可以审计到异常
 
@@ -284,4 +284,4 @@ parallels@ubuntu:~/Documents$ pstree -aphn 24565
 
 changepressname,24565 
 
-![image.png](1623678099892-ad994b9f-395a-414f-bc89-977172e14bcd.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-进程名伪造/1623678099892-ad994b9f-395a-414f-bc89-977172e14bcd.png)

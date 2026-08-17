@@ -61,11 +61,11 @@ https://download.sysinternals.com/files/Autoruns.zip
 
 最后结果如下。
 
-![](16753221941857.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/计划任务检查/Autoruns/16753221941857.jpg)
 
 注意：
 加上-u显示的就只有未签名的项目，和不加-u相比会差很多内容
-![](16753299318615.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/计划任务检查/Autoruns/16753299318615.jpg)
 
 
 ## autoruns行为或原理的研究
@@ -282,7 +282,7 @@ HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Browser Help
 ```
 ### Scheduled Tasks
 计划任务”选项卡显示配置为由Windows任务计划程序启动的项。使用at.exe调度的命令也会出现在列表中，如果不隐藏已验证数字签名的计划任务则会有很多显示出来。
-![](16753317694661.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/计划任务检查/Autoruns/16753317694661.jpg)
 
 ### Services
 windows系统的服务在非交互式的用户模式进程中，可以配置为独立于用户登陆启动，并可以通过与服务控制管理器的标准接口进行控制。多个服务可以共享单个进程，常见的例子是svchost.exe，它专门用托管在单独的dll中实现多个服务。

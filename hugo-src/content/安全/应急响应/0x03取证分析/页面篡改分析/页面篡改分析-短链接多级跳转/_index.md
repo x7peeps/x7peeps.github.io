@@ -5,7 +5,7 @@ tags: [红蓝对抗, 页面篡改]
 ---
 在此样本中，我们发现该篡改通过在业务页面插入外链的短连接中转JS脚本，通过多级跳转，最终将用户重定向到BoCai网。 
 
-![7c13e17b29890b5e3ca1d1cb60c5c34b](7c13e17b29890b5e3ca1d1cb60c5c34b.png)
+![7c13e17b29890b5e3ca1d1cb60c5c34b](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-短链接多级跳转/7c13e17b29890b5e3ca1d1cb60c5c34b.jpg)
 
 <!--more-->
 
@@ -24,13 +24,13 @@ tags: [红蓝对抗, 页面篡改]
 ``https://www.bcdas8.com/js301.js``
 
 其中``https://www.bcdas8.com/dq.js ``判断并回显访问者IP，可被用于记录。
-![74eafd4588cee85d78693369b023de9e](74eafd4588cee85d78693369b023de9e.png)
+![74eafd4588cee85d78693369b023de9e](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-短链接多级跳转/74eafd4588cee85d78693369b023de9e.png)
 
 #### 跳转开始：
 
 而另外一个外部JS为多级跳转的开始：
 ``https://www.bcdas8.com/js301.js``
-![](444a30db7bf3e70d6fe181a96ecc6845.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-短链接多级跳转/444a30db7bf3e70d6fe181a96ecc6845.png)
 
 ```javascript
 (function () {
@@ -58,7 +58,7 @@ window.location= siteAry[_index];
 #### 跳转：
 分析可知，除了正常的执行百度和360网站统计之外，插入了另外一处跳转：
 ``https://welcomejs.com/?88``
-![](c26d7cb692cf43313111b53d979bd39b.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-短链接多级跳转/c26d7cb692cf43313111b53d979bd39b.png)
 
 ```javascript
 <meta http-equiv="Content-Language" content="zh-CN">
@@ -67,7 +67,7 @@ window.location= siteAry[_index];
 ```
 #### 再次跳转：
 ``https://welcomejs.com/zh-cn``
-![](71031b1bed89768b5a0b2feca1900302.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-短链接多级跳转/71031b1bed89768b5a0b2feca1900302.png)
 
 ```javascript
 <!DOCTYPE html>
@@ -117,11 +117,11 @@ run()
 #### 最后的BoCai网站
 最终使用户跳转到BoCai网站。
 ``https://js29042.com/?aff=999313``
-![](7c13e17b29890b5e3ca1d1cb60c5c34b-0303199.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-短链接多级跳转/7c13e17b29890b5e3ca1d1cb60c5c34b-0303199.jpg)
 
 测试发现aff参数为推广码，该推广码可用于定位页面篡改作者。
 
-![](67c82492047b34b3b8ce58546b8eb850.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-短链接多级跳转/67c82492047b34b3b8ce58546b8eb850.png)
 
 
 

@@ -8,7 +8,7 @@ date: 2024-04-09T00:00:00+08:00
 
 查询防火墙规则可以通过运行WF.msc，也可以通过netsh advfirewall 命令查询。
 
-![img](1629171488258-046da2e4-3f22-4ae3-b6e1-753789100ba9.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629171488258-046da2e4-3f22-4ae3-b6e1-753789100ba9.png)
 
 ## netsh advfirewall
 
@@ -121,7 +121,7 @@ show qmsa      - 显示快速模式 SA。
 netsh advfirewall show allprofiles  # 查询所有防火墙配置
 ```
 
-![img](1629164935145-ad620cec-3b90-4c91-b72c-1b313aac1bfd.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629164935145-ad620cec-3b90-4c91-b72c-1b313aac1bfd.png)
 
 ### 查询所有连接安全规则
 
@@ -132,11 +132,11 @@ netsh> advfirewall consec show rule name=all
 
 以创建的出入站请求身份验证连接安全规则为例，规则名称为test。
 
-![img](1629169381186-fb1f4e12-adac-48d2-8c41-0fec175e44e3.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629169381186-fb1f4e12-adac-48d2-8c41-0fec175e44e3.png)
 
 consec规则访问需要管理员权限，这里进入管理员cmd然后执行netsh> advfirewall consec show rule name=all进行查询。
 
-![img](1629168654672-b6d39fff-3ad9-4c43-95fb-7b3f93287c79.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629168654672-b6d39fff-3ad9-4c43-95fb-7b3f93287c79.png)
 
 
 
@@ -148,11 +148,11 @@ netsh advfirewall firewall show rule name=all # 查询所有出入站规则
 
 举例这里创建一个名为9999portaccess规则的入站规则
 
-![img](1629169276790-b3873c79-179e-4b07-a66f-1cb3bf972c7e.png)![img](1629169299846-8f2125c4-b35e-406a-8573-bc565906c36d.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629169276790-b3873c79-179e-4b07-a66f-1cb3bf972c7e.png)![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629169299846-8f2125c4-b35e-406a-8573-bc565906c36d.png)
 
 这里通过过滤和筛选定位入站规则
 
-![img](1629169276790-b3873c79-179e-4b07-a66f-1cb3bf972c7e.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629169276790-b3873c79-179e-4b07-a66f-1cb3bf972c7e.png)
 
 
 
@@ -166,7 +166,7 @@ iptables是内核空间安全框架的命令行工具。iptables根据规则定�
 
 
 
-![img](1629177500200-bae08155-7e46-4335-8ad1-e684966a394f.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629177500200-bae08155-7e46-4335-8ad1-e684966a394f.png)
 
 由于不同的链的规则有的存在重复，通过表的引用可以对相同功能的规则合集。根据功能大致可以分为四种表：
 
@@ -180,7 +180,7 @@ iptables是内核空间安全框架的命令行工具。iptables根据规则定�
 
 四种表的涉及的链的对应关系如下表，也同样参考朱双印总结的表格做理解：
 
-![img](1629177973417-468f26b4-7260-45cb-a3e6-f9e7b55e564d.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629177973417-468f26b4-7260-45cb-a3e6-f9e7b55e564d.png)
 
 
 
@@ -218,23 +218,23 @@ IPTABLES规则中常见的动作有：ACCEPT（接受）、DROP（丢弃）、RE
 iptables -t filter -I INPUT -s 192.168.188.188 -j DROP # 丢弃所有来自192.168.188.188的入站报文
 ```
 
-![img](1629179662382-9cbdf3b4-2da7-4194-b47e-d54a7fe032b1.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629179662382-9cbdf3b4-2da7-4194-b47e-d54a7fe032b1.png)
 
 可以看到规则已经匹配到并拦截。
 
-![img](1629179950704-c4c9e789-1482-4e2e-aee6-07ecdb455f95.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629179950704-c4c9e789-1482-4e2e-aee6-07ecdb455f95.png)
 
 ```
 iptables -t filter -D INPUT 1  # 删除入站规则中重复的一条
 ```
 
-![img](1629184711229-e9413e99-0004-4f3c-b518-71312e34edb9.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629184711229-e9413e99-0004-4f3c-b518-71312e34edb9.png)
 
 ```
 iptables -t filter -R INPUT 1 -d 192.168.188.188 -j REJECT  # 修改入站规则
 ```
 
-![img](1629188436892-f398532f-fd87-48e6-9bbd-b2ef8b64249a.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/防火墙规则检查/1629188436892-f398532f-fd87-48e6-9bbd-b2ef8b64249a.png)
 
 参考：
 

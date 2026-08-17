@@ -41,7 +41,7 @@ reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main"
   reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main" /s
 ```
 
-![img](1629273652694-12a95668-ef8f-4728-95cd-073a0df525a7.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/浏览器相关检查/1629273652694-12a95668-ef8f-4728-95cd-073a0df525a7.png)
 
 ## 当前用户IE注册表配置查询
 
@@ -185,7 +185,7 @@ HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\WindowsSearch
 reg query "HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\typedurls"
 ```
 
-![img](1629350818353-38755950-c71e-47d9-a733-735b55ac44bb.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/浏览器相关检查/1629350818353-38755950-c71e-47d9-a733-735b55ac44bb.png)
 
 ## inetcpl.cpl
 

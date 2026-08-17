@@ -5,7 +5,7 @@ date: 2026-04-01T00:00:00+08:00
 ## windows查看用户
 ### whoami
 查看当前用户
-![image.png](1620571913692-e229787b-c4f1-472d-b3e0-8216c0fa7e17.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620571913692-e229787b-c4f1-472d-b3e0-8216c0fa7e17.png)
 
 ### net user
 
@@ -67,11 +67,11 @@ net user miked /time: M-F,8AM-5PM
 net user anibals /time: M,4AM-5PM;T,1PM-3PM;W-F,8: 00-17: 00
 ```
 
-![image.png](1619875940125-d62fb938-2a64-4c22-b46e-84f499d8b025.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1619875940125-d62fb938-2a64-4c22-b46e-84f499d8b025.png)
 
-![image.png](1620636850767-6f208530-e078-476a-adf0-5a52a6208c65.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620636850767-6f208530-e078-476a-adf0-5a52a6208c65.png)
 
-![image.png](1620636873626-f07b91c5-7583-4c4a-a1ec-bae971a67266.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620636873626-f07b91c5-7583-4c4a-a1ec-bae971a67266.png)
 
 
 
@@ -428,7 +428,7 @@ DESKTOP-D9ITQNU\Users                                DESKTOP-D9ITQNU            
 
 点击“开始”→“运行”，输入“regedt32.exe”后回车,需要到“HKEY_LOCAL_MACHINE\SAM\SAM
 
-![image.png](1620963214068-aaedf282-45ec-48b9-ad35-ff31e9245e17.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620963214068-aaedf282-45ec-48b9-ad35-ff31e9245e17.png)
 
 这里为了搜索注册表中所有关于我们影子账户的信息，还可以通过这个软件regscanner
 
@@ -436,7 +436,7 @@ https://www.nirsoft.net/utils/regscanner.html
 
 借助工具我们可以针对影子账户关键字，反查所有注册表中的关键字、键值中的值中是否包含影子账户关键字Administrat0r$，这里我门看到一共查处了8项包含有该关键字的注册表这里一次分析总结
 
-![image.png](1620973733420-05e03a74-419f-4f77-8992-df6fb0a69213.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620973733420-05e03a74-419f-4f77-8992-df6fb0a69213.png)
 
 - 计算机文件操作记录
 
@@ -450,13 +450,13 @@ https://www.nirsoft.net/utils/regscanner.html
 
 
 
-![image.png](1620973793153-85f35c9f-fc59-4d69-84a1-c8e6917b5c0f.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620973793153-85f35c9f-fc59-4d69-84a1-c8e6917b5c0f.png)
 
 文件操作记录中包含有关键字，可以看到.reg，大致可以判断是我们之前保存在桌面上的导出的注册表命名的。通过文件操作记录查看工具针对此注册表可以清晰的看出，这里的确展示的是保存在桌面的注册表导出文件。一共四项与上面4项对应。
 
 工具可以在这里下载：https://www.nirsoft.net/utils/open_save_files_view.html
 
-![image.png](1620974332921-503b232f-8c9e-4e94-8588-2f6836b5daa4.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620974332921-503b232f-8c9e-4e94-8588-2f6836b5daa4.png)
 
 - 桌面缓存
 
@@ -466,7 +466,7 @@ https://www.nirsoft.net/utils/regscanner.html
 
 桌面所有图标名称等情况，这里也包含的是reg导出文件包含的影子关键字
 
-![image.png](1620974710952-2601cf1e-c1af-4aab-97c0-a761b4f9441c.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620974710952-2601cf1e-c1af-4aab-97c0-a761b4f9441c.png)
 
 
 
@@ -661,9 +661,9 @@ https://www.cnblogs.com/Yang34/p/14242026.html
 
 环境：首先确定administrator已经配置了密码，如果没有可以在计算机管理中找到本地用户和组，用户，如下修改密码。如果后面需要远程登陆或者登陆桌面的话需要保证需要复制的账户的已经配置了密码，这里是计划复制administrator账户权限的。
 
-![image.png](1620696172673-c138aca8-ccfe-4b70-8fea-0fcee666380a.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620696172673-c138aca8-ccfe-4b70-8fea-0fcee666380a.png)
 
-![image.png](1620696403659-56b347d4-f4d4-44ae-8676-37cd0e80328c.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620696403659-56b347d4-f4d4-44ae-8676-37cd0e80328c.png)
 
 
 
@@ -676,39 +676,39 @@ C: \Users\xt>net user Administrat0r 123 /add
 命令成功完成。
 ```
 
-![image.png](1620696924809-4f775155-68a7-4e0b-89b0-b6cdfe5a2926.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620696924809-4f775155-68a7-4e0b-89b0-b6cdfe5a2926.png)
 
 regedit进入注册表
 
 计算机\HKEY_LOCAL_MACHINE\SAM\SAM
 
-![image.png](1620663313507-3904fada-3e0e-41a5-82ed-e229191e4a58.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620663313507-3904fada-3e0e-41a5-82ed-e229191e4a58.png)
 
 给予sam权限
 
-![image.png](1620663247950-8262659b-7059-4aa0-97bc-4db900268867.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620663247950-8262659b-7059-4aa0-97bc-4db900268867.png)
 
 显示如下
 
-![image.png](1620663365251-649ed25c-95f1-4c67-9640-cab73562b0a8.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620663365251-649ed25c-95f1-4c67-9640-cab73562b0a8.png)
 
 刷新F5，展开找到administrator账户的键值0x1f4
 
-![image.png](1620663921155-2467f37d-cc70-4dc7-b5b4-6af03416975d.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620663921155-2467f37d-cc70-4dc7-b5b4-6af03416975d.png)
 
 打开0x1f4中F对应的十六进制值，复制并替换掉，我们新建的Administrat0r账户对应的F数值数据
 
-![image.png](1620696622163-031b4a20-8dd6-4f46-a5d9-269cbc00737e.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620696622163-031b4a20-8dd6-4f46-a5d9-269cbc00737e.png)
 
-![image.png](1620696975870-343ea54e-3fef-48f8-931e-a22a5497d9b3.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620696975870-343ea54e-3fef-48f8-931e-a22a5497d9b3.png)
 
 导出0x3E9对应的注册表为reg格式文档，然后在计算机管理中删除Administrat0r账户
 
-![image.png](1620664570825-a725cf04-53ab-4a06-9f3f-136c8ad1b766.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620664570825-a725cf04-53ab-4a06-9f3f-136c8ad1b766.png)
 
 此时注册表已没有相关注册信息
 
-![image.png](1620664642562-bd0a9b4c-cbb6-49b0-83fb-f1922459a414.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620664642562-bd0a9b4c-cbb6-49b0-83fb-f1922459a414.png)
 
 这时使用导出的reg导入
 
@@ -720,17 +720,17 @@ CusersxtDesktopladministratoreg中包含的项和值已成功添加到注册表�
 
 确定
 
-![image](1620664701643-8dea9626-fa5b-4785-8331-2d9a49c37123.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620664701643-8dea9626-fa5b-4785-8331-2d9a49c37123.png)
 
-![image.png](1620697060914-71d013de-9cf0-4c45-bfb4-744cd1e7f7a0.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620697060914-71d013de-9cf0-4c45-bfb4-744cd1e7f7a0.png)
 
-![image.png](1620664800331-a5ad71c6-242f-48ce-bc05-997a7c2a4035.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620664800331-a5ad71c6-242f-48ce-bc05-997a7c2a4035.png)
 
 登陆测试成功，影子账户添加成功。
 
-![image.png](1620701383738-f8c06915-114f-44d1-a1c6-afb8e90b4707.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620701383738-f8c06915-114f-44d1-a1c6-afb8e90b4707.png)
 
-![image.png](1620961872748-fd0b722c-0809-4a61-876f-960c7f5c0f8f.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620961872748-fd0b722c-0809-4a61-876f-960c7f5c0f8f.png)
 
 此时还无法直接登陆，因为无法自定义输入用户名，这里需要修改本地策略
 
@@ -743,7 +743,7 @@ CusersxtDesktopladministratoreg中包含的项和值已成功添加到注册表�
 
 
 
-![image.png](1620698978583-5c28d2c7-f54c-4d26-ad20-d45a18a45a1b.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620698978583-5c28d2c7-f54c-4d26-ad20-d45a18a45a1b.png)
 
 
 
@@ -811,7 +811,7 @@ WDAGUtilityAccount
 xt
 ```
 
-![image.png](1620963241494-42ed9f9a-4d59-40a4-b2d0-adfa7d501143.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620963241494-42ed9f9a-4d59-40a4-b2d0-adfa7d501143.png)
 
 | **查询方法**                      | **结果**     |
 | --------------------------------- | ------------ |
@@ -825,7 +825,7 @@ xt
 
 删除```计算机\HKEY_LOCAL_MACHINE\SAM\SAM```中对应影子账号的键值即可。
 
-![image.png](1620963241494-42ed9f9a-4d59-40a4-b2d0-adfa7d501143.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/系统用户审查/1620963241494-42ed9f9a-4d59-40a4-b2d0-adfa7d501143.png)
 
 ## linux查看系统用户
 

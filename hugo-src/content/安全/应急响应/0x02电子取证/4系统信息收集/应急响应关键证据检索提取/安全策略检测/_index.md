@@ -37,7 +37,7 @@ windows官网操作系统技术文件中的有很多关于windows安全信息的
 
 这里用到的工具有LGPO、PolicyAnalyzer你都可以通过 https://www.microsoft.com/en-us/download/details.aspx?id=55319 进行下载。这个下载链接中的其他内容就是windows基线标准，也建议一起下载，用于后续分析对比基线使用。
 
-![img](1633938938772-217d62f1-50d5-4cd0-92db-01fbd3c7abda.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/安全策略检测/1633938938772-217d62f1-50d5-4cd0-92db-01fbd3c7abda.png)
 
 
 
@@ -170,7 +170,7 @@ C:\USERS\XT\DESKTOP\工具\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABCFE5A}
 
 
 
-![img](1633944629336-8a8fd13f-6092-4ca0-b9ad-802859196b00.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/安全策略检测/1633944629336-8a8fd13f-6092-4ca0-b9ad-802859196b00.png)
 
 
 
@@ -195,7 +195,7 @@ Import Machine settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916
 Import User settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABCFE5A}\DomainSysvol\GPO\User\registry.pol
 ```
 
-![img](1633944827808-3e3ed717-2e00-4457-b7bd-d2e152d59dbc.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/安全策略检测/1633944827808-3e3ed717-2e00-4457-b7bd-d2e152d59dbc.png)
 
 
 
@@ -205,13 +205,13 @@ Import User settings from registry.pol: .\LGPO\{F9B49312-D0EE-4223-BC1A-58916ABC
 
 将基线和导出的pol文件导入Policy Anylize程序中。然后同时勾选对比即可。
 
-![img](1633944991597-f683fb6f-b081-4000-9088-eb75bb1dff74.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/安全策略检测/1633944991597-f683fb6f-b081-4000-9088-eb75bb1dff74.png)
 
-![img](1633944974206-733ed4b6-47c1-4c48-b562-8f538a205607.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/安全策略检测/1633944974206-733ed4b6-47c1-4c48-b562-8f538a205607.png)
 
 还可以导出结果
 
-![img](1633945006674-402949ed-dfd0-475d-b9cb-1325d5cec9e4.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/安全策略检测/1633945006674-402949ed-dfd0-475d-b9cb-1325d5cec9e4.png)
 
 
 
@@ -338,7 +338,7 @@ Lynis 无需任何预配置即可运行。配置和微调是可能的，将在�
  lynis audit system
 ```
 
-![img](1634023336943-c77d948b-e38a-46eb-99ef-5fd0ae454f9a.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/安全策略检测/1634023336943-c77d948b-e38a-46eb-99ef-5fd0ae454f9a.png)
 
 
 

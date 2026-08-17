@@ -18,11 +18,11 @@ updated: 2022-03-17T13:15:00+08:00
 
 下面的截图显示了一个32位的恶意软件下载器使用UrlDownloadToFileA()和ShellExecuteA()来下载和执行一个恶意软件二进制。为了确定正在下载恶意软件二进制文件的URL，在调用UrlDownloadToFileA()时设置了一个断点。运行代码后，断点被触发，如以下截图所示。UrlDownloadToFileA()的第二个参数显示将下载恶意软件可执行文件（wowreg32.exe）的URL，第三个参数指定下载的可执行文件在磁盘上的位置。在这种情况下，下载器将下载的可执行文件保存在%TEMP%目录下，称为temp.exe。
 
-![image-20220308145245581](image-20220308145245581.png)
+![image-20220308145245581](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220308145245581.png)
 
 将恶意软件的可执行文件下载到%TEMP%目录后，下载者通过调用ShellExecuteA()API来执行它，如下面的截图所示。另外，恶意软件也可以使用WinExec()或CreateProcess()API来执行下载的文件。
 
-![image-20220308145547808](image-20220308145547808.png)
+![image-20220308145547808](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220308145547808.png)
 
 在调试恶意二进制文件时，最好是运行监控工具 (如Wireshark）和模拟工具（如InetSim），这样你就可以 观察恶意软件的行动并捕获其产生的流量。
 
@@ -30,40 +30,40 @@ updated: 2022-03-17T13:15:00+08:00
 
 Dropper是一个将额外的恶意软件组件嵌入自身的程序。当执行时，下载器会提取恶意软件组件并将其下载到磁盘。下拉程序 通常在资源部分嵌入额外的二进制文件。为了提取嵌入的 为了提取嵌入的可执行文件，投放器使用FindResource(), LoadResource(), LockResource()和 SizeOfResource()的API调用。在下面的截图中，Resource Hacker工具（在第2章静态分析中涉及到 第2章，静态分析）显示了一个PE文件在恶意软件样本的资源部分的存在。 恶意软件样本的资源部分存在一个PE文件。在这种情况下，资源类型是一个DLL。
 
-![image-20220308145720876](image-20220308145720876.png)
+![image-20220308145720876](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220308145720876.png)
 
 在x64dbg中加载恶意二进制文件并查看对API调用的引用（在前一章中涉及），显示对资源相关API调用的引用。这是恶意软件从资源部分提取内容的一个迹象。在这一点上，你可以在调用FindResourceA()API的地址上设置一个断点，如图所示。
 
-![image-20220308145747138](image-20220308145747138.png)
+![image-20220308145747138](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220308145747138.png)
 
 
 在下面的截图中，运行程序后，由于上一步设置的断点，执行在FindResourceA()API处暂停。传递给FindResourceA()API的第二和第三个参数告诉你，该恶意软件正试图找到DLL/101资源，如下所示。
 
-![image-20220315091324085](image-20220315091324085.png)
+![image-20220315091324085](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315091324085.png)
 
 在执行FindResourceA()后，其返回值（存储在EAX中），即指定资源信息块的句柄，被作为第二个参数传递给LoadResource()API。LoadResource()检索与该资源相关的数据的句柄。LoadResource()的返回值包含检索到的句柄，然后作为参数传递给LockResource()API，后者获得实际资源的指针。在下面的截图中，调用LockResource()后，执行立即暂停。检查转储窗口中的返回值（存储在EAX中），显示了从资源部分检索到的PE可执行内容。
 
 
 
-![image-20220315091955415](image-20220315091955415.png)
+![image-20220315091955415](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315091955415.png)
 
 一旦它检索到资源，恶意软件使用SizeofResource()API确定资源（PE文件）的大小。接下来，恶意软件使用CreateFileA在磁盘上投放了一个DLL，如下所示。
 
-![image-20220315092112145](image-20220315092112145.png)
+![image-20220315092112145](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315092112145.png)
 
 然后使用 WriteFile() API 将提取的 PE 内容写入 DLL。在下面的截图中，第一个参数0x5c是DLL的句柄，第二个参数0x00404060是检索到的资源（PE文件）的地址，第三个参数0x1c00是资源的大小，这是用调用SizeOfResource()确定的。
 
-![image-20220315092139375](image-20220315092139375.png)
+![image-20220315092139375](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315092139375.png)
 
 ##### 1.2.1 逆向64位dropper释放器
 
 下面是一个64位恶意软件投放器（称为黑客之门）的例子。如果你还不熟悉调试64位样本，请参考前一章的2.7节，调试64位恶意软件。该恶意软件使用相同的API函数集来寻找和提取资源；不同的是，前几个参数被放置在寄存器中，而不是推到堆栈中（因为它是一个64位二进制文件）。恶意软件首先使用FindResourceW()API找到BIN/100资源，如下所示。
 
-![image-20220315093013220](/images/recovered/image-20220315093013220.png)
+![image-20220315093013220](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315093013220.png)
 
 然后，恶意软件使用LoadResource()检索与资源相关的数据的句柄，然后它使用LockResource()获得实际资源的指针。在下面的截图中，检查LockResource()API的返回值（RAX）显示了提取的资源。在这种情况下，64位恶意软件投放者从其资源部分提取DLL，随后它将DLL投放到磁盘上。
 
-![image-20220315093035998](/images/recovered/image-20220315093035998.png)
+![image-20220315093035998](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315093035998.png)
 
 #### 1.3 键盘记录器
 
@@ -88,18 +88,18 @@ GetAsynKeyState()接受一个整数参数vKey，指定256个可能的虚拟键�
 下面的截图显示了一个键盘记录器的代码片段。该键盘记录器通过调用地址为0x401441的GetKeyState()API来确定Shift键的状态（如果它是向上或向下）。在地址0x401459，键盘记录器调用GetAsyncKeyState()，这是一个循环的一部分，在循环的每个迭代中，虚拟键代码（从键代码数组中读取）被作为参数传递，以确定每个键的状态。在地址0x401463处，一个测试操作（与AND操作相同）被执行。
 在地址0x401463，对GetAsyncKeyState()的返回值进行测试操作（与AND操作相同），以确定最重要的位是否被设置。如果最重要的位被设置了，这就表明按键被按下了。如果一个特定的键被按下，那么键盘记录器就会调用地址为0x40146c的GetKeyState()来检查Caps Lock键的状态（以检查它是否被打开）。使用这种技术，恶意软件可以确定在键盘上输入的是大写字母、小写字母、数字还是特殊字符。
 
-![image-20220315093439560](image-20220315093439560.png)
+![image-20220315093439560](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315093439560.png)
 
 下面的截图显示了该循环的结束。从代码中可以看出，该恶意软件在0x5c（92）键代码中进行迭代。在这种情况下，var_4作为索引进入要检查的键代码数组，它在循环结束时被递增，只要var_4的值小于0x5c（92），循环就会继续。
 
-![image-20220315102442124](image-20220315102442124.png)
+![image-20220315102442124](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315102442124.png)
 
 ##### 1.3.2 使用SetWindowsHookEx()的键盘记录器
 
 另一种常见的键盘记录器技术是，它安装一个函数（称为钩子程序）来监测键盘事件（如按键）。在这种方法中，恶意程序注册了一个函数（钩子程序），当键盘事件被触发时，该函数将被通知，该函数可以将按键记录到一个文件或通过网络发送。恶意程序使用SetWindowsHookEx()API来指定要监控的事件类型（如键盘、鼠标等）以及当特定类型的事件发生时应该被通知的钩子程序。钩子程序可以包含在一个DLL或当前模块中。在下面的截图中，恶意软件样本通过调用SetWindowsHookEx()和WH_KEYBOARD_LL参数（恶意软件也可能使用WH_KEYBOARD）为低级别的键盘事件注册了一个钩子过程。第二个参数
 第二个参数，offset hook_proc，是挂钩过程的地址。当键盘事件发生时，这个函数将被通知。检查这个函数可以了解到键盘记录器是如何和在哪里记录击键的。第三个参数是包含钩子程序的模块（如DLL或当前模块）的句柄。第四个参数，0，指定钩子程序将与同一桌面上的所有现有线程相关。
 
-![image-20220315102555260](image-20220315102555260.png)
+![image-20220315102555260](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315102555260.png)
 
 #### 1.4 通过可移动媒体复制恶意软件
 
@@ -107,17 +107,17 @@ GetAsynKeyState()接受一个整数参数vKey，指定256个可能的虚拟键�
 
 在下面的例子中，恶意软件调用GetLogicalDriveStringsA()来获取计算机上有效驱动器的详细信息。调用GetLogicDriveStringsA()后，可用驱动器的列表被存储在输出缓冲区RootPathName中，该缓冲区被作为第二个参数传递给GetLogicalDriveStringsA()。下面的截图显示了调用GetLogicDriveStringsA()后的三个驱动器：C:\、D:\和E:\，其中E:\是USB驱动器。一旦它确定了驱动器的列表，它就会遍历每个驱动器以确定它是否是一个可移动的驱动器。它通过比较GetDriveTypeA()的返回值和DRIVE_REMOVABLE（常量值2）来确定。
 
-![image-20220315130447778](/images/recovered/image-20220315130447778.png)
+![image-20220315130447778](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315130447778.png)
 
 如果检测到可移动媒体，恶意软件会使用CopyFileA()API将自己（可执行文件）复制到可移动媒体（USB驱动器）。为了隐藏可移动媒体上的文件，它调用SetFileAttributesA()API并传递给它一个常量值FILE_ATTRIBUTE_HIDDEN。
 
-![image-20220315130509691](image-20220315130509691.png)
+![image-20220315130509691](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130509691.png)
 
 将恶意文件复制到可移动媒体后，攻击者可以等待用户双击复制的文件，或者可以利用自动运行功能。在Windows Vista之前，恶意软件除了复制可执行文件外，还将包含Autorun命令的autorun.inf文件复制到可移动媒体上。这些自动运行命令允许攻击者在媒体被插入系统时自动启动程序（无需用户干预）。从Windows Vista开始，通过Autorun执行恶意二进制文件在默认情况下是不可能的，所以攻击者必须使用不同的技术（如修改注册表项）或利用一个漏洞，这可能允许恶意二进制文件自动执行。
 
 一些恶意软件程序依靠欺骗用户来执行恶意二进制文件，而不是利用自动运行功能。安朵美达就是这样一个恶意软件的例子。为了证明安朵美达使用的伎俩，请看下面的截图，它显示了将2GB的干净USB驱动器插入感染了安朵美达的系统之前的内容。USB的根目录包括一个名为test.txt的文件和一个名为testdir的文件夹。
 
-![image-20220315130539679](image-20220315130539679.png)
+![image-20220315130539679](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130539679.png)
 
 一旦干净的USB驱动器被插入被安朵美达感染的计算机，它就会执行以下步骤来感染USB驱动器。
 1. 它通过调用GetLogicalDriveStrings()确定系统中所有驱动器的列表。
@@ -125,42 +125,42 @@ GetAsynKeyState()接受一个整数参数vKey，指定256个可能的虚拟键�
 3. 一旦找到可移动媒体，它就调用CreateDirectoryW()API来创建一个文件夹（目录），并传递一个扩展ASCII码xA0（á）作为第一个参数（目录名称）。这就在可移动媒体中创建了一个名为E:á的文件夹，由于使用了扩展ASCII码，该文件夹在显示时没有名称。下面的屏幕截图显示了创建
    E:\á目录的创建。从现在开始，我将把这个由恶意软件创建的目录称为未命名的目录（文件夹）。
 
-![image-20220315130634765](image-20220315130634765.png)
+![image-20220315130634765](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130634765.png)
 
 下面的屏幕截图显示了未命名的文件夹。这是在上一步骤中创建的具有xA0扩展ascii代码的文件夹。
 
-![image-20220315130648123](image-20220315130648123.png)
+![image-20220315130648123](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130648123.png)
 
 4. 然后，它通过调用SetFileAttributesW()API，将这个未命名的文件夹的属性设置为隐藏，使其成为受保护的操作系统文件夹。这就隐藏了可移动媒体上的文件夹。
 
-![image-20220315130706150](image-20220315130706150.png)
+![image-20220315130706150](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130706150.png)
 
 5. 恶意软件从注册表中解密了可执行内容。然后它在未命名的文件夹中创建一个文件。创建的文件名有
    惯例<randomfilename>.1，并将PE可执行内容（恶意DLL）写入该文件（使用CreateFile（）和WriteFile（）API）。结果，在未命名的文件夹内创建了一个名字为<randomfilename>.1的DLL，如图所示。
 
-![image-20220315130727283](image-20220315130727283.png)
+![image-20220315130727283](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130727283.png)
 
 6. 然后，该恶意软件在未命名的文件夹内创建一个desktop.ini文件，并写入图标信息，为未命名的文件夹分配一个自定义图标。desktop.ini的内容显示在这里。
 
-![image-20220315130800524](image-20220315130800524.png)
+![image-20220315130800524](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130800524.png)
 
 下面的截图显示了未命名的文件夹的图标，它已被改变为驱动器图标。另外，请注意，未命名的文件夹现在是隐藏的。换句话说，这个文件夹只有在文件夹选项被配置为显示隐藏的和受保护的操作系统文件时才会显示出来。
 
-![image-20220315130817788](image-20220315130817788.png)
+![image-20220315130817788](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130817788.png)
 
 7. 然后，恶意软件调用MoveFile()API，将所有的文件和文件夹（在这种情况下，test.txt和testdir）从根目录移动到未命名的隐藏文件夹。在复制了用户的文件和文件夹后，USB驱动器的根目录看起来就像这里所示。
 
-![image-20220315130919807](image-20220315130919807.png)
+![image-20220315130919807](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130919807.png)
 
 
 
 8. 然后，该恶意软件创建了一个指向rundll32.exe的快捷链接，而rundll32.exe的参数是<randomfile>.1文件（这就是之前丢在未命名文件夹中的DLL）。下面的截图显示了快捷方式文件的外观，以及显示通过rundll32.exe加载恶意DLL的方式的属性。换句话说，当快捷方式文件被双击时，恶意DLL会通过rundll32.exe加载，从而执行恶意代码。
 
-![image-20220315130943690](image-20220315130943690.png)
+![image-20220315130943690](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315130943690.png)
 
 利用上述操作，安朵美达玩了一个心理把戏。现在，让我们了解一下，当用户在一个干净的系统上插入被感染的USB驱动器时会发生什么。下面的截图显示了被感染的USB驱动器的内容，它显示给正常用户（默认的文件夹选项）。请注意，用户看不到未命名的文件夹，用户的文件/文件夹（在我们的例子中，test.txt和testdir）在根驱动器中丢失。该恶意软件正在欺骗用户，使其相信该快捷方式文件是一个驱动器。
 
-![image-20220315131008061](image-20220315131008061.png)
+![image-20220315131008061](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315131008061.png)
 
 当用户发现USB根驱动器中的所有重要文件和文件夹丢失时，用户极有可能双击该快捷方式文件（认为它是一个驱动器）来寻找丢失的文件。由于双击该快捷方式，rundll32.exe将从未命名的隐藏文件夹（用户不可见）中加载恶意DLL并感染系统。
 
@@ -176,24 +176,24 @@ InternetOpen()、InternetOpenUrl()和InternetReadFile()等API函数，从攻击�
 1. 首先，恶意软件调用InternetOpenA()API来初始化与互联网的连接。第一个参数指定了恶意软件将用于HTTP通信的用户代理。这个后门通过连接受感染系统的主机名（它通过调用GetComputerName()API获得）来生成用户代理。
    它通过调用GetComputerName()API获得）与一个硬编码的字符串。每当你遇到二进制文件中使用的硬编码的User-Agent字符串，它可以成为一个优秀的网络指标。
 
-![image-20220315131134599](/images/recovered/image-20220315131134599.png)
+![image-20220315131134599](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315131134599.png)
 
 2. 然后它调用InternetOpenUrlA()连接到一个URL。你可以通过检查第二个参数来确定它所连接的URL的名称，如下所示。
 
-![image-20220315131239213](/images/recovered/image-20220315131239213.png)
+![image-20220315131239213](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315131239213.png)
 
 3. 下面的截图显示了调用InternetOpenUrlA()后产生的网络流量。
    调用InternetOpenUrlA()后产生的网络流量。在这个阶段，恶意软件与C2服务器进行通信以读取HTML内容。
 
-![image-20220315131258571](image-20220315131258571.png)
+![image-20220315131258571](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315131258571.png)
 
 4. 然后它使用InternetReadFile()API调用检索网页的内容。这个函数的第二个参数指定了接收数据的缓冲区的指针。下面的截图显示了调用InternetReadFile()后检索到的HTML内容。
 
-![image-20220315131321903](/images/recovered/image-20220315131321903.png)
+![image-20220315131321903](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315131321903.png)
 
 5. 从检索的HTML内容中，后门寻找<div> HTML标签内的特定内容。执行检查div标签内的内容的代码显示在以下截图中。如果所需的内容不存在，该恶意软件不做任何事情，并继续定期检查内容。
 
-![image-20220315131349857](/images/recovered/image-20220315131349857.png)
+![image-20220315131349857](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315131349857.png)
 
 具体地说，恶意软件希望将内容以特定格式包含在div标签中，如下面的代码所示。如果在检索的HTML内容中发现以下格式，它将提取加密字符串(KxAikuzeG:F6PXR3vFqffP:H)，该字符串包含在之间:
 
@@ -205,12 +205,12 @@ InternetOpen()、InternetOpenUrl()和InternetReadFile()等API函数，从攻击�
 
 6. 然后将提取的加密字符串作为参数传给解密函数，该函数使用自定义的加密算法对字符串进行解密。你将在第9章 "恶意软件混淆技术 "中了解更多关于恶意软件的加密技术。下面的截图显示了调用解密函数后的解密字符串。解密字符串后，后门检查解密字符串的第一个字符是否为J，如果满足这个条件，那么恶意软件就会调用sleep()API来睡眠一段特定时间。简而言之，解密字符串的第一个字符作为一个命令代码，它告诉后门执行睡眠操作。
 
-![image-20220315131523676](/images/recovered/image-20220315131523676.png)
+![image-20220315131523676](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315131523676.png)
 
 7. 如果被解密的字符串的第一个字符是D，那么它将检查第二个字符是否是O。
    第二个字符是o，如图所示。如果满足这个条件，那么它将提取从第三个字符开始的URL，并使用UrlDownloadToFile()从该URL下载一个可执行文件。然后它使用CreateProcess()API来执行下载的文件。在这种情况下，前两个字符Do作为命令代码，告诉后门下载并执行该文件。
 
-![image-20220315131546718](image-20220315131546718.png)
+![image-20220315131546718](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315131546718.png)
 
 > 关于APT1 WEBC2-DIV后门的全面分析，请查看作者的Cysinfo会议演讲和视频演示（https://cysinfo.com/8th- meetup-understanding-apt1-malware-techniques-using-malware- analysis-reverse-engineering/）。
 
@@ -230,34 +230,34 @@ InternetOpen()、InternetConnect()、HttpOpenRequest()、HttpSendRequest()和Int
    第一个参数，AF_INET，指定地址族，即IPV4。第二个参数是套接字类型，（SOCK_STREAM），第三个参数是
    第三个参数，IPPROTO_TCP，指定正在使用的协议（本例中为TCP）。
 
-![image-20220315131741477](/images/recovered/image-20220315131741477.png)
+![image-20220315131741477](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315131741477.png)
 
 2. 在建立与套接字的连接之前，恶意软件使用GetHostByName()API解析了C2域名的地址。这是有道理的，因为远程地址和端口需要提供给Connect()API来建立连接。GetHostByName()的返回值（EAX）是一个指向名为hostent的结构的指针，该结构包含解析的IP地址。
 
-![image-20220315131811585](image-20220315131811585.png)
+![image-20220315131811585](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315131811585.png)
 
 3. 它从hostent结构中读取解析后的IP地址，并将其传递给
    inet_ntoa() API，该API将IP地址转换成ASCII字符串，如192.168.1.100。然后调用inet_addr()，它将IP地址字符串（如192.168.1.100）转换为可以被Connect()API使用。然后调用Connect() API来建立与套接字的连接。
 
-![image-20220315131832719](/images/recovered/image-20220315131832719.png)
+![image-20220315131832719](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315131832719.png)
 
 4. 然后，恶意软件收集系统信息，使用XOR加密算法对其进行加密（加密技术将在第9章介绍），并使用Send()API调用将其发送到C2。发送（）API的第二个参数显示了将被发送到C2服务器的加密内容。
 
-![image-20220315131859069](image-20220315131859069.png)
+![image-20220315131859069](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315131859069.png)
 
 下面的截图显示了调用Send()API后捕获的加密网络流量。
 
-![image-20220315131917498](image-20220315131917498.png)
+![image-20220315131917498](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315131917498.png)
 
 5. 然后，恶意软件调用CreateThread()来启动一个新线程。CreateThread的第三个参数指定了线程的起始地址（起始函数），因此在调用CreateThread()后，执行开始于起始地址。在这种情况下，线程的起始地址是一个负责从C2中读取内容的函数。
 
-![image-20220315131934239](/images/recovered/image-20220315131934239.png)
+![image-20220315131934239](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315131934239.png)
 
 
 
 使用Recv()API函数检索C2的内容。Recv()的第二个参数是一个缓冲区，其中存储了检索的内容。然后对检索到的内容进行解密，并根据从C2收到的命令，由恶意软件执行适当的行动。要了解这个恶意软件的所有功能以及它如何处理收到的数据，请参考作者的演讲和视频演示（https：//cysinfo.com/session-11-part-2-dissecting-the heartbeat-apt-rat-features/）。
 
-![image-20220315132014597](image-20220315132014597.png)
+![image-20220315132014597](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315132014597.png)
 
 #### 1.6 基于PowerShell的执行
 
@@ -364,13 +364,13 @@ Hello World
 与汇编代码相比，Powershell命令很容易理解，但在某些情况下（比如PowerShell命令被混淆了），你可能想运行PowerShell命令来了解它的工作原理。测试单个命令的最简单方法是在交互式PowerShell中执行它。如果你想执行一个包含多个命令的PowerShell脚本（.ps1），首先将执行策略设置改为Bypass或Unrestricted（如前所述），然后使用PowerShell控制台执行该脚本。记住要在一个隔离的环境中执行恶意的脚本。
 在PowerShell提示符下运行脚本（.ps1）将一次性运行所有命令。如果你想控制执行，那么你可以使用PowerShell ISE（集成脚本环境）调试PowerShell脚本。你可以通过使用程序搜索功能调出PowerShell ISE，然后将PowerShell脚本加载到PowerShell ISE中，或者复制粘贴一个命令并使用其调试功能（如Step Into、Step Over、Step Out和Breakpoints），可以通过调试菜单访问。调试前，确保将执行策略设置为Bypass。
 
-![image-20220315132619143](image-20220315132619143.png)
+![image-20220315132619143](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315132619143.png)
 
 ##### 1.6.3 攻击者是如何使用PowerShell的
 
 在了解了基本的PowerShell和使用什么工具进行分析后，现在让我们看看攻击者是如何使用PowerShell的。由于通过PowerShell控制台或双击执行PowerShell脚本（.ps1）的限制（这将在记事本中打开，而不是执行脚本），不太可能看到对手直接向受害者发送PowerShell脚本。攻击者必须首先欺骗用户执行恶意代码；这主要是通过发送含有.lnk、.wsf、javascript或恶意宏文件等文件的电子邮件附件来实现。一旦用户被骗打开附件文件，恶意代码就可以直接调用PowerShell（powerhell.exe），或通过cmd.exe、Wscript、Cscript等间接调用。在PowerShell被调用后，可以使用各种方法绕过执行策略。例如，为了绕过执行限制策略，攻击者可以使用恶意代码调用powershell.exe，并通过Bypass执行策略标志，如下图所示。即使用户不是管理员，这种技术也会起作用，它可以覆盖默认的执行限制策略并执行脚本。
 
-![image-20220315132655486](image-20220315132655486.png)
+![image-20220315132655486](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315132655486.png)
 
 以同样的方式，攻击者使用各种PowerShell命令行参数来绕过执行策略。下表概述了用于逃避检测和绕过本地限制的最常见的PowerShell参数。
 
@@ -397,7 +397,7 @@ Hello World
 下面是作者博文（https://cysinfo.com/cyber-attack-targeting-indian-navys- submarine-warship-manufacturer/）中提到的一个攻击中使用的PowerShell下载器的例子。在这种情况下，PowerShell命令通过cmd.exe被包含在微软Excel表格中的恶意宏调用，该表格是以电子邮件附件形式发送给受害者的。
 PowerShell将下载的可执行文件作为doc6.exe丢在%TEMP%目录下。然后，它为被丢弃的可执行文件添加了一个注册表项，并调用eventvwr.exe，这是一种有趣的注册表劫持技术，允许doc6.exe被eventvwr.exe以高完整性级别执行。这种技术还默默地绕过了UAC（用户账户控制）。
 
-![image-20220315133333418](image-20220315133333418.png)
+![image-20220315133333418](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315133333418.png)
 
 以下是一个目标攻击的PowerShell命令（https://cysinfo.com/ uri-terror-attack-spear-phishing-emails-targeting-indian-embassies-and-indian-mea/）。在这种情况下，PowerShell被恶意宏调用，而不是直接下载可执行文件，而是使用DownloadString方法从Pastebin链接下载base64内容。在下载了编码的内容后，它被解码并丢到磁盘上。
 
@@ -494,7 +494,7 @@ HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell
 
 在下面的例子中，Brontok蠕虫通过用其恶意的可执行文件修改下列Winlogon注册表值来实现持久性。
 
-![image-20220315133936379](image-20220315133936379-7322777.png)
+![image-20220315133936379](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315133936379-7322777.png)
 
 为了检测这种类型的持久性机制，可以使用Sysinternals Autoruns工具。如前所述，你可以监测注册表中的可疑条目（与合法程序无关）。
 
@@ -509,11 +509,11 @@ Value: Debugger : REG_SZ : <full-path to the debugger>
 
 进攻者利用这个注册表键来启动他们的恶意程序。为了演示这种技术，通过添加以下注册表项，将notepad.exe的调试器设置为计算器（calc.exe）进程。
 
-![image-20220315134057537](image-20220315134057537.png)
+![image-20220315134057537](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315134057537.png)
 
 现在，当你启动记事本时，它将被一个计算器程序启动（尽管它不是一个调试器）。这种行为可以在下面的屏幕截图中看到。
 
-![image-20220315134116222](image-20220315134116222.png)
+![image-20220315134116222](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315134116222.png)
 
 下面是一个恶意软件样本（TrojanSpy:Win32/Small.M）的例子，它将其恶意程序iexplor.exe配置为Internet的调试器
 explorer, (iexplore.exe)。这是通过添加以下注册表值实现的。在这种情况下，攻击者选择了一个看起来与合法的internet explorer可执行文件名相似的文件名。由于以下注册表项的存在，每当合法的internet explorer（iexplore.exe）被执行时，它就会被恶意程序iexplor.exe启动，从而执行恶意代码。
@@ -553,11 +553,11 @@ HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows
 
 以下截图显示了由T9000后门（https://researchcenter.paloaltonetworks.com/2016/02/t9000-advanced-modular- backdoor-uses-complex-anti-analysis-techniques/）添加的AppInit DLL条目。
 
-![image-20220315134430995](image-20220315134430995.png)
+![image-20220315134430995](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315134430995.png)
 
 由于添加了前面的注册表项，当任何新进程（加载User32.dll）启动时，都会将恶意DLL（ResN32.dll）加载到其地址空间。下面的截图显示了重启系统后加载恶意DLL（ResN32.dll）的操作系统的进程。由于这些进程大多以高完整性级别运行，它允许对手以高权限执行恶意代码。
 
-![image-20220315134449422](/images/recovered/image-20220315134449422.png)
+![image-20220315134449422](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/recovered/image-20220315134449422.png)
 
 为了检测这种技术，你可以寻找在
 AppInit_DLLs注册表的可疑条目，这些条目与你环境中的合法程序无关。你还可以寻找任何由于加载恶意DLL而表现出异常行为的进程。
@@ -583,13 +583,13 @@ AppInit_DLLs注册表的可疑条目，这些条目与你环境中的合法程�
 
 在一个干净的操作系统中，一个具有相同名称的DLL（samlib.dll）驻留在C:\Windows\System32目录中，这个干净的DLL被驻留在C:\Windows目录中的explorer.exe加载。这个干净的DLL也被驻扎在system32目录下的其他几个进程加载，如图所示。
 
-![image-20220315134711266](image-20220315134711266.png)
+![image-20220315134711266](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315134711266.png)
 
 
 
 由于恶意DLL与explorer.exe被丢在同一目录下（即C:\Windows），因此，当系统重新启动时，恶意的samlib.dll被explorer.exe从C:\Windows目录中加载，而不是从system32目录中加载合法的DLL。下面的截图是在重新启动受感染的系统后拍摄的，显示了由于DLL搜索顺序被劫持而被explorer.exe加载的恶意DLL。
 
-![image-20220315134723314](image-20220315134723314.png)
+![image-20220315134723314](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315134723314.png)
 
 DLL搜索顺序劫持技术使取证分析变得更加困难，并逃避了传统的防御措施。为了检测这种攻击，你应该考虑监控DLLs的创建、重命名、替换或删除，并寻找任何由进程从异常路径加载的模块（DLLs）。
 
@@ -599,11 +599,11 @@ DLL搜索顺序劫持技术使取证分析变得更加困难，并逃避了传�
 
 Windows操作系统提供了各种COM对象，可供程序（COM客户端）使用。这些COM对象由一个独特的数字标识，称为类标识符（CLSIDs），它们通常在注册表键HKEY_CLASSES_ROOT\CLSID\<唯一的clsid>中找到。例如，"我的电脑 "的COM对象是{20d04fe0-3aea-1069-a2d8-08002b30309d}，在下面的截图中可以看到。
 
-![image-20220315134827315](image-20220315134827315.png)
+![image-20220315134827315](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315134827315.png)
 
 对于每个CLSID键，你还有一个叫做InProcServer32的子键，指定实现COM服务器功能的DLL的文件名。下面的截图告诉你shell32.dll（COM服务器）与我的电脑有关。
 
-![image-20220315134843823](image-20220315134843823.png)
+![image-20220315134843823](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315134843823.png)
 
 与 "我的电脑 "COM对象类似，微软提供了各种其他的COM对象（在DLL中实现），供合法程序使用。当合法程序（COM客户端）使用特定COM对象（使用其CLSID）的服务时，其相关的DLL被加载到客户端程序的进程地址空间。在COM劫持的情况下，攻击者修改了合法COM对象的注册表项，并将其与攻击者的恶意DLL联系起来。其想法是，当合法程序使用被劫持的对象时，恶意DLL会被加载到合法程序的地址空间。这使得对手能够在系统上持续存在并执行恶意代码。
 
@@ -622,11 +622,11 @@ Windows操作系统提供了各种COM对象，可供程序（COM客户端）使�
 
 在一个干净的系统中，MMDeviceEnumerator类的COM对象{BCDE0395-E52F-467C-8E3D-C4579291692E}与DLL MMDevApi.dll相关，其注册表项通常在HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\中找到，而在HKCU\Software\Classes\CLSID\中没有找到相应条目。
 
-![image-20220315134945232](image-20220315134945232.png)
+![image-20220315134945232](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315134945232.png)
 
 由于恶意软件在HKCU\Software\Classes\CLSID\{BCDE0395-E52F-467C-8E3D-C4579291692E}中添加了一个条目，受感染的系统现在包含两个相同CLSID的注册表项。由于HKCU\Software\Classes\CLSID\{BCDE0395-E52F-467C-8E3D- C4579291692E}的用户对象在位于HKLM\SOFTWARE\Classes\CLSID\{BCDE0395-E52F-467C-8E3D-C4579291692E}的机器对象之前被加载，恶意DLL被加载，从而劫持了MMDeviceEnumerator的COM对象。现在，任何使用MMDeviceEnumerator对象的进程都会加载恶意的DLL。下面的截图是在重新启动受感染的系统后拍摄的。重启后，恶意的DLL被explorer.exe加载，如图所示。
 
-![image-20220315135011347](image-20220315135011347.png)
+![image-20220315135011347](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315135011347.png)
 
 COM劫持技术逃避了大多数传统工具的检测。为了检测这种攻击，你可以在HKCU\Software\Classes\CLSID\中寻找对象的存在。恶意软件可能不会在HKCU\Software\Classes\CLSID\中添加条目，而是修改HKLM\Software\Classes\CLSID\中的现有条目以指向一个恶意二进制文件，因此你也应该考虑检查这个注册表键中指向未知二进制文件的任何值。
 
@@ -640,7 +640,7 @@ COM劫持技术逃避了大多数传统工具的检测。为了检测这种攻�
 
 Windows在注册表的HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSetservices键下存储已安装的服务列表及其配置。每个服务都有自己的子键，由指定服务如何、何时以及是否在EXE、DLL或内核驱动中实现的值组成。例如，Windows安装程序服务的名称是msiserver，在下面的截图中，HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services下有一个与服务名称相同的子键。ImagePath值指定这个服务的代码在msiexec.exe中实现，Type值为0x10(16)告诉我们它是Win32OwnProcess，Start值0x3代表SERVICE_DEMAND_START，这意味着这个服务需要手动启动。
 
-![image-20220315135121541](image-20220315135121541.png)
+![image-20220315135121541](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315135121541.png)
 
 要确定与常量值相关的符号名称，你可以参考MSDN的CreateService() API文档（https://msdn.microsoft.com/en- us/library/windows/desktop/ms682450(v=vs.85).aspx），或者你可以通过提供服务名称使用sc工具查询服务配置，如下图所示。这将显示在注册表子键中发现的类似信息。
 
@@ -662,7 +662,7 @@ SERVICE_START_NAME : LocalSystem
 现在让我们看一下Win32ShareProcess服务的例子。Dnsclient服务的服务名称是Dnscache，服务的代码是在DLL中实现的。当一个服务被实现为DLL（服务DLL）时，ImagePath注册表值通常会包含svchost.exe的路径（因为那是加载服务DLL的进程）。要确定与服务相关的DLL，你将不得不查看ServiceDLL值，它存在于
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\<service name>\Parameters子键下。下面的截图显示了与Dnsclient服务相关的DLL（dnsrslvr.dll）；这个DLL被通用主机进程svchost.exe加载。
 
-![image-20220315135207264](image-20220315135207264.png)
+![image-20220315135207264](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315135207264.png)
 
 攻击者可以通过许多方式创建服务。下面概述了一些常见的方法。
 
@@ -689,15 +689,15 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\<service name>\Parameters�
 
 * 然后，它使用OpenScManager()API打开一个服务控制管理器的句柄，并通过调用CreateService()API创建一个Win32ShareProcess类型的服务。第二个参数指定了服务的名称，在本例中是FastUserSwitchingCompatiblity。
 
-![image-20220315135340777](image-20220315135340777.png)
+![image-20220315135340777](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315135340777.png)
 
 在调用CreateService()后，服务被创建，以下注册表键被添加到服务配置信息中。
 
-![image-20220315135405824](image-20220315135405824.png)
+![image-20220315135405824](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315135405824.png)
 
 然后，它在上一步创建的注册表键下创建一个参数子键。
 
-![image-20220315135431348](image-20220315135431348.png)
+![image-20220315135431348](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315135431348.png)
 
 之后，它丢弃并执行一个批处理脚本，设置注册表值（ServiceDll），将DLL与创建的服务联系起来。批处理脚本的内容在这里显示。
 
@@ -722,7 +722,7 @@ C:\Windows\system32\FastUserSwitchingCompatibilityex.dll
 
 下面的截图显示了修改前后aliide服务的服务配置。关于BlackEnergy3 big dropper的详细分析，请阅读作者的博文：https://cysinfo.com/blackout-memory-analysis-of-blackenergy- big-ropper/。
 
-![image-20220315135534620](image-20220315135534620.png)
+![image-20220315135534620](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析基础/恶意样本分析-8-恶意软件功能和持久化/image-20220315135534620.png)
 
 为了检测此类攻击，请监测与合法程序无关的服务注册表项的变化。寻找与服务相关的二进制路径的修改，以及服务启动类型的变化（从手动到自动）。你还应该考虑监控和记录sc、PowerShell和WMI等工具的使用情况，这些工具可用于与服务互动。Sysinternals AutoRuns工具也可以用来检查服务的使用情况，以实现持久性。
 

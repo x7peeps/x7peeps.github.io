@@ -75,7 +75,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 在主界面点击“Add Local Device”，弹出添加本地设备的窗口，串口左边有6个可勾选项，点击某个选项，右边会出现对应的说明。如下图所示。
 
-![image](1616144701988-2ffcc1c6-b355-456c-9fdb-f9e102cb04a9.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616144701988-2ffcc1c6-b355-456c-9fdb-f9e102cb04a9.png)
 
 添加本地设备选项
 
@@ -96,13 +96,13 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 我们直接点击“下一步”，并且勾选序号为29、磁盘序号为14的优盘。注意不要勾选成了序号为30的那一项，否则只会加载优盘中的整个分区内容，卷引导记录等信息将不被包括。如下图所示。
 
-![image](1616375872314-27787cae-2acf-4821-891b-0dd30f452f4d.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375872314-27787cae-2acf-4821-891b-0dd30f452f4d.png)
 
 设备列表
 
 点击“完成”后，会自动打开“Evidence”标签页，可以看到磁盘14已经添加到证据列表中。如下图所示。
 
-![image](1616375872311-7f0866b0-4437-4446-b51a-8835e7857973.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375872311-7f0866b0-4437-4446-b51a-8835e7857973.png)
 
 证据列表
 
@@ -112,7 +112,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 打开该证据后，点击菜单栏的“Acquire”→“Acquire”即可开始制作镜像。需要注意的是，如果要制作整个优盘的镜像，树形面板中选中的必须是整个设备，对于本案例来说，选中的必须是“Entry”或“14”，否则接下来默认制作的仅仅是分区部分的镜像。
 
-![image](1616375872311-72ff303c-415d-41cd-a1b9-f62953d14072.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375872311-72ff303c-415d-41cd-a1b9-f62953d14072.png)
 
 开始制作镜像
 
@@ -123,7 +123,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 **保存位置等设置项**
 
 **
-**![image](1616375937786-7f250eb7-5100-4568-b212-d667a57e6d4d.png)
+**![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375937786-7f250eb7-5100-4568-b212-d667a57e6d4d.png)
 
 保存位置等设置项
 
@@ -145,7 +145,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 **证据文件格式等设置项**
 
 **
-**![image](1616375937889-59b37051-a8a6-4be3-9a4c-3b45c37bbaf8.png)
+**![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375937889-59b37051-a8a6-4be3-9a4c-3b45c37bbaf8.png)
 
 证据文件格式等设置项
 
@@ -165,7 +165,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 **高级设置选项**
 
 **
-**![image](1616375937862-be9f1315-97c2-4746-ac4e-f08311acc11a.png)
+**![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375937862-be9f1315-97c2-4746-ac4e-f08311acc11a.png)
 
 高级设置选项
 
@@ -190,11 +190,11 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 一切设置好后，点击“确认”即可开始制作镜像，此时EnCase Imager窗口右下角会显示剩余时间。制作完成后，EnCase Imager会对镜像进行校验并替换掉证据列表中的源设备，后续的浏览操作全部基于镜像文件，校验时EnCase Imager窗口右下角同样会显示剩余时间。如下图所示。
 
-#### ![image](1616375985927-9d00a20b-2b56-4f8f-92ed-68b83af0ca71.png)
+#### ![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375985927-9d00a20b-2b56-4f8f-92ed-68b83af0ca71.png)
 
 镜像中
 
-![image](1616375985893-8df387eb-e0e7-40e0-8110-5b6bb3c73e32.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375985893-8df387eb-e0e7-40e0-8110-5b6bb3c73e32.png)
 
 校验中
 
@@ -202,7 +202,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 镜像制作完毕后，在EnCase Imager窗口的证据列表中，可以查看镜像中的详细信息。如下图所示。
 
-![image](1616375937769-c85f5912-a8f8-4f6e-8d2e-5db6e0fe30f3.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375937769-c85f5912-a8f8-4f6e-8d2e-5db6e0fe30f3.png)
 
 镜像中包含的信息
 
@@ -230,7 +230,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 勾选需要的文件，点击菜单栏的“Acquire”→“Create Logical Evidence file”或列表面板右击选择“Acquire”→“Create Logical Evidence file”即可开始制作逻辑证据文件。本案例中勾选了“.disk”目录下的5个文件制作逻辑证据文件。如下图所示。
 
-![image](1616375720180-82ed43bd-5755-4c5b-a2e8-f8193ae9dcd8.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375720180-82ed43bd-5755-4c5b-a2e8-f8193ae9dcd8.png)
 
 制作逻辑证据文件
 
@@ -241,7 +241,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 **保存位置等设置项**
 
 **
-**![image](1616375937780-9ec431a4-4d89-47ff-bc2f-1d01891f22d7.png)
+**![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375937780-9ec431a4-4d89-47ff-bc2f-1d01891f22d7.png)
 
 保存位置等设置项
 
@@ -263,7 +263,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 **文件信息**
 
 **
-**![image](1616375937782-682a8bb0-f7f5-4789-b1fe-9128355c6083.png)
+**![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375937782-682a8bb0-f7f5-4789-b1fe-9128355c6083.png)
 
 文件信息
 
@@ -289,7 +289,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 **逻辑证据格式**
 
 **
-**![image](1616144702025-6111c793-2610-461e-8983-09849ca072c2.png)
+**![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616144702025-6111c793-2610-461e-8983-09849ca072c2.png)
 
 逻辑证据格式
 
@@ -312,7 +312,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 制作好了逻辑证据文件，回到EnCase Imager的证据列表界面，将D盘的“disk目录文件.L01”拖到EnCase Imager窗口然松开鼠标，即可将将制作的逻辑证据文件添加到EnCase Imager。为了方便待会进行对比，才次将测试优盘添加到证据列表（制作完证据文件后最初添加进证据列表中的优盘已经被证据文件thumb.E01替代了）。如下图所示。
 
-![image](1616144776574-3ef04bf6-2104-43eb-8c0f-136edec8b4f7.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616144776574-3ef04bf6-2104-43eb-8c0f-136edec8b4f7.png)
 
 添加逻辑证据文件到EnCase Imager
 
@@ -326,7 +326,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 
 
-![image](1616375721175-2a4c3431-3385-4913-acbf-7d9064d25e4f.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375721175-2a4c3431-3385-4913-acbf-7d9064d25e4f.png)
 
 同时打开多个证据
 
@@ -334,7 +334,7 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 点击证据“thumb”第一分区的“.disk”目录左边的遍历按钮（正方形勾选框左边的五边形），然后按住Ctrl键不放，接下来点击证据“disk目录文件”的“disk目录文件”和证据“14”第一分区“.disk”目录录左边的遍历按钮，同时在右边的列表面板列出三个目录中的文件。如下图所示。
 
-![image](1616375720160-a157c798-9087-435b-88eb-9f6c89bc29f7.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375720160-a157c798-9087-435b-88eb-9f6c89bc29f7.png)
 
 同时浏览多个目录文件
 
@@ -342,11 +342,11 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 
 接下来分别比较“thumb\C\.disk\casper-uuid-generic”、“disk目录文件\disk目录文件\casper-uuid-generic”及“14\C\.disk\casper-uuid-generic”三个文件。如下图所示。
 
-![image](1616144701990-8859d78e-f488-491a-883a-1bd1fdc1e271.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616144701990-8859d78e-f488-491a-883a-1bd1fdc1e271.png)
 
 disk目录文件\disk目录文件\casper-uuid-generic
 
-![image](1616144702013-8d3dd345-cfb6-42a9-84c9-3857d15aa5cf.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616144702013-8d3dd345-cfb6-42a9-84c9-3857d15aa5cf.png)
 
 14\C\.disk\casper-uuid-generic
 

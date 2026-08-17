@@ -52,7 +52,7 @@ endfor
 本节创建一个数组(或“SBox”/Substitution Box)，其中每个值等于它在数组中从0-255 (0x00-0xFF)的位置，这也称为其标识排列:
 在恶意软件样本中寻找这种类型的加密时，这种初始表创建是一个关键指标。对于这个示例，使用x86汇编代码中的以下循环初始化RC4 KSA:
 
-![](16678940225844.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/介绍恶意软件中RC4加密的识别与解码/16678940225844.jpg)
 
 在恶意软件样本中寻找这种类型的加密时，这种初始表创建是一个关键指标。对于这个示例，使用x86汇编代码中的以下循环初始化RC4 KSA:
 
@@ -124,12 +124,12 @@ endfor
 10002125jl     shortloop; Loop if Less  In IDA Pro, the SBox Scramble loop following the Initialization loop may resemble these basic blocks:
 ```
 
-![](16679112849915.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/介绍恶意软件中RC4加密的识别与解码/16679112849915.jpg)
 
 用一支铅笔和一张纸手动计算这个例子的至少前几个字节将有助于更清楚地了解字节是如何交换来生成这个新的SBox的:
 
 初始化SBox:
-![](16679114026480.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/介绍恶意软件中RC4加密的识别与解码/16679114026480.jpg)
 对于键“0006”的第一个字节(键[0])是“0”，记住这是ASCII“0x30>”:
 
 ```
@@ -160,7 +160,7 @@ S[0x61]=0x100
 ```
 在字节S[0x01]和S[0x61]交换之后，结果表看起来像这样:
 该算法将继续执行此计算256次。注意，这些值将继续被交换出来，甚至还将交换以前交换的字节。使用“0006”键，恶意软件示例将最终在堆栈上生成以下SBox(我添加了相应的SBox数组索引，仅为了可视化目的):
-![](16679119002998.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/介绍恶意软件中RC4加密的识别与解码/16679119002998.jpg)
 ```
 S[00] | 0012FBB0  18 8A 98 7B|16 35 F4 A8|C0 A5 53 94|D0 0D 87 90| 
 
@@ -293,11 +293,11 @@ __int32 index2;// j
 
 100021D2jbshortloop; Loop if x < len(Plain  In IDA Pro, the RC4_Crypt loop may resemble these basic blocks:
 ```
-![](16679121436420.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/介绍恶意软件中RC4加密的识别与解码/16679121436420.jpg)
 一旦明文的长度满足，密钥流K就完全生成。随着K的每一个值的生成，它被用来对明文的补充字节进行异或运算，在这种情况下，它看起来像这样:
-![](16679122213502.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/介绍恶意软件中RC4加密的识别与解码/16679122213502.jpg)
 要解密密文，只需将此过程反向:
-![](16679122448633.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析拓展/介绍恶意软件中RC4加密的识别与解码/16679122448633.jpg)
 用python把它们组合在一起
 我在python中实现了rc4，将输入视为字符串，并在打乱之前和之后输出sbox内容。
 ```

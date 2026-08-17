@@ -35,15 +35,15 @@ Guymager[ˈgɪmɪdʒər]是一款免费的媒体采集取证成像仪。它的�
 
 ## 界面
 
-![image](1615947758513-378d8f68-943b-4314-8dc6-0609ab67f179.png)解释:
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1615947758513-378d8f68-943b-4314-8dc6-0609ab67f179.png)解释:
 
 • 连接的存储设备列表在上方。新设备可以在任何时候连接-按下重新扫描按钮显示他们。
 
 • 浅红色标识的设备为本地硬盘。它们不能被获取，从而防止获取错误的磁盘。本地硬盘可以通过输入配置文件中的序列号来识别。
 
-• 下方显示了蓝色光标当前所选择的收购的更详细信息。[![image](1615947758513-378d8f68-943b-4314-8dc6-0609ab67f179.png)
+• 下方显示了蓝色光标当前所选择的收购的更详细信息。[![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1615947758513-378d8f68-943b-4314-8dc6-0609ab67f179.png)
 
-[![image](1615947758498-e8b62112-1456-4126-8d3b-7efcfff24bee.png)](https://guymager.sourceforge.io/acquisitiondialog_big.png)
+[![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1615947758498-e8b62112-1456-4126-8d3b-7efcfff24bee.png)](https://guymager.sourceforge.io/acquisitiondialog_big.png)
 
 上面的截图显示了默认的获取对话框。存在另一个用于克隆磁盘的对话框。两者都可以很容易地适应您的需求。您可以添加或删除字段。您可以静态(文本)和动态(当前日期，磁盘大小，序列号，…)设置它们的默认值。看一下 /etc/guymager.cfg**.**
 
@@ -218,11 +218,11 @@ https://www.secpulse.com/archives/138600.html
 
 1、首先启动进入取证模式；
 
-![image](1616035541401-6bdd4ba9-b708-437d-8ff9-14ee32299934.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035541401-6bdd4ba9-b708-437d-8ff9-14ee32299934.png)
 
 2、接入移动硬盘，fdisk -l 确定移动硬盘的设备名为/dev/sdb1；
 
-![image](1616035541525-6e9df4d6-437d-4a42-8e17-9feddeddf886.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035541525-6e9df4d6-437d-4a42-8e17-9feddeddf886.png)
 
 3、挂载移动硬盘。
 
@@ -232,11 +232,11 @@ mkdir udisk
 
 mount /dev/sdb1 /mnt/udisk 
 
-![image](1616035541537-e8471083-1785-442d-bca2-d0dc415cc558.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035541537-e8471083-1785-442d-bca2-d0dc415cc558.png)
 
 #### 使用Guymager
 
-![image](1616035542138-af310bf5-483c-46d1-b4f4-cdc173920b44.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035542138-af310bf5-483c-46d1-b4f4-cdc173920b44.png)
 
 1、在目标硬盘上右键 Acquire image， 
 
@@ -244,25 +244,25 @@ mount /dev/sdb1 /mnt/udisk
 
 下面的hash校验我勾掉了，是为了让速度更快一些。 
 
-![image](1616035542140-1bcea3d8-cc4b-4cd5-bec3-2a2405564175.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035542140-1bcea3d8-cc4b-4cd5-bec3-2a2405564175.png)
 
 2、Start开始后，需要一段时间，由磁盘容量、速度与电脑性能决定。 
 
-![image](1616035542086-3420df83-beba-4dda-bdf8-a2b7f5aecf6d.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035542086-3420df83-beba-4dda-bdf8-a2b7f5aecf6d.png)
 
 3、镜像制作完成。 
 
-![image](1616035542085-79e1c474-2c54-4db6-a91c-f0dd98fdd3ea.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035542085-79e1c474-2c54-4db6-a91c-f0dd98fdd3ea.png)
 
-![image](1616035542123-a074912c-713b-4f79-a9c9-3d049f6ab1c9.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035542123-a074912c-713b-4f79-a9c9-3d049f6ab1c9.png)
 
 全磁盘镜像文件大小共4.7GB。
 
-![image](1616035643530-5d14cbc7-4516-4c23-a44d-274467a477a4.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035643530-5d14cbc7-4516-4c23-a44d-274467a477a4.png)
 
 磁盘实际使用大小是这样的。
 
-![image](1616035643449-c1ff5763-1ba6-4489-b4fc-0b3dedcb2df0.png)
+![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616035643449-c1ff5763-1ba6-4489-b4fc-0b3dedcb2df0.png)
 
 
 
@@ -306,18 +306,18 @@ BitCurator包含了一个开源的图形应用程序，用于创建磁盘映像�
 
 1. 右键单击桌面“成像工具”文件夹中的图标，打开Guymager。在上下文菜单中，选择“打开”。
 
-![image.png](1616036275046-7f6dc8a5-0706-4290-8a40-e064541f042b.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616036275046-7f6dc8a5-0706-4290-8a40-e064541f042b.png)
 
 1. Guymager将要求以root权限运行。当提示时，输入与bit策库用户帐户相关的密码(通常为'bcadmin')。
 
-![image.png](1616036371009-c3d0052d-c5bf-4059-a9a7-68c6e942d881.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616036371009-c3d0052d-c5bf-4059-a9a7-68c6e942d881.png)
 
-1. 启动Guymager时，它将显示系统上所有挂载的磁盘的列表。再次识别你想要图像的磁盘，右键单击它的列表，并选择“获取图像”。![image.png](1616036405215-0ab9b93d-be74-4ed0-a232-6362c170b655.png)
+1. 启动Guymager时，它将显示系统上所有挂载的磁盘的列表。再次识别你想要图像的磁盘，右键单击它的列表，并选择“获取图像”。![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616036405215-0ab9b93d-be74-4ed0-a232-6362c170b655.png)
 2. 点击获取图像将打开获取图像窗口。在此窗口中，您将首先选择您想要使用的磁盘映像格式。选项包括Linux dd原始镜像、专家取证格式(.E01)和高级取证镜像格式(.AFF）;专家取证或AFF镜像将在法医打包的镜像中存储用户添加的元数据。
 
 注意:如果您选择Linux dd或Expert Witness格式，您可以选择将图像分割成多个文件，从而使其更容易转移。因此，例如，一个4GB的映像可以被分割成四个1GB的文件，或者两个2GB的文件，等等。
 
-![image.png](1616036568866-35949178-0efa-4163-b176-6dade0891376.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616036568866-35949178-0efa-4163-b176-6dade0891376.png)
 
 1. 选择镜像格式类型后，根据需要填写元数据。E01和AFF镜像是为数字取证社区设计的，因此字段被标记为刑事调查。然而，这些字段可以很容易地重新使用，以满足档案管理员和策展人的需要。例如，档案管理员可以使用“案例号”字段来记录登录号。
 2. 接下来选择镜像目录，在本例中为“/home/bcadmin/diskimages”。注意:Guymager是作为根用户运行的，所以您要避免直接通过Guymager创建新的目录(因此第1步)。
@@ -325,7 +325,7 @@ BitCurator包含了一个开源的图形应用程序，用于创建磁盘映像�
 4. 一旦成像过程开始，您将被带回到图4中的Guymager主屏幕，该屏幕现在将显示一个进度条。
 5. Guymager完成磁盘映像的创建后，关闭Guymager并通过导航到步骤#1中创建的目录来验证映像。注意，这里有两个文件，图像本身和一个信息文件(参见图3)。信息文件包括我们在步骤7中输入的元数据以及在获取过程中收集的附加元数据。现在，成像过程已经完成。
 
-![image.png](1616036710605-56d21762-2821-4ec9-b2cf-b03883c27988.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Guymager/1616036710605-56d21762-2821-4ec9-b2cf-b03883c27988.png)
 
 
 

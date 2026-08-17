@@ -12,7 +12,7 @@ date: 2024-09-02T00:00:00+08:00
 
 使用
 
-![img](1620657532403-f7f555bd-03de-499e-8bb8-25b40dc7e953.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/环境变量检查/1620657532403-f7f555bd-03de-499e-8bb8-25b40dc7e953.png)
 
 Linux环境变量文件介绍https://blog.csdn.net/pengjunlee/article/details/81585726
 
@@ -22,7 +22,7 @@ Linux环境变量文件介绍https://blog.csdn.net/pengjunlee/article/details/81
 path
 ```
 
-![img](1629357543528-c431414b-74b2-4389-9da5-b6820b7284c6.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/环境变量检查/1629357543528-c431414b-74b2-4389-9da5-b6820b7284c6.png)
 
 # linux环境变量检查
 
@@ -32,4 +32,4 @@ path
 echo $PATH 
 ```
 
-![img](1629357499683-30d78793-ffce-4111-9a9a-78c13456b67c.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/环境变量检查/1629357499683-30d78793-ffce-4111-9a9a-78c13456b67c.png)

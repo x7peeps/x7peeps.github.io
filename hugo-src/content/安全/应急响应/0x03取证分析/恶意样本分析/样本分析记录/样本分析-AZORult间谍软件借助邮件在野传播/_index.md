@@ -67,7 +67,7 @@ Warning:Unspecified RTF encoding. Will assume Latin
 http://evaglobal.eu/donstanz/donstanzo.exe
 ![](20190903172230.png-A)
 该样本目前已经无法访问，最近可用时间为12天前，但后面通过域名已经可以判断归属组织
-![](20190903172400.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/恶意样本分析/样本分析记录/样本分析-AZORult间谍软件借助邮件在野传播/20190903172400.png)
 稳定回链下载行为
 
 ## 静态分析

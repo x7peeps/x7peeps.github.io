@@ -54,14 +54,14 @@ sudo -i 进入管理员权限
 root@ubuntu:/home/parallels/Documents/libprocesshider-master# echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
 ```
 
-**![image.png](1624255353587-babc09ec-8357-41ac-84f5-3fc24fc1c0eb.png)**
+**![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-预加载库或lib劫持/1624255353587-babc09ec-8357-41ac-84f5-3fc24fc1c0eb.png)**
 
 ```
 echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
 cat /etc/ld.so.preload
 ```
 
-![image.png](1624255929839-bac576f0-d14f-4276-887c-c81c64add466.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-预加载库或lib劫持/1624255929839-bac576f0-d14f-4276-887c-c81c64add466.png)
 
 
 
@@ -71,11 +71,11 @@ cat /etc/ld.so.preload
 strace -f ps 2>&1 |grep ld.so.preload
 ```
 
-**![image.png](1624254619844-4d972141-b5d9-4904-abf6-ec357225572e.png)**
+**![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-预加载库或lib劫持/1624254619844-4d972141-b5d9-4904-abf6-ec357225572e.png)**
 
 **这里注意需要./执行evil_script.py, 进程名才会被过滤，如果想使用python执行，那么前面****processhider.c需要关键字设置为python。然后ps查询，程序名称已被过滤。**
 
-![image.png](1624280175985-9593ccfb-a160-4379-9a86-428aa80a2207.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-预加载库或lib劫持/1624280175985-9593ccfb-a160-4379-9a86-428aa80a2207.png)
 
 
 
@@ -221,7 +221,7 @@ DECLARE_READDIR(dirent, readdir);
 
 这里测试含有script的过滤，evil_script.py 成功被过滤掉了。
 
-![image.png](1624282662124-a538532b-4fb1-4a32-b243-c6de08a32064.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-预加载库或lib劫持/1624282662124-a538532b-4fb1-4a32-b243-c6de08a32064.png)
 
 
 
@@ -235,7 +235,7 @@ busybox ps方式执行ps，可以不预加载库对于劫持lib场景有奇效�
 busybox ps
 ```
 
-![image.png](1624289356199-f755f928-30d5-4387-8104-30730afd7e6b.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-预加载库或lib劫持/1624289356199-f755f928-30d5-4387-8104-30730afd7e6b.png)
 
 
 
@@ -253,10 +253,10 @@ sudo sysdig -c topconns
 
 
 
-![image.png](1624292686615-1c30cb84-2212-49f7-88b8-db5df06b0d1f.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-预加载库或lib劫持/1624292686615-1c30cb84-2212-49f7-88b8-db5df06b0d1f.png)
 
-![image.png](1624292943754-e07865cc-9bcd-4e8c-80fe-fd5fc978bc2f.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-预加载库或lib劫持/1624292943754-e07865cc-9bcd-4e8c-80fe-fd5fc978bc2f.png)
 
 1.  /proc/PID/cmdline
 
-![image.png](1624293441157-224ef943-2385-4608-9e40-08cfdbed1c6d.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-预加载库或lib劫持/1624293441157-224ef943-2385-4608-9e40-08cfdbed1c6d.png)

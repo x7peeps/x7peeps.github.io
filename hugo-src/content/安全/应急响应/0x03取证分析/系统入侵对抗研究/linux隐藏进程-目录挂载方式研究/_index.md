@@ -19,17 +19,17 @@ mount /dev/sda1 /proc/xxx
 mount -o bind /empty/dir /porc/xxxx
 ```
 
-![image.png](1622794545400-4223a5f8-f891-4650-a90a-2affabf09157.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-目录挂载方式研究/1622794545400-4223a5f8-f891-4650-a90a-2affabf09157.png)
 
-![image.png](1622794898291-0acf7eb6-22ad-493a-a653-1ae5765daf9f.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-目录挂载方式研究/1622794898291-0acf7eb6-22ad-493a-a653-1ae5765daf9f.png)
 
 ###  查询隐藏挂载目录方式进程的办法
 
 linux /proc/66003 文件系统内容通过挂载操作已经为空，无法获取细节
 
-![image.png](1622794903721-735b4b9e-f456-409e-9204-727e9d2f8f4b.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-目录挂载方式研究/1622794903721-735b4b9e-f456-409e-9204-727e9d2f8f4b.png)
 
 唯一查看到隐藏进程的办法是通过cat /proc/mounts 查看挂载项中包含/proc/pid
 
-![image.png](1622794888772-9063872b-562a-480e-ae76-bd7735355c68.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/系统入侵对抗研究/linux隐藏进程-目录挂载方式研究/1622794888772-9063872b-562a-480e-ae76-bd7735355c68.png)
 

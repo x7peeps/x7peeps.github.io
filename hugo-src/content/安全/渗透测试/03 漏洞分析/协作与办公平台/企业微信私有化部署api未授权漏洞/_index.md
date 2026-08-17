@@ -14,21 +14,21 @@ tags: [红蓝对抗, 漏洞复现]
 漏洞详情分析：
 第一步：，通过泄露信息接口可以获取corpid和corpsecret
 https://<企业微信域名>/cgi-bin/gateway/agentinfo
-![](16918916855311.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/渗透测试/03 漏洞分析/协作与办公平台/企业微信私有化部署api未授权漏洞/16918916855311.jpg)
 
 
 第二步，使用corpsecret和corpid获得token
 https://<企业微信域名>/cgi-bin/gettoken?corpid=ID&corpsecret=SECRET
 注意：ID使用strcorpid
 
-![](16918917094323.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/渗透测试/03 漏洞分析/协作与办公平台/企业微信私有化部署api未授权漏洞/16918917094323.jpg)
 
 
 第三步，使用token访问诸如企业通讯录信息，修改用户密码，发送消息，云盘等接口
 https://<企业微信域名>/cgi-bin/user/get?access_token=ACCESS_TOKEN&userid=USERID
 
 
-![](16918917811336.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/渗透测试/03 漏洞分析/协作与办公平台/企业微信私有化部署api未授权漏洞/16918917811336.jpg)
 
 
 ## 修复建议

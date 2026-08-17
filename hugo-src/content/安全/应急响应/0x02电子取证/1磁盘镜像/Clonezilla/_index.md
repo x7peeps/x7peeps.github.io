@@ -126,7 +126,7 @@ Clonezilla Live是一个针对x86/amd64 (x86-64)计算机的小型可引导GNU/L
 
 下面是Clonezilla Live启动的菜单：
 
-![image.png](1615884344593-e06d8925-a7c9-4664-ae82-f09595b76f7b.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Clonezilla/1615884344593-e06d8925-a7c9-4664-ae82-f09595b76f7b.png)
 
 
 
@@ -136,7 +136,7 @@ Clonezilla Live是一个针对x86/amd64 (x86-64)计算机的小型可引导GNU/L
 
 在第二选项“Other modes of Clonezilla live”中还有更多的模式可供选择，如:800X600或640x480，如果你愿意，如下图所示:
 
-![image.png](1615884698663-4d94c306-4b7a-4044-977b-e393b325e02c.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Clonezilla/1615884698663-4d94c306-4b7a-4044-977b-e393b325e02c.png)
 
 
 
@@ -150,11 +150,11 @@ Clonezilla Live是一个针对x86/amd64 (x86-64)计算机的小型可引导GNU/L
 
 - - 在选择语言和键映射之后，首先会提示您分配映像存储库，它可以是本地磁盘、ssh服务器、nfs服务器、samba服务器(网络邻居)或任何可以作为/home/ partimag挂载的文件系统。一旦存储库就绪，您就可以继续保存或恢复映像。请按照屏幕上的说明操作。关于Clonezilla live的两个主要截图:
 
-![image.png](1615885277201-03ad9f23-ae1a-40db-9633-e232105f4274.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Clonezilla/1615885277201-03ad9f23-ae1a-40db-9633-e232105f4274.png)
 
 ///注意/// **Clonezilla镜像名实际上就是目录名**。例如，如果你将镜像名命为2007-05-NOVISTA，所有的信息将会被保存在/home/partimag/2007-05-NOVISTA/目录中。MBR引导,切分表以及以及切分文件都会被储存。因此当你想要还原镜像的时候，应挂载/home/partimag到对应磁盘和路径，/home/partimag/这个目录下，并且还要有2007-05-NOVISTA目录。
 
-![image.png](1615886364343-a1953fd6-029e-4793-9782-1b416d578bc1.png)Clonezilla Live prepare ocsroot菜单
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Clonezilla/1615886364343-a1953fd6-029e-4793-9782-1b416d578bc1.png)Clonezilla Live prepare ocsroot菜单
 
 
 

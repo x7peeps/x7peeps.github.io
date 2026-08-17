@@ -141,7 +141,7 @@ OSError: [Errno 48] Address already in use    ← 崩溃
 
 ### 5.2 长文本（822 字）配置演进
 
-![配置演进对比](./assets/perf_compare.png)
+![配置演进对比](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/macOS本地TTS朗读服务优化实录/./assets/perf_compare.png)
 
 | 配置 | primary 线程 | worker 线程 | MAX_CHARS | 总耗时 | RTF | 相对基线 |
 |---|---|---|---|---|---|---|
@@ -154,7 +154,7 @@ OSError: [Errno 48] Address already in use    ← 崩溃
 
 ### 5.3 三大场景优化前后对比
 
-![优化前后对比](./assets/latency_improvement.png)
+![优化前后对比](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/macOS本地TTS朗读服务优化实录/./assets/latency_improvement.png)
 
 | 场景 | 优化前 | 优化后 | 提升 |
 |---|---|---|---|
@@ -173,7 +173,7 @@ OSError: [Errno 48] Address already in use    ← 崩溃
 
 MAX_CHARS 从 120 提升到 160 是本文唯一涉及"生成参数"的改动，必须验证长文本尾部退化风险。
 
-![ZCR 分段稳定性](./assets/zcr_stability.png)
+![ZCR 分段稳定性](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/AI/06-AI工程化/macOS本地TTS朗读服务优化实录/./assets/zcr_stability.png)
 
 - **ZCR（过零率）**：整体 0.0841，8 段全部落在 0.070-0.098（健康人声区间 0.06-0.10），**尾部（第 8 段）0.0788，无退化**
 - **频段能量分布**：100-500Hz 占 53.9%，500-2000Hz 占 42.9%（语音主体清晰，无低频嗡鸣特征）

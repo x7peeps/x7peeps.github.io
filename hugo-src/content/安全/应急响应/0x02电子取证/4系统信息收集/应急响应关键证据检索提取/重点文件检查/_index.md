@@ -301,7 +301,7 @@ find /tmp -perm 777 |more # 查找权限为777的文件
 find /var/www -name "*.php"| xargs egrep # 查找/var/www下所有.php文件
 ```
 
-![image.png](1627547627733-4ee48101-faad-445f-8e25-8944c06cd193.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/重点文件检查/1627547627733-4ee48101-faad-445f-8e25-8944c06cd193.png)
 
 ## bin目录
 
@@ -402,7 +402,7 @@ c:\windows\temp
 dir %temp% && dir %tmp%  # 列出环境变量中两个临时变量目录中存在的值
 ```
 
-![image.png](1627463168633-c505b552-3a57-43e9-bb9d-49c29ddb6e86.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/重点文件检查/1627463168633-c505b552-3a57-43e9-bb9d-49c29ddb6e86.png)
 
 
 
@@ -424,7 +424,7 @@ dir C:\Documents and Settings\Administrator\Recent
 dir C:\Documents and Settings\DefaultUser\Recent
 ```
 
-## ![image.png](1627462995370-1436b659-79f9-407d-b14a-6029633028ae.png)
+## ![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/重点文件检查/1627462995370-1436b659-79f9-407d-b14a-6029633028ae.png)
 
 ## 预读文件夹
 
@@ -438,7 +438,7 @@ prefetch目录为C:\WINDOWS\Prefetch，
 dir "%SystemRoot%\Prefetch\"
 ```
 
-![image.png](1627462964573-3e2aa13c-10b7-4896-8aae-7c50a7a3565e.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/重点文件检查/1627462964573-3e2aa13c-10b7-4896-8aae-7c50a7a3565e.png)
 
 
 
@@ -487,7 +487,7 @@ rfcparse.py -f C:\Windows\AppCompat\Programs\RecentFileCache.bcf
 AmcacheParser.exe -f C:\Windows\AppCompat\Programs\Amcache.hve --csv c:\test
 ```
 
-注：某些情况下会无法导出，提示系统正在占用文件Amcache.hve![image.png](1627532546796-2a126db1-da14-4f00-afe2-60af8d641a3a.png)![image.png](1627532551471-13a35049-22ed-43be-bfa8-b0bc9d3fb26e.png)
+注：某些情况下会无法导出，提示系统正在占用文件Amcache.hve![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/重点文件检查/1627532546796-2a126db1-da14-4f00-afe2-60af8d641a3a.png)![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/重点文件检查/1627532551471-13a35049-22ed-43be-bfa8-b0bc9d3fb26e.png)
 
 
 

@@ -16,9 +16,9 @@ date: 2024-09-09T00:00:00+08:00
 
 
 
-![img](1628580057573-8202f5aa-5bc1-4217-826f-f19bdda95f5f.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1628580057573-8202f5aa-5bc1-4217-826f-f19bdda95f5f.png)
 
-![img](1628580118169-32507979-9762-42ec-b573-e03327d86e2a.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1628580118169-32507979-9762-42ec-b573-e03327d86e2a.png)
 
 ### 劫持点2 userinit镜像劫持
 
@@ -32,7 +32,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\userini
 
 
 
-![img](1629016993485-7a221b48-0f5c-4d44-8fcb-9684a1a1f21e.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1629016993485-7a221b48-0f5c-4d44-8fcb-9684a1a1f21e.png)
 
 这里阅读下[userinit的官方释义](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc939862(v=technet.10)?redirectedfrom=MSDN)可知，userinit.exe的作用为：
 
@@ -41,27 +41,27 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\userini
 
 1. 当userinit.exe所指向的程序无法运行的时候，启动配置的HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\shell中设定的值，默认是explorer.exe
 
-![img](1629018313525-56bdea2f-7958-4077-a039-3b654de417c3.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1629018313525-56bdea2f-7958-4077-a039-3b654de417c3.png)
 
-![img](1629018620178-4c762214-481c-4372-81e5-7e468cb16874.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1629018620178-4c762214-481c-4372-81e5-7e468cb16874.jpg)
 
 这里有个提示：在修改HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\userinit.exe的时候，应包含userinit.exe
 
-![img](1629018801003-4cbc4de7-c8c5-49b0-ba11-1f25300f0b06.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1629018801003-4cbc4de7-c8c5-49b0-ba11-1f25300f0b06.png)
 
 但我们去掉c:\windows\system32\userinit.exe，重启则会引起异常，所以这里一般都还会带上userinit.exe或者包含启动userinit.exe的脚本。通过运行启动userinit进入系统即可。
 
-![img](1629019014956-af067644-5bf7-4707-bbc9-2fa5edee2f0c.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1629019014956-af067644-5bf7-4707-bbc9-2fa5edee2f0c.png)
 
 
 
 ### 劫持点3 shell镜像劫持
 
-![img](1629024117687-2d5d16f9-fa94-4062-abb4-1906c6875763.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1629024117687-2d5d16f9-fa94-4062-abb4-1906c6875763.png)
 
 
 
-![img](1629025231119-44a8104e-2565-4ece-8e3c-89e5ee3a7e95.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1629025231119-44a8104e-2565-4ece-8e3c-89e5ee3a7e95.jpg)
 
 # 镜像劫持检查
 
@@ -77,7 +77,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execu
 reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options" /s /t REG_SZ
 ```
 
-![img](1629100818214-646cbaf9-31c6-4568-839b-495e36b1317a.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1629100818214-646cbaf9-31c6-4568-839b-495e36b1317a.png)
 
 ## 针对userinit和shell劫持点检查
 
@@ -89,5 +89,5 @@ reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 
 
-![img](1629101158978-ad202d00-3a86-4ca6-aa26-cccd40132ce9.png)
+![img](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/映像劫持检查/1629101158978-ad202d00-3a86-4ca6-aa26-cccd40132ce9.png)
 

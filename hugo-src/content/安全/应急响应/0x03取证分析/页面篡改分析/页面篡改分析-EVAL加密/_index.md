@@ -4,7 +4,7 @@ date: 2024-05-25T00:00:00+08:00
 tags: [红蓝对抗, 页面篡改]
 ---
 #### 一处被篡改网站
-本次样本概况页面篡改菠菜内容，同时加入eval加密js脚本，经过一次跳转及2次收集用户统计信息之后跳转到菠菜网站。![](f0b5c7acdb729f08154539fd3c2a813b.png)
+本次样本概况页面篡改菠菜内容，同时加入eval加密js脚本，经过一次跳转及2次收集用户统计信息之后跳转到菠菜网站。![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-EVAL加密/f0b5c7acdb729f08154539fd3c2a813b.jpg)
 
 <!--more-->
 
@@ -31,7 +31,7 @@ eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a
 #### 页面篡改分析
 发现其中的篡改信息，以及两处js脚本插入。其中菠菜信息UTF-8的反转译可得：
 
-![](3430a101ad8de4a46301b3f4d81132af.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-EVAL加密/3430a101ad8de4a46301b3f4d81132af.png)
 两个脚本一个是百度统计https://hm.baidu.com/hm.js?9a4c62a1985e8fbd8d0ce7c1a54070d1， 另一个是eval加密如下：
 
 ```javascaript
@@ -84,7 +84,7 @@ yesdata='&refe='+escape(document.referrer)+'&location='+escape(document.location
 document.write('<a href="http://countt.51yes.com/index.aspx?id=503589630" target=_blank><img width=20 height=20 border=0 hspace=0 vspace=0 src="http://count50.51yes.com/count1.gif" alt="51YES网站统计系统"></a>');document.write('<iframe MARGINWIDTH=0 MARGINHEIGHT=0 HSPACE=0 VSPACE=0 FRAMEBORDER=0 SCROLLING=no src=http://count50.51yes.com/sa.htm?id=503589630'+yesdata+' height=0 width=0></iframe>');
 ```
 对页面访问者信息进行收集，同上一篇文中提到的一样。统计并页面进行跳转直接引流到博彩页面
-![](f0b5c7acdb729f08154539fd3c2a813b-0894983.png)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-EVAL加密/f0b5c7acdb729f08154539fd3c2a813b-0894983.jpg)
 
 #### IOCs
 ``https://hm.baidu.com/hm.js?9a4c62a1985e8fbd8d0ce7c1a54070d1``

@@ -192,7 +192,7 @@ POST-->BIOS(Boot Sequence)-->MBR(bootloader,446)-->Kernel-->initrd-->(ROOTFS)/sb
 
 https://www.cnblogs.com/unicode/archive/2010/06/12/1756755.html
 
- ![image.png](1626773830521db64219584f04721805462c9cdf8b3a9.png)
+ ![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/1626773830521db64219584f04721805462c9cdf8b3a9.png)
 
 
 
@@ -210,7 +210,7 @@ systemctl list-unit-files |grep enabled
 
 systemctl list-unit-files|grep enabled|cat > ~/enabled_services.txt
 
-![image.png](16266643815466e9e63fea2df47c89887ed80bd74216a.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/16266643815466e9e63fea2df47c89887ed80bd74216a.png)
 
 
 
@@ -333,7 +333,7 @@ id=3：initdefault  系统开机后直接进入哪个运行级别
 
 由于不同的版本不同对应不同的启动和运行级别，Linux 内核启动 init ，init进程ID是1，是所有进程的父进程，所有进程由它控制；在ubuntu环境下Ubuntu 的启动由**upstart**控制，自9.10后不再使用/etc/event.d目录的配置文件，改为/etc/init。查看当前的运行级别，我的Ubuntu 20.04.1桌面是5。
 
-![image.png](16267485824117f27f31c180d47469561d4d691a63c24.png)![image.png](1626748543480e82b6e2ab0b1462cb0e9b86099c0a1bd.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/16267485824117f27f31c180d47469561d4d691a63c24.png)![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/1626748543480e82b6e2ab0b1462cb0e9b86099c0a1bd.png)
 
 
 
@@ -434,7 +434,7 @@ ls -l /etc/rc.d/rc3.d/
 
 
 
-![1626664513324-ae3bb199-b6cb-41cb-bb79-4b7b5f062e5c.png?x-oss-process=image%2Fresize%2Cw_1500](1626664513324ae3bb199b6cb41cbbb794b7b5f062e5c.png)
+![1626664513324-ae3bb199-b6cb-41cb-bb79-4b7b5f062e5c.png?x-oss-process=image%2Fresize%2Cw_1500](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/1626664513324ae3bb199b6cb41cbbb794b7b5f062e5c.png)
 
 #### /etc/profile.d（第10步之前）
 
@@ -454,7 +454,7 @@ grep -r "." /etc/profile.d
 
 ### 样本举例
 2021年8月19日微软披露的mozi样本细节中，我们可以看到通过CVE-2015-1328获取写权限后，mozi样本就可以在/etc/rc.d以及/etc/init.d中写入脚本，进一步加固持久化在/etc/rcS.d 和/etc/rc.local中添加自启动。
-![image-20210830173650262](image-20210830173650262.png)
+![image-20210830173650262](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/image-20210830173650262.png)
 
 
 
@@ -464,10 +464,10 @@ grep -r "." /etc/profile.d
 
 **进入系统配置查看**
 
-**![image.png](16272868404975ea864f749c84cddb57356b1fd3a10da.png)**
+**![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/16272868404975ea864f749c84cddb57356b1fd3a10da.png)**
 
 
-![1627286948174-029564b0-3155-4d2b-948e-8e52ef6367e4](1627286948174029564b031554d2b948e8e52ef6367e4.png)
+![1627286948174-029564b0-3155-4d2b-948e-8e52ef6367e4](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/1627286948174029564b031554d2b948e8e52ef6367e4.png)
 
 ### 注册表查看
 
@@ -487,7 +487,7 @@ reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run"
 
 
 
-![image.png](162728776256381f3792d02a84215ad875e7adce291b0.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/162728776256381f3792d02a84215ad875e7adce291b0.png)
 
 
 
@@ -495,4 +495,4 @@ reg query "HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run"
 
 我们在分析Geerban勒索病毒样本17425e830d17ca6709237cb8a02f8ed1的时候，可以看到，在注册表中恶意样本添加了启动项，正是HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run，通过注册表查询即可查询到异常
 
-![image-20210830170644769](image-20210830170644769.png)
+![image-20210830170644769](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/启动项检查/image-20210830170644769.png)

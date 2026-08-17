@@ -4,7 +4,7 @@ weight = 30
 +++
 
 <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
-  <img src="/images/products/灵感工坊/appicon.png" alt="灵感工坊 Icon" style="width: 120px; height: 120px; border-radius: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/灵感工坊/appicon.png" alt="灵感工坊 Icon" style="width: 120px; height: 120px; border-radius: 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
   <div>
     <h3 style="margin: 0 0 10px 0;">让手机成为灵感的第一入口</h3>
     <p style="margin: 0; color: var(--x7-muted);">快速记录 → AI 共创 → 结构化输出，一站式灵感管理引擎。</p>
@@ -37,11 +37,11 @@ weight = 30
 ### 界面预览
 
 <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 30px; margin-bottom: 30px;">
-  <img src="/images/products/灵感工坊/01_capture.png" alt="灵感捕获界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-  <img src="/images/products/灵感工坊/02_chat.png" alt="AI 共创对话界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-  <img src="/images/products/灵感工坊/03_workbench.png" alt="灵感工作台界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-  <img src="/images/products/灵感工坊/04_library.png" alt="灵感库界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-  <img src="/images/products/灵感工坊/05_community.png" alt="社区界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/灵感工坊/01_capture.png" alt="灵感捕获界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/灵感工坊/02_chat.png" alt="AI 共创对话界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/灵感工坊/03_workbench.png" alt="灵感工作台界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/灵感工坊/04_library.png" alt="灵感库界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/灵感工坊/05_community.png" alt="社区界面" style="max-width: 200px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
 </div>
 
 ### 工作流程

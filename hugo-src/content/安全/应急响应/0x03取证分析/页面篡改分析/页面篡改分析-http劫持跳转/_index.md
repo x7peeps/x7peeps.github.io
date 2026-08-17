@@ -13,18 +13,18 @@ tags: [红蓝对抗, 页面篡改]
 
 跳转情况1:
 
-![image-20211212213415348](image-20211212213415348.png)
+![image-20211212213415348](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212213415348.png)
 使用top.location.href="xxx", 在样式顶层进行跳转, 可以在iframe外进行跳转. 
 
 跳转情况2:
 
-![image-20211212213541674](image-20211212213541674.png)
+![image-20211212213541674](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212213541674.png)
 通过分析可以看到跳转的连接为 https[://]98vv[.]vip/
-![image-20211212213810207](image-20211212213810207.png)
+![image-20211212213810207](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212213810207.png)
 
 跳转情况3:
 
-![image-20211212213643528](image-20211212213643528.png)
+![image-20211212213643528](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212213643528.png)
 
 也是使用了top.location.href="xxx", 使用的不同的地址跳转.
 
@@ -33,29 +33,29 @@ tags: [红蓝对抗, 页面篡改]
 
 通常的页面篡改, 到这里我们看到的现象是访问不论是页面还是js都会发生跳转, 首要目的我们会思考是否页面中被插入的js导致返回的内容受控跳转. 这里我们针对三种情况的关键词都在系统中进行全文查找内容, 结果并没有发现相关内容.
 
-![image-20211212214835345](image-20211212214835345.png)
+![image-20211212214835345](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212214835345.png)
 
-![image-20211212215011796](image-20211212215011796.png)
+![image-20211212215011796](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212215011796.png)
 
 接着我们查看相关的页面和js内容, 结果都没有发现可疑的脚本. 
 
-![image-20211212215532821](image-20211212215532821.png)
+![image-20211212215532821](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212215532821.png)
 
 这里只在文件内容中发现了一些max-age=0的页面.
 
-![image-20211212215321773](image-20211212215321773.png)
+![image-20211212215321773](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212215321773.png)
 
 我们查看下中间件的配置, 发现中间件配置也没有发现问题
 
-![image-20211212220402723](image-20211212220402723.png)
+![image-20211212220402723](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212220402723.png)
 
 到此为止我们发现与传统的跳转方式都不同, 与中间件控制的跳转方式也不同. 因此这里考虑到是否存在劫持. 首先dns劫持, 经过排查发现不论是多地多运营商解析域名、还是通过dnslookup都没有看到域名解析异常情况, 由于客户的域名是阿里的域名, 使用修改本地的dns为223.5.5.5以及223.6.6.6再访问还是有问题. 但ip在以上情形下都无变化, 因此判断不是dns劫持情况. 
 
-![image-20211212221027065](image-20211212221027065.png)
+![image-20211212221027065](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212221027065.png)
 
 最后我们排出了系统异常登录、ssh密钥登录等情况判断可能是流量劫持问题. 与阿里同事的客服的判断相同.
 
-![image-20211212221103130](image-20211212221103130.png)
+![image-20211212221103130](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x03取证分析/页面篡改分析/页面篡改分析-http劫持跳转/image-20211212221103130.png)
 
 最后我们给出了我们的最终的排查或解决方案,
 1. 建议https防止运营商拆包加内容

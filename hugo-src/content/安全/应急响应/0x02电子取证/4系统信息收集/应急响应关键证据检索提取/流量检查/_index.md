@@ -54,7 +54,7 @@ netsh trace stop
 就是这样。我们现在能够在windows宿主机上在不添加任何额外的工具的情况下抓包了。我们可以很方便的将他们收集和转换共享给任何喜欢数据包分析的人了。
 
 我已经打包了所有的东西到Quickpacp.ps1(https://github.com/dwmetz/QuickPcap)中，在我的github里。
-![](16752474190628.jpg)
+![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/流量检查/16752474190628.jpg)
 QuickPacp.ps1
 
 在本文的案例中，抓包和转换都运行在一个连续的恒旭中，但是容易将他们想象成由不同进程通过脚本处理的独立自动元素。毕竟，我们制作乐高积木的方式各不相同，不是吗?

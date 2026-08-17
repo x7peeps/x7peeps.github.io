@@ -82,9 +82,9 @@ Usage:
 
 操作界面十分简洁，你可以用鼠标点击，也可以用键盘方向键定位，用[空格键](https://baike.baidu.com/item/空格键)选择，用Ctrl+N翻下一页，用Ctrl+P翻上一页，用Q退出。其中，“X”表示开启该服务。
 
-![image.png](1627374099675-4cd2a569-7a99-41be-89e2-c5c2c66d6c41.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/服务信息检查/1627374099675-4cd2a569-7a99-41be-89e2-c5c2c66d6c41.png)
 
-![image.png](1627374043044-50e095a9-719f-4a67-9db8-455375358a69.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/服务信息检查/1627374043044-50e095a9-719f-4a67-9db8-455375358a69.png)
 
 
 
@@ -168,7 +168,7 @@ Usage: service < option > | --status-all | [ service_name [ command | --full-res
 
 service --status-all
 
-![image.png](1627377766207-d5fea8b9-ae86-4a08-9c1d-66413b67fa62.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/服务信息检查/1627377766207-d5fea8b9-ae86-4a08-9c1d-66413b67fa62.png)
 
 在man手册中可以看到描述 “The SCRIPT parameter specifies a System V init script, located in /etc/init.d/SCRIPT. ”也就是说这里service所列出的服务都是在 /etc/init.d/目录下。
 
@@ -297,7 +297,7 @@ Examples:
 tasklist /svc
 ```
 
-![image.png](1627378253107-81c63cbb-d94f-45ad-84b3-07b686b6b6e9.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/服务信息检查/1627378253107-81c63cbb-d94f-45ad-84b3-07b686b6b6e9.png)
 
 对于某些加载DLL的恶意进程，可以通过输入tasklist /m命令进行查询
 
@@ -305,11 +305,11 @@ tasklist /svc
 tasklist /m [xxx.dll]
 ```
 
-![image.png](1627378376668-3a22d433-7a1a-48ba-ba11-62d6ed54a3f4.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/服务信息检查/1627378376668-3a22d433-7a1a-48ba-ba11-62d6ed54a3f4.png)
 
 ## msinfo32系统自带诊断工具
 
-![image.png](1627379380451-374451f2-a863-458c-9869-1b15d024cc3a.png)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/4系统信息收集/应急响应关键证据检索提取/服务信息检查/1627379380451-374451f2-a863-458c-9869-1b15d024cc3a.png)
 
 
 
