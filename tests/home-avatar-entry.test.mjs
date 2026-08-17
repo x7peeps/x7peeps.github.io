@@ -12,7 +12,8 @@ test("homepage configures one persistent root scene without a hero-contained sta
   ]);
 
   assert.match(html, /data-x7-home/);
-  assert.match(html, /data-model-url="{{ "models\/x7-avatar-entry\.glb" \| relURL }}"/);
+  assert.match(html, /data-scene-object="security-core"/);
+  assert.doesNotMatch(html, /data-model-url=/);
   assert.match(html, /data-reference-url="{{ "images\/x7-avatar-reference\.png" \| relURL }}"/);
   assert.doesNotMatch(html, /x7-avatar-entry__stage/);
   assert.match(homeScript, /import\("\.\/home-scene\.js"\)/);
@@ -47,11 +48,11 @@ test("persistent scene initialization is independent from the session intro time
   );
 });
 
-test("avatar entry assets exist and model size is explicit", async () => {
+test("avatar entry assets stay available for the standalone model preview", async () => {
   const model = await stat(new URL("../hugo-src/static/models/x7-avatar-entry.glb", import.meta.url));
   const reference = await stat(new URL("../hugo-src/static/images/x7-avatar-reference.png", import.meta.url));
 
-  assert.ok(model.size > 25_000_000, "model should be the provided Meshy GLB");
+  assert.ok(model.size > 25_000_000, "standalone preview keeps the provided Meshy GLB");
   assert.ok(model.size < 35_000_000, "model should not be accidentally duplicated or replaced by a huge export");
   assert.ok(reference.size > 500_000, "reference image should be present");
   assert.ok(reference.size < 2_000_000, "reference image should stay web-reasonable");

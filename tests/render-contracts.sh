@@ -33,9 +33,9 @@ for asset in \
   /css/x7-shell.css \
   /css/x7-reading.css \
   /css/x7-home.css; do
-  grep -q "href=$asset" "$homepage"
+  grep -Eq "href=\"?$asset(\\?v=[0-9]+)?\"?" "$homepage"
 done
-grep -q 'type=module src=/js/x7/bootstrap.js' "$homepage"
+grep -Eq 'type=module src="?/js/x7/bootstrap.js(\?v=[0-9]+)?"?' "$homepage"
 grep -Fq "x7-home-stage-blackout" "$source_dir/static/css/x7-home.css"
 grep -Fq "x7-home-entry-sidebar" "$source_dir/static/css/x7-home.css"
 grep -Fq "prefers-reduced-motion: reduce" "$source_dir/static/css/x7-home.css"
@@ -147,16 +147,13 @@ if (css.includes(".x7-avatar-entry")) {
   process.exit(1);
 }
 
-const mobileHeader = "@media (max-width: 63.99rem)";
 const reducedMotionHeader = "@media (prefers-reduced-motion: reduce)";
-const mobileBlock = extractAtRuleBlock(css, mobileHeader);
 const reducedMotionBlock = extractAtRuleBlock(css, reducedMotionHeader);
-const mobileWebglRule = ruleBody(mobileBlock, ".x7-home-scene__webgl");
 const reducedSceneRule = ruleBody(reducedMotionBlock, ".x7-home-scene");
 const reducedParticlesRule = ruleBody(reducedMotionBlock, ".x7-home-scene__particles");
 
-if (!mobileWebglRule.includes("display: none")) {
-  console.error("Homepage scene contract failed: mobile must hide the WebGL layer");
+if (/\.x7-home-scene__webgl\s*\{[^}]*display\s*:\s*none\b/.test(css)) {
+  console.error("Homepage scene contract failed: CSS must not directly hide the WebGL layer");
   process.exit(1);
 }
 if (!reducedSceneRule.includes("animation: none !important") || !reducedParticlesRule.includes("display: none")) {
@@ -165,20 +162,15 @@ if (!reducedSceneRule.includes("animation: none !important") || !reducedParticle
 }
 
 const globalRuleFalsePositive = `
-${mobileHeader} {
+@media (max-width: 63.99rem) {
   .unrelated-mobile-rule { display: block; }
 }
-.x7-home-scene__webgl { display: none; }
 ${reducedMotionHeader} {
   .unrelated-reduced-rule { animation: none; }
 }
 .x7-home-scene { animation: none !important; }
 .x7-home-scene__particles { display: none; }
 `;
-if (ruleBody(extractAtRuleBlock(globalRuleFalsePositive, mobileHeader), ".x7-home-scene__webgl").includes("display: none")) {
-  console.error("Homepage scene contract failed: mobile audit accepted a global WebGL fallback");
-  process.exit(1);
-}
 const falseReducedBlock = extractAtRuleBlock(globalRuleFalsePositive, reducedMotionHeader);
 if (
   ruleBody(falseReducedBlock, ".x7-home-scene").includes("animation: none !important") ||

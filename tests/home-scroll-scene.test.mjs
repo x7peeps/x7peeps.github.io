@@ -545,6 +545,16 @@ test("scene mode keeps desktop 3d persistent and degrades constrained devices", 
   assert.equal(sceneModeFor({ desktop: true, reducedMotion: false, saveData: true }), "particles");
 });
 
+test("homepage uses the abstract security core scene instead of the temporary avatar model", async () => {
+  const html = await readFile(
+    new URL("../hugo-src/layouts/partials/x7/home-constellation.html", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(html, /data-scene-object="security-core"/);
+  assert.doesNotMatch(html, /data-model-url=/);
+});
+
 test("scene progress uses five smooth deterministic and reversible keyframes", async () => {
   const { clampSceneProgress, sampleSceneFrame } = await import(sceneModuleUrl.href);
 
