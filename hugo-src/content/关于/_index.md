@@ -3,9 +3,29 @@ title: "关于"
 weight: 1
 ---
 
-竹林中的一处小屋🛖，种植着大量的竹子，如果你需要那就多逛逛竹林吧，希望日后你也能多多种植属于你的竹子。
+你好，我是 **x7peeps**。
 
+我是一名安全研究方向的工程师，主要专注 Web 攻防、内存马检测、应急响应与恶意样本分析。日常会把实战中踩过的坑、验证过的方法，沉淀成可复用的流程与工具，而不是停留在一次性的经验。
 
-> 当你的才华还撑不起你的野心的时候，你就应该静下心来学习；当你的能力还驾驭不了你的目标时，就应该沉下心来，历练；梦想，不是浮躁，而是沉淀和积累，只有拼出来的美丽，没有等出来的辉煌，机会永远是留给最渴望的那个人，学会与内心深处的你对话，问问自己，想要怎样的人生，静心学习，耐心沉淀，送给自己，共勉。——莫言
+- **安全研究**：渗透测试、应急响应、恶意样本分析、情报跟踪。
+- **工具开发**：维护开源项目 [memshell-auditor](https://github.com/x7peeps/memshell-auditor)，一个 Java 内存马运行时审计 Agent；同时持续向 [Hermes Agent](https://github.com/NousResearch/hermes-agent) 上游贡献新特性。
+- **知识沉淀**：这个站点就是我的知识库——安全攻防、无人机、阅读、AI 与开源项目，都会持续更新。
 
-> 世界上有许多事情必须做，但你不一定喜欢做，这就是责任的涵义。如果他要进行选择，他也总是必须在他的生活范围里面、在绝不由他的独自性所造成的一定的事物中间去进行选择的。——马克思
+做事的思路很简单：问题 → 方案 → 解决 → 记录，每一步都留证据，每一步都可复现。
+
+---
+
+*Push the security process.*
+
+GitHub: [github.com/x7peeps](https://github.com/x7peeps)
+
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://stats.x7peeps.com/api?username=x7peeps&show_icons=true&include_all_commits=true&count_private=true&theme=transparent&title_color=58A6FF&icon_color=1F6FEB&text_color=F0F6FC&hide_border=true&v=20260817a" />
+    <img src="https://stats.x7peeps.com/api?username=x7peeps&show_icons=true&include_all_commits=true&count_private=true&theme=transparent&title_color=0969DA&icon_color=0969DA&text_color=1F2328&hide_border=true&v=20260817a" width="49%" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://stats.x7peeps.com/api/top-langs/?username=x7peeps&layout=compact&card_width=395&theme=transparent&title_color=58A6FF&icon_color=1F6FEB&text_color=F0F6FC&hide_border=true&v=20260817a" />
+    <img src="https://stats.x7peeps.com/api/top-langs/?username=x7peeps&layout=compact&card_width=395&theme=transparent&title_color=0969DA&icon_color=0969DA&text_color=1F2328&hide_border=true&v=20260817a" width="49%" />
+  </picture>
+</div>
