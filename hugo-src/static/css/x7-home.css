@@ -879,12 +879,6 @@ html.x7-home-entry-reduced #R-sidebar {
   html.x7-home-entry-prime .x7-home-identity::before { animation-duration: .9s; }
 }
 
-@media (max-width: 63.99rem) {
-  .x7-home-scene__webgl {
-    display: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .x7-home-scene {
     animation: none !important;

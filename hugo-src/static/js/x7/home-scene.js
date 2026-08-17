@@ -1,6 +1,6 @@
 const THREE_URL = "https://esm.sh/three@0.160.0";
 const GLTF_LOADER_URL = "https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
-const DESKTOP_QUERY = "(min-width: 64rem)";
+const DESKTOP_QUERY = "(min-width: 30rem)";
 const REDUCE_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const LOAD_TIMEOUT_MS = 12_000;
 const STATIC_SCENE_PROGRESS = 0.34;
@@ -152,6 +152,108 @@ function frameModel(THREE, model) {
   model.scale.setScalar(2.25 / largest);
 }
 
+function createSecurityCore(THREE) {
+  const group = new THREE.Group();
+  const materials = [];
+  const addMaterial = (material) => {
+    materials.push(material);
+    return material;
+  };
+  const cyan = new THREE.Color(0x65ecff);
+  const green = new THREE.Color(0x72ffbb);
+  const amber = new THREE.Color(0xffc66d);
+
+  const coreMaterial = addMaterial(new THREE.MeshPhysicalMaterial({
+    color: 0x061114,
+    emissive: 0x163f46,
+    emissiveIntensity: 0.62,
+    metalness: 0.25,
+    roughness: 0.18,
+    transmission: 0.28,
+    transparent: true,
+    opacity: 0.88,
+  }));
+  const shellMaterial = addMaterial(new THREE.MeshBasicMaterial({
+    color: cyan,
+    transparent: true,
+    opacity: 0.18,
+    wireframe: true,
+  }));
+  const ringMaterial = addMaterial(new THREE.MeshBasicMaterial({
+    color: cyan,
+    transparent: true,
+    opacity: 0.46,
+  }));
+  const accentMaterial = addMaterial(new THREE.MeshBasicMaterial({
+    color: green,
+    transparent: true,
+    opacity: 0.5,
+  }));
+  const amberMaterial = addMaterial(new THREE.MeshBasicMaterial({
+    color: amber,
+    transparent: true,
+    opacity: 0.34,
+  }));
+
+  const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.72, 2), coreMaterial);
+  core.rotation.set(0.2, -0.4, 0.12);
+  group.add(core);
+
+  const shell = new THREE.Mesh(new THREE.IcosahedronGeometry(1.12, 1), shellMaterial);
+  shell.rotation.set(-0.4, 0.2, 0.35);
+  group.add(shell);
+
+  [
+    { radius: 1.52, tube: 0.008, y: 0, z: 0, material: ringMaterial },
+    { radius: 1.85, tube: 0.006, y: Math.PI / 2.5, z: 0.34, material: accentMaterial },
+    { radius: 2.18, tube: 0.005, y: -Math.PI / 2.8, z: -0.24, material: amberMaterial },
+  ].forEach((ring) => {
+    const mesh = new THREE.Mesh(new THREE.TorusGeometry(ring.radius, ring.tube, 8, 160), ring.material);
+    mesh.rotation.set(Math.PI / 2.2, ring.y, ring.z);
+    group.add(mesh);
+  });
+
+  for (let index = 0; index < 18; index += 1) {
+    const angle = (Math.PI * 2 * index) / 18;
+    const radius = 1.42 + (index % 3) * 0.28;
+    const height = 0.22 + (index % 5) * 0.1;
+    const material = index % 4 === 0 ? amberMaterial : accentMaterial;
+    const node = new THREE.Mesh(new THREE.BoxGeometry(0.018, height, 0.018), material);
+    node.position.set(Math.cos(angle) * radius, -0.62 + (index % 4) * 0.38, Math.sin(angle) * radius);
+    node.rotation.set(0.4, -angle, 0.2);
+    group.add(node);
+  }
+
+  const particleGeometry = new THREE.BufferGeometry();
+  const positions = [];
+  for (let index = 0; index < 96; index += 1) {
+    const angle = index * 2.39996;
+    const radius = 0.9 + ((index * 37) % 100) / 55;
+    positions.push(
+      Math.cos(angle) * radius,
+      -1.15 + ((index * 17) % 100) / 45,
+      Math.sin(angle) * radius,
+    );
+  }
+  particleGeometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  const particleMaterial = addMaterial(new THREE.PointsMaterial({
+    color: cyan,
+    size: 0.024,
+    transparent: true,
+    opacity: 0.62,
+    sizeAttenuation: true,
+  }));
+  group.add(new THREE.Points(particleGeometry, particleMaterial));
+
+  group.userData.x7Materials = materials;
+  group.userData.x7Animate = (progress) => {
+    core.rotation.y = progress * 1.2;
+    shell.rotation.y = -0.35 + progress * 0.9;
+    shell.rotation.z = 0.35 + progress * 0.28;
+  };
+  return group;
+}
+
 function modelResourcePath(modelUrl, baseUrl) {
   try {
     return new URL(".", new URL(modelUrl, baseUrl)).href;
@@ -257,6 +359,7 @@ export function initHomeScene(home, overrides = {}) {
     model.position.z = modelBasePosition.z;
     model.scale.setScalar(modelBaseScale * frame.modelScale);
     model.rotation.y = -0.16 + frame.p * 0.24;
+    model.userData?.x7Animate?.(frame.p);
     const composition = sceneCompositionFor(frame);
     camera.lookAt(
       modelBasePosition.x + composition.cameraLookAtX,
@@ -390,15 +493,19 @@ export function initHomeScene(home, overrides = {}) {
   const buildWebgl = async (token) => {
     const { THREE, GLTFLoader } = await loadModules();
     if (destroyed || token !== generation) return;
-    const loader = new GLTFLoader();
-    const gltf = await fetchAndParseModel(loader, token);
-    if (destroyed || token !== generation) {
-      disposeModel(gltf.scene);
-      return;
+    const useSecurityCore = home.dataset.sceneObject === "security-core";
+    if (useSecurityCore) {
+      model = createSecurityCore(THREE);
+    } else {
+      const loader = new GLTFLoader();
+      const gltf = await fetchAndParseModel(loader, token);
+      if (destroyed || token !== generation) {
+        disposeModel(gltf.scene);
+        return;
+      }
+      model = gltf.scene;
+      frameModel(THREE, model);
     }
-
-    model = gltf.scene;
-    frameModel(THREE, model);
     modelBaseScale = model.scale.x || 1;
     modelBasePosition = {
       x: model.position.x || 0,
@@ -410,6 +517,8 @@ export function initHomeScene(home, overrides = {}) {
       const materials = Array.isArray(node.material) ? node.material : [node.material];
       modelMaterials.push(...materials.filter(Boolean));
     });
+    modelMaterials.push(...(model.userData?.x7Materials || []));
+    modelMaterials = Array.from(new Set(modelMaterials));
 
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);

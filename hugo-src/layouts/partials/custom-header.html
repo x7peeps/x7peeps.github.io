@@ -1,8 +1,9 @@
-<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
-<link rel="stylesheet" href="{{ "css/x7-tokens.css" | relURL }}">
-<link rel="stylesheet" href="{{ "css/x7-shell.css" | relURL }}">
-<link rel="stylesheet" href="{{ "css/x7-reading.css" | relURL }}">
-<link rel="stylesheet" href="{{ "css/x7-home.css" | relURL }}">
+{{- $x7AssetVersion := now.Unix -}}
+<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}?v={{ $x7AssetVersion }}">
+<link rel="stylesheet" href="{{ "css/x7-tokens.css" | relURL }}?v={{ $x7AssetVersion }}">
+<link rel="stylesheet" href="{{ "css/x7-shell.css" | relURL }}?v={{ $x7AssetVersion }}">
+<link rel="stylesheet" href="{{ "css/x7-reading.css" | relURL }}?v={{ $x7AssetVersion }}">
+<link rel="stylesheet" href="{{ "css/x7-home.css" | relURL }}?v={{ $x7AssetVersion }}">
 <script>
 (() => {
   const homeEntryKey = `${window.relearn?.absBaseUri || location.origin}/x7-home-entry-complete-v3`;

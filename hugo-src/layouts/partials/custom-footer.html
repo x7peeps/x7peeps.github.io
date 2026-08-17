@@ -1,2 +1,3 @@
-<script src="{{ "js/custom.js" | relURL }}" defer></script>
-<script type="module" src="{{ "js/x7/bootstrap.js" | relURL }}"></script>
+{{- $x7AssetVersion := now.Unix -}}
+<script src="{{ "js/custom.js" | relURL }}?v={{ $x7AssetVersion }}" defer></script>
+<script type="module" src="{{ "js/x7/bootstrap.js" | relURL }}?v={{ $x7AssetVersion }}"></script>
