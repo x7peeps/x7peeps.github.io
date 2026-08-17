@@ -9,6 +9,23 @@ weight = 6
 
 <div class="x7-promo-strip">
   <div>
+    <span class="x7-promo-kicker">Open Source · Hermes Agent Features</span>
+    <h2>Hermes 新特性研究</h2>
+    <p>x7peeps 向 Hermes Agent 上游贡献的新特性系列研究：本地 MLX 流式 TTS、P2P 联邦心跳、MCP 图像视觉桥接、技能发现幽灵建议……每个特性一篇研究文章，记录 PR 地址、设计方案与实测数据。</p>
+    <div class="x7-promo-actions">
+      <a class="x7-promo-button x7-promo-button-primary" href="/开源项目/hermes新特性/">查看系列文章</a>
+      <a class="x7-promo-button" href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes 上游仓库</a>
+    </div>
+  </div>
+  <div class="x7-theme-meta-full">
+    <p><strong>定位：</strong>开源贡献研究——把提交到上游的新特性沉淀为可读的研究文档。</p>
+    <p><strong>内容：</strong>每篇 = 问题背景 + 特性设计 + 实测数据 + PR 地址。</p>
+    <p><strong>状态：</strong>26 个特性 PR，持续更新。</p>
+  </div>
+</div>
+
+<div class="x7-promo-strip">
+  <div>
     <span class="x7-promo-kicker">Open Source · Java Memory Shell Auditor</span>
     <h2>memshell-auditor</h2>
     <p>Java 内存马运行时审计 Agent：attach 到目标 JVM，检测 Filter / Servlet / Listener / Valve 与 defineClass 注入型内存马。JMG 真实载荷（冰蝎 / 哥斯拉 / 蚁剑 / Suo5）实测 7/7 检出，零依赖、纯反射、JDK 8 编译兼容 8-21+。</p>
