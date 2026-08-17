@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>X7 3D Preview</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+      color: #dff7ff;
+      font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    #scene {
+      position: fixed;
+      inset: 0;
+    }
+
+    .caption {
+      position: fixed;
+      left: 24px;
+      bottom: 22px;
+      z-index: 2;
+      color: rgb(220 245 255 / 76%);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .caption strong {
+      display: block;
+      color: #fff;
+      font-size: 18px;
+      letter-spacing: .02em;
+      text-transform: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="scene" aria-label="X7 3D 模型独立预览"></div>
+  <p class="caption"><strong>X7 avatar GLB</strong>Drag / scroll to inspect</p>
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.160.0";
+    import { GLTFLoader } from "https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
+    import { OrbitControls } from "https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+
+    const mount = document.querySelector("#scene");
+    const params = new URLSearchParams(location.search);
+    const yaw = Number(params.get("yaw") || "0");
+    const spin = params.get("spin") !== "0";
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+
+    const camera = new THREE.PerspectiveCamera(36, innerWidth / innerHeight, 0.1, 100);
+    camera.position.set(0, 1.25, -4.2);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.48;
+    mount.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.target.set(0, 0.2, 0);
+
+    scene.add(new THREE.HemisphereLight(0xd5f7ff, 0x090909, 2.4));
+    const key = new THREE.DirectionalLight(0xffffff, 3.5);
+    key.position.set(2.5, 3.5, 4);
+    const rim = new THREE.DirectionalLight(0x70edff, 2.2);
+    rim.position.set(-3, 1.5, -2);
+    const warm = new THREE.DirectionalLight(0xffd2a0, 1.25);
+    warm.position.set(-2, 2, 3);
+    scene.add(key, rim, warm);
+
+    const loader = new GLTFLoader();
+    const root = new THREE.Group();
+    scene.add(root);
+
+    const grid = new THREE.GridHelper(5, 20, 0x1c6670, 0x0b252b);
+    grid.position.y = -1.05;
+    grid.material.opacity = 0.25;
+    grid.material.transparent = true;
+    scene.add(grid);
+
+    function frameModel(model) {
+      const box = new THREE.Box3().setFromObject(model);
+      const size = box.getSize(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
+      const largest = Math.max(size.x, size.y, size.z) || 1;
+      model.position.sub(center);
+      model.scale.setScalar(2.65 / largest);
+    }
+
+    loader.load(
+      "/models/x7-avatar-entry.glb",
+      (gltf) => {
+        const model = gltf.scene;
+        frameModel(model);
+        model.position.y = -0.08;
+        model.rotation.y = yaw;
+        root.add(model);
+      },
+      undefined,
+      (error) => {
+        const message = document.createElement("pre");
+        message.textContent = `模型加载失败\n${error?.message || error}`;
+        message.style.position = "fixed";
+        message.style.left = "24px";
+        message.style.top = "24px";
+        message.style.color = "#ffb4a8";
+        document.body.appendChild(message);
+      },
+    );
+
+    addEventListener("resize", () => {
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    });
+
+    function tick() {
+      requestAnimationFrame(tick);
+      if (spin) root.rotation.y += 0.0012;
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    tick();
+  </script>
+</body>
+</html>

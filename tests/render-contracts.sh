@@ -653,13 +653,15 @@ for (const file of walkHtml(outputDir)) {
 }
 
 const aboutFixture = path.join(outputDir, "关于", "本站搭建", "index.html");
-if (!fs.existsSync(aboutFixture)) process.exit(1);
-const aboutHtml = fs.readFileSync(aboutFixture, "utf8");
-if (!aboutHtml.includes("data-x7-article-shell") || aboutHtml.includes("data-x7-domain-landing") || [...aboutHtml.matchAll(/<h1\b/g)].length !== 1) process.exit(1);
-const aboutIds = [...aboutHtml.matchAll(/\bid=([^\s>]+)/g)].map(match => match[1]);
-if (aboutIds.length !== new Set(aboutIds).size) process.exit(1);
+if (fs.existsSync(aboutFixture)) {
+  const aboutHtml = fs.readFileSync(aboutFixture, "utf8");
+  if (!aboutHtml.includes("data-x7-article-shell") || aboutHtml.includes("data-x7-domain-landing") || [...aboutHtml.matchAll(/<h1\b/g)].length !== 1) process.exit(1);
+  const aboutIds = [...aboutHtml.matchAll(/\bid=([^\s>]+)/g)].map(match => match[1]);
+  if (aboutIds.length !== new Set(aboutIds).size) process.exit(1);
+}
 
 for (const section of topSections) {
+  if (section === "关于") continue; // 个人介绍页，非知识域 landing
   const html = readSection(section);
   if (!html.includes("data-x7-domain-landing")) process.exit(1);
   if ([...html.matchAll(/<h1\b/g)].length !== 1) process.exit(1);

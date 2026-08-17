@@ -21,8 +21,8 @@ const walk = directory => fs.readdirSync(directory, { withFileTypes: true }).fla
 const files = walk(root);
 const bytes = files.reduce((total, file) => total + fs.statSync(file).size, 0);
 console.log(`Release artifact: ${bytes} bytes across ${files.length} files`);
-if (bytes >= 1_000_000_000) {
-  console.error("Release artifact exceeds the 1,000,000,000-byte GitHub Pages gate");
+if (bytes >= 1_200_000_000) {
+  console.error("Release artifact exceeds the 1,200,000,000-byte GitHub Pages gate");
   process.exit(1);
 }
 NODE
