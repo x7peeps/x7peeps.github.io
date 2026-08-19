@@ -19,14 +19,14 @@ weight: 1
 
 GitHub: [github.com/x7peeps](https://github.com/x7peeps)
 
-<div align="center">
-  <picture>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:1rem;">
+  <picture style="flex:1 1 45%;min-width:280px;">
     <source media="(prefers-color-scheme: dark)" srcset="https://stats.x7peeps.com/api?username=x7peeps&show_icons=true&include_all_commits=true&count_private=true&theme=transparent&title_color=58A6FF&icon_color=1F6FEB&text_color=F0F6FC&hide_border=true&v=20260817a" />
-    <img src="https://stats.x7peeps.com/api?username=x7peeps&show_icons=true&include_all_commits=true&count_private=true&theme=transparent&title_color=0969DA&icon_color=0969DA&text_color=1F2328&hide_border=true&v=20260817a" width="49%" />
+    <img src="https://stats.x7peeps.com/api?username=x7peeps&show_icons=true&include_all_commits=true&count_private=true&theme=transparent&title_color=0969DA&icon_color=0969DA&text_color=1F2328&hide_border=true&v=20260817a" width="100%" />
   </picture>
-  <picture>
+  <picture style="flex:1 1 45%;min-width:280px;">
     <source media="(prefers-color-scheme: dark)" srcset="https://stats.x7peeps.com/api/top-langs/?username=x7peeps&layout=compact&card_width=395&theme=transparent&title_color=58A6FF&icon_color=1F6FEB&text_color=F0F6FC&hide_border=true&v=20260817a" />
-    <img src="https://stats.x7peeps.com/api/top-langs/?username=x7peeps&layout=compact&card_width=395&theme=transparent&title_color=0969DA&icon_color=0969DA&text_color=1F2328&hide_border=true&v=20260817a" width="49%" />
+    <img src="https://stats.x7peeps.com/api/top-langs/?username=x7peeps&layout=compact&card_width=395&theme=transparent&title_color=0969DA&icon_color=0969DA&text_color=1F2328&hide_border=true&v=20260817a" width="100%" />
   </picture>
 </div>
 
@@ -38,7 +38,7 @@ GitHub: [github.com/x7peeps](https://github.com/x7peeps)
   <a href="https://www.tokentracker.cc/u/8cf64793-ec73-41db-a8f1-0bd9bbd59126?ref=about">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://srctyff5.us-east.insforge.app/functions/tokentracker-embed-svg?user_id=8cf64793-ec73-41db-a8f1-0bd9bbd59126&theme=dark" />
-      <img src="https://srctyff5.us-east.insforge.app/functions/tokentracker-embed-svg?user_id=8cf64793-ec73-41db-a8f1-0bd9bbd59126&theme=light" alt="My AI coding usage" />
+      <img src="https://srctyff5.us-east.insforge.app/functions/tokentracker-embed-svg?user_id=8cf64793-ec73-41db-a8f1-0bd9bbd59126&theme=light" alt="My AI coding usage" style="max-width:100%;height:auto;mix-blend-mode:screen;" />
     </picture>
   </a>
 </div>
