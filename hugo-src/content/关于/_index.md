@@ -29,3 +29,16 @@ GitHub: [github.com/x7peeps](https://github.com/x7peeps)
     <img src="https://stats.x7peeps.com/api/top-langs/?username=x7peeps&layout=compact&card_width=395&theme=transparent&title_color=0969DA&icon_color=0969DA&text_color=1F2328&hide_border=true&v=20260817a" width="49%" />
   </picture>
 </div>
+
+---
+
+### 🤖 AI 编程用量
+
+<div align="center">
+  <a href="https://www.tokentracker.cc/u/8cf64793-ec73-41db-a8f1-0bd9bbd59126?ref=about">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://srctyff5.us-east.insforge.app/functions/tokentracker-embed-svg?user_id=8cf64793-ec73-41db-a8f1-0bd9bbd59126&theme=dark" />
+      <img src="https://srctyff5.us-east.insforge.app/functions/tokentracker-embed-svg?user_id=8cf64793-ec73-41db-a8f1-0bd9bbd59126&theme=light" alt="My AI coding usage" />
+    </picture>
+  </a>
+</div>
