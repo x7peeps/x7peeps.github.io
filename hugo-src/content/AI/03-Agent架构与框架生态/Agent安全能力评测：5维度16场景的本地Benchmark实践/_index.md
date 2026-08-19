@@ -5,6 +5,8 @@ tags: [Agent安全, Benchmark, Prompt注入, 工具安全, 会话安全, 安全�
 menu:
   main:
     parent: "AIagent"
+aliases:
+  - "/AI/05-Agent评测与质量保障/Agent安全能力评测5维度16场景的本地Benchmark实践/"
 ---
 
 # Agent 安全能力评测：5 维度 16 场景的本地 Benchmark 实践

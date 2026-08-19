@@ -5,6 +5,8 @@ tags: [Agent评测, 质量保障, 评测框架, 指标体系]
 menu: 
   main: 
     parent: "AIagent"
+aliases:
+  - "/AI/05-Agent评测与质量保障/Agent评测方法论维度设计指标体系与评测框架/"
 ---
 
 ## 为什么 Agent 评测特殊

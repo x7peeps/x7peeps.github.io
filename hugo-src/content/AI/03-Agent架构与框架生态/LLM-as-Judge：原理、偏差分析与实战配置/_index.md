@@ -5,6 +5,8 @@ tags: [LLM-as-Judge, 评测, 偏差分析, 质量评估]
 menu: 
   main: 
     parent: "AIagent"
+aliases:
+  - "/AI/05-Agent评测与质量保障/LLM-as-Judge原理偏差分析与实战配置/"
 ---
 
 ## LLM-as-Judge 工作原理

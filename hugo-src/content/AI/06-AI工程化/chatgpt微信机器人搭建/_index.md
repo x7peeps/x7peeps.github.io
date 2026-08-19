@@ -9,6 +9,8 @@ tags: ["ChatGPT", "微信机器人", "chatgpt-on-wechat", "实战"]
 menu:
   main:
     parent: "AI实战"
+aliases:
+  - "/AI/09-实战项目架构/chatgpt微信机器人搭建/"
 ---
 
 # chatgpt对接微信服务搭建

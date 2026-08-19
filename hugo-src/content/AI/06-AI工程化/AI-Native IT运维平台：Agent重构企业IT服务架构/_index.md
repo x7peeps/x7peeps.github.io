@@ -5,6 +5,8 @@ tags: [AI-Native, IT运维, Agent, 项目实战, MCP]
 menu: 
   main: 
     parent: "AI实战"
+aliases:
+  - "/AI/09-实战项目架构/AI-NativeIT运维平台Agent重构企业IT服务架构/"
 ---
 
 ## 传统 IT 运维的结构性困境

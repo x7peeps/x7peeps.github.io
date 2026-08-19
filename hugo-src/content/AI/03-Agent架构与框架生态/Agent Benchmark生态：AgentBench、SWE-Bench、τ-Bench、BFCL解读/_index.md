@@ -5,6 +5,8 @@ tags: [Benchmark, AgentBench, SWE-Bench, τ-Bench, BFCL, 评测基准]
 menu: 
   main: 
     parent: "AIagent"
+aliases:
+  - "/AI/05-Agent评测与质量保障/AgentBenchmark生态AgentBenchSWE-Benchτ-BenchBFCL解读/"
 ---
 
 ## 为什么需要系统理解 Benchmark 生态

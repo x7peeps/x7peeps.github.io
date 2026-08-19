@@ -5,6 +5,8 @@ tags: [评测平台, 自动化评测, Trace, 归因分析, 架构设计]
 menu: 
   main: 
     parent: "AIagent"
+aliases:
+  - "/AI/05-Agent评测与质量保障/评测平台架构自动化评测Trace回放与归因分析/"
 ---
 
 ## 为什么需要评测平台
