@@ -420,5 +420,3 @@ M5 Max 128GB 跑 4bit 27B + DFlash2 非常流畅（5.7s 生成 138 字符）。�
 - 框架：`pip install dflash[local]`（v0.1.0，MLX 后端）
 - 评测脚本：MMLU 5 子集 × 20 题 + GSM8K 50 题，temperature=0，reasoning=off
 - 数据下载：cais/mmlu、openai/gsm8k（HuggingFace datasets）
-
-
