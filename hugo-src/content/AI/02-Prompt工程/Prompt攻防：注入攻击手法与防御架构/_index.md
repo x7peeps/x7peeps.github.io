@@ -4,7 +4,7 @@ weight: 3
 tags: [Prompt注入, 攻防, 安全, 越狱, 防御架构]
 menu: 
   main: 
-    parent: "Prompt 工程"
+    parent: "AIPrompt"
 ---
 
 ## Prompt 安全：从工程视角重新审视攻击面

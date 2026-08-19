@@ -4,7 +4,7 @@ weight: 3
 tags: [RAG, 混合检索, 重排序, 查询改写, RAGAS, 优化]
 menu: 
   main: 
-    parent: "RAG 与知识库"
+    parent: "AIRag"
 ---
 
 ## 一、Naive RAG 的局限性

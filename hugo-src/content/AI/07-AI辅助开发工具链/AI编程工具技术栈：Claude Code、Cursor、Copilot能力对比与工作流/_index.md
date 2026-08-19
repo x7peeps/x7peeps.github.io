@@ -4,7 +4,7 @@ weight: 1
 tags: [Claude Code, Cursor, Copilot, AI编程, 工具对比]
 menu: 
   main: 
-    parent: "AI 辅助开发工具链"
+    parent: "AIcoding"
 ---
 
 ## 引言

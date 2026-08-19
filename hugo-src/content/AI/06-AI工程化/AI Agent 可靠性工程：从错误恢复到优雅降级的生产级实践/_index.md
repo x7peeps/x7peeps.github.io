@@ -4,7 +4,7 @@ weight: 9
 tags: [AI Agent, 可靠性工程, Circuit Breaker, 优雅降级, 可观测性, 生产部署]
 menu:
   main:
-    parent: "AI工程化"
+    parent: "AI实战"
 ---
 
 # AI Agent 可靠性工程：从错误恢复到优雅降级的生产级实践

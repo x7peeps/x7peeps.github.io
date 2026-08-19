@@ -4,7 +4,7 @@ weight: 1
 tags: [AI安全, Prompt注入, 越狱攻击, 红队, 防御架构]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 ## AI 安全新攻击面：当传统安全模型失效

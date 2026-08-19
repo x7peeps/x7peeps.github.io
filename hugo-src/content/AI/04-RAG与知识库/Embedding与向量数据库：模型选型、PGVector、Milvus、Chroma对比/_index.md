@@ -4,7 +4,7 @@ weight: 2
 tags: [Embedding, 向量数据库, PGVector, Milvus, Chroma, 选型]
 menu: 
   main: 
-    parent: "RAG 与知识库"
+    parent: "AIRag"
 ---
 
 在 RAG（Retrieval-Augmented Generation）系统的技术栈中，**Embedding 模型**和**向量数据库**构成了检索能力的两大基石。前者决定了文本能否被精确地表示为数学向量，后者决定了这些向量能否被高效地存储和检索。选型不当的 Embedding 模型会导致语义匹配失准，而选型不当的向量数据库则会在规模增长时成为系统瓶颈。

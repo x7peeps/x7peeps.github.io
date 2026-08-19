@@ -4,7 +4,7 @@ weight: 6
 tags: [Reasoning Model, Chain-of-Thought, GRPO, Test-Time Compute, DeepSeek-R1, o1, Qwen3]
 menu:
   main:
-    parent: "LLM 原理与工程"
+    parent: "AI原理"
 ---
 
 # 推理模型技术范式：从 Chain-of-Thought 到 Test-Time Compute Scaling

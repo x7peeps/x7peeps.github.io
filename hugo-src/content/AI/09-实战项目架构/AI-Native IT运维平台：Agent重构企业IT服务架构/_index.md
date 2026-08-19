@@ -4,7 +4,7 @@ weight: 3
 tags: [AI-Native, IT运维, Agent, 项目实战, MCP]
 menu: 
   main: 
-    parent: "实战项目架构"
+    parent: "AI实战"
 ---
 
 ## 传统 IT 运维的结构性困境

@@ -4,7 +4,7 @@ weight: 4
 tags: [企业级RAG, 知识库治理, 访问控制, 安全管控]
 menu: 
   main: 
-    parent: "RAG 与知识库"
+    parent: "AIRag"
 ---
 
 ## 从原型到生产：鸿沟远比想象的大

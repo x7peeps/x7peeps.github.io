@@ -4,7 +4,7 @@ weight: 3
 tags: [LLM API, 流式输出, SSE, 容错, FastAPI, 工程化]
 menu: 
   main: 
-    parent: "LLM 原理与工程"
+    parent: "AI原理"
 ---
 
 # LLM API 工程：多模型对接、流式输出与容错设计

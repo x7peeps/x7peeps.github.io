@@ -4,7 +4,7 @@ weight: 8
 tags: [Agent Memory, 知识图谱, 向量检索, Mem0, Zep, Letta, LoCoMo, 认知架构]
 menu:
   main:
-    parent: "Agent 架构与框架生态"
+    parent: "AIagent"
 ---
 
 # Agent 记忆架构 2026：从认知科学到生产级实现的技术全景

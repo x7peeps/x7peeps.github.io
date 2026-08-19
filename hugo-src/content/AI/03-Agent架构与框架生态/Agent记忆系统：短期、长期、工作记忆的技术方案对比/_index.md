@@ -4,7 +4,7 @@ weight: 3
 tags: [Agent, Memory, 向量数据库, 对话历史, 技术方案]
 menu: 
   main: 
-    parent: "Agent 架构与框架生态"
+    parent: "AIagent"
 ---
 
 ## 一、为什么 Agent 需要记忆

@@ -1,5 +1,5 @@
 ---
-title: "AI 工程化"
+title: "AI实战"
 weight: 6
 ---
 

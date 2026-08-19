@@ -4,7 +4,7 @@ weight: 7
 tags: [A2A, MCP, ANP, ACP, Multi-Agent, Agent通信, 互操作性]
 menu:
   main:
-    parent: "Agent架构与框架生态"
+    parent: "AIagent"
 ---
 
 # Agent 互联协议全景：A2A、ACP、ANP 与 MCP 的互补生态

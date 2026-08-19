@@ -1,5 +1,5 @@
 ---
-title: "LLM 原理与工程"
+title: "AI原理"
 weight: 1
 ---
 

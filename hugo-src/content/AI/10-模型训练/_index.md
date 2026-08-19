@@ -1,5 +1,5 @@
 ---
-title: "模型训练"
+title: "AI模型训练"
 weight: 10
 ---
 

@@ -4,7 +4,7 @@ weight: 6
 tags: [智能体安全, 安全评估框架, 红队测试, AgentSec, Garak]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 # 智能体安全检测评估框架：全链路多层防线

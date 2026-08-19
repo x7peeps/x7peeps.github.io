@@ -4,7 +4,7 @@ weight: 5
 tags: [合成数据, Synthetic Data, Self-Instruct, Evol-Instruct, 数据蒸馏, 模型训练]
 menu: 
   main: 
-    parent: "模型训练"
+    parent: "AI模型训练"
 ---
 
 # 合成数据工程：大模型时代的数据飞轮与质量保障

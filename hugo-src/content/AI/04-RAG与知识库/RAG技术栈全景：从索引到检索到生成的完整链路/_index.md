@@ -4,7 +4,7 @@ weight: 1
 tags: [RAG, 知识库, 向量检索, 检索增强生成, 技术栈]
 menu: 
   main: 
-    parent: "RAG 与知识库"
+    parent: "AIRag"
 ---
 
 # RAG 技术栈全景：从索引到检索到生成的完整链路

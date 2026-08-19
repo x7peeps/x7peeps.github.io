@@ -1,5 +1,5 @@
 ---
-title: "安全与 AI 融合"
+title: "AI安全"
 weight: 8
 ---
 

@@ -4,7 +4,7 @@ weight: 2
 tags: [LLM-as-Judge, 评测, 偏差分析, 质量评估]
 menu: 
   main: 
-    parent: "Agent 评测与质量保障"
+    parent: "AIagent"
 ---
 
 ## LLM-as-Judge 工作原理

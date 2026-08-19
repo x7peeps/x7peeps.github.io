@@ -4,7 +4,7 @@ weight: 3
 tags: [Benchmark, AgentBench, SWE-Bench, τ-Bench, BFCL, 评测基准]
 menu: 
   main: 
-    parent: "Agent 评测与质量保障"
+    parent: "AIagent"
 ---
 
 ## 为什么需要系统理解 Benchmark 生态

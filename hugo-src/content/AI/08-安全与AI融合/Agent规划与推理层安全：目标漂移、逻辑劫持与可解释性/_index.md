@@ -4,7 +4,7 @@ weight: 8
 tags: [推理安全, 目标漂移, 逻辑劫持, 可解释性, 边界条件]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 # Agent规划与推理层安全：目标漂移、逻辑劫持与可解释性

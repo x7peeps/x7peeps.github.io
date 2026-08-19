@@ -4,7 +4,7 @@ weight: 5
 tags: [Multi-Agent, AutoGen, CrewAI, Dify, 框架选型]
 menu: 
   main: 
-    parent: "Agent 架构与框架生态"
+    parent: "AIagent"
 ---
 
 ## 一、多智能体协作设计模式

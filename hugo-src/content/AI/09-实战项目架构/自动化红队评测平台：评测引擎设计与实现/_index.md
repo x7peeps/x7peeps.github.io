@@ -4,7 +4,7 @@ weight: 4
 tags: [红队平台, 评测引擎, 项目实战, 自动化评测]
 menu: 
   main: 
-    parent: "实战项目架构"
+    parent: "AI实战"
 ---
 
 ## 平台需求分析

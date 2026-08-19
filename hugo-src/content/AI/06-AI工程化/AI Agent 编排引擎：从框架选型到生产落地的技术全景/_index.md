@@ -4,7 +4,7 @@ weight: 4
 tags: [AI Agent, Orchestration, LangGraph, CrewAI, n8n, Dify, Temporal]
 menu:
   main:
-    parent: "AI工程化"
+    parent: "AI实战"
 ---
 
 # AI Agent 编排引擎：从框架选型到生产落地的技术全景

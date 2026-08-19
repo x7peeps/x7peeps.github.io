@@ -4,7 +4,7 @@ weight: 4
 tags: [AI Coding Agent, ReAct, Context Engineering, Multi-Agent, 沙箱隔离, SWE-bench]
 menu:
   main:
-    parent: "AI 辅助开发工具链"
+    parent: "AIcoding"
 ---
 
 # AI Coding Agent 架构深度解析：从 ReAct 循环到多 Agent 协作的工程实现

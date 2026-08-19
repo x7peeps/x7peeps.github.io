@@ -4,7 +4,7 @@ weight: 11
 tags: [安全运营, 评估指标, 运行时监控, 漏洞响应, 持续改进]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 # Agent 安全运营体系：评估指标、监控与持续改进

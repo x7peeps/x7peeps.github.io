@@ -4,7 +4,7 @@ weight: 9
 tags: [长上下文, RoPE, YaRN, FlashAttention, Context Window, 位置编码]
 menu:
   main:
-    parent: "LLM 原理与工程"
+    parent: "AI原理"
 ---
 
 # 长上下文技术栈：从 512 到 10M Token 的位置编码演进与工程实践

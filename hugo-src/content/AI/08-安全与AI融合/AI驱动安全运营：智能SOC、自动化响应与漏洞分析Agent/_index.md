@@ -4,7 +4,7 @@ weight: 4
 tags: [AI安全运营, 智能SOC, 自动化响应, SOAR, 漏洞分析]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 ## 传统安全运营的结构性困境

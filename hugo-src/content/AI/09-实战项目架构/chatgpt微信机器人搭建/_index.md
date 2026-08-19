@@ -8,7 +8,7 @@ categories: ["AI", "实战项目"]
 tags: ["ChatGPT", "微信机器人", "chatgpt-on-wechat", "实战"]
 menu:
   main:
-    parent: "09-实战项目架构"
+    parent: "AI实战"
 ---
 
 # chatgpt对接微信服务搭建

@@ -4,7 +4,7 @@ weight: 2
 tags: [安全Agent, 漏洞扫描, 报告生成, 项目实战]
 menu: 
   main: 
-    parent: "实战项目架构"
+    parent: "AI实战"
 ---
 
 ## 需求分析：安全评估的自动化刚需

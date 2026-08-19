@@ -4,7 +4,7 @@ weight: 1
 tags: [AI Agent, ReAct, Plan-and-Execute, Reflexion, LATS, 架构]
 menu: 
   main: 
-    parent: "Agent 架构与框架生态"
+    parent: "AIagent"
 ---
 
 # AI Agent 架构全景：ReAct、Plan-and-Execute、Reflexion、LATS

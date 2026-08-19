@@ -4,7 +4,7 @@ weight: 6
 tags: [Structured Output, JSON Mode, Constrained Decoding, JSON Schema, Pydantic, Zod]
 menu:
   main:
-    parent: "AI工程化"
+    parent: "AI实战"
 ---
 
 # Structured Output 与 JSON Mode：大模型结构化输出技术全景

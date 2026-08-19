@@ -4,7 +4,7 @@ weight: 2
 tags: [Agent安全, 权限模型, 沙箱, 审计日志, 安全架构]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 ## 从被动防御到主动安全架构

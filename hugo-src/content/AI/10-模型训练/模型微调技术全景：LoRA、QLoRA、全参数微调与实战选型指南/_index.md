@@ -4,7 +4,7 @@ weight: 2
 tags: [LoRA, QLoRA, PEFT, 全参数微调, DoRA, 模型训练, 微调]
 menu: 
   main: 
-    parent: "模型训练"
+    parent: "AI模型训练"
 ---
 
 # 模型微调技术全景：LoRA、QLoRA、全参数微调与实战选型指南

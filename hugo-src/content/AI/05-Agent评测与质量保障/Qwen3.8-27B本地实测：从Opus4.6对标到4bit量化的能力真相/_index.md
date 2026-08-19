@@ -4,7 +4,7 @@ weight: 4
 tags: [Qwen3.8, 模型评测, 本地部署, MLX, DFlash2, 量化, 投机解码, Opus]
 menu:
   main:
-    parent: "Agent评测与质量保障"
+    parent: "AIagent"
 ---
 
 # Qwen3.8-27B 本地实测：从 Opus4.6 对标到 4bit 量化的能力真相

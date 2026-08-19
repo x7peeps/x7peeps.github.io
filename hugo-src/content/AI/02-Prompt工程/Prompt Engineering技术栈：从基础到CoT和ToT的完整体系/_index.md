@@ -4,7 +4,7 @@ weight: 1
 tags: [Prompt Engineering, CoT, ToT, LLM, 技术栈]
 menu: 
   main: 
-    parent: "Prompt 工程"
+    parent: "AIPrompt"
 ---
 
 ## Prompt Engineering 在 LLM 应用中的地位

@@ -4,7 +4,7 @@ weight: 9
 tags: [TTS, 声音克隆, Voice Cloning, macOS, Apple Silicon, 评测, VoxCPM, CosyVoice, Qwen3-TTS, XTTS]
 menu:
   main:
-    parent: "AI工程化"
+    parent: "AI实战"
 ---
 
 # Mac 苹果芯片声音克隆方案横评：8 个主流方案实测，谁最适合你？

@@ -4,7 +4,7 @@ weight: 4
 tags: [LangChain, LangGraph, LangSmith, LCEL, Agent, 技术栈]
 menu: 
   main: 
-    parent: "Agent 架构与框架生态"
+    parent: "AIagent"
 ---
 
 ## 一、LangChain 生态全景

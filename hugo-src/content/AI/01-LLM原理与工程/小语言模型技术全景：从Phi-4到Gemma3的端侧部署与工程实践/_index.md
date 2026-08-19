@@ -4,7 +4,7 @@ weight: 11
 tags: [SLM, Phi-4, Gemma, 量化部署, 边缘计算, 知识蒸馏]
 menu:
   main:
-    parent: "LLM原理与工程"
+    parent: "AI原理"
 ---
 
 # 小语言模型（SLM）技术全景：从 Phi-4 到 Gemma 3 的端侧部署与工程实践

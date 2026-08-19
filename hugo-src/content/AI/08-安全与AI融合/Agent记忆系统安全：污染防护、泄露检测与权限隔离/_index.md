@@ -4,7 +4,7 @@ weight: 9
 tags: [记忆安全, 记忆污染, 数据泄露, 权限隔离, 敏感信息过滤]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 # Agent 记忆系统安全：污染防护、泄露检测与权限隔离

@@ -4,7 +4,7 @@ weight: 4
 tags: [量化, Quantization, GPTQ, AWQ, GGUF, FP8, 模型压缩, LLM部署]
 menu:
   main:
-    parent: "模型训练"
+    parent: "AI模型训练"
 ---
 
 # 模型量化与压缩技术：GPTQ、AWQ、GGUF与FP8的工程实践指南

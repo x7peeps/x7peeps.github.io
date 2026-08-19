@@ -4,7 +4,7 @@ weight: 5
 tags: [Context Engineering, 上下文工程, Agent, LLM, RAG, 上下文管理]
 menu:
   main:
-    parent: "AI 工程化"
+    parent: "AI实战"
 ---
 
 # Context Engineering：从 Prompt 到上下文系统的工程化演进

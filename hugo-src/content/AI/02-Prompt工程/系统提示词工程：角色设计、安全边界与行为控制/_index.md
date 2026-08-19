@@ -4,7 +4,7 @@ weight: 2
 tags: [System Prompt, 角色设计, 安全边界, Prompt Engineering]
 menu: 
   main: 
-    parent: "Prompt 工程"
+    parent: "AIPrompt"
 ---
 
 ## System Prompt 在 LLM 交互中的地位

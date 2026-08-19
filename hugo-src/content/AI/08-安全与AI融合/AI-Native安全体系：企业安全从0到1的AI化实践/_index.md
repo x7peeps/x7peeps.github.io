@@ -4,7 +4,7 @@ weight: 5
 tags: [AI-Native, 企业安全, ISO27001, 零信任, 安全体系]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 ## 企业安全体系框架

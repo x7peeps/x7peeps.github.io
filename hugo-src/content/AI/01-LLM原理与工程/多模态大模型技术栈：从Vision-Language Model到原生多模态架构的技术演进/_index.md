@@ -4,7 +4,7 @@ weight: 8
 tags: [多模态, Vision-Language Model, VLM, CLIP, SigLIP, GPT-4o, 跨模态理解]
 menu:
   main:
-    parent: "LLM 原理与工程"
+    parent: "AI原理"
 ---
 
 # 多模态大模型技术栈：从 Vision-Language Model 到原生多模态架构的技术演进

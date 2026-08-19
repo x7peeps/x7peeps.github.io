@@ -4,7 +4,7 @@ weight: 1
 tags: [Computer Use, GUI Agent, 模型训练, 强化学习, 视觉语言模型, 视觉定位]
 menu: 
   main: 
-    parent: "模型训练"
+    parent: "AI模型训练"
 ---
 
 ## Computer Use 模型的技术全景

@@ -4,7 +4,7 @@ weight: 4
 tags: [评测平台, 自动化评测, Trace, 归因分析, 架构设计]
 menu: 
   main: 
-    parent: "Agent 评测与质量保障"
+    parent: "AIagent"
 ---
 
 ## 为什么需要评测平台

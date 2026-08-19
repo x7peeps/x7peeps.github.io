@@ -4,7 +4,7 @@ weight: 2
 tags: [Token, 推理参数, 成本优化, LLM, 性能]
 menu: 
   main: 
-    parent: "LLM 原理与工程"
+    parent: "AI原理"
 ---
 
 # Token 经济学与推理参数：成本、延迟、质量的三角博弈

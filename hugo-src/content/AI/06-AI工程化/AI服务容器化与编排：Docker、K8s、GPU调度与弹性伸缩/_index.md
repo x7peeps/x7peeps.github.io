@@ -4,7 +4,7 @@ weight: 1
 tags: [Docker, Kubernetes, GPU, 容器化, 弹性伸缩]
 menu: 
   main: 
-    parent: "AI 工程化"
+    parent: "AI实战"
 ---
 
 AI 服务的落地不只是模型推理本身——从 Docker 镜像构建到 Kubernetes 集群编排，从 GPU 资源调度到弹性伸缩策略，再到 CI/CD 流水线和模型服务化框架选型，每一个环节都直接决定了 AI 服务能否稳定、高效、低成本地运行在生产环境。

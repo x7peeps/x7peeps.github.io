@@ -4,7 +4,7 @@ weight: 1
 tags: [LLM, Transformer, GPT, Claude, DeepSeek, 技术栈]
 menu: 
   main: 
-    parent: "LLM 原理与工程"
+    parent: "AI原理"
 ---
 
 # 大语言模型技术栈：从 Transformer 到 GPT/Claude 的架构演进

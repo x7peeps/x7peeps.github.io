@@ -4,7 +4,7 @@ weight: 1
 tags: [Agent评测, 质量保障, 评测框架, 指标体系]
 menu: 
   main: 
-    parent: "Agent 评测与质量保障"
+    parent: "AIagent"
 ---
 
 ## 为什么 Agent 评测特殊

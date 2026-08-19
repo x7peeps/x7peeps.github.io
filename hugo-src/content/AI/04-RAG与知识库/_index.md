@@ -1,5 +1,5 @@
 ---
-title: "RAG 与知识库"
+title: "AIRag"
 weight: 4
 ---
 

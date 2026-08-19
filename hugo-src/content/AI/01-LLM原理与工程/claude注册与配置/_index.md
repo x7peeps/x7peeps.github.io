@@ -8,7 +8,7 @@ categories: ["AI", "LLM基础"]
 tags: ["Claude", "Anthropic", "Slack", "注册"]
 menu:
   main:
-    parent: "01-LLM原理与工程"
+    parent: "AI原理"
 ---
 # claude注册
 claude免费，平替chatgpt

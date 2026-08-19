@@ -1,5 +1,5 @@
 ---
-title: "Prompt 工程"
+title: "AIPrompt"
 weight: 2
 ---
 

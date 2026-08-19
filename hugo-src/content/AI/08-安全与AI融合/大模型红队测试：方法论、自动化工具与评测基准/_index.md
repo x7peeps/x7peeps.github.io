@@ -4,7 +4,7 @@ weight: 3
 tags: [红队测试, 大模型安全, 自动化测试, PyRIT, Garak]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 ## 大模型红队测试方法论框架

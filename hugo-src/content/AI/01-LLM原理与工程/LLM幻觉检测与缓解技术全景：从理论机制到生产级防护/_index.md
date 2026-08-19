@@ -4,7 +4,7 @@ weight: 10
 tags: [Hallucination, 幻觉检测, Self-Consistency, RAG, Chain-of-Verification, TruthfulQA]
 menu:
   main:
-    parent: "LLM 原理与工程"
+    parent: "AI原理"
 ---
 
 # LLM 幻觉检测与缓解技术全景：从理论机制到生产级防护

@@ -4,7 +4,7 @@ weight: 3
 tags: [Qwen-MM-Plugins, Hermes, 多模态, MCP, Agent, 视觉模型]
 menu:
   main:
-    parent: "Agent 架构与框架生态"
+    parent: "AIagent"
 ---
 
 # Qwen-MM-Plugins 到底怎么样：把多模态能力插进 Hermes 的完整实测

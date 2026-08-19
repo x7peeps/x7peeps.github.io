@@ -4,7 +4,7 @@ weight: 2
 tags: [Function Calling, Tool Use, Agent, 工具调用, OpenAI, Claude]
 menu: 
   main: 
-    parent: "Agent 架构与框架生态"
+    parent: "AIagent"
 ---
 
 # Function Calling 与 Tool Use：工作原理、编排模式与安全考量

@@ -4,7 +4,7 @@ weight: 7
 tags: [工具调用安全, 参数校验, 沙箱隔离, 权限边界, 敏感操作审计]
 menu: 
   main: 
-    parent: "安全与 AI 融合"
+    parent: "AI安全"
 ---
 
 # Agent工具调用层安全：参数校验、权限边界与沙箱逃逸

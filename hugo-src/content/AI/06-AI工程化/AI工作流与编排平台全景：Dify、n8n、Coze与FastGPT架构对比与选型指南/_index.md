@@ -4,7 +4,7 @@ weight: 7
 tags: [Dify, n8n, Coze, FastGPT, 工作流编排, AI平台选型, 可视化开发]
 menu:
   main:
-    parent: "AI 工程化"
+    parent: "AI实战"
 ---
 
 # AI 工作流与编排平台全景：Dify、n8n、Coze 与 FastGPT 架构对比与选型指南

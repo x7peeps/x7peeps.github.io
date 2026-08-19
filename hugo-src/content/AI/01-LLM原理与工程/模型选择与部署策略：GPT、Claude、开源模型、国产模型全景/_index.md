@@ -4,7 +4,7 @@ weight: 4
 tags: [模型选型, GPT, Claude, 开源模型, 国产模型, 部署策略]
 menu: 
   main: 
-    parent: "LLM 原理与工程"
+    parent: "AI原理"
 ---
 
 # 模型选择与部署策略：GPT、Claude、开源模型、国产模型全景

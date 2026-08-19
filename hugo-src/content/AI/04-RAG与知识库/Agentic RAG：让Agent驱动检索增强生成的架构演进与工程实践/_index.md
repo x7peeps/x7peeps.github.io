@@ -4,7 +4,7 @@ weight: 5
 tags: [Agentic RAG, AI Agent, RAG, 检索增强生成, 多步推理, LangGraph]
 menu:
   main:
-    parent: "RAG与知识库"
+    parent: "AIRag"
 ---
 
 # Agentic RAG：让 Agent 驱动检索增强生成的架构演进与工程实践

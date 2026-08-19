@@ -4,7 +4,7 @@ weight: 3
 tags: [模型微调, QLoRA, 应急响应, Qwen2.5, 数据构建, 安全运营]
 menu:
   main:
-    parent: "模型训练"
+    parent: "AI模型训练"
 ---
 
 # 应急响应大模型微调：基于 Qwen2.5-7B 的 QLoRA 训练实践

@@ -4,7 +4,7 @@ weight: 7
 tags: [MoE, Mixture of Experts, 稀疏激活, DeepSeek, Mixtral, 路由机制, 负载均衡]
 menu:
   main:
-    parent: "LLM 原理与工程"
+    parent: "AI原理"
 ---
 
 # Mixture of Experts 架构：稀疏激活如何重塑大语言模型的效率与规模

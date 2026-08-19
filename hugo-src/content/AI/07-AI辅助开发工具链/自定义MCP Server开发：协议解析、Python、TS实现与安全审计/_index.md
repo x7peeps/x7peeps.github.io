@@ -4,7 +4,7 @@ weight: 2
 tags: [MCP Server, FastMCP, TypeScript, 协议开发, 安全审计]
 menu: 
   main: 
-    parent: "AI 辅助开发工具链"
+    parent: "AIcoding"
 ---
 
 # 自定义 MCP Server 开发：协议解析、Python/TS 实现与安全审计

@@ -4,7 +4,7 @@ weight: 5
 tags: [Agent安全, Benchmark, Prompt注入, 工具安全, 会话安全, 安全评测]
 menu:
   main:
-    parent: "Agent评测与质量保障"
+    parent: "AIagent"
 ---
 
 # Agent 安全能力评测：5 维度 16 场景的本地 Benchmark 实践

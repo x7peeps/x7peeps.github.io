@@ -4,7 +4,7 @@ weight: 2
 tags: [性能优化, Token优化, 语义缓存, 延迟调优, 工程化]
 menu: 
   main: 
-    parent: "AI 工程化"
+    parent: "AI实战"
 ---
 
 # LLM 应用性能工程：Token 优化、语义缓存与延迟调优

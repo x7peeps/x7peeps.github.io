@@ -4,7 +4,7 @@ weight: 6
 tags: [MCP, Model Context Protocol, 工具生态, Claude, 协议]
 menu: 
   main: 
-    parent: "Agent 架构与框架生态"
+    parent: "AIagent"
 ---
 
 # MCP 协议与工具生态：Model Context Protocol 架构与实践

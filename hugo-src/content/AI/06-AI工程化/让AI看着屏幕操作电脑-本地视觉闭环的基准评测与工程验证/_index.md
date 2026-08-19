@@ -4,7 +4,7 @@ weight: 9
 tags: [AI, Agent, 视觉模型, 自动化, 评测]
 menu:
   main:
-    parent: "AI工程化"
+    parent: "AI实战"
 ---
 
 # 让 AI「看着屏幕」操作电脑：本地视觉闭环的基准评测与工程验证

@@ -1,5 +1,5 @@
 ---
-title: "AI 辅助开发工具链"
+title: "AIcoding"
 weight: 7
 ---
 

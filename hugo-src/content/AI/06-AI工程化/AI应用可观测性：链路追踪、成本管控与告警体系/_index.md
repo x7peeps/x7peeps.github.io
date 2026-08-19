@@ -4,7 +4,7 @@ weight: 3
 tags: [可观测性, 链路追踪, 成本管控, 告警, LangFuse]
 menu: 
   main: 
-    parent: "AI 工程化"
+    parent: "AI实战"
 ---
 
 # AI 应用可观测性：链路追踪、成本管控与告警体系
