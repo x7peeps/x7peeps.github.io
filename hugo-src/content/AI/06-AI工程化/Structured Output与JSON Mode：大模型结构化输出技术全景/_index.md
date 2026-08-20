@@ -1,5 +1,6 @@
 ---
 title: "Structured Output 与 JSON Mode：大模型结构化输出技术全景"
+date: 2026-08-20 01:42:12 +0800
 weight: 6
 tags: [Structured Output, JSON Mode, Constrained Decoding, JSON Schema, Pydantic, Zod]
 menu:

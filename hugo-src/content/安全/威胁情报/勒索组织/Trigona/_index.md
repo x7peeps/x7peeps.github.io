@@ -1,5 +1,6 @@
 ---
 title: "Trigona"
+date: 2026-07-01 16:35:25 +0800
 weight: 22
 ---
 

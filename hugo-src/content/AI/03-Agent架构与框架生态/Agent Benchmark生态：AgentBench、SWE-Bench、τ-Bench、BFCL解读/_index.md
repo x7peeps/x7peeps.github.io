@@ -1,5 +1,6 @@
 ---
 title: "Agent Benchmark 生态：AgentBench/SWE-Bench/τ-Bench/BFCL 解读"
+date: 2026-08-20 03:09:19 +0800
 weight: 3
 tags: [Benchmark, AgentBench, SWE-Bench, τ-Bench, BFCL, 评测基准]
 menu: 

@@ -1,5 +1,6 @@
 ---
 title: "LLM Guardrails 技术全景：从输入校验到输出防护的生产级安全架构"
+date: 2026-08-20 01:42:12 +0800
 weight: 8
 tags: [LLM Guardrails, 输出安全, 内容安全, NeMo Guardrails, Guardrails AI, OWASP]
 menu:

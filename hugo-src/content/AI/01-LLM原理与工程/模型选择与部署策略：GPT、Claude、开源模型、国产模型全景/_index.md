@@ -1,5 +1,6 @@
 ---
 title: "模型选择与部署策略：GPT、Claude、开源模型、国产模型全景"
+date: 2026-08-20 01:42:12 +0800
 weight: 4
 tags: [模型选型, GPT, Claude, 开源模型, 国产模型, 部署策略]
 menu: 

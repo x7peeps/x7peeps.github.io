@@ -1,5 +1,6 @@
 ---
 title: "Agentic RAG：让 Agent 驱动检索增强生成的架构演进与工程实践"
+date: 2026-08-20 01:42:12 +0800
 weight: 5
 tags: [Agentic RAG, AI Agent, RAG, 检索增强生成, 多步推理, LangGraph]
 menu:

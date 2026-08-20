@@ -1,5 +1,6 @@
 ---
 title: "LLM 幻觉检测与缓解技术全景：从理论机制到生产级防护"
+date: 2026-08-20 01:42:12 +0800
 weight: 10
 tags: [Hallucination, 幻觉检测, Self-Consistency, RAG, Chain-of-Verification, TruthfulQA]
 menu:

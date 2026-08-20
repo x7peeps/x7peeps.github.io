@@ -1,5 +1,6 @@
 ---
 title: "AI 编程工具技术栈：Claude Code/Cursor/Copilot 能力对比与工作流"
+date: 2026-08-20 01:42:12 +0800
 weight: 1
 tags: [Claude Code, Cursor, Copilot, AI编程, 工具对比]
 menu: 

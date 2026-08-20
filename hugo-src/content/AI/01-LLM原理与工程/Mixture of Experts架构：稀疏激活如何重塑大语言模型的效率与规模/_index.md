@@ -1,5 +1,6 @@
 ---
 title: "Mixture of Experts 架构：稀疏激活如何重塑大语言模型的效率与规模"
+date: 2026-08-20 01:42:12 +0800
 weight: 7
 tags: [MoE, Mixture of Experts, 稀疏激活, DeepSeek, Mixtral, 路由机制, 负载均衡]
 menu:

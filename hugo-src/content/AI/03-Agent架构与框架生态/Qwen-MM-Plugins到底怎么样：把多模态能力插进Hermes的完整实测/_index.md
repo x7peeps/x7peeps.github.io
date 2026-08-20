@@ -1,5 +1,6 @@
 ---
 title: "Qwen-MM-Plugins 到底怎么样：把多模态能力插进 Hermes 的完整实测"
+date: 2026-08-20 01:42:12 +0800
 weight: 3
 tags: [Qwen-MM-Plugins, Hermes, 多模态, MCP, Agent, 视觉模型]
 menu:

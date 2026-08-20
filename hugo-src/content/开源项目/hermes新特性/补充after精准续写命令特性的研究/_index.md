@@ -1,5 +1,6 @@
 ---
 title: "补充after精准续写命令特性的研究"
+date: 2026-08-17 14:04:25 +0800
 weight: 10
 tags: ["Hermes", "slash命令", "开源贡献", "PR研究"]
 menu:

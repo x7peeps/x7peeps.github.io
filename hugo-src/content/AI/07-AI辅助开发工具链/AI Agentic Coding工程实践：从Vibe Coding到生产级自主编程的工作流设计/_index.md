@@ -1,5 +1,6 @@
 ---
 title: "AI Agentic Coding 工程实践：从 Vibe Coding 到生产级自主编程的工作流设计"
+date: 2026-08-20 01:42:12 +0800
 weight: 3
 tags: [Agentic Coding, Claude Code, Cursor, Codex CLI, Context Engineering, AI编程]
 menu:

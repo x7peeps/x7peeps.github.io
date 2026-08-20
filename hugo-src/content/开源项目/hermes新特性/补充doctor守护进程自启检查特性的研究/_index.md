@@ -1,5 +1,6 @@
 ---
 title: "补充doctor守护进程自启检查特性的研究"
+date: 2026-08-17 10:34:57 +0800
 weight: 20
 tags: ["Hermes", "computer-use", "doctor", "开源贡献", "PR研究"]
 menu:

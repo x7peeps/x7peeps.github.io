@@ -1,5 +1,6 @@
 ---
 title: "GraphRAG 技术全景：知识图谱增强检索生成的架构、实现与生产实践"
+date: 2026-08-20 01:42:12 +0800
 weight: 6
 tags: [GraphRAG, 知识图谱, RAG, Leiden算法, LLM, 向量检索]
 menu:

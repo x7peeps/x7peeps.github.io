@@ -1,5 +1,6 @@
 ---
 title: "Agent 安全能力评测：5 维度 16 场景的本地 Benchmark 实践"
+date: 2026-08-20 03:09:19 +0800
 weight: 5
 tags: [Agent安全, Benchmark, Prompt注入, 工具安全, 会话安全, 安全评测]
 menu:

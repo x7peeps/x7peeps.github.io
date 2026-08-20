@@ -1,5 +1,6 @@
 ---
 title: "应急响应大模型微调：基于 Qwen2.5-7B 的 QLoRA 训练实践"
+date: 2026-08-20 01:42:12 +0800
 weight: 3
 tags: [模型微调, QLoRA, 应急响应, Qwen2.5, 数据构建, 安全运营]
 menu:

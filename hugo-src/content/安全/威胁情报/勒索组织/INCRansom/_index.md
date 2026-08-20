@@ -1,5 +1,6 @@
 ---
 title: "INC Ransom"
+date: 2026-06-23 22:42:36 +0800
 weight: 11
 ---
 

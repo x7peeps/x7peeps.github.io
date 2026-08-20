@@ -1,5 +1,6 @@
 ---
 title: "如何训练一个原生 Computer Use 模型"
+date: 2026-08-20 01:42:12 +0800
 weight: 1
 tags: [Computer Use, GUI Agent, 模型训练, 强化学习, 视觉语言模型, 视觉定位]
 menu: 

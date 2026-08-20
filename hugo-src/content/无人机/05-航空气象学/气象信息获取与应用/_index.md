@@ -1,5 +1,6 @@
 ---
 title: "气象信息获取与应用"
+date: 2026-07-01 22:52:35 +0800
 weight: 5
 tags: [CAAC, 气象信息, METAR, TAF]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "MLX 并行提速实录：macOS 本地 TTS 从 230 秒到 100 秒"
+date: 2026-08-20 01:42:12 +0800
 weight: 8
 tags: [TTS, MLX, Qwen3-TTS, Apple Silicon, 性能优化, GPU, 并行计算, 系统工程]
 menu:

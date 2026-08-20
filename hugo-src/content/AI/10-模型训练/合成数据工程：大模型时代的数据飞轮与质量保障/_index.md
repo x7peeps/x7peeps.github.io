@@ -1,5 +1,6 @@
 ---
 title: "合成数据工程：大模型时代的数据飞轮与质量保障"
+date: 2026-08-20 01:42:12 +0800
 weight: 5
 tags: [合成数据, Synthetic Data, Self-Instruct, Evol-Instruct, 数据蒸馏, 模型训练]
 menu: 

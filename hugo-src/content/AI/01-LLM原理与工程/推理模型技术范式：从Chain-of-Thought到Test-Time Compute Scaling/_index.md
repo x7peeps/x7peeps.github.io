@@ -1,5 +1,6 @@
 ---
 title: "推理模型技术范式：从 Chain-of-Thought 到 Test-Time Compute Scaling"
+date: 2026-08-20 01:42:12 +0800
 weight: 6
 tags: [Reasoning Model, Chain-of-Thought, GRPO, Test-Time Compute, DeepSeek-R1, o1, Qwen3]
 menu:
