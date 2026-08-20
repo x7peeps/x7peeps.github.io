@@ -1,9 +1,10 @@
-# [译]快速pcap-使用powershell抓取pacp包
 ---
-title: [译]快速pcap-使用powershell抓取pacp包
+title: "[译]快速pcap-使用powershell抓取pacp包"
 date: 2023-02-02 12:03:49
 tags: 应急响应;调查取证;抓包
 ---
+
+# [译]快速pcap-使用powershell抓取pacp包
 
 原文：https://bakerstreetforensics.com/2022/01/07/quickpcap-capturing-a-pcap-with-powershell/
 

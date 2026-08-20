@@ -1,6 +1,6 @@
 ---
+date: "2026-08-20 03:09:19 +0800"
 title: "AI-Native IT 运维平台：Agent 重构企业 IT 服务架构"
-date: 2026-08-20 03:09:19 +0800
 weight: 3
 tags: [AI-Native, IT运维, Agent, 项目实战, MCP]
 menu: 

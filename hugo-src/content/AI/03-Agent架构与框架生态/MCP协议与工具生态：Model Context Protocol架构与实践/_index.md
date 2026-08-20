@@ -1,6 +1,6 @@
 ---
+date: "2026-07-03 15:17:54 +0800"
 title: "MCP 协议与工具生态：Model Context Protocol 架构与实践"
-date: 2026-08-20 01:42:12 +0800
 weight: 6
 tags: [MCP, Model Context Protocol, 工具生态, Claude, 协议]
 menu: 

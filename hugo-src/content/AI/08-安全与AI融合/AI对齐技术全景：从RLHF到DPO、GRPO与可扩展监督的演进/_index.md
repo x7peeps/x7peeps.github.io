@@ -1,6 +1,6 @@
 ---
+date: "2026-08-01 20:15:19 +0800"
 title: "AI 对齐技术全景：从 RLHF 到 DPO、GRPO 与可扩展监督的演进"
-date: 2026-08-20 03:09:19 +0800
 weight: 12
 tags: [AI Alignment, RLHF, DPO, GRPO, Constitutional AI, 可扩展监督, AI安全]
 menu:

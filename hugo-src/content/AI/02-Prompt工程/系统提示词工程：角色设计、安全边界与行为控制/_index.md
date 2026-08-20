@@ -1,6 +1,6 @@
 ---
+date: "2026-07-03 15:17:54 +0800"
 title: "系统提示词工程：角色设计、安全边界与行为控制"
-date: 2026-08-20 01:42:12 +0800
 weight: 2
 tags: [System Prompt, 角色设计, 安全边界, Prompt Engineering]
 menu: 

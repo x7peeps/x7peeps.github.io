@@ -1,7 +1,8 @@
 +++
 title = "Dark Directory Hugo Theme"
-date = "2026-06-21 20:30:47 +0800"
 weight = 20
+date = "2026-06-15 13:29:24 +0800"
+
 +++
 
 <div class="x7-theme-hero">

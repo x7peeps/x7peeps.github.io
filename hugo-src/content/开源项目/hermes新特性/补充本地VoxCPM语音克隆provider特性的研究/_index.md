@@ -1,6 +1,6 @@
 ---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充本地VoxCPM语音克隆provider特性的研究"
-date: 2026-08-17 10:34:57 +0800
 weight: 22
 tags: ["Hermes", "TTS", "VoxCPM", "开源贡献", "PR研究"]
 menu:

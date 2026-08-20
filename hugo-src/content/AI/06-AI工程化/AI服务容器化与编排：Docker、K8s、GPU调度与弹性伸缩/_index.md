@@ -1,6 +1,6 @@
 ---
+date: "2026-07-03 15:17:54 +0800"
 title: "AI 服务容器化与编排：Docker/K8s/GPU 调度/弹性伸缩"
-date: 2026-08-20 01:42:12 +0800
 weight: 1
 tags: [Docker, Kubernetes, GPU, 容器化, 弹性伸缩]
 menu: 

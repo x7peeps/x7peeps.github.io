@@ -1,6 +1,6 @@
 ---
+date: "2026-08-17 10:36:28 +0800"
 title: "Agent 互联协议全景：A2A、ACP、ANP 与 MCP 的互补生态"
-date: 2026-08-20 01:42:12 +0800
 weight: 7
 tags: [A2A, MCP, ANP, ACP, Multi-Agent, Agent通信, 互操作性]
 menu:

@@ -1,6 +1,6 @@
 ---
+date: "2026-07-21 20:12:56 +0800"
 title: "AI Agent 可靠性工程：从错误恢复到优雅降级的生产级实践"
-date: 2026-08-20 01:42:12 +0800
 weight: 9
 tags: [AI Agent, 可靠性工程, Circuit Breaker, 优雅降级, 可观测性, 生产部署]
 menu:

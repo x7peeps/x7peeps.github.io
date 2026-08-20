@@ -1,6 +1,6 @@
 ---
+date: "2026-07-24 20:11:42 +0800"
 title: "Agent 记忆架构 2026：从认知科学到生产级实现的技术全景"
-date: 2026-08-20 01:42:12 +0800
 weight: 8
 tags: [Agent Memory, 知识图谱, 向量检索, Mem0, Zep, Letta, LoCoMo, 认知架构]
 menu:

@@ -1,6 +1,6 @@
 ---
+date: "2026-08-20 03:09:19 +0800"
 title: "LLM-as-Judge：原理、偏差分析与实战配置"
-date: 2026-08-20 03:09:19 +0800
 weight: 2
 tags: [LLM-as-Judge, 评测, 偏差分析, 质量评估]
 menu: 

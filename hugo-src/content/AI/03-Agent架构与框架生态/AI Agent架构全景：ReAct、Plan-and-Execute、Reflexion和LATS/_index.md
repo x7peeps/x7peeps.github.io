@@ -1,6 +1,6 @@
 ---
+date: "2026-07-01 12:21:09 +0800"
 title: "AI Agent 架构全景：ReAct、Plan-and-Execute、Reflexion、LATS"
-date: 2026-08-20 01:42:12 +0800
 weight: 1
 tags: [AI Agent, ReAct, Plan-and-Execute, Reflexion, LATS, 架构]
 menu: 

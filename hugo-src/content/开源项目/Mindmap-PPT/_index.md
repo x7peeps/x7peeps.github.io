@@ -1,7 +1,8 @@
 +++
 title = "Mindmap PPT"
-date = "2026-07-16 23:07:31 +0800"
 weight = 10
+date = "2026-07-16 23:07:31 +0800"
+
 +++
 
 <div class="x7-theme-hero">

@@ -1,6 +1,6 @@
 ---
+date: "2026-07-09 00:00:20 +0800"
 title: "模型微调技术全景：LoRA、QLoRA、全参数微调与实战选型指南"
-date: 2026-08-20 01:42:12 +0800
 weight: 2
 tags: [LoRA, QLoRA, PEFT, 全参数微调, DoRA, 模型训练, 微调]
 menu: 

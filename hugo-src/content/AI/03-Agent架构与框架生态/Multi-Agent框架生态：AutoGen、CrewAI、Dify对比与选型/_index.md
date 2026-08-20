@@ -1,6 +1,6 @@
 ---
+date: "2026-07-03 15:17:54 +0800"
 title: "Multi-Agent 框架生态：AutoGen、CrewAI、Dify 对比与选型"
-date: 2026-08-20 01:42:12 +0800
 weight: 5
 tags: [Multi-Agent, AutoGen, CrewAI, Dify, 框架选型]
 menu: 

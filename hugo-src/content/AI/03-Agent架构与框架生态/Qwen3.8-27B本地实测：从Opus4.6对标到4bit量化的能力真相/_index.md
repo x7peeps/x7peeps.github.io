@@ -1,6 +1,6 @@
 ---
+date: "2026-08-20 03:09:19 +0800"
 title: "Qwen3.8-27B 本地实测：从 Opus4.6 对标到 4bit 量化的能力真相"
-date: 2026-08-20 03:09:19 +0800
 weight: 4
 tags: [Qwen3.8, 模型评测, 本地部署, MLX, DFlash2, 量化, 投机解码, Opus]
 menu:

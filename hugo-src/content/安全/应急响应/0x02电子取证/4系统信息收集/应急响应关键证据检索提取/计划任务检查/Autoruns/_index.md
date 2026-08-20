@@ -1,3 +1,8 @@
+---
+title: "Autoruns"
+date: "2026-05-31 01:12:25 +0800"
+---
+
 # Autoruns
 在微软的Sysinternals实用工具（故障诊断工具套装）中，可运行于 Windows XP、Windows Server 2003 和更高版本的 Windows 操作系统。该软件还包括一个相同功能的命令行版本Autorunsc，可以把结果报表以 CSV 格式输出。
 

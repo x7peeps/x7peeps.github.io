@@ -1,6 +1,6 @@
 ---
+date: "2026-08-12 20:52:02 +0800"
 title: "macOS 本地 TTS 朗读服务优化实录：从频繁超时到秒级响应"
-date: 2026-08-20 01:42:12 +0800
 weight: 9
 tags: [TTS, Qwen3-TTS, 性能优化, 稳定性, macOS, Apple Silicon, 系统工程, 超时定位]
 menu:

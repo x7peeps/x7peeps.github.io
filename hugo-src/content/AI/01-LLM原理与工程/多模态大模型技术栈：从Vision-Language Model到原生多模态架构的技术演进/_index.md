@@ -1,6 +1,6 @@
 ---
+date: "2026-07-15 16:21:46 +0800"
 title: "多模态大模型技术栈：从 Vision-Language Model 到原生多模态架构的技术演进"
-date: 2026-08-20 01:42:12 +0800
 weight: 8
 tags: [多模态, Vision-Language Model, VLM, CLIP, SigLIP, GPT-4o, 跨模态理解]
 menu:

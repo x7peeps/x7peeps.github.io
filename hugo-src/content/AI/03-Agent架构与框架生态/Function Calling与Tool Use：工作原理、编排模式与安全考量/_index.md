@@ -1,6 +1,6 @@
 ---
+date: "2026-07-03 15:17:54 +0800"
 title: "Function Calling 与 Tool Use：工作原理、编排模式与安全考量"
-date: 2026-08-20 01:42:12 +0800
 weight: 2
 tags: [Function Calling, Tool Use, Agent, 工具调用, OpenAI, Claude]
 menu: 

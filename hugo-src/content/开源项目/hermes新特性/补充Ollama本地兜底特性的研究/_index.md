@@ -1,6 +1,6 @@
 ---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充Ollama本地兜底特性的研究"
-date: 2026-08-17 14:04:25 +0800
 weight: 5
 tags: ["Hermes", "Ollama", "开源贡献", "PR研究"]
 menu:

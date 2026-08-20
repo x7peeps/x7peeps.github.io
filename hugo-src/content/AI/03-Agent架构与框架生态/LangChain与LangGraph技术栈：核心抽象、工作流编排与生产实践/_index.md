@@ -1,6 +1,6 @@
 ---
+date: "2026-07-01 12:21:09 +0800"
 title: "LangChain 与 LangGraph 技术栈：核心抽象、工作流编排与生产实践"
-date: 2026-08-20 01:42:12 +0800
 weight: 4
 tags: [LangChain, LangGraph, LangSmith, LCEL, Agent, 技术栈]
 menu: 

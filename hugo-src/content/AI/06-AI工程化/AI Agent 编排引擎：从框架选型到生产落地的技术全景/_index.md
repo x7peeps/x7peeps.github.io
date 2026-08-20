@@ -1,6 +1,6 @@
 ---
+date: "2026-07-06 16:05:19 +0800"
 title: "AI Agent 编排引擎：从框架选型到生产落地的技术全景"
-date: 2026-08-20 01:42:12 +0800
 weight: 4
 tags: [AI Agent, Orchestration, LangGraph, CrewAI, n8n, Dify, Temporal]
 menu:

@@ -1,6 +1,6 @@
 ---
+date: "2026-07-03 15:17:54 +0800"
 title: "Embedding 与向量数据库：模型选型、PGVector/Milvus/Chroma 对比"
-date: 2026-08-20 01:42:12 +0800
 weight: 2
 tags: [Embedding, 向量数据库, PGVector, Milvus, Chroma, 选型]
 menu: 

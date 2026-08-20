@@ -1,6 +1,6 @@
 ---
+date: "2026-08-17 10:36:28 +0800"
 title: "模型量化与压缩技术：GPTQ、AWQ、GGUF与FP8的工程实践指南"
-date: 2026-08-20 01:42:12 +0800
 weight: 4
 tags: [量化, Quantization, GPTQ, AWQ, GGUF, FP8, 模型压缩, LLM部署]
 menu:

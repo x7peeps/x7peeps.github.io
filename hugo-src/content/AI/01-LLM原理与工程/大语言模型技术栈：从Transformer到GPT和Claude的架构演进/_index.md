@@ -1,6 +1,6 @@
 ---
+date: "2026-07-01 12:21:09 +0800"
 title: "大语言模型技术栈：从 Transformer 到 GPT/Claude 的架构演进"
-date: 2026-08-20 01:42:12 +0800
 weight: 1
 tags: [LLM, Transformer, GPT, Claude, DeepSeek, 技术栈]
 menu: 
