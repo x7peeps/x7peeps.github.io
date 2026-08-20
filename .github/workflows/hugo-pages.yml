@@ -25,7 +25,14 @@ jobs:
           fetch-depth: 0
 
       - name: Configure git for UTF-8 paths (fix Hugo :git lastmod for CJK paths)
-        run: git config core.quotePath false
+        run: |
+          git config core.quotePath false
+          echo "=== DIAG quotePath ==="
+          git config core.quotePath
+          echo "=== DIAG git -C hugo-src log BianLian (cat -v) ==="
+          git -C hugo-src log --name-only --no-merges --format="format:%h" | grep "BianLian/_index" | head -2 | cat -v
+          echo "=== DIAG rev-parse ==="
+          git -C hugo-src rev-parse --show-cdup
 
       - name: Setup Go
         uses: actions/setup-go@v5
