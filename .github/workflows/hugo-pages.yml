@@ -24,6 +24,9 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Configure git for UTF-8 paths (fix Hugo :git lastmod for CJK paths)
+        run: git config core.quotePath false
+
       - name: Setup Go
         uses: actions/setup-go@v5
         with:

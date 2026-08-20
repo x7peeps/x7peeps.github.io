@@ -1,4 +1,12 @@
-{{- $pages := where site.RegularPages "Type" "ne" "home" -}}
+{{- $pages := slice -}}
+{{- range site.Pages -}}
+  {{- if or (eq .Kind "page") (and (eq .Kind "section") (eq (len .Pages) 0)) -}}
+    {{- $url := lower .RelPermalink -}}
+    {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) (not (strings.Contains $url "/关于/")) -}}
+      {{- $pages = $pages | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 {{- $filtered := slice -}}
 {{- range $pages -}}
   {{- $url := lower .RelPermalink -}}
@@ -10,9 +18,6 @@
 {{- $byLastmod := sort $byPath "Lastmod" "desc" -}}
 {{- $recent := first 18 $byLastmod -}}
 {{- $latestHeatmapDate := now -}}
-{{- if gt (len $byLastmod) 0 -}}
-  {{- $latestHeatmapDate = (index $byLastmod 0).Lastmod -}}
-{{- end -}}
 {{- $heatmapWindowDays := 365 -}}
 {{- $start := $latestHeatmapDate.AddDate -1 0 1 -}}
 {{- $dateMap := dict -}}
