@@ -1,16 +1,16 @@
 {{- $pages := slice -}}
 {{- range site.Pages -}}
   {{- if or (eq .Kind "page") (and (eq .Kind "section") (eq (len .Pages) 0)) -}}
-    {{- $url := lower .RelPermalink -}}
-    {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) (not (strings.Contains $url "/关于/")) -}}
+    {{- $path := .Path -}}
+    {{- if and (not (strings.Contains $path "/privacy")) (not (strings.Contains $path "/policy")) (not (strings.Contains $path "/关于")) -}}
       {{- $pages = $pages | append . -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- $filtered := slice -}}
 {{- range $pages -}}
-  {{- $url := lower .RelPermalink -}}
-  {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) -}}
+  {{- $path := .Path -}}
+  {{- if and (not (strings.Contains $path "/privacy")) (not (strings.Contains $path "/policy")) -}}
     {{- $filtered = $filtered | append . -}}
   {{- end -}}
 {{- end -}}
