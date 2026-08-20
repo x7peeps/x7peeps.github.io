@@ -40,7 +40,7 @@ hideAuthorDate = false
 
 [frontmatter]
 date = ["date", ":fileModTime", ":default"]
-lastmod = ["lastmod", "date", ":git", ":fileModTime", ":default"]
+lastmod = ["lastmod", ":git", "date", ":fileModTime", ":default"]
 
 hideAuthorName = true
 hideAuthorEmail = true
