@@ -33,7 +33,7 @@ test("heatmap rebuilds existing cells when its Hugo data signature changes", asy
 test("heatmap template renders exactly 365 days ending at the newest article date", async () => {
   const html = await readFile(homePartialPath, "utf8");
 
-  assert.match(html, /\$byLastmod := sort \$byPath "Lastmod" "desc"/);
+  assert.match(html, /\$byDate := sort \$byPath "Date" "desc"/);
   assert.match(html, /\$latestHeatmapDate/);
   assert.match(html, /\$start := \$latestHeatmapDate\.AddDate -1 0 1/);
   assert.match(html, /\$heatmapWindowDays := 365/);
