@@ -11,7 +11,7 @@ menu:
 
 # Hermes 记忆插件实战：从 MEMORY.md 到 fact_store——把 AI 记忆做成可审计的工程
 
-> **一句话贡献**：通过 `Holographic` 本地 SQLite + 自研 `memory-sync.sh` 同步管线，把 Hermes Agent 的记忆系统从「凭印象写在 MEMORY.md 里的 2200 字符短文」升级为「可 FTS 全文检索、可批量审计、可隐私打标、跨 session 持久化的实体-事实索引」，并把跨层一致性从人工检查变成 6 项脚本化审计。
+> **一句话贡献**：Hermes 自带的 MEMORY.md 只有 2200 字符硬上限、全文注入无检索、手写易漂移——本文用 `Holographic` 本地 SQLite + 自研 `memory-sync.sh` 同步管线，把记忆容量撑到无限、把全文检索做到 FTS5 秒级、把审计做到脚本 6 项 2 秒跑完，相对 Hermes 自带在 **6 个维度**（容量 / 检索 / 持久化 / 隐私 / 跨 session / 审计）全部升级。
 >
 > **Why it matters**：当你把 AI Agent 跑过 50+ 个 session、改过 6 轮 MEMORY.md、踩过「同步丢了三天的事实」「PII 裸露在外」「Hindsight 装不上」这些坑，你会发现「能记」和「能审计」之间隔着十万八千里。这篇文章把这十万八千里拆给你看。
 >
@@ -19,7 +19,7 @@ menu:
 
 ## 摘要（5 句公式）
 
-1. **我们做什么**：把 Hermes Agent 的记忆从单层 MEMORY.md（2200 字符硬上限）扩成「L1 built-in + L2 fact_store + 同步管线 + 6 项审计」的完整工程系统。
+1. **我们做什么**：把 Hermes Agent 的记忆从单层 MEMORY.md（2200 字符硬上限）扩成「L1 built-in + L2 fact_store + 同步管线 + 6 项审计」的完整工程系统——相对 Hermes 自带在 6 个维度全面升级（容量/检索/持久化/隐私/跨 session/审计）。
 2. **为什么难**：8 个官方 memory provider 选型各有权衡，文件格式与解析器的隐式约定能让你少解析 80% 的内容，FTS 索引不会因为 SQLite 直改而自动 rebuild。
 3. **怎么做**：横评 9 个 provider 选定 `Holographic`（本地 SQLite），写 `memory-sync.sh` 用 SHA256 ledger 做幂等 upsert，给人物/PII 打 `private-person` tag，跑 cron 30 分钟同步一次。
 4. **证据是什么**：实测打通 38 条 facts，0 条孤儿子条，跨层一致性审计 6 项全过；本地模型 `qwen3.6-nothink` 做事实抽取 6.5s/fact（vs `qwen3.8:27b-chat-64k` 的 23.8s/fact + JSON 损坏）。
@@ -28,6 +28,21 @@ menu:
 ---
 
 ## 一、为什么记忆是 Agent 工程的"水电煤"
+
+### 1.0 能力对比：Hermes 自带 vs 本方案（6 维度）
+
+跑 Hermes 半年后，最常被问的问题是"记忆模块相对 Hermes 自带到底强在哪"——一张表说清楚：
+
+| 维度 | Hermes 自带（MEMORY.md + USER.md） | 本方案（L1 + L2 fact_store + sync + audit） | 升级幅度 |
+|---|---|---|---|
+| **容量** | 硬上限 MEMORY.md 2200 字符 / USER.md 1375 字符，超限自动截断 | SQLite 无上限（实测存 38 条 facts 仅 340KB） | ∞ |
+| **检索** | 无，每次 session 全文塞进 context | FTS5 全文检索 + entity probe，按需召回 | 0 → 秒级 |
+| **持久化** | 文件改写覆盖旧版，无历史 | ledger JSONL SHA256 ledger + upsert，变更可追溯 | 无 → 全量 |
+| **隐私** | 全部内容自动注入 context（包含 PII / 偏好） | 关键词表 + `private-person` tag 自动打标，entity probe 可过滤 | 裸奔 → 护栏 |
+| **跨 session** | 每次启动重新加载，事实丢失无记忆 | 38 条 facts 跨 session 持久化，sync cron 30 分钟增量 | 易丢 → 不丢 |
+| **审计** | 无，靠人工检查 MEMORY.md 是否漂移 | 6 项脚本化审计（层数/覆盖/hash/链接/对账/PII），2 秒跑完 | 无 → 自动 |
+
+**一句话总结**：Hermes 自带是"短文 + 每次重读"，本方案是"无限容量 + 按需召回 + 跨 session 持久 + 自动审计"。
 
 ### 1.1 痛点：从"AI 健忘"到"工程债"
 
@@ -593,6 +608,17 @@ PRIVACY_KEYWORDS='<私有关键词表, 与本机/本人强绑定, 不在公开�
 ---
 
 ## 九、运行数据：从 0 到 38 条 facts 的真实路径
+
+### 9.0 为什么这些数字能证明"相对 Hermes 自带更强"
+
+读者最常问：38 条 facts 听起来不多，Hermes 自带 MEMORY.md 几十条 entry 也能写——区别在哪？答：**数量级不是关键，能力维度才是**。38 条 facts 跑出 6 项审计全过、跨 session 召回秒级、隐私自动护栏，这些能力在 Hermes 自带的 MEMORY.md 体系里**结构性不可能**：
+
+- **MEMORY.md 2200 字符上限**→ 你写不下"38 条"这种东西，超过自动截断
+- **全文注入 context**→ 哪怕你硬写进 38 条，每次启动 LLM 也只看到 2200 字符那一段
+- **无 FTS 检索**→ 跨 38 条里找"PR 铁律那条"只能靠肉眼翻
+- **无审计**→ 改了哪条、漏没漏、漂没漂，全凭人脑记
+
+所以这 38 条 facts 的意义不在"数量"，而在"用 SQLite + sync + audit 把 6 个原本不可能的能力跑通了"——下一节开始讲路径。
 
 ### 9.1 时间线
 
