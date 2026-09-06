@@ -75,7 +75,7 @@ tags: ["Agent", "TencentDB", "Hermes", "memory", "开源横评", "长期记忆"]
 
 ### 1.2.1 一张图看懂 TencentDB 架构
 
-![TencentDB Agent Memory 4 层记忆 + 3 类资产架构图](/腾讯开源的-agent-记忆插件能用在-hermes-上吗一份诚实横评/01-arch.png)
+![TencentDB Agent Memory 4 层记忆 + 3 类资产架构图](/tdai-memory-article/01-arch.png)
 
 ### 1.3 部署形态
 
@@ -111,9 +111,9 @@ cp .env.example .env
 
 ---
 
-![TencentDB vs Holographic 对比](/腾讯开源的-agent-记忆插件能用在-hermes-上吗一份诚实横评/04-vs-holographic.png)
+![TencentDB vs Holographic 对比](/tdai-memory-article/04-vs-holographic.png)
 
-![短时记忆压缩流程：tool 输出 → offload → Mermaid 紧凑图](/腾讯开源的-agent-记忆插件能用在-hermes-上吗一份诚实横评/02-flow.png)
+![短时记忆压缩流程：tool 输出 → offload → Mermaid 紧凑图](/tdai-memory-article/02-flow.png)
 
 ## 2. Hermes 集成现状：两个硬伤
 
@@ -205,7 +205,7 @@ Claude Code / CodeBuddy 这些 Tencent 的主客户有 SDK 自动管 conversatio
 
 > 一个具体的例子：Hermes 的 `delegate_task(goal="...", context="...")` 派一个 coder 子 agent 去实现功能，coder 子 agent 跑出来的对话是**独立的 Hermes session**，它**不会继承**父 agent 在 TencentDB 控制台里选的 `x-task-id`。结果要么 bypass（最坏）、要么 coder 子 agent 的记忆串到 reviewer agent 的 task 上（次坏）。TencentDB 的"团队任务边界"在 Hermes 的"自动多 agent"面前**结构性失效**。
 
-![Hermes delegate_task 子 agent 在 TencentDB 上的 bypass 流程](/腾讯开源的-agent-记忆插件能用在-hermes-上吗一份诚实横评/03-hermes-limitation.png)
+![Hermes delegate_task 子 agent 在 TencentDB 上的 bypass 流程](/tdai-memory-article/03-hermes-limitation.png)
 
 ### 2.6 翻译成实际使用影响
 
@@ -242,7 +242,7 @@ Hermes 官方文档列出 8 个内置 memory provider（外加 1 个厂商配套
 
 > 重要提醒：**Hermes 不是"单 agent 框架"**。Hermes 原生提供 `delegate_task`（spawn 子 agent）、`kanban`（多 agent swarm 并行）、`profile`（一 install 多 bot 独立 memory/config/secrets）、`async_delegation`（子 agent 不阻塞父 chat）。它是**自动多 agent 平台**。所以下面"对比 TencentDB"时，要看 TencentDB 能否支持 Hermes 的自动多 agent 行为——答案是**当前版本不能**，详见 §2.5。
 
-![Agent 记忆方案适配度热力矩阵：6 个 provider × 6 维度评分](/腾讯开源的-agent-记忆插件能用在-hermes-上吗一份诚实横评/05-matrix.png)
+![Agent 记忆方案适配度热力矩阵：6 个 provider × 6 维度评分](/tdai-memory-article/05-matrix.png)
 
 ### 3.2 与 TencentDB 设计哲学最像的两个 —— 详细对比
 
