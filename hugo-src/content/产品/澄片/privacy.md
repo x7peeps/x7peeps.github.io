@@ -2,8 +2,10 @@
 title: "澄片隐私政策"
 description: "澄片 iOS 的隐私政策。"
 date: 2026-09-23T00:00:00+08:00
-lastmod: 2026-09-23T00:00:00+08:00
+lastmod: 2026-09-24T00:00:00+08:00
 draft: false
+aliases:
+  - /lrse-ios/
 ---
 
 # 澄片隐私政策

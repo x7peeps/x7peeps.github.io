@@ -11,6 +11,18 @@ date = "2026-06-01 22:36:25 +0800"
 
 <div class="x7-promo-strip">
   <div>
+    <span class="x7-promo-kicker">iOS App · Preparing for launch</span>
+    <h2>澄片</h2>
+    <p>一款本地优先的 RAW 摄影编辑器。从导入、选片和无损调色，到预设、批量同步与导出，把专业摄影工作流收进 iPhone 与 iPad。</p>
+    <div class="x7-promo-actions">
+      <a class="x7-promo-button x7-promo-button-primary" href="/产品/澄片/">查看产品详情</a>
+      <a class="x7-promo-button" href="/产品/澄片/privacy/">隐私政策</a>
+    </div>
+  </div>
+</div>
+
+<div class="x7-promo-strip">
+  <div>
     <span class="x7-promo-kicker">iOS App · Coming Soon</span>
     <h2>灵感工坊</h2>
     <p>让手机成为灵感的第一入口。快速记录 → AI 共创 → 结构化输出，一站式灵感管理引擎。面向创作者与产品经理的 iOS 原生应用。</p>
