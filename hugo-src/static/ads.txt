@@ -1,0 +1,5 @@
+# ads.txt — x7peeps.com
+# IAB Authorized Digital Sellers 清单。
+# 当前未接入任何广告联盟；接入后在此登记卖家授权行，格式:
+#   google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# 详见 https://iabtechlab.com/ads-txt/
