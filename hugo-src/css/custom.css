@@ -467,3 +467,17 @@
     animation: none;
   }
 }
+
+/* ===== 安全板块合规声明 (2026-10-07, T00ls案例自查) ===== */
+.x7-compliance-notice{
+  margin: 1.1rem 0 1.4rem;
+  padding: .8rem 1rem;
+  border-left: 3px solid var(--ACCENT-_COLOR, #7c9cff);
+  background: color-mix(in srgb, var(--ACCENT-COLOR, #7c9cff) 7%, transparent);
+  border-radius: 0 8px 8px 0;
+  font-size: .86em;
+  line-height: 1.75;
+  opacity: .92;
+}
+.x7-compliance-notice p{ margin: 0; }
+.x7-compliance-notice a{ text-decoration: underline; }

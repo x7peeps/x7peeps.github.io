@@ -9,6 +9,7 @@
   <div class="x7-article__layout">
     <div class="x7-article__prose" data-x7-article-content>
       {{ partial "content-lead.html" . | safeHTML }}
+      {{ partial "x7/compliance-notice.html" . }}
       {{ $content | safeHTML }}
     </div>
   </div>
