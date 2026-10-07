@@ -1,9 +1,17 @@
-{{- /* 安全板块合规声明：仅对「渗透测试/威胁情报」板块文章页渲染。
+{{- /* 安全板块合规声明：仅对「安全/渗透测试」「安全/威胁情报」下的文章页渲染。
+  注意：本站文章用 _index.md（Kind=section），不能用 .Kind=="page" 判断；
+  .Section 返回一级目录"安全"，必须用 .File.Path 前缀匹配二级板块。
   依据 2026-10-07 T00ls 法律讲堂六十五期案例（售卖攻击向 Skill 技能包涉
   刑法 285 条第 3 款）自查：本站内容以防御研究/应急响应/蓝队检测为一贯立场，
   该声明是显式合规动作而非免责挡箭牌。 */ -}}
-{{- $riskSections := slice "渗透测试" "威胁情报" -}}
-{{- if and $riskSections (in $riskSections .Section) (eq .Kind "page") -}}
+{{- $riskPrefixes := slice "安全/渗透测试/" "安全/威胁情报/" -}}
+{{- $isRisk := false -}}
+{{- with .File -}}
+  {{- range $p := $riskPrefixes -}}
+    {{- if hasPrefix $.File.Path $p -}}{{- $isRisk = true -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $isRisk -}}
 <aside class="x7-compliance-notice" data-x7-compliance-notice>
   <p><strong>合规与授权边界</strong>：本文属于安全研究知识沉淀，面向<strong>已获书面授权</strong>的渗透测试、攻防演练与应急响应场景。文中涉及的漏洞原理、攻击路径与检测方法仅限在授权范围内验证与复现，<strong>未经授权对任何系统实施文中技术属违法行为</strong>。历史漏洞（含 CVE）复现请在本地靶场或自有环境完成，请勿对未授权目标发起任何测试请求。站点立场：技术探边界，法律守底线，<a href="/关于/index.html">关于本站</a>。
   </p>
