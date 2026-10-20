@@ -67,22 +67,7 @@ Codex 的 #36596 是同一模板的第三次出现:`Codex repeatedly terminates 
 
 把这类故障画成时间线,会得到下面这张图:
 
-```mermaid
-graph TD
-  T0["T0 orchestrator dispatch"]
-  T1["T1 subagent stdout buffer full"]
-  T2["T2 orchestrator 截断 GOAL_SUCCESS_void"]
-  T3["T3 subagent timeout no_retry"]
-  T4["T4 dashboard 全绿"]
-  T0 -.失败路径.-> T2
-  T1 -.失败路径.-> T2
-  T2 -.成功归一化.-> T4
-  T3 -.不可见.-> T4
-  classDef fail stroke:#b60205,stroke-width:2px,fill:#ffeef0;
-  classDef ok stroke:#0e8a16,stroke-width:2px,fill:#e6ffec;
-  class T2,T3 fail;
-  class T4 ok;
-```
+![Mermaid: subagent 隐身丢包时间线](fig_mermaid_subagent.png)
 
 > 图 2·subagent "隐身丢包" 时间线;成功/失败统一归一化为 GOAL_SUCCESS,前端/dashboard 全绿
 
@@ -165,7 +150,7 @@ Codex 的 #24550 在第三组里属于"上下文不一致被假装一致"。这�
 
 **在观察自己这一层**,每一家 agent 运行时都应保留"可被外部观察的失败模式目录"。OpenClaw 的 `clawsweeper:no-new-fix-pr` label、Claude Code 的 `area:model` / `area:sandbox` label、Codex 的 `model-behavior` label 都是这类目录。读这些目录的人能学到:防御层在 3 个月窗口里会以同样的失败模式再出现一次。把这些目录里的 issue 拍成月度回归列表(rolling 30 days),而不是按版本节奏关闭,是把信任债的"未到期"票据可视化出来的关键。
 
-回到 10 月 17 日的 GitHub Issue 流——这一周集中清算的不是哪家厂商"模型不行",而是各家 agent 运行时在交付速度与防御质量之间慢慢积累的隐性账。三组事故一起读得到的信号是:agent 运行时的可靠性建设,已经从"模型调用层的去重与回放",跨到了"运行时身份的常量级锁"。代理领域出现 P1 级别的故障不再是"model 失忆",而是"运行时不知道自己是谁"。如果接下来几个月的产品节奏继续往"更长上下文、更强 orchestrator"上推,那么这一份月度回归列表只会越来越密。把每一份都拍成可以复核的 contract,把每一次失败都写进 issue 而不是热修,大概是当下这个生态还能持续向前的小小前提。
+回到 10 月 17 日的 GitHub Issue 流——这一周集中清算的不是哪家厂商"模型不行",而是各家 agent 运行时在交付速度与防御质量之间慢慢积累的隐性账。三组事故一起读得到的信号是:agent 运行时的可靠性建设,已经从"模型调用层的去重与回放",跨到了"运行时身份的常量级锁"。代理领域出现 P1 级别的故障不再是"model 失忆",而是"运行时不知道自己是谁"。如果接下来几个月的产品节奏继续往"更长上下文、更强 orchestrator"上推,那么这一份月度回归列表只会越来越密。把每一份都拍成可以复核的 contract,把每一次失败都写进 issue 而不是热修,大概是当下这个生态还能持续向前的小小前提。所谓"运行时不知道自己是谁",落到 11 月的产品节奏里,常常意味着三件不起眼的事:一条 key 在不该被 bench 的时候入黑、一次 dispatch 在不该被回退时被回退、一条策略在不该被旁路时被旁路——三者加在一起就是运行时让自家运行时开始失去真相来源,而失去真相来源最快的方式,就是把每条状态都重做一遍。
 
 所谓月度回归列表,有可操作的边界——比如把每个发行仓库(Anthropic claude-code、OpenAI codex、Google gemini-cli、AnomalyCo opencode、Anthropic skills、NousResearch hermes-agent、OpenClaw、QwenLM qwen-code)按月拉到 issue 列表,按 label group(group by `type/bug`、`area:permission`、`type/security`、`regression/x.y`)分组,再按根因聚类(`state identity missing`、`over-eager cleanup`、`hot path bypass`、`channel downgrade`、`result normalization`)。这五类就是上文三组事故的拆解。从这一刻起,任何一家 agent 运行时在它的下一波 release 之前,先把这些 clusters 用同一份对照表跑一遍——能复现的 issue 数 ≠ bug 数,而是"信任债票据"清单;它会从这一周的 35 张变成下个月的 N 张,而 N 的增长曲线就是这一年生态的真实心跳。
 
