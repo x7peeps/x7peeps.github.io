@@ -1,11 +1,15 @@
----
-date: "2026-08-17 10:34:57 +0800"
 title: "补充本地VoxCPM语音克隆provider特性的研究"
 weight: 22
 tags: ["Hermes", "TTS", "VoxCPM", "开源贡献", "PR研究"]
 menu:
   main:
+    parent: "开源项目"title: "补充本地VoxCPM语音克隆provider特性的研究"
+weight: 22
+tags: ["Hermes", "TTS", "VoxCPM", "开源贡献", "PR研究"]
+menu:
+  main:
     parent: "开源项目"
+date: 2026-08-17T10:34:57+08:00
 ---
 
 > **PR 地址**：[NousResearch/hermes-agent#82961](https://github.com/NousResearch/hermes-agent/pull/82961) · 新增 VoxCPM 原生本地 TTS provider（30 语种、语音设计 + 克隆、MPS 加速）

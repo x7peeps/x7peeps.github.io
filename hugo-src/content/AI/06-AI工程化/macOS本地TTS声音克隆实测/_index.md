@@ -1,5 +1,4 @@
 ---
-date: "2026-08-12 10:07:29 +0800"
 title: "Mac 苹果芯片声音克隆方案横评：8 个主流方案实测，谁最适合你？"
 weight: 9
 tags: [TTS, 声音克隆, Voice Cloning, macOS, Apple Silicon, 评测, VoxCPM, CosyVoice, Qwen3-TTS, XTTS]

@@ -1,11 +1,15 @@
----
-date: "2026-08-17 10:34:57 +0800"
 title: "补充技能发现与幽灵建议特性的研究"
 weight: 26
 tags: ["Hermes", "技能发现", "Desktop", "开源贡献", "PR研究"]
 menu:
   main:
+    parent: "开源项目"title: "补充技能发现与幽灵建议特性的研究"
+weight: 26
+tags: ["Hermes", "技能发现", "Desktop", "开源贡献", "PR研究"]
+menu:
+  main:
     parent: "开源项目"
+date: 2026-08-17T10:34:57+08:00
 ---
 
 > **PR 地址**：[NousResearch/hermes-agent#86940](https://github.com/NousResearch/hermes-agent/pull/86940) · 技能发现：幽灵建议、悬停描述与启用开关（Desktop + CLI）

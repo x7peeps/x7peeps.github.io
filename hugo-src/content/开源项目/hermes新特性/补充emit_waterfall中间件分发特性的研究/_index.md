@@ -1,11 +1,15 @@
----
-date: "2026-08-17 10:34:57 +0800"
 title: "补充emit_waterfall中间件分发特性的研究"
 weight: 24
 tags: ["Hermes", "Hooks", "中间件", "开源贡献", "PR研究"]
 menu:
   main:
+    parent: "开源项目"title: "补充emit_waterfall中间件分发特性的研究"
+weight: 24
+tags: ["Hermes", "Hooks", "中间件", "开源贡献", "PR研究"]
+menu:
+  main:
     parent: "开源项目"
+date: 2026-08-17T10:34:57+08:00
 ---
 
 > **PR 地址**：[NousResearch/hermes-agent#85370](https://github.com/NousResearch/hermes-agent/pull/85370) · 为 gateway 事件钩子增加 Cordis 风格 around-middleware 分发模式 emit_waterfall

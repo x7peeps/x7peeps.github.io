@@ -1,11 +1,15 @@
----
-date: "2026-08-17 10:34:57 +0800"
 title: "补充侧边栏批量归档交互特性的研究"
 weight: 15
 tags: ["Hermes", "桌面端", "侧边栏", "批量归档", "开源贡献", "PR研究"]
 menu:
   main:
+    parent: "开源项目"title: "补充侧边栏批量归档交互特性的研究"
+weight: 15
+tags: ["Hermes", "桌面端", "侧边栏", "批量归档", "开源贡献", "PR研究"]
+menu:
+  main:
     parent: "开源项目"
+date: 2026-08-17T10:34:57+08:00
 ---
 
 > **PR 地址**：[NousResearch/hermes-agent#68054](https://github.com/NousResearch/hermes-agent/pull/68054) · 修整侧边栏点击语义：ctrl 固定、shift 多选、一次归档一批

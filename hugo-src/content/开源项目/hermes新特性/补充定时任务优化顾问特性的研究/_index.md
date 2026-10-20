@@ -1,11 +1,15 @@
----
-date: "2026-08-17 10:34:57 +0800"
 title: "补充定时任务优化顾问特性的研究"
 weight: 14
 tags: ["Hermes", "定时任务", "优化顾问", "cron", "开源贡献", "PR研究"]
 menu:
   main:
+    parent: "开源项目"title: "补充定时任务优化顾问特性的研究"
+weight: 14
+tags: ["Hermes", "定时任务", "优化顾问", "cron", "开源贡献", "PR研究"]
+menu:
+  main:
     parent: "开源项目"
+date: 2026-08-17T10:34:57+08:00
 ---
 
 > **PR 地址**：[NousResearch/hermes-agent#61588](https://github.com/NousResearch/hermes-agent/pull/61588) · 给 cron 任务装一台 5 维自诊断仪

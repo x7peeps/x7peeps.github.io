@@ -1,11 +1,15 @@
----
-date: "2026-08-17 10:34:57 +0800"
 title: "补充本地MLX流式TTS特性的研究"
 weight: 1
 tags: ["Hermes", "TTS", "MLX", "开源贡献", "PR研究"]
 menu:
   main:
+    parent: "开源项目"title: "补充本地MLX流式TTS特性的研究"
+weight: 1
+tags: ["Hermes", "TTS", "MLX", "开源贡献", "PR研究"]
+menu:
+  main:
     parent: "开源项目"
+date: 2026-08-17T10:34:57+08:00
 ---
 
 > **PR 地址**：[NousResearch/hermes-agent#85071](https://github.com/NousResearch/hermes-agent/pull/85071) · 本地 MLX Qwen3-TTS 流式 provider（qwen3tts-mlx）
@@ -109,4 +113,4 @@ Hermes 上游已经定义好 `StreamingTTSProvider` 抽象基类（`tools/tts_st
 
 ---
 
-*本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 PR 实测记录。*
+*本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 

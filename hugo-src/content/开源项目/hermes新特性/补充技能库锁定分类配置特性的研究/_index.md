@@ -1,11 +1,15 @@
----
-date: "2026-08-17 10:34:57 +0800"
 title: "补充技能库锁定分类配置特性的研究"
 weight: 12
 tags: ["Hermes", "技能库", "curator", "锁定分类", "开源贡献", "PR研究"]
 menu:
   main:
+    parent: "开源项目"title: "补充技能库锁定分类配置特性的研究"
+weight: 12
+tags: ["Hermes", "技能库", "curator", "锁定分类", "开源贡献", "PR研究"]
+menu:
+  main:
     parent: "开源项目"
+date: 2026-08-17T10:34:57+08:00
 ---
 
 > **PR 地址**：[NousResearch/hermes-agent#47108](https://github.com/NousResearch/hermes-agent/pull/47108) · 用一条配置豁免整个技能分类，告别逐个 pin

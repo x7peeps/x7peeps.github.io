@@ -1,11 +1,15 @@
----
-date: "2026-08-17 10:34:57 +0800"
 title: "补充超能力技能套件特性的研究"
 weight: 7
 tags: ["Hermes", "技能套件", "开源贡献", "PR研究"]
 menu:
   main:
+    parent: "开源项目"title: "补充超能力技能套件特性的研究"
+weight: 7
+tags: ["Hermes", "技能套件", "开源贡献", "PR研究"]
+menu:
+  main:
     parent: "开源项目"
+date: 2026-08-17T10:34:57+08:00
 ---
 
 > **PR 地址**：[NousResearch/hermes-agent#46524](https://github.com/NousResearch/hermes-agent/pull/46524) · 从 obra/superpowers 补齐三个开发方法论技能
@@ -81,20 +85,4 @@ PR body 记录了技能扫描器的验证结果：
 
 ## 四、能力边界
 
-- 三个技能是**流程约束而非代码约束**：门禁与铁律依赖 agent 在运行中遵循技能指引，无法在编译期或运行时被强制；技能被加载但不被遵守时，约束形同虚设，验证链条的可靠性最终取决于 agent 的执行纪律；
-- 适配基线是 obra/superpowers v5.1.0，上游后续版本的新增内容未被跟踪，存在版本漂移风险；
-- 技能只定义了流程，未定义失败时的兜底路径——例如设计多次被否、验证反复失败时的处置策略；
-- 纯技能形态意味着没有自动化钩子：验证命令的识别与运行完全依赖 agent 的现场判断，命令选择错误时验证结果可能失真；
-- 三个技能与既有 5 个 superpowers 技能的组合使用顺序（何时由 brainstorming 转入 writing-plans 等）依赖用户或 agent 自行编排，PR 未定义衔接规则。
-
-## 五、PR 信息
-
-- **PR 地址**：https://github.com/NousResearch/hermes-agent/pull/46524
-- **改动规模**：+578 / -0，3 个文件（brainstorming +242 行、verification-before-completion +139 行、finishing-a-development-branch +197 行）
-- **状态**：closed
-- **提交时间**：2026-06-15
-- **来源**：改编自 obra/superpowers v5.1.0（MIT 许可）
-
----
-
-*本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 PR 实测记录。*
+- 三个技能

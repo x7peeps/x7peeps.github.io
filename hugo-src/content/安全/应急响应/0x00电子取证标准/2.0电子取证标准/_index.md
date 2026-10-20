@@ -1,9 +1,11 @@
----
-date: "2026-05-31 01:12:25 +0800"
 title: "2.0电子取证标准"
 menu: 
   main: 
+    parent: "0x00电子取证标准复"title: "2.0电子取证标准"
+menu: 
+  main: 
     parent: "0x00电子取证标准复"
+date: 2026-05-31T01:12:25+08:00
 ---
 
 # 第一部分：国内的相关标准规范
@@ -78,105 +80,3 @@ menu:
 14. SF/T 0075—2020 《网络文学作品相似性检验技术规范》[下载](http://www.moj.gov.cn/news/download/file/file/20200604/1591255954644046011.pdf)
 15. SF/T 0076-2020 《电子数据存证技术规范》[下载](http://www.ssfjd.com/files/hb2020/0076f-电子数据存证技术规范.pdf)
 16. SF/T 0077-2020《汽车电子数据检验技术规范》[下载](http://www.ssfjd.com/files/hb2020/0077f-汽车电子数据检验技术规范.pdf)
-
-# 其他文件
-
-1. 《中华全国律师协会律师办理电子数据证据业务操作指引》
-
-# 第二部分：国外的相关标准规范
-
-## ISO/IEC电子数据取证标准体系
-
-1. ISO/IEC 27035：2011《信息技术-安全技术-信息安全事件管理》
-2. ISO/IEC 27037:2012《信息技术-安全技术-电子证据识别. 收集. 获取和保存指南》
-3. ISO/IEC 27038：2014《信息技术-安全技术-数字化修订详述》
-4. ISO/IEC 27040：2015《信息技术-安全技术-存储安全》
-5. ISO/IEC 27041《信息技术-安全技术-调查方法适宜性充分性保障指南》
-6. ISO/IEC 27042《信息技术-安全技术-电子证据分析解释指南》
-7. ISO/IEC 27043:2015 《信息技术-安全技术-信息技术-安全技术-调查原则和过程》
-8. ISO/IEC 27044《信息技术-安全技术-安全信息和事件管理指南》
-9. ISO/IEC 27050《信息技术-安全技术-电子证据发现》
-10. ISO/IEC 30121：2015《信息技术-电子数据取证风险架构管理》
-
-## SWGDE-手机
-
-1. SWGDE Best Practices for Chip-Off [2016-02-08 V1.0下载](https://www.swgde.org/documents/Current Documents/SWGDE Best Practices for Chip-Off)
-2. SWGDE Best Practices for Collection of Damaged Mobile Devices [2016-02-08 V1.1下载](https://www.swgde.org/documents/Current Documents/SWGDE Best Practices for Collection of Damaged Mobile Devices)
-3. SWGDE Best Practices for Examining Mobile Phones Using JTAG [2015-09-29 V1.0下载](https://www.swgde.org/documents/Current Documents/SWGDE Best Practices for Examining Mobile Phones Using JTAG)
-4. SWGDE Best Practices for Mobile Phone Forensics [2013-02-11 V2.0下载](https://www.swgde.org/documents/Current Documents/SWGDE Best Practices for Mobile Phone Forensics)
-5. SWGDE Core Competencies for Mobile Phone Forensics [2013-02-11 V1.0下载](https://www.swgde.org/documents/Current Documents/SWGDE Core Competencies for Mobile Phone Forensics)
-
-## SWGDE-计算机
-
-1. SWGDE Best Practices for Computer Forensic Acquisitions [2018-04-25 V1.0下载](https://www.swgde.org/documents/Current Documents/SWGDE Best Practices for Computer Forensic Acquisitions)
-2. SWGDE Capture of Live Systems [2014-09-05 V2.0下载](https://www.swgde.org/documents/Current Documents/SWGDE Capture of Live Systems)
-3. SWGDE Best Practices for Handling Damaged Hard Drives [2014-09-05 V1.0下载](https://www.swgde.org/documents/Current Documents/SWGDE Best Practices for Handling Damaged Hard Drives)
-4. SWGDE Best Practices for Computer Forensics [2014-09-05 V3.1下载](https://www.swgde.org/documents/Current Documents/SWGDE Best Practices for Computer Forensics)
-
-## 美国国家标准于技术研究院（NIST）
-
-1. Guidelines on PDA Forensics [下载](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-72.pdf)
-   2004年11月1日发布，NIST SP 800-72
-2. Guide to Integrating Forensic Techniques into Incident Response [下载](https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-86.pdf)
-   2006年9月1日发布，NIST SP 800-86
-3. Guidelines on Mobile Device Forensic [下载](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-101r1.pdf)
-   2014年5月15日发布，NIST SP 800-101 Revision 1
-
-## 美国联邦司法部
-
-1. Digital Evidence in the Courtroom A Guide for Law Enforcement and Prosecutors [下载](https://www.ncjrs.gov/pdffiles1/nij/211314.pdf)
-   《法庭中的数据证据：执法部门及检察官操作守则》
-2. Electronic Crime Scene Investigation An On-the-Scene Reference for First Responders [下载](https://www.ncjrs.gov/pdffiles1/nij/227050.pdf)
-   《电子犯罪现场调查：第一响应者的现场参考》
-3. Electronic CrimeScene Investigation A Guide for First Responders [第二版下载](https://www.ncjrs.gov/pdffiles1/nij/219941.pdf)
-   《电子犯罪现场调查：第一响应者指南》
-4. Forensic Examination of Digital Evidence A Guide for Law Enforcement [下载](https://www.ncjrs.gov/pdffiles1/nij/199408.pdf)
-   《数字证据的司法审查：执法人员指南》
-5. investigations involving the internet and computer networks [下载](https://www.ncjrs.gov/pdffiles1/nij/210798.pdf)
-   《涉及互联网和计算机网络的调查》
-
-## 美国试验与材料学会国际组织
-
-1. Standard Guide for Education and Training in Computer Forensics [查看详情](https://www.astm.org/Standards/E2678.htm)
-   ASTM E2678-09(2014)，2014年最后修订
-2. StandardPractice for Computer Forensics [查看详情](https://www.astm.org/Standards/E2763.htm)
-   ASTM E2763-10，2010年最后修订
-3. Standard Guide for Forensic Digital Image Processing [查看详情](https://www.astm.org/Standards/E2825.htm)
-   ASTM E2825-18，2018年最后修订
-4. Standard Guide for Establishing Confidence in Digital Forensic Results by Error Mitigation Analysis [查看详情](https://www.astm.org/Standards/E3016.htm)
-   ASTM E3016-15e1，2015年最后修订
-5. Standard Guide for Core Competencies for Mobile Phone Forensics [查看详情](https://www.astm.org/Standards/E3046.htm)
-   ASTM E3046-15，2015年最后修订
-6. Standard Practice for Examining Magnetic Card Readers [查看详情](https://www.astm.org/Standards/E3017.htm)
-   ASTM E3017-15，2015年最后修订
-
-## 其他
-
-1. Good Practice Guide for Digital Evidence [下载](http://www.digital-detective.net/digital-forensics-documents/ACPO_Good_Practice_Guide_for_Digital_Evidence_v5.pdf)
-   英国警察协会（ACPO）《数字证据良好操作指南》
-2. Best Practices For Seizing Electronic Evidence v.3 - A Pocket Guidefor First Responders [下载](http://www.crime-scene-investigator.net/SeizingElectronicEvidence.pdf)
-   美国特勤局，2007年发布
-3. Searching and Seizing Computers and Obtaining Electronic Evidence in Criminal Investigations [下载](https://www.justice.gov/sites/default/files/criminal-ccips/legacy/2015/01/14/ssmanual2009.pdf)
-
-# 第三部分：参考资料及说明
-
-1. [取证中国论坛](http://www.cnforensics.com/)
-2. [中国司法部网站](http://www.moj.gov.cn/)
-3. 微信公众号“电子数据取证与鉴定”
-4. [美国联邦司法部网站](https://www.ncjrs.gov/)
-5. [数字证据科学工作组](https://www.swgde.org/)
-6. [美国国家标准于技术研究院](https://csrc.nist.gov/publications)
-7. 百度百科“美国电子数据取证标准”词条
-   **没有附下载连接的部分标准规范可邮件联系我获取，详见“关于”页面**
-
-- 本文最初发布在微信公众号“cnforensics”，发布时间为2016年5月23日。
-- 2018年3月11日发布在本人微信公众号“取证杂谈”。
-- 2018年9月29日更新内容：更新了部分失效的下载链接
-- 2018年11月6日更新内容：增加了2018年5个公共安全标准
-- 2018年11月9日更新内容：增加了遗漏的GA/T 1475-2018 及GA/T 1480-2018两个标准，增加了2018年3个司法鉴定技术规范
-- 2019年5月29日更新内容：更新并补全了司法鉴定技术规范的下载链接
-- 2019年7月4日更新内容：增加了公共安全行业标准GA/T 1554-2019
-- 2019年7月27日更新内容：增加了GA/T 1564-2019等6个公共安全行业标准
-- 2019年10月24日更新内容：增加了GA/T 1663-2019和GA/T 1664-2019两个公共安全行业标准
-- 2020年6月25日更新内容：增加了GB/T 31500-2015、GA/T 1713-2020、SF/T 0076-2020、SF/T 0077-2020四个标准
-- 2021年3月9日更新内容：增加了GB/T 39321-2020和SF/T 0075—2020两个标准

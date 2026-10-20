@@ -1,9 +1,11 @@
----
-date: "2026-05-31 01:12:25 +0800"
 title: "《考试脑科学》池谷裕二"
 menu: 
   main: 
+    parent: "阅读"title: "《考试脑科学》池谷裕二"
+menu: 
+  main: 
     parent: "阅读"
+date: 2026-05-31T01:12:25+08:00
 ---
 # 《考试脑科学》池谷裕二
 
@@ -310,4 +312,4 @@ menu:
 
 - 持续努力才是最重要的学习新的。因为努力和成果是成指数级增长的。
 
-![preview](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/阅读/池谷裕二《考试脑科学》读书笔记/v2-539d6ab22db527e43a14fa7ce2bdd13b_r.jpg)
+![preview]

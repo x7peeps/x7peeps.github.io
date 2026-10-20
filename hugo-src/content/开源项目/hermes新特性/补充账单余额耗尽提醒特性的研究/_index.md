@@ -1,11 +1,15 @@
----
-date: "2026-08-17 10:34:57 +0800"
 title: "补充账单余额耗尽提醒特性的研究"
 weight: 4
 tags: ["Hermes", "账单提醒", "开源贡献", "PR研究"]
 menu:
   main:
+    parent: "开源项目"title: "补充账单余额耗尽提醒特性的研究"
+weight: 4
+tags: ["Hermes", "账单提醒", "开源贡献", "PR研究"]
+menu:
+  main:
     parent: "开源项目"
+date: 2026-08-17T10:34:57+08:00
 ---
 
 > **PR 地址**：[NousResearch/hermes-agent#45004](https://github.com/NousResearch/hermes-agent/pull/45004) · provider 余额耗尽后的每日温和账单提醒
@@ -90,10 +94,4 @@ PR body 未提供测试套件数据或真机验证记录，本节记录设计意
 ## 五、PR 信息
 
 - **PR 地址**：https://github.com/NousResearch/hermes-agent/pull/45004
-- **改动规模**：+294 / -5，11 个文件（新增 agent/billing_notice.py，修改 conversation_loop.py、credential_pool.py 等）
-- **状态**：closed
-- **提交时间**：2026-06-12
-
----
-
-*本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 PR 实测记录。*
+- **改动规模**：+294 / -5，11 个文件（新增 agent/billing

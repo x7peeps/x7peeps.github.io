@@ -1,28 +1,31 @@
 {{- $pages := slice -}}
 {{- range site.Pages -}}
   {{- if or (eq .Kind "page") (and (eq .Kind "section") (eq (len .Pages) 0)) -}}
-    {{- $path := .Path -}}
-    {{- if and (not (strings.Contains $path "/privacy")) (not (strings.Contains $path "/policy")) (not (strings.Contains $path "/关于")) -}}
+    {{- $url := lower .RelPermalink -}}
+    {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) (not (strings.Contains $url "/关于/")) -}}
       {{- $pages = $pages | append . -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- $filtered := slice -}}
 {{- range $pages -}}
-  {{- $path := .Path -}}
-  {{- if and (not (strings.Contains $path "/privacy")) (not (strings.Contains $path "/policy")) -}}
+  {{- $url := lower .RelPermalink -}}
+  {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) -}}
     {{- $filtered = $filtered | append . -}}
   {{- end -}}
 {{- end -}}
 {{- $byPath := sort $filtered "RelPermalink" "asc" -}}
-{{- $byDate := sort $byPath "Date" "desc" -}}
-{{- $recent := first 18 $byDate -}}
+{{- $byLastmod := sort $byPath "Lastmod" "desc" -}}
+{{- $recent := first 18 $byLastmod -}}
 {{- $latestHeatmapDate := now -}}
+{{- if gt (len $byLastmod) 0 -}}
+  {{- $latestHeatmapDate = (index $byLastmod 0).Lastmod -}}
+{{- end -}}
 {{- $heatmapWindowDays := 365 -}}
 {{- $start := $latestHeatmapDate.AddDate -1 0 1 -}}
 {{- $dateMap := dict -}}
 {{- range $filtered -}}
-  {{- $d := .Date.Format "2006-01-02" -}}
+  {{- $d := .Lastmod.Format "2006-01-02" -}}
   {{- $count := 0 -}}
   {{- if isset $dateMap $d -}}{{- $count = index $dateMap $d -}}{{- end -}}
   {{- $dateMap = merge $dateMap (dict $d (add $count 1)) -}}
@@ -91,8 +94,8 @@
           {{- end -}}
         {{- end -}}
         <li>
-          <a class="x7-article" href="{{ .RelPermalink }}" data-x7-latest-link data-updated="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-            <span class="x7-article-date"><time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006.01.02" }}</time></span>
+          <a class="x7-article" href="{{ .RelPermalink }}" data-x7-latest-link data-updated="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+            <span class="x7-article-date"><time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Lastmod.Format "2006.01.02" }}</time></span>
             <span class="x7-article-body">
               <span class="x7-article-title-row">
                 <strong class="x7-article-title">{{ .Title }}</strong>

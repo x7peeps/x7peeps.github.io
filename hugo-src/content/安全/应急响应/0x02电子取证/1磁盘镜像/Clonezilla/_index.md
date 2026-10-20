@@ -1,9 +1,11 @@
----
-date: "2026-05-31 01:12:25 +0800"
 title: "Clonezilla"
 menu: 
   main: 
+    parent: "1磁盘镜像"title: "Clonezilla"
+menu: 
+  main: 
     parent: "1磁盘镜像"
+date: 2026-05-31T01:12:25+08:00
 ---
 Clonezilla：https://clonezilla.org/ 多平台的分区和磁盘克隆程序。
 
@@ -137,103 +139,4 @@ Clonezilla Live是一个针对x86/amd64 (x86-64)计算机的小型可引导GNU/L
 
 在第二选项“Other modes of Clonezilla live”中还有更多的模式可供选择，如:800X600或640x480，如果你愿意，如下图所示:
 
-![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Clonezilla/1615884698663-4d94c306-4b7a-4044-977b-e393b325e02c.png)
-
-
-
-- 选择“Clonezilla live (To RAM。引导介质可以稍后删除)，与第一个相同的功能，不同的是当Clonezilla live引导完成时，所有必要的文件被复制到内存，可以移除启动介质(CD或u盘)。
-- 如果您不需要中文或日文版环境，或者您的计算机在帧缓冲模式下遇到问题，您可以选择“Clonezilla Live (no framebuffer)”在英文环境中克隆。
-- 选择“Clonezilla live(故障安全模式)”，是为了当你不能启动你的机器时出现问题，比如你的机器的ACPI在内核中不受支持。
-- 如果你想在你的硬盘上启动本地操作系统，你可以选择“本地操作系统在硬盘(如果可用)”。这是引导介质中的一个额外功能，与Clonezilla Live没有任何关系。
-- 选择“FreeDOS”，可以让你引导你的机器进入自由 DOS。这是引导介质中的一个额外功能，与Clonezilla Live没有任何关系。
-- 选择“使用Memtest86+进行内存测试”是为了使用Memtest86+进行内存测试。这是引导介质中的一个额外功能，与Clonezilla Live没有任何关系。
-- 选择“通过etherboot进行网络引导”或“通过gpxe进行网络引导”，可以通过etherboot或gpxe进行网络引导。如果您的计算机没有PXE网络，您可以使用它从网络引导。这是引导介质中的一个额外功能，与Clonezilla Live没有任何关系。
-
-- - 在选择语言和键映射之后，首先会提示您分配映像存储库，它可以是本地磁盘、ssh服务器、nfs服务器、samba服务器(网络邻居)或任何可以作为/home/ partimag挂载的文件系统。一旦存储库就绪，您就可以继续保存或恢复映像。请按照屏幕上的说明操作。关于Clonezilla live的两个主要截图:
-
-![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Clonezilla/1615885277201-03ad9f23-ae1a-40db-9633-e232105f4274.png)
-
-///注意/// **Clonezilla镜像名实际上就是目录名**。例如，如果你将镜像名命为2007-05-NOVISTA，所有的信息将会被保存在/home/partimag/2007-05-NOVISTA/目录中。MBR引导,切分表以及以及切分文件都会被储存。因此当你想要还原镜像的时候，应挂载/home/partimag到对应磁盘和路径，/home/partimag/这个目录下，并且还要有2007-05-NOVISTA目录。
-
-![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Clonezilla/1615886364343-a1953fd6-029e-4793-9782-1b416d578bc1.png)Clonezilla Live prepare ocsroot菜单
-
-
-
-[专家模式]如果你想手动挂载clonezilla image home (/home/partimag)，遵循以下步骤:
-
-
-
-1. 运行“sudo su -”成为root。
-2. 您必须准备另一个可写的设备或空间，并将其挂载为/home/partimag(注意!如果你的引导媒体是可写的,如USB闪存驱动器或您选择使用内存选项,已有/home/partimag与/live_media /home /partimag,你必须删除该文件,并创建一个目录/home/partimag作为挂载点“rm - f /home/partimag;mkdir - p /home/partimag)。例如，如果你想使用Clonezilla来保存/dev/hda，并将映像放在/dev/hdb1中，那么你必须通过“mount -t auto /dev/hdb1 /home/partimag”将/dev/hdb1挂载为/home/partimag。
-
-
-
-如果/dev/hdb1的文件系统是ntfs，你必须使用"ntfs-3g /dev/hdb1 /home/partimag"来挂载它，这样它就可以写了。请记住，还支持sshfs和smbfs。例如，使用sshfs，你可以挂载你的远程ssh服务器:
-
-
-
-```
-sshfs ACCOUNT@SSH_SERVER: / ABSOLUTE_PATH /home/partimag
-```
-
-
-
-例如，如果你想挂载你的ssh服务器192.168.100.254目录/work/pool，像这样运行:
-
-
-
-```
-/home/partimag sshfs root@192.168.100.254: /home/partimag
-```
-
-
-
-如果你想用目录/work/smb挂载你的samba服务器192.168.200.254，像这样运行:
-
-
-
-```
-mount -t cifs -o user=your_user_name //192.168.200.254/work/smb /home/partimag . conf . mount -t cifs -o user=your_user_name //192.168.200.254/work/smb /home/partimag . conf
-```
-
-
-
-如果您想用目录/work/smb挂载samba服务器192.168.200.254，用户名为“administrator”，密码为“pass”，请像这样运行:
-
-
-
-```
-mount -t cifs -o user=administrator,password=pass //192.168.200.254/work/smb /home/partimag . mount -t cifs -o user=administrator,password=pass
-```
-
-
-
-///说明///上述命令中，**Linux下不使用smbfs，****LINUX下****使用cifs协议，cifs协议对windows MS文件共享的兼容性更好****。当您使用smbfs时，Clonezilla live将无法保存正确的镜像!**
-
-1. 运行“clonezilla”来使用clonezilla，然后按照屏幕上的说明操作。
-
-
-
-### 更多文章示例
-
-http://clonezilla.nchc.org.tw/related_article/
-
-
-
-### 通过视频学习了解clonezilla使用
-
-通过视频学习如何使用clonezilla：
-
-https://www.youtube.com/watch?v=cEE_vn8E0Kk
-
-https://www.youtube.com/results?search_query=clonezilla
-
-相关视频链接
-
-- [Backup with Clonezilla | LAS | s25e10](http://www.youtube.com/watch?v=mipCOMqirF0)
-- [How To Backup AND Restore you Computer with CloneZilla! (BEST HD Tutorial!!)](http://www.youtube.com/watch?v=LS6VhLDw-io)
-- [Disk to Disk Copy with Clonezilla](http://www.youtube.com/watch?v=YzxL95GmmYk)
-- [How to Do a System Backup Using Clonezilla](http://www.youtube.com/watch?v=raYLbjQVCy4)
-- [How to use CloneZilla Tutorial (Making an image file and copying it to another computer)](http://www.youtube.com/watch?v=kTc1x5DFfig)
-- [Clonezilla - Backup Linux/Ubuntu System](http://www.youtube.com/watch?v=gJKv6NSKMAU)
-- [Clonezilla video tutorial (italian)](https://youtu.be/-4eGUynyEvI)
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/co
