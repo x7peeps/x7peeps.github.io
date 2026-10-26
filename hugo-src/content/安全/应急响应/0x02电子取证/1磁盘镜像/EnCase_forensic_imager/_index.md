@@ -1,11 +1,9 @@
+---
+date: "2026-05-31 01:12:25 +0800"
 title: "EnCase_forensic_imager."
 menu: 
   main: 
-    parent: "1磁盘镜像"title: "EnCase_forensic_imager."
-menu: 
-  main: 
     parent: "1磁盘镜像"
-date: 2026-05-31T01:12:25+08:00
 ---
 EnCase Forensic Imager(win)
 

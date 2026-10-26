@@ -1,17 +1,12 @@
+---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充P2P联邦心跳与任务接力特性的研究"
 weight: 16
 tags: ["Hermes", "P2P联邦", "心跳", "任务接力", "多设备", "开源贡献", "PR研究"]
 menu:
   main:
-    parent: "开源项目"title: "补充P2P联邦心跳与任务接力特性的研究"
-weight: 16
-tags: ["Hermes", "P2P联邦", "心跳", "任务接力", "多设备", "开源贡献", "PR研究"]
-menu:
-  main:
     parent: "开源项目"
-date: 2026-08-17T10:34:57+08:00
 ---
-
 > **PR 地址**：[NousResearch/hermes-agent#76661](https://github.com/NousResearch/hermes-agent/pull/76661) · 多设备 Hermes 联邦：心跳、断线任务接力、机队健康运维
 
 ## 研究摘要

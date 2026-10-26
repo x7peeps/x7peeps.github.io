@@ -1,17 +1,12 @@
+---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充after精准续写命令特性的研究"
 weight: 10
 tags: ["Hermes", "slash命令", "开源贡献", "PR研究"]
 menu:
   main:
-    parent: "开源项目"title: "补充after精准续写命令特性的研究"
-weight: 10
-tags: ["Hermes", "slash命令", "开源贡献", "PR研究"]
-menu:
-  main:
     parent: "开源项目"
-date: 2026-08-17T10:34:57+08:00
 ---
-
 > **PR 地址**：[NousResearch/hermes-agent#47044](https://github.com/NousResearch/hermes-agent/pull/47044) · /after 命令实现对话历史的精准续写定位
 
 ## 研究摘要

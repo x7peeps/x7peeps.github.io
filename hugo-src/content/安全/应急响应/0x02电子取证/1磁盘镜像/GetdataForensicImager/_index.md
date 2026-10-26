@@ -1,13 +1,10 @@
+---
+date: "2026-05-31 01:12:25 +0800"
 title: "GetdataForensicImager"
 menu: 
   main: 
-    parent: "1磁盘镜像"title: "GetdataForensicImager"
-menu: 
-  main: 
     parent: "1磁盘镜像"
-date: 2026-05-31T01:12:25+08:00
 ---
-
 官网 http://www.forensicimager.com/
 
 基于windows程序，文件格式取证转换工具

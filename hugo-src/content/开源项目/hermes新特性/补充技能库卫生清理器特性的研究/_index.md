@@ -1,17 +1,12 @@
+---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充技能库卫生清理器特性的研究"
 weight: 13
 tags: ["Hermes", "技能库", "卫生清理", "相似度扫描", "开源贡献", "PR研究"]
 menu:
   main:
-    parent: "开源项目"title: "补充技能库卫生清理器特性的研究"
-weight: 13
-tags: ["Hermes", "技能库", "卫生清理", "相似度扫描", "开源贡献", "PR研究"]
-menu:
-  main:
     parent: "开源项目"
-date: 2026-08-17T10:34:57+08:00
 ---
-
 > **PR 地址**：[NousResearch/hermes-agent#47110](https://github.com/NousResearch/hermes-agent/pull/47110) · 一个可选技能，给技能库做内容级体检
 
 ## 研究摘要

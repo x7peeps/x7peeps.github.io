@@ -1,17 +1,12 @@
+---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充doctor守护进程自启检查特性的研究"
 weight: 20
 tags: ["Hermes", "computer-use", "doctor", "开源贡献", "PR研究"]
 menu:
   main:
-    parent: "开源项目"title: "补充doctor守护进程自启检查特性的研究"
-weight: 20
-tags: ["Hermes", "computer-use", "doctor", "开源贡献", "PR研究"]
-menu:
-  main:
     parent: "开源项目"
-date: 2026-08-17T10:34:57+08:00
 ---
-
 > **PR 地址**：[NousResearch/hermes-agent#81845](https://github.com/NousResearch/hermes-agent/pull/81845) · 为 `hermes doctor` 增加守护进程自启检查（daemon_autostart）与驱动版本门槛（version_gate），并沉淀 macOS 排障知识
 
 ## 研究摘要

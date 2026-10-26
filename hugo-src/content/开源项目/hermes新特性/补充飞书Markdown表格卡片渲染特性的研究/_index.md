@@ -1,17 +1,12 @@
+---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充飞书Markdown表格卡片渲染特性的研究"
 weight: 6
 tags: ["Hermes", "飞书", "开源贡献", "PR研究"]
 menu:
   main:
-    parent: "开源项目"title: "补充飞书Markdown表格卡片渲染特性的研究"
-weight: 6
-tags: ["Hermes", "飞书", "开源贡献", "PR研究"]
-menu:
-  main:
     parent: "开源项目"
-date: 2026-08-17T10:34:57+08:00
 ---
-
 > **PR 地址**：[NousResearch/hermes-agent#45386](https://github.com/NousResearch/hermes-agent/pull/45386) · 飞书 Markdown 表格渲染为 Interactive Card + CuaDriver 后端缓存修复
 
 ## 研究摘要

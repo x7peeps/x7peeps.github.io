@@ -1,13 +1,10 @@
+---
+date: "2026-05-31 01:12:25 +0800"
 title: "《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森."
 menu: 
   main: 
-    parent: "阅读"title: "《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森."
-menu: 
-  main: 
     parent: "阅读"
-date: 2026-05-31T01:12:25+08:00
 ---
-
 # 《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森.
 整理by.x7peeps
 ![](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/阅读/《最重要的事，只有一件》加里·凯勒、凯勒,帕帕森/16481724877276.jpg)

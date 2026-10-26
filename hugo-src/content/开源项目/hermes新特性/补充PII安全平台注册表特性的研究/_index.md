@@ -1,17 +1,12 @@
+---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充PII安全平台注册表特性的研究"
 weight: 11
 tags: ["Hermes", "PII安全", "平台注册表", "开源贡献", "PR研究"]
 menu:
   main:
-    parent: "开源项目"title: "补充PII安全平台注册表特性的研究"
-weight: 11
-tags: ["Hermes", "PII安全", "平台注册表", "开源贡献", "PR研究"]
-menu:
-  main:
     parent: "开源项目"
-date: 2026-08-17T10:34:57+08:00
 ---
-
 > **PR 地址**：[NousResearch/hermes-agent#47045](https://github.com/NousResearch/hermes-agent/pull/47045) · 让 PII 安全平台检测从硬编码集合走向动态注册表
 
 ## 研究摘要

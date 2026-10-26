@@ -1,11 +1,9 @@
+---
+date: "2026-05-31 01:12:25 +0800"
 title: "DiskGenius(win)"
 menu: 
   main: 
-    parent: "3文件恢复"title: "DiskGenius(win)"
-menu: 
-  main: 
     parent: "3文件恢复"
-date: 2026-05-31T01:12:25+08:00
 ---
 官网 https://www.diskgenius.cn/
 

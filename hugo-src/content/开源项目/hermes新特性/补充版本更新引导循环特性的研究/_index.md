@@ -1,17 +1,12 @@
+---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充版本更新引导循环特性的研究"
 weight: 18
 tags: ["Hermes", "更新引导", "What's New", "发布简报", "开源贡献", "PR研究"]
 menu:
   main:
-    parent: "开源项目"title: "补充版本更新引导循环特性的研究"
-weight: 18
-tags: ["Hermes", "更新引导", "What's New", "发布简报", "开源贡献", "PR研究"]
-menu:
-  main:
     parent: "开源项目"
-date: 2026-08-17T10:34:57+08:00
 ---
-
 > **PR 地址**：[NousResearch/hermes-agent#81580](https://github.com/NousResearch/hermes-agent/pull/81580) · 更新后的 What's New 循环：发现 → 理解 → 确认
 
 ## 研究摘要

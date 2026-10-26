@@ -1,15 +1,11 @@
+---
+date: "2026-05-31 01:12:25 +0800"
 title: qax-vpn-pwn工具投毒事件分析
 menu: 
   main: 
     parent: "样本分析记录"
-tags: [恶意样本分析, 实例]title: qax-vpn-pwn工具投毒事件分析
-menu: 
-  main: 
-    parent: "样本分析记录"
 tags: [恶意样本分析, 实例]
-date: 2026-05-31T01:12:25+08:00
 ---
-
 # xaq-vpn-pwn工具投毒事件
 
 ## 基本信息

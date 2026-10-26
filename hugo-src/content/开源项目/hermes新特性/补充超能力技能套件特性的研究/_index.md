@@ -1,17 +1,12 @@
+---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充超能力技能套件特性的研究"
 weight: 7
 tags: ["Hermes", "技能套件", "开源贡献", "PR研究"]
 menu:
   main:
-    parent: "开源项目"title: "补充超能力技能套件特性的研究"
-weight: 7
-tags: ["Hermes", "技能套件", "开源贡献", "PR研究"]
-menu:
-  main:
     parent: "开源项目"
-date: 2026-08-17T10:34:57+08:00
 ---
-
 > **PR 地址**：[NousResearch/hermes-agent#46524](https://github.com/NousResearch/hermes-agent/pull/46524) · 从 obra/superpowers 补齐三个开发方法论技能
 
 ## 研究摘要

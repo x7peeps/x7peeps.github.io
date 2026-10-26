@@ -1,17 +1,12 @@
+---
+date: "2026-08-17 10:34:57 +0800"
 title: "补充三级上下文校验特性的研究"
 weight: 8
 tags: ["Hermes", "上下文校验", "开源贡献", "PR研究"]
 menu:
   main:
-    parent: "开源项目"title: "补充三级上下文校验特性的研究"
-weight: 8
-tags: ["Hermes", "上下文校验", "开源贡献", "PR研究"]
-menu:
-  main:
     parent: "开源项目"
-date: 2026-08-17T10:34:57+08:00
 ---
-
 > **PR 地址**：[NousResearch/hermes-agent#47022](https://github.com/NousResearch/hermes-agent/pull/47022) · 三级上下文校验 + 多 agent 隔离 + 平台实现
 
 ## 研究摘要

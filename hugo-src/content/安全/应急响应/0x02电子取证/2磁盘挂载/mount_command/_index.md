@@ -1,13 +1,10 @@
+---
+date: "2026-05-31 01:12:25 +0800"
 title: "mount_command"
 menu: 
   main: 
-    parent: "2磁盘挂载"title: "mount_command"
-menu: 
-  main: 
     parent: "2磁盘挂载"
-date: 2026-05-31T01:12:25+08:00
 ---
-
 linux基本命令挂载镜像下一般使用mount命令挂载硬盘或镜像。目前没有找到相关取证类型的格式挂载方式。如E01，L01，AFF格式可能目前还需要windows进行挂载处理。
 
 

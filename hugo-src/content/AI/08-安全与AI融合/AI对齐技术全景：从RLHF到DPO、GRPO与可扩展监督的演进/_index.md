@@ -1,17 +1,12 @@
+---
+date: "2026-08-01 20:15:19 +0800"
 title: "AI 对齐技术全景：从 RLHF 到 DPO、GRPO 与可扩展监督的演进"
 weight: 12
 tags: [AI Alignment, RLHF, DPO, GRPO, Constitutional AI, 可扩展监督, AI安全]
 menu:
   main:
-    parent: "安全与AI融合"title: "AI 对齐技术全景：从 RLHF 到 DPO、GRPO 与可扩展监督的演进"
-weight: 12
-tags: [AI Alignment, RLHF, DPO, GRPO, Constitutional AI, 可扩展监督, AI安全]
-menu:
-  main:
-    parent: "安全与AI融合"
-date: 2026-08-01T20:15:19+08:00
+    parent: "AI安全"
 ---
-
 # AI 对齐技术全景：从 RLHF 到 DPO、GRPO 与可扩展监督的演进
 
 大语言模型（LLM）的能力在过去两年经历了指数级增长——从 ChatGPT 的初代惊艳，到 GPT-4o、Claude 4、DeepSeek-R1 等模型在推理、编码、多模态领域的全面突破。然而，能力的飞速提升带来了一个根本性问题：**如何确保这些强大模型的行为与人类意图保持一致？**
