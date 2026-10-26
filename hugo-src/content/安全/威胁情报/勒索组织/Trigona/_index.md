@@ -1,9 +1,8 @@
-title: "Trigona"
-weight: 22title: "Trigona"
-weight: 22
-date: 2026-07-01T16:35:25+08:00
 ---
-
+date: "2026-07-01 16:35:25 +0800"
+title: "Trigona"
+weight: 22
+---
 **报告编号**: TIR-2026-0701-022 | **分类等级**: TLP:AMBER | **发布日期**: 2026年7月1日 | **情报来源**: 多源交叉验证（OSINT + Symantec + Trend Micro + Zscaler + Arete Institute + SentinelOne + Unit 42 + The DFIR Report + GBHackers）
 
 ---

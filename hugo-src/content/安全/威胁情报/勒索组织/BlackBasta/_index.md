@@ -1,9 +1,8 @@
-title: "Black Basta"
-weight: 4title: "Black Basta"
-weight: 4
-date: 2026-06-20T10:35:53+08:00
 ---
-
+date: "2026-06-20 10:35:53 +0800"
+title: "Black Basta"
+weight: 4
+---
 **报告编号**: TIR-2026-0620-004 | **分类等级**: TLP:AMBER | **发布日期**: 2026年6月20日 | **情报来源**: 多源交叉验证（OSINT + 执法通报 + 厂商报告）
 
 ---

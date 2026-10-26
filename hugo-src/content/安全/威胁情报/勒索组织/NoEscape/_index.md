@@ -1,9 +1,8 @@
-title: "NoEscape"
-weight: 16title: "NoEscape"
-weight: 16
-date: 2026-06-24T14:31:10+08:00
 ---
-
+date: "2026-06-24 14:31:10 +0800"
+title: "NoEscape"
+weight: 16
+---
 **报告编号**: TIR-2026-0624-006 | **分类等级**: TLP:AMBER | **发布日期**: 2026年6月24日 | **情报来源**: 多源交叉验证（OSINT + 执法通报 + 厂商报告）
 
 ---

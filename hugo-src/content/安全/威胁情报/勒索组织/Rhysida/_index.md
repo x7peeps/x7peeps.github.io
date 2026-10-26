@@ -1,9 +1,8 @@
-title: "Rhysida"
-weight: 12title: "Rhysida"
-weight: 12
-date: 2026-06-24T10:35:38+08:00
 ---
-
+date: "2026-06-24 10:35:38 +0800"
+title: "Rhysida"
+weight: 12
+---
 **报告编号**: TIR-2026-0624-012 | **分类等级**: TLP:AMBER | **发布日期**: 2026年6月24日 | **情报来源**: 多源交叉验证（OSINT + 执法通报 + 厂商报告）
 
 ---

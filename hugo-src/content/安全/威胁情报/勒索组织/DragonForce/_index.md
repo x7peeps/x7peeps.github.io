@@ -1,9 +1,8 @@
-title: "DragonForce"
-weight: 15title: "DragonForce"
-weight: 15
-date: 2026-07-01T12:21:09+08:00
 ---
-
+date: "2026-07-01 12:21:09 +0800"
+title: "DragonForce"
+weight: 15
+---
 **报告编号**: TIR-2026-0701-015 | **分类等级**: TLP:AMBER | **发布日期**: 2026年7月1日 | **情报来源**: 多源交叉验证（OSINT + Trend Micro + Symantec/Broadcom + Group-IB + SentinelOne + Darktrace + Cybereason + S2W TALON + The DFIR Report + Halcyon Q2-2025）
 
 ---

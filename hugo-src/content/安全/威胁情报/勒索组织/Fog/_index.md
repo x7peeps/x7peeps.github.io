@@ -1,9 +1,8 @@
-title: "Fog"
-weight: 20title: "Fog"
-weight: 20
-date: 2026-07-01T12:40:22+08:00
 ---
-
+date: "2026-07-01 12:40:22 +0800"
+title: "Fog"
+weight: 20
+---
 **报告编号**: TIR-2026-0701-020 | **分类等级**: TLP:AMBER | **发布日期**: 2026年7月1日 | **情报来源**: 多源交叉验证（OSINT + Arctic Wolf + Trend Micro + Cyble + Picus Security + Darktrace + BlackFog + SecurityWeek）
 
 ---

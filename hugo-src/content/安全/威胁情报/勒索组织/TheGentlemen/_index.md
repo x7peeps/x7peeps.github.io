@@ -1,9 +1,8 @@
-title: "The Gentlemen"
-weight: 2title: "The Gentlemen"
-weight: 2
-date: 2026-06-18T17:24:48+08:00
 ---
-
+date: "2026-06-18 17:24:48 +0800"
+title: "The Gentlemen"
+weight: 2
+---
 **报告编号**: TIR-2026-0618-001 | **分类等级**: TLP:AMBER | **发布日期**: 2026年6月18日 | **情报来源**: 多源交叉验证（OSINT + 泄露数据 + 厂商报告）
 
 ---

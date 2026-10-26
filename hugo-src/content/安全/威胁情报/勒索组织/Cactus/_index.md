@@ -1,9 +1,8 @@
-title: "Cactus"
-weight: 13title: "Cactus"
-weight: 13
-date: 2026-06-24T10:35:38+08:00
 ---
-
+date: "2026-06-24 10:35:38 +0800"
+title: "Cactus"
+weight: 13
+---
 **报告编号**: TIR-2026-0624-013 | **分类等级**: TLP:AMBER | **发布日期**: 2026年6月24日 | **情报来源**: 多源交叉验证（OSINT + CISA/FBI + MITRE ATT&CK + Trend Micro + Bitdefender + Kroll + Arctic Wolf + Darktrace + Barracuda + Huntress + SentinelOne）
 
 ---

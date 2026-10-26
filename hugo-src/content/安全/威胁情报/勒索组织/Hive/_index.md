@@ -1,9 +1,8 @@
-title: "Hive"
-weight: 9title: "Hive"
-weight: 9
-date: 2026-06-22T22:43:24+08:00
 ---
-
+date: "2026-06-22 22:43:24 +0800"
+title: "Hive"
+weight: 9
+---
 **报告编号**: TIR-2026-0622-009 | **分类等级**: TLP:AMBER | **发布日期**: 2026年6月22日 | **情报来源**: 多源交叉验证（OSINT + CISA/FBI/HHS 联合公告 AA22-321A + DOJ 执法行动报告 + Microsoft MSTIC + Europol）
 
 ---

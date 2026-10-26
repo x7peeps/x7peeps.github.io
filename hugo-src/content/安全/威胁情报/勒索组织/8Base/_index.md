@@ -1,9 +1,8 @@
-title: "8Base"
-weight: 19title: "8Base"
-weight: 19
-date: 2026-07-01T12:40:22+08:00
 ---
-
+date: "2026-07-01 12:40:22 +0800"
+title: "8Base"
+weight: 19
+---
 **报告编号**: TIR-2026-0701-019 | **分类等级**: TLP:AMBER | **发布日期**: 2026年7月1日 | **情报来源**: 多源交叉验证（OSINT + Europol Operation PHOBOS AETOR + US DoJ + HHS/HC3 + VMware Carbon Black + Trend Micro + Check Point + Vectra AI + Eye Security）
 
 ---

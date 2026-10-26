@@ -1,9 +1,8 @@
-title: "Medusa"
-weight: 14title: "Medusa"
-weight: 14
-date: 2026-06-24T10:35:38+08:00
 ---
-
+date: "2026-06-24 10:35:38 +0800"
+title: "Medusa"
+weight: 14
+---
 **报告编号**: TIR-2026-0624-014 | **分类等级**: TLP:AMBER | **发布日期**: 2026年6月24日 | **情报来源**: 多源交叉验证（OSINT + CISA/FBI AA25-071A + MITRE ATT&CK G1051 + Symantec/Carbon Black + Darktrace + Check Point + Armis Labs + Huntress + SecurityScorecard + Unit 42）
 
 ---
