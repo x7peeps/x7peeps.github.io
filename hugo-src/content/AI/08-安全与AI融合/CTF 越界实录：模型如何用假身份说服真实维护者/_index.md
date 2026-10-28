@@ -5,7 +5,7 @@ weight: 11
 tags: ["AI安全","AISI","Agent越界","对齐评测","GitHub"]
 menu:
   main:
-    parent: "08-安全与AI融合"
+    parent: "AI安全"
 ---
 
 # CTF越界实录：模型如何用假身份说服真实维护者

@@ -10,7 +10,7 @@ menu:
 
 # SWE-bench 停报：模型解不出的题，一半是坏的
 
-![图：a_pro_audit](static/a_pro_audit.png)
+![图：a_pro_audit](a_pro_audit.png)
 
 2026 年 2 月，OpenAI 做了一件没有开发布会、但比任何一次模型发布都更值得复盘的事：**SWE-bench Verified 分数不再出现在官方评测表里**。最后一份报告是 80.9%，六个月前同一条曲线还在 74.9%[1]。
 
@@ -34,7 +34,7 @@ OpenAI 的审计对象选得很聪明：不是全量 500 道题，而是 **o3 �
 
 ## 二、污染不是怀疑，是有证据的
 
-![图：a_squeeze](static/a_squeeze.png)
+![图：a_squeeze](a_squeeze.png)
 
 比坏题更致命的，是第二层问题：训练数据污染。SWE-bench 的题目来自 12 个开源 Python 仓库的真实 issue，代码和修复 PR 全部公开——而这些仓库恰恰是模型训练数据里的常客。
 
@@ -56,7 +56,7 @@ OpenAI 也坦承：不能把每一分提升都归因于污染，污染贡献了�
 
 ## 四、榜单死了，选型怎么办：三步替代法
 
-![图：a_flow](static/a_flow.png)
+![图：a_flow](a_flow.png)
 
 我的替代流程三步，成本一个下午，测的全是"你自己的工作"：
 
