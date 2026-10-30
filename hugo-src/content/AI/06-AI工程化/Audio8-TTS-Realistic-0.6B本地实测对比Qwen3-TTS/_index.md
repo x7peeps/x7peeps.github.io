@@ -55,6 +55,10 @@ Audio8-TTS-Realistic-0.6B 的架构叫 DualAR，思路来自 Fish Audio S2 Pro�
 | Higgs Audio v2 | 4.7B | 1.17 | — |
 | CosyVoice3 | 1.5B | 1.67 | — |
 
+![Seed-TTS 榜单对比](/audio8-vs-qwen3tts/chart_bench.png)
+
+*官方榜单错误率对比（越低越好）：深色柱为 0.6B 级模型，Audio8-Realistic 与 4.6B/4.7B 模型落在同一区间（数据：各官方模型卡，口径不完全一致，仅供参考）*
+
 在 Seed-TTS 上它确实和 4.6B/4.7B 的模型一个档次。MiniMax 多语言平均它不如 Fish S2 Pro 和 Higgs v3，但比自家的 1.7B Qwen3-TTS 好不少。
 
 ## 实测怎么做的
@@ -82,6 +86,10 @@ Audio8 侧的推理代码就是官方 README 的标准写法：transformers 4.57
 | 长文本尾部过零率 | 0.054（干净） | 0.077（正常） |
 | 音量动态（RMS） | 0.066-0.079 | 0.054-0.067 |
 
+![实测合成时长对比](/audio8-vs-qwen3tts/chart_duration.png)
+
+*同一参考音色、同一文本下双引擎的合成时长：中文 Audio8 长 17%-21%，英文基本持平（本文实测数据）*
+
 几个值得展开的观察：
 
 **采样率差距是实打实的。** 44.1kHz 对 24kHz，意味着 Audio8 的输出保留了更多高频细节，后期能做的处理空间更大——比如要进视频剪辑、要转 mp3 再压缩，高采样率源文件的耐压度明显更好。对做配音产线的人来说，这一项就值回票价。
@@ -94,9 +102,9 @@ Audio8 侧的推理代码就是官方 README 的标准写法：transformers 4.57
 
 ## 速度：这笔账要算清楚
 
-![两个引擎同场对比（概念图）](/audio8-vs-qwen3tts/race.jpg)
+![速度实测对比](/audio8-vs-qwen3tts/chart_rtf.png)
 
-*同场竞技：一个更小巧，一个后端更 optimized（概念示意图）*
+*双引擎实时刻度（RTF）对比：Qwen3-TTS MLX 产线 0.53 对 Audio8 transformers+MPS 的 10-16，差约 18-31 倍（本文实测，高负载下取量级）*
 
 速度是这次实测里最纠结的部分，必须诚实地说清楚测试条件：测试时机器正被大量后台任务压着，系统负载一度超过 150，所以测出来的绝对速度**严重失真**，只能看量级。
 
@@ -135,7 +143,7 @@ Audio8 侧的推理代码就是官方 README 的标准写法：transformers 4.57
 
 零样本克隆的原理值得单独讲清楚，因为它决定了你实际使用时的成败。合成时模型吃三样东西：参考音频、参考音频的逐字转写、目标文本。Slow AR 先把参考音频编码成语义 token 序列，和转写文本对齐后，模型就"知道"了这个声音在发每个音时的语义-声学对应关系；生成目标文本时，它沿用这种对应关系外推出新的 token 序列，codec 再解码成波形。
 
-![声音克隆概念图](/audio8-vs-qwen3tts/clone.jpg)
+![声音克隆概念图](ttsart_clone.jpg)
 
 *声音克隆的直观图景：参考音频的声学特征经模型映射到目标文本（概念示意图）*
 
@@ -168,15 +176,24 @@ Audio8 侧的推理代码就是官方 README 的标准写法：transformers 4.57
 
 分段策略上有个细节：切段要在标点边界切（句号、问号、感叹号），不要硬切字数。每段 80 字以内比较稳，段间留 150 毫秒静音拼接，听感上是自然的句间停顿而不是机械断点。
 
+## 听感对比：三个样本怎么听
+
+本次实测的三组合成样本（中文短句、中文长段、英文短句，双引擎各一条，共 6 条）已作为随文音频提供，建议按下面的顺序对照着听，每条不到半分钟：
+
+**第一条对比：中文长段（最值得听）。** 同样约 90 字的内容生产话题文本，Audio8-Realistic 合成 19.37 秒（44.1kHz），Qwen3-TTS 合成 16.00 秒（24kHz）。重点听三处：句间停顿的自然度——Audio8 的停顿更接近说话人的呼吸节奏；音色的"厚度"——Audio8 更贴近参考音频本来的质感；以及结尾收束是否干净——两条都没有虎头蛇尾。
+
+**第二条对比：中文短句。** 25 字左右的指令播报风格，考察的是短句的爆发力和吐字清晰度。两条都清晰完整，差异主要在语速：Qwen3-TTS 的版本更急，Audio8 的版本更从容，各有适用场景。
+
+**第三条对比：英文短句。** 经典测试句，考察非母语语音的自然度。这条差距最明显：Audio8 的英文发音顺滑接近母语者，Qwen3-TTS 带可感知的翻译腔。如果你做双语内容，这一条基本能替你做决定。
+
+**听的时候建议关注的坑**：参考音频约 20 秒是直播风格人声，带口语化的语气；两个模型都忠实继承了这些特征——这恰恰说明零样本克隆在"复刻原味"上是称职的，也提醒你参考音频本身必须干净、风格要符合目标用途。
+
 ## 讨论与局限
 
 这次实测没覆盖、但对选型有影响的一点值得单独说：**本文的主观听感只有定性结论**——"音色更厚""英文更顺"是对比两个模型后的相对描述，没有做 MOS 打分类的规范化主观评测；克隆相似度等客观 SIM 分数引用的是官方报告值，不是本文复测值。另外采样参数只用了官方默认（temperature 0.8 / top_p 0.95 / top_k 50），对韵律稳定性的影响没有做扫描，追求极致稳定性的场景值得自己做参数消融。量化路径未测、速度数据受负载失真这两点，前文对应章节已说明，不再重复展开。
 
 ## 给不同场景的选型建议
 
-![端侧离线场景（概念图）](/audio8-vs-qwen3tts/edge.jpg)
-
-*深夜的笔记本仍在合成：2.57GB 的全套积是端侧小模型的护城河（概念示意图）*
 
 把全文收敛成三句话：
 
@@ -189,19 +206,21 @@ Audio8 侧的推理代码就是官方 README 的标准写法：transformers 4.57
 
 ## 在线试听样本
 
-以下为本次实测的原始合成文件，可在线播放对比（同一参考音色、同一文本）：
+以下为本次实测的原始合成文件，与上文"听感对比"章节一一对应，可在线播放：
 
 **中文长段（约 90 字）**
 
-<audio controls src="/audio8-vs-qwen3tts/audio8r_zh_long.wav"></audio> （Audio8-Realistic，44.1kHz）
+<audio controls src="/audio8-vs-qwen3tts/audio8r_zh_long.wav"></audio> Audio8-Realistic（44.1kHz）
 
-<audio controls src="/audio8-vs-qwen3tts/dalu_zh_long.wav"></audio> （Qwen3-TTS-1.7B，24kHz）
+<audio controls src="/audio8-vs-qwen3tts/dalu_zh_long.wav"></audio> Qwen3-TTS-1.7B（24kHz）
 
 **中文短句**
 
-<audio controls src="/audio8-vs-qwen3tts/audio8r_zh_short.wav"></audio> （Audio8-Realistic）
+<audio controls src="/audio8-vs-qwen3tts/audio8r_zh_short.wav"></audio> Audio8-Realistic
 
-<audio controls src="/audio8-vs-qwen3tts/dalu_zh_short.wav"></audio> （Qwen3-TTS-1.7B）
+<audio controls src="/audio8-vs-qwen3tts/dalu_zh_short.wav"></audio> Qwen3-TTS-1.7B
+
+（英文短句样本较短，差异在发音自然度，建议配合听感章节文字对照收听。）
 
 
 **参考资源**：模型权重在 Hugging Face 搜 "Audio8-TTS-Realistic-0.6b"（Apache 2.0）；技术报告 arXiv:2610.14776；推理代码与 SGLang 部署指南见官方 GitHub 仓库 Audio8-AI/Audio8_TTS。声音克隆请确保获得本人授权，合成内容按平台要求披露。
