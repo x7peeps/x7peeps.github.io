@@ -1,5 +1,5 @@
 ---
-title: AI 行业观察
+title: AI-行业观察
 weight: 9
 ---
 
