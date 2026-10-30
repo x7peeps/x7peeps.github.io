@@ -122,4 +122,44 @@ class MemoryContentFilter:
             r"(?i)记住[：:]?\s*(密码|密钥|token|secret)",
             r"(?i)(?<!忽略)以下[^。]*[指令|命令]",
             r"(?i)覆盖.*记忆",
-            r"(?i)删除
+            r"(?i)删除全部?[对旧]?记忆",
+            r"(?i)无视(之前|以上).*(设定|规则)",
+            r"(?i)(ignore|disregard).*(previous|above).*(instructions|memory)",
+            r"(?i)从现在开始你不是",
+            r"-----BEGIN .*PRIVATE KEY-----",
+        ]
+        self.threshold = 0.6
+
+    def scan(self, content: str) -> tuple[bool, float, list[str]]:
+        hits = [p for p in self.dangerous_patterns if re.search(p, content)]
+        risk = min(1.0, 0.4 * len(hits))
+        return risk < self.threshold, risk, hits
+
+    def classify(self, entry: MemoryEntry) -> MemoryEntry:
+        ok, score, hits = self.scan(entry.content)
+        entry.risk_score = score
+        entry.classification = "clean" if ok else "quarantine"
+        if not ok:
+            audit_log("memory_filter_hit", entry, hits)
+        return entry
+```
+
+过滤器只能拦住"已知模式"，而真正的污染攻击往往伪装成一条新知识入库，所以必须再补两道机制：
+
+### 2.2 写入溯源与信任分区
+
+每条记忆携带来源标签（`user_explicit / agent_inferred / external_document / tool_output`），不同信任等级写入不同命名空间；检索时低信任来源默认降权，外部文档与工具输出**永远不得写入高信任区**——这是阻断间接注入落盘的关键隔离。
+
+## 3. 泄露检测
+
+三条防线协同：**检索审计**（记录谁在什么会话召回了哪些敏感条目）、**成员推断探测**（定期用探针集询问模型"上一个用户说过什么"，命中即报警）、**出口 DLP**（PII 与密钥的正则+分类器双扫描）。跨会话共享记忆是泄露风险最高的场景：默认按用户切分索引，共享区只保留白名单内容。
+
+## 4. 权限隔离
+
+记忆的读写权限与 Agent 角色绑定：客服 Agent 可读产品知识区、不可读运维决策区；读走 ACL 过滤，写走过滤器+溯源双闸门。密钥、身份等高敏条目加密存储并附 TTL 自动衰减——记忆系统的安全债务随保留时长指数增长，"忘记"和"记住"同样是安全能力。
+
+## 5. 总结
+
+记忆是 Agent 的长期信任载体：**污染一次，影响所有后续会话**。因此防护模型必须是"入口过滤 + 分区隔离 + 出口检测"的纵深结构，而不是一个更聪明的正则表。与其在语义识别上追求完美，不如先把信任边界和保留策略定死——大多数灾难性记忆泄露的根因不是检测不够聪明，而是隔离从一开始就不存在。
+（数据来源：OWASP LLM Top 10（2025）、MITRE ATLAS 与记忆投毒、RAG 间接注入方向公开论文（2024-2026），整理截至 2026-10。）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

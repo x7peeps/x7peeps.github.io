@@ -163,4 +163,22 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\GDStreamService\UDPPort(DWO
 
 select>Remote:
 
-![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/GetdataForensicImager/1616509871234-8a2b4c6d-1e3f-5a7b-9c1d-2e4f6a8b0c1d.png)
+
+在远程设备列表中选择 GetData UDP 网络服务器共享出的磁盘（服务器 IP 与端口，默认 443），即可像操作本地设备一样开始采集。远程模式下依然支持 E01/L01/DD 格式输出与哈希校验，采集结果保存在运行 Forensic Imager 的工作站上。
+
+## 使用建议
+
+- 远程采集走专用/隔离网络，避免镜像流量占用生产链路；防火墙按需仅放行取证工作站到服务器的端口
+- 涉密或不可中断的源设备，优先本地只读成像；UDP 流式传输对丢包敏感，网络质量差时改物理迁移
+- 采集完成后使用 FEX 的 Verify 功能对 .E01/.DD 重新计算 MD5/SHA-1/SHA-256 并与原始日志比对
+- 日志（含参数、哈希、时间戳）与镜像一并归档，作为保管链证据的一部分
+
+## 小结
+
+GetData Forensic Imager（FEX imager）的定位是"轻量、免费、格式全覆盖"的取证成像工具：物理/逻辑/文件夹三级采集，E01/L01/DD 三种镜像格式，自动哈希验证，再配合 Forensic Servlet/UDP 网络服务器实现**远程取证**，在没有硬件拦截器的应急场景中尤其实用。与 EnCase Imager、FTK Imager 同属取证入口环节的标准配置，输出件可直接送入 Magnet AXIOM、EnCase 等分析平台。
+
+
+（数据来源：GetData Forensic Imager / Forensic Explorer 官方手册整理）
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

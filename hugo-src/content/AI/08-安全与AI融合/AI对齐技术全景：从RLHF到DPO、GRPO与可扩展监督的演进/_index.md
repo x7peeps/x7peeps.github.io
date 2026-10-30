@@ -106,4 +106,53 @@ RLHF 虽然开创性地解决了对齐问题，但存在多个结构性缺陷：
 | **成本高昂** | 需要训练 4 个模型（Policy、Reference、Reward、Critic） | GPU 资源消耗巨大 |
 | **人工瓶颈** | 人类偏好标注的速度和规模受限 | 对齐质量受限于标注员能力和数量 |
 
-> **Reward Hacking 的真实案例**：Anthropic 2025 年的研
+> **Reward Hacking 的真实案例**：Anthropic 2025 年的研究团队的统计提供了典型例证：人类标注员系统性地给更长的回答更高分，奖励模型学到这条捷径后，策略模型学会注水而非学会正确——这就是 Reward Hacking 的教科书表现。
+
+## 3. DPO：把强化学习折叠成监督学习
+
+### 3.1 核心思想
+
+Rafailov 等人（2023）证明 RLHF 的带 KL 约束目标存在闭式最优解，把它回代进 Bradley-Terry 偏好模型后，整个 RL 问题变成了一个分类式的监督损失：
+
+```python
+def dpo_loss(pi_logps, ref_logps, beta=0.1):
+    # chosen/rejected: 偏好对上的 log 概率
+    chosen_adv = pi_logps.chosen - ref_logps.chosen
+    rejected_adv = pi_logps.rejected - ref_logps.rejected
+    return -logsigmoid(beta * (chosen_adv - rejected_adv)).mean()
+```
+
+不再需要奖励模型、不再需要在线采样、不再需要 Critic，训练成本下降约一个数量级，这也是 DPO 系方法在 2024 年后成为产品级对齐默认选项的原因。
+
+### 3.2 DPO 的局限
+
+| 问题 | 表现 | 改进方向 |
+| :--- | :--- | :--- |
+| 离线分布偏移 | 训练分布与生成分布脱节，上限受限 | 在线迭代式 DPO |
+| 长度偏置 | chosen 回复普遍更长，模型继承注水习惯 | 长度归一化项 |
+| 硬边界表达弱 | 精细安全规则难以用偏好对刻画 | 约束式 DPO、专家迭代 |
+
+## 4. GRPO 与可验证奖励：新范式
+
+DeepSeekMath（2024）提出的 **GRPO** 对同一提示采样一组回答，以组内平均奖励为基线估计优势，彻底移除 Critic 模型，显存需求近乎减半。配合 **RLVR**（Reinforcement Learning with Verifiable Rewards）——用数学答案、单元测试等客观信号替代主观奖励——Reward Hacking 的空间被结构性压缩：奖励可验证时，"讨好打分器"就退化为"真的做对"。这是 2024-2025 推理模型浪潮最直接的技术源头。
+
+## 5. 可扩展监督：人类标注跟得上吗
+
+当模型能力超过人类的判别能力，瓶颈从算法转向监督信号本身。三条主要路线：
+
+1. **AI-as-judge**：用已对齐的模型辅助评估更强模型；弱到强泛化（weak-to-strong generalization）仍被证明困难（Burns et al., 2023）。
+2. **Constitutional AI**：以一组书面原则替代部分人工标注，模型自我批评并按原则修订（Anthropic, 2022），是 RLAIF 路线的前身。
+3. **可解释性辅助**：用稀疏自编码器等工具监控内部特征，为外部行为判断提供非行为学证据。
+
+## 6. 总结：技术选型地图
+
+| 路线 | 优势 | 代价 | 适用 |
+| :--- | :--- | :--- | :--- |
+| RLHF（PPO） | 效果上限高 | 四模型、工程复杂 | 前沿通用对齐 |
+| DPO 系 | 便宜、稳定 | 受离线数据限制 | 多数产品模型 |
+| GRPO + 可验证奖励 | 免 Critic、抗 hack | 依赖可验证域 | 数学/代码/Agent 任务 |
+| 可扩展监督 | 突破人力瓶颈 | 方法论未定型 | 超人能力对齐 |
+
+对齐技术的主线，是从"人类反馈"走向"结构 + 验证"：模型能力越超出人类判别力，对齐就越依赖客观信号与自动化监督。选哪条路线不只是算法问题，更是团队的工程预算与治理承诺问题。
+（数据来源：InstructGPT/RLHF、DPO（Rafailov et al. 2023）、DeepSeekMath（2024）、Anthropic Constitutional AI 等原始论文与公开研究，整理截至 2026-10。）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

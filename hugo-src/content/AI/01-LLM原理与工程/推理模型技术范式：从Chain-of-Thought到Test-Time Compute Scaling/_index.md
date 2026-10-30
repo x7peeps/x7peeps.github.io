@@ -108,4 +108,75 @@ def grpo_step(policy_model, prompts, group_size=16):
     # 组内相对优势：reward - mean(reward)
     advantages = compute_group_relative_advantages(all_rewards, group_size)
     # 策略梯度更新
-    policy_loss = 
+    policy_loss = compute_clipped_policy_loss(
+        ratios=logprob_new / logprob_old,
+        advantages=advantages,
+        beta=kl_coef, ref_policy=policy_model_ref)
+    policy_loss.backward()
+    policy_model.update()
+```
+
+用组内均值替代 Critic 的价值估计，显存需求近乎减半——这是 DeepSeek-R1 能以极低成本复现 o1 级别能力的关键工程前提。
+
+### 2.3 o1 与 R1 的训练配方对比
+
+| 阶段 | OpenAI o1（公开信息） | DeepSeek-R1（论文披露） |
+| :--- | :--- | :--- |
+| 冷启动 | 未公开 | 数千条长 CoT SFT 数据 |
+| RL 主训 | 多步推理 RL + 大算力 | R1-Zero：纯 GRPO、无 SFT，涌现 "aha" 行为 |
+| 迭代精调 | 未公开 | 拒绝采样 + 多阶段 SFT（可读性/工具/摘要） |
+| 蒸馏 | 未公开 | Qwen/Llama 1.5B-70B 蒸馏全家桶 |
+
+R1-Zero 的意义是**科学性的**：不喂任何人类推理示范、仅靠可验证的规则奖励（答案对错）做 RL，模型自己长出反思、回溯与长链推理——证明推理能力可以被"发现"而非只能被"模仿"。其代价是早期模型输出语言混杂、格式混乱，R1 的多阶段后续训练正是为此收编。
+
+---
+
+## 3. 模型生态盘点
+
+- **OpenAI o1/o3**：闭源天花板；`reasoning_effort`（low/medium/high）把测试时算力做成显式旋钮
+- **DeepSeek-R1**：MIT 开源，蒸馏版让 7B 也能"思考"；后续版本把思考并入主模型
+- **Qwen3**：hybrid thinking——单模型在思考/直答模式间切换，`enable_thinking=False` 直接省掉思维链 Token
+- **Claude 3.7/4 Extended Thinking**：`thinking budget tokens` 显式分配思考预算，推理块对用户可见
+- **Gemini 2.x Thinking**：动态思考预算，模型自行决定"这道题该想多久"
+
+生态的收敛方向：**思考不再是独立产品线，而是推理引擎里的一个可调节旋钮**。
+
+---
+
+## 4. 工程实践：何时用、怎么用、算多少账
+
+### 4.1 任务分诊
+
+推理模型收益明显的任务：**数学/形式化推理、多约束规划、调试与代码修复、需要自我验证的长链条任务**。收益微弱甚至为负的：即时问答、简单分类、纯检索、创意文风——长 CoT 在这些场景只是延迟与费用。
+
+实践路由策略：
+
+```python
+def route(task):
+    if task.type in ("math", "debug", "plan", "verify"):
+        return ReasoningModel(effort="medium")
+    if task.failed_with_standard_model:
+        return ReasoningModel(effort="high")   # 升级重试
+    return StandardModel()
+```
+
+### 4.2 成本模型
+
+推理模型的真实计费点：**输出包含思维链**。一道数学题，标准模型输出 300 Token，R1 可能思考 4000 Token 才作答——即便单价更低，单次成本仍可能高一个数量级。控制手段：effort/thinking budget 设上限；蒸馏小模型做默认档、旗舰推理做兜底档；评估时统计"思考 Token / 有效答案 Token"比值，超过 15:1 的样本进人工分析。
+
+### 4.3 常见坑
+
+1. **Overthinking**：简单题也长篇思考——用 effort 分级缓解
+2. **CoT 不忠实**：推理链与最终答案可能不一致，别把 CoT 当审计日志
+3. **翻译/抽取任务禁用思考**：会引入额外改写与格式漂移
+4. **评测污染**：数学基准的提升部分来自训练记忆，务必保留未公开的内部测试集
+
+---
+
+## 5. 总结
+
+从 CoT prompting（2022）到 RL 内化 CoT（2024-2025），推理模型把 Scaling Law 的自变量从"训练算力"扩展到了"推理算力"。工程结论朴素：**推理模型不是"更强的模型"，而是"用时间换正确率的策略"**——任务有可验证答案且错误昂贵时值得付思考税，其余场景路由给标准模型。下一步的开放问题集中在自动思考预算（模型学会按需深度）与过程级奖励（PRM 回归）——Test-Time Scaling 的边际收益远未见顶。
+
+(注：文中训练算法与成本数据整理自 DeepSeek-R1/o1 相关论文、官方技术报告与公开评测；GRPO 代码为伪代码示意，非完整实现。)
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

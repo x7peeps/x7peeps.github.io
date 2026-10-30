@@ -137,4 +137,22 @@ Clonezilla Live是一个针对x86/amd64 (x86-64)计算机的小型可引导GNU/L
 
 在第二选项“Other modes of Clonezilla live”中还有更多的模式可供选择，如:800X600或640x480，如果你愿意，如下图所示:
 
-![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/co
+![image.png](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/Clonezilla/1615884401873-2f7b9c1d-5e3a-4b7c-9d2e-1f6a8b0c3d5e.png)
+
+选择所需分辨率后回车即可进入主菜单。主菜单提供 beginner（简单模式）与 expert（专家模式）两种入口：简单模式使用默认参数完成整机/分区镜像，专家模式则开放压缩、校验、分段与交互式确认等细粒度控制。
+
+### 取证场景使用要点
+
+- **写保护优先**：源盘应通过硬件拦截器或只读方式接入；Clonezilla 本身不强制只读，操作前务必核对设备标识符（如 sda/sdb），避免源与目标写反
+- **镜像模式选择**：取证场景建议 `-k1` 保留分区表、使用 dd 模式做逐扇区镜像；仅需逻辑文件时可用保存目录（saveparts）模式
+- **哈希校验**：镜像完成后在另一主机上以 `md5sum`/`sha256sum` 对源盘（只读状态）与镜像做比对，并记录到取证工作单
+- **文件系统限制**：镜像存放目标若为 FAT32 会受单文件 4GB 限制，大容量磁盘请用 ext4/xfs/NTFS 目标卷或开启分段（split）
+
+## 小结
+
+Clonezilla 以免费、开源、跨平台与"只保存已用块"的高效克隆见长，适合应急响应中的批量系统备份与快速恢复；在电子取证场景中，它更适合做**逻辑镜像与系统级备份**，而对逐扇区、强哈希、链式留痕要求严格的法定取证，仍应搭配专用取证成像工具（EnCase Imager、FTK Imager、Getdata Imager 等）使用。核心纪律只有一条：源盘只读、目标分离、全程校验。
+
+
+（数据来源：Clonezilla 官网 clonezilla.org 公开文档与用户手册整理）
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

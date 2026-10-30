@@ -147,4 +147,60 @@ model_name = "meta-llama/Llama-3.1-8B-Instruct"
 
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    torch_dtype=torch.bfloa
+    torch_dtype=torch.bfloat16,
+    device_map="auto",
+    attn_implementation="flash_attention_2",
+)
+
+lora_config = LoraConfig(
+    r=16,
+    lora_alpha=32,
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
+                    "gate_proj", "up_proj", "down_proj"],
+    lora_dropout=0.05,
+    bias="none",
+    task_type="CAUSAL_LM",
+)
+model = get_peft_model(model, lora_config)
+model.print_trainable_parameters()
+# trainable params: 46,382,848 || all params: 8,033,805,824 (0.577%)
+
+trainer = SFTTrainer(
+    model=model,
+    train_dataset=dataset,
+    args=TrainingArguments(
+        output_dir="out/lora-8b",
+        per_device_train_batch_size=4,
+        gradient_accumulation_steps=4,
+        learning_rate=2e-4,
+        num_train_epochs=3,
+        bf16=True,
+    ),
+)
+trainer.train()
+trainer.save_model("out/lora-adapter")   # 只存适配器，几百 MB
+```
+
+产物只有几百 MB 的适配器，部署时可以按需热切换、多任务共用一个基座——这是全参数微调给不了的灵活性。
+
+## 4. QLoRA：4-bit 基座 + LoRA
+
+QLoRA = **NF4 量化 + 双重量化 + paged optimizer** 三件套：基座以 4-bit 冻结加载，梯度穿过量化权重更新 fp16 适配器。Dettmers 等人（2023）证明这比 bf16 全参微调掉的能力更少而不是更多，65B 模型得以在单张 48GB 卡上微调。经验法则：**显存 30GB 以下且模型不小于 13B，直接用 QLoRA 起步。**
+
+## 5. 实战选型指南
+
+| 条件 | 推荐方案 |
+| :--- | :--- |
+| 数据 < 1k 条，只改格式/风格 | LoRA（r=8~16） |
+| 数据 1k-100k，注入领域知识 | LoRA/QLoRA（r=16~64） |
+| 数据 > 100k 且追求能力上限 | 全参数微调 |
+| 显存紧张 / 多任务共享基座 | QLoRA + 适配器热切换 |
+| 需要多 LoRA 服务化部署 | vLLM/Predibase 类多适配器推理 |
+
+两个常见误区：其一，把全参微调当"效果更好的默认项"——小数据上它常输给 LoRA，因为后者更贴近"学习变化量"的归纳偏置；其二，把 LoRA rank 无脑拉高——r 超过任务内在维度后只有成本，没有收益。
+
+## 6. 总结
+
+三种方法不是相互替代，而是一条成本-能力权衡线：**全参微调买上限，LoRA 买工程效率，QLoRA 买可及性**。对多数团队的正确姿势是：先用 LoRA 建基线 → 用评估找瓶颈 → 先加数据、再提 rank、最后才考虑全参微调。微调决策的每个环节都该有评估数字背书，而不是"听说隔壁全参了"。
+（数据来源：LoRA（Hu et al., 2021）与 QLoRA（Dettmers et al., 2023）论文、Hugging Face PEFT/TRL 官方文档，整理截至 2026-10。）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

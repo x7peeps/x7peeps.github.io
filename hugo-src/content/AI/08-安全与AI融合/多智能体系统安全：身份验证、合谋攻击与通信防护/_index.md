@@ -134,4 +134,49 @@ class IdentityRegistry:
     def register_agent(
         self,
         agent_id: str,
-        age
+        agent_public_key: str,
+        role: str,
+        expires_in: int = 86400,
+    ) -> AgentIdentity:
+        if agent_id in self.identities and not self.identities[agent_id].is_expired():
+            raise ValueError("agent_id 未过期，不允许重复注册")
+        identity = AgentIdentity(
+            agent_id=agent_id,
+            public_key=agent_public_key,
+            role=role,
+            expires_at=time.time() + expires_in,
+        )
+        identity.signature = ca_sign(identity._sign_data())
+        self.identities[agent_id] = identity
+        return identity
+
+    def verify(self, identity: AgentIdentity) -> bool:
+        if identity.agent_id in self.revocation_list:
+            return False
+        if identity.is_expired():
+            return False
+        return ca_verify(identity._sign_data(), identity.signature)
+```
+
+证书生命周期必须闭环：**短 TTL（小时级）+ 自动轮换 + 吊销列表实时同步**。在多 Agent 系统里，长寿命凭证等于给横向移动发复制钥匙。
+
+## 3. 通信防护
+
+| 层 | 措施 | 对抗 |
+| :--- | :--- | :--- |
+| 传输层 | mTLS，证书绑定 agent_id | 窃听、端点伪造 |
+| 消息层 | 签名 + nonce + 时间戳 | 重放、篡改 |
+| 语义层 | 消息标注来源与信任级，接收端按策略处理 | 经消息转发的注入 |
+| 拓扑层 | 通信白名单：仅允许任务图声明的边 | 非法信息通道 |
+
+多 Agent 注入的经典形态：被污染的 Agent 在任务消息里夹带指令，下游 Agent 把"同事的话"当成可信上下文直接执行。**"谁说的"必须和"说了什么"一起被校验。**
+
+## 4. 合谋攻击检测
+
+合谋（collusion）指多个 Agent 绕过设计权限、组合出任何单个 Agent 都无权达成的效果。三条检测思路：**通道检测**（发现拓扑之外的通信边）、**行为相关性**（多 Agent 动作序列出现超出任务图的协同模式）、**决策集中度**（关键审批链被同一批身份把持时触发法定人数校验）。对高价值操作，宁可让独立异构的多个 Agent 交叉审批，也不给任何单点组合出全权限的机会。
+
+## 5. 总结
+
+多智能体安全的范式转变，是彻底废除"内网即可信"：每个 Agent 都是潜在的被俘节点。身份签发、通信校验、合谋监控三道防线，共同把"内部"也变成零信任域。系统规模越大，越要保证安全假设不依赖"同事不会背叛"这一条——身份可验证、消息可溯源、协同可审计，缺一不可。
+（数据来源：NIST 零信任架构（SP 800-207）、OWASP LLM Top 10 与多智能体合谋攻击相关论文，整理截至 2026-10。）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

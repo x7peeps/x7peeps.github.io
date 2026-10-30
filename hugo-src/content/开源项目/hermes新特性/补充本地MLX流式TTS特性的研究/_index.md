@@ -108,4 +108,7 @@ Hermes 上游已经定义好 `StreamingTTSProvider` 抽象基类（`tools/tts_st
 
 ---
 
-*本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 
+*本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 PR 实测记录。*
+
+（数据来源：PR #85071 记录、Apple M5 Max 真机流式合成计时与 45 项测试输出）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

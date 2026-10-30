@@ -111,4 +111,75 @@ Anthropic 由前 OpenAI 核心成员创立，其技术路线与 OpenAI 形成了
 
 Anthropic 最重要的技术贡献是 **Constitutional AI**，这是一种不依赖大规模人类反馈的对齐方法：
 
-1. 定义一组"宪法"原则（如"不应帮助创建有害内容"
+1. 定义一组"宪法"原则（如"不应帮助创建有害内容"）
+2. 让模型对有害提问**自我批评**（生成反思）并按原则修订回答，产出"批评-修订"数据对
+3. 用 **RLAIF**（AI Feedback 强化学习）替代大规模人类标注——批评-修订对训练偏好模型，再用其信号优化生成模型
+
+CAI 的工程价值：**对齐数据生产成本大幅下降，且原则可审计、可迭代**——改一条宪法即可全局调整行为，而 RLHF 调整行为需要重新标注人类偏好数据。
+
+### 3.2 Claude 的技术标签
+
+- **长上下文质量**：200K 窗口 + 位置感知训练，缓解 "lost in the middle"
+- **工具调用与计算机使用**：3.5 起原生支持 vision-based 操作，工具协议设计强调防注入
+- **可解释性投入**：mechanistic interpretability 研究（features/circuits）直接反哺产品安全层
+- **Extended Thinking**：3.7/4 将推理链显式化，对标 o1 路线
+
+---
+
+## 4. 开源阵营与国产模型
+
+### 4.1 技术扩散主线
+
+| 阶段 | 代表 | 扩散的关键能力 |
+| :--- | :--- | :--- |
+| 2023 | LLaMA 1/2 | 证明开源可复现 GPT-3.5 级 |
+| 2024 | LLaMA 3 / Qwen2.5 / DeepSeek-V2 | GQA、RoPE、双版本蒸馏成为标配 |
+| 2024-2025 | Mixtral / DeepSeek-V3 | MoE 进入开源默认选项 |
+| 2025 | DeepSeek-R1 / Qwen3 | RL 推理训练配方开源 |
+
+DeepSeek-V3/R1 的意义是把 MoE 训练、FP8、GRPO、蒸馏的**全套配方公开**，抹平了二线团队与顶级实验室在训练方法论上的差距。
+
+### 4.2 国产模型差异化
+
+- **Qwen 系列**：中文语料+代码最强开源基座，尺寸矩阵最全（0.5B-72B+MoE）
+- **DeepSeek**：MoE + 推理范式，成本屠夫
+- **GLM / Kimi / 豆包**：Agent 工具调用（GLM）、超长上下文（Kimi）、多模态与端侧生态（豆包）
+
+### 4.3 上下文窗口的工程真相
+
+窗口数字 ≠ 有效长度。长窗口伴随三个问题：lost-in-the-middle、长上下文训练数据稀缺、KV Cache 显存线性膨胀。百万级窗口的正确姿势：**当"可检索的 RAM"用，而不是当作无限输入流**——最相关内容放开头，材料塞中段，任务指令在结尾重申。
+
+---
+
+## 5. 工程落地四件套
+
+### 5.1 Tokenization
+
+BPE/SentencePiece 决定成本下限：中文按 1.5-2 token/字计，词表越大对中文/代码越省 token。跨模型比价必须**按同一 tokenizer 重新计价**。
+
+### 5.2 推理优化栈
+
+```
+请求 → [调度: continuous batching] → [prefill: FlashAttention]
+     → [decode: PagedAttention / KV Cache] → [可选: 投机解码] → 输出流
+```
+
+vLLM / SGLang / TensorRT-LLM 是开源三件套；吞吐差异主要来自 batching 效率与 KV Cache 管理。
+
+### 5.3 量化与端侧
+
+INT8/INT4（AWQ、GPTQ、GGUF Q4_K_M）把 70B 拉到单卡可跑，质量损失对日常任务通常小于模型换代差异；llama.cpp/MLC/CoreML 让 3-8B 模型进手机。
+
+### 5.4 应用层栈
+
+Prompt Engineering → RAG / Function Calling → Agent 编排 → 评测与监控（LangSmith / OpenCompass）。每一层失效模式不同，但都建立在**模型输出可解析**这一共同前提上。
+
+---
+
+## 6. 总结
+
+从 Transformer（2017）、GPT-3 的 In-Context Learning、ChatGPT 的 RLHF、GPT-4 的系统化，到 Claude 的 CAI 与开源阵营的 MoE/R1 平权，LLM 技术栈的主线是**能力、对齐、成本**三者的交替突破。对应用开发者，选型逻辑不变：**用旗舰闭源定义质量基线，用开源与量化控制边际成本，用工程层（RAG/工具/监控）补齐可靠性**。架构会持续演进，但 Attention + 自回归 + Scale 三要素，短期内仍是全部魔法的公共分母。
+
+(注：文中参数、价格与基准整理自公开论文、官方发布与行业榜单；部分闭源模型（如 GPT-4）细节属业界推测，请以官方信息为准。)
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

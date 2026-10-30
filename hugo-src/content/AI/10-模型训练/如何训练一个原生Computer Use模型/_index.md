@@ -112,4 +112,50 @@ class DataQualityFilter:
     ])
     
     def validate_sample(self, sample: dict) -> tuple[bool, str]:
-        for field_name in self.required
+        for field_name in self.requiredfields:
+            if field_name not in sample:
+                return False, f"缺失字段: {field_name}"
+        w, h = sample["screenshot"].size
+        if (w, h) < self.min_resolution:
+            return False, f"分辨率过低: {w}x{h}"
+        if len(sample["action"].get("elements", [])) > self.max_elements:
+            return False, "无障碍树元素过多，疑似渲染异常页面"
+        x, y = sample["coordinates"]
+        if not (0 <= x <= 1 and 0 <= y <= 1):
+            return False, f"坐标越界: ({x}, {y})"
+        if sample["action"]["type"] not in {"click", "type", "scroll", "key", "done"}:
+            return False, "非法动作类型"
+        return True, "合格"
+```
+
+## 训练方案：从模仿到强化
+
+### 三阶段路线
+
+| 阶段 | 目标 | 数据/信号 |
+| :--- | :--- | :--- |
+| 1. GUI 语义热身 | 看懂界面：截图与元素描述对齐 | 网页/桌面 DOM-视觉配对数据 |
+| 2. SFT 轨迹模仿 | 学会动作语法与坐标输出 | 清洗后的真实+合成操作轨迹 |
+| 3. 环境内强化 | 突破模仿上限、学会纠错 | 可验证奖励（落点命中、任务状态断言） |
+
+OS-Genesis 与 UI-TARS 系列工作共同验证了这条路线的前提：**奖励必须能在环境里自动验证**，否则强化阶段无从谈起——"任务+验证器"的自动化闭环就是数据管线的核心资产。
+
+### 失败轨迹的价值
+
+被人类纠正过的"错误动作 → 纠正动作"配对是天然的偏好数据；用 DPO 或拒绝采样消化它们，能显著压低模型输出幻觉坐标、点错输入框的比例。只模仿成功样本的训练，学不会从错误中回来。
+
+## 评估体系
+
+| 层级 | 基准 | 考察点 |
+| :--- | :--- | :--- |
+| 原子动作 | ScreenSpot | 视觉接地准确率 |
+| 单步决策 | CT-Guider 式逐步判定 | 动作类型与参数正确率 |
+| 端到端任务 | OSWorld / WebArena / AndroidWorld | 成功率、步骤效率、异常恢复 |
+
+端到端成功率是唯一能进产品承诺的数字，但归因与改进永远发生在原子层——两级都要看，只看其一必盲人摸象。
+
+## 总结
+
+原生 Computer Use 模型的竞争，本质是**数据管线竞争**：公开轨迹稀缺、噪声大、跨平台割裂，谁能自动化地合成"任务+验证器"闭环，谁就能训出在真实环境里干活的模型。架构上端到端多模态 + 环境内强化已收敛为主线；安全上则必须与沙箱动作空间同步设计——能力越强，"允许点哪里"越要成为受权限模型约束的问题，而不是模型自觉。
+（数据来源：OS-Genesis、UI-TARS、OSWorld/WebArena/ScreenSpot 等论文与开源项目文档，整理截至 2026-10。）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

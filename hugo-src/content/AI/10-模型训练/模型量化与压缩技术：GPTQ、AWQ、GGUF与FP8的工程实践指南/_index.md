@@ -123,4 +123,42 @@ tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B")
 text = "The future of AI is"
 inputs = tokenizer(text, return_tensors="pt").to(model.device)
 outputs = model.generate(**inputs, max_new_tokens=50)
-print(tokenizer.decode(outputs[0], skip_special_t
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+```
+
+### 2.2 AWQ：激活感知的权重量化
+
+AWQ（Lin et al., 2023）换了思路：不做 GPTQ 式的二阶误差补偿，而是从**激活分布**出发——按激活幅值统计只有约 1% 的关键权重通道对精度影响最大，量化前用逐通道缩放保护它们即可。校准无需 Hessian 与反向传播，速度快且对多模态/视觉语言模型泛化更稳，因此 VLM 生产量化几乎默认 AWQ。
+
+```python
+from awq import AutoAWQForCausalLM
+
+model = AutoAWQForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
+model.quantize(tokenizer, quant_config={"w_bit": 4, "q_group_size": 128})
+model.save_quantized("qwen25-7b-awq")
+```
+
+### 2.3 GGUF：llama.cpp 生态的容器格式
+
+GGUF 不是单一算法而是**容器格式**：权重（多种量化类型）、分词器、对话模板与元数据打包成单文件。K-quants（Q4_K_M、Q5_K_M）用超级块对 attention/FFN 矩阵混合分配位宽，同体积下质量优于早期均匀量化；配合 CPU/GPU 混合 offload，成为本地与边缘推理的事实标准（Ollama/LM Studio 均基于它）。
+
+### 2.4 FP8：训练与推理的新基线
+
+FP8（E4M3 存权重/激活、E5M2 存梯度）是 Hopper 之后 GPU 的原生格式：70B 级模型精度损失可忽略、吞吐接近翻倍。与 INT4 的本质区别在于 FP8 **无需校准数据、支持在线量化、可直接用于训练**，是数据中心新一代默认选择；代价是显存压缩率不如 INT4 激进。
+
+## 3. 选型对比与工程清单
+
+| 方案 | 位宽 | 优化对象 | 典型场景 | 生态 |
+| :--- | :--- | :--- | :--- | :--- |
+| GPTQ | INT4/INT3 | 权重（Hessian 补偿） | GPU 高并发服务 | AutoGPTQ / llm-compressor |
+| AWQ | INT4 | 权重（激活感知） | 多模态/VLM、快速校准 | AutoAWQ / TensorRT-LLM |
+| GGUF | Q2-Q8 混合 | 权重 + KV | 本地/边缘推理 | llama.cpp / Ollama |
+| FP8 | 8-bit | 权重+激活 | 数据中心吞吐与训练 | vLLM / TensorRT-LLM |
+
+工程清单：① 上线前必须跑困惑度 + 任务评测（MMLU 子集/HumanEval）+ 业务冒烟，单一指标不可信；② 校准数据要代表线上分布，跨域校准质量骤降；③ 长上下文瓶颈常在 KV cache，INT8/FP8 KV 量化收益可能超过权重量化；④ 微调合并权重后必须重新量化，旧 scale 不可复用。
+
+## 4. 总结
+
+量化的演进，是从"省显存的技巧"变成"推理成本结构的核心杠杆"。经验法则：本地单卡 → GGUF 或 AWQ；GPU 服务拼吞吐 → FP8；极限压缩跑长尾任务 → GPTQ INT3/2 并配严格评测。每一 bit 的节省都是对模型质量的一次押注——**押注可以用评测结算，量化才从玄学变成工程。**
+（数据来源：GPTQ/AWQ/LLM.int8()/FP8 原始论文（arXiv 2022-2024）与 llama.cpp、vLLM、TensorRT-LLM 公开文档，整理截至 2026-10。）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

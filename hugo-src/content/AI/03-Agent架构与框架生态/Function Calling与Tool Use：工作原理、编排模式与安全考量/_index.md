@@ -71,4 +71,92 @@ Function Calling 是现代 LLM Agent 体系的基石能力——没有它，大�
 │  └─────────────────────────────────────┘                         │
 │                                                                  │
 │  stop_reason: "stop"  → 流程结束                                 │
-│  stop_reason: "too
+│  stop_reason: "tool_use" → 回到步骤 1（多轮循环）        │
+│  stop_reason: "max_tokens" → 截断，需重试或放大预算      │
+└──────────────────────────────────────────────────────────┘
+```
+
+三个容易被误解的点：
+
+1. **工具 schema 是"提示"不是"接口绑定"**：模型只是按 schema 格式生成参数文本，类型与业务正确性需要应用层校验兜底
+2. **是否调用工具是模型决策**：`tool_choice="auto"` 下可能直接回答不调用；强制调用（`required` / `{"type":"tool"}`）适合抽取类任务，但会诱发"硬凑调用"
+3. **多轮循环的成本**：每次工具往返都是一次完整 API 调用且历史 messages 全量重传——Agent 的 Token 消耗大头在循环轮次
+
+### 1.2 函数定义质量决定调用质量
+
+```json
+{
+  "name": "search_orders",
+  "description": "按客户ID和状态搜索订单，返回最多50条、按创建时间倒序。客户ID格式为 CU-6位数字。",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "customer_id": {"type": "string", "pattern": "^CU-\\d{6}$"},
+      "status": {"type": "string", "enum": ["open","paid","shipped","cancelled"]},
+      "limit": {"type": "integer", "maximum": 50}
+    },
+    "required": ["customer_id"]
+  }
+}
+```
+
+经验规则：**description 写"何时该用我"**（模型选工具主要靠它，而不是名字）；参数名语义化（`customer_id` 优于 `cid`）；枚举优先于自由文本；返回值结构稳定，错误用结构化字段表达——模型读不懂堆栈跟踪。
+
+---
+
+## 2. OpenAI 与 Claude 协议差异
+
+| 维度 | OpenAI Tools API | Anthropic Tool Use |
+| :--- | :--- | :--- |
+| 调用载体 | `assistant.tool_calls[]` | `content[]` 中的 `tool_use` block |
+| 结果回传 | role=`tool` + `tool_call_id` | role=`user` + `tool_result` block |
+| 并行调用 | 原生多 tool_calls | 原生多 tool_use |
+| 强制选择 | `tool_choice: "required"` | `tool_choice: {"type":"any"}` |
+| 流式增量 | `delta.tool_calls` 拼接 | `input_json_delta` 增量 |
+| 特色设计 | Structured Outputs（语法约束解码） | Computer Use / MCP 原生整合 |
+
+Anthropic 把工具结果作为 user 消息的一部分（`tool_result`），OpenAI 用独立的 `tool` role——做协议转换层或自建 Agent Loop 时，这是最常踩的差异点。
+
+---
+
+## 3. 五种编排模式
+
+1. **单次调用（Single-shot）**：允许调用一次工具后作答，最稳，适合查询增强问答
+2. **ReAct 循环**：LLM ⇄ 工具多轮循环直到最终答案，Agent 的默认形态
+3. **并行扇出**：模型一次发出多个独立 tool_calls，应用层并发执行——把 5 次往返压成 1 轮
+4. **路由分发**：先过轻量分类器/小模型决定工具子集，再进主模型——工具超过 10 个时防选择退化
+5. **规划-执行分离**：Planner 产出工具调用 DAG，Executor 按拓扑执行、失败局部重试——复杂任务的降本方案
+
+工具数量是核心约束：**15 个工具以内**模型选择可靠；超过后出现"工具过载退化"（调错率与幻觉工具名显著上升），需要分组或语义检索预筛。
+
+---
+
+## 4. 安全考量：把 LLM 当成不可信的调用方
+
+Function Calling 的本质风险：**自然语言驱动的调用参数，等价于用户可控输入直通后端系统**。
+
+- **参数注入**：用户输入诱导模型把删除/查询参数填成敏感路径 → schema 校验 + 业务白名单双闸
+- **混淆代理（Confused Deputy）**：Agent 用服务账号权限替用户执行，却没校验用户本人对该资源有无权限 → 每次调用做**用户级**鉴权
+- **工具描述/返回值注入**：MCP 工具返回文本中嵌指令，执行侧与 LLM 侧都要消毒
+- **最小权限与沙箱**：文件/网络/数据库账号按任务降权；危险动作（写、删、支付）走 dry-run + 人审
+- **幂等与审计**：工具调用带唯一 ID 可重放；全量记录"模型决定的参数 vs 实际执行的参数"，出现偏差即告警
+
+---
+
+## 5. 生产化清单
+
+- 超时/重试/熔断包住每个工具，错误以结构化文本回喂模型让它自己改道
+- **Token 预算护栏**：Agent 循环设最大轮次与费用上限，防死循环烧钱
+- 可观测：调用链 trace（工具名、参数摘要、耗时、token 数），LangSmith/LangFuse/OpenTelemetry 皆可
+- 评估：建工具调用金标集（该不该调、调没调对、参数对不对），每次发版回归
+- 兜底：模型连续 2 次参数校验失败 → 降级为模板表单让用户补全，比无限重试便宜
+
+---
+
+## 6. 总结
+
+Function Calling 把 LLM 从"文本生成器"升级为"决策器"，但权责必须清楚：**模型只做意图到参数的翻译，执行、鉴权、兜底永远是应用层的领地**。工程上最稳的姿态，是把模型当成一个聪明但不可信的内部服务调用方——输入校验、最小权限、幂等、审计一个都不能少。做好这层隔离，Agent 的失败模式才会从"删库跑路"降级为"回答得不够好"。
+
+(注：文中协议细节与能力对比整理自 OpenAI/Anthropic 官方文档现行公开版本，代码为示意；API 字段随版本迭代变化，落地前以官方 schema 为准。)
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

@@ -147,4 +147,28 @@ date: "2026-05-31 01:12:25 +0800"
 
  
 
- 这里根据自己的机器进行选择，测试主机机使用的mac x86架构，为了规避动态调试高版本安卓需要关闭OEM，Android Studio的AVD系统中找不到关闭OEM的尴尬处境，最终选择了安卓9以下的适配版本。如果你也用的AVD，建议直接使用8.0，防止remo
+ 这里根据自己的机器进行选择，测试主机机使用的mac x86架构，为了规避动态调试高版本安卓需要关闭OEM，Android Studio的AVD系统中找不到关闭OEM的尴尬处境，最终选择了安卓9以下的适配版本。如果你也用的AVD，建议直接使用8.0，防止remote 注入在高版本上的兼容坑（root 权限、SELinux 限制在 API 29+ 上明显增多），API 28 及以下的 userdebug 镜像配合 -writable-system 启动最稳。
+
+ # 动态分析接入配置
+
+MobSF 的动态分析入口在 Web UI 的 Dynamic Analyzer：选择已连接的 AVD 设备后上传 APK，即可自动完成"安装 → 启动 → Frida 注入 → 监控"的流程。几个实测要点：
+
+- 模拟器必须以可写系统方式启动：`emulator -avd <你的AVD名> -writable-system`，否则 frida-server 推送到 /data/local/tmp 之后拿不到稳定运行环境；
+- Android 9（API 28）及以下选 userdebug 镜像，`adb root` 直接可用，从根上规避 OEM 授权无法关闭的死结；
+- MobSF 会自己向模拟器推送管理 frida-server 与 assistant 组件，本机若已手动跑过其他版本 Frida，先停掉避免版本错配；
+- 证书绕过、日志监控、网络抓包在应用启动后自动挂载，观察 WebView 流量时配合 `adb logcat` 核对输出。
+
+ # 排坑清单
+
+1. **端口占用**：MobSF 默认跑在 8000，与本机其他服务冲突时用 `./run.sh 127.0.0.1:8001` 换端口即可，动态分析配置不受影响；
+2. **wkhtmltopdf 缺失**：报告导出失败优先检查这个依赖，macOS 安装后确认二进制在 PATH 中；
+3. **Python 版本越界**：3.10+ 上部分依赖装不上，严格按文档使用 3.8-3.9 建虚拟环境；
+4. **AVD 与 MobSF 不同主机**：docker/VM 中运行的 MobSF 无法接管宿主机模拟器，官方文档明确写死的限制，动态分析必须本机部署；
+5. **x86_64 Mac 加速层**：Intel Mac 跑 AVD 需确认 HAXM/HVF 正常，模拟器卡顿会直接触发 MobSF 的动态分析超时。
+
+ # 小结
+
+MAC + Android Studio AVD 的组合可以在完全本地化的环境里跑通 MobSF 的静态 + 动态全链路：静态部分解决权限、组件、硬编码与第三方 SDK 的初筛，动态部分补齐运行时的网络行为、文件落盘与 API 调用证据。系统版本选择是这条链路里最需要"踩坑"的环节——安卓 8.0/9 的 userdebug 镜像 + `-writable-system` 是实测最省心的配置。样本的最终定性仍以人工复核为准，MobSF 的价值是把重复性的环境搭建与初筛自动化，把分析时间留给真正需要人判断的部分。
+
+（数据来源：MobSF 官方文档与本机 macOS x86_64 + Android Studio AVD 实测记录）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

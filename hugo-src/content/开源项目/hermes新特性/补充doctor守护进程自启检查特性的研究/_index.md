@@ -74,3 +74,15 @@ menu:
 已知边界：检查信任 cua-driver 的 CLI 输出；在子命令缺失的平台/驱动上降级为 `skip` 是正确行为，但意味着旧驱动上的过期注册故障不会被上报。待配套的 trycua/cua#2990 随版本发布后，macOS 与 Windows 上该检查才升级为完整的 pass/fail。
 
 ## 五、PR 信息
+
+- **PR 地址**：https://github.com/NousResearch/hermes-agent/pull/81845
+- **改动规模**：`tools/computer_use/doctor.py` 新增 daemon_autostart 与 version_gate 两项检查，`tests/computer_use/test_doctor.py` 扩充 16 个用例，另附技能参考排障章节（配套上游 trycua/cua#2990 的 macOS LaunchAgent 实现）
+- **状态**：closed
+- **提交时间**：2026-08-05
+
+---
+
+*本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 PR 实测记录。*
+
+（数据来源：PR #81845 与 trycua/cua#2990 记录、macOS 真机 doctor 报告与 51 项测试输出）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

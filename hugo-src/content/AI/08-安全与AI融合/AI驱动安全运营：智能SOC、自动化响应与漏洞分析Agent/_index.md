@@ -134,4 +134,45 @@ class AlertAnalysis:
     false_positive_reason: str | None
 
 
-ALERT_ANALYSIS_SYSTEM_PROMPT = """你是一位资深安全运营分析师，专注于告警分类与优先级评估
+ALERT_ANALYSIS_SYSTEM_PROMPT = """你是一位资深安全运营分析师，专注于告警分类与优先级评估，擅长在噪音中识别真实入侵信号。
+
+输入：一条 SIEM 告警（检测规则、原始日志、资产信息与历史基线）。
+输出：严格 JSON，字段为 verdict、severity、confidence、summary、
+recommended_actions、false_positive_reason。
+
+判定原则：
+1. 资产价值优先——核心生产系统上的可疑行为权重远高于测试环境；
+2. 基线偏离检测——偏离该主机/账号历史常态的行为升级处理；
+3. 链式关联——单条低危告警若能在时间窗内与其他告警拼成攻击链，按链定级；
+4. 保守出证——证据不足时输出 NEEDS_INVESTIGATION，禁止武断判误报。
+"""
+
+
+def analyze_alert(alert: dict) -> AlertAnalysis:
+    prompt = ALERT_ANALYSIS_SYSTEM_PROMPT + "\n\n告警数据：\n" + json.dumps(alert, ensure_ascii=False)
+    raw = llm.chat(prompt, response_format="json", temperature=0)
+    return AlertAnalysis(**json.loads(raw))
+```
+
+### 分级处置策略
+
+| 结论 | 处置动作 | SLA |
+| :--- | :--- | :--- |
+| TRUE_POSITIVE / 高危 | 触发 playbook：隔离主机、吊销会话、呼叫值班 | 15 分钟 |
+| TRUE_POSITIVE / 低危 | 建工单，进威胁狩猎队列 | 24 小时 |
+| FALSE_POSITIVE | 回写规则优化建议，更新抑制列表 | 周批处理 |
+| NEEDS_INVESTIGATION | 自动补齐取证包（进程树、外联、登录历史）后重判 | 2 小时 |
+
+## 自动化响应：LLM 与 SOAR 的分工
+
+原则是**模型出方案、引擎管执行**：Agent 可以解释告警、推荐动作、起草工单，但任何带副作用的操作（隔离、封禁、改密）只能由白名单 playbook 执行，且必须带幂等键与回滚路径；高危动作保留 human-in-the-loop——响应速度的最后一档宁可由人来按。
+
+## 漏洞分析 Agent
+
+漏洞运营里 LLM 的最大价值不是发现 0day，而是把扫描器噪音翻译成工单结论：读取代码上下文判断可达性、核对修复补丁是否覆盖真实调用路径、把 CVSS 与环境因素折算成业务优先级。厂商公开数据显示该环节可节省分析师 30-60% 的初筛时间，但幻觉导致的"错判已修复"必须靠引用代码位置来约束。
+
+## 落地挑战与总结
+
+三大风险：**幻觉结论**（保守出证 + 强制证据引用）、**数据时效**（资产基线滞后引发误判）、**责任归属**（自动处置必须有审计与回滚）。务实的部署路径是三步走：先只做告警摘要与定级建议（零副作用），再开放低危自动处置，最后才让 Agent 驱动高危 playbook。智能 SOC 的终点不是把分析师换成模型，而是把分析师从噪音里捞出来，去做只有人能做的判断。
+（数据来源：Microsoft Security Copilot、Google SecOps、CrowdStrike 等厂商公开研究与 MITRE D3FEND 资料，整理截至 2026-10。）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

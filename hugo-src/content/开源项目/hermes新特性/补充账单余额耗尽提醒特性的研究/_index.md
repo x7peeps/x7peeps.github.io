@@ -89,4 +89,13 @@ PR body 未提供测试套件数据或真机验证记录，本节记录设计意
 ## 五、PR 信息
 
 - **PR 地址**：https://github.com/NousResearch/hermes-agent/pull/45004
-- **改动规模**：+294 / -5，11 个文件（新增 agent/billing
+- **改动规模**：+294 / -5，11 个文件（新增 agent/billing_notice.py，修改 agent/agent_runtime_helpers.py、agent/conversation_loop.py、agent/credential_pool.py 等）
+- **状态**：closed
+- **提交时间**：2026-06-12
+
+---
+
+*本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 PR 实测记录。*
+
+（数据来源：PR #45004 记录与 fallback 链耗尽路径分析）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

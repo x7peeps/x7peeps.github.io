@@ -77,3 +77,30 @@ menu:
 14. SF/T 0075—2020 《网络文学作品相似性检验技术规范》[下载](http://www.moj.gov.cn/news/download/file/file/20200604/1591255954644046011.pdf)
 15. SF/T 0076-2020 《电子数据存证技术规范》[下载](http://www.ssfjd.com/files/hb2020/0076f-电子数据存证技术规范.pdf)
 16. SF/T 0077-2020《汽车电子数据检验技术规范》[下载](http://www.ssfjd.com/files/hb2020/0077f-汽车电子数据检验技术规范.pdf)
+
+## 国际与行业参考
+
+1. NIST SP 800-86《Guide to Integrating Forensic Techniques into Incident Response》[链接](https://csrc.nist.gov/pubs/sp/800/86/final)
+2. RFC 3227《Guidelines for Evidence Collection and Archiving》[链接](https://www.rfc-editor.org/rfc/rfc3227)
+3. ISO/IEC 27037:2012《信息技术 安全技术 数字化证据的识别、收集、获取与保存指南》
+4. ISO/IEC 27042:2015《数字化证据的分析与解释指南》
+5. ISO/IEC 27043:2015《事件调查与取证流程与准则》
+6. SWGDE 数字取证/多媒体取证最佳实践文档集 [链接](https://www.swgde.org/documents/)
+7. ENFSI 取证实践指南（Best Practice Manual 系列）
+
+## 标准体系要点
+
+- **完整性优先**：采集全程哈希校验（MD5/SHA-1/SHA-256），镜像与原件一致性检验是证据可用性的底线（对应 GB/T 29361）
+- **只读与写保护**：取证介质接入必须使用硬件或软件写保护，操作在副本上进行
+- **可复核性**：记录工具版本、参数、操作时间与人员，保证流程可重复、可质证
+- **链条管理**：保管链（Chain of Custody）文档化，从发现、提取、运输到分析每环节可追溯
+- **场景扩展**：车载（SF/T 0077）、网络文学作品（SF/T 0075）、软件功能鉴定等新场景已有专项规范，取证范围随数据类型持续外延
+
+## 小结
+
+国内电子取证标准已形成"国家标准（GB/T）—公共安全行业标准（GA）—司法行业标准（SF/T、SF/Z）"三层结构，覆盖数据恢复、一致性检验、搜索与存证等核心环节；国际层面 NIST、ISO/IEC 27037 系列与 SWGDE/ENFSI 指南提供了流程与最佳实践参照。实际办案与应急响应中，建议以完整性、写保护、可复核、保管链四原则为骨架，按数据类型选择对应规范执行。
+
+
+（数据来源：国家标准、公共安全行业标准与司法行业标准公开目录，参考微信公众号"cnforensics""取证杂谈"公开整理清单）
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

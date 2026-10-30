@@ -127,4 +127,49 @@ class PermissionEngine:
         if not tool_perm:
             return False, f"角色 {agent_role} 无权访问工具 {tool_name}"
 
-        current_risk
+        current_risk = tool_perm.max_risk
+        if risk_level.value > current_risk.value:
+            return False, (
+                f"工具 {tool_name} 风险等级 {risk_level.value} 超出角色 "
+                f"{agent_role} 上限 {current_risk.value}"
+            )
+
+        for cond in tool_perm.conditions:
+            ok, reason = cond(params, context)
+            if not ok:
+                return False, f"动态条件不满足: {reason}"
+
+        return True, "允许调用"
+```
+
+**授予与回收流程**：申请 → 审批 → 到期 → 复审。临时权限随 TTL 自动回收，长期权限进入季度重认证队列——权限体系不是设计坏的，是只增不删堆坏的。
+
+## 3. 沙箱隔离：把越权后果关进笼子
+
+即使权限模型被绕过，沙箱也要保证恶意行为碰不到宿主。
+
+### 3.1 三档隔离强度
+
+| 档位 | 技术 | 隔离强度 | 开销 | 适用场景 |
+| :--- | :--- | :--- | :--- | :--- |
+| 进程级 | seccomp / AppContainer | 弱 | 低 | 只读检索、API 封装 |
+| 容器级 | gVisor / Kata Containers | 中 | 中 | 代码执行、文件处理 |
+| VM 级 | MicroVM（Firecracker） | 强 | 高 | 不可信代码、多租户 |
+
+### 3.2 加固五原则
+
+1. **默认拒绝**：syscall 与出网域名均走白名单，流量经审计代理。
+2. **无凭证环境**：密钥由控制面按需下发 STS 临时凭证，不落盘、不进环境变量。
+3. **资源限额**：CPU/内存/磁盘/时长全限，超时即杀防止失控循环。
+4. **一次性实例**：每个会话新建沙箱，用后即毁，永不复用。
+5. **旁路收敛**：共享资源（缓存、字体、时钟）最小化，降低跨租户侧信道。
+
+## 4. 审计日志：可回放的证据链
+
+完整审计链至少记录五类事件：规划意图、每步工具调用（参数与返回值摘要）、权限判定结果、沙箱异常、人工干预点。每条记录携带 `agent_id / session_id / step_id / timestamp` 四元键以支持全链路回放。日志写入 append-only 存储并按块串联哈希，验证者只需锚点即可校验全链；关键操作要求应用库与独立审计库双写，防止内部人员删改。
+
+## 5. 总结
+
+权限模型、沙箱隔离与审计日志分别回答"事前能做什么、事中做过了什么、事后能否追责"。任何单层都可能被绕过，三层互相校验才构成闭环：权限判定落审计、审计异常触发权限回收、沙箱兜住权限失效的后果。落地顺序建议先做审计日志（看见），再做权限模型（控制），最后完善沙箱（兜底）——越早看见行为，前两层就越好设计。
+（数据来源：OWASP LLM Top 10（2025）、NIST AI RMF、Anthropic/OpenAI Agent 安全公开实践与主流云厂商容器加固基线，整理截至 2026-10。）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

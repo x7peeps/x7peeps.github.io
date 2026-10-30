@@ -86,4 +86,109 @@ AutoGen 的架构围绕三个核心抽象构建：
 │  │  │  Code       │  │  Human       │               │  │
 │  │  │  Execution  │  │  Input       │               │  │
 │  │  │  (sandbox)  │  │  Mode        │               │  │
-│  │  └─────────────┘  └──────────────┘          
+│  │  └─────────────┘  └──────────────┘               │  │
+│  └───────────────────────────────────────────────────┘  │
+│        ▲                        ▲                        │
+│   UserProxyAgent          AssistantAgent          GroupChat│
+│  （人类代理/代码执行）     （LLM 代理）        （多会话编排） │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 2.2 最小可运行示例
+
+```python
+from autogen import AssistantAgent, UserProxyAgent
+
+coder = AssistantAgent("coder", llm_config={"model": "gpt-4o"})
+runner = UserProxyAgent(
+    "runner",
+    human_input_mode="NEVER",
+    code_execution_config={"executor": docker_executor},  # 沙箱执行
+)
+
+runner.initiate_chat(
+    coder,
+    message="写一个 Python 脚本统计当前目录各类型文件数量并输出 CSV",
+)
+```
+
+对话循环自动推进：coder 产出代码块 → runner 在 Docker 里执行 → 报错原样回喂 coder → coder 修复 → 直到回复 "TERMINATE"。代码执行闭环是 AutoGen 最锋利的差异化能力。
+
+### 2.3 v0.4 重构与 AgentChat
+
+2025 年 AutoGen 分裂为两条线：核心重写为**异步事件驱动的 actor 模型**（v0.4+，并有 .NET 跨语言实现）；上层 `autogen-agentchat` 提供开箱模式（RoundRobinGroupChat、SelectorGroupChat、Swarm、Magentic-One）。微软还基于它推出了低代码工作台 **AutoGen Studio**。选型注意：v0.2 的 `ConversableAgent` API 与新体系**不兼容**，社区大量教程已过期。
+
+### 2.4 优劣势
+
+- **强**：对话式协作表达力最强、代码执行闭环完整、学术/研究友好、微软背书
+- **弱**：自由对话轮次不可控（发散与费用风险）、非确定性流程难做生产 SLA、API 迁移阵痛大
+
+---
+
+## 三、CrewAI：角色分工派
+
+### 3.1 核心抽象
+
+CrewAI 把"团队"做成一等公民：**Agent（角色+目标+背景）→ Task（描述+期望输出+负责 Agent）→ Crew（流程模式+成员）**。
+
+```python
+from crewai import Agent, Task, Crew, Process
+
+researcher = Agent(role="行业研究员", goal="找出该赛道前三名玩家",
+                   backstory="资深 TMT 分析师，重视数据来源", llm="gpt-4o")
+writer = Agent(role="报告撰写人", goal="把发现转成结构化报告",
+               backstory="技术编辑，输出克制不吹捧", llm="gpt-4o")
+
+t1 = Task(description="调研 {topic} 的市场格局",
+          expected_output="三家公司对比表", agent=researcher)
+t2 = Task(description="基于调研结果写 800 字报告",
+          expected_output="Markdown", agent=writer, context=[t1])
+
+crew = Crew(agents=[researcher, writer], tasks=[t1, t2],
+            process=Process.sequential)
+report = crew.kickoff(inputs={"topic": "AI 代码助手"})
+```
+
+### 3.2 Flows：从"放养"到可控管道
+
+纯 Crew 的痛点与 AutoGen 相同——多 Agent 自由对话不可预测。CrewAI 0.40+ 的答案是 **Flows**：事件驱动的状态机管道，用 `@start/@listen/@router` 装饰器显式编排步骤，Crew 可作为 Flow 的节点嵌入。官方定位从此明确：**Flow 定骨架，Crew 填智能**。
+
+### 3.3 优劣势
+
+- **强**：上手最快、角色模型直觉好、任务依赖注入简单、文档友好
+- **弱**：复杂协商/辩论模式不如 AutoGen 灵活、企业版与开源版能力分层明显、深度定制会撞框架边界
+
+---
+
+## 四、Dify：平台化的另一种解法
+
+Dify 不是 Agent 库，而是 **LLM 应用平台**：可视化 Workflow/Agent 编排、内置 RAG 流水线（解析→分段→索引→召回）、多供应商模型路由、插件市场与数据集标注，自带 API 发布与用量看板。
+
+- **强**：非工程角色可参与维护、RAG 质量工具链完整、密钥/配额/日志等运维件开箱即用
+- **弱**：复杂 Agent 拓扑（多 Agent 协商、自定义 memory）受限，深度逻辑最终要写代码插件绕开 GUI
+- **适合**：企业知识库问答、审批助手、客服机器人这类"80% 标准 RAG+工作流"需求
+
+---
+
+## 五、横向对比与选型
+
+| 维度 | AutoGen | CrewAI | Dify |
+| :--- | :--- | :--- | :--- |
+| 抽象层 | 对话/actor 事件 | 角色-任务-团队 + Flows | 可视化平台 |
+| 控制流 | 自由对话（弱控制） | 顺序/分层 + Flow 强控 | 显式工作流 |
+| 代码执行 | 内置沙箱闭环 | 依赖工具封装 | 插件/代码节点 |
+| 学习曲线 | 中高（API 迁移中） | 低 | 极低（对非工程） |
+| 生产确定性 | 低 | 中（Flows 后改善） | 中高 |
+| 生态 | 微软研究院系 | 增速最快的框架 | 平台类最大开源项目之一 |
+
+**选型决策**：研究复杂协作机制 → AutoGen；业务自动化、多角色流水线、工程速度优先 → CrewAI；平台化交付、非工程协作方参与、标准 RAG 场景 → Dify。三者不互斥——常见形态是 Dify 做入口与知识层，CrewAI/自研 Agent 承担复杂子任务。
+
+---
+
+## 六、总结
+
+Multi-Agent 框架竞争的本质是**控制流所有权**之争：AutoGen 把编排权交给对话，CrewAI 交给角色剧本与 Flow，Dify 交给可视化 DAG。工程实践的一贯教训是：**自由对话适合发现，显式编排适合交付**——所以 2025-2026 年三者殊途同归地补确定性（Selector 收敛、Flows、代码节点）。落地建议：先用单 Agent+工具跑通流程，确认多角色确有增益再拆 Agent；拆的时候先定协作模式（分工/协商/竞争/层级），再按上表选框架——**模式决定框架，而不是反过来**。
+
+(注：框架特性与版本信息整理自 AutoGen/CrewAI/Dify 官方文档与 2025-2026 公开 release notes，代码为教学示意；各框架 API 迭代较快，以当前版本为准。)
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

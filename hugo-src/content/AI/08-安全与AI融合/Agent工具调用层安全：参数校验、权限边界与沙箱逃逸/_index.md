@@ -136,4 +136,39 @@ class PathParameterValidator:
 
     def __call__(self, params: dict, context: dict = None) -> tuple[bool, str]:
         for key in ["path", "file_path", "directory", "source", "target"]:
-            if key in p
+            if key in params:
+                raw = str(params[key])
+                candidate = (self.allowed_base / raw).resolve()
+                if not candidate.is_relative_to(self.allowed_base):
+                    return False, f"路径逃逸: {raw!r} 解析后落在 {candidate}"
+                if candidate.is_symlink():
+                    return False, f"拒绝符号链接: {raw!r}"
+        return True, "路径校验通过"
+```
+
+校验必须作用在 **resolve 之后的真实路径**上：只对原始字符串过滤 `..` 的做法已被多次实战绕过——符号链接、UNC 路径与 zip-slip 都发生在字符串校验之后。
+
+## 3. 权限边界：从 Agent 到下游系统
+
+工具调用最隐蔽的危险是 Agent 身份与用户身份混用。三条铁律：
+
+1. **凭证分池**：Agent 使用最小权限服务凭证；用户凭证仅在用户在场时透传，且单次有效。
+2. **操作分级**：读操作可自动、写操作设额度、不可逆操作（转账、删除、对外发送）强制人工确认。
+3. **边界收敛**：网关按 `(agent, tool, 参数范围)` 三元组授权，而不是只按工具名授权——同一个 `send_email`，收件人在域内和域外是两种风险。
+
+## 4. 沙箱逃逸：攻击面与对策
+
+| 逃逸路径 | 原理 | 对策 |
+| :--- | :--- | :--- |
+| 共享内核 | 容器与宿主共用内核，内核漏洞即逃逸 | gVisor/Kata 用户态内核隔离 |
+| 危险挂载 | docker.sock、宿主目录可写挂载 | 只读挂载、禁止 socket 透传 |
+| 环境泄露 | 环境变量中的云长期凭证被工具读取 | 凭证不落沙箱，STS 短时下发 |
+| 提权配置 | privileged 容器、开放 ptrace | 禁特权、seccomp 白名单 |
+
+Agent 语境下的完整攻击链通常是：**注入 → 诱导执行任意代码 → 逃逸 → 窃取凭证**。参数校验挡住前一步，沙箱设计决定后一步的爆炸半径。
+
+## 5. 总结
+
+工具调用层的安全是一条因果链：校验参数（不让恶意进）、约束身份（不让越权做）、隔离执行（出了事也不失控）。任何一环的单点失效都不应导致整体失守——这正是纵深防御在 Agent 系统里的具体形态。落地时记住优先级：90% 的现实攻击止步于参数校验与操作分级，把这两件事做扎实，比堆砌十层沙箱更有收益。
+（数据来源：OWASP LLM Top 10（2025）、gVisor/Kata 官方文档与公开渗透测试案例复盘，整理截至 2026-10。）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

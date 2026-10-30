@@ -83,3 +83,5 @@ E2E 用例以 voxcpm 包安装 + `~/.hermes/models/VoxCPM2/` 存在 model.safete
 ---
 
 *本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 PR 实测记录。*
+（数据来源：PR #82961 记录、Apple M5 Max MPS 真机合成实测与 69 项测试输出）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

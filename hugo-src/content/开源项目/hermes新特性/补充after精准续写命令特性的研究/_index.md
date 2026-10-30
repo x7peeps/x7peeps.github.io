@@ -90,4 +90,14 @@ PR body 记录的回归测试数据：
 
 ## 五、PR 信息
 
-- **PR 地址**：https://github.com/NousRese
+- **PR 地址**：https://github.com/NousResearch/hermes-agent/pull/47044
+- **改动规模**：+146 / -0，3 个文件（hermes_cli/commands.py、gateway/run.py、docs/after-command.md）
+- **状态**：closed
+- **提交时间**：2026-06-15
+
+---
+
+*本文记录 x7peeps 向 Hermes Agent 上游贡献的特性研究，所有数据来自 PR 实测记录。*
+
+（数据来源：PR #47044 记录、命令注册代码与 402 项回归测试输出）
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

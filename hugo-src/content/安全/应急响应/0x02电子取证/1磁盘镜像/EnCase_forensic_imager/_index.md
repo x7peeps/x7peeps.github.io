@@ -146,4 +146,35 @@ Ex01及Lx01格式是EnCase V7引进的新格式，该格式最大的变化是支
 **证据文件格式等设置项**
 
 **
-**![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375937889-59b37051-a8a6
+**![image](https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/content/安全/应急响应/0x02电子取证/1磁盘镜像/EnCase_forensic_imager/1616375937889-59b37051-a8a6-4f2d-9c8b-7a6f5e4d3c2b.png)
+
+- **Format**
+  证据文件格式。可选 EnCase Evidence File Format v2（E01，支持压缩与内嵌元数据/哈希）、Ex01，或原始 DD（raw）镜像。法律场景优先 E01。
+- **Compression**
+  压缩等级（None/Fast/Good）。取证建议 Fast，兼顾成像速度、体积与稳定性；对损坏介质建议不压缩以降低处理风险。
+- **Segment Size**
+  分卷大小，用于刻录介质或分片传输（如 700MB/1.4GB/4.7GB 预设），也可自定义或不分卷。
+
+**高级设置项**
+
+- **Hash**：勾选 MD5、SHA-1 或 SHA-256，成像时同步计算并在镜像头中保存，供一致性校验
+- **Verify**：完成成像后自动校验镜像与源数据哈希一致性
+- **Artifact Capture（VSS）**：捕获 Windows 卷影副本等伪制品，需源盘为 NTFS 且只读接入
+- **Disk Selection / Include Unallocated**：物理盘成像保留未分配空间，最大化可恢复面
+
+参数确认后回到主界面，选中设备点击 Acquire 即开始成像；过程中可查看进度与校验结果。
+
+## 使用建议
+
+- 源盘必须挂接**硬件写保护**或以只读方式接入，检验人员信息（Examiner Name）按实名填写以保证可质证
+- 保管链（Chain of Custody）同步记录：案件编号、证据编号、设备序列号、哈希值、时间与操作人
+- 大体积盘建议 E01 + 合适分卷，存放于独立取证存储，避免与源盘同机
+
+## 小结
+
+EnCase Forensic Imager 的价值在于"免费、单一用途、输出即证据"：它不做分析，只做符合 EnCase 证据格式规范的高完整性镜像，E01 头内嵌案件元数据与哈希，天然适配执法与司法链条。应急响应中可与分析类工具解耦使用——先用 Imager 固化证据并校验，再在任何分析副本上操作，是磁盘取证的标准姿势。
+
+
+（数据来源：Guidance/OpenText EnCase Forensic Imager 官方文档与用户手册整理）
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

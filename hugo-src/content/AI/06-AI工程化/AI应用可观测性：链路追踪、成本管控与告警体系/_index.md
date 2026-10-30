@@ -113,4 +113,148 @@ LLM 应用的指标具有明显的时间特性：
 
 ## 三、LangFuse/LangSmith 实操
 
-LangFuse 和 LangSmith 是当前 LLM 可观测性领域的两大主流平台。LangFuse 开源且自托管友好，
+LangFuse 和 LangSmith 是当前 LLM 可观测性领域的两大主流平台。LangFuse 开源且自托管友好，LangSmith 则在 LangChain / LangGraph 生态里提供最顺的集成体验。两者都能解决"一次请求到底调了哪些模型、花了多少 Token、慢在哪一步"的原始问题。
+
+### 3.1 集成方式：从装饰器到中间件
+
+LangFuse 的接入有三种粒度，按侵入性从低到高选择：
+
+```python
+from langfuse.openai import openai      # drop-in，无需改调用逻辑
+from langfuse import observe             # 装饰器，任意函数变 span
+
+@observe(name="rag_pipeline")
+def answer(question: str):
+    docs = retrieve(question)            # 自动成为子 span
+    return generate(question, docs)
+
+client = openai.OpenAI()
+resp = client.chat.completions.create(
+    model="gpt-4o-mini", messages=msgs,
+    metadata={"user_tier": "pro", "feature": "chat"}   # 用于成本归因
+)
+```
+
+**metadata 是成本与质量归因的关键**。不写 metadata 的 trace 只能看全局曲线；带上 `feature`、`tenant`、`user_tier`、`model_version` 之后，才能回答"哪个功能的 Token 成本失控了""哪个租户的回答质量在掉"。建议在网关层统一注入，而不是散落在各业务代码里。
+
+框架原生集成（LangChain callback、OpenAI Agents SDK、Vercel AI SDK）成本最低；自研 Agent 用装饰器；已经全面接 OpenTelemetry 的团队可以直接走 OTLP exporter，让 LLM span 与应用链路在同一 trace 下——这在高并发场景里非常关键，因为**端到端延迟里 LLM 往往不是唯一变量**。
+
+### 3.2 Trace 结构与评估落地
+
+一条合格的 LLM trace 应包含：路由/检索（查询、命中片段与分数）、Prompt 拼装（最终送进去的完整文本）、模型调用（输入/输出/Token/耗时/成本）、后处理（校验、解析、护栏判定）。**拼装后的 Prompt 一定要落盘**——只看原始用户输入，你永远无法解释"模型为什么会这么答"。
+
+评估在平台上落地为两条通道：
+
+- **在线采样评分**：对一定比例的真实流量跑 LLM-as-Judge（相关性、有害性、是否遵循指令），结果写回 trace 的 score
+- **离线实验**：在数据集上跑新版本，与 baseline 对比同一组指标，作为发布门禁
+
+两者的差别是**在线评分看趋势、离线实验看变更**。把在线评分当发布依据的团队，会在模型供应商悄悄换版本时吃一个大亏。
+
+---
+
+## 四、Prometheus + Grafana 自建指标体系
+
+LangFuse 一类平台擅长单请求诊断与质量评估，**但 SRE 需要的告警、SLO、值班响应必须走指标体系**。两者的分工是明确的：trace 用来查个案，metrics 用来守底线。
+
+### 4.1 指标命名与基数控制
+
+```python
+from prometheus_client import Counter, Histogram
+
+LLM_TOKENS = Counter(
+    "llm_tokens_total", "token usage",
+    ["model", "feature", "direction"],   # direction: prompt | completion
+)
+LLM_LATENCY = Histogram(
+    "llm_ttft_seconds", "time to first token",
+    ["model", "feature"],
+    buckets=(0.2, 0.5, 1, 2, 5, 10, 20, 40),
+)
+LLM_COST = Counter("llm_cost_usd_total", "estimated cost", ["model", "feature"])
+GUARDRAIL = Counter("guardrail_hits_total", "guardrail triggers", ["rule", "action"])
+```
+
+**基数是第一杀手**。绝对不要把 `user_id`、`session_id`、完整 prompt 放进 label——一个热点租户就能把时间序列撑爆，代价是 Prometheus 内存与查询性能同时崩。允许进入 label 的只有低基数字段：model、feature、provider、status、cache_hit。**高基数信息一律留在 trace 里。**
+
+### 4.2 三个实用查询
+
+```promql
+# 每分钟成本（按模型）
+sum by (model) (rate(llm_cost_usd_total[5m])) * 60
+
+# 缓存命中率
+sum(rate(cache_hits_total[10m])) / (sum(rate(cache_hits_total[10m])) + sum(rate(cache_misses_total[10m])))
+
+# TTFT P95
+histogram_quantile(0.95, sum by (le, model) (rate(llm_ttft_seconds_bucket[5m])))
+```
+
+Grafana 面板的推荐结构：**顶部一行放钱（今日成本、单请求均值、Token 速率），第二行放体验（TTFT P95、端到端 P95、错误率），第三行放质量与安全（护栏命中、评分均值、降级率）**。值班的人第一眼要看到的是"是烧钱、是变慢，还是变笨"。
+
+---
+
+## 五、成本管控
+
+### 5.1 成本核算的三件难点
+
+**第一，别信 API 返回的 usage 就以为算准了。** Prompt Cache 命中按折扣计费、不同模型单价随时间变化、工具调用与 embedding 也各自花钱。正确做法是维护一张价格表（含 cache 折扣率），在网关层按 token 明细计算，并定期与账单对账。
+
+**第二，成本归因必须落到 feature 而非全局。** "本月花了 8 万美元"没有可操作性；"搜索摘要功能花了 3.2 万，单请求 0.021 美元，环比涨 40% 因为上下文从 3k 涨到 9k"才能驱动决策。
+
+**第三，预算要有分级闸门**：
+
+| 层 | 机制 |
+| :--- | :--- |
+| 单请求 | max_tokens 上限、上下文裁剪、超时熔断 |
+| 单用户/租户 | 日配额、速率限制、超额降级到便宜模型 |
+| 应用/团队 | 日预算告警（80% 预警、100% 通知，而非静默限流） |
+| 全局 | 模型路由（简单任务走小模型）、语义缓存、批处理 |
+
+### 5.2 模型路由的成本弹性
+
+实测中"按任务复杂度路由"通常是成本降幅最大的手段。用规则（长度、意图、是否含代码）加一个小分类器，把 60%-80% 的简单流量分到小模型，质量指标往往只掉 1-3 个点，成本可以降一半以上。前提是**路由决策要进 trace 并纳入质量评测**——不然无法证明"分到小模型的那些请求确实没变差"。
+
+---
+
+## 六、告警体系
+
+### 6.1 什么该告警，什么不该
+
+告警的第一原则是**可行动**。"平均 Token 用量上升"是仪表盘内容，不是告警；"TTFT P95 连续 5 分钟 > 8s 且缓存命中率下跌 20%"才是。
+
+| 类别 | 阈值示例 | 处理 |
+| :--- | :--- | :--- |
+| 可用性 | 错误率 > 2%（5 分钟窗口） | 立刻告警，触发降级 |
+| 供应商 | 429 比例 > 5% / fallback 率 > 10% | 告警 + 自动切流 |
+| 延迟 | TTFT P95 > 8s | 告警（非阻塞类可只通知） |
+| 成本 | 单请求成本 > 3× 7 日均值 | 告警，先查是否有失控循环 |
+| 质量 | 在线评分均值下跌 > 0.5；点踩率翻倍 | 通知 + 自动跑评测集回归 |
+| 安全 | 注入命中激增；护栏拦截率异常 | 立刻告警并升级人工 |
+
+**质量类告警最容易误报**：LLM 评分本身有噪声，短窗口抖动是常态。正确做法是用较长窗口（1-24 小时）+ 显著性判断（对比同期分布），并且配一条**自动回归**动作——触发时跑评测集，而不是直接叫人。
+
+### 6.2 一条容易被忽略的告警
+
+**"上游模型版本变了"**。供应商静默更新模型会让质量、延迟、成本同时漂移，而你的代码一行没改。可行的防御是：把响应里的模型标识与固定版本请求（不同厂商标法不同）纳入监控，检测到漂移就触发离线评测。这类告警在 LLM 场景的独特性上很有代表性——传统监控里根本没有这个维度。
+
+---
+
+## 七、落地路线图
+
+按投入产出比排序：
+
+1. **第 1 周**：接入 trace（TTFT、总耗时、Token、cost、metadata），成本核算跑通
+2. **第 2 周**：Prometheus 指标 + Grafana 三层面板 + 可用性/延迟/成本三类告警
+3. **第 3-4 周**：建评测集与离线实验流水线，把"改 Prompt 必跑回归"变成门禁
+4. **第 2 个月**：在线抽样评分、语义缓存与模型路由接入，质量与成本指标进入同一面板
+5. **持续**：告警演练、价格表对账、trace 采样率与存储周期按成本调整
+
+## 八、结语
+
+AI 应用的可观测性不是"给传统监控加几个新指标"，而是要**把非确定性系统变成可度量系统**：单请求可追溯（trace）、总体趋势可比较（metrics）、质量变化可判定（evals）。三者缺一个，优化就会退化成主观感受。
+
+一个务实的提醒：**先做成本与延迟，再做质量**。前者数据现成、口径清晰，一周就能见效；后者需要评测集和裁判体系，是长期建设。很多团队一上来就想监控"回答得好不好"，结果两个季度过去了连每月花了多少钱都说不清。
+
+（数据来源说明：本文为公开资料与技术方法整理，涉及的性能、比例与厂商能力描述以各官方文档与公开报告为准，具体数值会随版本变化；未在自有环境逐项复测的数据均以'约/通常/实践区间'表述。）
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

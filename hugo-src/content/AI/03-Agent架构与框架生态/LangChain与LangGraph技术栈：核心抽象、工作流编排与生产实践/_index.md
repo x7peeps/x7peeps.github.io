@@ -151,4 +151,101 @@ prompt = ChatPromptTemplate.from_template(
     "请用一段话解释以下概念：{concept}"
 )
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
-parser = StrOut
+parser = StrOutputParser()
+
+chain = prompt | llm | parser          # LCEL：用 | 把组件编成管道
+result = chain.invoke({"concept": "幂等性"})
+```
+
+**LCEL（LangChain Expression Language）** 是 v0.1 之后 LangChain 的骨骼：任何 Runnable 自动获得 `invoke / batch / stream / ainvoke` 四种执行形态与统一的重试、异步、流式能力。链式组合（`|`）、并行（`RunnableParallel`）、分支（`RunnableBranch`）、回退（`with_fallbacks`）都是纯函数式拼装，不需要回调黑魔法。
+
+### 2.4 Retrieval：RAG 全家桶
+
+LangChain 把 RAG 拆成可替换零件：DocumentLoader（150+ 数据源）→ TextSplitter（Recursive/Semantic）→ VectorStore（FAISS/Chroma/pgvector/Pinecone）→ Retriever（向量/混合/MultiQuery/ContextualCompression）→ 组装为检索链：
+
+```python
+from langchain.chains import create_retrieval_chain
+from langchain.chains.combine_documents import create_stuff_documents_chain
+
+qa_chain = create_stuff_documents_chain(llm, RAG_PROMPT)  # 检索文档注入 {context}
+pipeline = create_retrieval_chain(
+    vectorstore.as_retriever(search_kwargs={"k": 4}), qa_chain)
+```
+
+生产常用升级：`MultiQueryRetriever`（LLM 生成查询变体提召回）、`ContextualCompressionRetriever`（重排后压掉无关片段）、retriever 直接作为节点挂进 LangGraph。
+
+### 2.5 Agents：从 AgentExecutor 到 LangGraph
+
+旧版 `AgentExecutor`（ReAct 循环的黑盒）已被官方**明确降级**：不可控、难调试、状态不透明。新范式是**显式图**——这就是两个库的分工线：LangChain 提供零件（模型/工具/检索/prompt），LangGraph 负责控制流。
+
+---
+
+## 三、LangGraph：有状态的工作流编排
+
+### 3.1 核心抽象
+
+| 概念 | 含义 | 类比 |
+| :--- | :--- | :--- |
+| **State** | TypedDict/Pydantic 共享状态，节点返回增量、reducer 决定合并 | 全局变量 + 规约 |
+| **Node** | 接收 state 返回 state 的函数（可含 LLM、工具、纯逻辑） | 函数 |
+| **Edge** | 固定转移 / **条件边**（按 state 路由） | 控制流 |
+| **Checkpointer** | 每步持久化 state 快照 | 数据库 + 时间旅行 |
+
+### 3.2 最小 Agent 循环
+
+```python
+from langgraph.graph import StateGraph, MessagesState, START, END
+from langgraph.prebuilt import ToolNode
+
+def call_model(state: MessagesState):
+    return {"messages": [llm_with_tools.invoke(state["messages"])]}
+
+def should_continue(state: MessagesState):
+    last = state["messages"][-1]
+    return "tools" if last.tool_calls else END
+
+graph = StateGraph(MessagesState)
+graph.add_node("agent", call_model)
+graph.add_node("tools", ToolNode(tools))
+graph.add_edge(START, "agent")
+graph.add_conditional_edges("agent", should_continue,
+                            {"tools": "tools", END: END})
+graph.add_edge("tools", "agent")
+
+app = graph.compile(checkpointer=SqliteSaver.from_conn_string("ckpt.db"))
+```
+
+这段拓扑就是 Function Calling 的 ReAct 循环，但每一步都**可见、可断点、可重放**。
+
+### 3.3 LangGraph 的生产价值
+
+- **持久化**：长任务崩溃后从 checkpoint 恢复，不用重跑
+- **Human-in-the-loop**：`interrupt()` 把图停在敏感节点，等外部批准后 resume
+- **时间旅行**：回滚到任意历史 state 重执行——调试 Agent 的神器
+- **多 Agent**：子图即子 Agent，supervisor 模式用条件边路由
+
+---
+
+## 四、LangSmith 与可观测性
+
+`LANGCHAIN_TRACING_V2=true` 一行开启全链路追踪：每次 chain/graph 运行的节点输入输出、LLM token、延迟、成本自动上报。评估闭环：**数据集 → 离线实验 → 回归对比 → 线上监控告警**，再加 LLM-as-judge 评正确性/引用忠实度。不想绑定平台的团队可用 LangFuse（开源）平替，概念一一对应。
+
+---
+
+## 五、生产实践建议与常见误区
+
+1. **能用裸 API 就别上重框架**——单轮 prompt + 工具循环，百行代码比隐式黑盒可控；当需要多分支状态机、持久化、人审时，LangGraph 的价值才压过引入成本
+2. **版本纪律**：LangChain 迭代快，锁 minor 版本，升级对照 migration 指南，弃用路线图画清楚
+3. **先画图再写代码**：节点/边/状态字段评审通过再动手，返工率减半
+4. **工具与检索层保持框架无关**（纯函数 + pydantic）——将来从 LangGraph 迁到自研只换控制流
+5. **新项目别再以 AgentExecutor 为核心**；官方方向已明确是 LangGraph
+
+---
+
+## 六、总结
+
+LangChain 生态的定位在 2025 年后已经清晰：**langchain-core 的 Runnable 抽象统一组件接口，LCEL 提供函数式拼装，LangGraph 接管控制流与状态，LangSmith 闭环观测与评估**。它的工程红利不是"帮你写 Agent 代码"，而是把 LLM 应用中反复出现的横切问题——流式、重试、批量、trace、checkpoint——一次解决。选型务实：小场景裸 API，中等 RAG/工具用零件库，复杂状态机与多 Agent 直接 LangGraph。框架不替你设计产品，但它决定你调试时的痛苦程度。
+
+(注：文中代码基于 langchain / langgraph 公共 API 的教学示意，接口细节随版本演进，以官方文档为准。)
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。

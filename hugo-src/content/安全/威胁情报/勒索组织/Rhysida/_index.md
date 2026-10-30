@@ -147,4 +147,37 @@ weight: 12
 |------|------|--------|
 | **语言归属** | 英语（泄露站）、俄语（推断） | 中 |
 | **地理归属** | 独联体地区（CIS），可能位于俄罗斯 | 中 |
-| **Vice Society 关联** | TTPs 完全一致（PortStarter、SystemBC、temp_l0gs 目录、ZeroLogon、RDP+PsEx
+| **Vice Society 关联** | TTPs 完全一致（PortStarter、SystemBC、temp_l0gs 目录、ZeroLogon、RDP+PsExec 组合） | 高 |
+| **Interlock 关联** | 2024.09 后疑似从 Rhysida 分裂，接管其泄露库存 | 中 |
+| **基础设施** | 泄露站与 C2 频繁更换注册商规避 WHOIS | 低-中 |
+
+### 3.2 归属置信度评估
+
+**综合评估**：Rhysida 与 Vice Society（DEV-0832/Vanilla Tempest）同源为中高置信度；地理归属推断为独联体地区，置信度中等。Interlock 分裂关系提示：Rhysida 画像需同时映射到两个后继品牌。
+
+---
+
+## 四、防御建议
+
+### 4.1 检测要点
+
+- **PortStarter / SystemBC**：端口转发与代理隧道的异常出站
+- **temp_l0gs 目录**：Rhysida 标志性的日志暂存路径
+- **ZeroLogon（CVE-2020-1472）滥用**与 RDP+PsExec 横向组合
+- Interlock 载荷特征（"Landupdate808/KongTuke" 关联活动）同步纳入规则库
+
+### 4.2 缓解与响应
+
+- 教育、医疗、政府等高受害行业：优先修补域控相关漏洞，限制 DCSync 与远程管理服务
+- 驻留窗口（最短 8 天）内加强行为告警收敛，为响应争取时间
+
+---
+
+## 五、总结
+
+Rhysida 是"团伙换牌"模式的教科书：Vice Society 以钓鱼和打印服务驻留著称，品牌化后的 Rhysida 继承同一 TTP 库并叠加双重勒索，2024 年底又疑似分裂出 Interlock 接管库存。对防御者而言，单一品牌封禁几乎没有减损攻击产能——真正有效的是把 PortStarter、SystemBC、temp_l0gs 这类**跨品牌稳定的行为指纹**写进检测体系，以指纹而非名称跟踪家族簇。
+
+
+（数据来源：公开威胁情报多源交叉整理，含 CISA/FBI 联合公告、MITRE ATT&CK 及 Microsoft、Trend Micro、Symantec、CrowdStrike、Mandiant 等厂商公开研究）
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。
