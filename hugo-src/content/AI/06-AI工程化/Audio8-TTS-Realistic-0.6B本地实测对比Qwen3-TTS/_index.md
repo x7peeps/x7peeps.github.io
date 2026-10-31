@@ -98,7 +98,7 @@ Audio8 侧的推理代码就是官方 README 的标准写法：transformers 4.57
 
 **语速略有差异，且方向随语言变化。** 中文文本 Audio8 合成的时长比 Qwen3-TTS 长 17%-21%（中文长段 19.37s 对 16.00s，中文短句 7.11s 对 6.08s）；英文短句反而基本持平甚至略短（3.76s 对 3.84s）。Audio8 的中文节奏更从容，但如果你的产线对时长有精确卡点（比如视频配音对帧），切换模型后需要重新校准，且中英文要分别校。
 
-**听感层面**（这部分主观，供参考）：官方对 Realistic 的定位是"显著提升语音真实感"，Seed-TTS 说话人相似度从 0.682 提到 0.704，方向性结论有数据背书。本文只实测了 Realistic 对 Qwen3-TTS：两者都能抓住参考音色的基本特征，Audio8 的音色"厚度"更接近参考音频，英文发音明显更顺，Qwen3-TTS 的英文带一点翻译腔。注意本文没有跑 Preview 版做对照，Realistic 相对上一代的听感差异不在本次实测范围内。
+**听感层面**（这部分主观，供参考）：官方对 Realistic 的定位是"显著提升语音真实感"，Seed-TTS 说话人相似度从 0.682 提到 0.704，方向性结论有数据背书。本文只实测了 Realistic 对 Qwen3-TTS：两者都能抓住参考音色的基本特征，Audio8 的音色"厚度"更接近参考音频，英文发音明显更顺，Qwen3-TTS 的英文带一点翻译腔。注意本文没有跑 Preview 版做对照，Realistic 相对上一代的听感差异不在本次实测范围内。还有一个必须交代的个人结论：三组样本反复对照后，**就整体听感而言我更偏好 Qwen3-TTS 的版本**，并因此保留了 Qwen3-TTS 产线作为日常主力——Audio8 赢在采样率和克隆的技术规格，但"更喜欢哪个声音"这件事，数据替你做不了主。
 
 ## 速度：这笔账要算清楚
 
@@ -143,7 +143,7 @@ Audio8 侧的推理代码就是官方 README 的标准写法：transformers 4.57
 
 零样本克隆的原理值得单独讲清楚，因为它决定了你实际使用时的成败。合成时模型吃三样东西：参考音频、参考音频的逐字转写、目标文本。Slow AR 先把参考音频编码成语义 token 序列，和转写文本对齐后，模型就"知道"了这个声音在发每个音时的语义-声学对应关系；生成目标文本时，它沿用这种对应关系外推出新的 token 序列，codec 再解码成波形。
 
-![声音克隆概念图](/audio8-vs-qwen3tts/ttsart_clone.png)
+![声音克隆概念图](ttsart_clone.jpg)
 
 *声音克隆的直观图景：参考音频的声学特征经模型映射到目标文本（概念示意图）*
 
@@ -197,7 +197,7 @@ Audio8 侧的推理代码就是官方 README 的标准写法：transformers 4.57
 
 把全文收敛成三句话：
 
-**做中文配音内容、用 Apple Silicon、要快**：留在 Qwen3-TTS 系产线。迁移成本清单：Audio8 需要重新校准中文语速（中文 +17%-21%）、接入 transformers 推理依赖（约 3GB Python 环境）、且当前无 MLX 后端。
+**做中文配音内容、用 Apple Silicon、要快**：留在 Qwen3-TTS 系产线——这也是本文的最终选择：六条样本对照试听后，整体听感更合意的是 Qwen3-TTS，加上迁移成本（重新校准中文语速 +17%-21%、接入约 3GB 的 transformers 依赖、无 MLX 后端），没有理由换。
 
 **做双语/英文内容、有 NVIDIA 显卡、要 API 化**：Audio8-Realistic + SGLang 值得直接上产线试，44.1kHz 和克隆质量对得起部署成本，Apache 2.0 商用无忧；上量前先自测吞吐（官方未发布数据）。
 
@@ -219,8 +219,6 @@ Audio8 侧的推理代码就是官方 README 的标准写法：transformers 4.57
 <audio controls src="/audio8-vs-qwen3tts/audio8r_zh_short.wav"></audio> Audio8-Realistic
 
 <audio controls src="/audio8-vs-qwen3tts/dalu_zh_short.wav"></audio> Qwen3-TTS-1.7B
-
-（英文短句样本较短，差异在发音自然度，建议配合听感章节文字对照收听。）
 
 
 **参考资源**：模型权重在 Hugging Face 搜 "Audio8-TTS-Realistic-0.6b"（Apache 2.0）；技术报告 arXiv:2610.14776；推理代码与 SGLang 部署指南见官方 GitHub 仓库 Audio8-AI/Audio8_TTS。声音克隆请确保获得本人授权，合成内容按平台要求披露。
