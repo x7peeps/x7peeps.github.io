@@ -65,4 +65,3 @@ PR #60376 的标题概括了收口范围：重定向、PowerShell 方法调用�
 
 参考来源：anomalyco/opencode issue #49948、#60958 与 PR #60376 原始页面（采集快照 2026-11-03）。
 
-参考来源：anomalyco/opencode issue #49948、#60958 与 PR #60376 原始页面（采集快照 2026-11-03）。
