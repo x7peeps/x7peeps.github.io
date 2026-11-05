@@ -1,5 +1,5 @@
 ---
-title: "守门人的钥匙挂在门上：两个开源 AI Agent 的审批绕过审计"
+title: "守门人的钥匙挂在门上：两个开源 AI Agent 的信任边界审计"
 date: "2026-11-05 23:55:00 +0800"
 weight: 9
 tags: [Agent安全, 审批绕过, 凭据泄露, Hermes, OpenClaw]
