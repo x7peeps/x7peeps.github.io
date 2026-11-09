@@ -49,7 +49,7 @@ PR 里特别标注了这一点："trustworthy event fields, not artifact content
 
 效果是：fork PR 的 `workflow_run` 事件带着 fork 的 `head_repository`，`download_repo_name` 被跳过，`trusted` 为 `false`，带密钥的 job 全部被跳过，fork commit 上也不会再出现 chained-E2E 状态。
 
-![GitHub Gemini CLI PR #30090 页面，说明对 fork PR 跳过带密钥 job 的行为变更](images/src_gemini_pr30090.png)
+![GitHub Gemini CLI PR #30090 页面，说明对 fork PR 跳过带密钥 job 的行为变更](/gemini-ci-supplychain/src_gemini_pr30090.png)
 
 *图：github/google-gemini/gemini-cli PR #30090 页面（已合并），截取日期：2026-11-10。*
 
