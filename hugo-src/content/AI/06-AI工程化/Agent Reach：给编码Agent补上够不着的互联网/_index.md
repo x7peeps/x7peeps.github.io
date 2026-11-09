@@ -19,7 +19,7 @@ agent-reach read https://www.v2ex.com/t/123   # 按链接自动选渠道
 
 第三条是它和普通"网页读取器"最大的区别：给一个链接，它自动判断该走哪个渠道，而不是让 Agent 自己猜。
 
-![GitHub Agent-Reach 仓库页面，标语"让 AI Agent 够得着它自己上不去的互联网"](images/src_agent_reach.png)
+![GitHub Agent-Reach 仓库页面，标语"让 AI Agent 够得着它自己上不去的互联网"](/agent-reach/src_agent_reach.png)
 
 *图：github.com/Panniantong/Agent-Reach 仓库页面（README 顶部标语"让 AI Agent 够得着它自己上不去的互联网"），截取日期：2026-11-10。*
 
