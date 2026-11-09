@@ -27,7 +27,7 @@ issue 里给出的触发步骤很直接：先写一个含敏感内容的文件�
 
 issue 还指出另一条触发路径：间接提示注入。指令藏在 `GEMINI.md`、`README.md` 这类 agent 会读取的不受信内容里，agent 在正常、无关的使用过程中就可能执行这条命令。
 
-![GitHub Gemini CLI issue #29189 页面，标题为 Security: git diff --output bypasses permission prompt](images/src_gemini_29189.png)
+![GitHub Gemini CLI issue #29189 页面，标题为 Security: git diff --output bypasses permission prompt](/gemini-gitdiff-bypass/src_gemini_29189.png)
 
 *图：github/google-gemini/gemini-cli issue #29189 页面（PakCyberbot 提交，标签 area/security、priority/p1），截取日期：2026-11-10。*
 
