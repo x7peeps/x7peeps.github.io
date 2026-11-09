@@ -33,7 +33,7 @@ Dry run failed: config schema validation failed.
 
 同一问题在账号层级也一样，而 `openclaw config set` 没有跳过校验的开关。文档写了、代码读了、schema 不让填——这类"配置存在但配不进去"的缝隙，比功能缺失更难排查，因为它在文档层面看起来是可用的。
 
-![GitHub OpenClaw issue #162211 页面，标题写明启动阻塞事件循环 40–200 秒且健康监视器误判为断连](images/src_oc_162211.png)
+![GitHub OpenClaw issue #162211 页面，标题写明启动阻塞事件循环 40–200 秒且健康监视器误判为断连](/openclaw-gateway-reliability/src_oc_162211.png)
 
 *图：github/openclaw/openclaw issue #162211 页面，截取日期：2026-11-10。*
 
@@ -55,7 +55,7 @@ auth-triggered model runtime refresh failed: Error: prepared model runtime publi
 
 用户侧看到的症状非常容易误判：平台投递是成功的，Gateway 日志里也记录了收到了消息，机器人却一直不回应。这时候去查网络、查模型、查配额都是白查——故障在 Gateway 内部的运行时发布环节。
 
-![GitHub OpenClaw issue #158592 页面，标题写明主机休眠唤醒后运行时发布超时且不会自愈](images/src_oc_158592.png)
+![GitHub OpenClaw issue #158592 页面，标题写明主机休眠唤醒后运行时发布超时且不会自愈](/openclaw-gateway-reliability/src_oc_158592.png)
 
 *图：github/openclaw/openclaw issue #158592 页面，截取日期：2026-11-10。*
 
@@ -73,7 +73,7 @@ issue 里给出的三个修法方向也值得记：升级前的备份用候选�
 
 这类问题的共同点是：故障不发生在你正在用的功能上，而发生在"把你送到修好版本的那条路上"。所以它会一直存在，直到有人专门去修那条路。
 
-![GitHub OpenClaw issue #193962 页面，描述升级通道自锁导致已修复版本无法到达](images/src_oc_193962.png)
+![GitHub OpenClaw issue #193962 页面，描述升级通道自锁导致已修复版本无法到达](/openclaw-gateway-reliability/src_oc_193962.png)
 
 *图：github/openclaw/openclaw issue #193962 页面，截取日期：2026-11-10。*
 

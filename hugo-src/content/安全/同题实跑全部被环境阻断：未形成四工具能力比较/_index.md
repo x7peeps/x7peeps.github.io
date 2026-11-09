@@ -32,13 +32,13 @@ menu:
 
 Copilot CLI 的 issue #5318（github.com/github/copilot-cli/issues/5318）报告称，输出压缩若把数字文件名后缀或目录分量误判为 grep 字段分隔符，内置 rg 可能返回错误的文件名或行号。
 
-![GitHub Copilot CLI issue #5318 页面标题与问题描述，报告内置 rg 输出压缩导致文件名与行号错误](images/src_copilot_5318.png)
+![GitHub Copilot CLI issue #5318 页面标题与问题描述，报告内置 rg 输出压缩导致文件名与行号错误](/agentbench-realrun/src_copilot_5318.png)
 
 *图：github/copilot-cli issue #5318 页面（报告者 aaroneng 提交，状态 Open），截取日期：2026-11-10。*
 
 Gemini CLI 的 issue #29189 报告称，`git diff` 的白名单只检查子命令名而不检查参数，参数可能未纳入该白名单判断；具体影响以 issue 原文为准。单个 issue 的报告尚不能证明这类问题普遍存在。
 
-![GitHub Gemini CLI issue #29189 页面标题与摘要，报告 git diff --output 绕过权限提示静默覆盖文件](images/src_gemini_29189.png)
+![GitHub Gemini CLI issue #29189 页面标题与摘要，报告 git diff --output 绕过权限提示静默覆盖文件](/agentbench-realrun/src_gemini_29189.png)
 
 *图：github/google-gemini/gemini-cli issue #29189 页面（标题为 Security: git diff --output bypasses permission prompt），截取日期：2026-11-10。*
 
