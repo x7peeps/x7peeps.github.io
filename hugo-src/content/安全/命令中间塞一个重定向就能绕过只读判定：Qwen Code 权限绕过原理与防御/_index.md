@@ -12,7 +12,7 @@ menu:
 
 问题出在只读命令判定的 AST 解析环节：bash 允许重定向出现在命令的任意位置，而解析器在读参数时停在重定向处，导致重定向之后的单词全部逃出安全审查的视野。
 
-![QwenLM/qwen-code issue #16856 页面截图](/skill-article/B-qwen-redirect-bypass/src_i16856.png)
+![QwenLM/qwen-code issue #16856 页面截图](\/skill-article\/B-qwen-redirect-bypass/src_i16856.png)
 *来源：GitHub QwenLM/qwen-code issue #16856 页面，github.com，截取日期 2026-11-12*
 
 ## 漏洞机制
@@ -23,7 +23,7 @@ bash 语法允许输入重定向插在一个简单命令的单词之间。tree-s
 
 报告者在 main 分支（commit 79a60bc1e2）上直接调用分类函数测量了结果：git branch 命令以 < /dev/null -D main 结尾时被判定为 read-only，而去掉重定向后同样命令判定为 write。
 
-同类受影响的还有 remote add、push、find -delete、sed -i 五种写法——bash 实际收到的参数完整包含 -D main 等危险部分，但安全层看不见。
+连同前面讨论的 git branch 在内，被误判为 read-only 的共五种写法，其余四种是 remote add、push、find 的删除标志、sed 的原地编辑各自的对应形式——bash 实际收到的参数完整包含 -D main 等危险部分，但安全层看不见。
 
 判定为 read-only 后，ShellToolInvocation.getDefaultPermission 中 `if (isReadOnly) { return 'allow'; }` 这段代码直接放行——不弹提示、不调用分类器。
 
