@@ -25,7 +25,7 @@ QwenLM/qwen-code 的 issue #14724 由官方机器人 qwen-code-dev-bot 于 2026 
 
 issue 的标签历史也反映了处置过程：
 
-从 autofix/approved（维护者批准自动修复）到 autofix/in-progress（自动修复代理已认领），最终变成 autofix/skip——自动修复机制放弃认领这条 issue，说明它超出了自动修复代理的能力范围。
+从 autofix/approved（维护者批准自动修复）到 autofix/in-progress（自动修复代理已认领），最终变成 autofix/skip——但 skip 的理由不是修不动：代理的撤回声明写明"issue 已在 main 上修复，无需任何代码改动"，skip 是判定无需改码。
 
 ## 自动修复代理给出的答案
 
@@ -72,4 +72,4 @@ Managed Agent 相关功能（托管会话、渠道投递）是这条门禁覆盖
 ## 参考来源
 
 - QwenLM/qwen-code issue #14724《Main CI failed: Managed Agent gate — no test identified》(latest: 2026-11-12)（采集日期 2026-11-12）
-- big-model-radar ai-cli 日报 2026-11-11（本地文件 ~/.hermes/cron/data/big-model-radar/2026-11-11/ai-cli.md）
+- big-model-radar ai-cli 日报 2026-11-11（本项目内部雷达采集产物，292 条评论统计出处）
