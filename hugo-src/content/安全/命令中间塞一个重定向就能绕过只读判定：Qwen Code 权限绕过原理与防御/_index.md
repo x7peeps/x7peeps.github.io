@@ -7,12 +7,11 @@ menu:
   main:
     parent: "安全"
 ---
-
 2026 年 11 月 10 日，安全研究者向 QwenLM/qwen-code 报告了 issue #16856，官方标记为 P1、category/security、scope/vulnerability。
 
 问题出在只读命令判定的 AST 解析环节：bash 允许重定向出现在命令的任意位置，而解析器在读参数时停在重定向处，导致重定向之后的单词全部逃出安全审查的视野。
 
-![QwenLM/qwen-code issue #16856 页面截图](\/skill-article\/B-qwen-redirect-bypass/src_i16856.png)
+![QwenLM/qwen-code issue #16856 页面截图](/skill-article/B-qwen-redirect-bypass/src_i16856.png)
 *来源：GitHub QwenLM/qwen-code issue #16856 页面，github.com，截取日期 2026-11-12*
 
 ## 漏洞机制
@@ -52,6 +51,8 @@ PR #16784 展示了正确的防御方向。它处理的是另一个不可表示�
 第二，遇到无法解析或无法表示的输入，默认收紧而不是放行，#16784 的 ask 升级是范本。第三，手写解析器对抗完整 shell 语法是长期败局，尽早迁移到维护中的真实解析器做 AST 归因，把人力花在归因规则而非语法补洞上。
 
 对 Qwen Code 用户，当前的实际建议是：不要依赖"只读命令免审批"这一层做唯一防线，涉及删除、改写、推送的会话显式配置人工确认；截至采集日该 issue 仍处于开放状态，修复进展需关注仓库后续动态，合入后再升级到包含修复的版本。
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。
 
 本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。
 

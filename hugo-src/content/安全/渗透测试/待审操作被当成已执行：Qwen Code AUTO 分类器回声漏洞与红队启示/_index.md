@@ -7,12 +7,11 @@ menu:
   main:
     parent: "渗透测试"
 ---
-
 2026 年 11 月 6 日，研究者 yanyukang2003-ux 向 QwenLM/qwen-code 报告 issue #16496：
 
 AUTO 模式在判定一条待执行的工具调用时，送给分类器的 transcript 里，这条调用出现了两次——先被渲染成 Prior action（已执行动作），然后才是待分类调用本身。分类器因此把"第一次执行"误判成"重试"。
 
-![QwenLM/qwen-code issue #16496 页面截图](\/skill-article\/C-qwen-auto-classifier/src_i16496.png)
+![QwenLM/qwen-code issue #16496 页面截图](/skill-article/C-qwen-auto-classifier/src_i16496.png)
 *来源：GitHub QwenLM/qwen-code issue #16496 页面，github.com，截取日期 2026-11-12*
 
 ## 回声是怎么产生的
@@ -56,6 +55,8 @@ buildClassifierContents 把历史中每个 functionCall 都渲染成 Prior actio
 审计任何"LLM 判定 LLM 行为"的代理架构时，检查判定器看到的上下文是否与真实世界状态一致——历史渲染、状态标注这类胶水代码里的时序错误，会系统性扭曲判定输入，其影响可以被小规模对照实验（如本例的 61 案例×3 次）量化出来。
 
 回声、幻影状态、身份混淆都是同一族问题。
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。
 
 本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。
 

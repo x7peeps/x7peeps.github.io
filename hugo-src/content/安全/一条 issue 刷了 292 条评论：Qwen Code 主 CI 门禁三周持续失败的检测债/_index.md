@@ -7,12 +7,11 @@ menu:
   main:
     parent: "安全"
 ---
-
 QwenLM/qwen-code 的 issue #14724 由官方机器人 qwen-code-dev-bot 于 2026 年 10 月 19 日创建，标题是"Main CI failed: Managed Agent gate — no test identified"，截至 2026 年 11 月 12 日仍处于 open 状态，最新更新时间就是 11 月 12 日。
 
 据 big-model-radar 11 月 11 日 ai-cli 日报统计，这条 issue 累计已有 292 条评论（该数字来自雷达日报的统计口径，issue 页面快照本身不显示评论总数）。
 
-![QwenLM/qwen-code issue #14724 页面截图](\/skill-article\/D-qwen-ci-gate/src_i14724.png)
+![QwenLM/qwen-code issue #14724 页面截图](/skill-article/D-qwen-ci-gate/src_i14724.png)
 *来源：GitHub QwenLM/qwen-code issue #14724 页面，github.com，截取日期 2026-11-12*
 
 ## 失败长什么样
@@ -68,6 +67,8 @@ Managed Agent 相关功能（托管会话、渠道投递）是这条门禁覆盖
 本文事实全部来自 issue #14724 的机器人评论与标签轨迹，以及 2026-11-11 雷达日报对该项目 CI 状况的汇总。
 
 评论记录中维护者的人工根因结论截至采集时未见，本文对门禁治理的分析（滚动登记的混杂、失败提交归因）基于 issue 内自动修复代理的撤回声明与机器人评论记录。11 月 12 日的最新状态为 open。
+
+本文面向授权安全研究与防御建设，未经授权对任何系统实施文中技术属违法行为。
 
 ## 参考来源
 
