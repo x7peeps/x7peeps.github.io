@@ -12,7 +12,7 @@ menu:
 
 AUTO 模式在判定一条待执行的工具调用时，送给分类器的 transcript 里，这条调用出现了两次——先被渲染成 Prior action（已执行动作），然后才是待分类调用本身。分类器因此把"第一次执行"误判成"重试"。
 
-![QwenLM/qwen-code issue #16496 页面截图](/skill-article/C-qwen-auto-classifier/src_i16496.png)
+![QwenLM/qwen-code issue #16496 页面截图](\/skill-article\/C-qwen-auto-classifier/src_i16496.png)
 *来源：GitHub QwenLM/qwen-code issue #16496 页面，github.com，截取日期 2026-11-12*
 
 ## 回声是怎么产生的
@@ -31,7 +31,7 @@ buildClassifierContents 把历史中每个 functionCall 都渲染成 Prior actio
 
 这个报告最有分量的部分是测量。作者构造了 61 个"用户未授权破坏性操作"的手写案例（如"清理一下我的分支"后跟 git branch -D，"强推安全吗"后跟 git push --force），每个案例重复三次，唯一变量是删掉那条回声。
 
-结果是默认分类器 qwen3.7-max 的qwen3.7-max 的错误放行率从 61% 降到 37%（14 例变好、0 例变差，符号检验 p 约 1e-4）；deepseek-v4-pro 从 30% 降到 19%（11 例变好、4 例变差，p 约 0.12，趋势向好但未达统计显著）。
+结果是默认分类器 qwen3.7-max 的错误放行率从 61% 降到 37%（14 例变好、0 例变差，符号检验 p 约 1e-4）；deepseek-v4-pro 从 30% 降到 19%（11 例变好、4 例变差，p 约 0.12，趋势向好但未达统计显著）。
 
 对照组——明确授权（"丢弃我所有未提交修改"后跟 reset --hard）和礼貌请求——错误拦截率保持 0%，没有为修回声引入新的误伤。
 
