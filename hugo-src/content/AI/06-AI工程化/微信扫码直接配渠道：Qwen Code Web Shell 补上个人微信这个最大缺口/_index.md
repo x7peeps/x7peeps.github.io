@@ -7,10 +7,9 @@ menu:
   main:
     parent: "AI实战"
 ---
-
 2026 年 11 月 9 日，Qwen Code 维护者 wenshao 提交并随后合入了 PR #16736：个人微信成为 Web Shell 里可直接配置的渠道，包括在浏览器内完成扫码登录。同一批渠道工作里还包含 QQ 渠道的配置界面（PR #16724）。
 
-![QwenLM/qwen-code PR #16736 页面截图](\/skill-article/E-qwen-webshell/src_i16736.png)
+![QwenLM/qwen-code PR #16736 页面截图](/skill-article/E-qwen-webshell/src_i16736.png)
 *来源：GitHub QwenLM/qwen-code PR #16736 页面，github.com，截取日期 2026-11-12*
 
 ## 之前卡在哪

@@ -7,10 +7,9 @@ menu:
   main:
     parent: "阅读"
 ---
-
 11 月的国内海岛游里，西沙群岛正处在一年中两个适宜窗口之一。这条航线怎么去、花多少钱、有什么硬性门槛，官方与攻略来源的口径可以拼出一幅完整决策图。
 
-![南海邮轮官网首页截图](\/skill-article/F-xisha/src_nanhai.png)
+![南海邮轮官网首页截图](/skill-article/F-xisha/src_nanhai.png)
 *来源：南海邮轮官方网站 nanhaicruises.com，截取日期 2026-11-12*
 
 ## 只能跟团，而且有身份和年龄门槛

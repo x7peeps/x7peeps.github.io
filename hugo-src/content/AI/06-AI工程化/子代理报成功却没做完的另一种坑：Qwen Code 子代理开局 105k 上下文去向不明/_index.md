@@ -7,7 +7,6 @@ menu:
   main:
     parent: "AI实战"
 ---
-
 一位 Qwen Code 桌面版用户在 2026 年 10 月 26 日提交了 issue #15660：
 
 父会话只用了 42k 上下文，其中约 21k 来自启动加载（skills、AGENT.md、memory 等），发给子代理的提示词只有 1k——但推理引擎报告子代理会话开局就是 105k 的 prompt。
