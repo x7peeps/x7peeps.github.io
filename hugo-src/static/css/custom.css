@@ -1259,3 +1259,46 @@ article.default > h1:first-of-type:has(~ h1) {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* 广告位 ---------------------------------------------------------------
+   只在 [params.x7.ads].enable=true 且槽位填了代码时渲染（见 partials/x7/ads.html）。
+   刻意画成有边界的卡片 + 明确「广告」标注：不伪装成正文内容。
+   min-width:0 防止第三方 iframe 的固有宽度顶爆 grid/flex 容器。 */
+.x7-ad-slot {
+  margin: 2.75rem 0 1.25rem;
+  padding: 1rem 1rem 1.1rem;
+  border: 1px solid var(--x7-border);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 2%);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.x7-ad-slot__label {
+  display: block;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .1em;
+  color: var(--x7-muted);
+  opacity: .72;
+  margin-bottom: .75rem;
+}
+
+.x7-ad-slot > * {
+  max-width: 100%;
+}
+
+.x7-ad-slot ins,
+.x7-ad-slot iframe,
+.x7-ad-slot img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+@media (max-width: 680px) {
+  .x7-ad-slot {
+    margin: 2rem 0 1rem;
+    padding: .85rem .85rem .95rem;
+  }
+}
