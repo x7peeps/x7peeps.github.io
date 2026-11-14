@@ -1,4 +1,5 @@
 {{- $x7AssetVersion := now.Unix -}}
+{{ partial "x7/ads-head.html" . }}
 <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}?v={{ $x7AssetVersion }}">
 <link rel="stylesheet" href="{{ "css/x7-tokens.css" | relURL }}?v={{ $x7AssetVersion }}">
 <link rel="stylesheet" href="{{ "css/x7-shell.css" | relURL }}?v={{ $x7AssetVersion }}">

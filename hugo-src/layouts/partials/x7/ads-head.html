@@ -1,0 +1,15 @@
+{{- /*
+  全局广告脚本（如 AdSense 自动广告）注入 <head>。
+  [params.x7.ads] 关闭或 head 为空时不输出任何内容。
+*/ -}}
+{{- with site.Params.x7 -}}
+  {{- with .ads -}}
+    {{- if .enable -}}
+      {{- with .head -}}
+        {{- if gt (len (trim . " \n\t")) 0 }}
+{{ . | safeHTML }}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

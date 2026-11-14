@@ -11,6 +11,7 @@
       {{ partial "content-lead.html" . | safeHTML }}
       {{ partial "x7/compliance-notice.html" . }}
       {{ $content | safeHTML }}
+      {{ partial "x7/ads.html" (dict "slot" "article_bottom" "page" .) }}
     </div>
   </div>
   {{ partial "x7/related-content.html" . }}

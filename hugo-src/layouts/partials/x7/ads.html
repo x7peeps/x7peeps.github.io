@@ -1,0 +1,20 @@
+{{- /*
+  广告位容器。由 hugo.toml 的 [params.x7.ads] 控制，默认关闭；
+  关闭或未填代码时不输出任何 DOM —— 空槽比假槽更诚实。
+  调用：{{ partial "x7/ads.html" (dict "slot" "article_bottom" "page" .) }}
+*/ -}}
+{{- with site.Params.x7 -}}
+  {{- with .ads -}}
+    {{- if .enable -}}
+      {{- $slot := $.slot -}}
+      {{- with (index . $slot) -}}
+        {{- if gt (len (trim . " \n\t")) 0 }}
+<aside class="x7-ad-slot" data-x7-ad="{{ $slot }}" aria-label="广告">
+  <span class="x7-ad-slot__label">广告</span>
+  {{ . | safeHTML }}
+</aside>
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

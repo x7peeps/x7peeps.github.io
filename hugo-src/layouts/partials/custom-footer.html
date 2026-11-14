@@ -1,3 +1,9 @@
 {{- $x7AssetVersion := now.Unix -}}
 <script src="{{ "js/custom.js" | relURL }}?v={{ $x7AssetVersion }}" defer></script>
 <script type="module" src="{{ "js/x7/bootstrap.js" | relURL }}?v={{ $x7AssetVersion }}"></script>
+{{- /* 访问统计：自有采集端点，明文 JSONL 落盘，不保存原始 IP。
+       async + 失败静默：采集服务不可用时不影响页面任何功能。 */}}
+<script async src="https://analytics.x7peeps.com/beacon.js"
+        data-endpoint="https://analytics.x7peeps.com"
+        data-site="x7peeps.com"
+        data-respect-dnt="0"></script>

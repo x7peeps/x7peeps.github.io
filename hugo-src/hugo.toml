@@ -79,6 +79,14 @@ constellationMobileParticles = 40
 enableConstellation = true
 enableReadingDensity = true
 
+# 广告位（默认关闭）。enable=true 且对应槽位填了代码才会渲染，
+# 空槽不输出任何 DOM。head 放全局脚本（如 AdSense 自动广告），
+# article_bottom 放文章末尾广告单元。
+[params.x7.ads]
+enable = false
+head = ''
+article_bottom = ''
+
 [minify]
   disableHTML = false
   disableCSS = false
