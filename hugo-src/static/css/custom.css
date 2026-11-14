@@ -668,10 +668,12 @@ main#R-body-inner article h1 {
   margin-bottom: 2rem !important;
 }
 
-/* Hide the weird duplicated second heading that contains a copy anchor */
-main#R-body-inner article h2:has(span.anchor) {
-  display: none !important;
-}
+/* 原规则 `article h2:has(span.anchor){display:none}` 的本意是隐藏 relearn
+   重复渲染的第二个标题，但它会命中**所有**带复制锚点的正常 H2 —— 而全站
+   每一篇 markdown 的 H2 都带 anchor，结果是 874 篇文章的章节标题全部隐形
+   （实测普通文章 6 个 H2 有 4 个被吞，产品页 4 个吞 3 个）。
+   真正的重复标题是 h1 层面的，已由下方 `article.default > h1:has(~ h1)` 处理，
+   这里不再按 anchor 存在与否隐藏整级标题。 */
 
 /* Fix tags displaying "标签" twice and style article tags */
 .R-taxonomy.taxonomy-tags::before,
