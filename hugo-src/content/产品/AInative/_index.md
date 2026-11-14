@@ -9,13 +9,13 @@ description = "把 Codex、Hermes、Obsidian 知识库与任务看板汇成一�
 
 <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/AInative/hero.jpg" alt="AInative 全息协作空间：左侧为本机 Token 用量、Obsidian 知识星群与数据采集状态，中央为 Agent 与任务的实时图谱，底部为自然语言输入框" loading="eager" decoding="async" style="width:100%;height:auto;border-radius:12px;border:1px solid var(--x7-line, rgba(255,255,255,.08));">
 
+AInative 是一张**本机运行**的协作图谱：把 Codex 会话、Hermes 任务、Obsidian 笔记与工具调用记录收进同一个空间，用一张可缩放、可语音操作的网络呈现出来。只读接入，不写你的任何源数据。
+
 ## 一个人，为什么需要一张星图
 
 同时开三四个编码 Agent、几十条会话、一个几千篇的笔记库，最难的问题不是"哪个 Agent 更强"，而是**我现在到底在做什么**。
 
 每个工具只汇报自己那一格：Codex 知道它的会话，Hermes 知道它的任务，Obsidian 知道它的笔记。真正需要的判断——哪些工作在推进、哪些卡住、哪些其实是同一件事——没有任何一个工具会告诉你，因为它们互相看不见。
-
-AInative 解决的就是这件事：把本机上**真实存在**的协作数据收进同一个空间，用一张可缩放、可语音操作的图谱呈现出来。
 
 ## 四个核心能力
 
