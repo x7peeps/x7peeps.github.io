@@ -2,7 +2,12 @@
 {{- range site.Pages -}}
   {{- if or (eq .Kind "page") (and (eq .Kind "section") (eq (len .Pages) 0)) -}}
     {{- $url := lower .RelPermalink -}}
-    {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) (not (strings.Contains $url "/关于/")) (not (strings.Contains $url "/产品/")) (not (strings.Contains $url "/技能库/")) (not (strings.Contains $url "/隐私政策/")) -}}
+    {{- /* 注意：.RelPermalink 里的中文是百分号编码的，用 strings.Contains 比中文路径永远匹配不上。
+       按分区排除用 .Section；但 content/隐私政策/index.md 这种叶子包在 Hugo 看来是
+       根级 page（.Section == ""），只能靠 .File.Path 里的中文路径判断。 */ -}}
+  {{- $excluded := slice "产品" "技能库" "隐私政策" "关于" -}}
+  {{- $isExcluded := or (in $excluded .Section) (strings.Contains .File.Path "隐私政策") -}}
+  {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) (not $isExcluded) -}}
       {{- $pages = $pages | append . -}}
     {{- end -}}
   {{- end -}}
