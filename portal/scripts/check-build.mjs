@@ -67,6 +67,17 @@ for (const [f, forbidden] of [
 if (!home.includes("x7peeps.com/skills/")) fail.push("首页技能库入口没指向 x7peeps.com/skills/");
 if (!home.includes("x7peeps.com/prompt/")) fail.push("首页提示词入口没指向 x7peeps.com/prompt/");
 
+// 产物里绝不能有 CNAME：GitHub Pages 看到子目录里的 CNAME 会把该目录当成独立站，
+// 直接 301 到那个子域去（子域没证书就等于死链）。
+const walk = (dir) =>
+  fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+    const p = path.join(dir, e.name);
+    return e.isDirectory() ? walk(p) : [p];
+  });
+for (const f of walk(root)) {
+  if (path.basename(f) === "CNAME") fail.push(`产物里有 CNAME，GitHub Pages 会把该目录 301 到子域: ${f}`);
+}
+
 if (fail.length) {
   console.error("门户构建契约失败：");
   for (const f of fail) console.error("  ✗ " + f);

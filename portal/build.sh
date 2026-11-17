@@ -40,6 +40,12 @@ fetch_static_site() {
   rsync -a --delete --exclude 'robots.txt' --exclude 'sitemap.xml' --exclude 'CNAME' \
     --exclude '.nojekyll' --exclude '.git*' --exclude 'README.md' --exclude 'build.py' \
     --exclude 'scripts' --exclude 'probe*' "$tmp/" "${here}/static/${target}/"
+  # rsync 的 --delete 不会删「被 --exclude 保护」的目标端文件，所以这里必须显式清：
+  # 子目录里留着 CNAME，GitHub Pages 会把该目录当成独立站，301 到那个子域去。
+  rm -f "${here}/static/${target}/CNAME" "${here}/static/${target}/.nojekyll" \
+    "${here}/static/${target}/robots.txt" "${here}/static/${target}/sitemap.xml" \
+    "${here}/static/${target}/README.md" "${here}/static/${target}/build.py"
+  rm -rf "${here}/static/${target}/scripts" "${here}/static/${target}/.git"
   rm -rf "$tmp"
   # 域引用改写到主域子路径（og:image / canonical / 自链 / 互相引用）
   python3 - "$here/static/${target}/index.html" "$from_domain" "$to_path" <<'PY'
