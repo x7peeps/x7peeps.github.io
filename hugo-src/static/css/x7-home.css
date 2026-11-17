@@ -249,6 +249,62 @@ main#R-body-inner article.x7-constellation-home .x7-hero-title {
   line-height: 1.9;
 }
 
+/* 技能库入口：hero 内的胶囊链接 */
+.x7-hero-entry {
+  margin: 1.15rem 0 0;
+}
+
+.x7-hero-entry a {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  min-height: 44px;
+  padding: .5rem .95rem .5rem .8rem;
+  border: 1px solid var(--x7-home-line-strong);
+  border-radius: 999px;
+  background: rgb(3 5 8 / 40%);
+  color: var(--x7-home-text);
+  text-decoration: none;
+  transition: border-color .2s ease, background .2s ease, color .2s ease;
+}
+
+.x7-hero-entry a:hover,
+.x7-hero-entry a:focus-visible {
+  border-color: rgb(98 232 255 / 55%);
+  background: rgb(98 232 255 / 8%);
+  color: var(--x7-home-cyan);
+}
+
+.x7-hero-entry__label {
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--x7-home-cyan);
+  white-space: nowrap;
+}
+
+.x7-hero-entry__text {
+  font-size: clamp(.86rem, 1.05vw, .98rem);
+  color: inherit;
+  line-height: 1.5;
+}
+
+.x7-hero-entry__arrow {
+  font-size: .95rem;
+  line-height: 1;
+  opacity: .8;
+}
+
+@media (max-width: 560px) {
+  .x7-hero-entry a {
+    gap: .5rem;
+    padding: .45rem .8rem;
+  }
+  .x7-hero-entry__label {
+    display: none;
+  }
+}
+
 .x7-heatmap-panel {
   box-sizing: border-box;
   width: min(100%, 60rem);
@@ -663,6 +719,10 @@ html.x7-home-entry-prime .x7-hero-mission {
   animation: x7-home-copy-reveal .72s cubic-bezier(.16, 1, .3, 1) var(--x7-home-entry-copy-delay) both;
 }
 
+html.x7-home-entry-prime .x7-hero-entry {
+  animation: x7-home-copy-reveal .72s cubic-bezier(.16, 1, .3, 1) calc(var(--x7-home-entry-copy-delay) + .08s) both;
+}
+
 html.x7-home-entry-prime .x7-heatmap-panel {
   animation: x7-home-heatmap-ignite .82s cubic-bezier(.16, 1, .3, 1) var(--x7-home-entry-heatmap-delay) both;
 }
@@ -821,6 +881,7 @@ html.x7-home-entry-reduced #R-sidebar {
   html.x7-home-entry-prime .x7-hero-title,
   html.x7-home-entry-prime .x7-hero-subtitle,
   html.x7-home-entry-prime .x7-hero-mission,
+  html.x7-home-entry-prime .x7-hero-entry,
   html.x7-home-entry-prime .x7-heatmap-panel,
   html.x7-home-entry-prime .x7-feed {
     animation: none !important;
