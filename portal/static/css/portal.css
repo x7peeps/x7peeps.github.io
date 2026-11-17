@@ -324,14 +324,15 @@ a {
   justify-content: space-between;
   gap: 16px;
   padding-bottom: 14px;
+  padding-right: 8px;
 }
 
 .section__title {
   margin: 0;
   font-family: var(--mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--faint);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted);
 }
 
 .section__hint {
@@ -340,11 +341,20 @@ a {
   color: var(--faint);
 }
 
-.section__hint a {
+.section__hint a,
+.section__link {
   display: inline-flex;
   align-items: center;
+  min-width: 44px;
   min-height: 44px;
   margin-block: -14px;
+  color: var(--muted);
+  transition: color 160ms var(--ease);
+}
+
+.section__hint a:hover,
+.section__link:hover {
+  color: var(--paper);
 }
 
 .index {
@@ -503,6 +513,12 @@ a {
   .product__desc {
     grid-column: 1 / -1;
   }
+  /* 箭头回到首行右侧，不要掉成描述下面一条孤立的横线 */
+  .product__go {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
 }
 
 /* ---------- 最近写过 ---------- */
@@ -541,8 +557,8 @@ a {
 }
 
 .recent b {
-  font-weight: 400;
-  font-size: 0.875rem;
+  font-weight: 500;
+  font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--paper-2);
 }
@@ -562,9 +578,21 @@ a {
 @media (max-width: 560px) {
   .recent a {
     grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 2px;
   }
   .recent time {
     grid-column: 1 / -1;
+    grid-row: 1;
+    font-size: 0.75rem;
+  }
+  .recent b {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .recent em {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
   }
 }
 

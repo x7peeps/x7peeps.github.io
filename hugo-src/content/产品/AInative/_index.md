@@ -5,8 +5,8 @@ date = "2026-11-14T18:30:00+08:00"
 lastmod = "2026-11-14T18:30:00+08:00"
 description = "把 Codex、Hermes、Obsidian 知识库与任务看板汇成一张本机实时星图：一个人，一支 Agent 军团的指挥台。"
 weight = 30
-summary = "把 Codex、Hermes、Obsidian 与任务看板汇成一张本机实时星图。"
-status = "自用中 · 不对外发布"
+summary = "把 Codex、Hermes、Obsidian 与任务看板汇成一张本机实时星图（不对外发布）。"
+status = "自用中"
 tone = "internal"
 
 +++
