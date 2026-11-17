@@ -2,7 +2,11 @@
 {{- $children := slice -}}
 {{- range .Sections.ByWeight -}}
   {{- $childPages := partial "x7/knowledge-pages.html" . -}}
-  {{- $children = $children | append (dict "page" . "count" (len $childPages)) -}}
+  {{- /* 只把「真的装着文章的分类」画进知识框架。文章目录同样以 _index.md 存在，
+         其 count 恒为 0，若不过滤会把每篇文章当成一个「0 篇文章」的分类卡片。 */ -}}
+  {{- if gt (len $childPages) 0 -}}
+    {{- $children = $children | append (dict "page" . "count" (len $childPages)) -}}
+  {{- end -}}
 {{- end -}}
 {{- $latest := first 8 (sort (sort $pages "RelPermalink" "asc") "Lastmod" "desc") -}}
 {{- $tagData := slice -}}
