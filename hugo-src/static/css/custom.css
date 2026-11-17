@@ -1304,3 +1304,198 @@ article.default > h1:first-of-type:has(~ h1) {
     padding: .85rem .85rem .95rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+ * 技能库入口页（/技能库/）
+ * 只列已公开产出；样式沿用产品区 promo-strip 语言
+ * -------------------------------------------------------------------------- */
+
+/* 这一页的内容区放开到容器满宽（默认 prose 卡在 719px，promo 卡会折行） */
+main.技能库 .x7-article__header,
+main.技能库 .x7-article__prose {
+  max-width: 100%;
+}
+
+main.技能库 .x7-article-shell {
+  width: 100%;
+}
+
+/* 正文段落收回到适合中文阅读的行宽；promo / 列表仍占满宽 */
+main.技能库 .x7-article__prose > p {
+  max-width: 46em;
+}
+
+.x7-skills-lead {
+  max-width: 46em;
+  margin: 0 0 2rem;
+}
+
+.x7-skills-lead p {
+  margin: 0;
+  color: var(--x7-muted);
+  font-size: 1.02rem;
+  line-height: 1.9;
+}
+
+.x7-skills-lead strong {
+  color: var(--x7-text);
+  font-weight: 600;
+}
+
+.x7-skills-stats {
+  display: grid;
+  gap: 1px;
+  align-content: center;
+  border: 1px solid var(--x7-border);
+  border-radius: 18px;
+  background: var(--x7-border);
+  overflow: hidden;
+}
+
+.x7-skills-stats > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .95rem 1.1rem;
+  background: rgba(8, 12, 20, .72);
+}
+
+.x7-skills-stats b {
+  font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--x7-text);
+}
+
+.x7-skills-stats span {
+  font-size: .82rem;
+  letter-spacing: .08em;
+  color: var(--x7-muted);
+}
+
+.x7-skills-list {
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1px;
+  background: var(--x7-border);
+  border: 1px solid var(--x7-border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.x7-skills-list li {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: baseline;
+  padding: 1.15rem 1.3rem;
+  background: rgba(255, 255, 255, .02);
+}
+
+.x7-skills-list a {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--x7-text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.x7-skills-list a:hover {
+  color: var(--x7-accent);
+  border-bottom-color: var(--x7-accent);
+}
+
+.x7-skills-list span {
+  font-size: .92rem;
+  line-height: 1.75;
+  color: var(--x7-muted);
+}
+
+.x7-skills-domains {
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--x7-border);
+}
+
+.x7-skills-domains li {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(110px, 150px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: .95rem .2rem;
+  border-bottom: 1px solid var(--x7-border);
+}
+
+.x7-skills-domains b {
+  font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--x7-accent);
+}
+
+.x7-skills-domains span {
+  font-size: .98rem;
+  font-weight: 600;
+  color: var(--x7-text);
+}
+
+.x7-skills-domains em {
+  font-style: normal;
+  font-size: .9rem;
+  line-height: 1.75;
+  color: var(--x7-muted);
+}
+
+.x7-skills-foot {
+  margin-top: 2.4rem;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--x7-border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .02);
+}
+
+.x7-skills-foot p {
+  margin: 0;
+  color: var(--x7-muted);
+  line-height: 1.8;
+}
+
+.x7-skills-foot p + p {
+  margin-top: .7rem;
+}
+
+.x7-skills-foot a {
+  color: var(--x7-accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.x7-skills-foot a:hover {
+  border-bottom-color: var(--x7-accent);
+}
+
+@media (max-width: 720px) {
+  .x7-skills-stats > div {
+    padding: .8rem 1rem;
+  }
+  .x7-skills-list li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .4rem;
+  }
+  .x7-skills-domains li {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    gap: .4rem .8rem;
+  }
+  .x7-skills-domains em {
+    grid-column: 2;
+  }
+}

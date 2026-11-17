@@ -622,7 +622,7 @@ if (fs.existsSync(aboutFixture)) {
 }
 
 for (const section of topSections) {
-  if (section === "关于") continue; // 个人介绍页，非知识域 landing
+  if (section === "关于" || section === "技能库") continue; // 个人介绍页 / 技能库入口页，非知识域 landing
   const html = readSection(section);
   if (!html.includes("data-x7-domain-landing")) process.exit(1);
   if ([...html.matchAll(/<h1\b/g)].length !== 1) process.exit(1);
