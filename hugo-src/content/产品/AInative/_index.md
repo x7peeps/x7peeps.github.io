@@ -1,10 +1,14 @@
 +++
 title = "AInative"
 type = "product"
-weight = 5
 date = "2026-11-14T18:30:00+08:00"
 lastmod = "2026-11-14T18:30:00+08:00"
 description = "把 Codex、Hermes、Obsidian 知识库与任务看板汇成一张本机实时星图：一个人，一支 Agent 军团的指挥台。"
+weight = 30
+summary = "把 Codex、Hermes、Obsidian 与任务看板汇成一张本机实时星图。"
+status = "自用中 · 不对外发布"
+tone = "internal"
+
 +++
 
 <img src="https://raw.githubusercontent.com/x7peeps/x7peeps-images/main/static/images/products/AInative/hero.jpg" alt="AInative 全息协作空间：左侧为本机 Token 用量、Obsidian 知识星群与数据采集状态，中央为 Agent 与任务的实时图谱，底部为自然语言输入框" loading="eager" decoding="async" style="width:100%;height:auto;border-radius:12px;border:1px solid var(--x7-line, rgba(255,255,255,.08));">

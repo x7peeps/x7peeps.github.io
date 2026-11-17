@@ -1,0 +1,13 @@
+{{- $page := .Page -}}
+{{- $children := $page.Sections.ByWeight -}}
+{{- if eq (len $children) 0 }}{{ $children = $page.Pages.ByWeight }}{{ end -}}
+<ul class="cards">
+  {{- range $children }}
+  <li>
+    <a href="{{ .RelPermalink }}">
+      {{ .Title }}
+      {{- with (or .Params.summary .Description) }}<span>{{ . }}</span>{{ end }}
+    </a>
+  </li>
+  {{- end }}
+</ul>

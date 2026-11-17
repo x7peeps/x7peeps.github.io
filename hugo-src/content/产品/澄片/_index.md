@@ -1,9 +1,13 @@
 +++
 title = "澄片"
 type = "product"
-weight = 20
 date = "2026-09-24T00:00:00+08:00"
 lastmod = "2026-09-24T00:00:00+08:00"
+weight = 5
+summary = "导入、选片、无损调色、预设与批量交付，全流程留在设备上的 RAW 工作台。"
+status = "准备上架"
+tone = "soon"
+
 +++
 
 <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">

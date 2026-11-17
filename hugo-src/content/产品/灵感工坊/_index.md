@@ -1,7 +1,10 @@
 +++
 title = "灵感工坊"
-weight = 30
 date = "2026-07-01 20:51:25 +0800"
+weight = 10
+summary = "快速记录 → AI 共创 → 结构化输出的灵感管理引擎。"
+status = "开发中"
+tone = "soon"
 
 +++
 

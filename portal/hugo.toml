@@ -1,0 +1,31 @@
+baseURL = "https://x7peeps.com/"
+title = "x7peeps"
+defaultContentLanguage = "zh"
+locale = "zh-CN"
+hasCJKLanguage = true
+disablePathToLower = true
+enableRobotsTXT = true
+enableGitInfo = false
+pluralizeListTitles = false
+
+# 门户站只有三块内容：首页、产品详情、关于/隐私政策。
+# 文章不在这个站里 —— 那是 blog.x7peeps.com 的事。
+disableKinds = ["taxonomy", "term"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  description = "独立工作室：五件在做的产品、881 篇安全与 AI 长文、一套可安装的技能库与一本真实产线的提示词样本册。"
+  blogURL = "https://blog.x7peeps.com/"
+  promptURL = "https://prompt.x7peeps.com/"
+  skillsURL = "https://skills.x7peeps.com/"
+  toolsURL = "https://tools.x7peeps.com/"
+  githubURL = "https://github.com/x7peeps"
+
+[minify]
+  disableHTML = false
+  disableCSS = false
+  minifyOutput = true

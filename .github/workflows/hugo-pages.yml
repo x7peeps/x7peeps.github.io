@@ -55,11 +55,14 @@ jobs:
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
-        run: hugo --minify --source hugo-src --destination public
+        run: bash portal/build.sh
+
+      - name: Portal build contracts
+        run: node portal/scripts/check-build.mjs portal-public
 
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: hugo-src/public
+          path: portal-public
 
   deploy:
     environment:

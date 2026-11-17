@@ -1,7 +1,10 @@
 +++
 title = "Dark Directory Hugo Theme"
-weight = 20
 date = "2026-06-15 13:29:24 +0800"
+weight = 40
+summary = "把本站的暗色目录风格抽成可复用的 Hugo 主题扩展层。"
+status = "已开源"
+tone = "live"
 
 +++
 

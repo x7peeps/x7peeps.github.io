@@ -40,7 +40,9 @@ themeVariant = "relearn-dark"
 hideAuthorDate = false
 
 [frontmatter]
-date = ["date", ":fileModTime", ":default"]
+# :git 必须排在 :fileModTime 前面：CI 里 checkout 的 mtime 是「今天」，
+# 用 mtime 兜底会让所有没写 date 的文章在每次部署后都显示成当天更新。
+date = ["date", ":git", ":fileModTime", ":default"]
 lastmod = ["lastmod", "date", ":git", ":fileModTime", ":default"]
 
 hideAuthorName = true

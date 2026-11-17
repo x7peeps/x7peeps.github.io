@@ -2,7 +2,7 @@
 {{- range site.Pages -}}
   {{- if or (eq .Kind "page") (and (eq .Kind "section") (eq (len .Pages) 0)) -}}
     {{- $url := lower .RelPermalink -}}
-    {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) (not (strings.Contains $url "/关于/")) -}}
+    {{- if and (not (strings.Contains $url "/privacy/")) (not (strings.Contains $url "/policy/")) (not (strings.Contains $url "/关于/")) (not (strings.Contains $url "/产品/")) (not (strings.Contains $url "/技能库/")) (not (strings.Contains $url "/隐私政策/")) -}}
       {{- $pages = $pages | append . -}}
     {{- end -}}
   {{- end -}}

@@ -1,0 +1,119 @@
+{{ define "main" }}
+{{- $d := hugo.Data.site -}}
+{{- $products := slice -}}
+{{- with site.GetPage "/产品" }}{{ $products = .Sections.ByWeight }}{{ end -}}
+
+<section class="hero wrap">
+  <p class="eyebrow rise">独立工作室 · 安全研究 / 产品 / 知识库</p>
+  <h1 class="rise rise--2">x7peeps</h1>
+  <p class="lede rise rise--3">五件在做的产品、每天都在写的安全与 AI 长文、能装进 agent 的技能库，还有一本真实产线的提示词样本册。都在这个页面上，点开哪个都能直接用。</p>
+  <div class="hero__cta rise rise--4">
+    <a class="btn" href="#index">看索引<span class="btn__arrow" aria-hidden="true">↓</span></a>
+    <a class="link-quiet" href="{{ site.Params.githubURL }}" rel="me">GitHub ↗</a>
+  </div>
+  <ul class="stats rise rise--5">
+    <li><b>{{ $d.articles }}</b><span>篇长文</span></li>
+    <li><b>{{ len $products }}</b><span>件在做的产品</span></li>
+    <li><b>{{ with $d.skillsTotal }}{{ . }}{{ else }}—{{ end }}</b><span>条可装的技能</span></li>
+  </ul>
+</section>
+
+<section class="section wrap" id="index">
+  <div class="section__head">
+    <h2 class="section__title">索引 / INDEX</h2>
+    <p class="section__hint">五个入口</p>
+  </div>
+  <ol class="index">
+    <li>
+      <a class="index__row" href="#products">
+        <span class="index__no">01</span>
+        <span>
+          <span class="index__name">产品</span>
+          <span class="index__note">iOS 应用、macOS 工具与开源主题</span>
+        </span>
+        <span class="index__go">本页 ↓</span>
+      </a>
+    </li>
+    <li>
+      <a class="index__row" href="{{ site.Params.blogURL }}">
+        <span class="index__no">02</span>
+        <span>
+          <span class="index__name">博客</span>
+          <span class="index__note">安全 / AI / 开源 / 无人机 / 阅读，每天都在写</span>
+        </span>
+        <span class="index__go">blog.x7peeps.com ↗</span>
+      </a>
+    </li>
+    <li>
+      <a class="index__row" href="{{ site.Params.promptURL }}">
+        <span class="index__no">03</span>
+        <span>
+          <span class="index__name">提示词</span>
+          <span class="index__note">真实产线样本 · 参数与种子原样保留，连跑坏的也留着</span>
+        </span>
+        <span class="index__go">prompt.x7peeps.com ↗</span>
+      </a>
+    </li>
+    <li>
+      <a class="index__row" href="{{ site.Params.skillsURL }}">
+        <span class="index__no">04</span>
+        <span>
+          <span class="index__name">技能库</span>
+          <span class="index__note">{{ with $d.skillsLive }}{{ . }}{{ else }}几个{{ end }} 个项目的源码已公开、能直接 clone，其余只写方向</span>
+        </span>
+        <span class="index__go">skills.x7peeps.com ↗</span>
+      </a>
+    </li>
+    <li>
+      <a class="index__row" href="{{ site.Params.toolsURL }}">
+        <span class="index__no">05</span>
+        <span>
+          <span class="index__name">工具</span>
+          <span class="index__note">打开就能跑的小工具 · 按次计费，不订阅</span>
+        </span>
+        <span class="index__go">tools.x7peeps.com ↗</span>
+      </a>
+    </li>
+  </ol>
+</section>
+
+<section class="section wrap" id="products">
+  <div class="section__head">
+    <h2 class="section__title">产品 / PRODUCTS</h2>
+    <p class="section__hint">在做的、能装的、已上架的</p>
+  </div>
+  <ul class="products">
+    {{- range $products }}
+    <li>
+      <a class="product" href="{{ .RelPermalink }}">
+        <span class="product__name">{{ .Title }}<span class="product__status{{ if eq .Params.tone "live" }} product__status--live{{ end }}">{{ with .Params.status }}{{ . }}{{ else }}在维护{{ end }}</span></span>
+        {{- with .Params.summary }}
+        <span class="product__desc">{{ . }}</span>
+        {{- else }}
+        <span class="product__desc">{{ .Description }}</span>
+        {{- end }}
+        <span class="product__go" aria-hidden="true">→</span>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+
+<section class="section wrap" id="latest">
+  <div class="section__head">
+    <h2 class="section__title">最近写过 / LATEST</h2>
+    <p class="section__hint"><a href="{{ site.Params.blogURL }}" style="color:inherit">全部 ↗</a></p>
+  </div>
+  <ul class="recent">
+    {{- range $d.latest }}
+    <li>
+      <a href="{{ site.Params.blogURL }}{{ strings.TrimPrefix "/" .url }}">
+        <time datetime="{{ .date }}">{{ replace .date "-" "." }}</time>
+        <b>{{ .title }}</b>
+        <em>{{ .section }}</em>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{ end }}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{{- $desc := site.Params.description -}}
+{{- with .Description }}{{ $desc = . }}{{ end -}}
+<title>{{ if .IsHome }}{{ site.Title }} · 产品、博客、提示词与技能库的入口{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+<meta name="description" content="{{ $desc }}">
+<meta name="color-scheme" content="dark light">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="website">
+{{- if not .IsHome }}
+<meta property="og:url" content="{{ .Permalink }}">
+{{- end }}
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="stylesheet" href="/css/portal.css?v=20261118a">
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="https://blog.x7peeps.com/index.xml">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305070a'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='17' fill='%2375c7ff' text-anchor='middle'%3Ex7%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+{{ partial "masthead.html" . }}
+<main id="main">
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "foot.html" . }}
+</body>
+</html>

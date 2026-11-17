@@ -42,3 +42,9 @@ hugo-src/科普/
 hugo-src/红蓝对抗/
 hugo-src/编程/
 
+
+# 门户站（portal/）的构建产物与构建期拷贝，内容唯一源在 hugo-src/content
+portal-public/
+portal/content/
+portal/data/site.json
+portal/data/skills.json

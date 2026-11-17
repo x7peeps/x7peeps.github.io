@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>这个地址不在门户站 · x7peeps</title>
+<link rel="stylesheet" href="/css/portal.css?v=20261118a">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<main class="page wrap">
+  <a class="back" href="/">← 回索引</a>
+  <p class="page__kicker">404</p>
+  <h1>这里没有页面</h1>
+  <div class="prose">
+    <p>门户站只放产品、关于和隐私政策。文章在博客里：<a id="blog-link" href="https://blog.x7peeps.com/">blog.x7peeps.com</a>。</p>
+    <p id="tip" style="color:var(--muted)">如果你是在找一篇文章，页面会自动带你去博客的同一个位置。</p>
+  </div>
+</main>
+<script>
+(function () {
+  var p = location.pathname;
+  var portalOnly = /^\/(css|js|images|fonts|产品|关于|隐私政策)(\/|$)/;
+  if (p && p !== "/" && !portalOnly.test(p)) {
+    var target = "https://blog.x7peeps.com" + p + location.search;
+    document.getElementById("blog-link").href = target;
+    setTimeout(function () { location.replace(target); }, 900);
+  } else {
+    document.getElementById("tip").remove();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,7 +1,10 @@
 +++
 title = "OfflinePassbook"
-weight = 10
 date = "2026-06-01 22:36:25 +0800"
+weight = 20
+summary = "本地优先、端上加密、在 iPhone 与 Mac 之间走 iCloud 同步的密码本，App Store 已上架。"
+status = "App Store 已上线"
+tone = "live"
 
 +++
 
