@@ -49,13 +49,6 @@ date = "2026-06-01 22:36:25 +0800"
       <a class="x7-promo-button" href="/产品/OfflinePassbook/">查看产品示例</a>
     </div>
   </div>
-  <div class="x7-promo-visual">
-    <div class="x7-promo-grid">
-      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20mode%20website%20template%2C%20cyberpunk%20dashboard%20UI%2C%20minimalist%20hacker%20blog%20layout%2C%20neon%20blue%20accents%2C%20high%20quality%20web%20design&image_size=landscape_16_9" alt="Theme product showcase" loading="eager" decoding="async">
-      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20mode%20code%20editor%20interface%2C%20hacker%20portfolio%20website%2C%20glassmorphism%2C%20dark%20background%20with%20glowing%20grid%2C%20UI%2FUX%20design&image_size=landscape_16_9" alt="Theme visual sample 1" loading="lazy" decoding="async">
-      <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Dark%20theme%20article%20reading%20page%2C%20minimalist%20typography%2C%20cyberpunk%20web%20design%2C%20glowing%20neon%20text%20accents%2C%20high%20quality%20UI&image_size=landscape_16_9" alt="Theme visual sample 2" loading="lazy" decoding="async">
-    </div>
-  </div>
 </div>
 
 {{< article_cards >}}

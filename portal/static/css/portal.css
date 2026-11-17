@@ -786,6 +786,106 @@ a {
   color: var(--paper);
 }
 
+/* ---------- 产品索引页里沿用博客期写法的 promo 块 ----------
+   content/产品/_index.md 的内联 HTML 用了这组类名，门户这边必须给它们样式，
+   否则会掉成无样式裸 div（按钮变纯文字、配图挤成一列）。 */
+
+.x7-product-intro {
+  margin-bottom: 32px;
+  color: var(--paper-2);
+}
+
+.x7-promo-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: clamp(16px, 3vw, 32px);
+  align-items: center;
+  padding-block: clamp(20px, 3vh, 28px);
+  border-top: 1px solid var(--line-2);
+}
+
+.x7-promo-strip h2 {
+  margin: 8px 0 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+
+.x7-promo-strip p {
+  margin: 0 0 16px;
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.x7-promo-kicker {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--faint);
+}
+
+.x7-promo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.x7-promo-button,
+/* 这两条要压过 .prose a 的颜色（内联块写在正文里） */
+.prose .x7-promo-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  font-size: 0.875rem;
+  color: var(--paper-2);
+  box-shadow: none;
+  transition: border-color 160ms var(--ease), color 160ms var(--ease);
+}
+
+.x7-promo-button:hover {
+  border-color: var(--ion);
+  color: var(--paper);
+}
+
+.x7-promo-button-primary,
+.prose .x7-promo-button-primary {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+
+.x7-promo-button-primary:hover {
+  color: var(--ink);
+  opacity: 0.9;
+}
+
+.x7-promo-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.x7-promo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.x7-promo-strip:not(:has(.x7-promo-visual)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 720px) {
+  .x7-promo-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ---------- 入场动效 ---------- */
 
 @media (prefers-reduced-motion: no-preference) {
