@@ -12,3 +12,33 @@ hugo-src/public-test/
 hugo-src/hugo-public/
 hugo-src/hugo-src/
 hugo-src/resources/
+
+# 以下全部是旧构建产物：它们在 hugo-src 根目录下与 content/ 并列，
+# 既不被 Hugo 读取，也不进部署产物，却占了 700MB+ 的仓库体积。
+# 2026-11-18 从索引移除（blog 子站要频繁克隆这份源码，必须瘦）。
+hugo-src/.hugo_build.lock
+hugo-src/hugo.log
+hugo-src/index.html
+hugo-src/index.xml
+hugo-src/index.searchindex.html
+hugo-src/index.searchpage.html
+hugo-src/searchindex.zh.js
+hugo-src/sitemap.xml
+hugo-src/404.html
+hugo-src/categories/
+hugo-src/tags/
+hugo-src/search/
+hugo-src/关于/
+hugo-src/工具/
+hugo-src/应急响应/
+hugo-src/恶意样本分析/
+hugo-src/情报跟踪/
+hugo-src/操作系统/
+hugo-src/机器学习/
+hugo-src/渗透测试/
+hugo-src/漏洞复现/
+hugo-src/社科/
+hugo-src/科普/
+hugo-src/红蓝对抗/
+hugo-src/编程/
+
