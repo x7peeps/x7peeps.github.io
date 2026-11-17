@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
 import test from "node:test";
 
 // 「产品」区是老大自有产品的展示位，不是内容栏目。
@@ -37,4 +39,28 @@ test("每个产品目录都有带 title 的 _index.md", async () => {
     const text = await readFile(file, "utf8");
     assert.match(text, /^(?:\+\+\+|---)[\s\S]*?\ntitle\s*[:=]\s*\S/m, `${name} 缺少 title frontmatter`);
   }
+});
+
+test("没有文章把菜单挂到产品区却落在别的分类", async () => {
+  const contentRoot = fileURLToPath(new URL("../hugo-src/content/", import.meta.url));
+  const offenders = [];
+
+  async function walk(directory) {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const full = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        await walk(full);
+        continue;
+      }
+      if (entry.name !== "_index.md") continue;
+      const relative = path.relative(contentRoot, full).split(path.sep).join("/");
+      if (relative.startsWith("产品/")) continue;
+      const text = await readFile(full, "utf8");
+      const frontmatter = text.match(/^(?:---|\+\+\+)\n([\s\S]*?)\n(?:---|\+\+\+)/)?.[1] ?? "";
+      if (/menu:\s*\n\s*main:\s*\n\s*parent:\s*["']?产品["']?/.test(frontmatter)) offenders.push(relative);
+    }
+  }
+
+  await walk(contentRoot);
+  assert.deepEqual(offenders, [], `这些文章把菜单挂到产品区但不在 content/产品/ 下：${offenders.join(" / ")}`);
 });
