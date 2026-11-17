@@ -14,8 +14,8 @@ const must = [
   [/<h1[^>]*>x7peeps<\/h1>/, "首页缺 h1：x7peeps"],
   [/独立工作室/, "首页缺品类词「独立工作室」"],
   [/blog\.x7peeps\.com/, "首页没有博客入口"],
-  [/prompt\.x7peeps\.com/, "首页没有提示词入口"],
-  [/skills\.x7peeps\.com/, "首页没有技能库入口"],
+  [/x7peeps\.com\/prompt\//, "首页没有提示词入口"],
+  [/x7peeps\.com\/skills\//, "首页没有技能库入口"],
   [/tools\.x7peeps\.com/, "首页没有工具入口"],
 ];
 for (const [re, msg] of must) if (!re.test(home)) fail.push(msg);
@@ -49,9 +49,23 @@ for (const [f, label] of [
   [["隐私政策", "index.html"], "/隐私政策/"],
   [["lrse-ios", "index.html"], "App Store 别名 /lrse-ios/"],
   [["404.html"], "404.html"],
+  [["skills", "index.html"], "技能库子路径 /skills/"],
+  [["prompt", "index.html"], "提示词子路径 /prompt/"],
+  [["prompt", "data", "samples.json"], "提示词数据 /prompt/data/samples.json"],
 ]) {
   if (!fs.existsSync(path.join(root, ...f))) fail.push(`缺页面: ${label}`);
 }
+
+// 两个子站的证书一直没签发，所以必须挂在主域子路径下，且页面里不能残留子域自链
+for (const [f, forbidden] of [
+  [["skills", "index.html"], "skills.x7peeps.com"],
+  [["prompt", "index.html"], "prompt.x7peeps.com"],
+]) {
+  const text = read(path.join(...f));
+  if (text.includes(forbidden)) fail.push(`${f.join("/")} 仍引用 ${forbidden}`);
+}
+if (!home.includes("x7peeps.com/skills/")) fail.push("首页技能库入口没指向 x7peeps.com/skills/");
+if (!home.includes("x7peeps.com/prompt/")) fail.push("首页提示词入口没指向 x7peeps.com/prompt/");
 
 if (fail.length) {
   console.error("门户构建契约失败：");

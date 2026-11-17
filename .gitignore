@@ -48,3 +48,5 @@ portal-public/
 portal/content/
 portal/data/site.json
 portal/data/skills.json
+portal/static/skills/
+portal/static/prompt/
